@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clair Obscur: Belle Époque</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #0a0a0a;
+            color: #d4c5b0;
+            line-height: 1.7;
+            font-size: 19px;
+        }
+        
+        /* MENÚ DE NAVEGACIÓN */
+        .sidebar-nav {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1a1612 0%, #0f0d0a 100%);
+            border-right: 2px solid #8b7355;
+            overflow-y: auto;
+            padding: 30px 20px;
+            z-index: 1000;
+        }
+        
+        .sidebar-nav h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            color: #ffd78c;
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+        
+        .sidebar-nav ul {
+            list-style: none;
+        }
+        
+        .sidebar-nav li {
+            margin-bottom: 12px;
+        }
+        
+        .sidebar-nav a {
+            display: block;
+            color: #c9a87c;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 12px;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-nav a:hover {
+            color: #ffd78c;
+            border-left-color: #d4a574;
+            background: rgba(212, 165, 116, 0.1);
+        }
+        
+        /* CONTENIDO PRINCIPAL */
+        .page {
+            margin-left: 280px;
+            max-width: 900px;
+            padding: 60px 50px;
+            background: linear-gradient(135deg, #1a1612 0%, #0f0d0a 100%);
+            min-height: 100vh;
+        }
+        
+
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #0a0a0a;
+            color: #d4c5b0;
+            line-height: 1.7;
+            font-size: 19px;
+        }
+        
+        .page {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 60px 50px;
+            background: linear-gradient(135deg, #1a1612 0%, #0f0d0a 100%);
+            min-height: 100vh;
+        }
+        
+        /* PORTADA */
+        .cover-page {
+            text-align: center;
+            padding: 120px 20px;
+            background: radial-gradient(ellipse at center, rgba(255, 215, 140, 0.08) 0%, transparent 70%);
+        }
+        
+        .cover-page h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 68px;
+            font-weight: 900;
+            color: #ffd78c;
+            text-shadow: 0 0 30px rgba(255, 215, 140, 0.4);
+            margin-bottom: 25px;
+            letter-spacing: 8px;
+        }
+        
+        .cover-page .subtitle {
+            font-size: 34px;
+            color: #c9a87c;
+            font-style: italic;
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+        
+        .cover-page .tagline {
+            font-size: 26px;
+            color: #a89070;
+            margin-top: 60px;
+            font-weight: 400;
+        }
+        
+        .ornament {
+            font-size: 28px;
+            color: #8b7355;
+            margin: 35px 0;
+            letter-spacing: 12px;
+        }
+        
+        /* TIPOGRAFÍA */
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 38px;
+            color: #ffd78c;
+            margin: 50px 0 30px 0;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #8b7355;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            color: #d4a574;
+            margin: 35px 0 20px 0;
+            font-weight: 600;
+        }
+        
+        h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            color: #c9a87c;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 18px;
+            text-align: justify;
+            text-indent: 30px;
+        }
+        
+        p.no-indent {
+            text-indent: 0;
+        }
+        
+        /* CAJAS ESPECIALES */
+        .intro-box {
+            background: rgba(255, 215, 140, 0.05);
+            border-left: 4px solid #ffd78c;
+            border-right: 4px solid #ffd78c;
+            padding: 30px;
+            margin: 40px 0;
+            font-style: italic;
+            font-size: 21px;
+            color: #e6d5c0;
+            text-align: center;
+        }
+        
+        .intro-box p {
+            text-indent: 0;
+        }
+        
+        .sidebar {
+            background: rgba(139, 115, 85, 0.15);
+            border: 1px solid #8b7355;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+        
+        .sidebar h4 {
+            margin-top: 0;
+            color: #ffd78c;
+        }
+        
+        .sidebar p {
+            text-indent: 0;
+        }
+        
+        .character-profile {
+            background: linear-gradient(135deg, rgba(255, 215, 140, 0.08) 0%, rgba(139, 115, 85, 0.08) 100%);
+            border-left: 5px solid #d4a574;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .character-profile h4 {
+            color: #ffd78c;
+            margin-top: 0;
+            font-size: 24px;
+        }
+        
+        .character-profile .title {
+            color: #c9a87c;
+            font-style: italic;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .character-profile p {
+            text-indent: 0;
+        }
+        
+        /* LISTAS */
+        ul {
+            margin: 20px 0 20px 50px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            color: #d4c5b0;
+        }
+        
+        /* ÉNFASIS */
+        strong {
+            color: #e6d5c0;
+            font-weight: 700;
+        }
+        
+        em {
+            color: #c9a87c;
+        }
+        
+        /* DIVISORES */
+        .section-break {
+            text-align: center;
+            font-size: 24px;
+            color: #8b7355;
+            margin: 50px 0;
+            letter-spacing: 15px;
+        }
+        
+        /* CAPÍTULOS */
+        .chapter-header {
+            margin-top: 60px;
+            margin-bottom: 40px;
+        }
+        
+        .chapter-number {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: #8b7355;
+            text-align: center;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+        
+        .chapter-title {
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            color: #ffd78c;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            border: none;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+        
+        .chapter-quote {
+            text-align: center;
+            font-style: italic;
+            font-size: 19px;
+            color: #c9a87c;
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(255, 215, 140, 0.05);
+            border-top: 1px solid #8b7355;
+            border-bottom: 1px solid #8b7355;
+        }
+        
+        .chapter-quote p {
+            text-indent: 0;
+        }
+        
+        .chapter-quote .attribution {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #a89070;
+        }
+        
+        /* PRIMERA LETRA - DESHABILITADO */
+        .drop-cap::first-letter {
+            /* Deshabilitado para evitar problemas de alineación */
+        }
+        
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            .page {
+                background: white;
+            }
+        }
+    
+        
+
+        /* SUBMENÚS DESPLEGABLES */
+        .menu-section {
+            margin-bottom: 8px;
+        }
+        
+        .section-toggle {
+            font-weight: 600;
+            color: #ffd78c !important;
+            cursor: pointer;
+        }
+        
+        .section-toggle:hover {
+            color: #fff !important;
+        }
+        
+        .submenu {
+            display: none;
+            list-style: none;
+            margin-left: 15px;
+            margin-top: 8px;
+        }
+        
+        .submenu.open {
+            display: block;
+        }
+        
+        .submenu li {
+            margin-bottom: 8px;
+        }
+        
+        .submenu a {
+            font-size: 17px;
+            padding: 6px 12px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .sidebar-nav {
+                width: 250px;
+            }
+            
+            .page {
+                margin-left: 250px;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .sidebar-nav {
+                position: relative;
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 2px solid #8b7355;
+            }
+            
+            .page {
+                margin-left: 0;
+            }
+        }
+        
+        /* SCROLL SUAVE */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+        <!-- MENÚ DE NAVEGACIÓN -->
+    <nav class="sidebar-nav">
+        <h3>CONTENIDO</h3>
+        <ul>
+            <li><a href="#portada">Portada</a></li>
+            <li><a href="#introduccion">Introducción</a></li>
+            
+            <li class="menu-section">
+                <a href="#" class="section-toggle" onclick="toggleSection(event, 'contexto')">▸ Contexto</a>
+                <ul id="contexto" class="submenu">
+                    <li><a href="#consejo">El Consejo</a></li>
+                    <li><a href="#gobierno">El Gobierno</a></li>
+                    <li><a href="#sociedad">La Sociedad</a></li>
+                    <li><a href="#cronologia">Cronología</a></li>
+                </ul>
+            </li>
+            <li class="menu-section">
+                <a href="#" class="section-toggle" onclick="toggleSection(event, 'gremios')">▸ Gremios</a>
+                <ul id="gremios" class="submenu">
+                    <li><a href="#pintores">Pintores</a></li>
+                    <li><a href="#escritores">Escritores</a></li>
+                    <li><a href="#musicos">Músicos</a></li>
+                    <li><a href="#escultores">Escultores</a></li>
+                    <li><a href="#arquitectos">Arquitectos</a></li>
+                    <li><a href="#menores">Gremios Menores</a></li>
+                </ul>
+            </li>
+            <li class="menu-section">
+                <a href="#" class="section-toggle" onclick="toggleSection(event, 'sistema')">▸ Sistema</a>
+                <ul id="sistema" class="submenu">
+                    <li><a href="#creacion">Creación de Personaje</a></li>
+                    <li><a href="#sistema-juego">Sistema de Juego</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="page">
+
+        <!-- PORTADA -->
+        <div id="portada" class="cover-page">
+            <div class="ornament">◆ ◆ ◆</div>
+            <h1>CLAIR OBSCUR</h1>
+            <div class="subtitle">Belle Époque</div>
+            <p class="tagline" style="margin-top: 60px;">"Todo arte es el resultado de haber estado en peligro, de haber atravesado una experiencia hasta el final, donde nadie puede ir más allá"</p>
+            <p style="font-size: 16px; color: #8b7355; margin-top: 15px;">— Rainer Maria Rilke</p>
+        </div>
+
+
+        <div class="section-break">◆ ◆ ◆</div>
+
+        <!-- INTRODUCCIÓN -->
+        <h2 id="introduccion">Introducción</h2>
+        
+        <div class="intro-box">
+            <p>"Es a través del arte, y solo a través del arte, que podemos realizar nuestra perfección."</p>
+            <p class="attribution" style="margin-top: 15px; font-size: 17px;">— Oscar Wilde</p>
+        </div>
+        
+        <p class="drop-cap">El año es 1905, y París se alza como la capital indiscutible del mundo civilizado. Desde los bulevares iluminados por farolas eléctricas hasta los cafés donde se debate el futuro de la humanidad, la ciudad respira un optimismo embriagador. La Torre Eiffel, ese prodigio de hierro forjado que hace apenas dieciséis años escandalizó a los puristas, se ha convertido en el símbolo mismo de la modernidad. Los primeros automóviles Panhard-Levassor rugen por las avenidas, compitiendo con los elegantes landós tirados por caballos.</p>
+        
+        <p>En los sótanos de los grandes bulevares, el Metro transporta a miles de parisinos cada día a través de túneles decorados con las sinuosas formas del Art Nouveau diseñadas por Hector Guimard. En las salas oscuras del Grand Café, las imágenes en movimiento de los hermanos Lumière fascinan a multitudes que apenas pueden creer lo que ven. En los salones de la Ópera Garnier, las voces de las sopranos más célebres de Europa hacen vibrar las lámparas de cristal.</p>
+        
+        <p>Pero esta es solo la superficie. Bajo el barniz de progreso y racionalidad, París es una ciudad de intriga y poder oculto. Aquí, el arte no es simplemente una expresión del alma humana o un adorno para los salones de la burguesía. Es una fuerza primordial que puede alterar la realidad, manipular las emociones y dar vida a lo inanimado. Y quienes dominan este poder, los Maestros del Arte, son los verdaderos gobernantes de Francia.</p>
+        
+        <p>Caminar por el Louvre no es simplemente admirar las obras maestras del pasado; es exponerse a la influencia sutil de pinturas que pueden cambiar tu forma de pensar, de sentir, de recordar. El Louvre es el corazón del poder artístico, el santuario donde se custodian los lienzos más poderosos jamás creados, algunos de los cuales contienen mundos enteros en su interior. Asistir a un concierto en la Ópera Garnier no es solo disfrutar de la música; es someterse a un ritual de manipulación emocional donde el compositor puede llevar a la audiencia del éxtasis a la desesperación con una simple modulación.</p>
+        
+        <p>Las estatuas que adornan los jardines de las Tullerías no son meros monumentos de bronce y mármol; algunas son Obras Maestras, gólems durmientes que pueden despertar ante la orden de su creador. Los edificios diseñados por los Maestros Arquitectos contienen habitaciones que no deberían existir, puertas que conducen a lugares imposibles, espacios que desafían las leyes de la geometría.</p>
+        
+        <p>En este París, la democracia es una ilusión cuidadosamente mantenida. El Presidente Loubet firma las leyes, el Parlamento debate, los periódicos informan, pero todos bailan al son de una orquesta invisible. Los verdaderos poderes son los gremios artísticos, y su instrumento de gobierno es el Consejo de las Bellas Artes.</p>
+        
+        <div class="sidebar">
+            <h4>Para los Jugadores</h4>
+            <p>En este mundo, vosotros sois Maestros del Arte, herederos de tradiciones que se remontan a la antigüedad. Vuestro arte es vuestro poder, y vuestras Obras Maestras pueden cambiar el mundo. Pero el poder conlleva responsabilidad, y en París, cada creación es también un acto político. ¿De qué lado estaréis cuando el equilibrio se rompa?</p>
+        </div>
+
+        <div class="section-break">◆ ◆ ◆</div>
+
+        
+        <!-- EL CONSEJO DE LAS BELLAS ARTES -->
+        <h2 id="consejo">El Consejo de las Bellas Artes</h2>
+        
+        <p class="drop-cap no-indent">El Consejo de las Bellas Artes es el corazón del poder en Francia. Fundado en 1795, poco después del Terror, el Consejo fue concebido como un órgano de coordinación entre los gremios artísticos para evitar que sus rivalidades destruyeran la joven República que habían creado. Con el tiempo, se ha convertido en el verdadero gobierno de Francia, aunque su existencia y función real son un secreto a voces entre quienes ostentan el poder.</p>
+        
+        <h3>Estructura y Composición</h3>
+        
+        <p>El Consejo está compuesto por quince miembros permanentes, distribuidos entre los cinco gremios principales. Cada gremio tiene tres asientos: un asiento decisor, cuyo ocupante tiene voto vinculante en las decisiones del Consejo, y dos asientos consultivos, cuyos ocupantes pueden participar en los debates pero su voto es meramente orientativo.</p>
+        
+        <p>La única excepción a esta regla son los Arquitectos, que poseen únicamente dos asientos consultivos. Esta distribución desigual es fuente de constante tensión y resentimiento. Los Arquitectos fueron penalizados durante la fundación del Consejo por su asociación con la monarquía, que había empleado sus servicios para construir Versalles y otros símbolos del antiguo régimen. Más de un siglo después, esta injusticia histórica sigue envenenando las relaciones entre los gremios.</p>
+        
+        <p>Además de los miembros permanentes, el Consejo cuenta con diez asientos de consulta adicionales, reservados para invitados de honor. Estos pueden ser políticos de alto rango, industriales, científicos, diplomáticos extranjeros o, en raras ocasiones, representantes de otros gremios como el Teatro. Los consultores no tienen voto, pero su presencia es un símbolo de estatus e influencia, y las conversaciones informales durante las sesiones pueden ser tan importantes como las decisiones formales.</p>
+        
+        <h3>Funcionamiento</h3>
+        
+        <p>El Consejo se reúne una vez al mes en lugares emblemáticos de París, siempre bajo la apariencia de eventos culturales. Una cena de gala en el Palais Garnier, una inauguración en el Petit Palais, un concierto privado en el Trocadero, una exposición especial en el Louvre... estos son los escenarios donde se decide el destino de Francia. Para el público, son simplemente eventos sociales de la élite parisina. Para los iniciados, son sesiones de gobierno.</p>
+        
+        <p>Las decisiones del Consejo se transmiten a los políticos de la República a través de "recomendaciones" y "sugerencias" que ningún político sensato se atrevería a ignorar. Un ministro que desafíe al Consejo pronto descubrirá que la prensa lo ataca sin piedad, que sus discursos son recibidos con indiferencia o burla, que sus iniciativas son saboteadas desde dentro. El poder del Consejo es sutil pero absoluto.</p>
+        
+        <h3>El Louvre: Santuario del Poder</h3>
+        
+        <p>El Louvre ocupa un lugar especial en la estructura de poder. No es solo un museo; es el santuario del Gremio de Pintores, el arsenal donde se custodian los lienzos más poderosos jamás creados, y el lugar donde el Consejo se reúne para sus sesiones más importantes y secretas. En las bóvedas subterráneas del Louvre se guardan obras que podrían alterar la realidad misma si fueran expuestas al público.</p>
+        
+        <p>El control del Louvre es el control simbólico y práctico de Francia. Los Pintores defienden este privilegio con ferocidad, y cualquier intento de otros gremios de ganar acceso a las bóvedas es visto como una declaración de guerra.</p>
+        
+        <h3>La Jerarquía de Poder</h3>
+        
+        <p>Aunque formalmente todos los gremios con asiento decisor tienen el mismo poder de voto, en la práctica existe una jerarquía clara. Los Pintores son los más influyentes, capaces de acumular experiencia y sabiduría durante el equivalente a varias vidas humanas gracias a sus lienzos habitables. Esta ventaja los hace formidables en política, diplomacia y cualquier actividad que requiera astucia. Dominan los debates del Consejo y, a menudo, marcan la agenda.</p>
+        
+        <p>Los Escritores son los segundos en poder. Con sus escritos pueden generar cambios en el pensamiento a través de la prensa. Desde la imprenta, su influencia se ha multiplicado, y a pesar de los matusalenes que habitan entre los Pintores, muchos se preguntan si la jerarquía en el consejo está a punto de cambiar, o ya lo ha hecho.</p>
+        
+        <p>Los Músicos y Escultores ocupan una posición intermedia. Sus poderes son más directos y tangibles, pero su alcance es más limitado. Un Músico puede mover a una multitud en un concierto, pero el efecto se desvanece cuando la música cesa. Un Escultor puede crear un golem poderoso, pero no puede crear ejércitos enteros. Son respetados y temidos, pero rara vez dominan las decisiones del Consejo.</p>
+        
+        <p>Los Arquitectos son los más marginados. A pesar de su poder permanente sobre el espacio, son vistos como practicantes de un arte "impuro" porque la arquitectura sirve funciones prácticas. Esta actitud elitista ha relegado a los Arquitectos a una posición secundaria en el Consejo, aunque compensan esta falta de representación formal con su influencia en las sociedades secretas masónicas.</p>
+
+        <div class="section-break">◆ ◆ ◆</div>
+
+        <!-- EL GOBIERNO FRANCÉS -->
+        <h2 id="gobierno">El Gobierno Francés</h2>
+        
+        <p class="drop-cap no-indent">La Tercera República Francesa, establecida en 1870 tras la caída del Segundo Imperio, es una democracia parlamentaria en apariencia. El Presidente de la República es elegido por la Asamblea Nacional, y el gobierno es responsable ante el Parlamento. Hay elecciones, debates, partidos políticos y toda la parafernalia de un estado democrático moderno.</p>
+        
+        <p>Pero la realidad es que la mayoría de los políticos de alto rango son miembros de los gremios artísticos o deben su carrera al patrocinio de un Maestro del Arte. El sistema democrático funciona, pero dentro de parámetros cuidadosamente establecidos por el Consejo de las Bellas Artes.</p>
+        
+        <h3>El Presidente Émile Loubet</h3>
+        
+        <p>El Presidente de la República Francesa es un hombre afable y de apariencia digna, pero completamente superado por las fuerzas que realmente mueven los hilos. A sus sesenta y seis años, Loubet ha aprendido a sobrevivir en un mundo donde el poder real no reside en el Palacio del Elíseo, sino en los salones del Consejo de las Bellas Artes.</p>
+        
+        <p>Loubet no pertenece a ningún gremio importante, pero ascendió en la política gracias al patrocinio de Marcel Proust y el Gremio de Escritores. Su función es la de ser la cara pública del poder, firmando las leyes que el Consejo decide y manteniendo la ilusión de una democracia funcional. Es consciente de su papel, y vive en un estado de constante ansiedad, temeroso de ofender a sus verdaderos amos.</p>
+        
+        <p>En privado, Loubet es un hombre amargado. Soñaba con ser un estadista, con dejar su marca en la historia de Francia. En cambio, es una marioneta, y lo sabe. Algunos dicen que bebe demasiado. Otros, que ha comenzado a buscar aliados entre los Artesanos, los grandes excluidos del poder, soñando con una rebelión que lo libere de su prisión dorada.</p>
+        
+        <h3>El Parlamento y la Administración</h3>
+        
+        <p>El Parlamento francés está dividido en dos cámaras: la Cámara de Diputados y el Senado. Los diputados son elegidos por sufragio universal, tanto masculino como femenino desde 1900, mientras que los senadores son elegidos por colegios electorales. En teoría, el Parlamento es el órgano legislativo supremo de Francia. En la práctica, es un teatro donde se representan las decisiones ya tomadas por el Consejo.</p>
+        
+        <p>Esto no significa que todos los parlamentarios sean títeres sin voluntad propia. Algunos intentan resistir, otros negocian, y unos pocos logran jugar a los gremios unos contra otros para ganar un margen de maniobra. Pero al final, las leyes importantes siempre reflejan los intereses del Consejo.</p>
+        
+        <p>La burocracia francesa es vasta y compleja, heredera de las reformas napoleónicas. Los ministerios, las prefecturas, los tribunales... todos funcionan con una eficiencia que es la envidia de Europa. Pero en los puestos clave, en los despachos donde se toman las decisiones realmente importantes, siempre hay alguien que responde al Consejo.</p>
+
+        <div class="section-break">◆ ◆ ◆</div>
+
+        <!-- LA SOCIEDAD -->
+        <h2 id="sociedad">La Sociedad: Cultura y Moda</h2>
+        
+        <h3>La Belle Époque</h3>
+        
+        <p class="drop-cap no-indent">El período que va desde 1871 hasta 1914 es conocido como la Belle Époque, una era de optimismo, prosperidad y transformación cultural. París es el epicentro de este florecimiento, la ciudad donde todo lo nuevo y emocionante sucede primero. Es una época de contrastes: la electricidad ilumina los bulevares mientras en los barrios obreros aún se usa el gas. Los automóviles comparten las calles con los caballos. La ciencia promete un futuro de progreso ilimitado, mientras el ocultismo y el espiritismo fascinan a las clases altas.</p>
+        
+        <p>Para los Maestros del Arte, la Belle Époque es una era dorada. Nunca antes el arte ha tenido tanta influencia, tanto prestigio, tanto poder. Los salones literarios, las exposiciones de arte, los conciertos... todos son eventos sociales de primera importancia, pero también son rituales de poder donde se tejen alianzas y se libran batallas invisibles.</p>
+        
+        <h3>La Moda</h3>
+        
+        <p>La moda de 1905 es elaborada y estratificada. Para las mujeres de la alta sociedad, el corsé es obligatorio, creando la silueta en forma de S que define la época. Los vestidos son largos, con colas que barren el suelo, y están adornados con encajes, bordados y pedrería. Los sombreros son enormes, decorados con plumas, flores y cintas. Salir sin guantes es impensable.</p>
+        
+        <p>Para los hombres, el traje de tres piezas es el estándar: chaqueta, chaleco y pantalones, generalmente en tonos oscuros. El sombrero de copa para ocasiones formales, el bombín para el día a día. El bigote es casi universal entre los hombres de cierta edad.</p>
+        
+        <p>Pero entre los Maestros del Arte, la moda adquiere significados adicionales. Los Pintores a menudo visten con colores que reflejan su estado emocional o sus intenciones. Los Escritores prefieren el negro, el color de la tinta y la autoridad intelectual. Los Músicos se visten con elegancia teatral, conscientes de que siempre están en escena. Los Escultores visten de manera práctica, con ropas que pueden ensuciarse con arcilla y polvo de piedra. Y los Arquitectos visten con una precisión geométrica que refleja su dominio del espacio.</p>
+        
+        <h3>Los Cafés y Salones</h3>
+        
+        <p>Los cafés de París son el corazón de la vida intelectual y artística. En el Café de Flore, en el Deux Magots, en La Rotonde, se reúnen escritores, pintores, músicos y filósofos para debatir, conspirar y crear. Estos no son simples lugares de reunión; son territorios disputados donde los gremios compiten por influencia.</p>
+        
+        <p>Los salones literarios, organizados por damas de la alta sociedad, son igualmente importantes. Un salón exitoso puede lanzar la carrera de un artista joven o destruir la reputación de un maestro establecido. Las anfitrionas más poderosas son, a menudo, artistas por derecho propio, o están estrechamente aliadas con uno de los gremios.</p>
+        
+        <h3>El Teatro y la Ópera</h3>
+        
+        <p>El teatro es una obsesión parisina. Desde los grandes teatros del Boulevard des Italiens hasta los cabarets de Montmartre, hay espectáculos para todos los gustos y clases sociales. La Comédie-Française representa los clásicos de Molière y Racine. El Théâtre de l'Odéon presenta obras modernas y experimentales. Y en el Moulin Rouge, el can-can escandaliza y deleita a las multitudes.</p>
+        
+        <p>La Ópera Garnier es el templo de la música. Asistir a un estreno en la Ópera es un evento social de primera magnitud, donde se ven y se dejan ver los poderosos de París. Pero para los iniciados, cada ópera es también un ritual donde la música y el drama se combinan para crear efectos que van mucho más allá del entretenimiento.</p>
+        
+        <h3>La Vida Nocturna</h3>
+        
+        <p>Cuando cae la noche, París se transforma. Los bulevares se iluminan con farolas eléctricas y de gas, creando un resplandor dorado que ha dado a la ciudad su apodo: la Ville Lumière. Los cafés permanecen abiertos hasta altas horas, llenos de conversación y humo de cigarrillos. Los teatros y cabarets ofrecen espectáculos que van desde lo sublime hasta lo escandaloso.</p>
+        
+        <p>Pero la noche también es cuando los Maestros del Arte realizan sus trabajos más profundos. Los Pintores viajan a sus lienzos habitables. Los Escritores redactan textos en la soledad de sus estudios. Los Músicos componen melodías que no están destinadas a oídos humanos. Los Escultores dan vida a sus Obras Maestras en talleres ocultos. Y los Arquitectos, también conocidos como la Masonería, alteran edificios bajo el manto de la oscuridad, creando puertas y pasajes que no existían al amanecer.</p>
+
+        <div class="section-break">◆ ◆ ◆</div>
+
+        <!-- CRONOLOGÍA -->
+        <h2 id="cronologia">Cronología Histórica</h2>
+        
+        <h3>La Era Antigua: El Primer Florecimiento</h3>
+        
+        <p class="drop-cap no-indent">En los tiempos antiguos, cuando los dioses aún caminaban entre los mortales, los poderes artísticos eran conocidos y venerados. En Grecia, los escultores daban vida a estatuas que servían en los templos de los dioses. Pigmalión no fue el único; cada ciudad tenía sus maestros que podían animar la piedra. En Roma, los arquitectos construían edificios que alteraban el espacio y el tiempo, como el Panteón, cuya cúpula contiene más espacio en su interior del que su geometría exterior debería permitir.</p>
+        
+        <p>Los bardos celtas cantaban canciones que podían curar enfermedades o matar con una maldición. Los pintores egipcios creaban murales en las tumbas que servían como portales al más allá. El arte y la magia eran indistinguibles.</p>
+        
+        <h3>La Edad Media: El Refugio en las Sombras (siglos V-XV)</h3>
+        
+        <p>Con la caída del Imperio Romano y el ascenso del cristianismo, las Obras Maestras comenzaron a declinar. La Iglesia, temerosa de cualquier poder que no pudiera controlar, persiguió a los Maestros del Arte. Durante la Edad Media, el conocimiento se refugió en las logias de masones y los monasterios.</p>
+        
+        <p>Los masones, constructores de catedrales, preservaron las técnicas de la arquitectura espacial, ocultándolas en símbolos y rituales. Cada catedral gótica es una máquina, diseñada para canalizar fuerzas que los fieles no comprenden. Los monjes mantuvieron viva la tradición de la escritura y la pintura en los scriptoria, copiando manuscritos que contenían más que simple texto.</p>
+        
+        <h3>El Renacimiento: El Despertar (siglos XV-XVII)</h3>
+        
+        <p>Con el Renacimiento, los poderes artísticos comenzaron a resurgir. Leonardo da Vinci creó un retrato viviente que invitaba a quienes lo contemplaban a confesar sus secretos más profundos, para luego relatarlos de vuelta al artista. Miguel Ángel dio vida a una Obra Maestra de mármol, un gólem que guardaba los secretos del Vaticano. Pero el Renacimiento también trajo conflictos entre los gremios, luchas por el patrocinio y el reconocimiento.</p>
+        
+        <h3>La Ilustración: El Ascenso de las Ideas (siglo XVIII)</h3>
+        
+        <p>El siglo XVIII vio el ascenso del Gremio de Escritores. Voltaire, Rousseau, Diderot... no eran solo pensadores; eran maestros de la palabra que podían cambiar la forma en que las personas pensaban sobre el mundo. La Enciclopedia no era solo un compendio de conocimiento; era un arma diseñada para destruir el antiguo régimen desde dentro.</p>
+        
+        <h3>1789: La Revolución Francesa</h3>
+        
+        <p>La Revolución Francesa fue el momento decisivo. Los artistas, cansados de estar sometidos al mecenazgo de los reyes, se aliaron con los Artesanos y la burguesía emergente. Los Escritores redactaron los panfletos que encendieron la llama de la rebelión. Los Músicos compusieron las canciones que llevaron al pueblo a las barricadas. Los Pintores crearon imágenes de libertad y justicia. Y los Escultores crearon gólems que rompieron las puertas de la Bastilla el 14 de julio de 1789.</p>
+        
+        <p>Pero la revolución también fue el momento de la gran traición. Los Artesanos, que habían financiado y apoyado la revolución, fueron excluidos del poder por el elitismo de "las bellas artes". Esta decisión sembró las semillas de un resentimiento que perdura hasta hoy.</p>
+        
+        <h3>1793-1794: El Terror</h3>
+        
+        <p>Durante el Terror, los gremios se dividieron. La guillotina cayó sobre nobles, sacerdotes y también sobre artistas. Varios maestros de los gremios fueron ejecutados. Los Pintores perdieron lienzos habitables que fueron destruidos, matando a quienes estaban dentro. Fue una lección brutal: el poder sin control puede destruir a quienes lo ejercen.</p>
+        
+        <h3>1795: La Fundación del Consejo de las Bellas Artes</h3>
+        
+        <p>Tras la caída de Robespierre, los gremios supervivientes se reunieron para evitar que la violencia se repitiera. Así nació el Consejo de las Bellas Artes. La estructura del Consejo fue el resultado de negociaciones tensas. Los Arquitectos fueron penalizados, recibiendo solo dos asientos. Y los Artesanos fueron completamente excluidos.</p>
+        
+        <h3>1870-1871: La Guerra Franco-Prusiana y la Comuna de París</h3>
+        
+        <p>La derrota de Francia ante Prusia fue un golpe devastador. Los gólems de los Escultores no pudieron detener los cañones modernos. La Comuna de París fue un intento de revolución desde abajo, liderado por trabajadores y Artesanos. La represión fue brutal, y más de veinte mil comuneros fueron ejecutados.</p>
+        
+        <h3>1876: La Muerte de George Sand y la Semilla del Sufragio</h3>
+        
+        <p>George Sand, la novelista y Maestra Escritora que desafió las convenciones de su época, murió en 1876. Pero antes de su muerte, plantó una semilla que cambiaría Francia para siempre. Durante décadas, Sand había usado su poder de escritura para sembrar la idea de la igualdad entre hombres y mujeres en las mentes de la élite intelectual. Sus novelas no solo entretenían; alteraban sutilmente la forma en que sus lectores pensaban sobre el género, el poder y la justicia.</p>
+        
+        <p>En su lecho de muerte, se dice que Sand convocó a las jóvenes escritoras más prometedoras de Francia y les encargó completar su obra. Entre ellas estaban Marguerite Durand, entonces una niña de doce años, y otras que continuarían su legado.</p>
+        
+        <h3>1889: La Torre Eiffel</h3>
+        
+        <p>La Torre Eiffel fue un proyecto conjunto de los Arquitectos y los Artesanos, un intento de reconciliación. La torre no es solo una estructura de hierro; es un ancla espacial, un punto de referencia que estabiliza el tejido de la realidad en París. Desde su construcción, los poderes artísticos en la ciudad se han vuelto más fuertes y estables.</p>
+        
+        <h3>1894-1906: El Caso Dreyfus</h3>
+        
+        <p>El Caso Dreyfus fue una guerra civil dentro del Gremio de Escritores. La facción tradicionalista usó su poder para falsificar documentos y avivar el odio. La facción progresista, liderada por Émile Zola, luchó para exponer la conspiración. Zola utilizó su poder en "J'accuse...!", haciendo imposible ignorar la inocencia de Dreyfus. Francia se dividió, y la nación estuvo al borde de la guerra civil. Finalmente, en 1906, Dreyfus fue exonerado.</p>
+        
+        <h3>1900: La Exposición Universal del Nuevo Siglo</h3>
+        
+        <p>La Exposición Universal de 1900 fue la más grandiosa de todas. El Palais de l'Électricité fue una obra conjunta de los Pintores y los Músicos. Los Pintores crearon luz a partir de pigmentos puros, y los Músicos sincronizaron el espectáculo con una sinfonía. Fue también en esta exposición donde el cinematógrafo capturó la atención del público.</p>
+        
+        <h3>1900: El Sufragio Femenino</h3>
+        
+        <p>En el mismo año de la Exposición Universal, Francia se convirtió en la primera nación europea en conceder el sufragio universal completo, incluyendo a las mujeres. La victoria fue el resultado de décadas de trabajo iniciado por George Sand, pero fue completada por una nueva generación de Maestras Escritoras.</p>
+        
+        <p>Marguerite Durand, fundadora del periódico feminista "La Fronde", y la joven escritora Colette orquestaron una campaña de influencia sin precedentes. Durante meses, artículos cuidadosamente elaborados aparecieron en periódicos de toda Francia, cada uno imbuido con el poder de hacer que la idea del sufragio femenino pareciera natural, inevitable, incluso obvia. Los parlamentarios que leían estos textos encontraban sus objeciones desvaneciéndose, reemplazadas por una convicción inexplicable de que negar el voto a las mujeres era absurdo.</p>
+        
+        <p>El rumor en los círculos del Consejo es que Aline Dessendre apoyó discretamente la campaña, proporcionando recursos y protección política. Algunos susurran que lo hizo porque veía en el sufragio femenino una forma de consolidar el poder de las Maestras del Arte, que ahora podían influir directamente en las elecciones. Otros creen que simplemente era lo correcto.</p>
+        
+        <p>La oposición conservadora dentro del Gremio de Escritores, liderada por tradicionalistas masculinos, intentó bloquear la ley, pero fueron superados en número y en astucia. Cuando la ley fue aprobada, Francia cambió para siempre.</p>
+        
+        <h3>1905: La Ley de Separación de la Iglesia y el Estado</h3>
+        
+        <p>En 1905, el Consejo de las Bellas Artes logró su mayor victoria contra la Iglesia Católica. La Ley de Separación despojó a la Iglesia de su influencia y poder. Sus propiedades fueron confiscadas, sus escuelas cerradas. Fue el golpe de gracia contra una antigua teocracia.</p>
+        
+        <h3>Octubre de 1905: El Salón de Otoño y el Nacimiento del Fauvismo</h3>
+        
+        <p>En octubre de 1905, el Salón de Otoño presentó al público las obras del movimiento fauvista. Las pinturas de Henri Matisse, con sus colores salvajes y formas audaces, escandalizaron a los tradicionalistas. Pero lo que el público no sabía era que este no era solo un movimiento artístico; era una revolución. Los fauvistas habían descubierto nuevas formas de canalizar el poder a través del color puro.</p>
+        
+        <h3>23 de enero de 1905: La Muerte de Verso Dessendre</h3>
+        
+        <p>En la noche del 23 de enero de 1905, un incendio consumió parte de la mansión Dessendre. Verso Dessendre, hijo de Aline Dessendre, murió en el incendio mientras salvaba a su hermana menor, Alicia. Las circunstancias del incendio son sospechosas. Muchos creen que fue un sabotaje del Gremio de Escritores.</p>
+        
+        <p>Aline culpa a Alicia, cuyas conexiones con el Gremio de Escritores podrían haber facilitado el ataque. Tras la muerte de Verso, Aline desapareció durante tres meses, refugiándose en sus lienzos habitables. Lleva apenas dos meses de vuelta, y su regreso ha sido marcado por un silencio ominoso.</p>
+        
+        <p>La muerte de Verso ha roto el pacto no escrito de no recurrir al asesinato que había mantenido la paz entre los gremios. Ahora, todos están en alerta máxima. El frágil equilibrio de poder amenaza con romperse.</p>
+
+        <div class="section-break">◆ ◆ ◆</div>
+
+        <!-- CAPÍTULO I: PINTORES -->
+        <div>
+            <h2 id="pintores">El Gremio de Pintores</h2>
+        </div>
+        
+        <div class="quote">
+            <p>"No basta con colocar colores, por bellos que sean, uno al lado del otro; los colores deben también reaccionar entre sí. De lo contrario, tienes cacofonía."</p>
+            <p class="attribution">— Henri Matisse</p>
+        </div>
+        
+        <p class="drop-cap">Los Pintores son los más influyentes de todos los gremios, y su dominio sobre el Consejo de las Bellas Artes es indiscutible. Su capacidad de acumular experiencia dentro de lienzos habitables los ha convertido en maestros de la política, la diplomacia y la estrategia. Un pintor de cuarenta años puede tener la sabiduría de alguien de cien, habiendo vivido múltiples vidas dentro de sus creaciones.</p>
+        
+        <h3>Poderes</h3>
+        
+        <p>Los Pintores dominan tres capacidades fundamentales. Primero, pueden crear <strong>lienzos habitables</strong>, obras que contienen mundos completos donde las leyes de la física y el tiempo obedecen a su voluntad. Dentro de estos lienzos, un día en el mundo real puede ser una semana, un mes o incluso un año. Aline Dessendre ha creado bibliotecas infinitas. Henri Matisse ha pintado paisajes de emoción pura donde los colores tienen textura y sabor. Camille Pissarro mantiene réplicas perfectas de París en diferentes épocas.</p>
+        
+        <p>Segundo, pueden pintar <strong>retratos vivientes</strong> que observan, escuchan y, en algunos casos, se comunican con el mundo exterior. Estos retratos sirven como espías perfectos, testigos silenciosos que nunca olvidan. El Louvre está lleno de retratos vivientes que vigilan las salas del museo.</p>
+        
+        <p>Tercero, como todos los artistas, pueden <strong>conmover profundamente</strong> a quienes contemplan sus obras. Los fauvistas han descubierto que el color puro puede ser un vehículo de emoción más poderoso que cualquier representación realista.</p>
+        
+        <h3>Política</h3>
+        
+        <p>En 1905, el gremio está profundamente dividido entre los tradicionalistas y los fauvistas. Los tradicionalistas, liderados por Camille Pissarro, creen que la pintura debe capturar la verdad del mundo. Sus obras pueden servir como anclas temporales o registros inalterables de eventos. Para ellos, el fauvismo no es innovación, sino degeneración.</p>
+        
+        <p>Los fauvistas, liderados por Henri Matisse y apoyados por Aline Dessendre, han descubierto nuevas formas de canalizar el poder a través del color puro. Pueden pintar con rojos y naranjas tan intensos que el sujeto parece arder desde dentro. Esta división no es meramente estética; es una batalla por el futuro mismo del gremio.</p>
+        
+        <p>El Louvre es el santuario del gremio, el arsenal donde se custodian los lienzos más poderosos jamás creados. El control del Louvre es el control simbólico y práctico de Francia, y los Pintores defienden este privilegio con ferocidad.</p>
+        
+        <p>La muerte de Verso Dessendre ha sacudido al gremio hasta sus cimientos. La desaparición de Aline durante tres meses dejó un vacío de poder que los tradicionalistas intentaron llenar. Ahora que ha regresado, la tensión es palpable. Algunos dicen que ha cambiado, que su dolor se ha transformado en algo más oscuro y peligroso.</p>
+        
+        <h3>Miembros del Consejo</h3>
+        
+        <div class="character-profile">
+            <h4>Aline Dessendre</h4>
+            <span class="title">Asiento Decisor</span>
+            <p>Aline Dessendre es la líder indiscutible del Gremio de Pintores y, por extensión, la figura más poderosa del Consejo de las Bellas Artes. A sus cuarenta y siete años, es una mujer de presencia imponente, con el cabello oscuro apenas tocado por las primeras hebras de plata y una mirada que puede atravesar el alma. Se dice que ha pasado el equivalente a tres vidas dentro de sus lienzos, acumulando una experiencia y sabiduría que ningún mortal común podría igualar.</p>
+            <p>Sus lienzos habitables son mundos completos, con geografías, climas y habitantes propios. Ha creado bibliotecas infinitas, jardines eternos y salones donde el tiempo se detiene. Como líder del Consejo, es una figura de autoridad absoluta, respetada, temida y, en algunos círculos, odiada.</p>
+            <p>Pero el año 1905 ha sido devastador para Aline. El 23 de enero de 1905, su hijo Verso murió en un incendio que consumió parte de la mansión familiar. Aline culpa a su hija menor, Alicia, cuyas conexiones con el Gremio de Escritores podrían haber facilitado el ataque. Tras la muerte de Verso, Aline desapareció durante tres meses. Lleva apenas dos meses de vuelta, y su regreso ha sido marcado por un silencio ominoso.</p>
+        </div>
+        
+        <div class="character-profile">
+            <h4>Henri Matisse</h4>
+            <span class="title">Asiento Consultivo</span>
+            <p>Henri Matisse es el segundo al mando del Gremio de Pintores y el líder del movimiento fauvista. A sus treinta y seis años, es un hombre de aspecto desaliñado, con barba descuidada y ojos que brillan con una intensidad casi maníaca. Su poder reside en el uso de colores puros como vehículos de emoción cruda.</p>
+            <p>Matisse es un radical sin concesiones. Desprecia las viejas tradiciones académicas y ve a los conservadores del gremio como parásitos que se aferran a un pasado muerto. El Salón de Otoño de 1905, donde presentó sus obras más audaces, fue un escándalo que dividió al gremio y al mundo del arte. Políticamente, es un aliado de Aline, aunque su relación es compleja.</p>
+        </div>
+        
+        <div class="character-profile">
+            <h4>Camille Pissarro</h4>
+            <span class="title">Asiento Consultivo</span>
+            <p>Camille Pissarro representa la facción conservadora del Gremio de Pintores. A sus setenta y cinco años, es el miembro más anciano del Consejo, un veterano que ha visto pasar revoluciones, guerras y cambios de régimen. Su barba blanca y su mirada serena le dan el aspecto de un patriarca bíblico, pero bajo esa apariencia tranquila late un corazón de acero.</p>
+            <p>Pissarro es un maestro de la pintura impresionista, y sus obras poseen el poder de capturar la realidad con tal perfección que pueden servir como anclas temporales o registros inalterables de eventos. Ve el ascenso del fauvismo como una amenaza existencial al arte verdadero, y está decidido a detenerlo.</p>
+        </div>
+
+        <div class="section-break">◆ ◆ ◆</div>
+
+        <!-- CAPÍTULO II: ESCRITORES -->
+        <div>
+            <h2 id="escritores">El Gremio de Escritores</h2>
+        </div>
+        
+        <div class="quote">
+            <p>"Si enterráis la verdad bajo tierra, crecerá y acumulará tal poder explosivo que el día que estalle, lo hará volar todo por los aires."</p>
+            <p class="attribution">— Émile Zola</p>
+        </div>
+        
+        <p class="drop-cap">Si los Pintores controlan lo que experimentamos, los Escritores controlan lo que pensamos. Su poder es el más sutil y, a largo plazo, el más devastador. Un texto encantado puede implantarse en la mente del lector como una semilla, germinando lentamente hasta convertirse en una convicción inquebrantable. Los Escritores dominan muchos de los periódicos más influyentes, las grandes editoriales y algunas de las universidades más prestigiosas, controlando gran parte del discurso público y la educación de las élites.</p>
+        
+        <p>La historia reciente del gremio es la de un ascenso meteórico. Desde la invención de la imprenta, pero especialmente durante el siglo XIX, el poder de los Escritores ha crecido exponencialmente. La alfabetización masiva, la proliferación de periódicos, la novela como forma dominante de entretenimiento... todo ha jugado a su favor. Hace apenas cincuenta años, eran el gremio más débil del Consejo. Hoy rivalizan con los Pintores por el dominio absoluto.</p>
+        
+        <p>Pero ahora, por primera vez en décadas, su ascenso se ha frenado. El cinematógrafo, esas imágenes en movimiento que fascinan a las masas, amenaza con robarles su audiencia. La gente prefiere ver una película de quince minutos que leer una novela de quinientas páginas. Es el mismo conflicto que tuvieron con el Teatro, pero esta vez el enemigo es más formidable. Contra el Teatro vencieron, argumentando que sin sus textos, los actores no eran nada. Pero el cine no necesita palabras para contar historias.</p>
+        
+        <h3>Poderes</h3>
+        
+        <p>Los Escritores dominan tres capacidades fundamentales. Primero, pueden crear <strong>sugestiones</strong> en sus lectores que germinan lentamente durante meses o años hasta convertirse en convicciones profundas. Marcel Proust es el maestro indiscutible de esta técnica, capaz de tejer redes de influencia tan complejas que ni siquiera sus víctimas son conscientes de estar siendo manipuladas.</p>
+        
+        <p>Segundo, pueden <strong>modificar la memoria</strong> de quienes leen sus textos, haciendo que recuerden eventos que nunca ocurrieron o que olviden cosas que sí sucedieron. Esta capacidad es quizás la más peligrosa de todas, porque altera la realidad misma en la mente de las personas. Proust ha perfeccionado esta técnica hasta convertirla en un arte.</p>
+        
+        <p>Tercero, pueden <strong>conmover profundamente</strong> las emociones a través de la palabra escrita. Émile Zola demostró el poder devastador de la palabra con su "J'accuse...!", un artículo que hizo imposible ignorar o negar la inocencia de Dreyfus. Anatole France, por su parte, se especializa en sembrar duda filosófica, haciendo que el lector cuestione todo lo que cree saber.</p>
+        
+        <h3>Política</h3>
+        
+        <p>Los Escritores son los segundos en poder después de los Pintores. Con sus escritos pueden generar cambios en el pensamiento a través de la prensa. Desde la imprenta, su influencia se ha multiplicado, y a pesar de los matusalenes que habitan entre los Pintores, muchos se preguntan si la jerarquía en el consejo está a punto de cambiar, o ya lo ha hecho.</p>
+        
+        <p>El conflicto más amargo del gremio es con el Gremio de Teatro, que reclama la dramaturgia como parte de su dominio. Los Escritores argumentan que el teatro es simplemente literatura en movimiento, y que sin sus textos, los actores no son más que mimos. Esta disputa ha llevado a sabotajes, boicots y duelos. Los Escritores se niegan a reconocer al Gremio de Teatro como igual.</p>
+        
+        <p>El conflicto con los Pintores ha escalado peligrosamente. Muchos creen que el incendio que mató a Verso Dessendre fue un sabotaje del Gremio de Escritores, aunque no hay pruebas concluyentes. Lo que es cierto es que la relación entre los dos gremios más poderosos de Francia está al borde de la ruptura.</p>
+        
+        <p>Los Escritores son conscientes de que su poder depende de que la gente siga leyendo, y en una era de imágenes en movimiento y música omnipresente, algunos temen que su influencia esté menguando. El cine, en particular, es visto como una amenaza existencial.</p>
+        
+        <h3>Miembros del Consejo</h3>
+        
+        <div class="character-profile">
+            <h4>Marcel Proust</h4>
+            <span class="title">Asiento Decisor</span>
+            <p>Marcel Proust es el líder del Gremio de Escritores, aunque su liderazgo es de un tipo peculiar. A diferencia de Aline, que gobierna con autoridad visible, Proust prefiere trabajar desde las sombras, tejiendo redes de influencia tan sutiles que sus víctimas rara vez son conscientes de estar siendo manipuladas.</p>
+            <p>A sus treinta y cuatro años, Proust es un hombre de salud frágil, aquejado de asma y otras dolencias que lo mantienen confinado en su apartamento forrado de corcho en el Boulevard Haussmann durante gran parte del año. Su poder reside en la manipulación de la memoria. Puede escribir textos que alteran los recuerdos del lector, haciendo que recuerden eventos que nunca ocurrieron o que olviden cosas que sí sucedieron.</p>
+        </div>
+        
+        <div class="character-profile">
+            <h4>Émile Zola</h4>
+            <span class="title">Asiento Consultivo</span>
+            <p>Émile Zola es una leyenda viviente, el escritor que desafió a una nación y ganó. A sus sesenta y cinco años, es un hombre corpulento, con bigote espeso y una mirada que no tolera mentiras. Su poder reside en hacer que la verdad sea imposible de ignorar o negar.</p>
+            <p>Zola alcanzó la fama nacional con su "J'accuse...!", el artículo que expuso la conspiración en el Caso Dreyfus. Políticamente, es un progresista que cree en la justicia social y la reforma. Es un aliado natural de Matisse y los reformistas, aunque su relación con Proust es tensa.</p>
+        </div>
+        
+        <div class="character-profile">
+            <h4>Anatole France</h4>
+            <span class="title">Asiento Consultivo</span>
+            <p>Anatole France es el tercer miembro del Gremio de Escritores en el Consejo, y el más enigmático. A sus sesenta y un años, es un hombre de aspecto distinguido, con barba cuidada y una sonrisa irónica que nunca abandona su rostro. Su poder es el de la duda, la capacidad de escribir textos que hacen que el lector cuestione todo lo que cree saber.</p>
+            <p>France es un escéptico filosófico que no cree en verdades absolutas. Políticamente, es un neutral que rara vez toma partido en las disputas del Consejo. Esta neutralidad lo hace valioso como mediador, pero también lo hace impredecible.</p>
+        </div>
+
+        <div class="section-break">◆ ◆ ◆</div>
+
+        <!-- CAPÍTULO III: MÚSICOS -->
+        <div>
+            <h2 id="musicos">El Gremio de Músicos</h2>
+        </div>
+        
+        <div class="quote">
+            <p>"La música es el espacio entre las notas."</p>
+            <p class="attribution">— Claude Debussy</p>
+        </div>
+        
+        <p class="drop-cap">La música es la lengua de las emociones, y los Músicos son sus hablantes nativos. Su poder es directo y visceral, capaz de manipular el estado emocional de grandes multitudes. Un concierto puede inspirar fervor patriótico en miles de personas simultáneamente, o calmar un disturbio con una simple melodía.</p>
+        
+        <p>La gran ventaja de los Músicos sobre otros gremios es que su arte no requiere consentimiento activo. Un escritor necesita que alguien elija leer su texto. Un pintor necesita que alguien contemple su obra. Un escultor necesita que alguien se detenga ante su creación. Pero la música penetra sin pedir permiso. Quien esté al alcance del sonido será afectado, quiera o no. En una plaza pública, en un teatro, en una calle concurrida, la música envuelve a todos por igual.</p>
+        
+        <p>Pero este poder también es efímero; la música debe ser escuchada para tener efecto, y una vez que el sonido se desvanece, también lo hace su influencia.</p>
+        
+        <h3>Poderes</h3>
+        
+        <p>Los Músicos dominan dos capacidades fundamentales. Primero, pueden <strong>dominar las emociones</strong> de quienes los escuchan, llevándolos del éxtasis a la desesperación con una simple modulación. Camille Saint-Saëns es conocido por sus composiciones épicas que pueden inspirar un orgullo nacional tan intenso que la audiencia estaría dispuesta a marchar a la guerra. Claude Debussy es un maestro del impresionismo musical, creando estados de ánimo complejos y matizados que evocan imágenes y sensaciones.</p>
+        
+        <p>Segundo, los maestros más hábiles pueden hacer que <strong>la música emane de objetos y lugares</strong> sin su presencia durante un tiempo, creando ambientes emocionales que persisten durante días. Erik Satie ha perfeccionado esta técnica. Sus Gymnopédies son melodías tan simples que parecen triviales, pero poseen el poder de alterar el tejido emocional de un distrito entero. Satie es conocido por sus conciertos fantasma, donde la música parece emanar de las paredes, las calles, el aire mismo.</p>
+        
+        <h3>Política</h3>
+        
+        <p>A pesar de su capacidad de movilización emocional inmediata, los Músicos ocupan una posición intermedia en la jerarquía del Consejo. Su poder es efímero; una vez que la música cesa, el efecto se desvanece. No pueden crear cambios permanentes en la forma en que las personas piensan o sienten, solo influencias temporales.</p>
+        
+        <p>Esta limitación los coloca por debajo de los Pintores y Escritores, cuyas obras pueden tener efectos duraderos. Un lienzo habitable existe para siempre. Un texto encantado puede influir en generaciones. Pero una melodía vive solo mientras suena, o en el mejor de los casos, durante unos días si ha sido anclada a un lugar por un maestro como Satie.</p>
+        
+        <p>Los Músicos mantienen una relación compleja con los otros gremios. A menudo colaboran con los Pintores en grandes espectáculos, como la Exposición Universal de 1900. Con los Escritores, sin embargo, la relación es más tensa. Ambos reclaman dominio sobre las canciones y las óperas, donde palabra y melodía se entrelazan.</p>
+        
+        <p>Los Músicos están divididos sobre el futuro. Los tradicionalistas, como Saint-Saëns, creen que la música debe ser noble y elevada. Los innovadores, como Satie y Debussy, buscan nuevas formas de expresión. Pero todos están de acuerdo en que deben adaptarse a los tiempos modernos. La fonografía, la capacidad de grabar sonido, es una tecnología emergente que podría cambiar todo.</p>
+        
+        <h3>Miembros del Consejo</h3>
+        
+        <div class="character-profile">
+            <h4>Erik Satie</h4>
+            <span class="title">Asiento Decisor</span>
+            <p>Erik Satie es un enigma. Oficialmente, es el líder del Gremio de Músicos, pero rara vez ejerce su autoridad. Prefiere vivir en su modesto apartamento en Montmartre, componiendo piezas minimalistas que desafían todas las convenciones musicales. A sus treinta y nueve años, es un hombre de aspecto desaliñado, con traje gastado y una mirada que parece mirar a través de las personas hacia algo que solo él puede ver.</p>
+            <p>Políticamente, es un aislacionista que rara vez toma partido en las disputas del Consejo. Su poder, sin embargo, es innegable. Puede hacer que la música emane de las paredes, las calles, el aire mismo, creando ambientes emocionales que persisten durante días.</p>
+        </div>
+        
+        <div class="character-profile">
+            <h4>Claude Debussy</h4>
+            <span class="title">Asiento Consultivo</span>
+            <p>Claude Debussy es el contrapunto de Satie. Mientras Satie es minimalista y excéntrico, Debussy es lujoso y refinado. A sus cuarenta y tres años, es un hombre elegante, siempre vestido con el mejor gusto. Debussy es un maestro del impresionismo musical, composiciones que evocan imágenes y sensaciones más que emociones directas. Políticamente, es un moderado que busca mantener buenas relaciones con todos los gremios.</p>
+        </div>
+        
+        <div class="character-profile">
+            <h4>Camille Saint-Saëns</h4>
+            <span class="title">Asiento Consultivo</span>
+            <p>Camille Saint-Saëns es el veterano del Gremio de Músicos. A sus setenta años, es un compositor de fama internacional. Su poder reside en las composiciones épicas, obras que pueden inspirar fervor patriótico en miles de personas simultáneamente. Su Sinfonía Nº 3 puede llenar a una audiencia de un orgullo nacional tan intenso que estarían dispuestos a marchar a la guerra en ese mismo momento. Es un conservador que ve con desagrado las innovaciones de Satie y Debussy.</p>
+        </div>
+
+        <div class="section-break">◆ ◆ ◆</div>
+
+        <!-- CAPÍTULO IV: ESCULTORES -->
+        <div>
+            <h2 id="escultores">El Gremio de Escultores</h2>
+        </div>
+        
+        <div class="quote">
+            <p>"Lo principal es estar conmovido, amar, esperar, temblar, vivir. Ser un hombre antes que un artista."</p>
+            <p class="attribution">— Auguste Rodin</p>
+        </div>
+        
+        <p class="drop-cap">Los Escultores son los únicos Maestros cuyas creaciones pueden caminar, trabajar y luchar. Su poder les permite dar vida a la materia inerte, creando Obras Maestras conocidas como gólems: criaturas de arcilla, piedra, bronce o cualquier material moldeable. Estas Obras Maestras pueden ser tan simples como un sirviente mudo o tan complejas como un guardián casi indistinguible de un ser humano. Pero su creación es un proceso lento y costoso, lo que significa que cada gólem es único.</p>
+        
+        <h3>Poderes</h3>
+        
+        <p>Los Escultores dominan la capacidad de <strong>crear Obras Maestras vivientes</strong>, gólems que dan vida a la materia inerte. Un gólem bien diseñado puede ser tan fuerte como diez hombres, no necesita dormir ni comer, y obedece órdenes sin cuestionarlas. Son guardianes perfectos para lugares importantes, y en combate, un solo gólem puede ser devastador.</p>
+        
+        <p>Sin embargo, la creación de gólems requiere semanas o incluso meses de trabajo intenso. Un escultor puede crear, en el mejor de los casos, unos pocos gólems al año. Esto significa que, aunque los gólems son poderosos individualmente, no pueden formarse ejércitos de ellos. Los gólems tienen principalmente aplicaciones militares y de seguridad, no industriales.</p>
+        
+        <p>Auguste Rodin ha creado gólems de una complejidad sin precedentes, capaces de tomar decisiones tácticas y adaptarse a situaciones cambiantes. Camille Claudel se especializa en gólems emocionales, creaciones que pueden sentir y expresar emociones, haciéndolos más adaptables pero también más impredecibles. Aristide Maillol crea gólems simples pero eficientes, diseñados para tareas específicas de seguridad y defensa.</p>
+        
+        <h3>Política</h3>
+        
+        <p>A pesar de su poder militar, los Escultores ocupan una posición intermedia en la jerarquía del Consejo. Su poder es directo y poderoso, pero carece de la sutileza y el alcance de los Pintores y Escritores. Un golem puede guardar un edificio, pero no puede cambiar la forma en que una nación piensa o siente.</p>
+        
+        <p>Sin embargo, todos en el Consejo son conscientes de que, si las tensiones estallan en violencia abierta, serán los gólems de Rodin los que decidan el resultado. Este poder militar latente otorga a los Escultores una influencia que va más allá de su representación formal en el Consejo.</p>
+        
+        <p>El gremio está dividido entre los puristas, liderados por Rodin, que creen que los gólems deben ser obras de arte antes que herramientas, y los pragmáticos, como Aristide Maillol, que ven a los gólems como medios para fines prácticos. Camille Claudel representa una tercera facción, los innovadores, que buscan explorar nuevas formas y materiales.</p>
+        
+        <p>Las estatuas que adornan París no son meras decoraciones. Muchas son centinelas durmientes, programadas para despertar ante ciertas señales o amenazas. Fue un grupo selecto de gólems el que rompió las puertas de la Bastilla el 14 de julio de 1789, asegurando la victoria de la Revolución.</p>
+        
+        <h3>Miembros del Consejo</h3>
+        
+        <div class="character-profile">
+            <h4>Auguste Rodin</h4>
+            <span class="title">Asiento Decisor</span>
+            <p>Auguste Rodin es una leyenda viviente. A sus sesenta y cinco años, es el escultor más famoso del mundo. Lo que el público no sabe es que muchas de sus estatuas no son de bronce o mármol, sino gólems de una complejidad sin precedentes. Su obra maestra, El Pensador, que descansa en el Panteón, no es una estatua, sino un golem guardián que vigila los secretos del Gremio de Escultores.</p>
+            <p>Rodin es un tradicionalista y un nacionalista. Cree en la grandeza de Francia y en el poder del arte para expresar la fuerza de la nación. Como líder de los Escultores, tiene un poder militar que ningún otro gremio puede igualar, aunque la creación de gólems es un proceso lento que impide la formación de ejércitos.</p>
+        </div>
+        
+        <div class="character-profile">
+            <h4>Camille Claudel</h4>
+            <span class="title">Asiento Consultivo</span>
+            <p>Camille Claudel es una de las pocas mujeres que ha alcanzado la maestría en el Gremio de Escultores. A sus cuarenta y un años, es una mujer de belleza severa, con manos marcadas por años de trabajo con arcilla y piedra. Su especialidad son los gólems emocionales, creaciones que no solo obedecen órdenes, sino que pueden sentir y expresar emociones. Políticamente, es una reformista que apoya a Matisse y Zola.</p>
+        </div>
+        
+        <div class="character-profile">
+            <h4>Aristide Maillol</h4>
+            <span class="title">Asiento Consultivo</span>
+            <p>Aristide Maillol es el tercer miembro del Gremio de Escultores en el Consejo. A sus cuarenta y cuatro años, es un hombre práctico, más interesado en la funcionalidad que en la estética. Sus gólems son simples pero eficientes, diseñados para tareas específicas de seguridad y defensa. Es un pragmático que busca fusionar el arte con las necesidades del mundo moderno.</p>
+        </div>
+
+        <div class="section-break">◆ ◆ ◆</div>
+
+        <!-- CAPÍTULO V: ARQUITECTOS -->
+        <div>
+            <h2 id="arquitectos">El Gremio de Arquitectos</h2>
+            <p style="text-align: center; font-style: italic; color: #a89070; margin-top: 10px; font-size: 18px;">También conocido como la Masonería</p>
+        </div>
+        
+        <div class="quote">
+            <p>"La arquitectura es el juego sabio, correcto y magnífico de los volúmenes reunidos bajo la luz."</p>
+            <p class="attribution">— Le Corbusier</p>
+        </div>
+        
+        <p class="drop-cap">Los Arquitectos, también conocidos como la Masonería, son los maestros del espacio. Pueden alterar la geometría de los edificios, crear habitaciones que no deberían existir, puertas que conducen a lugares imposibles, y estructuras que desafían las leyes de la física. Un edificio diseñado por un Maestro Arquitecto puede ser una Obra Maestra: una fortaleza inexpugnable, un laberinto mortal o un santuario de conocimiento infinito. Su poder es el más permanente de todos, alterando el espacio y la realidad durante décadas o incluso siglos.</p>
+        
+        <h3>Poderes</h3>
+        
+        <p>Los Arquitectos dominan la capacidad de <strong>alterar el espacio</strong>. Pueden crear habitaciones que contienen más espacio del que su geometría exterior debería permitir, puertas que conducen a lugares distantes, y estructuras que desafían las leyes de la física. El Panteón de Roma, con su cúpula que contiene más espacio en su interior del que su geometría exterior debería permitir, es un ejemplo antiguo de este poder.</p>
+        
+        <p>Hector Guimard es un maestro de la arquitectura espacial, capaz de crear edificios que desafían la geometría euclidiana. Sus diseños del Metro de París no son solo decorativos; contienen pasajes ocultos y espacios que se pliegan sobre sí mismos. Tony Garnier, por su parte, busca una arquitectura funcional y honesta, rechazando el ornamento como decadencia.</p>
+        
+        <p>Mientras que un lienzo puede ser destruido, un libro quemado y una melodía olvidada, un edificio encantado permanece, alterando el espacio y la realidad durante generaciones.</p>
+        
+        <h3>Política</h3>
+        
+        <p>Los Arquitectos ocupan una posición dolorosa en la jerarquía de los gremios. Tienen solo dos asientos consultivos en el Consejo de las Bellas Artes, mientras que los demás gremios tienen tres. Esta injusticia histórica se remonta a la Revolución, cuando fueron penalizados por su asociación con la monarquía.</p>
+        
+        <p>El argumento fue que la arquitectura, al servir funciones prácticas como el refugio y la defensa, no era un arte "puro" como la pintura o la poesía. Esta actitud elitista ha relegado a los Arquitectos a una posición secundaria en el Consejo, y la herida arde en el corazón de cada miembro del gremio.</p>
+        
+        <p>Pero lo que pierden en representación formal, los Arquitectos lo ganan en influencia oculta. Son los herederos de las antiguas logias de masones, y mantienen una red de sociedades secretas que se extiende por toda Europa. La Gran Logia de los Arquitectos controla los espacios donde se reúnen los poderosos. Cada sala de reuniones del Consejo ha sido diseñada o modificada por un Arquitecto, y todas contienen puertas ocultas, pasajes secretos y mecanismos de vigilancia.</p>
+        
+        <p>El gremio está fracturado por divisiones estéticas y políticas que amenazan con convertirse en una guerra abierta. El Art Nouveau, liderado por Hector Guimard, aboga por formas orgánicas inspiradas en la naturaleza: curvas sinuosas, motivos florales, ornamentación elaborada. Para Guimard, la arquitectura debe ser una celebración de la vida, una fusión entre lo natural y lo construido. Sus diseños del Metro son el ejemplo perfecto: hierro forjado que parece crecer como una planta.</p>
+        
+        <p>El Brutalismo emergente, liderado por Tony Garnier, representa la antítesis absoluta. Garnier rechaza el ornamento como decadencia burguesa. Para él, la arquitectura debe ser funcional, honesta, una expresión pura de la forma y el propósito. Concreto desnudo, líneas rectas, geometría simple. Sus diseños son austeros hasta el punto de la severidad, pero poseen una dignidad que sus seguidores consideran superior a la frivolidad del Art Nouveau.</p>
+        
+        <p>Entre ambos extremos, el Art Déco emerge como una tercera vía, aunque aún sin líder claro. Esta facción busca una síntesis entre la modernidad industrial y la elegancia clásica, entre la funcionalidad y la belleza. El conflicto entre Guimard y Garnier no es solo estético; es filosófico, y amenaza con fracturar al gremio en dos organizaciones irreconciliables.</p>
+        
+        <h3>Miembros del Consejo</h3>
+        
+        <div class="character-profile">
+            <h4>Hector Guimard</h4>
+            <span class="title">Asiento Consultivo</span>
+            <p>Hector Guimard es el rostro público de los Arquitectos, el diseñador de las icónicas entradas del Metro de París. A sus treinta y ocho años, es un hombre de energía incansable. Detrás de su fachada de innovador modernista, Guimard es un maestro de la arquitectura espacial, capaz de crear edificios que desafían la geometría euclidiana. Es consciente de que los Arquitectos tienen solo dos asientos en el Consejo, una injusticia que arde en su interior, pero trabaja en silencio utilizando la red masónica para ejercer influencia.</p>
+        </div>
+        
+        <div class="character-profile">
+            <h4>Tony Garnier</h4>
+            <span class="title">Asiento Consultivo</span>
+            <p>Tony Garnier es el segundo miembro del Gremio de Arquitectos en el Consejo, y representa la facción brutalista emergente. A sus treinta y seis años, es un hombre de aspecto austero. Garnier rechaza el ornamento del Art Nouveau como decadencia. Para él, la arquitectura debe ser funcional, honesta, una expresión pura de la forma y el propósito. El conflicto entre Garnier y Guimard amenaza con fracturar al gremio.</p>
+        </div>
+
+        <div class="section-break">◆ ◆ ◆</div>
+
+        <!-- CAPÍTULO VI: GREMIOS MENORES -->
+        <div>
+            <h2 id="menores">Los Gremios Menores</h2>
+        </div>
+        
+        <h3>El Gremio de Teatro</h3>
+        
+        <p class="drop-cap no-indent">Los actores, bailarines, mimos y artistas escénicos se reúnen bajo el Gremio de Teatro, una organización que, para su eterna frustración, no tiene asiento permanente en el Consejo de las Bellas Artes. Su exclusión es una herida que arde desde la fundación del Consejo.</p>
+        
+        <p>Los artistas teatrales poseen sus propios poderes. Pueden adoptar identidades con tal convicción que engañan incluso a detección mágica. Pueden hacer que una audiencia vea cosas que no están en el escenario, crear emociones colectivas a través de la performance, y algunos de los más poderosos pueden incluso "robar" temporalmente las capacidades de aquellos a quienes interpretan.</p>
+        
+        <p>El conflicto más amargo del gremio es con los Escritores, que reclaman la dramaturgia como parte de su dominio. Esta disputa ha llevado a sabotajes, boicots y duelos. El Gremio de Teatro ve en el caos actual una oportunidad para ser finalmente reconocido.</p>
+        
+        <p>Entre las figuras más prominentes del gremio se encuentra <strong>Sarah Bernhardt</strong>, la actriz más célebre de Europa, cuyas interpretaciones pueden hacer que una audiencia entera olvide dónde está y crea estar viviendo la historia que se representa en el escenario. Su poder de transformación es tal que algunos dicen que cuando interpreta a Fedra o a Juana de Arco, no está actuando: se convierte literalmente en esas mujeres.</p>
+        
+        <h3>El Gremio de Cine y los Fotógrafos</h3>
+        
+        <p>El cinematógrafo de los hermanos Lumière no es solo una curiosidad tecnológica; es una nueva forma de arte que combina la narrativa visual de los Pintores con el movimiento y la emoción del Teatro. Los primeros cineastas están descubriendo que sus películas pueden tener efectos propios, aunque aún débiles e impredecibles.</p>
+        
+        <p>Los fotógrafos, por su parte, reclaman que su arte captura la realidad de una manera que la pintura nunca podrá. Pueden fijar un momento en el tiempo con una precisión absoluta, creando registros inalterables de eventos.</p>
+        
+        <p>Ni los cineastas ni los fotógrafos tienen un gremio formalmente reconocido. Los gremios tradicionales los ven como amenazas o curiosidades pasajeras. Pero los nuevos artistas se organizan, acumulan influencia, y esperan su momento.</p>
+        
+        <p><strong>Georges Méliès</strong>, el mago convertido en cineasta, es quizás el más poderoso de los nuevos artistas. Sus películas, como "Viaje a la Luna", no solo entretienen: alteran la percepción de la realidad de quienes las ven. Algunos espectadores salen del teatro convencidos de haber viajado realmente a la luna. Entre los fotógrafos, <strong>Eugène Atget</strong> captura París con una precisión obsesiva, creando registros que algunos dicen pueden anclar momentos en el tiempo, preservándolos contra el olvido y la manipulación.</p>
+        
+        <h3>Los Artesanos: Los Traicionados</h3>
+        
+        <p>Los Artesanos —herreros, carpinteros, orfebres, tejedores, ceramistas, relojeros— fueron los aliados cruciales de los artistas durante la Revolución Francesa. Ellos también poseían poderes: espadas que nunca se rompían, telas que protegían de cualquier clima, vasijas que nunca se vaciaban, relojes que alteraban el flujo del tiempo.</p>
+        
+        <p>Pero cuando llegó el momento de repartir el poder, fueron excluidos. El argumento fue que el arte verdadero debía ser desinteresado, puro. Los Artesanos, que vendían sus creaciones en el mercado, no eran dignos de gobernar.</p>
+        
+        <p>Hoy, en 1905, los Artesanos controlan gran parte de la economía francesa. Tienen alianzas con industriales y banqueros. Pero el poder político les está vedado, y esta injusticia es una llaga que supura. Algunos hablan de una segunda revolución. Otros trabajan en silencio, esperando su momento.</p>
+        
+        <p>Entre sus líderes más influyentes se encuentra <strong>René Lalique</strong>, el maestro joyero y vidriero, cuyas creaciones no son meras joyas sino talismanes que pueden proteger a quien las porta o maldecir a quien las roba. Sus alianzas con la alta burguesía y la aristocracia le dan un poder económico que rivaliza con el de cualquier miembro del Consejo. Lalique no olvida la traición de 1795, y muchos creen que está preparando su venganza.</p>
+
+        <div class="section-break">◆ ◆ ◆</div>
+
+        <!-- CREACIÓN DE PERSONAJE -->
+<h2 id="creacion">Creación de Personaje</h2>
+
+<div class="character-creation-box">
+    <h3 class="creation-title">PROCESO DE CREACIÓN DE PERSONAJE</h3>
+    
+    <div class="two-column-layout">
+        <div class="left-column">
+            <h4 class="step-title">PASO 1: CONCEPTO</h4>
+            <p class="step-text">Diseña un concepto de personaje. ¿Quién eres? ¿A qué gremio perteneces? ¿Cuál es tu posición en la sociedad parisina de 1905?</p>
+            
+            <h4 class="step-title">PASO 2: ATRIBUTOS</h4>
+            <p class="step-text">Distribuye 10 puntos entre los cinco atributos. Cada atributo tiene un mínimo de 1 y un máximo de 5.</p>
+            
+            <h4 class="step-title">PASO 3: HABILIDADES</h4>
+            <p class="step-text">Asigna 40 puntos entre las habilidades de tu personaje. Cada habilidad está vinculada a un atributo específico, excepto Arte y Artesanía que pueden usar cualquier atributo.</p>
+            
+            <h4 class="step-title">PASO 4: MAESTRÍA</h4>
+            <p class="step-text">Elige un arte en el que tu personaje tiene Maestría. Esto te otorga 1 punto de Maestría y añade un nivel de "colchón" tanto a Fuerza de Voluntad como a Vitalidad.</p>
+            
+            <h4 class="step-title">PASO 5: TOQUES FINALES</h4>
+            <p class="step-text">Define tu trasfondo, tus conexiones con otros personajes, tus ambiciones y tus secretos. ¿Qué te motiva? ¿Qué temes perder?</p>
+        </div>
+        
+        <div class="right-column">
+            <h4 class="section-header">ATRIBUTOS</h4>
+            <div class="compact-block">
+                <p><strong>Vigor:</strong> Fuerza física, resistencia.</p>
+                <p><strong>Coordinación:</strong> Destreza, agilidad, reflejos.</p>
+                <p><strong>Ingenio:</strong> Inteligencia, intuición.</p>
+                <p><strong>Gracia:</strong> Carisma, atractivo.</p>
+                <p><strong>Sagacidad:</strong> Percepción, astucia.</p>
+            </div>
+            
+            <h4 class="section-header">HABILIDADES</h4>
+            <div class="compact-block">
+                <p><strong>Vigor:</strong> Atletismo, Aguante, Lucha, Supervivencia</p>
+                <p><strong>Coordinación:</strong> Sigilo, Pericia, Disparo, Esquiva</p>
+                <p><strong>Ingenio:</strong> Academicismo, Ciencia, Medicina, Ocultismo</p>
+                <p><strong>Gracia:</strong> Estoicismo, Presencia, Encanto, Etiqueta</p>
+                <p><strong>Sagacidad:</strong> Observar, Investigar, Charlatanería, Callejeo</p>
+                <p><strong>Variable:</strong> Arte, Artesanía</p>
+                <p class="skill-note">Arte y Artesanía pueden usar cualquier atributo según la justificación del jugador.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mechanics-box">
+    <h3 id="sistema-juego">Sistema de Juego</h3>
+    
+    <h4>Tiradas</h4>
+    <p>Para realizar una acción, tira 1d20 y suma el atributo relevante más la habilidad correspondiente. El Director de Juego establece la dificultad:</p>
+    
+    <div class="compact-list">
+        <p><strong>Rutinario (5):</strong> Tareas cotidianas</p>
+        <p><strong>Fácil (10):</strong> Requiere cierta competencia</p>
+        <p><strong>Moderado (15):</strong> Desafío significativo</p>
+        <p><strong>Difícil (20):</strong> Muy complicado</p>
+        <p><strong>Heroico (25):</strong> Casi imposible</p>
+        <p><strong>Legendario (30+):</strong> Hazañas dignas de leyenda</p>
+    </div>
+    
+    <h4>Escala de Tiempo</h4>
+    <p>El juego se estructura en tres niveles temporales:</p>
+    
+    <div class="compact-list">
+        <p><strong>Escena:</strong> Una conversación, un combate, la investigación de una habitación, un baile.</p>
+        <p><strong>Sesión:</strong> La sesión de juego en el mundo real, 3 o 4 horas de juego.</p>
+        <p><strong>Acto:</strong> La forma de englobar todas las escenas y sesiones que culminan en un objetivo o giro de la trama.</p>
+    </div>
+    
+    <h4>Recursos: Fuerza de Voluntad y Vitalidad</h4>
+    
+    <p><strong>Fuerza de Voluntad</strong> representa tu resistencia mental y emocional. Tiene 3 puntos base más los niveles de Maestría que poseas. Los niveles de Maestría representan estar en estado óptimo; tras consumirlos, el personaje podrá consumir los puntos base y será afectado por las siguientes condiciones:</p>
+    
+    <div class="compact-list">
+        <p>• Movido</p>
+        <p>• Conmovido</p>
+        <p>• Sobrepasado</p>
+    </div>
+    
+    <p><strong>Vitalidad</strong> representa tu salud física. Tiene 3 puntos base más los niveles de Maestría que poseas. Los niveles de Maestría representan estar en estado óptimo; tras consumirlos, el personaje podrá consumir los puntos base y será afectado por las siguientes condiciones:</p>
+    
+    <div class="compact-list">
+        <p>• Magullado</p>
+        <p>• Herido</p>
+        <p>• Vencido</p>
+    </div>
+    
+    <p class="mechanics-note"><strong>Dejarse llevar:</strong> Cuando pierdes un punto de Fuerza de Voluntad por un ataque puedes elegir recibir una condición más grave de lo normal (por ejemplo, pasar directamente a Conmovido, o Sobrepasado).</p>
+    
+    <p class="mechanics-note"><strong>Gastar recursos:</strong> Puedes gastar un punto de Fuerza de Voluntad o Vitalidad para convertir un fallo en éxito, pero aceptas una "herida" (emocional o física) en el proceso. Los puntos de Maestría actúan como colchón: gastarlos no tiene consecuencias mecánicas.</p>
+    
+    <h4>Recuperación</h4>
+    
+    <p>Con una noche de descanso los personajes recuperan todos los niveles de Maestría así como una condición de Vitalidad o Fuerza de Voluntad.</p>
+    
+    <div class="compact-list">
+        <p>• Al final de cada escena donde un personaje haya recibido ataques a su Fuerza de Voluntad, la condición más grave se cura automáticamente.</p>
+        <p>• Al final de cada escena donde un personaje haya sido vencido, pero no haya muerto, recupera la condición de Vencido.</p>
+    </div>
+    
+    <h4>Maestría</h4>
+    
+    <p>La <strong>Maestría</strong> representa tu capacidad de crear Obras Maestras. Un personaje recién creado tiene 1 punto de Maestría en un arte de su elección. Cada punto de Maestría:</p>
+    
+    <div class="compact-list">
+        <p>• Añade un nivel de "colchón" a Fuerza de Voluntad y Vitalidad</p>
+        <p>• Permite crear Obras Maestras de ese nivel de poder</p>
+        <p>• Otorga un efecto pasivo según el arte elegido</p>
+    </div>
+    
+    <p class="mechanics-note">Los efectos específicos de cada arte se detallan en las secciones de los gremios correspondientes.</p>
+</div>
+
+<style>
+    .character-creation-box {
+        background: linear-gradient(135deg, #2a3a2a 0%, #1a2a1a 100%);
+        border: 3px solid #6b8e6b;
+        padding: 40px;
+        margin: 60px 0;
+        border-radius: 10px;
+    }
+    
+    .creation-title {
+        text-align: center;
+        font-family: 'Cinzel', serif;
+        font-size: 28px;
+        color: #d4e8d4;
+        letter-spacing: 3px;
+        margin-bottom: 40px;
+        text-transform: uppercase;
+    }
+    
+    .two-column-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+    
+    .left-column, .right-column {
+        padding: 10px;
+    }
+    
+    .step-title {
+        font-family: 'Cinzel', serif;
+        font-size: 16px;
+        color: #a8d4a8;
+        margin-top: 18px;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .step-text {
+        font-size: 15px;
+        color: #d4e8d4;
+        line-height: 1.4;
+        text-indent: 0;
+        margin-bottom: 0;
+    }
+    
+    .section-header {
+        font-family: 'Cinzel', serif;
+        font-size: 18px;
+        color: #d4e8d4;
+        margin-top: 18px;
+        margin-bottom: 10px;
+        text-align: center;
+        letter-spacing: 2px;
+        border-bottom: 1px solid #6b8e6b;
+        padding-bottom: 6px;
+    }
+    
+    .compact-block {
+        margin-bottom: 10px;
+    }
+    
+    .compact-block p {
+        font-size: 15px;
+        color: #d4e8d4;
+        line-height: 1.35;
+        text-indent: 0;
+        text-align: left;
+        margin-bottom: 3px;
+    }
+    
+    .compact-block strong {
+        color: #a8d4a8;
+    }
+    
+    .skill-note {
+        font-size: 13px;
+        color: #a8d4a8;
+        font-style: italic;
+        text-indent: 0;
+        margin-top: 8px;
+        line-height: 1.3;
+    }
+    
+    .mechanics-box {
+        background: rgba(139, 115, 85, 0.15);
+        border: 2px solid #8b7355;
+        padding: 40px;
+        margin: 40px 0;
+        border-radius: 8px;
+    }
+    
+    .mechanics-box h3 {
+        text-align: center;
+        color: #ffd78c;
+        margin-top: 0;
+        margin-bottom: 25px;
+    }
+    
+    .mechanics-box h4 {
+        color: #d4a574;
+        margin-top: 25px;
+        margin-bottom: 12px;
+    }
+    
+    .mechanics-box p {
+        text-indent: 0;
+        margin-bottom: 12px;
+        line-height: 1.6;
+    }
+    
+    .compact-list {
+        margin: 12px 0 18px 20px;
+    }
+    
+    .compact-list p {
+        margin-bottom: 6px;
+        text-indent: 0;
+        line-height: 1.5;
+    }
+    
+    .mechanics-note {
+        background: rgba(212, 165, 116, 0.1);
+        border-left: 4px solid #d4a574;
+        padding: 12px 15px;
+        margin: 15px 0;
+        font-style: italic;
+        color: #c9a87c;
+        text-indent: 0;
+        line-height: 1.5;
+    }
+    
+    @media (max-width: 900px) {
+        .two-column-layout {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+
+
+        <div class="section-break">◆ ◆ ◆</div>
+    </div>
+
+    <script>
+        function toggleSection(event, sectionId) {
+            event.preventDefault();
+            const submenu = document.getElementById(sectionId);
+            const toggle = event.target;
+            
+            if (submenu.classList.contains('open')) {
+                submenu.classList.remove('open');
+                toggle.textContent = toggle.textContent.replace('▾', '▸');
+            } else {
+                submenu.classList.add('open');
+                toggle.textContent = toggle.textContent.replace('▸', '▾');
+            }
+        }
+        
+        // Las secciones empiezan cerradas por defecto
+    </script>
+</body>
+</html>
