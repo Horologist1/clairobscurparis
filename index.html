@@ -168,6 +168,16 @@
             margin: 25px 0 15px 0;
             font-weight: 600;
         }
+    
+    h5 {
+        font-family: 'Cinzel', serif;
+        color: #c9b896;
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 25px;
+        margin-bottom: 12px;
+        letter-spacing: 1px;
+    }
         
         p {
             margin-bottom: 18px;
@@ -208,6 +218,16 @@
             margin-top: 0;
             color: #ffd78c;
         }
+    
+    h5 {
+        font-family: 'Cinzel', serif;
+        color: #c9b896;
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 25px;
+        margin-bottom: 12px;
+        letter-spacing: 1px;
+    }
         
         .sidebar p {
             text-indent: 0;
@@ -225,6 +245,16 @@
             margin-top: 0;
             font-size: 24px;
         }
+    
+    h5 {
+        font-family: 'Cinzel', serif;
+        color: #c9b896;
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 25px;
+        margin-bottom: 12px;
+        letter-spacing: 1px;
+    }
         
         .character-profile .title {
             color: #c9a87c;
@@ -397,6 +427,74 @@
         html {
             scroll-behavior: smooth;
         }
+
+    /* Tablas de Modificadores con dos columnas */
+    .modifiers-table-double {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 20px 0;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid #8b7355;
+    }
+    
+    .modifiers-table-double thead tr:first-child th {
+        background: rgba(139, 115, 85, 0.4);
+        padding: 12px;
+        text-align: center;
+        font-family: 'Cinzel', serif;
+        color: #c9b896;
+        font-weight: 700;
+        font-size: 16px;
+        border-bottom: 2px solid #8b7355;
+        letter-spacing: 1px;
+    }
+    
+    .modifiers-table-double thead tr:first-child th:first-child {
+        border-right: 3px solid #8b7355;
+    }
+    
+    .modifiers-table-double thead .subheader th {
+        background: rgba(139, 115, 85, 0.25);
+        padding: 10px 12px;
+        text-align: center;
+        font-family: 'Cinzel', serif;
+        color: #c9b896;
+        font-weight: 600;
+        font-size: 13px;
+        border-bottom: 1px solid #8b7355;
+    }
+    
+    .modifiers-table-double thead .subheader th:nth-child(2) {
+        border-right: 3px solid #8b7355;
+    }
+    
+    .modifiers-table-double td {
+        padding: 10px 15px;
+        border-bottom: 1px solid rgba(139, 115, 85, 0.2);
+    }
+    
+    .modifiers-table-double td:nth-child(2) {
+        text-align: center;
+        font-weight: 600;
+        color: #c9b896;
+        border-right: 3px solid #8b7355;
+    }
+    
+    .modifiers-table-double td:nth-child(4) {
+        text-align: center;
+        font-weight: 600;
+        color: #c9b896;
+    }
+    
+    .modifiers-table-double tbody tr:hover {
+        background: rgba(139, 115, 85, 0.15);
+    }
+    
+    .modifiers-table-double tbody tr:last-child td {
+        border-bottom: none;
+    }
+
     </style>
 </head>
 <body>
@@ -432,6 +530,7 @@
                 <ul id="sistema" class="submenu">
                     <li><a href="#creacion">Creación de Personaje</a></li>
                     <li><a href="#sistema-juego">Sistema de Juego</a></li>
+                    <li><a href="#combate">Combate</a></li>
                 </ul>
             </li>
         </ul>
@@ -497,11 +596,11 @@
         
         <p>El Consejo se reúne una vez al mes en lugares emblemáticos de París, siempre bajo la apariencia de eventos culturales. Una cena de gala en el Palais Garnier, una inauguración en el Petit Palais, un concierto privado en el Trocadero, una exposición especial en el Louvre... estos son los escenarios donde se decide el destino de Francia. Para el público, son simplemente eventos sociales de la élite parisina. Para los iniciados, son sesiones de gobierno.</p>
         
-        <p>Las decisiones del Consejo se transmiten a los políticos de la República a través de "recomendaciones" y "sugerencias" que ningún político sensato se atrevería a ignorar. Un ministro que desafíe al Consejo pronto descubrirá que la prensa lo ataca sin piedad, que sus discursos son recibidos con indiferencia o burla, que sus iniciativas son saboteadas desde dentro. El poder del Consejo es sutil pero absoluto.</p>
+        <p>Las decisiones del Consejo se transmiten a los políticos de la República a través de "recomendaciones" y "sugerencias" que ningún político sensato se atrevería a ignorar. Un ministro que desafíe al Consejo pronto descubrirá que la prensa lo ataca sin piedad, que sus discursos son recibidos con indiferencia o burla, que sus iniciativas son saboteadas desde dentro. El poder del Consejo es sutil pero profundo. Aunque no es absoluto —algunos parlamentarios logran resistir su influencia y ciertas oposiciones tienen éxito— el Consejo sigue siendo el poder real detrás de la República.</p>
         
         <h3>El Louvre: Santuario del Poder</h3>
         
-        <p>El Louvre ocupa un lugar especial en la estructura de poder. No es solo un museo; es el santuario del Gremio de Pintores, el arsenal donde se custodian los lienzos más poderosos jamás creados, y el lugar donde el Consejo se reúne para sus sesiones más importantes y secretas. En las bóvedas subterráneas del Louvre se guardan obras que podrían alterar la realidad misma si fueran expuestas al público.</p>
+        <p>El Louvre ocupa un lugar especial en la estructura de poder. No es solo un museo; es el santuario del arte más poderoso, el arsenal donde se custodian las obras maestras más peligrosas jamás creadas —pinturas, esculturas, objetos artísticos—, y el lugar donde el Consejo se reúne para sus sesiones más importantes y secretas. En las bóvedas subterráneas del Louvre se guardan obras de todo tipo —pinturas, esculturas, objetos artísticos— que podrían alterar la realidad misma si fueran expuestas al público.</p>
         
         <p>El control del Louvre es el control simbólico y práctico de Francia. Los Pintores defienden este privilegio con ferocidad, y cualquier intento de otros gremios de ganar acceso a las bóvedas es visto como una declaración de guerra.</p>
         
@@ -513,7 +612,7 @@
         
         <p>Los Músicos y Escultores ocupan una posición intermedia. Sus poderes son más directos y tangibles, pero su alcance es más limitado. Un Músico puede mover a una multitud en un concierto, pero el efecto se desvanece cuando la música cesa. Un Escultor puede crear un golem poderoso, pero no puede crear ejércitos enteros. Son respetados y temidos, pero rara vez dominan las decisiones del Consejo.</p>
         
-        <p>Los Arquitectos son los más marginados. A pesar de su poder permanente sobre el espacio, son vistos como practicantes de un arte "impuro" porque la arquitectura sirve funciones prácticas. Esta actitud elitista ha relegado a los Arquitectos a una posición secundaria en el Consejo, aunque compensan esta falta de representación formal con su influencia en las sociedades secretas masónicas.</p>
+        <p>Los Arquitectos son los más marginados. A pesar de su poder permanente sobre el espacio, son vistos como practicantes de un arte "impuro" porque la arquitectura sirve funciones prácticas. Esta actitud elitista ha relegado a los Arquitectos a una posición secundaria en el Consejo. Sin embargo, compensan esta falta de representación formal de dos maneras: primero, a través de su profunda influencia en las sociedades secretas masónicas que permean todos los niveles del gobierno; segundo, mediante lo indispensable de su labor. Sin arquitectos, no habría Louvre, ni Ópera Garnier, ni Palais Garnier. Los demás gremios pueden despreciarlos, pero no pueden prescindir de ellos.</p>
 
         <div class="section-break">◆ ◆ ◆</div>
 
@@ -1032,13 +1131,14 @@
     <p>Para realizar una acción, tira 1d20 y suma el atributo relevante más la habilidad correspondiente. El Director de Juego establece la dificultad:</p>
     
     <div class="compact-list">
-        <p><strong>Rutinario (5):</strong> Tareas cotidianas</p>
-        <p><strong>Fácil (10):</strong> Requiere cierta competencia</p>
-        <p><strong>Moderado (15):</strong> Desafío significativo</p>
-        <p><strong>Difícil (20):</strong> Muy complicado</p>
-        <p><strong>Heroico (25):</strong> Casi imposible</p>
-        <p><strong>Legendario (30+):</strong> Hazañas dignas de leyenda</p>
+        <p><strong>Fácil (5):</strong> Requiere cierta competencia</p>
+        <p><strong>Moderado (10):</strong> Desafío significativo</p>
+        <p><strong>Difícil (15):</strong> Muy complicado</p>
+        <p><strong>Heroico (20):</strong> Casi imposible</p>
+        <p><strong>Legendario (25+):</strong> Hazañas dignas de leyenda</p>
     </div>
+    
+    <p class="mechanics-note"><strong>Nota:</strong> Las tareas rutinarias no requieren tirada; simplemente se realizan con éxito automático.</p>
     
     <h4>Escala de Tiempo</h4>
     <p>El juego se estructura en tres niveles temporales:</p>
@@ -1051,20 +1151,22 @@
     
     <h4>Recursos: Fuerza de Voluntad y Vitalidad</h4>
     
-    <p><strong>Fuerza de Voluntad</strong> representa tu resistencia mental y emocional. Tiene 3 puntos base más los niveles de Maestría que poseas. Los niveles de Maestría representan estar en estado óptimo; tras consumirlos, el personaje podrá consumir los puntos base y será afectado por las siguientes condiciones:</p>
+    <p><strong>Fuerza de Voluntad</strong> representa tu resistencia mental y emocional. Tiene 3 puntos base más los niveles de Maestría que poseas. Los niveles de Maestría representan estar en estado óptimo; tras consumirlos, el personaje podrá marcar las casillas correspondientes a los puntos de base y será afectado en orden por las siguientes condiciones:</p>
     
-    <div class="compact-list">
-        <p>• Movido</p>
-        <p>• Conmovido</p>
-        <p>• Sobrepasado</p>
+    <div class="checkbox-list">
+        <p><span class="checkbox">☐</span> Maestría</p>
+        <p><span class="checkbox">☐</span> Movido</p>
+        <p><span class="checkbox">☐</span> Conmovido</p>
+        <p><span class="checkbox">☐</span> Sobrepasado</p>
     </div>
     
-    <p><strong>Vitalidad</strong> representa tu salud física. Tiene 3 puntos base más los niveles de Maestría que poseas. Los niveles de Maestría representan estar en estado óptimo; tras consumirlos, el personaje podrá consumir los puntos base y será afectado por las siguientes condiciones:</p>
+    <p><strong>Vitalidad</strong> representa tu salud física. Tiene 3 puntos base más los niveles de Maestría que poseas. Los niveles de Maestría representan estar en estado óptimo; tras consumirlos, el personaje podrá marcar las casillas correspondientes a los puntos de base y será afectado en orden por las siguientes condiciones:</p>
     
-    <div class="compact-list">
-        <p>• Magullado</p>
-        <p>• Herido</p>
-        <p>• Vencido</p>
+    <div class="checkbox-list">
+        <p><span class="checkbox">☐</span> Maestría</p>
+        <p><span class="checkbox">☐</span> Magullado</p>
+        <p><span class="checkbox">☐</span> Herido</p>
+        <p><span class="checkbox">☐</span> Vencido</p>
     </div>
     
     <p class="mechanics-note"><strong>Dejarse llevar:</strong> Cuando pierdes un punto de Fuerza de Voluntad por un ataque puedes elegir recibir una condición más grave de lo normal (por ejemplo, pasar directamente a Conmovido, o Sobrepasado).</p>
@@ -1091,6 +1193,180 @@
     </div>
     
     <p class="mechanics-note">Los efectos específicos de cada arte se detallan en las secciones de los gremios correspondientes.</p>
+</div>
+
+<div class="section-break">◆ ◆ ◆</div>
+
+<div class="mechanics-box">
+    <h3 id="combate">Combate</h3>
+    
+    <h4>Combate Físico</h4>
+    
+    <h5>Iniciativa</h5>
+    <p>Al inicio del combate, cada participante tira Coordinación + Observar. El orden de actuación va de mayor a menor resultado.</p>
+    
+    <h5>Turno de Combate</h5>
+    <p>En tu turno puedes realizar una acción (atacar, apoyar, usar objeto, activar Obra Maestra, etc.) y movimiento libre dentro de la escena.</p>
+    
+    <h5>Atacar</h5>
+    <p>• <strong>Cuerpo a Cuerpo:</strong> Vigor + Lucha</p>
+    <p>• <strong>A Distancia:</strong> Coordinación + Disparo</p>
+    
+    <h5>Apoyar</h5>
+    <p>Tira Sagacidad + Observar o Gracia + Presencia. Si tienes éxito (5+), tu aliado recibe +2 en su próxima tirada. Hasta dos personas pueden apoyar a un mismo aliado (+2 o +4 acumulados).</p>
+    
+    <h5>Defender (Reacción)</h5>
+    <p>• <strong>Esquivar (Coordinación + Esquiva):</strong> Si superas el ataque, evitas todo el daño. Si fallas, recibes el daño completo.</p>
+    <p>• <strong>Aguantar el Golpe (Vigor + Aguante):</strong> Siempre reduces el daño en 1 punto. Si superas el ataque, reduces el daño en 2 puntos en total.</p>
+    <p>• <strong>Indefenso:</strong> El atacante tira contra dificultad Fácil (5).</p>
+    
+    <h5>Daño</h5>
+    <p>Éxito básico = 1 Vitalidad, éxito por 5+ = 2 Vitalidad, éxito por 10+ = 3 Vitalidad.</p>
+    
+    <h5>Modificadores Comunes</h5>
+    <table class="modifiers-table-double">
+        <thead>
+            <tr>
+                <th colspan="2">Ventajas</th>
+                <th colspan="2">Desventajas</th>
+            </tr>
+            <tr class="subheader">
+                <th>Situación</th>
+                <th>Mod.</th>
+                <th>Situación</th>
+                <th>Mod.</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Posición elevada</td>
+                <td>+2</td>
+                <td>Herido</td>
+                <td>0 a -2</td>
+            </tr>
+            <tr>
+                <td>Sorpresa</td>
+                <td>+3</td>
+                <td>Terreno difícil</td>
+                <td>-2</td>
+            </tr>
+            <tr>
+                <td>Objetivo inmovilizado</td>
+                <td>+5</td>
+                <td>Poca visibilidad</td>
+                <td>-2 a -5</td>
+            </tr>
+            <tr>
+                <td>Flanquear</td>
+                <td>+2</td>
+                <td>Distancia larga</td>
+                <td>-2 a -5</td>
+            </tr>
+            <tr>
+                <td>Arma superior</td>
+                <td>+1 a +3</td>
+                <td>Arma improvisada</td>
+                <td>-2</td>
+            </tr>
+            <tr>
+                <td>Apoyo de aliado(s)</td>
+                <td>+2 o +4</td>
+                <td>Desarmado contra armado</td>
+                <td>-2</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="mechanics-note">El DJ decide el penalizador de Herido según contexto (0 a -2).</p>
+    
+    <h4>Combate Social</h4>
+    
+    <h5>Iniciativa</h5>
+    <p>Al inicio del enfrentamiento social, cada participante tira Gracia + Presencia (imponer presencia) o Sagacidad + Observar (leer la sala). Elige según tu estrategia.</p>
+    
+    <h5>Turno Social</h5>
+    <p>En tu turno realizas una acción. Las defensas son reacciones y no consumen tu acción.</p>
+    
+    <h5>Atacar</h5>
+    <p>• <strong>Persuasión (Gracia + Encanto):</strong> Apelar a emociones y deseos</p>
+    <p>• <strong>Intimidación (Gracia + Presencia):</strong> Amenazar e imponer autoridad</p>
+    <p>• <strong>Argumentación (Gracia + Presencia):</strong> Convencer con lógica y retórica</p>
+    <p>• <strong>Manipulación (Sagacidad + Charlatanería):</strong> Engañar y tergiversar</p>
+    <p>• <strong>Seducción (Gracia + Encanto):</strong> Crear atracción y fascinar</p>
+    <p>• <strong>Obra de Arte (Atributo + Arte):</strong> Ataque "en remoto" usando una Obra. Usa la tirada con la que fue creada. La Obra debe estar presente y ser percibida por el objetivo. El tipo de ataque depende del contenido de la Obra.</p>
+    
+    <h5>Apoyar</h5>
+    <p>Tira Sagacidad + Observar o Gracia + Presencia. Si tienes éxito (5+), tu aliado recibe +2 en su próxima tirada social. Hasta dos personas pueden apoyar (+2 o +4 acumulados).</p>
+    
+    <h5>Averiguar Intenciones</h5>
+    <p>Tira Sagacidad + Observar contra dificultad 10 o contra Sagacidad + Charlatanería del oponente. Si tienes éxito, identificas su tipo de ataque y ese oponente no puede volver a usar ese tipo de ataque contra ti en esta escena.</p>
+    
+    <h5>Defender (Reacción)</h5>
+    <p>• <strong>Mantener Compostura (Gracia + Estoicismo):</strong> Siempre reduces el daño en 1 punto de Fuerza de Voluntad. Si superas el ataque, reduces el daño en 2 puntos en total.</p>
+    <p>• <strong>Contraargumentar (Gracia + Etiqueta o Presencia):</strong> Si superas el ataque, no pierdes Fuerza de Voluntad. Si lo superas por 5+, el atacante pierde 1 Fuerza de Voluntad. Si fallas, recibes el daño completo.</p>
+    
+    <h5>Daño</h5>
+    <p>Éxito básico = 1 Fuerza de Voluntad, éxito por 5+ = 2 Fuerza de Voluntad, éxito por 10+ = 3 Fuerza de Voluntad.</p>
+    
+    <h5>Modificadores Comunes</h5>
+    <table class="modifiers-table-double">
+        <thead>
+            <tr>
+                <th colspan="2">Ventajas</th>
+                <th colspan="2">Desventajas</th>
+            </tr>
+            <tr class="subheader">
+                <th>Situación</th>
+                <th>Mod.</th>
+                <th>Situación</th>
+                <th>Mod.</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Anfitrión del evento</td>
+                <td>+2</td>
+                <td>Conmovido</td>
+                <td>0 a -2</td>
+            </tr>
+            <tr>
+                <td>Mayor estatus social</td>
+                <td>+2</td>
+                <td>Menor estatus social</td>
+                <td>-2</td>
+            </tr>
+            <tr>
+                <td>Audiencia favorable</td>
+                <td>+2</td>
+                <td>Audiencia hostil</td>
+                <td>-2</td>
+            </tr>
+            <tr>
+                <td>Información comprometedora</td>
+                <td>+3</td>
+                <td>Escándalo reciente</td>
+                <td>-2 a -5</td>
+            </tr>
+            <tr>
+                <td>Reputación impecable</td>
+                <td>+2</td>
+                <td>Acusación sin pruebas</td>
+                <td>-3</td>
+            </tr>
+            <tr>
+                <td>Apoyo de figura importante</td>
+                <td>+2</td>
+                <td>Ebrio o bajo influencia</td>
+                <td>-2 a -5</td>
+            </tr>
+            <tr>
+                <td>Apoyo de aliado(s)</td>
+                <td>+2 o +4</td>
+                <td>Expuesto mintiendo</td>
+                <td>-5</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="mechanics-note">El DJ decide el penalizador de Conmovido según contexto. Estar furioso puede no afectar (0) o incluso ayudar a intimidar.</p>
 </div>
 
 <style>
@@ -1197,6 +1473,16 @@
         color: #d4a574;
         margin-top: 25px;
         margin-bottom: 12px;
+    }
+    
+    h5 {
+        font-family: 'Cinzel', serif;
+        color: #c9b896;
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 25px;
+        margin-bottom: 12px;
+        letter-spacing: 1px;
     }
     
     .mechanics-box p {
