@@ -1314,7 +1314,7 @@
             <p class="step-text">Distribuye 10 puntos entre los cinco atributos. Cada atributo tiene un mínimo de 1 y un máximo de 5.</p>
             
             <h4 class="step-title">PASO 3: HABILIDADES</h4>
-            <p class="step-text">Asigna 40 puntos entre las habilidades de tu personaje. Cada habilidad está vinculada a un atributo específico, excepto Arte y Artesanía que pueden usar cualquier atributo.</p>
+            <p class="step-text">Asigna 40 puntos entre las habilidades de tu personaje. Cada habilidad está vinculada a un atributo específico, excepto Arte y Artesanía que pueden usar cualquier atributo. Las habilidades van de 1 a 5.</p>
             
             <h4 class="step-title">PASO 4: MAESTRÍA</h4>
             <p class="step-text">Elige un arte en el que tu personaje tiene Maestría. Esto te otorga 1 punto de Maestría y añade un nivel de "colchón" tanto a Fuerza de Voluntad como a Vitalidad.</p>
@@ -1351,7 +1351,7 @@
     <h3 id="sistema-juego">Sistema de Juego</h3>
     
     <h4>Tiradas</h4>
-    <p>Para realizar una acción, tira 1d20 y suma el atributo relevante más la habilidad correspondiente. El Director de Juego establece la dificultad:</p>
+    <p>Para realizar una acción, tira <strong>1d10</strong> y suma el atributo relevante más la habilidad correspondiente. El Director de Juego establece la dificultad:</p>
     
     <div class="compact-list">
         <p><strong>Fácil (5):</strong> Requiere cierta competencia</p>
@@ -1361,12 +1361,70 @@
         <p><strong>Legendario (25+):</strong> Hazañas dignas de leyenda</p>
     </div>
     
-    <p class="mechanics-note"><strong>Nota:</strong> Las tareas rutinarias no requieren tirada; simplemente se realizan con éxito automático.</p>
+    <h4>Ventajas y Desventajas</h4>
+    
+    <p>Las siguientes situaciones otorgan modificadores a las tiradas:</p>
+    
+    <table class="modifiers-table-double">
+        <thead>
+            <tr>
+                <th colspan="2">Ventajas</th>
+                <th colspan="2">Desventajas</th>
+            </tr>
+            <tr class="subheader">
+                <th>Situación</th>
+                <th>Mod.</th>
+                <th>Situación</th>
+                <th>Mod.</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ayuda de un aliado</td>
+                <td>+1 o +2</td>
+                <td>Acción apresurada</td>
+                <td>-1 o -2</td>
+            </tr>
+            <tr>
+                <td>Pasar tiempo en la tarea</td>
+                <td>+1 a +5</td>
+                <td>Magullado*</td>
+                <td>-1</td>
+            </tr>
+            <tr>
+                <td>Herramientas de calidad</td>
+                <td>+1</td>
+                <td>Herido*</td>
+                <td>-2</td>
+            </tr>
+            <tr>
+                <td>Conocimiento especializado</td>
+                <td>+2</td>
+                <td>Movido*</td>
+                <td>-1</td>
+            </tr>
+            <tr>
+                <td>Condiciones ideales</td>
+                <td>+1 o +2</td>
+                <td>Conmovido*</td>
+                <td>-2</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Condiciones adversas</td>
+                <td>-1 o -2</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p class="mechanics-note"><strong>* Nota sobre condiciones:</strong> El Director de Juego puede determinar que una condición física o emocional no afecta al desafío en cuestión, o incluso que le beneficia. Por ejemplo, estar Herido en una pierna no afectaría a una tirada de Arte: Pintura, y estar Conmovido por la ira podría beneficiar una tirada de Intimidación. El jugador debe haber anotado la herida o emoción específica para que el DJ pueda tomar esta decisión.</p>
     
     <h4>Escala de Tiempo</h4>
-    <p>El juego se estructura en tres niveles temporales:</p>
+    <p>El juego se estructura en cuatro niveles temporales:</p>
     
     <div class="compact-list">
+        <p><strong>Ronda:</strong> Una unidad de tiempo en combate. Dura aproximadamente 30 segundos.</p>
         <p><strong>Escena:</strong> Una conversación, un combate, la investigación de una habitación, un baile.</p>
         <p><strong>Sesión:</strong> La sesión de juego en el mundo real, 3 o 4 horas de juego.</p>
         <p><strong>Acto:</strong> La forma de englobar todas las escenas y sesiones que culminan en un objetivo o giro de la trama.</p>
@@ -1374,7 +1432,7 @@
     
     <h4>Recursos: Fuerza de Voluntad y Vitalidad</h4>
     
-    <p><strong>Fuerza de Voluntad</strong> representa tu resistencia mental y emocional. Tiene 3 puntos base más los niveles de Maestría que poseas. Los niveles de Maestría representan estar en estado óptimo; tras consumirlos, el personaje podrá marcar las casillas correspondientes a los puntos de base y será afectado en orden por las siguientes condiciones:</p>
+    <p><strong>Fuerza de Voluntad</strong> representa tu resistencia mental y emocional. Tiene 3 puntos base más los niveles de Maestría que poseas. Los niveles de Maestría representan estar en estado óptimo; tras consumirlos, el personaje podrá marcar las casillas correspondientes a los puntos de base y será afectado en orden por las siguientes condiciones, <strong>apuntando en cada caso qué emoción o argumento causó el estado</strong>:</p>
     
     <div class="checkbox-list">
         <p><span class="checkbox">☐</span> Maestría</p>
@@ -1383,7 +1441,7 @@
         <p><span class="checkbox">☐</span> Sobrepasado</p>
     </div>
     
-    <p><strong>Vitalidad</strong> representa tu salud física. Tiene 3 puntos base más los niveles de Maestría que poseas. Los niveles de Maestría representan estar en estado óptimo; tras consumirlos, el personaje podrá marcar las casillas correspondientes a los puntos de base y será afectado en orden por las siguientes condiciones:</p>
+    <p><strong>Vitalidad</strong> representa tu salud física. Tiene 3 puntos base más los niveles de Maestría que poseas. Los niveles de Maestría representan estar en estado óptimo; tras consumirlos, el personaje podrá marcar las casillas correspondientes a los puntos de base y será afectado en orden por las siguientes condiciones, <strong>apuntando en cada caso de qué tipo de herida o magulladura se trata</strong>:</p>
     
     <div class="checkbox-list">
         <p><span class="checkbox">☐</span> Maestría</p>
@@ -1394,7 +1452,7 @@
     
     <p class="mechanics-note"><strong>Dejarse llevar:</strong> Cuando pierdes un punto de Fuerza de Voluntad por un ataque puedes elegir recibir una condición más grave de lo normal (por ejemplo, pasar directamente a Conmovido, o Sobrepasado).</p>
     
-    <p class="mechanics-note"><strong>Gastar recursos:</strong> Puedes gastar un punto de Fuerza de Voluntad o Vitalidad para convertir un fallo en éxito, pero aceptas una "herida" (emocional o física) en el proceso. Los puntos de Maestría actúan como colchón: gastarlos no tiene consecuencias mecánicas.</p>
+    <p class="mechanics-note"><strong>Gastar recursos:</strong> Puedes gastar un punto de Fuerza de Voluntad o Vitalidad para convertir un fallo en éxito, o para ganar un bono de +5 a una tirada, pero aceptas una "herida" (emocional o física) en el proceso. Solo puede hacerse fuera de combate.</p>
     
     <h4>Recuperación</h4>
     
@@ -1404,6 +1462,7 @@
         <p>• Al final de cada escena donde un personaje haya recibido ataques a su Fuerza de Voluntad, la condición más grave se cura automáticamente.</p>
         <p>• Al final de cada escena donde un personaje haya sido vencido, pero no haya muerto, recupera la condición de Vencido.</p>
     </div>
+    
     
     <h4>Maestría</h4>
     
@@ -1423,28 +1482,41 @@
 <div class="mechanics-box">
     <h3 id="combate">Combate</h3>
     
+    <p>El combate funciona por <strong>rondas</strong>. En cada ronda, cada personaje puede <strong>iniciar un choque</strong> y <strong>responder a cualquier número de choques</strong> en los que se vea envuelto. Cuando todos los personajes hayan iniciado un choque, o realizado una acción, termina la ronda y empieza una nueva.</p>
+    
+    <p><strong>Iniciativa:</strong> Los jugadores siempre empiezan el combate y deciden el orden de sus turnos entre ellos.</p>
+    
+    <p><strong>Sistema de Choque:</strong> Cada ataque es un "Choque" donde ambos participantes tiran dados. El que obtiene el resultado más alto inflige daño al otro.</p>
+    
+    <p><strong>Daño Base:</strong> Todo Choque inflige <strong>2 puntos de daño base</strong>, modificable según las apuestas de cada participante.</p>
+    
     <h4>Combate Físico</h4>
     
-    <h5>Iniciativa</h5>
-    <p>Al inicio del combate, cada participante tira Coordinación + Observar. El orden de actuación va de mayor a menor resultado.</p>
+    <p>El combate físico hace daño a la vitalidad de sus participantes.</p>
     
-    <h5>Turno de Combate</h5>
-    <p>En tu turno puedes realizar una acción (atacar, apoyar, usar objeto, activar Obra Maestra, etc.) y movimiento libre dentro de la escena.</p>
+    <h5>Movimientos</h5>
     
-    <h5>Atacar</h5>
-    <p>• <strong>Cuerpo a Cuerpo:</strong> Vigor + Lucha</p>
-    <p>• <strong>A Distancia:</strong> Coordinación + Disparo</p>
+    <div class="compact-list">
+        <p>• <strong>Combate cuerpo a cuerpo (Vigor + Lucha):</strong> <em>Maniobra:</em> Puedes modificar +1 o -1 al daño final para quien pierda el choque (mínimo 1 de daño).</p>
+        <p>• <strong>Combate a distancia (Coordinación + Disparo):</strong> <em>Maniobra:</em> Puedes sumar +1 al daño final.</p>
+        <p>• <strong>Lucha al desgaste (Vigor + Aguante):</strong> <em>Maniobra:</em> Puedes restar -1 al daño final (mínimo 1 de daño).</p>
+        <p>• <strong>Ponerse a Cubierto (Coordinación + Esquiva):</strong> <em>Maniobra:</em> Cuando no puedas oponerte a la tirada de un oponente de otra forma, como por ejemplo un tirador al que no puedes alcanzar, puedes defenderte con Esquiva para evitar el daño. Si vences, no dañas a tu oponente.</p>
+        <p>• <strong>Ayudar:</strong> Ayudar a un aliado consume la acción de esta ronda y da un +1 al choque de otro jugador.</p>
+    </div>
     
-    <h5>Apoyar</h5>
-    <p>Tira Sagacidad + Observar o Gracia + Presencia. Si tienes éxito (5+), tu aliado recibe +2 en su próxima tirada. Hasta dos personas pueden apoyar a un mismo aliado (+2 o +4 acumulados).</p>
+    <h5>Resolución de un Choque</h5>
+    <div class="compact-list">
+        <p>1. <strong>Ambos participantes tiran:</strong> 1d10 + Atributo + Habilidad + Modificadores</p>
+        <p>2. <strong>Comparar resultados:</strong> Si hay empate exacto, nadie recibe daño. El que obtiene el resultado más alto inflige daño al otro.</p>
+        <p>3. <strong>Calcular daño:</strong> Daño base (2 puntos) + apuestas según las maniobras elegidas = daño final a Vitalidad del perdedor.</p>
+    </div>
     
-    <h5>Defender (Reacción)</h5>
-    <p>• <strong>Esquivar (Coordinación + Esquiva):</strong> Si superas el ataque, evitas todo el daño. Si fallas, recibes el daño completo.</p>
-    <p>• <strong>Aguantar el Golpe (Vigor + Aguante):</strong> Siempre reduces el daño en 1 punto. Si superas el ataque, reduces el daño en 2 puntos en total.</p>
-    <p>• <strong>Indefenso:</strong> El atacante tira contra dificultad Fácil (5).</p>
-    
-    <h5>Daño</h5>
-    <p>Éxito básico = 1 Vitalidad, éxito por 5+ = 2 Vitalidad, éxito por 10+ = 3 Vitalidad.</p>
+    <details>
+        <summary><h5 style="display: inline; cursor: pointer;">Ejemplos de Choque</h5></summary>
+        <p><strong>Ejemplo 1 - Lucha vs Aguante:</strong> Atacante (Lucha) saca 17 y apuesta +1. Defensor (Aguante) saca 13 y usa maniobra -1. Daño = 2 (base) +1 (apuesta) -1 (maniobra) = <strong>2 puntos</strong>.</p>
+        <p><strong>Ejemplo 2 - Lucha vs Lucha (ambos apuestan +1):</strong> Atacante A saca 18 (+1). Atacante B saca 15 (+1). Daño = 2 (base) +1 +1 = <strong>4 puntos</strong> (¡B podría quedar vencido en un golpe!).</p>
+        <p><strong>Ejemplo 3 - Disparo vs Esquiva:</strong> Atacante saca 16 (+1). Defensor saca 14. Daño = 2 (base) +1 = <strong>3 puntos</strong>.</p>
+    </details>
     
     <h5>Modificadores Comunes</h5>
     <table class="modifiers-table-double">
@@ -1463,72 +1535,87 @@
         <tbody>
             <tr>
                 <td>Posición elevada</td>
-                <td>+2</td>
-                <td>Herido</td>
-                <td>0 a -2</td>
+                <td>+1</td>
+                <td>Magullado*</td>
+                <td>-1</td>
             </tr>
             <tr>
                 <td>Sorpresa</td>
-                <td>+3</td>
-                <td>Terreno difícil</td>
+                <td>+2</td>
+                <td>Herido*</td>
                 <td>-2</td>
             </tr>
             <tr>
                 <td>Objetivo inmovilizado</td>
-                <td>+5</td>
-                <td>Poca visibilidad</td>
-                <td>-2 a -5</td>
+                <td>+2</td>
+                <td>Terreno difícil</td>
+                <td>-1</td>
             </tr>
             <tr>
                 <td>Flanquear</td>
-                <td>+2</td>
-                <td>Distancia larga</td>
-                <td>-2 a -5</td>
+                <td>+1</td>
+                <td>Poca visibilidad</td>
+                <td>-1 o -2</td>
             </tr>
             <tr>
                 <td>Arma superior</td>
-                <td>+1 a +3</td>
-                <td>Arma improvisada</td>
-                <td>-2</td>
+                <td>+1</td>
+                <td>Distancia larga</td>
+                <td>-1 o -2</td>
             </tr>
             <tr>
                 <td>Apoyo de aliado(s)</td>
-                <td>+2 o +4</td>
+                <td>+1 o +2</td>
+                <td>Arma improvisada</td>
+                <td>-1</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
                 <td>Desarmado contra armado</td>
-                <td>-2</td>
+                <td>-1</td>
             </tr>
         </tbody>
     </table>
-    <p class="mechanics-note">El DJ decide el penalizador de Herido según contexto (0 a -2).</p>
     
     <h4>Combate Social</h4>
     
-    <h5>Iniciativa</h5>
-    <p>Al inicio del enfrentamiento social, cada participante tira Gracia + Presencia (imponer presencia) o Sagacidad + Observar (leer la sala). Elige según tu estrategia.</p>
+    <p>El combate social funciona de manera similar al combate físico, pero ataca la <strong>Fuerza de Voluntad</strong> en lugar de la Vitalidad.</p>
     
-    <h5>Turno Social</h5>
-    <p>En tu turno realizas una acción. Las defensas son reacciones y no consumen tu acción.</p>
+    <h5>Movimientos</h5>
     
-    <h5>Atacar</h5>
-    <p>• <strong>Persuasión (Gracia + Encanto):</strong> Apelar a emociones y deseos</p>
-    <p>• <strong>Intimidación (Gracia + Presencia):</strong> Amenazar e imponer autoridad</p>
-    <p>• <strong>Argumentación (Gracia + Presencia):</strong> Convencer con lógica y retórica</p>
-    <p>• <strong>Manipulación (Sagacidad + Charlatanería):</strong> Engañar y tergiversar</p>
-    <p>• <strong>Seducción (Gracia + Encanto):</strong> Crear atracción y fascinar</p>
-    <p>• <strong>Obra de Arte (Atributo + Arte):</strong> Ataque "en remoto" usando una Obra. Usa la tirada con la que fue creada. La Obra debe estar presente y ser percibida por el objetivo. El tipo de ataque depende del contenido de la Obra.</p>
+    <p>El combate social se realiza con distintas combinaciones de <strong>Gracia</strong> y <strong>Sagacidad</strong>, junto con las habilidades <strong>Encanto</strong>, <strong>Presencia</strong> y <strong>Charlatanería</strong>. Sin embargo, otras combinaciones pueden tener lugar según la conversación. Por ejemplo, un debate académico podría resolverse con <strong>Ingenio + Academicismo</strong>.</p>
     
-    <h5>Apoyar</h5>
-    <p>Tira Sagacidad + Observar o Gracia + Presencia. Si tienes éxito (5+), tu aliado recibe +2 en su próxima tirada social. Hasta dos personas pueden apoyar (+2 o +4 acumulados).</p>
+    <p>Al usar estas habilidades, debes <strong>describir tu acción e intención</strong>. Una seducción se describirá de cierta manera, y el objetivo final puede ser engañar a tu oponente con falsas esperanzas, o regalarle una noche de pasión.</p>
     
-    <h5>Averiguar Intenciones</h5>
-    <p>Tira Sagacidad + Observar contra dificultad 10 o contra Sagacidad + Charlatanería del oponente. Si tienes éxito, identificas su tipo de ataque y ese oponente no puede volver a usar ese tipo de ataque contra ti en esta escena.</p>
+    <p><strong>Maniobras según la intención:</strong></p>
+    <div class="compact-list">
+        <p>• Si tu acción es <strong>bienintencionada</strong>, puedes sumar o restar 1 al daño del perdedor (mínimo 1 de daño).</p>
+        <p>• Si tu acción es <strong>malintencionada</strong>, solo puedes sumar 1 al daño del perdedor.</p>
+        <p>• Si no queda claro, el daño no se puede modificar con esa acción.</p>
+    </div>
     
-    <h5>Defender (Reacción)</h5>
-    <p>• <strong>Mantener Compostura (Gracia + Estoicismo):</strong> Siempre reduces el daño en 1 punto de Fuerza de Voluntad. Si superas el ataque, reduces el daño en 2 puntos en total.</p>
-    <p>• <strong>Contraargumentar (Gracia + Etiqueta o Presencia):</strong> Si superas el ataque, no pierdes Fuerza de Voluntad. Si lo superas por 5+, el atacante pierde 1 Fuerza de Voluntad. Si fallas, recibes el daño completo.</p>
+    <p><strong>Movimientos especiales:</strong></p>
+    <div class="compact-list">
+        <p>• <strong>Mantener la compostura (Gracia + Estoicismo):</strong> <em>Maniobra:</em> Puedes restar -1 al daño final (mínimo 1 de daño).</p>
+        <p>• <strong>Averiguar Intenciones (Sagacidad + Observar):</strong> <em>Maniobra especial:</em> Si vences, no dañas a tu oponente, pero lo obligas a cambiar de habilidad en el próximo turno.</p>
+        <p>• <strong>Ayudar:</strong> Ayudar a un aliado consume la acción de esta ronda y da un +1 al choque de otro jugador.</p>
+    </div>
     
-    <h5>Daño</h5>
-    <p>Éxito básico = 1 Fuerza de Voluntad, éxito por 5+ = 2 Fuerza de Voluntad, éxito por 10+ = 3 Fuerza de Voluntad.</p>
+    <h5>Resolución de un Choque Social</h5>
+    <div class="compact-list">
+        <p>1. <strong>Ambos participantes tiran:</strong> 1d10 + Atributo + Habilidad + Modificadores</p>
+        <p>2. <strong>Comparar resultados:</strong> Si hay empate exacto, nadie recibe daño. El que obtiene el resultado más alto inflige daño al otro.</p>
+        <p>3. <strong>Calcular daño:</strong> Daño base (2 puntos a FV) + apuestas según las maniobras elegidas = daño final a Fuerza de Voluntad del perdedor.</p>
+    </div>
+    
+    <details>
+        <summary><h5 style="display: inline; cursor: pointer;">Ejemplos de Choque Social</h5></summary>
+        <p><strong>Ejemplo 1 - Persuasión bienintencionada vs Mantener la compostura:</strong> Atacante (Gracia + Encanto) intenta convencer sinceramente, saca 17 y apuesta +1. Defensor (Estoicismo) saca 12 y usa maniobra -1. Daño = 2 (base) +1 (bienintencionada) -1 (estoicismo) = <strong>2 puntos de daño a FV</strong>.</p>
+        <p><strong>Ejemplo 2 - Engaño vs Averiguar Intenciones:</strong> Atacante (Sagacidad + Charlatanería) intenta engañar (malintencionado), saca 14 y apuesta +1. Defensor (Observar) saca 16. El defensor gana: no inflige daño, pero <strong>obliga al atacante a cambiar de habilidad</strong> en el próximo turno.</p>
+        <p><strong>Ejemplo 3 - Intimidación vs Intimidación (ambas malintencionadas):</strong> Atacante A (Gracia + Presencia) saca 18 (+1). Atacante B saca 15 (+1). Daño = 2 (base) +1 +1 = <strong>4 puntos de daño a FV</strong> (¡B podría quedar sobrepasado!).</p>
+        <p><strong>Ejemplo 4 - Debate académico:</strong> Dos eruditos debaten usando Ingenio + Academicismo. El contexto no es claramente bienintencionado ni malintencionado, por lo que el daño no se modifica. Daño = <strong>2 puntos (base)</strong>.</p>
+    </details>
     
     <h5>Modificadores Comunes</h5>
     <table class="modifiers-table-double">
@@ -1546,50 +1633,49 @@
         </thead>
         <tbody>
             <tr>
-                <td>Anfitrión del evento</td>
-                <td>+2</td>
-                <td>Conmovido</td>
-                <td>0 a -2</td>
+                <td>Posición de autoridad</td>
+                <td>+1</td>
+                <td>Movido*</td>
+                <td>-1</td>
             </tr>
             <tr>
-                <td>Mayor estatus social</td>
+                <td>Evidencia contundente</td>
                 <td>+2</td>
-                <td>Menor estatus social</td>
+                <td>Conmovido*</td>
                 <td>-2</td>
             </tr>
             <tr>
                 <td>Audiencia favorable</td>
-                <td>+2</td>
+                <td>+1</td>
                 <td>Audiencia hostil</td>
-                <td>-2</td>
+                <td>-1</td>
+            </tr>
+            <tr>
+                <td>Mayor estatus social</td>
+                <td>+1</td>
+                <td>Menor estatus social</td>
+                <td>-1</td>
             </tr>
             <tr>
                 <td>Información comprometedora</td>
-                <td>+3</td>
+                <td>+2</td>
                 <td>Escándalo reciente</td>
-                <td>-2 a -5</td>
-            </tr>
-            <tr>
-                <td>Reputación impecable</td>
-                <td>+2</td>
-                <td>Acusación sin pruebas</td>
-                <td>-3</td>
-            </tr>
-            <tr>
-                <td>Apoyo de figura importante</td>
-                <td>+2</td>
-                <td>Ebrio o bajo influencia</td>
-                <td>-2 a -5</td>
+                <td>-1 o -2</td>
             </tr>
             <tr>
                 <td>Apoyo de aliado(s)</td>
-                <td>+2 o +4</td>
-                <td>Expuesto mintiendo</td>
-                <td>-5</td>
+                <td>+1 o +2</td>
+                <td>Mentira obvia</td>
+                <td>-2</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Contradicho por hechos</td>
+                <td>-2</td>
             </tr>
         </tbody>
     </table>
-    <p class="mechanics-note">El DJ decide el penalizador de Conmovido según contexto. Estar furioso puede no afectar (0) o incluso ayudar a intimidar.</p>
 </div>
 
 <style>
