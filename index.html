@@ -195,7 +195,7 @@
             border-left: 4px solid #ffd78c;
             border-right: 4px solid #ffd78c;
             padding: 30px;
-            margin: 40px 0;
+            margin: 60px 0;
             font-style: italic;
             font-size: 21px;
             color: #e6d5c0;
@@ -662,6 +662,13 @@
             line-height: 1.7;
         }
 
+    
+    .mechanics-box hr {
+        margin: 60px 0;
+        border: none;
+        border-top: 1px solid #8b7355;
+        opacity: 0.5;
+    }
     </style>
 </head>
 <body>
@@ -698,6 +705,22 @@
                     <li><a href="#creacion">Creación de Personaje</a></li>
                     <li><a href="#sistema-juego">Sistema de Juego</a></li>
                     <li><a href="#combate">Combate</a></li>
+                </ul>
+            </li>
+            <li class="menu-section">
+                <a href="#" class="section-toggle" onclick="toggleSection(event, 'maestrias-menu')">▸ Maestrías</a>
+                <ul id="maestrias-menu" class="submenu">
+                    <li><a href="#maestrias">Estructura General</a></li>
+                    <li><a href="#pintura">Pintura</a></li>
+                    <li><a href="#escritura">Escritura</a></li>
+                    <li><a href="#musica">Música</a></li>
+                    <li><a href="#escultura">Escultura</a></li>
+                    <li><a href="#arquitectura">Arquitectura</a></li>
+                    <li><a href="#actuacion">Actuación</a></li>
+                    <li><a href="#danza">Danza</a></li>
+                    <li><a href="#cine">Cine</a></li>
+                    <li><a href="#fotografia">Fotografía</a></li>
+                    <li><a href="#artesania">Artesanía</a></li>
                 </ul>
             </li>
         </ul>
@@ -1504,6 +1527,11 @@
         <p>• <strong>Ayudar:</strong> Ayudar a un aliado consume la acción de esta ronda y da un +1 al choque de otro jugador.</p>
     </div>
     
+    <p><strong>Acciones especiales:</strong></p>
+    <div class="compact-list">
+        <p>• <strong>Huir (Vigor + Atletismo o Coordinación + Esquivar):</strong> <em>Maniobra:</em> Realiza esta tirada en respuesta a un choque. Si vences, no recibes daño. En la ronda siguiente, inicia un choque con esta maniobra; si tienes éxito, sales huyendo de la escena si es posible. Quien se opone a esta maniobra puede decidir dejar que ocurra.</p>
+    </div>
+    
     <h5>Resolución de un Choque</h5>
     <div class="compact-list">
         <p>1. <strong>Ambos participantes tiran:</strong> 1d10 + Atributo + Habilidad + Modificadores</p>
@@ -1602,6 +1630,13 @@
         <p>• <strong>Ayudar:</strong> Ayudar a un aliado consume la acción de esta ronda y da un +1 al choque de otro jugador.</p>
     </div>
     
+    <p><strong>Acciones especiales:</strong></p>
+    <div class="compact-list">
+        <p>• <strong>Dejar el tema:</strong> Cada jugador puede realizar esta acción una sola vez por escena. Cuando se utiliza, permite la respuesta del oponente. Si la respuesta es sí, el conflicto finaliza; si es no, se resuelve la ronda como si la acción no hubiese tenido lugar.</p>
+        <p>• <strong>Dar un portazo:</strong> Durante el combate social, un jugador puede gastar un punto de FV para salir de escena y huir de una conversación.</p>
+        <p>• <strong>No queda sino batirnos:</strong> Durante el combate social, un jugador puede, sin coste, iniciar una ronda de combate físico.</p>
+    </div>
+    
     <h5>Resolución de un Choque Social</h5>
     <div class="compact-list">
         <p>1. <strong>Ambos participantes tiran:</strong> 1d10 + Atributo + Habilidad + Modificadores</p>
@@ -1676,7 +1711,223 @@
             </tr>
         </tbody>
     </table>
+
 </div>
+
+<div class="section-break">◆ ◆ ◆</div>
+
+<div class="mechanics-box">
+    <h3 id="maestrias">Maestrías y Poderes Artísticos</h3>
+    
+    <h4>Estructura General</h4>
+    
+    <h5>Maestría</h5>
+    <p>La <strong>Maestría</strong> representa el nivel de poder y dominio artístico del personaje. Va de <strong>1 a 5</strong> (Aunque algunos maestros alcanzan el 6º nivel).</p>
+    
+    <p><strong>Reglas de Maestría:</strong></p>
+    <div class="compact-list">
+        <p>• Cada punto de Maestría se asigna a un <strong>Arte específico</strong> (Pintura, Escritura, Música, Escultura, Arquitectura, Actuación, etc.)</p>
+        <p>• Un personaje puede tener Maestría en múltiples artes</p>
+        <p>• Cada nivel de Maestría requiere de y representa una <strong>Obra Maestra</strong> en su arte</p>
+        <p>• El primer punto de maestría concede una <strong>especialidad</strong>, un bono de +2 a un campo concreto de cualquier habilidad que no sea un arte</p>
+        <p>• Ganar un punto de maestría otorga una especialidad adicional, <strong>1 punto de atributo y 4 puntos de habilidad</strong>, dos de estos puntos pueden alcanzar el valor 6</p>
+        <p>• Al Ganar un punto de maestría, un jugador puede añadir <strong>1 a un mérito</strong> que responda a sus acciones en partida</p>
+        <p>• Los puntos de maestría en un arte se suman a las tiradas de ese arte</p>
+        <p>• Si un poder requiere tiempo de preparación, puede ser reducido en grados de tiempo a razón de 1 FV por grado</p>
+    </div>
+    
+    <p class="mechanics-note"><em>Ejemplo: Un poder que tarde una escena podría realizarse en un turno por 1 FV y podría hacerse instantáneamente a cambio de 2 FV.</em></p>
+    
+    <h4>Los Gremios Artísticos</h4>
+    
+    <h5 id="pintura">PINTURA</h5>
+    
+    <p><strong>Poderes Activos:</strong></p>
+    <div class="compact-list">
+        <p>• El pintor puede entrar mediante un ritual en cualquier cuadro, que queda animado durante su estancia en el mismo</p>
+        <p>• El pintor puede hacer que otros entren a cuadros mediante el mismo ritual</p>
+        <p>• El pintor puede hablar con un retrato que esté mirando al observador, estos personajes ven, y tienen memoria</p>
+        <p>• El pintor puede hacer una tirada de sociales (maniobra: +1) usando su arte "en remoto" una vez a quien esté contemplando una de sus obras</p>
+        <p>• Los pintores tienen otros poderes menores de percepción que son practicados incluso por aprendices sin maestría</p>
+    </div>
+    
+    <p><strong>Poder Pasivo: Perfección Contemplativa</strong></p>
+    <p>Los pintores pueden entrar en sus Obras Maestras concediéndose poderes divinos, pueden moldear las reglas del mundo, reflexionar, y aprender: Cada nivel de Maestría en Pintura, obtienen los beneficios de subir de maestría <strong>dos veces</strong>, salvo el punto adicional en la Maestría en Pintura. En el primer nivel de maestría, obtienen los atributos, habilidades y otros beneficios "extra" que habrían recibido al subir de rango.</p>
+    
+
+    <hr>
+
+    
+    <h5 id="escritura">ESCRITURA</h5>
+    
+    <p><strong>Poderes Activos:</strong></p>
+    <div class="compact-list">
+        <p>• El escritor puede hacer una tirada de sociales (maniobra: +1) usando su arte y "en remoto" cada vez que alguien lee uno de sus escritos, pero solo una vez por pieza</p>
+        <p>• El escritor puede crear un texto para dominar la mente de una persona, haciendo <strong>2 puntos de daño a FV</strong>, este poder es compatible y en su caso simultáneo al anterior</p>
+        <p>• El escritor puede modificar la memoria e hipnotizar a quienes han sido afectados por sus textos dependiendo de la condición alcanzada</p>
+        <p style="margin-left: 20px;"><em>Ejemplo: Conmovido a la memoria puede hacer dudar de un recuerdo, Sobrepasado puede hacer que alguien recuerde lo que no fue, o que se ponga en peligro mortal, pero no se puede ordenar un suicidio</em></p>
+        <p>• Los escritores tienen otros poderes menores para leer entre líneas, cifrar textos, y otros que son practicados incluso por aprendices sin maestría</p>
+    </div>
+    
+    <p class="mechanics-note"><strong>NOTA:</strong> Un texto puede ser leído por un Maestro de la Escritura para identificar su función.</p>
+    
+    <p><strong>Poder Pasivo: Influencia Cultural</strong></p>
+    <p>Las obras del escritor modifican constantemente el pensamiento social. A mayores de tener un efecto sobre el devenir del pensamiento, obtienen <strong>2 puntos adicionales de méritos por nivel de maestría</strong>.</p>
+    
+
+    <hr>
+
+    
+    <h5 id="musica">MÚSICA</h5>
+    
+    <p><strong>Poderes Activos:</strong></p>
+    <div class="compact-list">
+        <p>• El músico puede hacer tiradas de sociales (maniobra: +1) usando su arte a todos los que escuchen su interpretación, estos pueden defenderse, pero no causan daño al músico aunque tengan éxito</p>
+        <p>• El músico puede tocar para mover las emociones de quienes escuchan, haciendo <strong>2 puntos de daño a FV</strong> sin opción a defensa, compatible con el anterior, pero no simultáneo, el músico decide el orden</p>
+        <p>• El músico puede hacer una tirada de sociales con su arte una vez "en remoto" a quienes escuchen una de las obras maestras que ha compuesto cuando no interpreta su autor</p>
+        <p>• El músico puede infundir las emociones que desee, pero después de cualquier choque las personas entenderán que la música es responsable de esa emoción, si no están sobrepasados, pueden salir de la escena</p>
+        <p>• Los músicos tienen otros poderes menores para mandar mensajes con música, crear imágenes claras, y otros trucos que son practicados incluso por aprendices sin maestría</p>
+    </div>
+    
+    <p><strong>Poder Pasivo: Orquestas Fantasma</strong></p>
+    <p>Los músicos tienen una obra maestra compuesta por cada nivel de Maestría en música. Estas obras, que pueden ser usadas para influir en las emociones ajenas tienen una personalidad tan específica que siempre causan la misma emoción. A mayores de sus usos activos, con ellas, el músico puede crear orquestas fantasmales que tocan en su ausencia. Estas orquestas pueden realizar tiradas de sociales "en remoto" durante días. Las orquestas duran <strong>dos días + la Maestría del Músico</strong>. Crear una orquesta fantasmal cuesta una escena, y el proceso es tan discreto como lo sea el personaje.</p>
+    
+
+    <hr>
+
+    
+    <h5 id="escultura">ESCULTURA</h5>
+    
+    <p><strong>Poderes Activos:</strong></p>
+    <div class="compact-list">
+        <p>• El escultor puede utilizar su tirada de Arte para hacer una acción física, o iniciar un choque con una estatua que pueda percibir (Esto incluye su gólem)</p>
+        <p>• El escultor puede hacer una tirada de sociales "en remoto" una vez a quien contemple su obra</p>
+        <p>• El arquitecto puede hacer una tirada de sociales con su arte una vez a quienes contemplen su obra</p>
+        <p>• El escultor puede hablar con cualquier estatua, las estatuas siempre perciben su alrededor, aunque a veces no lo entienden: su ingenio es 1</p>
+        <p>• Los escultores tienen otros poderes menores para moldear con sus manos madera, metal, que no tenga forma, o la haya perdido, así como trucos que son practicados incluso por aprendices sin maestría</p>
+    </div>
+    
+    <p><strong>Poder Pasivo: Gólem</strong></p>
+    <p>A primer nivel, el escultor puede dar vida a una estatua, la ficha de la estatua se crea como la de un jugador, con las siguientes excepciones: Tiene <strong>8 puntos de atributo, 20 puntos de habilidad</strong>, sus puntos de vida son iguales a la maestría en escultura del creador, y no pueden tener méritos. Las estatuas tienen un máximo de <strong>1 en Ingenio, 8 en Vigor</strong>, y 5 en el resto de las características y habilidades. Además, las estatuas nunca pueden Sobrepasar en combate social: Algo en ellas no es humano. Cuando un escultor gana un nuevo nivel de maestría, puede decidir si su siguiente gólem es excepcional, o normal. Un <strong>gólem normal</strong> suma 6 a las tareas para las que fue creado, 3 al resto, y falla automáticamente las tiradas de Ingenio. Si el escultor escoge un gólem normal, puede sumar 1 punto de atributo y 4 de habilidad sin alterar los máximos establecidos a otro gólem anterior, si escoge un <strong>gólem excepcional</strong>, crea una nueva ficha con las reglas iniciales. En cualquier caso, los gólems no pueden morir a menos que no quede ninguna parte de ellos esculpida: su creador puede curarlos con su propia fuerza de voluntad, y recuperan toda su vida con cada amanecer.</p>
+    
+    <p class="mechanics-note"><strong>NOTA:</strong> Las estatuas no son necesariamente idiotas, hablan y se expresan correctamente, pero no son nada rápidas, y a veces la velocidad de lo que les rodea supera su entendimiento.</p>
+    
+
+    <hr>
+
+    
+    <h5 id="arquitectura">ARQUITECTURA</h5>
+    
+    <p><strong>Poderes Activos:</strong></p>
+    <div class="compact-list">
+        <p>• El arquitecto puede, sin dificultad, crear, modificar, o sellar puertas, habitaciones, y pasillos en cualquier edificio que no haya sido creado por otro Maestro Arquitecto</p>
+        <p>• El arquitecto puede modificar el edificio de otro Maestro enfrentándose a la tirada del creador</p>
+        <p>• El arquitecto puede hacer una tirada de sociales con su arte "en remoto" una vez a quien camine en el interior de su obra</p>
+        <p>• El arquitecto puede hacer una tirada de sociales con su arte a quienes caminen en el interior de su obra</p>
+        <p>• Los masones tienen poderes menores para percibir pasadizos, debilidades estructurales, y talentos que se enseñan dentro de toda la logia</p>
+    </div>
+    
+    <p class="mechanics-note"><strong>NOTA:</strong> El códice de la logia masónica obliga a que cualquier poder pueda ser deshecho por el legítimo dueño del edificio, o quienes legítimamente lo consideran su hogar, esta es una condición necesaria para que los servicios de los Maestros sigan siendo demandados.</p>
+    
+    <p><strong>Poder Pasivo: Nuestros Reinos</strong></p>
+    <p>Un arquitecto puede dotar a uno de sus edificios por nivel de Maestría en Arquitectura de reglas especiales. Los edificios, o ciertas salas, pueden tener un tamaño interior tantas veces superior al exterior como el nivel de maestría. Una sala puede lanzar una tirada de sociales permanentemente. Las salas pueden encerrar, y atacar físicamente a los intrusos. Todo el mundo piensa que recibir una invitación de un masón le pone a salvo del edificio al que ha sido invitado, no todos saben que las palabras "Le invito a mi obra" seguidas del nombre por el que conocen al invitado deben ser pronunciadas o escritas, o la protección no tiene garantías.</p>
+    <p>Las obras maestras de los masones tienen tantos portales como el nivel de maestría de su arquitecto. Estos portales conducen siempre a una puerta, baldosa, o ventana específica que haya construida o modificada por el arquitecto para ello, o a cualquier otro portal masón del que el maestro arquitecto haya recibido invitación. Preparar un nuevo "destino" para el portal, lleva un acto. Finalmente, un masón tiene acceso a los recursos de las logias igual a su maestría. Esto funciona como un Mérito adicional que permite llamar aliados, pedir préstamos, o influir en un oficial público dependiendo de la presencia masónica.</p>
+    
+
+    <hr>
+
+    
+    <h5 id="actuacion">ACTUACIÓN</h5>
+    
+    <p><strong>Poderes Activos:</strong></p>
+    <div class="compact-list">
+        <p>• El actor puede improvisar un papel con una escena de preparación. La identidad suma a 6 en aquello a 4 conceptos que se le dan bien, 3 en el resto, y falla en aquello que no debiera dársele bien</p>
+        <p style="margin-left: 20px;"><em>*La identidad funciona siempre que, el actor venza al escrutinio con una tirada de su arte. A discreción del máster, la identidad tiene 1 punto de mérito que no tenía el actor</em></p>
+        <p>• El actor puede remplazar cualquier tirada social por una tirada de su arte siempre que esté interpretando el papel en el que se ha puesto, y lo interprete conforme el personaje debiera ser</p>
+        <p>• Los actores tienen poderes de ilusionismo menores para dar apoyo a su interpretación, pueden disfrazarse con materiales improvisados desde que son aprendices</p>
+        <p>• Un actor puede ver a través de la máscara de otro con una tirada enfrentada de su arte</p>
+    </div>
+    
+    <p><strong>Poder Pasivo: Máscaras</strong></p>
+    <p>Un actor tiene una identidad adicional, completa, y tan viva como lo creen estar las estatuas, o los personajes de un cuadro vivo. Esta identidad tiene su propia ficha y se crea con todas las mismas reglas que la ficha de un jugador, con la excepción de la Maestría, que siempre es en Actuar. Cada nivel de maestría el actor crea una ficha nueva, y sube de nivel una ficha que se escoge, o sube de nivel todas las máscaras sin adquirir una nueva. Cambiar de una máscara a otra cuesta una escena. El poder de las máscaras es cuasi absoluto: son tan reales que por más ridícula que sea una situación, los que la observan pondrán todo en duda salvo las identidades actuadas.</p>
+    
+
+    <hr>
+
+    
+    <h5 id="danza">DANZA</h5>
+    
+    <p><strong>Poderes Activos:</strong></p>
+    <div class="compact-list">
+        <p>• El bailarín puede hacer tiradas de sociales (maniobra: +1) usando su arte a todos los que contemplen su interpretación, estos pueden defenderse, pero no causan daño al bailarín aunque tengan éxito</p>
+        <p>• El bailarín puede improvisar un baile para concederse una nueva especialidad durante el resto de la escena, siempre que sea compatible con la actividad física. Cambiar de baile a mitad de escena cuesta 1 FV</p>
+        <p>• El bailarín es una pareja ideal de baile, y cuando ayuda, suma 1 extra</p>
+        <p>• El bailarín puede infundir algunas emociones, y alterar la forma en que se mueven los que le contemplan, pero las personas entenderán lo que les afecta, y podrán marcharse si no quedan sobrepasados</p>
+        <p>• Los bailarines tienen poderes de ilusionismo menores para dar apoyo a su interpretación, pueden hacer bailar a una escoba, o darle vuelo a unos pantalones desde que son aprendices</p>
+    </div>
+    
+    <p><strong>Poder Pasivo: Compás</strong></p>
+    <p>Un bailarín maestro desarrolla con cada nivel, nuevas formas de moverse. Con ello, puede mover sus atributos o habilidades de Vigor, Coordinación, Sagacidad, o Gracia tanto como su nivel de maestría en baile, mientras lo compense. No pueden superar el máximo de 6, pero sí alcanzarlo en múltiples atributos y habilidades gracias a este poder. A primer nivel, podría por ejemplo reducir en uno su Sagacidad 4 y su Vigor 4 a 3, para aumentar en uno su Gracia 5 y Coordinación 5 hasta 6. Puede hacer esto con tantas habilidades y atributos como desee, mientras los puntos queden compensados. Este poder es compatible con los poderes activos de baile, cuesta una escena cambiar la forma de moverse, pero el poder tiene una duración indeterminada.</p>
+    
+
+    <hr>
+
+    
+    <h5 id="cine">CINE</h5>
+    
+    <p><strong>Poderes Activos:</strong></p>
+    <div class="compact-list">
+        <p>• El cineasta puede hacer una tirada de sociales (maniobra: +1) usando su arte y "en remoto" cada vez que alguien ve una de sus películas</p>
+        <p>• El cineasta puede transportar, si lo desea, llevar mediante el ritual de la proyección a sus espectadores dentro de la película, para que cada espectador viva su propia versión</p>
+        <p>• En caso de hacerlo, puede usar una de sus obras maestras película para dominar la mente de quienes la ven, haciendo <strong>2 puntos de daño a FV</strong>, este poder es compatible y en su caso simultáneo al primero</p>
+        <p>• El cineasta define lo que busca transmitir su película: siempre causará ese efecto, orden, modificación de memoria… los efectos y los límites son similares a los de los escritores y músicos</p>
+        <p>• Los cineastas tienen el poder de modificar la película mientras ocurre, y pueden realizar trucos para mejorar su espectáculo aún sin maestría</p>
+    </div>
+    
+    <p class="mechanics-note"><strong>NOTA:</strong> La intención de una película se puede adivinar con una investigación por medio de habilidades generales.</p>
+    
+    <p><strong>Poder Pasivo: Fama</strong></p>
+    <p>Los cineastas pueden entrar en sus películas mientras duren, dentro de las mismas pueden remplazar cualquiera de sus tiradas por una tirada de su arte, para reflejar su control del medio. Si deciden afectar a un espectador, los conflictos tendrán lugar con normalidad, salvo por que todo daño será a la FV. Si alguien resulta vencido en el interior de una película, es expulsado y queda Sobrepasado y Vencido (Sea el cineasta, o su espectador). Además, un cineasta cuenta con que el cine es el entretenimiento de moda, y tienen tantos contactos y fama como su nivel de maestría.</p>
+    
+
+    <hr>
+
+    
+    <h5 id="fotografia">FOTOGRAFÍA</h5>
+    
+    <p><strong>Poderes Activos:</strong></p>
+    <div class="compact-list">
+        <p>• El fotógrafo puede hacer una tirada de sociales (maniobra: +1) usando su arte y "en remoto" cada vez que alguien ve una de sus fotografías</p>
+        <p>• El fotógrafo puede transportarse a una fotografía en una sala de revelado. Puede ser acompañado por otras personas de la sala mientras todos vean la fotografía y quepan</p>
+        <p>• Una fotografía captura todos los elementos que se pudieran ver desde cualquier ángulo en el momento de captura, esto permite explorar una escena a posteriori, o hablar casualmente con un retrato</p>
+        <p>• El fotógrafo puede observar una foto que haya realizado de una persona o lugar para obtener durante una escena, una especialidad que tenga que ver con lo que ha aprendido</p>
+        <p>• Los fotógrafos tienen trucos para hacer sus tareas más rápido o improvisar materiales, aún cuando no tienen maestría</p>
+    </div>
+    
+    <p><strong>Poder Pasivo: Congelar un momento</strong></p>
+    <p>Las obras maestras de los fotógrafos capturan todo el presente. Las salas revelarán lo que había en sus cajones y escondites, y podrán ser exploradas a voluntad. Una versión de los individuos retratadas queda viva en la fotografía, aunque el tiempo solo pasa para ellos mientras el fotógrafo visita el momento que ha retratado. Una obra maestra de fotografía requiere de la mejor preparación, los mejores materiales, una escena entera para tomarla, y un acto para el revelado. Las obras maestras de un fotógrafo pueden enseñarle cosas: Así, pueden ganar 1 punto de atributo, una especialidad, una habilidad, o incluso un mérito (a discreción del dm) por nivel de maestría. Los fotógrafos no tienen poderes extraordinarios en sus dominios, la precisión de su medio les afecta, y si enfurecen a los que habitan en el retrato, podrían expulsarle. Afortunadamente, la clave está en el negativo, y si lo desean, pueden hacer un nuevo revelado y "reiniciar" a sus habitantes.</p>
+    
+
+    <hr>
+
+    
+    <h5 id="artesania">ARTESANÍA</h5>
+    
+    <p><strong>Poderes Activos:</strong></p>
+    <div class="compact-list">
+        <p>• El artesano puede hacer una tirada de sociales (maniobra: +1) usando su arte y "en remoto" cada vez que alguien ve, usa o disfruta una de sus creaciones</p>
+        <p>• El artesano concede a sus creaciones un bonificador de +1 circunstancial cuando se apliquen al objetivo específico para el que fueron creadas</p>
+        <p>• El artesano puede crear máquinas que reduzcan los tiempos necesarios para su uso, aumenten su durabilidad, o reduzcan el tamaño que ocupan (A discreción del DM)</p>
+        <p>• Los artesanos pueden guardar una acción de ayuda en una creación que se consumirá cuando el usuario decida o cuando pase un día. Muchos buenos artesanos saben aplicar esto a sus creaciones, aún sin Maestría</p>
+    </div>
+    
+    <p><strong>Poder Pasivo: Reliquias</strong></p>
+    <p>Los artesanos pueden crear objetos que suman 1 a un atributo o habilidad hasta 7. Un personaje puede llevar tantas reliquias como su nivel de maestría. Los artesanos crean tres reliquias por cada rango de Maestría. Una reliquia puede venderse por un punto en el mérito riqueza, otro mérito, o por un gran favor, y no debería venderse por menos sin incurrir en la ira del Gremio de Artesanos. A falta de otras acciones, los Artesanos ganan un nivel de riqueza por rango de maestría.</p>
+    
+    <p class="mechanics-note"><strong>NOTA:</strong> Teóricamente un artesano puede crear una infinidad de objetos y reliquias. Su habilidad no se gasta, pero el sistema propone límites para evitar que un Artesano pase partidas fabricando objetos sin formar parte de la historia. Si en una partida, un artesano tiene siete días libres, puede crear una máquina menor, y si tiene un par de meses libres, podría crear una reliquia a discreción del DM. Trabajar en los espacios que dejan las aventuras no añade nuevas reliquias a la reserva, ese tiempo de fábrica es el que le otorga las 3 que obtiene por cada rango de maestría.</p>
+
+</div></div>
+
 
 <style>
     .character-creation-box {
@@ -1767,7 +2018,7 @@
         background: rgba(139, 115, 85, 0.15);
         border: 2px solid #8b7355;
         padding: 40px;
-        margin: 40px 0;
+        margin: 60px 0;
         border-radius: 8px;
     }
     
