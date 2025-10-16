@@ -160,6 +160,12 @@
             text-indent: 30px;
         }
         
+        /* Alineación izquierda para párrafos de habilidades */
+        .mechanics-box .two-column-layout p {
+            text-align: left;
+            text-indent: 0;
+        }
+        
         p.no-indent {
             text-indent: 0;
         }
@@ -947,6 +953,9 @@
                 <a href="#" class="section-toggle" onclick="toggleSection(event, 'sistema')">▸ Sistema</a>
                 <ul id="sistema" class="submenu">
                     <li><a href="#creacion">Creación de Personaje</a></li>
+                    <li><a href="#atributos-detalle">Atributos</a></li>
+                    <li><a href="#habilidades-detalle">Habilidades</a></li>
+                    <li><a href="#meritos-detalle">Méritos</a></li>
                     <li><a href="#sistema-juego">Sistema de Juego</a></li>
                     <li><a href="#combate">Combate</a></li>
                 </ul>
@@ -1557,7 +1566,6 @@
 
         <div class="section-break">◆ ◆ ◆</div>
 
-
                 <!-- CREACIÓN DE PERSONAJE -->
 <h2 id="creacion">Creación de Personaje</h2>
 
@@ -1570,16 +1578,16 @@
             <p class="step-text">Diseña un concepto de personaje. ¿Quién eres? ¿A qué gremio perteneces? ¿Cuál es tu posición en la sociedad parisina de 1905?</p>
             
             <h4 class="step-title">PASO 2: ATRIBUTOS</h4>
-            <p class="step-text">Distribuye 10 puntos entre los cinco atributos. Cada atributo tiene un mínimo de 1 y un máximo de 5.</p>
+            <p class="step-text">Distribuye 10 puntos entre los cinco atributos. Los atributos empiezan en 1, y puedes llevarlos hasta 5.</p>
             
             <h4 class="step-title">PASO 3: HABILIDADES</h4>
-            <p class="step-text">Asigna 40 puntos entre las habilidades de tu personaje. Cada habilidad está vinculada a un atributo específico, excepto Arte y Artesanía que pueden usar cualquier atributo. Las habilidades van de 1 a 5.</p>
+            <p class="step-text">Asigna 40 puntos entre las habilidades de tu personaje. Las habilidades empiezan sin puntos y puedes llevarlas hasta 5.</p>
             
             <h4 class="step-title">PASO 4: MAESTRÍA</h4>
-            <p class="step-text">Elige un arte en el que tu personaje tiene Maestría. Esto te otorga 1 punto de Maestría y añade un nivel de "colchón" tanto a Fuerza de Voluntad como a Vitalidad.</p>
+            <p class="step-text">Elige un arte en el que tu personaje tiene Maestría. Esto te otorga 1 punto de Maestría (Ver: Maestrías).</p>
             
             <h4 class="step-title">PASO 5: TOQUES FINALES</h4>
-            <p class="step-text">Define tu trasfondo, tus conexiones con otros personajes, tus ambiciones y tus secretos. ¿Qué te motiva? ¿Qué temes perder?</p>
+            <p class="step-text">Elige tus méritos (Ver: Méritos). Reflexiona sobre tu contexto social, tus ambiciones y tus secretos. ¿Qué te motiva? ¿Qué temes perder?</p>
         </div>
         
         <div class="right-column">
@@ -1600,14 +1608,168 @@
                 <p><strong>Gracia:</strong> Estoicismo, Presencia, Encanto, Etiqueta</p>
                 <p><strong>Sagacidad:</strong> Observar, Investigar, Charlatanería, Callejeo</p>
                 <p><strong>Variable:</strong> Arte, Artesanía</p>
-                <p class="skill-note">Arte y Artesanía pueden usar cualquier atributo según la justificación del jugador.</p>
+            </div>
+            
+            <h4 class="section-header">MÉRITOS</h4>
+            <div class="compact-block">
+                <p><strong>Influencia:</strong> Poder político y control burocrático</p>
+                <p><strong>Contactos:</strong> Red de conocidos e información</p>
+                <p><strong>Riqueza:</strong> Capacidad adquisitiva y estilo de vida</p>
+                <p><strong>Fama:</strong> Reconocimiento público</p>
+                <p><strong>Allegados:</strong> Amigos y amantes interpretables</p>
+                <p><strong>Posición:</strong> Rango en jerarquías</p>
             </div>
         </div>
     </div>
 </div>
 
+<!-- EXPLICACIÓN DE ATRIBUTOS, HABILIDADES Y MÉRITOS -->
 <div class="mechanics-box">
-    <h3 id="sistema-juego">Sistema de Juego</h3>
+    <h2 id="atributos-detalle">Atributos</h2>
+    <p>Los atributos representan las características fundamentales de tu personaje, las capacidades innatas que definen su potencial en diferentes áreas. Cada atributo va de 1 a 6, donde 1 es deficiente, 5 es excepcional y 6 es sobrehumano.</p>
+    
+    <div class="two-column-layout">
+        <div class="left-column">
+            <h4>Vigor</h4>
+            <p>Representa la fuerza física, la resistencia y la capacidad de soportar el esfuerzo. Un personaje con alto Vigor puede cargar objetos pesados, correr largas distancias y resistir el cansancio. Es fundamental para el combate físico y las actividades que requieren esfuerzo corporal.</p>
+            
+            <h4>Coordinación</h4>
+            <p>Define la destreza, la agilidad y los reflejos. Un personaje con alta Coordinación es ágil, tiene buenos reflejos y puede realizar tareas que requieren precisión manual. Es crucial para el combate con armas, el sigilo y las actividades artísticas que requieren control fino.</p>
+            
+            <h4>Ingenio</h4>
+            <p>Representa la inteligencia, la capacidad de razonamiento y la intuición. Un personaje con alto Ingenio puede resolver problemas complejos, recordar información importante y comprender conceptos abstractos. Es esencial para el estudio, la investigación y la resolución de misterios.</p>
+        </div>
+        
+        <div class="right-column">
+            <h4>Gracia</h4>
+            <p>Define el carisma, el atractivo personal y la capacidad de influir en otros. Un personaje con alta Gracia es carismático, atractivo y puede convencer o seducir a otros. Es fundamental para el combate social, el liderazgo y las interacciones sociales.</p>
+            
+            <h4>Sagacidad</h4>
+            <p>Representa la percepción, la astucia y la capacidad de notar detalles importantes. Un personaje con alta Sagacidad es observador, astuto y puede detectar mentiras o peligros ocultos. Es crucial para la investigación, la supervivencia y la detección de amenazas.</p>
+        </div>
+    </div>
+    
+    <div class="section-break">◆ ◆ ◆</div>
+    
+    <h2 id="habilidades-detalle">Habilidades</h2>
+    <p>Las habilidades representan el entrenamiento y la experiencia específica de tu personaje en diferentes áreas. Cada habilidad está vinculada a un atributo específico y va de 1 a 6. Las habilidades permiten que tu personaje realice acciones especializadas con mayor eficacia.</p>
+    
+    <div class="two-column-layout">
+        <div class="left-column">
+            <h4>Habilidades de Vigor</h4>
+            <p><strong>Atletismo:</strong> Correr, saltar, escalar y realizar proezas físicas.</p>
+            <p><strong>Aguante:</strong> Resistir el cansancio, el dolor y las condiciones adversas.</p>
+            <p><strong>Lucha:</strong> Combatir cuerpo a cuerpo, usar armas de mano.</p>
+            <p><strong>Supervivencia:</strong> Sobrevivir en la adversidad, encontrar recursos.</p>
+            
+            <h4>Habilidades de Coordinación</h4>
+            <p><strong>Sigilo:</strong> Moverse sin ser detectado, ocultarse.</p>
+            <p><strong>Pericia:</strong> Usar herramientas, realizar trabajos manuales.</p>
+            <p><strong>Disparo:</strong> Usar armas de fuego y proyectiles.</p>
+            <p><strong>Esquiva:</strong> Evitar ataques y peligros.</p>
+            
+            <h4>Habilidades de Ingenio</h4>
+            <p><strong>Academicismo:</strong> Conocimiento académico, historia, literatura.</p>
+            <p><strong>Ciencia:</strong> Conocimiento científico, experimentación.</p>
+            <p><strong>Medicina:</strong> Curar heridas, diagnosticar enfermedades.</p>
+            <p><strong>Ocultismo:</strong> Conocimiento de las maestrías, lo sobrenatural y lo místico.</p>
+        </div>
+        
+        <div class="right-column">
+            <h4>Habilidades de Gracia</h4>
+            <p><strong>Estoicismo:</strong> Dominio sobre la propia sensibilidad.</p>
+            <p><strong>Presencia:</strong> Magnetismo, imponer respeto y autoridad.</p>
+            <p><strong>Encanto:</strong> Seducir, persuadir, ganar simpatía.</p>
+            <p><strong>Etiqueta:</strong> Conocer y seguir las reglas sociales.</p>
+            
+            <h4>Habilidades de Sagacidad</h4>
+            <p><strong>Observar:</strong> Notar detalles importantes, vigilar.</p>
+            <p><strong>Investigar:</strong> Buscar información, resolver misterios.</p>
+            <p><strong>Charlatanería:</strong> Engañar, mentir, defenderse con excusas.</p>
+            <p><strong>Callejeo:</strong> Conocer la calle, a su gente, y alos bajos fondos.</p>
+            
+            <h4>Habilidades de atributo variable</h4>
+            <p><strong>Arte:</strong> Crear obras artísticas del tipo que se indica.</p>
+            <p><strong>Artesanía:</strong> Crear objetos útiles con el oficio que se indica.</p>
+        </div>
+    </div>
+    
+    <div class="section-break">◆ ◆ ◆</div>
+    
+    <h2 id="meritos-detalle">Méritos</h2>
+    <p>Los méritos tienen puntuaciones de 1 a 6 (el nivel 6 solo puede alcanzarse por historia) y representan características sociales, recursos, o circunstancias de los personajes. Se utilizan de forma automática al nivel que se poseen. Si alguien se opone a tu uso del mérito con el suyo, habrá una tirada enfrentada con una tirada apropiada (Gracia, Ingenio, o Sagacidad + Mérito). Un jugador puede intentar alcanzar un nivel que no tiene alcanzando la dificultad establecida tantas veces por sesión como su nivel en el mérito. También, cuando el mérito lo indica, un jugador puede usar un mérito para remplazar otro que no tiene una vez por sesión. Finalmente: En caso de que alguna maestría regale a un jugador un mérito que ya posee, el jugador puede repartir el punto que asignó en creación a otro mérito que tenga sentido para su personaje.</p>
+    
+    <h4>Influencia</h4>
+    <p>Mide el alcance del poder político del personaje, y su control de herramientas y peones en la burocracia. Con ella, un Maestro del Arte puede influir en una ley, exonerar un prisionero, o tratar de aplazar los permisos de una exposición, y adelantar los suyos. A discreción del máster, puedes adquirir un mérito de influencia distinto (por su geografía, o la identidad del colectivo que controlas). Los personajes con Influencia pueden imponer su poder político sobre oficiales, burócratas, por lo que pueden tirar con +0 a Contactos una vez por sesión.</p>
+    
+    <div class="compact-list">
+        <p><strong>1: Fácil (5):</strong> Ejercer tu influencia en una pequeña comuna o barrio de París. Facilitar trámites burocráticos</p>
+        <p><strong>2: Moderado (10):</strong> Ejercer tu influencia en un distrito metropolitano de París. Forzar trámites burocráticos menores</p>
+        <p><strong>3: Difícil (15):</strong> Ejercer tu influencia en la ciudad de París. Ignorar la burocracia</p>
+        <p><strong>4: Heroico (20):</strong> Ejercer tu influencia en el gobierno de Francia. Puedes ejercer tu Influencia en otras ciudades de Francia</p>
+        <p><strong>5: Legendario (25+):</strong> Ejercer tu influencia en el Consejo de las Bellas Artes. Puedes ejercer tu influencia en ciudades de otros países. Recibes en ocasiones invitaciones a las reuniones del consejo</p>
+    </div>
+    
+    <h4>Contactos</h4>
+    <p>Representa la cantidad e importancia de la gente que conoce el personaje. Los contactos se utilizan para tener acceso a intercambios de bienes o servicios que no son fácilmente accesibles, para obtener información, o pedir pequeños favores. Ten en cuenta que, en algunos casos los favores no son posibles, los secretos no existen, y algo realmente no puede venderse. Aunque no lo indica la tabla, la geografía también es importante para contactos, usar tus contactos en otra ciudad de Francia es un grado más difícil, y usarlos en una ciudad de otro país, dos grados más difíciles. Por otro lado, conocer tantas personas permite una vez por sesión una tirada a +0 para usar Influencia, en caso de no tenerla.</p>
+    
+    <div class="compact-list">
+        <p><strong>1: Fácil (5):</strong> Un recado fácil. Que te cuenten buenos chismes o algún rumor interesante</p>
+        <p><strong>2: Moderado (10):</strong> Información valiosa que no es secreta. Conseguir favores, bienes poco frecuentes, o de dudosa legalidad</p>
+        <p><strong>3: Difícil (15):</strong> Información privilegiada de alguien o algo. Conseguir acceso a bienes, lugares, y favores exclusivos o ilegales. Acceder a la compra de una Reliquia</p>
+        <p><strong>4: Heroico (20):</strong> Un pequeño chantaje o un secreto. Conseguir con facilidad o sin coste dificultades por debajo de Moderado</p>
+        <p><strong>5: Legendario (25+):</strong> Un chantaje con pruebas. Conseguir acceso comprar aquello que no se quiere vender</p>
+    </div>
+    
+    <h4>Riqueza</h4>
+    <p>Representa la capacidad adquisitiva y el estilo de vida del personaje. Si tu puntuación iguala un bien de la lista, puedes acordar con el DM que tu personaje ya tiene una cantidad razonable de ese bien, si alcanzas un nivel superior, tu personaje podría tener una cantidad opulenta de ese bien o una versión "de lujo", y si alcanzas dos niveles superiores, tu personaje podría tener una cantidad obscena de ese bien. Si abusas de tu riqueza, el DM puede requerir que consumas temporal o permanente un nivel del mérito. Si fuera necesaria, aquí va una guía: Bienes inmuebles y de Maestros por acto, equipo y herramientas por sesión, gasto del estilo de vida o servicios escena. Ten en cuenta que tu capacidad adquisitiva no concede el acceso a cualquier bien, cuando sea necesario, debes apoyarte de contactos o tirar una vez por sesión con +0 a las dificultades indicadas por el mérito. Algunos bienes excepcionales consumen un punto permanente de este mérito, si un jugador empieza con uno de estos bienes, su valor se reduce en 1.</p>
+    
+    <div class="compact-list">
+        <p><strong>1: Fácil (5):</strong> Habitación propia en casa compartida, ropa de trabajo, cenar en una taberna, tomar un café, un sobre de tabaco, enviar un telegrama, coger el metro</p>
+        <p><strong>2: Moderado (10):</strong> Apartamento, ropa a la moda, cenar en un restaurante, la entrada de un concierto, un sirviente, un taxi, una caja de bombones, entradas para la ópera</p>
+        <p><strong>3: Difícil (15):</strong> Casa residencial o apartamento de lujo, un coche propio, valet, viaje trasatlántico, máquina de escribir, una reliquia (Contactos 3, consume un punto permanente)</p>
+        <p><strong>4: Heroico (20):</strong> Mansión, vestido extraordinario, mayordomo, concierto privado, chófer, viaje en zepelín, barco de recreo, gólem (Contactos 5, consume un punto permanente)</p>
+        <p><strong>5: Legendario (25+):</strong> Palacete, joyería magnífica, servicios de un Maestro del Arte (Contactos 3), teléfono, frigorífico, reservar un restaurante, el mejor vino de Francia</p>
+    </div>
+    
+    <h4>Fama</h4>
+    <p>Representa lo conocido que es el personaje. De base solo hace a un personaje conocido, esto puede tener consecuencias positivas o negativas, dependiendo del personaje y quien le reconozca. Sin embargo, Fama puede usarse para tirar tantas veces como puntuación tengamos en fama por sesión, en cualquier otro mérito. A diferencia de las reglas para otros méritos, al usar fama mantendremos nuestro bono de fama para lanzar los dados. Este mérito es peor que otros, y es fácil obtenerlo durante la historia, invierte en él solo si estás convencido.</p>
+    
+    <div class="compact-list">
+        <p><strong>1: Fácil (5):</strong> 10% de los parisinos te conoce.</p>
+        <p><strong>2: Moderado (10):</strong> 30% de los parisinos te conocen.</p>
+        <p><strong>3: Difícil (15):</strong> 50% parisinos te conocen, 20% franceses te conocen.</p>
+        <p><strong>4: Heroico (20):</strong> 90% en París, y 50% de Francia</p>
+        <p><strong>5: Legendario (25+):</strong> 90% de Francia, y 20% en grandes ciudades extranjeras.</p>
+    </div>
+    
+    <h4>Allegados</h4>
+    <p>Este mérito representa amigos y amantes del personaje que el jugador quiera interpretar. El resto de los personajes también tiene amigos y amantes, pero por el motivo que sea, los interpreta el DM. Los allegados tiran para aquello en lo que son buenos tanto como el jugador tiraría para esta tirada. Abusar de los allegados nos dejará sin el placer de su compañía. En caso de ser varios en escena, si hay un conflicto de cualquier tipo, los allegados hacen una tirada conjunta con un +1. Sea cual sea el número, tienen tantos puntos de Vida y FV como el valor de este mérito.</p>
+    
+    <div class="compact-list">
+        <p><strong>1: Fácil (5):</strong> Un allegado. Uno de ellos puede ser un aprendiz de Maestro del Arte.</p>
+        <p><strong>2: Moderado (10):</strong> Dos allegados, y hasta dos allegados por escena.</p>
+        <p><strong>3: Difícil (15):</strong> Tres allegados. Cuando el jugador llega a Maestría 3, el aprendiz asciende a Maestría 1</p>
+        <p><strong>4: Heroico (20):</strong> Cuatro allegados, hasta 3 allegados por escena.</p>
+        <p><strong>5: Legendario (25+):</strong> Cinco allegados. El aprendiz asciende a Maestría 2</p>
+    </div>
+    
+    <h4>Posición</h4>
+    <p>Este mérito representa un rango en una jerarquía de algún tipo. Por su naturaleza, y su especificidad hay que elegir el dominio en el que se tiene posición. A discreción del DM, es posible tener posición en varias organizaciones. Al margen de lo descrito más abajo, posición permite, como fama, tirar para usar otro mérito tantas veces como el valor en este mérito por sesión. A la hora de comparar la posición social, primero se compara la posición más alta y se suma a riqueza, el valor más alto determina quién tiene mayor posición social. A discreción del DM, posición en algunas organizaciones (como una organización criminal) podría no contar para la suma.</p>
+    
+    <div class="compact-list">
+        <p><strong>1: Fácil (5):</strong> Maestro. Especialidad en Choques sociales contra miembros de menor posición.</p>
+        <p><strong>2: Moderado (10):</strong> Maestro Secreto.</p>
+        <p><strong>3: Difícil (15):</strong> Maestro Perfecto.</p>
+        <p><strong>4: Heroico (20):</strong> Maestro Elegido de los 9. Especialidad en Choques sociales contra miembros.</p>
+        <p><strong>5: Legendario (25+):</strong> Maestro del Arco Real.</p>
+    </div>
+</div>
+
+<div class="section-break">◆ ◆ ◆</div>
+
+<div class="mechanics-box">
+    <h2 id="sistema-juego">Sistema de Juego</h2>
     
     <h4>Tiradas</h4>
     <p>Para realizar una acción, tira <strong>1d10</strong> y suma el atributo relevante más la habilidad correspondiente. El Director de Juego establece la dificultad:</p>
@@ -1739,7 +1901,7 @@
 <div class="section-break">◆ ◆ ◆</div>
 
 <div class="mechanics-box">
-    <h3 id="combate">Combate</h3>
+    <h2 id="combate">Combate</h2>
     
     <p>El combate funciona por <strong>rondas</strong>. En cada ronda, cada personaje puede <strong>iniciar un choque</strong> y <strong>responder a cualquier número de choques</strong> en los que se vea envuelto. Cuando todos los personajes hayan iniciado un choque, o realizado una acción, termina la ronda y empieza una nueva.</p>
     
@@ -1953,11 +2115,10 @@
 <div class="section-break">◆ ◆ ◆</div>
 
 <div class="mechanics-box">
-    <h3 id="maestrias">Maestrías y Poderes Artísticos</h3>
+    <h2 id="maestrias">Maestrías</h2>
     
     <h4>Estructura General</h4>
-    
-    <h5>Maestría</h5>
+
     <p>La <strong>Maestría</strong> representa el nivel de poder y dominio artístico del personaje. Va de <strong>1 a 5</strong> (Aunque algunos maestros alcanzan el 6º nivel).</p>
     
     <p><strong>Reglas de Maestría:</strong></p>
@@ -1966,8 +2127,8 @@
         <p>• Un personaje puede tener Maestría en múltiples artes</p>
         <p>• Cada nivel de Maestría requiere de y representa una <strong>Obra Maestra</strong> en su arte</p>
         <p>• El primer punto de maestría concede una <strong>especialidad</strong>, un bono de +2 a un campo concreto de cualquier habilidad que no sea un arte</p>
-        <p>• Ganar un punto de maestría otorga una especialidad adicional, <strong>1 punto de atributo y 4 puntos de habilidad</strong>, dos de estos puntos pueden alcanzar el valor 6</p>
-        <p>• Al Ganar un punto de maestría, un jugador puede añadir <strong>1 a un mérito</strong> que responda a sus acciones en partida</p>
+        <p>• Ganar un punto de maestría otorga una <strong>especialidad</strong> adicional, <strong>1 punto de atributo y 4 puntos de habilidad</strong>, dos de estos puntos pueden alcanzar el valor 6</p>
+        <p>• Al Ganar un punto de maestría, un jugador puede añadir <strong>1 a un mérito</strong> si lo desea</p>
         <p>• Los puntos de maestría en un arte se suman a las tiradas de ese arte</p>
         <p>• Si un poder requiere tiempo de preparación, puede ser reducido en grados de tiempo a razón de 1 FV por grado</p>
     </div>
@@ -2067,7 +2228,7 @@
     
     <p><strong>Poder Pasivo: Nuestros Reinos</strong></p>
     <p>Puede dotar a uno de sus edificios por nivel de Maestría en Arquitectura de reglas especiales. Los edificios, o ciertas salas, pueden tener un tamaño interior tantas veces superior al exterior como el nivel de maestría. Una sala puede lanzar una tirada de sociales permanentemente. Las salas pueden encerrar, y atacar físicamente a los intrusos. Todo el mundo piensa que recibir una invitación de un masón le pone a salvo del edificio al que ha sido invitado, no todos saben que las palabras "Le invito a mi obra" seguidas del nombre por el que conocen al invitado deben ser pronunciadas o escritas, o la protección no tiene garantías.</p>
-    <p>Sus obras maestras tienen tantos portales como el nivel de maestría. Estos portales conducen siempre a una puerta, baldosa, o ventana específica que haya construida o modificada para ello, o a cualquier otro portal masón del que haya recibido invitación. Preparar un nuevo "destino" para el portal, lleva un acto. Finalmente, tiene acceso a los recursos de las logias igual a su maestría. Esto funciona como un Mérito adicional que permite llamar aliados, pedir préstamos, o influir en un oficial público dependiendo de la presencia masónica.</p>
+    <p>Sus obras maestras tienen tantos portales como el nivel de maestría. Estos portales conducen siempre a una puerta, baldosa, o ventana específica que haya construida o modificada para ello, o a cualquier otro portal masón del que haya recibido invitación. Preparar un nuevo "destino" para el portal, lleva un acto. Finalmente, los arquitectos tienen una posición en la logia masónica igual a su maestría.</p>
     
 
     <hr>
@@ -2141,7 +2302,7 @@
     </div>
     
     <p><strong>Poder Pasivo: Congelar un momento</strong></p>
-    <p>Sus obras maestras capturan todo el presente. Las salas revelarán lo que había en sus cajones y escondites, y podrán ser exploradas a voluntad. Una versión de los individuos retratadas queda viva en la fotografía, aunque el tiempo solo pasa para ellos mientras visita el momento que ha retratado. Una obra maestra de fotografía requiere de la mejor preparación, los mejores materiales, una escena entera para tomarla, y un acto para el revelado. Sus obras maestras pueden enseñarle cosas: Así, puede ganar 1 punto de atributo, una especialidad, una habilidad, o incluso un mérito (a discreción del dm) por nivel de maestría. No tiene poderes extraordinarios en sus dominios, la precisión de su medio le afecta, y si enfurece a los que habitan en el retrato, podrían expulsarle. Afortunadamente, la clave está en el negativo, y si lo desea, puede hacer un nuevo revelado y "reiniciar" a sus habitantes.</p>
+    <p>Sus obras maestras capturan todo el presente. Las salas revelarán lo que había en sus cajones y escondites, y podrán ser exploradas a voluntad. Una versión de los individuos retratadas queda viva en la fotografía, aunque el tiempo solo pasa para ellos mientras visita el momento que ha retratado. Una obra maestra de fotografía requiere de la mejor preparación, los mejores materiales, una escena entera para tomarla, y una semana para el revelado. Sus obras maestras pueden enseñarle cosas: Así, puede ganar 1 punto de atributo, una especialidad, una habilidad, o incluso un mérito (a discreción del dm) por nivel de maestría. No tiene poderes extraordinarios en sus dominios, la precisión de su medio le afecta, y si enfurece a los que habitan en el retrato, podrían expulsarle. Afortunadamente, la clave está en el negativo, y si lo desea, puede hacer un nuevo revelado y "reiniciar" a sus habitantes.</p>
     
 
     <hr>
@@ -2162,10 +2323,9 @@
     
     <p class="mechanics-note"><strong>NOTA:</strong> Teóricamente puede crear una infinidad de objetos y reliquias. Su habilidad no se gasta, pero el sistema propone límites para evitar que pase partidas fabricando objetos sin formar parte de la historia. Si en una partida, tiene siete días libres, puede crear una máquina menor, y si tiene un par de meses libres, podría crear una reliquia a discreción del DM. Trabajar en los espacios que dejan las aventuras no añade nuevas reliquias a la reserva, ese tiempo de fábrica es el que le otorga las 3 que obtiene por cada rango de maestría.</p>
 
-</div></div>
+</div>
 
-        <div class="section-break">◆ ◆ ◆</div>
-    </div>
+<div class="section-break">◆ ◆ ◆</div>
 
     <script>
         function toggleSection(event, sectionId) {
