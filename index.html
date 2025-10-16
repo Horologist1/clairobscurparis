@@ -77,31 +77,6 @@
             min-height: 100vh;
         }
         
-
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Crimson Text', serif;
-            background: #0a0a0a;
-            color: #d4c5b0;
-            line-height: 1.7;
-            font-size: 19px;
-        }
-        
-        .page {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 60px 50px;
-            background: linear-gradient(135deg, #1a1612 0%, #0f0d0a 100%);
-            min-height: 100vh;
-        }
-        
         /* PORTADA */
         .cover-page {
             text-align: center;
@@ -169,15 +144,15 @@
             font-weight: 600;
         }
     
-    h5 {
-        font-family: 'Cinzel', serif;
-        color: #c9b896;
-        font-size: 16px;
-        font-weight: 600;
-        margin-top: 25px;
-        margin-bottom: 12px;
-        letter-spacing: 1px;
-    }
+        h5 {
+            font-family: 'Cinzel', serif;
+            color: #c9b896;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
         
         p {
             margin-bottom: 18px;
@@ -218,16 +193,6 @@
             margin-top: 0;
             color: #ffd78c;
         }
-    
-    h5 {
-        font-family: 'Cinzel', serif;
-        color: #c9b896;
-        font-size: 16px;
-        font-weight: 600;
-        margin-top: 25px;
-        margin-bottom: 12px;
-        letter-spacing: 1px;
-    }
         
         .sidebar p {
             text-indent: 0;
@@ -245,16 +210,6 @@
             margin-top: 0;
             font-size: 24px;
         }
-    
-    h5 {
-        font-family: 'Cinzel', serif;
-        color: #c9b896;
-        font-size: 16px;
-        font-weight: 600;
-        margin-top: 25px;
-        margin-bottom: 12px;
-        letter-spacing: 1px;
-    }
         
         .character-profile .title {
             color: #c9a87c;
@@ -346,10 +301,6 @@
             color: #a89070;
         }
         
-        /* PRIMERA LETRA - DESHABILITADO */
-        .drop-cap::first-letter {
-            /* Deshabilitado para evitar problemas de alineación */
-        }
         
         @media print {
             body {
@@ -420,6 +371,10 @@
             
             .page {
                 margin-left: 0;
+            }
+            
+            .two-column-layout {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -669,6 +624,295 @@
         border-top: 1px solid #8b7355;
         opacity: 0.5;
     }
+
+    /* CHARACTER CREATION BOX */
+    .character-creation-box {
+        background: linear-gradient(135deg, #2a3a2a 0%, #1a2a1a 100%);
+        border: 3px solid #6b8e6b;
+        padding: 40px;
+        margin: 60px 0;
+        border-radius: 10px;
+    }
+    
+    .creation-title {
+        text-align: center;
+        font-family: 'Cinzel', serif;
+        font-size: 28px;
+        color: #d4e8d4;
+        letter-spacing: 3px;
+        margin-bottom: 40px;
+        text-transform: uppercase;
+    }
+    
+    .two-column-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+    
+    .left-column, .right-column {
+        padding: 10px;
+    }
+    
+    .step-title {
+        font-family: 'Cinzel', serif;
+        font-size: 16px;
+        color: #a8d4a8;
+        margin-top: 18px;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .step-text {
+        font-size: 15px;
+        color: #d4e8d4;
+        line-height: 1.4;
+        text-indent: 0;
+        margin-bottom: 0;
+    }
+    
+    .section-header {
+        font-family: 'Cinzel', serif;
+        font-size: 18px;
+        color: #d4e8d4;
+        margin-top: 18px;
+        margin-bottom: 10px;
+        text-align: center;
+        letter-spacing: 2px;
+        border-bottom: 1px solid #6b8e6b;
+        padding-bottom: 6px;
+    }
+    
+    .compact-block {
+        margin-bottom: 10px;
+    }
+    
+    .compact-block p {
+        font-size: 15px;
+        color: #d4e8d4;
+        line-height: 1.35;
+        text-indent: 0;
+        text-align: left;
+        margin-bottom: 3px;
+    }
+    
+    .compact-block strong {
+        color: #a8d4a8;
+    }
+    
+    .skill-note {
+        font-size: 13px;
+        color: #a8d4a8;
+        font-style: italic;
+        text-indent: 0;
+        margin-top: 8px;
+        line-height: 1.3;
+    }
+    
+    .mechanics-box h3 {
+        text-align: center;
+        color: #ffd78c;
+        margin-top: 0;
+        margin-bottom: 25px;
+    }
+    
+    .mechanics-box h4 {
+        color: #d4a574;
+        margin-top: 25px;
+        margin-bottom: 12px;
+    }
+    
+    .mechanics-box p {
+        text-indent: 0;
+        margin-bottom: 12px;
+        line-height: 1.6;
+    }
+    
+    .compact-list {
+        margin: 12px 0 18px 20px;
+    }
+    
+    .compact-list p {
+        margin-bottom: 6px;
+        text-indent: 0;
+        line-height: 1.5;
+    }
+    
+    .mechanics-note {
+        background: rgba(212, 165, 116, 0.1);
+        border-left: 4px solid #d4a574;
+        padding: 12px 15px;
+        margin: 15px 0;
+        font-style: italic;
+        color: #c9a87c;
+        text-indent: 0;
+        line-height: 1.5;
+    }
+
+    /* DEMOGRAPHICS SECTION */
+    .demographics-box {
+        background: rgba(30, 25, 20, 0.6);
+        border: 2px solid #8b7355;
+        border-radius: 8px;
+        padding: 25px;
+        margin: 25px 0;
+    }
+    
+    .guild-demo {
+        margin: 20px 0;
+        padding: 15px;
+        background: rgba(20, 15, 10, 0.4);
+        border-left: 3px solid #c9b896;
+    }
+    
+    .guild-demo h5 {
+        color: #c9b896;
+        font-family: 'Cinzel', serif;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    
+    .guild-demo ul {
+        margin: 10px 0;
+        padding-left: 20px;
+    }
+    
+    .guild-demo li {
+        margin: 5px 0;
+        color: #d4c5b0;
+    }
+    
+    .demographics-table {
+        width: 100%;
+        margin: 20px 0;
+        border-collapse: collapse;
+        background: rgba(20, 15, 10, 0.4);
+    }
+    
+    .demographics-table th {
+        background: rgba(139, 115, 85, 0.3);
+        color: #c9b896;
+        font-family: 'Cinzel', serif;
+        font-size: 13px;
+        padding: 12px 10px;
+        text-align: center;
+        border: 1px solid #8b7355;
+    }
+    
+    .demographics-table td {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #8b7355;
+        color: #d4c5b0;
+    }
+    
+    .demographics-table tr:hover {
+        background: rgba(139, 115, 85, 0.2);
+    }
+    
+    .demographics-table .total-row {
+        background: rgba(139, 115, 85, 0.3);
+        font-weight: 600;
+    }
+    
+    .context-note, .implications-note {
+        margin: 20px 0;
+        padding: 15px;
+        background: rgba(139, 115, 85, 0.2);
+        border-radius: 5px;
+    }
+    
+    .context-note h5, .implications-note h5 {
+        color: #c9b896;
+        font-family: 'Cinzel', serif;
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .context-note ul {
+        margin: 10px 0;
+        padding-left: 20px;
+    }
+    
+    .context-note li {
+        margin: 5px 0;
+    }
+
+    /* GUILD DEMOGRAPHICS */
+    .guild-demographics {
+        background: rgba(139, 115, 85, 0.15);
+        border-left: 3px solid #c9b896;
+        padding: 15px 20px;
+        margin: 25px 0;
+        page-break-inside: avoid;
+    }
+    
+    .guild-demographics h4 {
+        font-family: 'Cinzel', serif;
+        color: #c9b896;
+        font-size: 16px;
+        margin: 0 0 12px 0;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+    
+    .guild-demographics p {
+        margin: 8px 0;
+        line-height: 1.6;
+    }
+    
+    .guild-demographics ul {
+        margin: 10px 0 10px 20px;
+        padding: 0;
+    }
+    
+    .guild-demographics li {
+        margin: 6px 0;
+        line-height: 1.5;
+    }
+    
+    .demographics-note {
+        font-style: italic;
+        color: #b8a080;
+        margin-top: 12px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(201, 184, 150, 0.3);
+    }
+
+    /* POPULATION CONTEXT */
+    .population-context {
+        background: rgba(201, 184, 150, 0.1);
+        border: 2px solid #8b7355;
+        padding: 20px;
+        margin: 25px 0;
+        border-radius: 5px;
+    }
+    
+    .population-context h5 {
+        font-family: 'Cinzel', serif;
+        color: #c9b896;
+        font-size: 18px;
+        margin: 0 0 15px 0;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+    
+    .population-context ul {
+        margin: 15px 0;
+        padding-left: 25px;
+    }
+    
+    .population-context li {
+        margin: 8px 0;
+        line-height: 1.6;
+    }
+    
+    .population-context p {
+        margin: 12px 0;
+        line-height: 1.7;
+    }
     </style>
 </head>
 <body>
@@ -749,15 +993,11 @@
             <p class="attribution" style="margin-top: 15px; font-size: 17px;">— Oscar Wilde</p>
         </div>
         
-        <p class="drop-cap">El año es 1905, y París se alza como la capital indiscutible del mundo civilizado. Desde los bulevares iluminados por farolas eléctricas hasta los cafés donde se debate el futuro de la humanidad, la ciudad respira un optimismo embriagador. La Torre Eiffel, ese prodigio de hierro forjado que hace apenas dieciséis años escandalizó a los puristas, se ha convertido en el símbolo mismo de la modernidad. Los primeros automóviles Panhard-Levassor rugen por las avenidas, compitiendo con los elegantes landós tirados por caballos.</p>
+        <p class="drop-cap">El año es 1905, y París se alza como la capital indiscutible del mundo civilizado. Los bulevares resplandecen con luz eléctrica, los automóviles Panhard-Levassor compiten con los elegantes landós por las avenidas, y la Torre Eiffel —ese prodigio que hace apenas dieciséis años escandalizó a los puristas— se ha convertido en el símbolo mismo de la modernidad. En los cafés se debate el futuro de la humanidad, mientras el Metro transporta multitudes a través de túneles decorados con las sinuosas formas del Art Nouveau de Hector Guimard.</p>
         
-        <p>En los sótanos de los grandes bulevares, el Metro transporta a miles de parisinos cada día a través de túneles decorados con las sinuosas formas del Art Nouveau diseñadas por Hector Guimard. En las salas oscuras del Grand Café, las imágenes en movimiento de los hermanos Lumière fascinan a multitudes que apenas pueden creer lo que ven. En los salones de la Ópera Garnier, las voces de las sopranos más célebres de Europa hacen vibrar las lámparas de cristal.</p>
+        <p>Pero esta es solo la superficie. Bajo el barniz de progreso y racionalidad, París es una ciudad de intriga y poder oculto. Aquí, el arte no es simplemente expresión del alma humana o adorno burgués. Es una fuerza primordial que altera la realidad, manipula las emociones y da vida a lo inanimado. Y quienes dominan este poder, los Maestros del Arte, son los verdaderos gobernantes de Francia.</p>
         
-        <p>Pero esta es solo la superficie. Bajo el barniz de progreso y racionalidad, París es una ciudad de intriga y poder oculto. Aquí, el arte no es simplemente una expresión del alma humana o un adorno para los salones de la burguesía. Es una fuerza primordial que puede alterar la realidad, manipular las emociones y dar vida a lo inanimado. Y quienes dominan este poder, los Maestros del Arte, son los verdaderos gobernantes de Francia.</p>
-        
-        <p>Caminar por el Louvre no es simplemente admirar las obras maestras del pasado; es exponerse a la influencia sutil de pinturas que pueden cambiar tu forma de pensar, de sentir, de recordar. El Louvre es el corazón del poder artístico, el santuario donde se custodian los lienzos más poderosos jamás creados, algunos de los cuales contienen mundos enteros en su interior. Asistir a un concierto en la Ópera Garnier no es solo disfrutar de la música; es someterse a un ritual de manipulación emocional donde el compositor puede llevar a la audiencia del éxtasis a la desesperación con una simple modulación.</p>
-        
-        <p>Las estatuas que adornan los jardines de las Tullerías no son meros monumentos de bronce y mármol; algunas son Obras Maestras, gólems durmientes que pueden despertar ante la orden de su creador. Los edificios diseñados por los Maestros Arquitectos contienen habitaciones que no deberían existir, puertas que conducen a lugares imposibles, espacios que desafían las leyes de la geometría.</p>
+        <p>Caminar por el Louvre significa exponerse a pinturas que pueden cambiar tu forma de pensar, sentir y recordar. Asistir a un concierto en la Ópera Garnier es someterse a un ritual de manipulación emocional donde el compositor lleva a la audiencia del éxtasis a la desesperación. Las estatuas de las Tullerías no son meros monumentos; algunas son gólems durmientes que aguardan la orden de despertar. Los edificios de los Maestros Arquitectos contienen habitaciones imposibles, puertas que conducen a ninguna parte, espacios que desafían las leyes de la geometría.</p>
         
         <p>En este París, la democracia es una ilusión cuidadosamente mantenida. El Presidente Loubet firma las leyes, el Parlamento debate, los periódicos informan, pero todos bailan al son de una orquesta invisible. Los verdaderos poderes son los gremios artísticos, y su instrumento de gobierno es el Consejo de las Bellas Artes.</p>
         
@@ -791,7 +1031,7 @@
         
         <h3>El Louvre: Santuario del Poder</h3>
         
-        <p>El Louvre ocupa un lugar especial en la estructura de poder. No es solo un museo; es el santuario del arte más poderoso, el arsenal donde se custodian las obras maestras más peligrosas jamás creadas —pinturas, esculturas, objetos artísticos—, y el lugar donde el Consejo se reúne para sus sesiones más importantes y secretas. En las bóvedas subterráneas del Louvre se guardan obras de todo tipo —pinturas, esculturas, objetos artísticos— que podrían alterar la realidad misma si fueran expuestas al público.</p>
+        <p>El Louvre ocupa un lugar especial en la estructura de poder. No es solo un museo; es el santuario donde se custodian las obras maestras más peligrosas jamás creadas, y el lugar donde el Consejo se reúne para sus sesiones más importantes. En sus bóvedas subterráneas se guardan pinturas, esculturas y objetos artísticos que podrían alterar la realidad misma si fueran expuestos al público.</p>
         
         <p>El control del Louvre es el control simbólico y práctico de Francia. Los Pintores defienden este privilegio con ferocidad, y cualquier intento de otros gremios de ganar acceso a las bóvedas es visto como una declaración de guerra.</p>
         
@@ -799,7 +1039,7 @@
         
         <p>Aunque formalmente todos los gremios con asiento decisor tienen el mismo poder de voto, en la práctica existe una jerarquía clara. Los Pintores son los más influyentes, capaces de acumular experiencia y sabiduría durante el equivalente a varias vidas humanas gracias a sus lienzos habitables. Esta ventaja los hace formidables en política, diplomacia y cualquier actividad que requiera astucia. Dominan los debates del Consejo y, a menudo, marcan la agenda.</p>
         
-        <p>Los Escritores son los segundos en poder. Con sus escritos pueden generar cambios en el pensamiento a través de la prensa. Desde la imprenta, su influencia se ha multiplicado, y a pesar de los matusalenes que habitan entre los Pintores, muchos se preguntan si la jerarquía en el consejo está a punto de cambiar, o ya lo ha hecho.</p>
+        <p>Los Escritores los siguen de cerca. Su control sobre la prensa y las editoriales les otorga un poder que crece constantemente desde la invención de la imprenta. Muchos se preguntan si la jerarquía del Consejo está a punto de cambiar, o si ya lo ha hecho.</p>
         
         <p>Los Músicos y Escultores ocupan una posición intermedia. Sus poderes son más directos y tangibles, pero su alcance es más limitado. Un Músico puede mover a una multitud en un concierto, pero el efecto se desvanece cuando la música cesa. Un Escultor puede crear un golem poderoso, pero no puede crear ejércitos enteros. Son respetados y temidos, pero rara vez dominan las decisiones del Consejo.</p>
         
@@ -863,9 +1103,9 @@
         
         <h3>La Vida Nocturna</h3>
         
-        <p>Cuando cae la noche, París se transforma. Los bulevares se iluminan con farolas eléctricas y de gas, creando un resplandor dorado que ha dado a la ciudad su apodo: la Ville Lumière. Los cafés permanecen abiertos hasta altas horas, llenos de conversación y humo de cigarrillos. Los teatros y cabarets ofrecen espectáculos que van desde lo sublime hasta lo escandaloso.</p>
+        <p>Cuando cae la noche, París se transforma. Los bulevares se iluminan con farolas eléctricas y de gas, creando el resplandor dorado que le ha valido el apodo de Ville Lumière. Los cafés permanecen abiertos hasta altas horas, llenos de conversación y humo de cigarrillos, mientras los teatros y cabarets ofrecen espectáculos que van desde lo sublime hasta lo escandaloso.</p>
         
-        <p>Pero la noche también es cuando los Maestros del Arte realizan sus trabajos más profundos. Los Pintores viajan a sus lienzos habitables. Los Escritores redactan textos en la soledad de sus estudios. Los Músicos componen melodías que no están destinadas a oídos humanos. Los Escultores dan vida a sus Obras Maestras en talleres ocultos. Y los Arquitectos, también conocidos como la Masonería, alteran edificios bajo el manto de la oscuridad, creando puertas y pasajes que no existían al amanecer.</p>
+        <p>Pero la noche también es cuando los Maestros del Arte realizan sus trabajos más profundos. Pintores que viajan a lienzos habitables, Escritores que redactan textos encantados en la soledad de sus estudios, Músicos componiendo melodías no destinadas a oídos humanos, Escultores dando vida a gólems en talleres ocultos, y Arquitectos alterando edificios bajo el manto de la oscuridad, creando puertas y pasajes que no existían al amanecer.</p>
 
         <div class="population-context">
             <h5>Demografía de los Artistas en París</h5>
@@ -978,19 +1218,17 @@
         
         <h3>Poderes</h3>
         
-        <p>Los Pintores dominan tres capacidades fundamentales. Primero, pueden crear <strong>lienzos habitables</strong>, obras que contienen mundos completos donde las leyes de la física y el tiempo obedecen a su voluntad. Dentro de estos lienzos, un día en el mundo real puede ser una semana, un mes o incluso un año. Aline Dessendre ha creado bibliotecas infinitas. Henri Matisse ha pintado paisajes de emoción pura donde los colores tienen textura y sabor. Camille Pissarro mantiene réplicas perfectas de París en diferentes épocas.</p>
+        <p>Su habilidad más extraordinaria es crear <strong>lienzos habitables</strong>: obras que contienen mundos completos donde las leyes de la física y el tiempo obedecen a su voluntad. Dentro de estos lienzos, un día real puede ser una semana, un mes o un año. Aline Dessendre ha creado bibliotecas infinitas. Henri Matisse ha pintado paisajes de emoción pura donde los colores tienen textura y sabor. Camille Pissarro mantiene réplicas perfectas de París en diferentes épocas.</p>
         
-        <p>Segundo, pueden pintar <strong>retratos vivientes</strong> que observan, escuchan y, en algunos casos, se comunican con el mundo exterior. Estos retratos sirven como espías perfectos, testigos silenciosos que nunca olvidan. El Louvre está lleno de retratos vivientes que vigilan las salas del museo.</p>
+        <p>También pueden pintar <strong>retratos vivientes</strong> que observan, escuchan y, en algunos casos, se comunican con el mundo exterior. Estos retratos son espías perfectos, testigos silenciosos que nunca olvidan. El Louvre está lleno de ellos, vigilando las salas del museo.</p>
         
-        <p>Tercero, como todos los artistas, pueden <strong>conmover profundamente</strong> a quienes contemplan sus obras. Los fauvistas han descubierto que el color puro puede ser un vehículo de emoción más poderoso que cualquier representación realista.</p>
+        <p>Como todos los artistas, pueden <strong>conmover profundamente</strong> a quienes contemplan sus obras. Los fauvistas han descubierto que el color puro puede ser un vehículo de emoción más poderoso que cualquier representación realista.</p>
         
         <h3>Política</h3>
         
         <p>En 1905, el gremio está profundamente dividido entre los tradicionalistas y los fauvistas. Los tradicionalistas, liderados por Camille Pissarro, creen que la pintura debe capturar la verdad del mundo. Sus obras pueden servir como anclas temporales o registros inalterables de eventos. Para ellos, el fauvismo no es innovación, sino degeneración.</p>
         
         <p>Los fauvistas, liderados por Henri Matisse y apoyados por Aline Dessendre, han descubierto nuevas formas de canalizar el poder a través del color puro. Pueden pintar con rojos y naranjas tan intensos que el sujeto parece arder desde dentro. Esta división no es meramente estética; es una batalla por el futuro mismo del gremio.</p>
-        
-        <p>El Louvre es el santuario del gremio, el arsenal donde se custodian los lienzos más poderosos jamás creados. El control del Louvre es el control simbólico y práctico de Francia, y los Pintores defienden este privilegio con ferocidad.</p>
         
         <p>La muerte de Verso Dessendre ha sacudido al gremio hasta sus cimientos. La desaparición de Aline durante tres meses dejó un vacío de poder que los tradicionalistas intentaron llenar. Ahora que ha regresado, la tensión es palpable. Algunos dicen que ha cambiado, que su dolor se ha transformado en algo más oscuro y peligroso.</p>
         
@@ -1046,15 +1284,13 @@
         
         <h3>Poderes</h3>
         
-        <p>Los Escritores dominan tres capacidades fundamentales. Primero, pueden crear <strong>sugestiones</strong> en sus lectores que germinan lentamente durante meses o años hasta convertirse en convicciones profundas. Marcel Proust es el maestro indiscutible de esta técnica, capaz de tejer redes de influencia tan complejas que ni siquiera sus víctimas son conscientes de estar siendo manipuladas.</p>
+        <p>El poder más sutil de los Escritores es la <strong>sugestión</strong>: ideas plantadas en la mente del lector que germinan durante meses o años hasta convertirse en convicciones profundas. Marcel Proust domina esta técnica, tejiendo redes de influencia tan complejas que sus víctimas ni siquiera sospechan estar siendo manipuladas.</p>
         
-        <p>Segundo, pueden <strong>modificar la memoria</strong> de quienes leen sus textos, haciendo que recuerden eventos que nunca ocurrieron o que olviden cosas que sí sucedieron. Esta capacidad es quizás la más peligrosa de todas, porque altera la realidad misma en la mente de las personas. Proust ha perfeccionado esta técnica hasta convertirla en un arte.</p>
+        <p>Más peligrosa aún es su capacidad para <strong>modificar la memoria</strong>. Un texto encantado puede hacer que recuerdes eventos que nunca ocurrieron o borrar lo que sí sucedió. Proust ha perfeccionado esta técnica hasta convertirla en un arte que altera la realidad misma en la mente de las personas.</p>
         
-        <p>Tercero, pueden <strong>conmover profundamente</strong> las emociones a través de la palabra escrita. Émile Zola demostró el poder devastador de la palabra con su "J'accuse...!", un artículo que hizo imposible ignorar o negar la inocencia de Dreyfus. Anatole France, por su parte, se especializa en sembrar duda filosófica, haciendo que el lector cuestione todo lo que cree saber.</p>
+        <p>Finalmente, pueden <strong>conmover profundamente</strong> las emociones con la palabra escrita. Émile Zola lo demostró con su "J'accuse...!", un artículo que hizo imposible ignorar la inocencia de Dreyfus. Anatole France, por su parte, se especializa en sembrar duda filosófica, haciendo que el lector cuestione todo lo que cree saber.</p>
         
         <h3>Política</h3>
-        
-        <p>Los Escritores son los segundos en poder después de los Pintores. Con sus escritos pueden generar cambios en el pensamiento a través de la prensa. Desde la imprenta, su influencia se ha multiplicado, y a pesar de los matusalenes que habitan entre los Pintores, muchos se preguntan si la jerarquía en el consejo está a punto de cambiar, o ya lo ha hecho.</p>
         
         <p>El conflicto más amargo del gremio es con el Gremio de Teatro, que reclama la dramaturgia como parte de su dominio. Los Escritores argumentan que el teatro es simplemente literatura en movimiento, y que sin sus textos, los actores no son más que mimos. Esta disputa ha llevado a sabotajes, boicots y duelos. Los Escritores se niegan a reconocer al Gremio de Teatro como igual.</p>
         
@@ -1068,7 +1304,7 @@
             <h4>Marcel Proust</h4>
             <span class="title">Asiento Decisor</span>
             <p>Marcel Proust es el líder del Gremio de Escritores, aunque su liderazgo es de un tipo peculiar. A diferencia de Aline, que gobierna con autoridad visible, Proust prefiere trabajar desde las sombras, tejiendo redes de influencia tan sutiles que sus víctimas rara vez son conscientes de estar siendo manipuladas.</p>
-            <p>A sus treinta y cuatro años, Proust es un hombre de salud frágil, aquejado de asma y otras dolencias que lo mantienen confinado en su apartamento forrado de corcho en el Boulevard Haussmann durante gran parte del año. Su poder reside en la manipulación de la memoria. Puede escribir textos que alteran los recuerdos del lector, haciendo que recuerden eventos que nunca ocurrieron o que olviden cosas que sí sucedieron.</p>
+            <p>A sus treinta y cuatro años, Proust es un hombre de salud frágil, aquejado de asma y otras dolencias que lo mantienen confinado en su apartamento forrado de corcho en el Boulevard Haussmann durante gran parte del año. Maestro indiscutible de la manipulación de la memoria, puede reescribir el pasado en la mente de quienes leen sus textos.</p>
         </div>
         
         <div class="character-profile">
@@ -1114,9 +1350,9 @@
         
         <h3>Poderes</h3>
         
-        <p>Los Músicos dominan dos capacidades fundamentales. Primero, pueden <strong>dominar las emociones</strong> de quienes los escuchan, llevándolos del éxtasis a la desesperación con una simple modulación. Camille Saint-Saëns es conocido por sus composiciones épicas que pueden inspirar un orgullo nacional tan intenso que la audiencia estaría dispuesta a marchar a la guerra. Claude Debussy es un maestro del impresionismo musical, creando estados de ánimo complejos y matizados que evocan imágenes y sensaciones.</p>
+        <p>La música es manipulación emocional directa. Un Músico puede <strong>dominar los sentimientos</strong> de su audiencia, llevándola del éxtasis a la desesperación con una simple modulación. Camille Saint-Saëns compone sinfonías épicas que inspiran un fervor patriótico tan intenso que la audiencia marcharía a la guerra. Claude Debussy crea estados de ánimo complejos y matizados, impresionismo musical que evoca imágenes y sensaciones sin palabras.</p>
         
-        <p>Segundo, los maestros más hábiles pueden hacer que <strong>la música emane de objetos y lugares</strong> sin su presencia durante un tiempo, creando ambientes emocionales que persisten durante días. Erik Satie ha perfeccionado esta técnica. Sus Gymnopédies son melodías tan simples que parecen triviales, pero poseen el poder de alterar el tejido emocional de un distrito entero. Satie es conocido por sus conciertos fantasma, donde la música parece emanar de las paredes, las calles, el aire mismo.</p>
+        <p>Los maestros más hábiles pueden anclar <strong>música a lugares y objetos</strong>, creando ambientes emocionales que persisten durante días sin su presencia. Erik Satie ha perfeccionado esta técnica. Sus Gymnopédies son melodías aparentemente triviales que alteran el tejido emocional de un distrito entero. Sus "conciertos fantasma" hacen que la música emane de las paredes, las calles, el aire mismo.</p>
         
         <h3>Política</h3>
         
@@ -1744,15 +1980,15 @@
     
     <p><strong>Poderes Activos:</strong></p>
     <div class="compact-list">
-        <p>• El pintor puede entrar mediante un ritual en cualquier cuadro, que queda animado durante su estancia en el mismo</p>
-        <p>• El pintor puede hacer que otros entren a cuadros mediante el mismo ritual</p>
-        <p>• El pintor puede hablar con un retrato que esté mirando al observador, estos personajes ven, y tienen memoria</p>
-        <p>• El pintor puede hacer una tirada de sociales (maniobra: +1) usando su arte "en remoto" una vez a quien esté contemplando una de sus obras</p>
-        <p>• Los pintores tienen otros poderes menores de percepción que son practicados incluso por aprendices sin maestría</p>
+        <p>• Puede entrar mediante un ritual en cualquier cuadro, que queda animado durante su estancia en el mismo</p>
+        <p>• Puede hacer que otros entren a cuadros mediante el mismo ritual</p>
+        <p>• Puede hablar con un retrato que esté mirando al observador, estos personajes ven, y tienen memoria</p>
+        <p>• Puede hacer una tirada de sociales (maniobra: +1) usando su arte "en remoto" una vez a quien esté contemplando una de sus obras</p>
+        <p>• Tiene otros poderes menores de percepción que son practicados incluso por aprendices sin maestría</p>
     </div>
     
     <p><strong>Poder Pasivo: Perfección Contemplativa</strong></p>
-    <p>Los pintores pueden entrar en sus Obras Maestras concediéndose poderes divinos, pueden moldear las reglas del mundo, reflexionar, y aprender: Cada nivel de Maestría en Pintura, obtienen los beneficios de subir de maestría <strong>dos veces</strong>, salvo el punto adicional en la Maestría en Pintura. En el primer nivel de maestría, obtienen los atributos, habilidades y otros beneficios "extra" que habrían recibido al subir de rango.</p>
+    <p>Puede entrar en sus Obras Maestras concediéndose poderes divinos, puede moldear las reglas del mundo, reflexionar, y aprender: Cada nivel de Maestría en Pintura, obtiene los beneficios de subir de maestría <strong>dos veces</strong>, salvo el punto adicional en la Maestría en Pintura. En el primer nivel de maestría, obtiene los atributos, habilidades y otros beneficios "extra" que habría recibido al subir de rango.</p>
     
 
     <hr>
@@ -1762,17 +1998,17 @@
     
     <p><strong>Poderes Activos:</strong></p>
     <div class="compact-list">
-        <p>• El escritor puede hacer una tirada de sociales (maniobra: +1) usando su arte y "en remoto" cada vez que alguien lee uno de sus escritos, pero solo una vez por pieza</p>
-        <p>• El escritor puede crear un texto para dominar la mente de una persona, haciendo <strong>2 puntos de daño a FV</strong>, este poder es compatible y en su caso simultáneo al anterior</p>
-        <p>• El escritor puede modificar la memoria e hipnotizar a quienes han sido afectados por sus textos dependiendo de la condición alcanzada</p>
+        <p>• Puede hacer una tirada de sociales (maniobra: +1) usando su arte y "en remoto" cada vez que alguien lee uno de sus escritos, pero solo una vez por pieza</p>
+        <p>• Puede crear un texto para dominar la mente de una persona, haciendo <strong>2 puntos de daño a FV</strong>, este poder es compatible y en su caso simultáneo al anterior</p>
+        <p>• Puede modificar la memoria e hipnotizar a quienes han sido afectados por sus textos dependiendo de la condición alcanzada</p>
         <p style="margin-left: 20px;"><em>Ejemplo: Conmovido a la memoria puede hacer dudar de un recuerdo, Sobrepasado puede hacer que alguien recuerde lo que no fue, o que se ponga en peligro mortal, pero no se puede ordenar un suicidio</em></p>
-        <p>• Los escritores tienen otros poderes menores para leer entre líneas, cifrar textos, y otros que son practicados incluso por aprendices sin maestría</p>
+        <p>• Tiene otros poderes menores para leer entre líneas, cifrar textos, y otros que son practicados incluso por aprendices sin maestría</p>
     </div>
     
     <p class="mechanics-note"><strong>NOTA:</strong> Un texto puede ser leído por un Maestro de la Escritura para identificar su función.</p>
     
     <p><strong>Poder Pasivo: Influencia Cultural</strong></p>
-    <p>Las obras del escritor modifican constantemente el pensamiento social. A mayores de tener un efecto sobre el devenir del pensamiento, obtienen <strong>2 puntos adicionales de méritos por nivel de maestría</strong>.</p>
+    <p>Sus obras modifican constantemente el pensamiento social. A mayores de tener un efecto sobre el devenir del pensamiento, obtiene <strong>2 puntos adicionales de méritos por nivel de maestría</strong>.</p>
     
 
     <hr>
@@ -1782,15 +2018,15 @@
     
     <p><strong>Poderes Activos:</strong></p>
     <div class="compact-list">
-        <p>• El músico puede hacer tiradas de sociales (maniobra: +1) usando su arte a todos los que escuchen su interpretación, estos pueden defenderse, pero no causan daño al músico aunque tengan éxito</p>
-        <p>• El músico puede tocar para mover las emociones de quienes escuchan, haciendo <strong>2 puntos de daño a FV</strong> sin opción a defensa, compatible con el anterior, pero no simultáneo, el músico decide el orden</p>
-        <p>• El músico puede hacer una tirada de sociales con su arte una vez "en remoto" a quienes escuchen una de las obras maestras que ha compuesto cuando no interpreta su autor</p>
-        <p>• El músico puede infundir las emociones que desee, pero después de cualquier choque las personas entenderán que la música es responsable de esa emoción, si no están sobrepasados, pueden salir de la escena</p>
-        <p>• Los músicos tienen otros poderes menores para mandar mensajes con música, crear imágenes claras, y otros trucos que son practicados incluso por aprendices sin maestría</p>
+        <p>• Puede hacer tiradas de sociales (maniobra: +1) usando su arte a todos los que escuchen su interpretación, estos pueden defenderse, pero no causan daño aunque tengan éxito</p>
+        <p>• Puede tocar para mover las emociones de quienes escuchan, haciendo <strong>2 puntos de daño a FV</strong> sin opción a defensa, compatible con el anterior, pero no simultáneo, decide el orden</p>
+        <p>• Puede hacer una tirada de sociales con su arte una vez "en remoto" a quienes escuchen una de las obras maestras que ha compuesto cuando no interpreta su autor</p>
+        <p>• Puede infundir las emociones que desee, pero después de cualquier choque las personas entenderán que la música es responsable de esa emoción, si no están sobrepasados, pueden salir de la escena</p>
+        <p>• Tiene otros poderes menores para mandar mensajes con música, crear imágenes claras, y otros trucos que son practicados incluso por aprendices sin maestría</p>
     </div>
     
     <p><strong>Poder Pasivo: Orquestas Fantasma</strong></p>
-    <p>Los músicos tienen una obra maestra compuesta por cada nivel de Maestría en música. Estas obras, que pueden ser usadas para influir en las emociones ajenas tienen una personalidad tan específica que siempre causan la misma emoción. A mayores de sus usos activos, con ellas, el músico puede crear orquestas fantasmales que tocan en su ausencia. Estas orquestas pueden realizar tiradas de sociales "en remoto" durante días. Las orquestas duran <strong>dos días + la Maestría del Músico</strong>. Crear una orquesta fantasmal cuesta una escena, y el proceso es tan discreto como lo sea el personaje.</p>
+    <p>Tiene una obra maestra compuesta por cada nivel de Maestría en música. Estas obras, que pueden ser usadas para influir en las emociones ajenas tienen una personalidad tan específica que siempre causan la misma emoción. A mayores de sus usos activos, con ellas, puede crear orquestas fantasmales que tocan en su ausencia. Estas orquestas pueden realizar tiradas de sociales "en remoto" durante días. Las orquestas duran <strong>dos días + la Maestría</strong>. Crear una orquesta fantasmal cuesta una escena, y el proceso es tan discreto como lo sea el personaje.</p>
     
 
     <hr>
@@ -1800,15 +2036,15 @@
     
     <p><strong>Poderes Activos:</strong></p>
     <div class="compact-list">
-        <p>• El escultor puede utilizar su tirada de Arte para hacer una acción física, o iniciar un choque con una estatua que pueda percibir (Esto incluye su gólem)</p>
-        <p>• El escultor puede hacer una tirada de sociales "en remoto" una vez a quien contemple su obra</p>
-        <p>• El arquitecto puede hacer una tirada de sociales con su arte una vez a quienes contemplen su obra</p>
-        <p>• El escultor puede hablar con cualquier estatua, las estatuas siempre perciben su alrededor, aunque a veces no lo entienden: su ingenio es 1</p>
-        <p>• Los escultores tienen otros poderes menores para moldear con sus manos madera, metal, que no tenga forma, o la haya perdido, así como trucos que son practicados incluso por aprendices sin maestría</p>
+        <p>• Puede utilizar su tirada de Arte para hacer una acción física, o iniciar un choque con una estatua que pueda percibir (Esto incluye su gólem)</p>
+        <p>• Puede hacer una tirada de sociales "en remoto" una vez a quien contemple su obra</p>
+        <p>• Puede hacer una tirada de sociales con su arte una vez a quienes contemplen su obra</p>
+        <p>• Puede hablar con cualquier estatua, las estatuas siempre perciben su alrededor, aunque a veces no lo entienden: su ingenio es 1</p>
+        <p>• Tiene otros poderes menores para moldear con sus manos madera, metal, que no tenga forma, o la haya perdido, así como trucos que son practicados incluso por aprendices sin maestría</p>
     </div>
     
     <p><strong>Poder Pasivo: Gólem</strong></p>
-    <p>A primer nivel, el escultor puede dar vida a una estatua, la ficha de la estatua se crea como la de un jugador, con las siguientes excepciones: Tiene <strong>8 puntos de atributo, 20 puntos de habilidad</strong>, sus puntos de vida son iguales a la maestría en escultura del creador, y no pueden tener méritos. Las estatuas tienen un máximo de <strong>1 en Ingenio, 8 en Vigor</strong>, y 5 en el resto de las características y habilidades. Además, las estatuas nunca pueden Sobrepasar en combate social: Algo en ellas no es humano. Cuando un escultor gana un nuevo nivel de maestría, puede decidir si su siguiente gólem es excepcional, o normal. Un <strong>gólem normal</strong> suma 6 a las tareas para las que fue creado, 3 al resto, y falla automáticamente las tiradas de Ingenio. Si el escultor escoge un gólem normal, puede sumar 1 punto de atributo y 4 de habilidad sin alterar los máximos establecidos a otro gólem anterior, si escoge un <strong>gólem excepcional</strong>, crea una nueva ficha con las reglas iniciales. En cualquier caso, los gólems no pueden morir a menos que no quede ninguna parte de ellos esculpida: su creador puede curarlos con su propia fuerza de voluntad, y recuperan toda su vida con cada amanecer.</p>
+    <p>A primer nivel, puede dar vida a una estatua, la ficha de la estatua se crea como la de un jugador, con las siguientes excepciones: Tiene <strong>8 puntos de atributo, 20 puntos de habilidad</strong>, sus puntos de vida son iguales a la maestría en escultura del creador, y no pueden tener méritos. Las estatuas tienen un máximo de <strong>1 en Ingenio, 8 en Vigor</strong>, y 5 en el resto de las características y habilidades. Además, las estatuas nunca pueden Sobrepasar en combate social: Algo en ellas no es humano. Cuando gana un nuevo nivel de maestría, puede decidir si su siguiente gólem es excepcional, o normal. Un <strong>gólem normal</strong> suma 6 a las tareas para las que fue creado, 3 al resto, y falla automáticamente las tiradas de Ingenio. Si escoge un gólem normal, puede sumar 1 punto de atributo y 4 de habilidad sin alterar los máximos establecidos a otro gólem anterior, si escoge un <strong>gólem excepcional</strong>, crea una nueva ficha con las reglas iniciales. En cualquier caso, los gólems no pueden morir a menos que no quede ninguna parte de ellos esculpida: su creador puede curarlos con su propia fuerza de voluntad, y recuperan toda su vida con cada amanecer.</p>
     
     <p class="mechanics-note"><strong>NOTA:</strong> Las estatuas no son necesariamente idiotas, hablan y se expresan correctamente, pero no son nada rápidas, y a veces la velocidad de lo que les rodea supera su entendimiento.</p>
     
@@ -1820,18 +2056,18 @@
     
     <p><strong>Poderes Activos:</strong></p>
     <div class="compact-list">
-        <p>• El arquitecto puede, sin dificultad, crear, modificar, o sellar puertas, habitaciones, y pasillos en cualquier edificio que no haya sido creado por otro Maestro Arquitecto</p>
-        <p>• El arquitecto puede modificar el edificio de otro Maestro enfrentándose a la tirada del creador</p>
-        <p>• El arquitecto puede hacer una tirada de sociales con su arte "en remoto" una vez a quien camine en el interior de su obra</p>
-        <p>• El arquitecto puede hacer una tirada de sociales con su arte a quienes caminen en el interior de su obra</p>
-        <p>• Los masones tienen poderes menores para percibir pasadizos, debilidades estructurales, y talentos que se enseñan dentro de toda la logia</p>
+        <p>• Puede, sin dificultad, crear, modificar, o sellar puertas, habitaciones, y pasillos en cualquier edificio que no haya sido creado por otro Maestro Arquitecto</p>
+        <p>• Puede modificar el edificio de otro Maestro enfrentándose a la tirada del creador</p>
+        <p>• Puede hacer una tirada de sociales con su arte "en remoto" una vez a quien camine en el interior de su obra</p>
+        <p>• Puede hacer una tirada de sociales con su arte a quienes caminen en el interior de su obra</p>
+        <p>• Tiene poderes menores para percibir pasadizos, debilidades estructurales, y talentos que se enseñan dentro de toda la logia</p>
     </div>
     
     <p class="mechanics-note"><strong>NOTA:</strong> El códice de la logia masónica obliga a que cualquier poder pueda ser deshecho por el legítimo dueño del edificio, o quienes legítimamente lo consideran su hogar, esta es una condición necesaria para que los servicios de los Maestros sigan siendo demandados.</p>
     
     <p><strong>Poder Pasivo: Nuestros Reinos</strong></p>
-    <p>Un arquitecto puede dotar a uno de sus edificios por nivel de Maestría en Arquitectura de reglas especiales. Los edificios, o ciertas salas, pueden tener un tamaño interior tantas veces superior al exterior como el nivel de maestría. Una sala puede lanzar una tirada de sociales permanentemente. Las salas pueden encerrar, y atacar físicamente a los intrusos. Todo el mundo piensa que recibir una invitación de un masón le pone a salvo del edificio al que ha sido invitado, no todos saben que las palabras "Le invito a mi obra" seguidas del nombre por el que conocen al invitado deben ser pronunciadas o escritas, o la protección no tiene garantías.</p>
-    <p>Las obras maestras de los masones tienen tantos portales como el nivel de maestría de su arquitecto. Estos portales conducen siempre a una puerta, baldosa, o ventana específica que haya construida o modificada por el arquitecto para ello, o a cualquier otro portal masón del que el maestro arquitecto haya recibido invitación. Preparar un nuevo "destino" para el portal, lleva un acto. Finalmente, un masón tiene acceso a los recursos de las logias igual a su maestría. Esto funciona como un Mérito adicional que permite llamar aliados, pedir préstamos, o influir en un oficial público dependiendo de la presencia masónica.</p>
+    <p>Puede dotar a uno de sus edificios por nivel de Maestría en Arquitectura de reglas especiales. Los edificios, o ciertas salas, pueden tener un tamaño interior tantas veces superior al exterior como el nivel de maestría. Una sala puede lanzar una tirada de sociales permanentemente. Las salas pueden encerrar, y atacar físicamente a los intrusos. Todo el mundo piensa que recibir una invitación de un masón le pone a salvo del edificio al que ha sido invitado, no todos saben que las palabras "Le invito a mi obra" seguidas del nombre por el que conocen al invitado deben ser pronunciadas o escritas, o la protección no tiene garantías.</p>
+    <p>Sus obras maestras tienen tantos portales como el nivel de maestría. Estos portales conducen siempre a una puerta, baldosa, o ventana específica que haya construida o modificada para ello, o a cualquier otro portal masón del que haya recibido invitación. Preparar un nuevo "destino" para el portal, lleva un acto. Finalmente, tiene acceso a los recursos de las logias igual a su maestría. Esto funciona como un Mérito adicional que permite llamar aliados, pedir préstamos, o influir en un oficial público dependiendo de la presencia masónica.</p>
     
 
     <hr>
@@ -1841,15 +2077,15 @@
     
     <p><strong>Poderes Activos:</strong></p>
     <div class="compact-list">
-        <p>• El actor puede improvisar un papel con una escena de preparación. La identidad suma a 6 en aquello a 4 conceptos que se le dan bien, 3 en el resto, y falla en aquello que no debiera dársele bien</p>
-        <p style="margin-left: 20px;"><em>*La identidad funciona siempre que, el actor venza al escrutinio con una tirada de su arte. A discreción del máster, la identidad tiene 1 punto de mérito que no tenía el actor</em></p>
-        <p>• El actor puede remplazar cualquier tirada social por una tirada de su arte siempre que esté interpretando el papel en el que se ha puesto, y lo interprete conforme el personaje debiera ser</p>
-        <p>• Los actores tienen poderes de ilusionismo menores para dar apoyo a su interpretación, pueden disfrazarse con materiales improvisados desde que son aprendices</p>
-        <p>• Un actor puede ver a través de la máscara de otro con una tirada enfrentada de su arte</p>
+        <p>• Puede improvisar un papel con una escena de preparación. La identidad suma a 6 en aquello a 4 conceptos que se le dan bien, 3 en el resto, y falla en aquello que no debiera dársele bien</p>
+        <p style="margin-left: 20px;"><em>*La identidad funciona siempre que venza al escrutinio con una tirada de su arte. A discreción del máster, la identidad tiene 1 punto de mérito que no tenía</em></p>
+        <p>• Puede remplazar cualquier tirada social por una tirada de su arte siempre que esté interpretando el papel en el que se ha puesto, y lo interprete conforme el personaje debiera ser</p>
+        <p>• Tiene poderes de ilusionismo menores para dar apoyo a su interpretación, puede disfrazarse con materiales improvisados desde que es aprendiz</p>
+        <p>• Puede ver a través de la máscara de otro con una tirada enfrentada de su arte</p>
     </div>
     
     <p><strong>Poder Pasivo: Máscaras</strong></p>
-    <p>Un actor tiene una identidad adicional, completa, y tan viva como lo creen estar las estatuas, o los personajes de un cuadro vivo. Esta identidad tiene su propia ficha y se crea con todas las mismas reglas que la ficha de un jugador, con la excepción de la Maestría, que siempre es en Actuar. Cada nivel de maestría el actor crea una ficha nueva, y sube de nivel una ficha que se escoge, o sube de nivel todas las máscaras sin adquirir una nueva. Cambiar de una máscara a otra cuesta una escena. El poder de las máscaras es cuasi absoluto: son tan reales que por más ridícula que sea una situación, los que la observan pondrán todo en duda salvo las identidades actuadas.</p>
+    <p>Tiene una identidad adicional, completa, y tan viva como lo creen estar las estatuas, o los personajes de un cuadro vivo. Esta identidad tiene su propia ficha y se crea con todas las mismas reglas que la ficha de un jugador, con la excepción de la Maestría, que siempre es en Actuar. Cada nivel de maestría crea una ficha nueva, y sube de nivel una ficha que se escoge, o sube de nivel todas las máscaras sin adquirir una nueva. Cambiar de una máscara a otra cuesta una escena. El poder de las máscaras es cuasi absoluto: son tan reales que por más ridícula que sea una situación, los que la observan pondrán todo en duda salvo las identidades actuadas.</p>
     
 
     <hr>
@@ -1859,15 +2095,15 @@
     
     <p><strong>Poderes Activos:</strong></p>
     <div class="compact-list">
-        <p>• El bailarín puede hacer tiradas de sociales (maniobra: +1) usando su arte a todos los que contemplen su interpretación, estos pueden defenderse, pero no causan daño al bailarín aunque tengan éxito</p>
-        <p>• El bailarín puede improvisar un baile para concederse una nueva especialidad durante el resto de la escena, siempre que sea compatible con la actividad física. Cambiar de baile a mitad de escena cuesta 1 FV</p>
-        <p>• El bailarín es una pareja ideal de baile, y cuando ayuda, suma 1 extra</p>
-        <p>• El bailarín puede infundir algunas emociones, y alterar la forma en que se mueven los que le contemplan, pero las personas entenderán lo que les afecta, y podrán marcharse si no quedan sobrepasados</p>
-        <p>• Los bailarines tienen poderes de ilusionismo menores para dar apoyo a su interpretación, pueden hacer bailar a una escoba, o darle vuelo a unos pantalones desde que son aprendices</p>
+        <p>• Puede hacer tiradas de sociales (maniobra: +1) usando su arte a todos los que contemplen su interpretación, estos pueden defenderse, pero no causan daño aunque tengan éxito</p>
+        <p>• Puede improvisar un baile para concederse una nueva especialidad durante el resto de la escena, siempre que sea compatible con la actividad física. Cambiar de baile a mitad de escena cuesta 1 FV</p>
+        <p>• Es una pareja ideal de baile, y cuando ayuda, suma 1 extra</p>
+        <p>• Puede infundir algunas emociones, y alterar la forma en que se mueven los que le contemplan, pero las personas entenderán lo que les afecta, y podrán marcharse si no quedan sobrepasados</p>
+        <p>• Tiene poderes de ilusionismo menores para dar apoyo a su interpretación, puede hacer bailar a una escoba, o darle vuelo a unos pantalones desde que es aprendiz</p>
     </div>
     
     <p><strong>Poder Pasivo: Compás</strong></p>
-    <p>Un bailarín maestro desarrolla con cada nivel, nuevas formas de moverse. Con ello, puede mover sus atributos o habilidades de Vigor, Coordinación, Sagacidad, o Gracia tanto como su nivel de maestría en baile, mientras lo compense. No pueden superar el máximo de 6, pero sí alcanzarlo en múltiples atributos y habilidades gracias a este poder. A primer nivel, podría por ejemplo reducir en uno su Sagacidad 4 y su Vigor 4 a 3, para aumentar en uno su Gracia 5 y Coordinación 5 hasta 6. Puede hacer esto con tantas habilidades y atributos como desee, mientras los puntos queden compensados. Este poder es compatible con los poderes activos de baile, cuesta una escena cambiar la forma de moverse, pero el poder tiene una duración indeterminada.</p>
+    <p>Desarrolla con cada nivel, nuevas formas de moverse. Con ello, puede mover sus atributos o habilidades de Vigor, Coordinación, Sagacidad, o Gracia tanto como su nivel de maestría en baile, mientras lo compense. No puede superar el máximo de 6, pero sí alcanzarlo en múltiples atributos y habilidades gracias a este poder. A primer nivel, podría por ejemplo reducir en uno su Sagacidad 4 y su Vigor 4 a 3, para aumentar en uno su Gracia 5 y Coordinación 5 hasta 6. Puede hacer esto con tantas habilidades y atributos como desee, mientras los puntos queden compensados. Este poder es compatible con los poderes activos de baile, cuesta una escena cambiar la forma de moverse, pero el poder tiene una duración indeterminada.</p>
     
 
     <hr>
@@ -1877,17 +2113,17 @@
     
     <p><strong>Poderes Activos:</strong></p>
     <div class="compact-list">
-        <p>• El cineasta puede hacer una tirada de sociales (maniobra: +1) usando su arte y "en remoto" cada vez que alguien ve una de sus películas</p>
-        <p>• El cineasta puede transportar, si lo desea, llevar mediante el ritual de la proyección a sus espectadores dentro de la película, para que cada espectador viva su propia versión</p>
+        <p>• Puede hacer una tirada de sociales (maniobra: +1) usando su arte y "en remoto" cada vez que alguien ve una de sus películas</p>
+        <p>• Puede transportar, si lo desea, llevar mediante el ritual de la proyección a sus espectadores dentro de la película, para que cada espectador viva su propia versión</p>
         <p>• En caso de hacerlo, puede usar una de sus obras maestras película para dominar la mente de quienes la ven, haciendo <strong>2 puntos de daño a FV</strong>, este poder es compatible y en su caso simultáneo al primero</p>
-        <p>• El cineasta define lo que busca transmitir su película: siempre causará ese efecto, orden, modificación de memoria… los efectos y los límites son similares a los de los escritores y músicos</p>
-        <p>• Los cineastas tienen el poder de modificar la película mientras ocurre, y pueden realizar trucos para mejorar su espectáculo aún sin maestría</p>
+        <p>• Define lo que busca transmitir su película: siempre causará ese efecto, orden, modificación de memoria… los efectos y los límites son similares a los de los escritores y músicos</p>
+        <p>• Tiene el poder de modificar la película mientras ocurre, y puede realizar trucos para mejorar su espectáculo aún sin maestría</p>
     </div>
     
     <p class="mechanics-note"><strong>NOTA:</strong> La intención de una película se puede adivinar con una investigación por medio de habilidades generales.</p>
     
     <p><strong>Poder Pasivo: Fama</strong></p>
-    <p>Los cineastas pueden entrar en sus películas mientras duren, dentro de las mismas pueden remplazar cualquiera de sus tiradas por una tirada de su arte, para reflejar su control del medio. Si deciden afectar a un espectador, los conflictos tendrán lugar con normalidad, salvo por que todo daño será a la FV. Si alguien resulta vencido en el interior de una película, es expulsado y queda Sobrepasado y Vencido (Sea el cineasta, o su espectador). Además, un cineasta cuenta con que el cine es el entretenimiento de moda, y tienen tantos contactos y fama como su nivel de maestría.</p>
+    <p>Puede entrar en sus películas mientras duren, dentro de las mismas puede remplazar cualquiera de sus tiradas por una tirada de su arte, para reflejar su control del medio. Si decide afectar a un espectador, los conflictos tendrán lugar con normalidad, salvo por que todo daño será a la FV. Si alguien resulta vencido en el interior de una película, es expulsado y queda Sobrepasado y Vencido (Sea el cineasta, o su espectador). Además, cuenta con que el cine es el entretenimiento de moda, y tiene tantos contactos y fama como su nivel de maestría.</p>
     
 
     <hr>
@@ -1897,15 +2133,15 @@
     
     <p><strong>Poderes Activos:</strong></p>
     <div class="compact-list">
-        <p>• El fotógrafo puede hacer una tirada de sociales (maniobra: +1) usando su arte y "en remoto" cada vez que alguien ve una de sus fotografías</p>
-        <p>• El fotógrafo puede transportarse a una fotografía en una sala de revelado. Puede ser acompañado por otras personas de la sala mientras todos vean la fotografía y quepan</p>
+        <p>• Puede hacer una tirada de sociales (maniobra: +1) usando su arte y "en remoto" cada vez que alguien ve una de sus fotografías</p>
+        <p>• Puede transportarse a una fotografía en una sala de revelado. Puede ser acompañado por otras personas de la sala mientras todos vean la fotografía y quepan</p>
         <p>• Una fotografía captura todos los elementos que se pudieran ver desde cualquier ángulo en el momento de captura, esto permite explorar una escena a posteriori, o hablar casualmente con un retrato</p>
-        <p>• El fotógrafo puede observar una foto que haya realizado de una persona o lugar para obtener durante una escena, una especialidad que tenga que ver con lo que ha aprendido</p>
-        <p>• Los fotógrafos tienen trucos para hacer sus tareas más rápido o improvisar materiales, aún cuando no tienen maestría</p>
+        <p>• Puede observar una foto que haya realizado de una persona o lugar para obtener durante una escena, una especialidad que tenga que ver con lo que ha aprendido</p>
+        <p>• Tiene trucos para hacer sus tareas más rápido o improvisar materiales, aún cuando no tiene maestría</p>
     </div>
     
     <p><strong>Poder Pasivo: Congelar un momento</strong></p>
-    <p>Las obras maestras de los fotógrafos capturan todo el presente. Las salas revelarán lo que había en sus cajones y escondites, y podrán ser exploradas a voluntad. Una versión de los individuos retratadas queda viva en la fotografía, aunque el tiempo solo pasa para ellos mientras el fotógrafo visita el momento que ha retratado. Una obra maestra de fotografía requiere de la mejor preparación, los mejores materiales, una escena entera para tomarla, y un acto para el revelado. Las obras maestras de un fotógrafo pueden enseñarle cosas: Así, pueden ganar 1 punto de atributo, una especialidad, una habilidad, o incluso un mérito (a discreción del dm) por nivel de maestría. Los fotógrafos no tienen poderes extraordinarios en sus dominios, la precisión de su medio les afecta, y si enfurecen a los que habitan en el retrato, podrían expulsarle. Afortunadamente, la clave está en el negativo, y si lo desean, pueden hacer un nuevo revelado y "reiniciar" a sus habitantes.</p>
+    <p>Sus obras maestras capturan todo el presente. Las salas revelarán lo que había en sus cajones y escondites, y podrán ser exploradas a voluntad. Una versión de los individuos retratadas queda viva en la fotografía, aunque el tiempo solo pasa para ellos mientras visita el momento que ha retratado. Una obra maestra de fotografía requiere de la mejor preparación, los mejores materiales, una escena entera para tomarla, y un acto para el revelado. Sus obras maestras pueden enseñarle cosas: Así, puede ganar 1 punto de atributo, una especialidad, una habilidad, o incluso un mérito (a discreción del dm) por nivel de maestría. No tiene poderes extraordinarios en sus dominios, la precisión de su medio le afecta, y si enfurece a los que habitan en el retrato, podrían expulsarle. Afortunadamente, la clave está en el negativo, y si lo desea, puede hacer un nuevo revelado y "reiniciar" a sus habitantes.</p>
     
 
     <hr>
@@ -1915,338 +2151,18 @@
     
     <p><strong>Poderes Activos:</strong></p>
     <div class="compact-list">
-        <p>• El artesano puede hacer una tirada de sociales (maniobra: +1) usando su arte y "en remoto" cada vez que alguien ve, usa o disfruta una de sus creaciones</p>
-        <p>• El artesano concede a sus creaciones un bonificador de +1 circunstancial cuando se apliquen al objetivo específico para el que fueron creadas</p>
-        <p>• El artesano puede crear máquinas que reduzcan los tiempos necesarios para su uso, aumenten su durabilidad, o reduzcan el tamaño que ocupan (A discreción del DM)</p>
-        <p>• Los artesanos pueden guardar una acción de ayuda en una creación que se consumirá cuando el usuario decida o cuando pase un día. Muchos buenos artesanos saben aplicar esto a sus creaciones, aún sin Maestría</p>
+        <p>• Puede hacer una tirada de sociales (maniobra: +1) usando su arte y "en remoto" cada vez que alguien ve, usa o disfruta una de sus creaciones</p>
+        <p>• Concede a sus creaciones un bonificador de +1 circunstancial cuando se apliquen al objetivo específico para el que fueron creadas</p>
+        <p>• Puede crear máquinas que reduzcan los tiempos necesarios para su uso, aumenten su durabilidad, o reduzcan el tamaño que ocupan (A discreción del DM)</p>
+        <p>• Puede guardar una acción de ayuda en una creación que se consumirá cuando el usuario decida o cuando pase un día. Muchos buenos artesanos saben aplicar esto a sus creaciones, aún sin Maestría</p>
     </div>
     
     <p><strong>Poder Pasivo: Reliquias</strong></p>
-    <p>Los artesanos pueden crear objetos que suman 1 a un atributo o habilidad hasta 7. Un personaje puede llevar tantas reliquias como su nivel de maestría. Los artesanos crean tres reliquias por cada rango de Maestría. Una reliquia puede venderse por un punto en el mérito riqueza, otro mérito, o por un gran favor, y no debería venderse por menos sin incurrir en la ira del Gremio de Artesanos. A falta de otras acciones, los Artesanos ganan un nivel de riqueza por rango de maestría.</p>
+    <p>Puede crear objetos que suman 1 a un atributo o habilidad hasta 7. Un personaje puede llevar tantas reliquias como su nivel de maestría. Crea tres reliquias por cada rango de Maestría. Una reliquia puede venderse por un punto en el mérito riqueza, otro mérito, o por un gran favor, y no debería venderse por menos sin incurrir en la ira del Gremio de Artesanos. A falta de otras acciones, gana un nivel de riqueza por rango de maestría.</p>
     
-    <p class="mechanics-note"><strong>NOTA:</strong> Teóricamente un artesano puede crear una infinidad de objetos y reliquias. Su habilidad no se gasta, pero el sistema propone límites para evitar que un Artesano pase partidas fabricando objetos sin formar parte de la historia. Si en una partida, un artesano tiene siete días libres, puede crear una máquina menor, y si tiene un par de meses libres, podría crear una reliquia a discreción del DM. Trabajar en los espacios que dejan las aventuras no añade nuevas reliquias a la reserva, ese tiempo de fábrica es el que le otorga las 3 que obtiene por cada rango de maestría.</p>
+    <p class="mechanics-note"><strong>NOTA:</strong> Teóricamente puede crear una infinidad de objetos y reliquias. Su habilidad no se gasta, pero el sistema propone límites para evitar que pase partidas fabricando objetos sin formar parte de la historia. Si en una partida, tiene siete días libres, puede crear una máquina menor, y si tiene un par de meses libres, podría crear una reliquia a discreción del DM. Trabajar en los espacios que dejan las aventuras no añade nuevas reliquias a la reserva, ese tiempo de fábrica es el que le otorga las 3 que obtiene por cada rango de maestría.</p>
 
 </div></div>
-
-
-<style>
-    .character-creation-box {
-        background: linear-gradient(135deg, #2a3a2a 0%, #1a2a1a 100%);
-        border: 3px solid #6b8e6b;
-        padding: 40px;
-        margin: 60px 0;
-        border-radius: 10px;
-    }
-    
-    .creation-title {
-        text-align: center;
-        font-family: 'Cinzel', serif;
-        font-size: 28px;
-        color: #d4e8d4;
-        letter-spacing: 3px;
-        margin-bottom: 40px;
-        text-transform: uppercase;
-    }
-    
-    .two-column-layout {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-    }
-    
-    .left-column, .right-column {
-        padding: 10px;
-    }
-    
-    .step-title {
-        font-family: 'Cinzel', serif;
-        font-size: 16px;
-        color: #a8d4a8;
-        margin-top: 18px;
-        margin-bottom: 6px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-    
-    .step-text {
-        font-size: 15px;
-        color: #d4e8d4;
-        line-height: 1.4;
-        text-indent: 0;
-        margin-bottom: 0;
-    }
-    
-    .section-header {
-        font-family: 'Cinzel', serif;
-        font-size: 18px;
-        color: #d4e8d4;
-        margin-top: 18px;
-        margin-bottom: 10px;
-        text-align: center;
-        letter-spacing: 2px;
-        border-bottom: 1px solid #6b8e6b;
-        padding-bottom: 6px;
-    }
-    
-    .compact-block {
-        margin-bottom: 10px;
-    }
-    
-    .compact-block p {
-        font-size: 15px;
-        color: #d4e8d4;
-        line-height: 1.35;
-        text-indent: 0;
-        text-align: left;
-        margin-bottom: 3px;
-    }
-    
-    .compact-block strong {
-        color: #a8d4a8;
-    }
-    
-    .skill-note {
-        font-size: 13px;
-        color: #a8d4a8;
-        font-style: italic;
-        text-indent: 0;
-        margin-top: 8px;
-        line-height: 1.3;
-    }
-    
-    .mechanics-box {
-        background: rgba(139, 115, 85, 0.15);
-        border: 2px solid #8b7355;
-        padding: 40px;
-        margin: 60px 0;
-        border-radius: 8px;
-    }
-    
-    .mechanics-box h3 {
-        text-align: center;
-        color: #ffd78c;
-        margin-top: 0;
-        margin-bottom: 25px;
-    }
-    
-    .mechanics-box h4 {
-        color: #d4a574;
-        margin-top: 25px;
-        margin-bottom: 12px;
-    }
-    
-    h5 {
-        font-family: 'Cinzel', serif;
-        color: #c9b896;
-        font-size: 16px;
-        font-weight: 600;
-        margin-top: 25px;
-        margin-bottom: 12px;
-        letter-spacing: 1px;
-    }
-    
-    .mechanics-box p {
-        text-indent: 0;
-        margin-bottom: 12px;
-        line-height: 1.6;
-    }
-    
-    .compact-list {
-        margin: 12px 0 18px 20px;
-    }
-    
-    .compact-list p {
-        margin-bottom: 6px;
-        text-indent: 0;
-        line-height: 1.5;
-    }
-    
-    .mechanics-note {
-        background: rgba(212, 165, 116, 0.1);
-        border-left: 4px solid #d4a574;
-        padding: 12px 15px;
-        margin: 15px 0;
-        font-style: italic;
-        color: #c9a87c;
-        text-indent: 0;
-        line-height: 1.5;
-    }
-    
-    @media (max-width: 900px) {
-        .two-column-layout {
-            grid-template-columns: 1fr;
-        }
-    }
-
-        /* Demographics Section */
-        .demographics-box {
-            background: rgba(30, 25, 20, 0.6);
-            border: 2px solid #8b7355;
-            border-radius: 8px;
-            padding: 25px;
-            margin: 25px 0;
-        }
-        
-        .guild-demo {
-            margin: 20px 0;
-            padding: 15px;
-            background: rgba(20, 15, 10, 0.4);
-            border-left: 3px solid #c9b896;
-        }
-        
-        .guild-demo h5 {
-            color: #c9b896;
-            font-family: 'Cinzel', serif;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-        
-        .guild-demo ul {
-            margin: 10px 0;
-            padding-left: 20px;
-        }
-        
-        .guild-demo li {
-            margin: 5px 0;
-            color: #d4c5b0;
-        }
-        
-        .demographics-table {
-            width: 100%;
-            margin: 20px 0;
-            border-collapse: collapse;
-            background: rgba(20, 15, 10, 0.4);
-        }
-        
-        .demographics-table th {
-            background: rgba(139, 115, 85, 0.3);
-            color: #c9b896;
-            font-family: 'Cinzel', serif;
-            font-size: 13px;
-            padding: 12px 10px;
-            text-align: center;
-            border: 1px solid #8b7355;
-        }
-        
-        .demographics-table td {
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #8b7355;
-            color: #d4c5b0;
-        }
-        
-        .demographics-table tr:hover {
-            background: rgba(139, 115, 85, 0.2);
-        }
-        
-        .demographics-table .total-row {
-            background: rgba(139, 115, 85, 0.3);
-            font-weight: 600;
-        }
-        
-        .context-note, .implications-note {
-            margin: 20px 0;
-            padding: 15px;
-            background: rgba(139, 115, 85, 0.2);
-            border-radius: 5px;
-        }
-        
-        .context-note h5, .implications-note h5 {
-            color: #c9b896;
-            font-family: 'Cinzel', serif;
-            font-size: 15px;
-            margin-bottom: 10px;
-        }
-        
-        .context-note ul {
-            margin: 10px 0;
-            padding-left: 20px;
-        }
-        
-        .context-note li {
-            margin: 5px 0;
-        }
-
-
-        /* Recuadros demográficos de gremios */
-        .guild-demographics {
-            background: rgba(139, 115, 85, 0.15);
-            border-left: 3px solid #c9b896;
-            padding: 15px 20px;
-            margin: 25px 0;
-            page-break-inside: avoid;
-        }
-        
-        .guild-demographics h4 {
-            font-family: 'Cinzel', serif;
-            color: #c9b896;
-            font-size: 16px;
-            margin: 0 0 12px 0;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-        
-        .guild-demographics p {
-            margin: 8px 0;
-            line-height: 1.6;
-        }
-        
-        .guild-demographics ul {
-            margin: 10px 0 10px 20px;
-            padding: 0;
-        }
-        
-        .guild-demographics li {
-            margin: 6px 0;
-            line-height: 1.5;
-        }
-        
-        .demographics-note {
-            font-style: italic;
-            color: #b8a080;
-            margin-top: 12px;
-            padding-top: 10px;
-            border-top: 1px solid rgba(201, 184, 150, 0.3);
-        }
-
-
-        /* Recuadro de contexto poblacional */
-        .population-context {
-            background: rgba(201, 184, 150, 0.1);
-            border: 2px solid #8b7355;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 5px;
-        }
-        
-        .population-context h5 {
-            font-family: 'Cinzel', serif;
-            color: #c9b896;
-            font-size: 18px;
-            margin: 0 0 15px 0;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-align: center;
-        }
-        
-        .population-context ul {
-            margin: 15px 0;
-            padding-left: 25px;
-        }
-        
-        .population-context li {
-            margin: 8px 0;
-            line-height: 1.6;
-        }
-        
-        .population-context p {
-            margin: 12px 0;
-            line-height: 1.7;
-        }
-
-    </style>
-
-
 
         <div class="section-break">◆ ◆ ◆</div>
     </div>
