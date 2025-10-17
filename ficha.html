@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Personaje - Clair Obscur: Belle Époque</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #2c1810 0%, #1a0f0a 100%);
+            padding: 20px;
+            color: #2c1810;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #f5f0e8;
+            border: 8px solid #8b7355;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(139, 115, 85, 0.2);
+            position: relative;
+        }
+        
+        .corner-ornament {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 3px solid #8b7355;
+        }
+        
+        .corner-ornament.top-left {
+            top: -3px;
+            left: -3px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .corner-ornament.top-right {
+            top: -3px;
+            right: -3px;
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        .corner-ornament.bottom-left {
+            bottom: -3px;
+            left: -3px;
+            border-right: none;
+            border-top: none;
+        }
+        
+        .corner-ornament.bottom-right {
+            bottom: -3px;
+            right: -3px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px 20px 20px;
+            border-bottom: 3px solid #8b7355;
+            background: linear-gradient(to bottom, #e8dcc8 0%, #f5f0e8 100%);
+        }
+        
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #8b7355;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #a0826d;
+            letter-spacing: 2px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #8b7355;
+            text-align: center;
+            padding: 10px;
+            border-top: 2px solid #8b7355;
+            border-bottom: 2px solid #8b7355;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, transparent 0%, #e8dcc8 50%, transparent 100%);
+        }
+        
+        .info-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .info-field {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .info-label {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #8b7355;
+            margin-bottom: 5px;
+        }
+        
+        .info-input {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            padding: 8px;
+            border: 2px solid #c4a57b;
+            background: white;
+            color: #2c1810;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+        
+        .info-input:focus {
+            outline: none;
+            border-color: #8b7355;
+            box-shadow: 0 0 5px rgba(139, 115, 85, 0.3);
+        }
+        
+        .attributes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .attribute-group {
+            background: white;
+            padding: 15px;
+            border: 2px solid #c4a57b;
+            border-radius: 5px;
+        }
+        
+        .attribute-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e8dcc8;
+        }
+        
+        .attribute-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .attribute-name {
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c1810;
+        }
+        
+        .dots {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .dot {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #8b7355;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+        }
+        
+        .dot:hover {
+            transform: scale(1.1);
+            border-color: #6d5a47;
+        }
+        
+        .dot.filled {
+            background: #8b7355;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .skill-category {
+            background: white;
+            padding: 15px;
+            border: 2px solid #c4a57b;
+            border-radius: 5px;
+        }
+        
+        .skill-category-title {
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #8b7355;
+            margin-bottom: 10px;
+            text-align: center;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e8dcc8;
+        }
+        
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            gap: 10px;
+        }
+        
+        .skill-name {
+            font-size: 15px;
+            color: #2c1810;
+            min-width: 120px;
+        }
+        
+        .skill-specialty {
+            flex: 1;
+            font-family: 'Crimson Text', serif;
+            font-size: 13px;
+            padding: 4px 8px;
+            border: 1px solid #c4a57b;
+            background: #fefdfb;
+            color: #2c1810;
+            border-radius: 3px;
+        }
+        
+        .skill-specialty:focus {
+            outline: none;
+            border-color: #8b7355;
+        }
+        
+        .skill-name-input {
+            flex: 1;
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            padding: 4px 8px;
+            border: 1px solid #c4a57b;
+            background: white;
+            color: #2c1810;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        .skill-name-input:focus {
+            outline: none;
+            border-color: #8b7355;
+        }
+        
+        .merits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .merit-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 10px 15px;
+            border: 2px solid #c4a57b;
+            border-radius: 5px;
+        }
+        
+        .merit-name {
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #2c1810;
+        }
+        
+        .resources-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .resource-box {
+            background: white;
+            padding: 15px;
+            border: 2px solid #c4a57b;
+            border-radius: 5px;
+        }
+        
+        .resource-title {
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #8b7355;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .resource-track {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .resource-square {
+            width: 30px;
+            height: 30px;
+            border: 2px solid #8b7355;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+        }
+        
+        .resource-square:hover {
+            transform: scale(1.05);
+            border-color: #6d5a47;
+        }
+        
+        .resource-square.filled {
+            background: #8b7355;
+        }
+        
+        .maestria-section {
+            background: white;
+            padding: 20px;
+            border: 2px solid #c4a57b;
+            border-radius: 5px;
+        }
+        
+        .maestria-input {
+            width: 100%;
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            padding: 10px;
+            border: 2px solid #c4a57b;
+            background: #fefdfb;
+            color: #2c1810;
+            border-radius: 3px;
+            margin-bottom: 10px;
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #8b7355;
+        }
+        
+        .btn {
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            padding: 12px 30px;
+            border: 2px solid #8b7355;
+            background: linear-gradient(to bottom, #e8dcc8 0%, #d4c4a8 100%);
+            color: #2c1810;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(to bottom, #f5f0e8 0%, #e8dcc8 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .buttons {
+                display: none;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .info-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .attributes-grid,
+            .skills-grid,
+            .merits-grid,
+            .resources-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="corner-ornament top-left"></div>
+        <div class="corner-ornament top-right"></div>
+        <div class="corner-ornament bottom-left"></div>
+        <div class="corner-ornament bottom-right"></div>
+        
+        <div class="header">
+            <div class="title">CLAIR OBSCUR</div>
+            <div class="subtitle">Belle Époque</div>
+        </div>
+        
+        <div class="content">
+            <!-- Información Básica -->
+            <div class="section">
+                <div class="info-row">
+                    <div class="info-field">
+                        <label class="info-label">Nombre</label>
+                        <input type="text" class="info-input" id="nombre" placeholder="Nombre del personaje">
+                    </div>
+                    <div class="info-field">
+                        <label class="info-label">Gremio</label>
+                        <input type="text" class="info-input" id="gremio" placeholder="Gremio artístico">
+                    </div>
+                    <div class="info-field">
+                        <label class="info-label">Posición</label>
+                        <input type="text" class="info-input" id="posicion" placeholder="Rango en el gremio">
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-field">
+                        <label class="info-label">Jugador</label>
+                        <input type="text" class="info-input" id="jugador" placeholder="Nombre del jugador">
+                    </div>
+                    <div class="info-field">
+                        <label class="info-label">Concepto</label>
+                        <input type="text" class="info-input" id="concepto" placeholder="Concepto del personaje">
+                    </div>
+                    <div class="info-field">
+                        <label class="info-label">Crónica</label>
+                        <input type="text" class="info-input" id="cronica" placeholder="Nombre de la crónica">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Atributos -->
+            <div class="section">
+                <div class="section-title">ATRIBUTOS</div>
+                <div class="attributes-grid">
+                    <div class="attribute-group">
+                        <div class="attribute-item">
+                            <span class="attribute-name">Vigor</span>
+                            <div class="dots" id="vigor-dots"></div>
+                        </div>
+                        <div class="attribute-item">
+                            <span class="attribute-name">Coordinación</span>
+                            <div class="dots" id="coordinacion-dots"></div>
+                        </div>
+                        <div class="attribute-item">
+                            <span class="attribute-name">Ingenio</span>
+                            <div class="dots" id="ingenio-dots"></div>
+                        </div>
+                    </div>
+                    <div class="attribute-group">
+                        <div class="attribute-item">
+                            <span class="attribute-name">Gracia</span>
+                            <div class="dots" id="gracia-dots"></div>
+                        </div>
+                        <div class="attribute-item">
+                            <span class="attribute-name">Sagacidad</span>
+                            <div class="dots" id="sagacidad-dots"></div>
+                        </div>
+                        <div class="attribute-item">
+                            <span class="attribute-name">Maestría</span>
+                            <div class="dots" id="maestria-attr-dots"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Habilidades -->
+            <div class="section">
+                <div class="section-title">HABILIDADES</div>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <div class="skill-category-title">Habilidades de Vigor</div>
+                        <div class="skill-item">
+                            <span class="skill-name">Atletismo</span>
+                            <input type="text" class="skill-specialty" id="atletismo-spec" placeholder="Especialidad">
+                            <div class="dots" id="atletismo-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Aguante</span>
+                            <input type="text" class="skill-specialty" id="aguante-spec" placeholder="Especialidad">
+                            <div class="dots" id="aguante-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Lucha</span>
+                            <input type="text" class="skill-specialty" id="lucha-spec" placeholder="Especialidad">
+                            <div class="dots" id="lucha-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Supervivencia</span>
+                            <input type="text" class="skill-specialty" id="supervivencia-spec" placeholder="Especialidad">
+                            <div class="dots" id="supervivencia-dots"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <div class="skill-category-title">Habilidades de Coordinación</div>
+                        <div class="skill-item">
+                            <span class="skill-name">Sigilo</span>
+                            <input type="text" class="skill-specialty" id="sigilo-spec" placeholder="Especialidad">
+                            <div class="dots" id="sigilo-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Pericia</span>
+                            <input type="text" class="skill-specialty" id="pericia-spec" placeholder="Especialidad">
+                            <div class="dots" id="pericia-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Disparo</span>
+                            <input type="text" class="skill-specialty" id="disparo-spec" placeholder="Especialidad">
+                            <div class="dots" id="disparo-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Esquiva</span>
+                            <input type="text" class="skill-specialty" id="esquiva-spec" placeholder="Especialidad">
+                            <div class="dots" id="esquiva-dots"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <div class="skill-category-title">Habilidades de Ingenio</div>
+                        <div class="skill-item">
+                            <span class="skill-name">Academicismo</span>
+                            <input type="text" class="skill-specialty" id="academicismo-spec" placeholder="Especialidad">
+                            <div class="dots" id="academicismo-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Ciencia</span>
+                            <input type="text" class="skill-specialty" id="ciencia-spec" placeholder="Especialidad">
+                            <div class="dots" id="ciencia-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Medicina</span>
+                            <input type="text" class="skill-specialty" id="medicina-spec" placeholder="Especialidad">
+                            <div class="dots" id="medicina-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Ocultismo</span>
+                            <input type="text" class="skill-specialty" id="ocultismo-spec" placeholder="Especialidad">
+                            <div class="dots" id="ocultismo-dots"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <div class="skill-category-title">Habilidades de Gracia</div>
+                        <div class="skill-item">
+                            <span class="skill-name">Estoicismo</span>
+                            <input type="text" class="skill-specialty" id="estoicismo-spec" placeholder="Especialidad">
+                            <div class="dots" id="estoicismo-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Presencia</span>
+                            <input type="text" class="skill-specialty" id="presencia-spec" placeholder="Especialidad">
+                            <div class="dots" id="presencia-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Encanto</span>
+                            <input type="text" class="skill-specialty" id="encanto-spec" placeholder="Especialidad">
+                            <div class="dots" id="encanto-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Etiqueta</span>
+                            <input type="text" class="skill-specialty" id="etiqueta-spec" placeholder="Especialidad">
+                            <div class="dots" id="etiqueta-dots"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <div class="skill-category-title">Habilidades de Sagacidad</div>
+                        <div class="skill-item">
+                            <span class="skill-name">Observar</span>
+                            <input type="text" class="skill-specialty" id="observar-spec" placeholder="Especialidad">
+                            <div class="dots" id="observar-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Investigar</span>
+                            <input type="text" class="skill-specialty" id="investigar-spec" placeholder="Especialidad">
+                            <div class="dots" id="investigar-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Charlatanería</span>
+                            <input type="text" class="skill-specialty" id="charlataneria-spec" placeholder="Especialidad">
+                            <div class="dots" id="charlataneria-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Callejeo</span>
+                            <input type="text" class="skill-specialty" id="callejeo-spec" placeholder="Especialidad">
+                            <div class="dots" id="callejeo-dots"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <div class="skill-category-title">Habilidades Variables</div>
+                        <div class="skill-item">
+                            <span class="skill-name">Arte:</span>
+                            <input type="text" class="skill-specialty" id="arte-tipo" placeholder="Tipo (ej: Pintura, Música)">
+                            <div class="dots" id="arte-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Artesanía:</span>
+                            <input type="text" class="skill-specialty" id="artesania-tipo" placeholder="Tipo (ej: Joyería, Vidrio)">
+                            <div class="dots" id="artesania-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <input type="text" class="skill-name-input" id="custom-skill-1" placeholder="Otra habilidad">
+                            <input type="text" class="skill-specialty" id="custom-skill-1-spec" placeholder="Especialidad">
+                            <div class="dots" id="custom-skill-1-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <input type="text" class="skill-name-input" id="custom-skill-2" placeholder="Otra habilidad">
+                            <input type="text" class="skill-specialty" id="custom-skill-2-spec" placeholder="Especialidad">
+                            <div class="dots" id="custom-skill-2-dots"></div>
+                        </div>
+                        <div class="skill-item">
+                            <input type="text" class="skill-name-input" id="custom-skill-3" placeholder="Otra habilidad">
+                            <input type="text" class="skill-specialty" id="custom-skill-3-spec" placeholder="Especialidad">
+                            <div class="dots" id="custom-skill-3-dots"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Méritos -->
+            <div class="section">
+                <div class="section-title">MÉRITOS</div>
+                <div class="merits-grid">
+                    <div class="merit-item">
+                        <span class="merit-name">Influencia</span>
+                        <div class="dots" id="influencia-dots"></div>
+                    </div>
+                    <div class="merit-item">
+                        <span class="merit-name">Contactos</span>
+                        <div class="dots" id="contactos-dots"></div>
+                    </div>
+                    <div class="merit-item">
+                        <span class="merit-name">Riqueza</span>
+                        <div class="dots" id="riqueza-dots"></div>
+                    </div>
+                    <div class="merit-item">
+                        <span class="merit-name">Fama</span>
+                        <div class="dots" id="fama-dots"></div>
+                    </div>
+                    <div class="merit-item">
+                        <span class="merit-name">Allegados</span>
+                        <div class="dots" id="allegados-dots"></div>
+                    </div>
+                    <div class="merit-item">
+                        <span class="merit-name">Posición</span>
+                        <div class="dots" id="posicion-merit-dots"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recursos -->
+            <div class="section">
+                <div class="section-title">RECURSOS</div>
+                <div class="resources-section">
+                    <div class="resource-box">
+                        <div class="resource-title">Fuerza de Voluntad</div>
+                        <div class="resource-track" id="fv-track"></div>
+                    </div>
+                    <div class="resource-box">
+                        <div class="resource-title">Vitalidad</div>
+                        <div class="resource-track" id="vitalidad-track"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Maestría -->
+            <div class="section">
+                <div class="section-title">MAESTRÍA Y PODERES ARTÍSTICOS</div>
+                <div class="maestria-section">
+                    <textarea class="maestria-input" id="maestria" placeholder="Describe tu maestría artística, poderes activos y pasivos..."></textarea>
+                </div>
+            </div>
+            
+            <!-- Notas -->
+            <div class="section">
+                <div class="section-title">NOTAS Y TRASFONDO</div>
+                <div class="maestria-section">
+                    <textarea class="maestria-input" id="notas" placeholder="Historia del personaje, motivaciones, relaciones, objetivos..."></textarea>
+                </div>
+            </div>
+            
+            <!-- Botones -->
+            <div class="buttons">
+                <button class="btn" onclick="guardarFicha()">💾 Guardar Ficha</button>
+                <button class="btn" onclick="cargarFicha()">📂 Cargar Ficha</button>
+                <button class="btn" onclick="imprimirFicha()">🖨️ Imprimir/PDF</button>
+                <button class="btn" onclick="limpiarFicha()">🗑️ Nueva Ficha</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Inicializar puntos
+        const maxDots = 6;
+        const maxResources = 10;
+        
+        // Crear puntos para atributos y habilidades
+        const dotContainers = [
+            'vigor', 'coordinacion', 'ingenio', 'gracia', 'sagacidad', 'maestria-attr',
+            'atletismo', 'aguante', 'lucha', 'supervivencia',
+            'sigilo', 'pericia', 'disparo', 'esquiva',
+            'academicismo', 'ciencia', 'medicina', 'ocultismo',
+            'estoicismo', 'presencia', 'encanto', 'etiqueta',
+            'observar', 'investigar', 'charlataneria', 'callejeo',
+            'arte', 'artesania', 'custom-skill-1', 'custom-skill-2', 'custom-skill-3',
+            'influencia', 'contactos', 'riqueza', 'fama', 'allegados', 'posicion-merit'
+        ];
+        
+        dotContainers.forEach(id => {
+            const container = document.getElementById(id + '-dots');
+            if (container) {
+                for (let i = 0; i < maxDots; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = 'dot';
+                    dot.dataset.value = i + 1;
+                    dot.onclick = function() {
+                        fillDots(container, i + 1);
+                    };
+                    container.appendChild(dot);
+                }
+            }
+        });
+        
+        // Crear cuadrados para recursos
+        ['fv', 'vitalidad'].forEach(id => {
+            const container = document.getElementById(id + '-track');
+            if (container) {
+                for (let i = 0; i < maxResources; i++) {
+                    const square = document.createElement('div');
+                    square.className = 'resource-square';
+                    square.dataset.value = i + 1;
+                    square.onclick = function() {
+                        fillSquares(container, i + 1);
+                    };
+                    container.appendChild(square);
+                }
+            }
+        });
+        
+        function fillDots(container, value) {
+            const dots = container.querySelectorAll('.dot');
+            const currentValue = container.querySelectorAll('.dot.filled').length;
+            
+            // Si se hace clic en el mismo valor, desmarcar
+            if (currentValue === value) {
+                dots.forEach((dot, index) => {
+                    if (index < value - 1) {
+                        dot.classList.add('filled');
+                    } else {
+                        dot.classList.remove('filled');
+                    }
+                });
+            } else {
+                // Comportamiento normal
+                dots.forEach((dot, index) => {
+                    if (index < value) {
+                        dot.classList.add('filled');
+                    } else {
+                        dot.classList.remove('filled');
+                    }
+                });
+            }
+        }
+        
+        function fillSquares(container, value) {
+            const squares = container.querySelectorAll('.resource-square');
+            const currentValue = container.querySelectorAll('.resource-square.filled').length;
+            
+            // Si se hace clic en el mismo valor, desmarcar
+            if (currentValue === value) {
+                squares.forEach((square, index) => {
+                    if (index < value - 1) {
+                        square.classList.add('filled');
+                    } else {
+                        square.classList.remove('filled');
+                    }
+                });
+            } else {
+                // Comportamiento normal
+                squares.forEach((square, index) => {
+                    if (index < value) {
+                        square.classList.add('filled');
+                    } else {
+                        square.classList.remove('filled');
+                    }
+                });
+            }
+        }
+        
+        function guardarFicha() {
+            const data = {
+                // Información básica
+                nombre: document.getElementById('nombre').value,
+                gremio: document.getElementById('gremio').value,
+                posicion: document.getElementById('posicion').value,
+                jugador: document.getElementById('jugador').value,
+                concepto: document.getElementById('concepto').value,
+                cronica: document.getElementById('cronica').value,
+                
+                // Atributos y habilidades
+                dots: {},
+                specialties: {},
+                customSkills: {},
+                
+                // Recursos
+                fv: document.querySelectorAll('#fv-track .resource-square.filled').length,
+                vitalidad: document.querySelectorAll('#vitalidad-track .resource-square.filled').length,
+                
+                // Textos
+                maestria: document.getElementById('maestria').value,
+                notas: document.getElementById('notas').value
+            };
+            
+            // Guardar especialidades
+            const specialtyIds = [
+                'atletismo-spec', 'aguante-spec', 'lucha-spec', 'supervivencia-spec',
+                'sigilo-spec', 'pericia-spec', 'disparo-spec', 'esquiva-spec',
+                'academicismo-spec', 'ciencia-spec', 'medicina-spec', 'ocultismo-spec',
+                'estoicismo-spec', 'presencia-spec', 'encanto-spec', 'etiqueta-spec',
+                'observar-spec', 'investigar-spec', 'charlataneria-spec', 'callejeo-spec',
+                'arte-tipo', 'artesania-tipo',
+                'custom-skill-1-spec', 'custom-skill-2-spec', 'custom-skill-3-spec'
+            ];
+            
+            specialtyIds.forEach(id => {
+                const elem = document.getElementById(id);
+                if (elem && elem.value) {
+                    data.specialties[id] = elem.value;
+                }
+            });
+            
+            // Guardar habilidades personalizadas
+            ['custom-skill-1', 'custom-skill-2', 'custom-skill-3'].forEach(id => {
+                const elem = document.getElementById(id);
+                if (elem && elem.value) {
+                    data.customSkills[id] = elem.value;
+                }
+            });
+            
+            // Guardar valores de puntos
+            dotContainers.forEach(id => {
+                const container = document.getElementById(id + '-dots');
+                if (container) {
+                    data.dots[id] = container.querySelectorAll('.dot.filled').length;
+                }
+            });
+            
+            // Descargar como JSON
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = (data.nombre || 'personaje') + '_clair_obscur.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            alert('✅ Ficha guardada correctamente');
+        }
+        
+        function cargarFicha() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    try {
+                        const data = JSON.parse(event.target.result);
+                        
+                        // Cargar información básica
+                        document.getElementById('nombre').value = data.nombre || '';
+                        document.getElementById('gremio').value = data.gremio || '';
+                        document.getElementById('posicion').value = data.posicion || '';
+                        document.getElementById('jugador').value = data.jugador || '';
+                        document.getElementById('concepto').value = data.concepto || '';
+                        document.getElementById('cronica').value = data.cronica || '';
+                        
+                        // Cargar puntos
+                        Object.keys(data.dots || {}).forEach(id => {
+                            const container = document.getElementById(id + '-dots');
+                            if (container) {
+                                fillDots(container, data.dots[id]);
+                            }
+                        });
+                        
+                        // Cargar recursos
+                        if (data.fv) {
+                            fillSquares(document.getElementById('fv-track'), data.fv);
+                        }
+                        if (data.vitalidad) {
+                            fillSquares(document.getElementById('vitalidad-track'), data.vitalidad);
+                        }
+                        
+                        // Cargar textos
+                        document.getElementById('maestria').value = data.maestria || '';
+                        document.getElementById('notas').value = data.notas || '';
+                        
+                        // Cargar especialidades
+                        Object.keys(data.specialties || {}).forEach(id => {
+                            const elem = document.getElementById(id);
+                            if (elem) {
+                                elem.value = data.specialties[id];
+                            }
+                        });
+                        
+                        // Cargar habilidades personalizadas
+                        Object.keys(data.customSkills || {}).forEach(id => {
+                            const elem = document.getElementById(id);
+                            if (elem) {
+                                elem.value = data.customSkills[id];
+                            }
+                        });
+                        
+                        alert('✅ Ficha cargada correctamente');
+                    } catch (error) {
+                        alert('❌ Error al cargar la ficha: ' + error.message);
+                    }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+        }
+        
+        function imprimirFicha() {
+            window.print();
+        }
+        
+        function limpiarFicha() {
+            if (confirm('¿Estás seguro de que quieres limpiar toda la ficha?')) {
+                // Limpiar campos de texto
+                document.querySelectorAll('.info-input').forEach(input => input.value = '');
+                document.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
+                
+                // Limpiar puntos
+                document.querySelectorAll('.dot.filled').forEach(dot => dot.classList.remove('filled'));
+                document.querySelectorAll('.resource-square.filled').forEach(square => square.classList.remove('filled'));
+                
+                alert('✅ Ficha limpiada');
+            }
+        }
+        
+        // Guardar automáticamente en localStorage cada 30 segundos
+        setInterval(() => {
+            const data = {
+                nombre: document.getElementById('nombre').value,
+                gremio: document.getElementById('gremio').value,
+                posicion: document.getElementById('posicion').value,
+                jugador: document.getElementById('jugador').value,
+                concepto: document.getElementById('concepto').value,
+                cronica: document.getElementById('cronica').value,
+                dots: {},
+                specialties: {},
+                customSkills: {},
+                fv: document.querySelectorAll('#fv-track .resource-square.filled').length,
+                vitalidad: document.querySelectorAll('#vitalidad-track .resource-square.filled').length,
+                maestria: document.getElementById('maestria').value,
+                notas: document.getElementById('notas').value
+            };
+            
+            // Guardar especialidades
+            const specialtyIds = [
+                'atletismo-spec', 'aguante-spec', 'lucha-spec', 'supervivencia-spec',
+                'sigilo-spec', 'pericia-spec', 'disparo-spec', 'esquiva-spec',
+                'academicismo-spec', 'ciencia-spec', 'medicina-spec', 'ocultismo-spec',
+                'estoicismo-spec', 'presencia-spec', 'encanto-spec', 'etiqueta-spec',
+                'observar-spec', 'investigar-spec', 'charlataneria-spec', 'callejeo-spec',
+                'arte-tipo', 'artesania-tipo',
+                'custom-skill-1-spec', 'custom-skill-2-spec', 'custom-skill-3-spec'
+            ];
+            
+            specialtyIds.forEach(id => {
+                const elem = document.getElementById(id);
+                if (elem && elem.value) {
+                    data.specialties[id] = elem.value;
+                }
+            });
+            
+            // Guardar habilidades personalizadas
+            ['custom-skill-1', 'custom-skill-2', 'custom-skill-3'].forEach(id => {
+                const elem = document.getElementById(id);
+                if (elem && elem.value) {
+                    data.customSkills[id] = elem.value;
+                }
+            });
+            
+            dotContainers.forEach(id => {
+                const container = document.getElementById(id + '-dots');
+                if (container) {
+                    data.dots[id] = container.querySelectorAll('.dot.filled').length;
+                }
+            });
+            
+            localStorage.setItem('clair_obscur_autosave', JSON.stringify(data));
+        }, 30000);
+        
+        // Cargar autoguardado al iniciar
+        window.onload = function() {
+            const autosave = localStorage.getItem('clair_obscur_autosave');
+            if (autosave) {
+                try {
+                    const data = JSON.parse(autosave);
+                    if (data.nombre || data.gremio) {
+                        if (confirm('Se encontró un autoguardado. ¿Deseas cargarlo?')) {
+                            document.getElementById('nombre').value = data.nombre || '';
+                            document.getElementById('gremio').value = data.gremio || '';
+                            document.getElementById('posicion').value = data.posicion || '';
+                            document.getElementById('jugador').value = data.jugador || '';
+                            document.getElementById('concepto').value = data.concepto || '';
+                            document.getElementById('cronica').value = data.cronica || '';
+                            
+                            Object.keys(data.dots || {}).forEach(id => {
+                                const container = document.getElementById(id + '-dots');
+                                if (container) {
+                                    fillDots(container, data.dots[id]);
+                                }
+                            });
+                            
+                            if (data.fv) {
+                                fillSquares(document.getElementById('fv-track'), data.fv);
+                            }
+                            if (data.vitalidad) {
+                                fillSquares(document.getElementById('vitalidad-track'), data.vitalidad);
+                            }
+                            
+                            document.getElementById('maestria').value = data.maestria || '';
+                            document.getElementById('notas').value = data.notas || '';
+                            
+                            // Cargar especialidades
+                            Object.keys(data.specialties || {}).forEach(id => {
+                                const elem = document.getElementById(id);
+                                if (elem) {
+                                    elem.value = data.specialties[id];
+                                }
+                            });
+                            
+                            // Cargar habilidades personalizadas
+                            Object.keys(data.customSkills || {}).forEach(id => {
+                                const elem = document.getElementById(id);
+                                if (elem) {
+                                    elem.value = data.customSkills[id];
+                                }
+                            });
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error al cargar autoguardado:', error);
+                }
+            }
+        };
+    </script>
+</body>
+</html>
+

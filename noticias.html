@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Nouveau - Belle Époque</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #f4e8d0;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .newspaper-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #faf7f0;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            padding: 40px;
+            border: 3px double #2c2416;
+        }
+        
+        /* CABECERA DEL PERIÓDICO */
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 4px double #2c2416;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .ornamental-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        
+        .ornamental-line::before,
+        .ornamental-line::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #2c2416, transparent);
+        }
+        
+        .ornamental-symbol {
+            margin: 0 15px;
+            font-size: 20px;
+            color: #8b7355;
+        }
+        
+        .newspaper-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            color: #2c2416;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin: 15px 0;
+            text-shadow: 2px 2px 0px rgba(139, 115, 85, 0.3);
+        }
+        
+        .newspaper-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #5a4a3a;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .newspaper-date {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            color: #5a4a3a;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+        
+        /* ESTRUCTURA DEL CONTENIDO */
+        .newspaper-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        /* COLUMNA IZQUIERDA */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* ARTÍCULO PRINCIPAL */
+        .main-article {
+            border-bottom: 3px double #2c2416;
+            padding-bottom: 25px;
+        }
+        
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #2c2416;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .article-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .article-image {
+            width: 100%;
+            height: auto;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .main-article .article-image {
+            aspect-ratio: 16/9;
+            min-height: 400px;
+        }
+        
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .article-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.8;
+            column-count: 2;
+            column-gap: 30px;
+            hyphens: auto;
+        }
+        
+        .article-text::first-letter {
+            font-size: 72px;
+            font-weight: bold;
+            float: left;
+            line-height: 0.8;
+            margin: 5px 8px 0 0;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* ARTÍCULOS SECUNDARIOS */
+        .secondary-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .secondary-article {
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 20px;
+        }
+        
+        .secondary-article:last-child {
+            border-bottom: none;
+        }
+        
+        .secondary-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2c2416;
+            padding-bottom: 5px;
+        }
+        
+        .secondary-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+        
+        /* IMAGEN CUADRADA ENTRE ARTÍCULOS */
+        .square-image-container {
+            margin: 20px 0;
+        }
+        
+        .square-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border: 3px solid #2c2416;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+        }
+        
+        /* COLUMNA DERECHA */
+        .right-column {
+            border-left: 3px double #2c2416;
+            padding-left: 25px;
+        }
+        
+        .sidebar-article {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 10px 0;
+        }
+        
+        .vertical-image {
+            width: 100%;
+            aspect-ratio: 9/16;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+        }
+        
+        .sidebar-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+        
+        /* DECORACIONES TIPOGRÁFICAS */
+        .typographic-ornament {
+            text-align: center;
+            font-size: 24px;
+            color: #8b7355;
+            margin: 20px 0;
+            letter-spacing: 10px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .newspaper-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .right-column {
+                border-left: none;
+                border-top: 3px double #2c2416;
+                padding-left: 0;
+                padding-top: 25px;
+            }
+            
+            .article-text {
+                column-count: 1;
+            }
+            
+            .newspaper-title {
+                font-size: 48px;
+            }
+        }
+        
+        /* EFECTOS DE PAPEL ENVEJECIDO */
+        .newspaper-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 115, 85, 0.03) 2px,
+                    rgba(139, 115, 85, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+        
+        .newspaper-container {
+            position: relative;
+        }
+        
+        /* Placeholder de imagen */
+        img.placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* BOTÓN DE TRADUCCIÓN */
+        .translate-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 35px;
+            height: 35px;
+            background: rgba(44, 36, 22, 0.1);
+            border: 2px solid rgba(139, 115, 85, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            color: #5a4a3a;
+        }
+        
+        .translate-button:hover {
+            background: rgba(139, 115, 85, 0.2);
+            border-color: #8b7355;
+            transform: scale(1.1);
+        }
+        
+        .translate-button:active {
+            transform: scale(0.95);
+        }
+        
+        /* Ocultar contenido de idioma alternativo */
+        .lang-es {
+            display: none;
+        }
+        
+        body.spanish .lang-fr {
+            display: none;
+        }
+        
+        body.spanish .lang-es {
+            display: block;
+        }
+        
+        body.spanish .lang-es.inline {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <button class="translate-button" onclick="toggleLanguage()" title="Traducir / Translate">🔍</button>
+    <div class="newspaper-container">
+        <!-- CABECERA DEL PERIÓDICO -->
+        <header class="newspaper-header">
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">❦</span>
+            </div>
+            <h1 class="newspaper-title">Paris Nouveau</h1>
+            <p class="newspaper-subtitle">Nouvelles du Monde des Arts et de la Belle Société</p>
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+            </div>
+            <p class="newspaper-date">Samedi, 18 Octobre 1905 — Prix: 5 Centimes</p>
+        </header>
+        
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="newspaper-content">
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="left-column">
+                <!-- ARTÍCULO PRINCIPAL -->
+                <article class="main-article">
+                    <h2 class="article-title lang-fr">Le Conseil des Beaux-Arts se Réunit en Session Extraordinaire</h2>
+                    <h2 class="article-title lang-es">El Consejo de las Bellas Artes se Reúne en Sesión Extraordinaria</h2>
+                    <p class="article-subtitle lang-fr">Les tensions entre les guildes atteignent un point critique après les événements mystérieux de janvier</p>
+                    <p class="article-subtitle lang-es">Las tensiones entre los gremios alcanzan un punto crítico tras los misteriosos acontecimientos de enero</p>
+                    
+                    <div class="article-image">
+                        <!-- AQUÍ PUEDES INSERTAR TU IMAGEN O VIDEO -->
+                        <!-- <img src="ruta-a-tu-imagen-1280x720.jpg" alt="Descripción" class="placeholder"> -->
+                        <span>[Espacio para imagen/vídeo 1280x720]</span>
+                    </div>
+                    
+                    <div class="article-text lang-fr">
+                        <p>Paris, 18 Octobre — Dans une décision sans précédent, le Conseil des Beaux-Arts a convoqué une session extraordinaire hier soir au Palais Garnier. Les tensions qui couvent depuis la tragédie de janvier dernier ont atteint un point où même les plus optimistes parmi les membres du Conseil reconnaissent qu'une action immédiate est nécessaire.</p>
+                        
+                        <p>Selon nos sources proches du Conseil, la réunion s'est tenue dans une atmosphère tendue, avec Aline Dessendre, la dirigeante de la Guilde des Peintres, affichant une froideur inhabituelle. Les débats auraient porté sur les mesures de sécurité à mettre en place pour éviter que de tels incidents ne se reproduisent.</p>
+                        
+                        <p>La Guilde des Écrivains, représentée par Marcel Proust, aurait proposé une enquête approfondie, suggérant que certains membres pourraient avoir des informations qu'ils n'ont pas encore partagées. Cette proposition a été accueillie avec scepticisme par plusieurs membres, qui y voient une tentative de déstabilisation politique.</p>
+                        
+                        <p>Les observateurs politiques notent que cette session pourrait marquer un tournant dans l'équilibre des pouvoirs au sein du Conseil, qui a maintenu une paix relative depuis plus d'un siècle.</p>
+                    </div>
+                    
+                    <div class="article-text lang-es">
+                        <p>París, 18 de Octubre — En una decisión sin precedentes, el Consejo de las Bellas Artes convocó una sesión extraordinaria anoche en el Palacio Garnier. Las tensiones que hierven desde la tragedia de enero pasado han alcanzado un punto en el que incluso los más optimistas entre los miembros del Consejo reconocen que se necesita una acción inmediata.</p>
+                        
+                        <p>Según nuestras fuentes cercanas al Consejo, la reunión se celebró en una atmósfera tensa, con Aline Dessendre, la líder del Gremio de Pintores, mostrando una frialdad inusual. Los debates habrían versado sobre las medidas de seguridad a implementar para evitar que tales incidentes se repitan.</p>
+                        
+                        <p>El Gremio de Escritores, representado por Marcel Proust, habría propuesto una investigación exhaustiva, sugiriendo que algunos miembros podrían tener información que aún no han compartido. Esta propuesta fue recibida con escepticismo por varios miembros, que ven en ella un intento de desestabilización política.</p>
+                        
+                        <p>Los observadores políticos señalan que esta sesión podría marcar un punto de inflexión en el equilibrio de poderes dentro del Consejo, que ha mantenido una paz relativa durante más de un siglo.</p>
+                    </div>
+                </article>
+                
+                <!-- ARTÍCULOS SECUNDARIOS -->
+                <div class="secondary-articles">
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">Le Salon d'Automne Présente les Œuvres Controversées des Fauvistes</h3>
+                        <h3 class="secondary-title lang-es">El Salón de Otoño Presenta las Obras Controvertidas de los Fauvistas</h3>
+                        <p class="secondary-text lang-fr">
+                            Le Salon d'Automne, qui a ouvert ses portes cette semaine au Grand Palais, présente une collection d'œuvres qui ont déjà suscité l'indignation des critiques traditionalistes. Les peintures de Henri Matisse et de son groupe, baptisés "les Fauves" par un critique horrifié, utilisent des couleurs d'une intensité sans précédent. Les visiteurs rapportent des sensations inhabituelles en contemplant ces œuvres, certains parlant d'émotions viscérales qui persistent longtemps après avoir quitté le salon.
+                        </p>
+                        <p class="secondary-text lang-es">
+                            El Salón de Otoño, que abrió sus puertas esta semana en el Grand Palais, presenta una colección de obras que ya han suscitado la indignación de los críticos tradicionalistas. Las pinturas de Henri Matisse y su grupo, bautizados como "los Fauves" por un crítico horrorizado, utilizan colores de una intensidad sin precedentes. Los visitantes reportan sensaciones inusuales al contemplar estas obras, algunos hablan de emociones viscerales que persisten mucho tiempo después de abandonar el salón.
+                        </p>
+                    </article>
+                    
+                    <!-- IMAGEN CUADRADA -->
+                    <div class="square-image-container">
+                        <div class="square-image">
+                            <!-- AQUÍ PUEDES INSERTAR TU IMAGEN CUADRADA -->
+                            <!-- <img src="ruta-a-tu-imagen-cuadrada.jpg" alt="Descripción" class="placeholder"> -->
+                            <span>[Espacio para imagen cuadrada]</span>
+                        </div>
+                    </div>
+                    
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">Les Architectes Maçons Dévoilent de Nouveaux Plans pour la Transformation de Montmartre</h3>
+                        <h3 class="secondary-title lang-es">Los Arquitectos Masónicos Revelan Nuevos Planes para la Transformación de Montmartre</h3>
+                        <p class="secondary-text lang-fr">
+                            La Loge des Architectes a annoncé hier un projet ambitieux pour transformer le quartier de Montmartre. Hector Guimard, l'architecte responsable des entrées du Métropolitain, dirigera le projet qui promet d'intégrer l'esthétique Art Nouveau avec les besoins modernes de la ville. Cependant, des rumeurs persistent sur la nature exacte de ces "transformations", certains résidents rapportant des phénomènes étranges dans les bâtiments récemment rénovés.
+                        </p>
+                        <p class="secondary-text lang-es">
+                            La Logia de Arquitectos anunció ayer un proyecto ambicioso para transformar el barrio de Montmartre. Hector Guimard, el arquitecto responsable de las entradas del Metropolitano, dirigirá el proyecto que promete integrar la estética Art Nouveau con las necesidades modernas de la ciudad. Sin embargo, persisten rumores sobre la naturaleza exacta de estas "transformaciones", con algunos residentes reportando fenómenos extraños en los edificios recientemente renovados.
+                        </p>
+                    </article>
+                    
+                    <div class="typographic-ornament">❦ ◆ ❦</div>
+                </div>
+            </div>
+            
+            <!-- COLUMNA DERECHA -->
+            <aside class="right-column">
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Sarah Bernhardt Triomphe au Théâtre</h3>
+                    <h3 class="sidebar-title lang-es">Sarah Bernhardt Triunfa en el Teatro</h3>
+                    
+                    <div class="vertical-image">
+                        <!-- AQUÍ PUEDES INSERTAR TU IMAGEN VERTICAL -->
+                        <!-- <img src="ruta-a-tu-imagen-vertical.jpg" alt="Descripción" class="placeholder"> -->
+                        <span>[Espacio para imagen vertical]</span>
+                    </div>
+                    
+                    <div class="sidebar-text lang-fr">
+                        <p>La Divine Sarah Bernhardt a offert hier soir une représentation extraordinaire au Théâtre de la Renaissance. Son interprétation de Phèdre a laissé le public dans un état de stupeur émotionnelle rarement observé.</p>
+                        
+                        <p>Des témoins rapportent que son pouvoir de transformation était tel que plusieurs spectateurs ont juré voir non pas une actrice sur scène, mais la véritable héroïne tragique de Racine. "C'était comme si nous avions voyagé dans le temps", a déclaré un critique présent.</p>
+                        
+                        <p>La Guilde du Théâtre, qui lutte depuis longtemps pour obtenir une reconnaissance officielle auprès du Conseil des Beaux-Arts, voit dans ce triomphe une nouvelle preuve de la légitimité de leur art. Les négociations pour l'obtention d'un siège consultatif au Conseil devraient reprendre dans les prochaines semaines.</p>
+                        
+                        <p>Malgré son âge avancé, Mme Bernhardt continue de démontrer que le pouvoir de l'acteur transcende le simple divertissement. Certains murmurent même que son influence pourrait bientôt rivaliser avec celle des Guildes établies.</p>
+                    </div>
+                    
+                    <div class="sidebar-text lang-es">
+                        <p>La Divina Sarah Bernhardt ofreció anoche una representación extraordinaria en el Teatro de la Renaissance. Su interpretación de Fedra dejó al público en un estado de estupor emocional raramente observado.</p>
+                        
+                        <p>Los testigos reportan que su poder de transformación fue tal que varios espectadores juraron ver no a una actriz en el escenario, sino a la verdadera heroína trágica de Racine. "Era como si hubiéramos viajado en el tiempo", declaró un crítico presente.</p>
+                        
+                        <p>El Gremio del Teatro, que lucha desde hace tiempo por obtener un reconocimiento oficial ante el Consejo de las Bellas Artes, ve en este triunfo una nueva prueba de la legitimidad de su arte. Las negociaciones para obtener un asiento consultivo en el Consejo deberían reanudarse en las próximas semanas.</p>
+                        
+                        <p>A pesar de su edad avanzada, Mme. Bernhardt continúa demostrando que el poder del actor trasciende el simple entretenimiento. Algunos murmuran incluso que su influencia podría pronto rivalizar con la de los Gremios establecidos.</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 16px;">
+                        <p><strong>• Exposition Universelle:</strong> Des plans pour une nouvelle exposition en 1910 sont à l'étude.</p>
+                        
+                        <p><strong>• Le Cinématographe:</strong> Georges Méliès annonce un nouveau projet révolutionnaire.</p>
+                        
+                        <p><strong>• Art Nouveau:</strong> Une nouvelle galerie ouvre ses portes rue de Rivoli.</p>
+                        
+                        <p><strong>• Les Artesanos:</strong> René Lalique présente sa nouvelle collection de bijoux lors d'un événement privé très attendu.</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 16px;">
+                        <p><strong>• Exposición Universal:</strong> Planes para una nueva exposición en 1910 están en estudio.</p>
+                        
+                        <p><strong>• El Cinematógrafo:</strong> Georges Méliès anuncia un nuevo proyecto revolucionario.</p>
+                        
+                        <p><strong>• Art Nouveau:</strong> Una nueva galería abre sus puertas en la rue de Rivoli.</p>
+                        
+                        <p><strong>• Los Artesanos:</strong> René Lalique presenta su nueva colección de joyas en un evento privado muy esperado.</p>
+                    </div>
+                </article>
+            </aside>
+        </div>
+    </div>
+    
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('spanish');
+            
+            // Guardar preferencia en localStorage
+            if (document.body.classList.contains('spanish')) {
+                localStorage.setItem('newspaperLanguage', 'es');
+            } else {
+                localStorage.setItem('newspaperLanguage', 'fr');
+            }
+        }
+        
+        // Cargar preferencia al cargar la página
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('newspaperLanguage');
+            if (savedLanguage === 'es') {
+                document.body.classList.add('spanish');
+            }
+        });
+    </script>
+</body>
+</html>
