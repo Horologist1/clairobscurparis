@@ -1762,7 +1762,7 @@
     <p>El juego se estructura en cuatro niveles temporales:</p>
     
     <div class="compact-list">
-        <p><strong>Ronda:</strong> Una unidad de tiempo en combate. Dura aproximadamente 30 segundos.</p>
+        <p><strong>Turno o Ronda:</strong> Una unidad de tiempo en conflicto. Dura aproximadamente 30 segundos.</p>
         <p><strong>Escena:</strong> Una conversación, un combate, la investigación de una habitación, un baile.</p>
         <p><strong>Sesión:</strong> La sesión de juego en el mundo real, 3 o 4 horas de juego.</p>
         <p><strong>Acto:</strong> La forma de englobar todas las escenas y sesiones que culminan en un objetivo o giro de la trama.</p>
@@ -1770,7 +1770,7 @@
     
     <h4>Recursos: Fuerza de Voluntad y Vitalidad</h4>
     
-    <p><strong>Fuerza de Voluntad</strong> representa tu resistencia mental y emocional. Tiene 3 puntos base más los niveles de Maestría que poseas. Los niveles de Maestría representan estar en estado óptimo; tras consumirlos, el personaje podrá marcar las casillas correspondientes a los puntos de base y será afectado en orden por las siguientes condiciones, <strong>apuntando en cada caso qué emoción o argumento causó el estado</strong>:</p>
+    <p><strong>Fuerza de Voluntad</strong> representa tu resistencia mental y emocional. Tiene 3 puntos base más los niveles de Maestría que poseas. Los niveles de Maestría representan estar en estado óptimo; tras consumirlos, el personaje podrá marcar las casillas correspondientes a los puntos de base y será afectado en orden por las siguientes condiciones, <strong>apuntando en cada caso qué emoción o argumento causó el estado</strong>. Un personaje puede estar movido por varios asuntos, sin embargo, si está conmovido o sobrepasado, no puede ser afectada por uno distinto hasta que se <strong>recupere</strong>:</p>
     
     <div class="checkbox-list">
         <p><span class="checkbox">☐</span> Maestría</p>
@@ -1797,20 +1797,12 @@
     <p>Con una noche de descanso los personajes recuperan todos los niveles de Maestría así como una condición de Vitalidad o Fuerza de Voluntad.</p>
     
     <div class="compact-list">
-        <p>• Al final de cada escena donde un personaje haya recibido ataques a su Fuerza de Voluntad, la condición más grave se cura automáticamente.</p>
-        <p>• Al final de cada escena donde un personaje haya sido vencido, pero no haya muerto, recupera la condición de Vencido.</p>
+        <p>• Al <strong>final de cada escena</strong> donde un personaje haya sido sobrepasado o vencido (pero no muerto), <strong>se recupera de esa condición</strong></p>
+        <p>• Un personaje <strong>salir de vencido o sobrepasado</strong> si se le trata con una <strong>acción de primeros auxilios o psicoterapia</strong> (Ingenio + Medicina)</p>
+        <p>• Una vez al día puede <strong>recuperarse de una herida o del estado conmovido</strong> si recibe <strong>tratamiento médico o psicoterapia durante una escena</strong></p>
+        <p>• Un personaje recuperarse de sobrepasado o conmovido si se le vence en un choque social dirigido a conmoverle o convencerle de otro asunto. Este choque conlleva puede inflingir daño a quien lo inicia, y curar a quien lo recibe.</p>
     </div>
     
-    
-    <h4>Maestría</h4>
-    
-    <p>La <strong>Maestría</strong> representa tu capacidad de crear Obras Maestras. Un personaje recién creado tiene 1 punto de Maestría en un arte de su elección. Cada punto de Maestría:</p>
-    
-    <div class="compact-list">
-        <p>• Añade un nivel de "colchón" a Fuerza de Voluntad y Vitalidad</p>
-        <p>• Permite crear Obras Maestras de ese nivel de poder</p>
-        <p>• Otorga un efecto pasivo según el arte elegido</p>
-    </div>
     
     <p class="mechanics-note">Los efectos específicos de cada arte se detallan en las secciones de los gremios correspondientes.</p>
 </div>
@@ -1844,7 +1836,8 @@
     
     <p><strong>Acciones especiales:</strong></p>
     <div class="compact-list">
-        <p>• <strong>Huir (Vigor + Atletismo o Coordinación + Esquivar):</strong> <em>Maniobra:</em> Realiza esta tirada en respuesta a un choque. Si vences, no recibes daño. En la ronda siguiente, inicia un choque con esta maniobra; si tienes éxito, sales huyendo de la escena si es posible. Quien se opone a esta maniobra puede decidir dejar que ocurra.</p>
+        <p>• <strong>Huir (Vigor + Atletismo o Coordinación + Esquivar):</strong> Realiza esta tirada en respuesta a un choque. Si vences, no recibes daño. En la ronda siguiente, inicia un choque con esta maniobra; si tienes éxito, sales huyendo de la escena si es posible. Quien se opone a esta maniobra puede decidir dejar que ocurra.</p>
+        <p>• <strong>Primeros Auxilios (Ingenio + Medicina):</strong> Permite a un personaje <strong>salir del estado Vencido</strong> si se le trata con éxito. Esta acción puede realizarse durante el combate o inmediatamente después. No inflige daño al objetivo.</p>
     </div>
     
     <h5>Resolución de un Choque</h5>
@@ -1950,6 +1943,8 @@
         <p>• <strong>Dejar el tema:</strong> Cada jugador puede realizar esta acción una sola vez por escena. Cuando se utiliza, permite la respuesta del oponente. Si la respuesta es sí, el conflicto finaliza; si es no, se resuelve la ronda como si la acción no hubiese tenido lugar.</p>
         <p>• <strong>Dar un portazo:</strong> Durante el combate social, un jugador puede gastar un punto de FV para salir de escena y huir de una conversación.</p>
         <p>• <strong>No queda sino batirnos:</strong> Durante el combate social, un jugador puede, sin coste, iniciar una ronda de combate físico.</p>
+        <p>• <strong>Psicoterapia (Gracia + Encanto o Presencia):</strong> Permite a un personaje <strong>salir del estado Sobrepasado</strong> si se le trata con éxito. Esta acción puede realizarse durante el combate social o inmediatamente después. No inflige daño al objetivo.</p>
+        <p>• <strong>Choque Curativo:</strong> Un personaje puede <strong>recuperarse de Sobrepasado o Conmovido</strong> si es vencido en un choque social dirigido a conmoverle o convencerle de otro asunto distinto. Este choque puede infligir daño a quien lo inicia, pero cura a quien lo recibe.</p>
     </div>
     
     <h5>Resolución de un Choque Social</h5>
@@ -2185,13 +2180,13 @@
     
     <p><strong>Reglas de Maestría:</strong></p>
     <div class="compact-list">
-        <p>• Cada punto de Maestría se asigna a un <strong>Arte específico</strong> (Pintura, Escritura, Música, Escultura, Arquitectura, Actuación, etc.)</p>
-        <p>• Un personaje puede tener Maestría en múltiples artes</p>
+        <p>• Cada punto de Maestría se asigna a un <strong>Artesanía o Arte específico</strong> se puede adquirir Maestría en artes distintos</p>
+        <p>• Los puntos de Maestría se añaden como <strong> puntos / condiciones sin penalizador a Fuerza de Voluntad, y Vitalidad</strong>
         <p>• Cada nivel de Maestría requiere de y representa una <strong>Obra Maestra</strong> en su arte</p>
         <p>• El primer punto de maestría concede una <strong>especialidad</strong> (un bono de +2 a un campo concreto de cualquier habilidad que no sea un arte)</p>
-        <p>• Ganar un punto de maestría otorga <strong>1 punto de mérito</strong> una <strong>especialidad</strong> adicional, <strong>1 punto de atributo y 4 puntos de habilidad</strong> (dos de estos puntos pueden alcanzar el valor 6)</p>
-        <p>• Los puntos de maestría en un arte se suman a las tiradas de ese arte</p>
-        <p>• Si un poder requiere tiempo de preparación puede ser reducido en grados de tiempo a razón de 1 FV por grado</p>
+        <p>• Cada punto después del primero otorga <strong>1 punto de mérito</strong> una <strong>especialidad</strong> adicional, <strong>1 punto de atributo y 4 puntos de habilidad</strong> (dos de estos puntos pueden alcanzar el valor 6)</p>
+        <p>• Los puntos de maestría en un arte <strong>se suman a las tiradas de ese arte</strong></p>
+        <p>• Si un poder requiere <strong>tiempo de preparación</strong> puede ser <strong>reducido con 1 FV por grado de tiempo</strong></p>
     </div>
     
     <p class="mechanics-note"><em>Ejemplo: Un poder que tarde una escena podría realizarse en un turno por 1 FV o hacerse instantáneamente a cambio de 2 FV.</em></p>
