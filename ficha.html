@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha de Personaje - Clair Obscur: Belle Époque</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
         
@@ -95,6 +97,8 @@
         
         .section {
             margin-bottom: 25px;
+            page-break-inside: avoid;
+            break-inside: avoid;
         }
         
         .section-title {
@@ -159,6 +163,8 @@
             padding: 15px;
             border: 2px solid #c4a57b;
             border-radius: 5px;
+            page-break-inside: avoid;
+            break-inside: avoid;
         }
         
         .attribute-item {
@@ -219,6 +225,8 @@
             padding: 15px;
             border: 2px solid #c4a57b;
             border-radius: 5px;
+            page-break-inside: avoid;
+            break-inside: avoid;
         }
         
         .skill-category-title {
@@ -313,6 +321,8 @@
             padding: 15px;
             border: 2px solid #c4a57b;
             border-radius: 5px;
+            page-break-inside: avoid;
+            break-inside: avoid;
         }
         
         .resource-title {
@@ -354,6 +364,8 @@
             padding: 20px;
             border: 2px solid #c4a57b;
             border-radius: 5px;
+            page-break-inside: avoid;
+            break-inside: avoid;
         }
         
         .maestria-input {
@@ -402,19 +414,86 @@
             transform: translateY(0);
         }
         
+        /* Estilos para PDF */
+        .pdf-page-1 {
+            page-break-after: always !important;
+            break-after: page !important;
+        }
+        
+        .pdf-page-2 {
+            page-break-before: always !important;
+            break-before: page !important;
+        }
+        
+        .no-page-break {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+        }
+        
         @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
             body {
-                background: white;
-                padding: 0;
+                background: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
             }
             
             .buttons {
-                display: none;
+                display: none !important;
             }
             
             .container {
-                box-shadow: none;
-                max-width: 100%;
+                box-shadow: none !important;
+                max-width: 100% !important;
+                border: 3px solid #8b7355 !important;
+                margin: 0 !important;
+            }
+            
+            .corner-ornament {
+                border-width: 2px !important;
+            }
+            
+            .header {
+                padding: 20px 20px 15px !important;
+            }
+            
+            .title {
+                font-size: 42px !important;
+            }
+            
+            .subtitle {
+                font-size: 18px !important;
+            }
+            
+            .content {
+                padding: 20px !important;
+            }
+            
+            .section {
+                margin-bottom: 15px !important;
+            }
+            
+            .section-title {
+                font-size: 20px !important;
+                padding: 8px !important;
+            }
+            
+            .info-row {
+                gap: 15px !important;
+                margin-bottom: 12px !important;
+            }
+            
+            .attributes-grid,
+            .skills-grid {
+                gap: 15px !important;
+            }
+            
+            .skill-category {
+                padding: 10px !important;
             }
         }
         
@@ -517,7 +596,7 @@
             </div>
             
             <!-- Habilidades -->
-            <div class="section">
+            <div class="section pdf-page-1">
                 <div class="section-title">HABILIDADES</div>
                 <div class="skills-grid">
                     <div class="skill-category">
@@ -672,7 +751,7 @@
             </div>
             
             <!-- Méritos -->
-            <div class="section">
+            <div class="section pdf-page-2">
                 <div class="section-title">MÉRITOS</div>
                 <div class="merits-grid">
                     <div class="merit-item">
@@ -735,12 +814,25 @@
             
             <!-- Botones -->
             <div class="buttons">
-                <button class="btn" onclick="guardarFicha()">💾 Guardar Ficha</button>
+                <button class="btn" onclick="guardarFicha()">💾 Guardar Ficha (JSON)</button>
                 <button class="btn" onclick="cargarFicha()">📂 Cargar Ficha</button>
-                <button class="btn" onclick="imprimirFicha()">🖨️ Imprimir/PDF</button>
+                <button class="btn" id="btnExportar" onclick="mostrarMenuExportar(event)">📄 Exportar</button>
                 <button class="btn" onclick="limpiarFicha()">🗑️ Nueva Ficha</button>
             </div>
         </div>
+    </div>
+    
+    <!-- Overlay oscuro -->
+    <div id="overlayExportar" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 9999;" onclick="cerrarMenuExportar()"></div>
+    
+    <!-- Menú de exportación (fuera del contenedor principal) -->
+    <div id="menuExportar" style="display: none; position: fixed; background: #f5f0e8; border: 4px solid #8b7355; border-radius: 8px; padding: 25px; box-shadow: 0 8px 32px rgba(0,0,0,0.5); z-index: 10000; min-width: 320px;">
+        <div style="font-family: 'Cinzel', serif; font-size: 22px; color: #8b7355; margin-bottom: 18px; font-weight: 700; text-align: center; border-bottom: 3px solid #8b7355; padding-bottom: 12px; letter-spacing: 2px;">EXPORTAR FICHA</div>
+        <button class="btn" onclick="exportarExcelMejorado()" style="width: 100%; margin-bottom: 12px; padding: 14px; font-size: 16px;">📊 Exportar Excel (Tabla)</button>
+        <button class="btn" onclick="exportarPDFMejorado()" style="width: 100%; margin-bottom: 12px; padding: 14px; font-size: 16px;">📄 Exportar PDF</button>
+        <button class="btn" onclick="exportarTexto()" style="width: 100%; margin-bottom: 12px; padding: 14px; font-size: 16px;">📝 Exportar Texto</button>
+        <button class="btn" onclick="exportarPNG()" style="width: 100%; margin-bottom: 12px; padding: 14px; font-size: 16px;">🖼️ Exportar PNG</button>
+        <button class="btn" onclick="cerrarMenuExportar()" style="width: 100%; padding: 14px; background: linear-gradient(to bottom, #c4a57b 0%, #a0826d 100%); font-size: 16px; color: white;">❌ Cancelar</button>
     </div>
     
     <script>
@@ -790,6 +882,7 @@
                 }
             }
         });
+        
         
         function fillDots(container, value) {
             const dots = container.querySelectorAll('.dot');
@@ -976,8 +1069,656 @@
             input.click();
         }
         
-        function imprimirFicha() {
-            window.print();
+        function mostrarMenuExportar(event) {
+            event.stopPropagation();
+            const menu = document.getElementById('menuExportar');
+            const overlay = document.getElementById('overlayExportar');
+            
+            // Mostrar overlay y menú
+            overlay.style.display = 'block';
+            menu.style.display = 'block';
+            
+            // Centrar el menú en la pantalla
+            menu.style.left = '50%';
+            menu.style.top = '50%';
+            menu.style.transform = 'translate(-50%, -50%)';
+        }
+        
+        function cerrarMenuExportar() {
+            document.getElementById('menuExportar').style.display = 'none';
+            document.getElementById('overlayExportar').style.display = 'none';
+        }
+        
+        // Cerrar menú con tecla Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const menu = document.getElementById('menuExportar');
+                if (menu && menu.style.display === 'block') {
+                    cerrarMenuExportar();
+                }
+            }
+        });
+        
+        async function exportarPNG() {
+            cerrarMenuExportar();
+            
+            const nombrePersonaje = document.getElementById('nombre').value || 'personaje';
+            
+            // Mostrar alerta de carga
+            const loadingDiv = document.createElement('div');
+            loadingDiv.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border: 3px solid #8b7355; padding: 30px; border-radius: 10px; z-index: 10000; font-family: Cinzel, serif; font-size: 18px; color: #8b7355;';
+            loadingDiv.textContent = '⏳ Generando imágenes PNG...';
+            document.body.appendChild(loadingDiv);
+            
+            try {
+                const container = document.querySelector('.container');
+                
+                // Configuración de html2canvas
+                const canvas = await html2canvas(container, {
+                    scale: 3,
+                    useCORS: true,
+                    letterRendering: true,
+                    logging: false,
+                    backgroundColor: '#f5f0e8'
+                });
+                
+                // Convertir a PNG y descargar
+                canvas.toBlob(function(blob) {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = nombrePersonaje + '_clair_obscur.png';
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    
+                    document.body.removeChild(loadingDiv);
+                    alert('✅ Imagen PNG exportada correctamente');
+                }, 'image/png');
+                
+            } catch (error) {
+                console.error('Error al exportar PNG:', error);
+                document.body.removeChild(loadingDiv);
+                alert('❌ Error al exportar PNG: ' + error.message);
+            }
+        }
+        
+        function exportarExcelMejorado() {
+            cerrarMenuExportar();
+            
+            const nombrePersonaje = document.getElementById('nombre').value || 'personaje';
+            const data = recopilarDatos();
+            
+            // Crear HTML para Excel (Excel abre HTML con tablas perfectamente)
+            let html = `
+<html xmlns:x="urn:schemas-microsoft-com:office:excel">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; }
+        h1 { color: #8b7355; text-align: center; font-size: 24px; }
+        h2 { color: #8b7355; background: #e8dcc8; padding: 8px; margin-top: 20px; font-size: 18px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 15px; }
+        th { background: #8b7355; color: white; padding: 8px; text-align: left; font-weight: bold; }
+        td { border: 1px solid #c4a57b; padding: 6px; }
+        .info-table td:first-child { background: #f5f0e8; font-weight: bold; width: 150px; }
+    </style>
+</head>
+<body>
+    <h1>CLAIR OBSCUR - Belle Époque</h1>
+    
+    <h2>Información Básica</h2>
+    <br>
+    <table class="info-table">
+        <tr><td>Nombre</td><td>${data.nombre}</td></tr>
+        <tr><td>Gremio</td><td>${data.gremio}</td></tr>
+        <tr><td>Posición</td><td>${data.posicion}</td></tr>
+        <tr><td>Jugador</td><td>${data.jugador}</td></tr>
+        <tr><td>Concepto</td><td>${data.concepto}</td></tr>
+        <tr><td>Crónica</td><td>${data.cronica}</td></tr>
+    </table>
+    <br>
+    <h2>Atributos</h2>
+    <br>
+    <table>
+        <tr><th>Atributo</th><th>Puntos</th></tr>
+        <tr><td>Vigor</td><td>${data.dots.vigor || 1}</td></tr>
+        <tr><td>Coordinación</td><td>${data.dots.coordinacion || 1}</td></tr>
+        <tr><td>Ingenio</td><td>${data.dots.ingenio || 1}</td></tr>
+        <tr><td>Gracia</td><td>${data.dots.gracia || 1}</td></tr>
+        <tr><td>Sagacidad</td><td>${data.dots.sagacidad || 1}</td></tr>
+        <tr><td>Maestría</td><td>${data.dots['maestria-attr'] || 1}</td></tr>
+    </table>
+    <br>
+    <h2>Habilidades</h2>
+    <br>
+    <table>
+        <tr><th>Habilidad</th><th>Especialidad</th><th>Puntos</th></tr>`;
+            
+            // Agregar habilidades
+            const habilidades = [
+                ['atletismo', 'Atletismo'], ['aguante', 'Aguante'], ['lucha', 'Lucha'], ['supervivencia', 'Supervivencia'],
+                ['sigilo', 'Sigilo'], ['pericia', 'Pericia'], ['disparo', 'Disparo'], ['esquiva', 'Esquiva'],
+                ['academicismo', 'Academicismo'], ['ciencia', 'Ciencia'], ['medicina', 'Medicina'], ['ocultismo', 'Ocultismo'],
+                ['estoicismo', 'Estoicismo'], ['presencia', 'Presencia'], ['encanto', 'Encanto'], ['etiqueta', 'Etiqueta'],
+                ['observar', 'Observar'], ['investigar', 'Investigar'], ['charlataneria', 'Charlatanería'], ['callejeo', 'Callejeo'],
+                ['arte', 'Arte'], ['artesania', 'Artesanía']
+            ];
+            
+            habilidades.forEach(([id, nombre]) => {
+                const puntos = data.dots[id] || 0;
+                const especId = id === 'arte' ? 'arte-tipo' : id === 'artesania' ? 'artesania-tipo' : id + '-spec';
+                const espec = data.specialties[especId] || '';
+                html += `<tr><td>${nombre}</td><td>${espec}</td><td>${puntos}</td></tr>`;
+            });
+            
+            // Habilidades personalizadas
+            ['custom-skill-1', 'custom-skill-2', 'custom-skill-3'].forEach(id => {
+                const nombre = data.customSkills[id] || '';
+                const espec = data.specialties[id + '-spec'] || '';
+                const puntos = data.dots[id] || 0;
+                if (nombre || puntos > 0) {
+                    html += `<tr><td>${nombre}</td><td>${espec}</td><td>${puntos}</td></tr>`;
+                }
+            });
+            
+            html += `</table>
+    <br>
+    <h2>Méritos</h2>
+    <br>
+    <table>
+        <tr><th>Mérito</th><th>Puntos</th></tr>`;
+            
+            const meritos = [
+                ['influencia', 'Influencia'], ['contactos', 'Contactos'], ['riqueza', 'Riqueza'],
+                ['fama', 'Fama'], ['allegados', 'Allegados'], ['posicion-merit', 'Posición']
+            ];
+            
+            meritos.forEach(([id, nombre]) => {
+                const puntos = data.dots[id] || 0;
+                html += `<tr><td>${nombre}</td><td>${puntos}</td></tr>`;
+            });
+            
+            html += `</table>
+    <br>
+    <h2>Recursos</h2>
+    <br>
+    <table class="info-table">
+        <tr><td>Fuerza de Voluntad</td><td>${data.fv || 3}</td></tr>
+        <tr><td>Vitalidad</td><td>${data.vitalidad || 3}</td></tr>
+    </table>
+    <br>
+    <h2>Maestría y Poderes Artísticos</h2>
+    <br>
+    <table>
+        <tr><th>Poder Activo</th><th>Descripción</th></tr>
+        <tr><td></td><td></td></tr>
+    </table>
+    <br>
+    <table>
+        <tr><th>Poder Pasivo</th><th>Descripción</th></tr>
+        <tr><td></td><td></td></tr>
+    </table>`;
+            
+            if (data.maestria) {
+                html += `
+    <br>
+    <h2>Notas de Maestría</h2>
+    <br>
+    <table class="info-table">
+        <tr><td colspan="2">${data.maestria}</td></tr>
+    </table>`;
+            }
+            
+            if (data.notas) {
+                html += `
+    <br>
+    <h2>Notas y Trasfondo</h2>
+    <br>
+    <table class="info-table">
+        <tr><td colspan="2">${data.notas}</td></tr>
+    </table>`;
+            }
+            
+            html += `
+</body>
+</html>`;
+            
+            // Descargar como .xls (Excel abre HTML como hoja de cálculo)
+            const blob = new Blob([html], { type: 'application/vnd.ms-excel' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = nombrePersonaje + '_clair_obscur.xls';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            alert('✅ Archivo Excel exportado. Se abrirá en Excel con tablas formateadas y colores.');
+        }
+        
+        function recopilarDatos() {
+            const data = {
+                nombre: document.getElementById('nombre').value,
+                gremio: document.getElementById('gremio').value,
+                posicion: document.getElementById('posicion').value,
+                jugador: document.getElementById('jugador').value,
+                concepto: document.getElementById('concepto').value,
+                cronica: document.getElementById('cronica').value,
+                dots: {},
+                specialties: {},
+                customSkills: {},
+                fv: document.querySelectorAll('#fv-track .resource-square.filled').length,
+                vitalidad: document.querySelectorAll('#vitalidad-track .resource-square.filled').length,
+                maestria: document.getElementById('maestria').value,
+                notas: document.getElementById('notas').value
+            };
+            
+            // Recopilar especialidades
+            const specialtyIds = [
+                'atletismo-spec', 'aguante-spec', 'lucha-spec', 'supervivencia-spec',
+                'sigilo-spec', 'pericia-spec', 'disparo-spec', 'esquiva-spec',
+                'academicismo-spec', 'ciencia-spec', 'medicina-spec', 'ocultismo-spec',
+                'estoicismo-spec', 'presencia-spec', 'encanto-spec', 'etiqueta-spec',
+                'observar-spec', 'investigar-spec', 'charlataneria-spec', 'callejeo-spec',
+                'arte-tipo', 'artesania-tipo',
+                'custom-skill-1-spec', 'custom-skill-2-spec', 'custom-skill-3-spec'
+            ];
+            
+            specialtyIds.forEach(id => {
+                const elem = document.getElementById(id);
+                if (elem && elem.value) {
+                    data.specialties[id] = elem.value;
+                }
+            });
+            
+            // Recopilar habilidades personalizadas
+            ['custom-skill-1', 'custom-skill-2', 'custom-skill-3'].forEach(id => {
+                const elem = document.getElementById(id);
+                if (elem && elem.value) {
+                    data.customSkills[id] = elem.value;
+                }
+            });
+            
+            // Recopilar puntos
+            dotContainers.forEach(id => {
+                const container = document.getElementById(id + '-dots');
+                if (container) {
+                    data.dots[id] = container.querySelectorAll('.dot.filled').length;
+                }
+            });
+            
+            return data;
+        }
+        
+        function exportarTexto() {
+            cerrarMenuExportar();
+            
+            const nombrePersonaje = document.getElementById('nombre').value || 'personaje';
+            const data = recopilarDatos();
+            
+            // Crear contenido de texto formateado
+            let texto = '╔═══════════════════════════════════════════════════════════╗\n';
+            texto += '║            CLAIR OBSCUR - Belle Époque                   ║\n';
+            texto += '╚═══════════════════════════════════════════════════════════╝\n\n';
+            
+            // Información básica
+            texto += '═══ INFORMACIÓN BÁSICA ═══\n';
+            texto += `Nombre:     ${data.nombre}\n`;
+            texto += `Gremio:     ${data.gremio}\n`;
+            texto += `Posición:   ${data.posicion}\n`;
+            texto += `Jugador:    ${data.jugador}\n`;
+            texto += `Concepto:   ${data.concepto}\n`;
+            texto += `Crónica:    ${data.cronica}\n\n`;
+            
+            // Atributos
+            texto += '═══ ATRIBUTOS ═══\n';
+            const vigorVal = data.dots.vigor || 1;
+            const coordVal = data.dots.coordinacion || 1;
+            const ingenioVal = data.dots.ingenio || 1;
+            const graciaVal = data.dots.gracia || 1;
+            const sagacidadVal = data.dots.sagacidad || 1;
+            const maestriaVal = data.dots['maestria-attr'] || 1;
+            texto += `Vigor:         ${'●'.repeat(vigorVal)}${'○'.repeat(6 - vigorVal)}\n`;
+            texto += `Coordinación:  ${'●'.repeat(coordVal)}${'○'.repeat(6 - coordVal)}\n`;
+            texto += `Ingenio:       ${'●'.repeat(ingenioVal)}${'○'.repeat(6 - ingenioVal)}\n`;
+            texto += `Gracia:        ${'●'.repeat(graciaVal)}${'○'.repeat(6 - graciaVal)}\n`;
+            texto += `Sagacidad:     ${'●'.repeat(sagacidadVal)}${'○'.repeat(6 - sagacidadVal)}\n`;
+            texto += `Maestría:      ${'●'.repeat(maestriaVal)}${'○'.repeat(6 - maestriaVal)}\n\n`;
+            
+            // Habilidades
+            texto += '═══ HABILIDADES ═══\n\n';
+            texto += '--- Vigor ---\n';
+            texto = agregarHabilidadTextoSiempre(texto, data, 'atletismo', 'Atletismo');
+            texto = agregarHabilidadTextoSiempre(texto, data, 'aguante', 'Aguante');
+            texto = agregarHabilidadTextoSiempre(texto, data, 'lucha', 'Lucha');
+            texto = agregarHabilidadTextoSiempre(texto, data, 'supervivencia', 'Supervivencia');
+            
+            texto += '\n--- Coordinación ---\n';
+            texto = agregarHabilidadTextoSiempre(texto, data, 'sigilo', 'Sigilo');
+            texto = agregarHabilidadTextoSiempre(texto, data, 'pericia', 'Pericia');
+            texto = agregarHabilidadTextoSiempre(texto, data, 'disparo', 'Disparo');
+            texto = agregarHabilidadTextoSiempre(texto, data, 'esquiva', 'Esquiva');
+            
+            texto += '\n--- Ingenio ---\n';
+            texto = agregarHabilidadTextoSiempre(texto, data, 'academicismo', 'Academicismo');
+            texto = agregarHabilidadTextoSiempre(texto, data, 'ciencia', 'Ciencia');
+            texto = agregarHabilidadTextoSiempre(texto, data, 'medicina', 'Medicina');
+            texto = agregarHabilidadTextoSiempre(texto, data, 'ocultismo', 'Ocultismo');
+            
+            texto += '\n--- Gracia ---\n';
+            texto = agregarHabilidadTextoSiempre(texto, data, 'estoicismo', 'Estoicismo');
+            texto = agregarHabilidadTextoSiempre(texto, data, 'presencia', 'Presencia');
+            texto = agregarHabilidadTextoSiempre(texto, data, 'encanto', 'Encanto');
+            texto = agregarHabilidadTextoSiempre(texto, data, 'etiqueta', 'Etiqueta');
+            
+            texto += '\n--- Sagacidad ---\n';
+            texto = agregarHabilidadTextoSiempre(texto, data, 'observar', 'Observar');
+            texto = agregarHabilidadTextoSiempre(texto, data, 'investigar', 'Investigar');
+            texto = agregarHabilidadTextoSiempre(texto, data, 'charlataneria', 'Charlatanería');
+            texto = agregarHabilidadTextoSiempre(texto, data, 'callejeo', 'Callejeo');
+            
+            texto += '\n--- Variables ---\n';
+            const arteEspec = data.specialties['arte-tipo'] || '';
+            texto += `Arte${arteEspec ? ' (' + arteEspec + ')' : ''}: ${'●'.repeat(data.dots.arte || 0)}${'○'.repeat(6 - (data.dots.arte || 0))}\n`;
+            
+            const artesaniaEspec = data.specialties['artesania-tipo'] || '';
+            texto += `Artesanía${artesaniaEspec ? ' (' + artesaniaEspec + ')' : ''}: ${'●'.repeat(data.dots.artesania || 0)}${'○'.repeat(6 - (data.dots.artesania || 0))}\n`;
+            
+            ['custom-skill-1', 'custom-skill-2', 'custom-skill-3'].forEach(id => {
+                const nombre = data.customSkills[id] || 'Otra habilidad';
+                const espec = data.specialties[id + '-spec'] || '';
+                const puntos = data.dots[id] || 0;
+                texto += `${nombre}${espec ? ' (' + espec + ')' : ''}: ${'●'.repeat(puntos)}${'○'.repeat(6 - puntos)}\n`;
+            });
+            
+            // Méritos
+            texto += '\n═══ MÉRITOS ═══\n';
+            const meritosNombres = [
+                ['influencia', 'Influencia'],
+                ['contactos', 'Contactos'],
+                ['riqueza', 'Riqueza'],
+                ['fama', 'Fama'],
+                ['allegados', 'Allegados'],
+                ['posicion-merit', 'Posición']
+            ];
+            meritosNombres.forEach(([id, nombre]) => {
+                const puntos = data.dots[id] || 0;
+                texto += `${nombre}: ${'●'.repeat(puntos)}${'○'.repeat(6 - puntos)}\n`;
+            });
+            
+            // Recursos
+            texto += '\n═══ RECURSOS ═══\n';
+            const fvVal = data.fv || 6;
+            const vitalidadVal = data.vitalidad || 6;
+            texto += `Fuerza de Voluntad: ${'■'.repeat(fvVal)}${'□'.repeat(10 - fvVal)}\n`;
+            texto += `Vitalidad: ${'■'.repeat(vitalidadVal)}${'□'.repeat(10 - vitalidadVal)}\n`;
+            
+            // Maestría y notas
+            if (data.maestria) {
+                texto += '\n═══ MAESTRÍA Y PODERES ARTÍSTICOS ═══\n';
+                texto += data.maestria + '\n';
+            }
+            
+            if (data.notas) {
+                texto += '\n═══ NOTAS Y TRASFONDO ═══\n';
+                texto += data.notas + '\n';
+            }
+            
+            // Descargar
+            const blob = new Blob([texto], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = nombrePersonaje + '_clair_obscur.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            alert('✅ Archivo de texto exportado. Ideal para copiar/pegar en Discord, foros, etc.');
+        }
+        
+        function agregarHabilidadTexto(texto, data, id, nombre) {
+            const puntos = data.dots[id] || 0;
+            const espec = data.specialties[id + '-spec'] || '';
+            if (puntos > 0 || espec) {
+                texto += `${nombre}${espec ? ' (' + espec + ')' : ''}: ${'●'.repeat(puntos)}${'○'.repeat(6 - puntos)}\n`;
+            }
+            return texto;
+        }
+        
+        function agregarHabilidadTextoSiempre(texto, data, id, nombre) {
+            const puntos = data.dots[id] || 0;
+            const espec = data.specialties[id + '-spec'] || '';
+            texto += `${nombre}${espec ? ' (' + espec + ')' : ''}: ${'●'.repeat(puntos)}${'○'.repeat(6 - puntos)}\n`;
+            return texto;
+        }
+        
+        async function exportarPDFMejorado() {
+            cerrarMenuExportar();
+            
+            const nombrePersonaje = document.getElementById('nombre').value || 'personaje';
+            const data = recopilarDatos();
+            
+            // Mostrar alerta de carga
+            const loadingDiv = document.createElement('div');
+            loadingDiv.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border: 3px solid #8b7355; padding: 30px; border-radius: 10px; z-index: 10000; font-family: Cinzel, serif; font-size: 18px; color: #8b7355;';
+            loadingDiv.textContent = '⏳ Generando PDF...';
+            document.body.appendChild(loadingDiv);
+            
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                let y = 20;
+                const pageWidth = 210;
+                const margin = 20;
+                const maxWidth = pageWidth - (margin * 2);
+                
+                // Función para representar puntos sin símbolos Unicode problemáticos
+                function puntosPDF(valor, max = 6) {
+                    let resultado = '';
+                    for (let i = 0; i < max; i++) {
+                        resultado += i < valor ? '[X] ' : '[ ] ';
+                    }
+                    return resultado;
+                }
+                
+                // Título
+                doc.setFontSize(24);
+                doc.setTextColor(139, 115, 85);
+                doc.text('CLAIR OBSCUR', pageWidth / 2, y, { align: 'center' });
+                y += 8;
+                doc.setFontSize(14);
+                doc.text('Belle Epoque', pageWidth / 2, y, { align: 'center' });
+                y += 15;
+                
+                // Información básica
+                doc.setFontSize(16);
+                doc.setTextColor(139, 115, 85);
+                doc.text('INFORMACIÓN BÁSICA', margin, y);
+                y += 8;
+                
+                doc.setFontSize(11);
+                doc.setTextColor(0, 0, 0);
+                doc.text(`Nombre: ${data.nombre}`, margin, y);
+                doc.text(`Gremio: ${data.gremio}`, margin + 70, y);
+                y += 6;
+                doc.text(`Jugador: ${data.jugador}`, margin, y);
+                doc.text(`Posición: ${data.posicion}`, margin + 70, y);
+                y += 6;
+                doc.text(`Concepto: ${data.concepto}`, margin, y);
+                doc.text(`Crónica: ${data.cronica}`, margin + 70, y);
+                y += 12;
+                
+                // Atributos
+                doc.setFontSize(16);
+                doc.setTextColor(139, 115, 85);
+                doc.text('ATRIBUTOS', margin, y);
+                y += 8;
+                
+                doc.setFontSize(11);
+                doc.setTextColor(0, 0, 0);
+                const atributos = [
+                    ['Vigor', data.dots.vigor || 1],
+                    ['Coordinación', data.dots.coordinacion || 1],
+                    ['Ingenio', data.dots.ingenio || 1],
+                    ['Gracia', data.dots.gracia || 1],
+                    ['Sagacidad', data.dots.sagacidad || 1],
+                    ['Maestría', data.dots['maestria-attr'] || 1]
+                ];
+                
+                for (let i = 0; i < atributos.length; i += 2) {
+                    const [nombre1, puntos1] = atributos[i];
+                    doc.text(`${nombre1}: ${puntosPDF(puntos1)}`, margin, y);
+                    
+                    if (i + 1 < atributos.length) {
+                        const [nombre2, puntos2] = atributos[i + 1];
+                        doc.text(`${nombre2}: ${puntosPDF(puntos2)}`, margin + 90, y);
+                    }
+                    y += 6;
+                }
+                y += 6;
+                
+                // Habilidades (solo las que tienen puntos)
+                doc.setFontSize(16);
+                doc.setTextColor(139, 115, 85);
+                doc.text('HABILIDADES', margin, y);
+                y += 8;
+                
+                doc.setFontSize(10);
+                doc.setTextColor(0, 0, 0);
+                
+                const habilidadesConPuntos = [];
+                const todasHabilidades = [
+                    ['atletismo', 'Atletismo'], ['aguante', 'Aguante'], ['lucha', 'Lucha'], ['supervivencia', 'Supervivencia'],
+                    ['sigilo', 'Sigilo'], ['pericia', 'Pericia'], ['disparo', 'Disparo'], ['esquiva', 'Esquiva'],
+                    ['academicismo', 'Academicismo'], ['ciencia', 'Ciencia'], ['medicina', 'Medicina'], ['ocultismo', 'Ocultismo'],
+                    ['estoicismo', 'Estoicismo'], ['presencia', 'Presencia'], ['encanto', 'Encanto'], ['etiqueta', 'Etiqueta'],
+                    ['observar', 'Observar'], ['investigar', 'Investigar'], ['charlataneria', 'Charlatanería'], ['callejeo', 'Callejeo']
+                ];
+                
+                todasHabilidades.forEach(([id, nombre]) => {
+                    const puntos = data.dots[id] || 0;
+                    const especId = id + '-spec';
+                    const espec = data.specialties[especId] || '';
+                    habilidadesConPuntos.push([nombre, espec, puntos]);
+                });
+                
+                // Arte y artesanía
+                const arteEspec = data.specialties['arte-tipo'] || '';
+                habilidadesConPuntos.push([`Arte`, arteEspec, data.dots.arte || 0]);
+                
+                const artesaniaEspec = data.specialties['artesania-tipo'] || '';
+                habilidadesConPuntos.push([`Artesanía`, artesaniaEspec, data.dots.artesania || 0]);
+                
+                // Habilidades personalizadas
+                ['custom-skill-1', 'custom-skill-2', 'custom-skill-3'].forEach(id => {
+                    const nombre = data.customSkills[id] || 'Otra habilidad';
+                    const espec = data.specialties[id + '-spec'] || '';
+                    const puntos = data.dots[id] || 0;
+                    habilidadesConPuntos.push([nombre, espec, puntos]);
+                });
+                
+                habilidadesConPuntos.forEach(([nombre, espec, puntos]) => {
+                    const texto = espec ? `${nombre} (${espec})` : nombre;
+                    doc.text(`${texto}: ${puntosPDF(puntos)}`, margin, y);
+                    y += 5;
+                    
+                    // Nueva página si es necesario
+                    if (y > 270) {
+                        doc.addPage();
+                        y = 20;
+                    }
+                });
+                
+                y += 8;
+                
+                // Méritos
+                if (y > 240) {
+                    doc.addPage();
+                    y = 20;
+                }
+                
+                doc.setFontSize(16);
+                doc.setTextColor(139, 115, 85);
+                doc.text('MÉRITOS', margin, y);
+                y += 8;
+                
+                doc.setFontSize(11);
+                doc.setTextColor(0, 0, 0);
+                const meritosLista = [
+                    ['influencia', 'Influencia'], ['contactos', 'Contactos'], ['riqueza', 'Riqueza'],
+                    ['fama', 'Fama'], ['allegados', 'Allegados'], ['posicion-merit', 'Posición']
+                ];
+                
+                meritosLista.forEach(([id, nombre]) => {
+                    const puntos = data.dots[id] || 0;
+                    doc.text(`${nombre}: ${puntosPDF(puntos)}`, margin, y);
+                    y += 6;
+                });
+                
+                y += 6;
+                
+                // Recursos
+                doc.setFontSize(16);
+                doc.setTextColor(139, 115, 85);
+                doc.text('RECURSOS', margin, y);
+                y += 8;
+                
+                doc.setFontSize(11);
+                doc.setTextColor(0, 0, 0);
+                const fvValPDF = data.fv || 6;
+                const vitalidadValPDF = data.vitalidad || 6;
+                doc.text(`Fuerza de Voluntad: ${puntosPDF(fvValPDF, 10)} (${fvValPDF}/10)`, margin, y);
+                y += 6;
+                doc.text(`Vitalidad: ${puntosPDF(vitalidadValPDF, 10)} (${vitalidadValPDF}/10)`, margin, y);
+                y += 12;
+                
+                // Maestría
+                if (data.maestria) {
+                    if (y > 220) {
+                        doc.addPage();
+                        y = 20;
+                    }
+                    
+                    doc.setFontSize(16);
+                    doc.setTextColor(139, 115, 85);
+                    doc.text('MAESTRÍA Y PODERES ARTÍSTICOS', margin, y);
+                    y += 8;
+                    
+                    doc.setFontSize(10);
+                    doc.setTextColor(0, 0, 0);
+                    const maestriaLines = doc.splitTextToSize(data.maestria, maxWidth);
+                    doc.text(maestriaLines, margin, y);
+                    y += maestriaLines.length * 5 + 10;
+                }
+                
+                // Notas
+                if (data.notas) {
+                    if (y > 220) {
+                        doc.addPage();
+                        y = 20;
+                    }
+                    
+                    doc.setFontSize(16);
+                    doc.setTextColor(139, 115, 85);
+                    doc.text('NOTAS Y TRASFONDO', margin, y);
+                    y += 8;
+                    
+                    doc.setFontSize(10);
+                    doc.setTextColor(0, 0, 0);
+                    const notasLines = doc.splitTextToSize(data.notas, maxWidth);
+                    doc.text(notasLines, margin, y);
+                }
+                
+                // Guardar
+                doc.save(nombrePersonaje + '_clair_obscur.pdf');
+                
+                document.body.removeChild(loadingDiv);
+                alert('✅ PDF generado correctamente con texto seleccionable y editable.');
+            } catch (error) {
+                console.error('Error al generar PDF:', error);
+                document.body.removeChild(loadingDiv);
+                alert('❌ Error al generar el PDF: ' + error.message);
+            }
         }
         
         function limpiarFicha() {
@@ -1050,6 +1791,23 @@
         
         // Cargar autoguardado al iniciar
         window.onload = function() {
+            // Inicializar valores por defecto
+            // 1 punto en cada atributo
+            ['vigor', 'coordinacion', 'ingenio', 'gracia', 'sagacidad', 'maestria-attr'].forEach(id => {
+                const container = document.getElementById(id + '-dots');
+                if (container) {
+                    fillDots(container, 1);
+                }
+            });
+            
+            // 6 puntos en FV y Vitalidad
+            ['fv', 'vitalidad'].forEach(id => {
+                const container = document.getElementById(id + '-track');
+                if (container) {
+                    fillSquares(container, 6);
+                }
+            });
+            
             const autosave = localStorage.getItem('clair_obscur_autosave');
             if (autosave) {
                 try {
