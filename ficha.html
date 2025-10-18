@@ -884,6 +884,30 @@
         });
         
         
+        // Función para establecer valor absoluto (sin toggle)
+        function setDotsAbsolute(container, value) {
+            const dots = container.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                if (index < value) {
+                    dot.classList.add('filled');
+                } else {
+                    dot.classList.remove('filled');
+                }
+            });
+        }
+        
+        // Función para establecer valor absoluto en cuadrados (sin toggle)
+        function setSquaresAbsolute(container, value) {
+            const squares = container.querySelectorAll('.resource-square');
+            squares.forEach((square, index) => {
+                if (index < value) {
+                    square.classList.add('filled');
+                } else {
+                    square.classList.remove('filled');
+                }
+            });
+        }
+        
         function fillDots(container, value) {
             const dots = container.querySelectorAll('.dot');
             const currentValue = container.querySelectorAll('.dot.filled').length;
@@ -1023,21 +1047,24 @@
                         document.getElementById('concepto').value = data.concepto || '';
                         document.getElementById('cronica').value = data.cronica || '';
                         
-                        // Cargar puntos
-                        Object.keys(data.dots || {}).forEach(id => {
+                        // Limpiar especialidades y habilidades personalizadas primero
+                        document.querySelectorAll('.skill-specialty').forEach(input => input.value = '');
+                        document.querySelectorAll('.skill-name-input').forEach(input => input.value = '');
+                        
+                        // Limpiar y cargar puntos (usar funciones absolutas para evitar el toggle)
+                        dotContainers.forEach(id => {
                             const container = document.getElementById(id + '-dots');
                             if (container) {
-                                fillDots(container, data.dots[id]);
+                                const valor = (data.dots && id in data.dots) ? data.dots[id] : 0;
+                                setDotsAbsolute(container, valor);
                             }
                         });
                         
-                        // Cargar recursos
-                        if (data.fv) {
-                            fillSquares(document.getElementById('fv-track'), data.fv);
-                        }
-                        if (data.vitalidad) {
-                            fillSquares(document.getElementById('vitalidad-track'), data.vitalidad);
-                        }
+                        // Cargar recursos (usar funciones absolutas para evitar el toggle)
+                        const fvValue = 'fv' in data ? data.fv : 6;
+                        const vitalidadValue = 'vitalidad' in data ? data.vitalidad : 6;
+                        setSquaresAbsolute(document.getElementById('fv-track'), fvValue);
+                        setSquaresAbsolute(document.getElementById('vitalidad-track'), vitalidadValue);
                         
                         // Cargar textos
                         document.getElementById('maestria').value = data.maestria || '';
@@ -1058,6 +1085,9 @@
                                 elem.value = data.customSkills[id];
                             }
                         });
+                        
+                        // Actualizar el autoguardado con los nuevos datos para evitar conflictos
+                        localStorage.setItem('clair_obscur_autosave', JSON.stringify(data));
                         
                         alert('✅ Ficha cargada correctamente');
                     } catch (error) {
@@ -1726,12 +1756,30 @@
                 // Limpiar campos de texto
                 document.querySelectorAll('.info-input').forEach(input => input.value = '');
                 document.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
+                document.querySelectorAll('.skill-specialty').forEach(input => input.value = '');
+                document.querySelectorAll('.skill-name-input').forEach(input => input.value = '');
                 
-                // Limpiar puntos
+                // Limpiar todos los puntos
                 document.querySelectorAll('.dot.filled').forEach(dot => dot.classList.remove('filled'));
                 document.querySelectorAll('.resource-square.filled').forEach(square => square.classList.remove('filled'));
                 
-                alert('✅ Ficha limpiada');
+                // Restaurar valores por defecto
+                // 1 punto en cada atributo
+                ['vigor', 'coordinacion', 'ingenio', 'gracia', 'sagacidad', 'maestria-attr'].forEach(id => {
+                    const container = document.getElementById(id + '-dots');
+                    if (container) {
+                        setDotsAbsolute(container, 1);
+                    }
+                });
+                
+                // 6 puntos en FV y Vitalidad
+                setSquaresAbsolute(document.getElementById('fv-track'), 6);
+                setSquaresAbsolute(document.getElementById('vitalidad-track'), 6);
+                
+                // Limpiar autoguardado
+                localStorage.removeItem('clair_obscur_autosave');
+                
+                alert('✅ Ficha limpiada y valores por defecto restaurados');
             }
         }
         
@@ -1791,29 +1839,16 @@
         
         // Cargar autoguardado al iniciar
         window.onload = function() {
-            // Inicializar valores por defecto
-            // 1 punto en cada atributo
-            ['vigor', 'coordinacion', 'ingenio', 'gracia', 'sagacidad', 'maestria-attr'].forEach(id => {
-                const container = document.getElementById(id + '-dots');
-                if (container) {
-                    fillDots(container, 1);
-                }
-            });
-            
-            // 6 puntos en FV y Vitalidad
-            ['fv', 'vitalidad'].forEach(id => {
-                const container = document.getElementById(id + '-track');
-                if (container) {
-                    fillSquares(container, 6);
-                }
-            });
-            
             const autosave = localStorage.getItem('clair_obscur_autosave');
+            let autoguardadoCargado = false;
+            
             if (autosave) {
                 try {
                     const data = JSON.parse(autosave);
                     if (data.nombre || data.gremio) {
                         if (confirm('Se encontró un autoguardado. ¿Deseas cargarlo?')) {
+                            autoguardadoCargado = true;
+                            
                             document.getElementById('nombre').value = data.nombre || '';
                             document.getElementById('gremio').value = data.gremio || '';
                             document.getElementById('posicion').value = data.posicion || '';
@@ -1821,18 +1856,24 @@
                             document.getElementById('concepto').value = data.concepto || '';
                             document.getElementById('cronica').value = data.cronica || '';
                             
+                            // Cargar puntos (usar función absoluta)
                             Object.keys(data.dots || {}).forEach(id => {
                                 const container = document.getElementById(id + '-dots');
                                 if (container) {
-                                    fillDots(container, data.dots[id]);
+                                    setDotsAbsolute(container, data.dots[id]);
                                 }
                             });
                             
-                            if (data.fv) {
-                                fillSquares(document.getElementById('fv-track'), data.fv);
+                            // Cargar recursos (usar función absoluta)
+                            if ('fv' in data) {
+                                setSquaresAbsolute(document.getElementById('fv-track'), data.fv);
+                            } else {
+                                setSquaresAbsolute(document.getElementById('fv-track'), 6);
                             }
-                            if (data.vitalidad) {
-                                fillSquares(document.getElementById('vitalidad-track'), data.vitalidad);
+                            if ('vitalidad' in data) {
+                                setSquaresAbsolute(document.getElementById('vitalidad-track'), data.vitalidad);
+                            } else {
+                                setSquaresAbsolute(document.getElementById('vitalidad-track'), 6);
                             }
                             
                             document.getElementById('maestria').value = data.maestria || '';
@@ -1858,6 +1899,21 @@
                 } catch (error) {
                     console.error('Error al cargar autoguardado:', error);
                 }
+            }
+            
+            // Solo inicializar valores por defecto si NO se cargó autoguardado
+            if (!autoguardadoCargado) {
+                // 1 punto en cada atributo
+                ['vigor', 'coordinacion', 'ingenio', 'gracia', 'sagacidad', 'maestria-attr'].forEach(id => {
+                    const container = document.getElementById(id + '-dots');
+                    if (container) {
+                        setDotsAbsolute(container, 1);
+                    }
+                });
+                
+                // 6 puntos en FV y Vitalidad
+                setSquaresAbsolute(document.getElementById('fv-track'), 6);
+                setSquaresAbsolute(document.getElementById('vitalidad-track'), 6);
             }
         };
     </script>
