@@ -424,9 +424,6 @@
         
         /* BOTÓN DE TRADUCCIÓN */
         .translate-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
             width: 35px;
             height: 35px;
             background: rgba(44, 36, 22, 0.1);
@@ -439,6 +436,7 @@
             transition: all 0.3s ease;
             font-size: 18px;
             color: #5a4a3a;
+            margin: 10px auto;
         }
         
         .translate-button:hover {
@@ -449,6 +447,11 @@
         
         .translate-button:active {
             transform: scale(0.95);
+        }
+        
+        .translate-button-container {
+            text-align: center;
+            margin: 10px 0;
         }
         
         /* Ocultar contenido de idioma alternativo */
@@ -630,8 +633,6 @@
     </style>
 </head>
 <body>
-    <button class="translate-button" onclick="toggleLanguage()" title="Traducir / Translate">🔍</button>
-    
     <!-- NAVEGACIÓN DE FECHAS -->
     <nav class="date-navigation">
         <h3 class="lang-fr">Éditions</h3>
@@ -660,6 +661,9 @@
             </div>
             <h1 class="newspaper-title">Paris Nouveau</h1>
             <p class="newspaper-subtitle">Nouvelles du Monde des Arts et de la Belle Société</p>
+            <div class="translate-button-container">
+                <button class="translate-button" onclick="toggleLanguage()" title="Traducir / Translate">🔍</button>
+            </div>
             <div class="ornamental-line">
                 <span class="ornamental-symbol">◆</span>
                 <span class="ornamental-symbol">◆</span>
