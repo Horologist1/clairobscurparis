@@ -467,6 +467,166 @@
         body.spanish .lang-es.inline {
             display: inline;
         }
+        
+        /* ESTILOS PARA CRÓNICAS DE SOCIEDAD */
+        .society-chronicle {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+        
+        .society-chronicle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .society-note {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        /* ESTILOS PARA COTILLEOS DE SOLTEROS */
+        .gossip-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .gossip-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #f4e8d0;
+            border: 1px solid #8b7355;
+            border-left: 3px solid #8b7355;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+        
+        .gossip-item:hover {
+            background: #e8d5b7;
+        }
+        
+        .gossip-photo {
+            width: fit-content;
+            height: fit-content;
+            border: 2px solid #2c2416;
+            padding: 1px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #d4c5b0;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        
+        .gossip-photo img {
+            width: 70px;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gossip-photo img:hover {
+            opacity: 0.8;
+        }
+        
+        /* MODAL PARA IMÁGENES */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .image-modal.active {
+            display: flex;
+        }
+        
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #2c2416;
+            padding: 10px;
+            background: #faf7f0;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            height: auto;
+            display: block;
+        }
+        
+        .image-modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: #2c2416;
+            color: #faf7f0;
+            border: 2px solid #2c2416;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+        
+        .image-modal-close:hover {
+            background: #8b7355;
+        }
+        
+        .gossip-info {
+            flex: 1;
+        }
+        
+        .gossip-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 5px;
+        }
+        
+        .gossip-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            color: #2c2416;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        
+        .gossip-text em {
+            font-style: normal;
+            font-weight: 600;
+            color: #5a4a3a;
+        }
     </style>
 </head>
 <body>
@@ -478,15 +638,15 @@
         <h3 class="lang-es">Ediciones</h3>
         <ul class="date-list">
             <li class="date-item">
-                <a href="noticias.html" class="date-link">
-                    <span class="lang-fr">18 Mars 1905</span>
-                    <span class="lang-es">18 de Marzo</span>
-                </a>
-            </li>
-            <li class="date-item">
                 <a href="noticias1.html" class="date-link active">
                     <span class="lang-fr">25 Mars 1905</span>
                     <span class="lang-es">25 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias.html" class="date-link">
+                    <span class="lang-fr">18 Mars 1905</span>
+                    <span class="lang-es">18 de Marzo</span>
                 </a>
             </li>
         </ul>
@@ -530,9 +690,9 @@
                         
                         <p>Guillaume Réno, le cinéaste responsable de l'événement, a été le premier à réagir. "Nous n'avons jamais rien vu de tel", a confié ce réalisateur jusqu'alors peu connu. "Cette technologie était censée capturer la réalité, pas la libérer." Les autorités ont immédiatement fermé le cinéma et lancé une enquête pour comprendre ce phénomène inexplicable.</p>
                         
-                        <p>Les blessés, au nombre de douze, ont été transportés à l'Hôtel-Dieu. Aucun décès n'est à déplorer, mais les victimes présentent des traumatismes à la fois physiques et psychologiques. Certains spectateurs sont simplement atterrés par l'événement, tandis que d'autres se trouvent dans un état grave suite à la chute de gravats et au choc direct du train. Les médecins rapportent des symptômes inhabituels chez les victimes, notamment des hallucinations persistantes de trains fantômes.</p>
+                        <p>Les blessés, au nombre de douze, ont été transportés à l'Hôtel-Dieu. Aucun décès n'est à déplorer, mais les victimes présentent des traumatismes à la fois physiques et moraux. Certains spectateurs sont simplement atterrés par l'événement, tandis que d'autres se trouvent dans un état grave suite à la chute de gravats et au choc direct du train. Les médecins rapportent des symptômes inhabituels chez les victimes, notamment des hallucinations persistantes de trains fantômes.</p>
                         
-                        <p>La Guilde des Cinématographes, récemment formée, a émis un communiqué dénonçant cette "perversion de l'art cinématographique". Georges Méliès, présent lors de l'incident, a déclaré que "cette tragédie marque un tournant dans l'histoire du cinéma. Nous devons réévaluer les limites de notre art."</p>
+                        <p>La Guilde des Cinématographes, récemment formée, a émis un communiqué dénonçant cette "perversion de l'art cinématographique". Georges Méliès, présent lors de l'incident, a déclaré que "cette tragédie marque un tournant dans l'histoire du cinéma. Nous devons réévaluer les limites de notre art." Les frères Lumière, actuellement en voyage d'affaires aux États-Unis, n'ont pu être contactés pour commenter cet incident inquiétant.</p>
                     </div>
                     
                     <div class="article-text lang-es">
@@ -542,9 +702,9 @@
                         
                         <p>Guillaume Réno, el cineasta responsable del evento, fue el primero en reaccionar. "Nunca habíamos visto nada igual", confesó este realizador hasta entonces poco conocido. "Esta tecnología estaba destinada a capturar la realidad, no a liberarla." Las autoridades cerraron inmediatamente el cine y lanzaron una investigación para comprender este fenómeno inexplicable.</p>
                         
-                        <p>Los heridos, en número de doce, fueron transportados al Hôtel-Dieu. No se reportan muertes, pero las víctimas presentan traumatismos tanto físicos como psicológicos. Algunos espectadores están simplemente aterrorizados por el evento, mientras que otros se encuentran en estado grave tras la caída de cascotes y el choque directo del tren. Los médicos reportan síntomas inusuales en las víctimas, incluyendo alucinaciones persistentes de trenes fantasma.</p>
+                        <p>Los heridos, en número de doce, fueron transportados al Hôtel-Dieu. No se reportan muertes, pero las víctimas presentan traumatismos tanto físicos como morales. Algunos espectadores están simplemente aterrorizados por el evento, mientras que otros se encuentran en estado grave tras la caída de cascotes y el choque directo del tren. Los médicos reportan síntomas inusuales en las víctimas, incluyendo alucinaciones persistentes de trenes fantasma.</p>
                         
-                        <p>El Gremio de Cinematógrafos, recientemente formado, emitió un comunicado denunciando esta "perversión del arte cinematográfico". Georges Méliès, presente durante el incidente, declaró que "esta tragedia marca un punto de inflexión en la historia del cine. Debemos reevaluar los límites de nuestro arte."</p>
+                        <p>El Gremio de Cinematógrafos, recientemente formado, emitió un comunicado denunciando esta "perversión del arte cinematográfico". Georges Méliès, presente durante el incidente, declaró que "esta tragedia marca un punto de inflexión en la historia del cine. Debemos reevaluar los límites de nuestro arte." Los hermanos Lumière, actualmente en viaje de negocios en Estados Unidos, no han podido ser contactados para comentar este inquietante incidente.</p>
                     </div>
                 </article>
                 
@@ -569,6 +729,68 @@
                     </div>
                     
                     <div class="typographic-ornament">❦ ◆ ❦</div>
+                    
+                    <!-- CRÓNICAS DE SOCIEDAD -->
+                    <article class="society-chronicle">
+                        <h2 class="society-chronicle-title lang-fr">Chroniques de la Société</h2>
+                        <h2 class="society-chronicle-title lang-es">Crónicas de Sociedad</h2>
+                        <p class="society-note lang-fr">Notes mondaines et événements de la haute société parisienne</p>
+                        <p class="society-note lang-es">Notas mundanas y acontecimientos de la alta sociedad parisina</p>
+                        
+                        <div class="secondary-article">
+                            <h3 class="secondary-title lang-fr">Incident au Louvre : Un Frôlement entre Ex-Amants</h3>
+                            <h3 class="secondary-title lang-es">Incidente en el Louvre: Un Roce entre Ex Amantes</h3>
+                            
+                            <div class="secondary-text lang-fr">
+                                <p>Paris, 25 Mars — La soirée élégante organisée vendredi dernier au Musée du Louvre a été le théâtre d'un incident discret mais néanmoins remarqué par les observateurs attentifs de la société parisienne. Cléa Dessendre, la talentueuse peintre et fille de la respectée Aline Dessendre, a croisé le chemin de Simon Latour, le sculpteur renommé spécialisé dans les figures colossales, dans un moment de tension palpable.</p>
+                                
+                                <p>Les témoins rapportent que l'incident s'est produit près de la galerie des sculptures, où Simon Latour, connu pour sa force physique impressionnante et ses muscles saillants, contemplait une de ses œuvres monumentales. Cléa Dessendre, qui possède non seulement un talent remarquable pour la peinture mais également une œuvre maîtresse en sculpture, s'est approchée du groupe avec son élégance caractéristique.</p>
+                                
+                                <p>"Il y avait une tension électrique dans l'air", a confié une invitée anonyme. "Ils se sont croisés, leurs regards se sont rencontrés, et pendant un instant, tout le monde a senti le poids de leur histoire passée." Bien que l'incident soit resté discret — aucun mot n'a été échangé, aucun geste inapproprié n'a été commis — l'énergie entre ces deux anciens amants était indéniable.</p>
+                                
+                                <p>Cléa, héritière d'un nom prestigieux dans le monde de l'art, a maintenu sa dignité avec la grâce que l'on attend d'une artiste de son calibre. Simon, de son côté, a continué sa conversation avec ses compagnons, mais ses observateurs ont noté une raideur dans ses épaules massives, témoin silencieux de l'émotion contenue.</p>
+                                
+                                <p>Cette rencontre fortuite rappelle à la société parisienne que même dans les cercles les plus raffinés, les passions du passé peuvent resurgir dans les moments les plus inattendus. Les deux artistes, chacun maître dans leur domaine respectif, ont démontré une retenue exemplaire, mais leur histoire commune continue de fasciner ceux qui connaissent les secrets de la Belle Époque.</p>
+                            </div>
+                            
+                            <div class="secondary-text lang-es">
+                                <p>París, 25 de Marzo — La velada elegante organizada el viernes pasado en el Museo del Louvre fue escenario de un incidente discreto pero no obstante observado por los atentos observadores de la sociedad parisina. Cléa Dessendre, la talentosa pintora e hija de la respetada Aline Dessendre, se cruzó con el camino de Simon Latour, el escultor renombrado especializado en figuras colosales, en un momento de tensión palpable.</p>
+                                
+                                <p>Los testigos reportan que el incidente ocurrió cerca de la galería de esculturas, donde Simon Latour, conocido por su impresionante fuerza física y sus músculos prominentes, contemplaba una de sus obras monumentales. Cléa Dessendre, que posee no solo un talento notable para la pintura sino también una obra maestra en escultura, se acercó al grupo con su elegancia característica.</p>
+                                
+                                <p>"Había una tensión eléctrica en el aire", confió una invitada anónima. "Se cruzaron, sus miradas se encontraron, y por un instante, todos sintieron el peso de su historia pasada." Aunque el incidente se mantuvo discreto — ninguna palabra fue intercambiada, ningún gesto inapropiado fue cometido — la energía entre estos dos antiguos amantes era innegable.</p>
+                                
+                                <p>Cléa, heredera de un nombre prestigioso en el mundo del arte, mantuvo su dignidad con la gracia que se espera de una artista de su calibre. Simon, por su parte, continuó su conversación con sus compañeros, pero sus observadores notaron una rigidez en sus hombros masivos, testigo silencioso de la emoción contenida.</p>
+                                
+                                <p>Este encuentro fortuito recuerda a la sociedad parisina que incluso en los círculos más refinados, las pasiones del pasado pueden resurgir en los momentos más inesperados. Los dos artistas, cada uno maestro en su dominio respectivo, demostraron una contención ejemplar, pero su historia común continúa fascinando a quienes conocen los secretos de la Belle Époque.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="secondary-article">
+                            <h3 class="secondary-title lang-fr">Marine Loremant : Une Étoile Montante dans le Monde de la Mode</h3>
+                            <h3 class="secondary-title lang-es">Marine Loremant: Una Estrella Emergente en el Mundo de la Moda</h3>
+                            
+                            <div class="secondary-text lang-fr">
+                                <p>Parmi les personnalités remarquées lors de la soirée du Louvre, Marine Loremant, la jeune couturière talentueuse, a attiré l'attention de nombreux observateurs. Originaire d'un milieu plus humble que la plupart des invités, Marine a su s'imposer par son charme naturel et son ouverture d'esprit, qualités qui contrastent agréablement avec la réserve parfois affectée de certains membres de la haute société.</p>
+                                
+                                <p>Sa présence à cette soirée prestigieuse marque une étape importante dans sa carrière. Les connaisseurs de la mode parisienne commencent à reconnaître son talent exceptionnel dans l'art du tailleur, et plusieurs rumeurs circulent sur des commandes importantes qui pourraient bientôt venir de maisons de couture établies.</p>
+                                
+                                <p>"Marine apporte une fraîcheur et une authenticité rares dans notre monde", a commenté un observateur. "Son art transcende les barrières sociales, et c'est précisément ce qui fait d'elle une figure à surveiller."</p>
+                                
+                                <p>Les perspectives pour cette jeune artiste semblent prometteuses. Alors que la société parisienne continue d'évoluer, des talents comme Marine Loremant représentent l'avenir de l'artisanat français, prouvant que le génie artistique peut émerger de n'importe quel milieu et conquérir les cœurs de la Belle Époque.</p>
+                            </div>
+                            
+                            <div class="secondary-text lang-es">
+                                <p>Entre las personalidades destacadas durante la velada del Louvre, Marine Loremant, la joven costurera talentosa, atrajo la atención de numerosos observadores. Originaria de un entorno más humilde que la mayoría de los invitados, Marine ha sabido imponerse por su encanto natural y su apertura de espíritu, cualidades que contrastan agradablemente con la reserva a veces afectada de algunos miembros de la alta sociedad.</p>
+                                
+                                <p>Su presencia en esta velada prestigiosa marca una etapa importante en su carrera. Los conocedores de la moda parisina comienzan a reconocer su talento excepcional en el arte del sastre, y varios rumores circulan sobre encargos importantes que pronto podrían llegar de casas de costura establecidas.</p>
+                                
+                                <p>"Marine aporta una frescura y una autenticidad raras en nuestro mundo", comentó un observador. "Su arte trasciende las barreras sociales, y es precisamente eso lo que la convierte en una figura a seguir."</p>
+                                
+                                <p>Las perspectivas para esta joven artista parecen prometedoras. Mientras la sociedad parisina continúa evolucionando, talentos como Marine Loremant representan el futuro de la artesanía francesa, demostrando que el genio artístico puede emerger de cualquier entorno y conquistar los corazones de la Belle Époque.</p>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
             
@@ -605,6 +827,112 @@
                 
                 <div class="typographic-ornament">◆ ◆ ◆</div>
                 
+                <!-- RANKING DE SOLTEROS - COTILLEOS -->
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Potins & Cancans : Les Célibataires à Suivre</h3>
+                    <h3 class="sidebar-title lang-es">Cotilleos y Chismes: Los Solteros a Seguir</h3>
+                    
+                    <ul class="gossip-list">
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/andré_lèfevre.png" alt="André Lèfevre" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">André Lèfevre</div>
+                                <div class="gossip-name lang-es">André Lèfevre</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Qui ne connaît pas ce bel acteur ?</em> Tous les cœurs de Paris battent pour lui, et nous ne pouvons que comprendre pourquoi. On murmure qu'il a refusé trois propositions de mariage ce mois-ci — mais qui pourrait résister à un tel charme ?
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>¿Quién no conoce a este guapo actor?</em> Todos los corazones de París laten por él, y no podemos más que entender por qué. Se murmura que ha rechazado tres propuestas de matrimonio este mes — pero ¿quién podría resistirse a tal encanto?
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/clea_dessendre.png" alt="Cléa Dessendre" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Cléa Dessendre</div>
+                                <div class="gossip-name lang-es">Cléa Dessendre</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Héritière d'un nom illustre</em>, cette artiste talentueuse fait tourner bien des têtes. On dit qu'elle possède non seulement le pinceau de sa mère, mais aussi un don remarquable pour la sculpture. Une femme à surveiller, assurément.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Heredera de un nombre ilustre</em>, esta artista talentosa hace girar más de una cabeza. Se dice que posee no solo el pincel de su madre, sino también un don notable para la escultura. Una mujer a seguir, sin duda.
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/simon_latour.png" alt="Simon Latour" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Simon Latour</div>
+                                <div class="gossip-name lang-es">Simon Latour</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Ce sculpteur aux épaules imposantes</em> ne passe pas inaperçu. Spécialisé dans les figures colossales, on raconte qu'il travaille avec une force qui défie l'entendement. Certaines dames de la société ne peuvent s'empêcher de jeter un regard discret en sa direction.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Este escultor de hombros imponentes</em> no pasa desapercibido. Especializado en figuras colosales, se cuenta que trabaja con una fuerza que desafía el entendimiento. Algunas damas de la sociedad no pueden evitar lanzar una mirada discreta en su dirección.
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/marine_loremant.png" alt="Marine Loremant" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Marine Loremant</div>
+                                <div class="gossip-name lang-es">Marine Loremant</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Une étoile montante</em> qui apporte une fraîcheur bienvenue dans nos cercles. Originaire d'un milieu plus modeste, elle a su conquérir les cœurs par son charme naturel. On chuchote qu'elle pourrait bientôt recevoir des commandes prestigieuses.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Una estrella emergente</em> que aporta una frescura bienvenida en nuestros círculos. Originaria de un entorno más modesto, ha sabido conquistar los corazones con su encanto natural. Se susurra que pronto podría recibir encargos prestigiosos.
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/lucile_roy.png" alt="Lucile Roy" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Lucile Roy</div>
+                                <div class="gossip-name lang-es">Lucile Roy</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Derrière son sourire timide</em> se cache une compositrice dont la musique touche l'âme. On dit que ses mélodies reflètent une profondeur mélancolique qui contraste avec son apparence joyeuse. Un mystère à découvrir.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Tras su sonrisa tímida</em> se esconde una compositora cuya música toca el alma. Se dice que sus melodías reflejan una profundidad melancólica que contrasta con su apariencia alegre. Un misterio por descubrir.
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/toulouse_lautrec.png" alt="Toulouse-Lautrec" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Toulouse-Lautrec</div>
+                                <div class="gossip-name lang-es">Toulouse-Lautrec</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Le peintre légendaire</em> continue d'inspirer et de fasciner. Sa présence dans les salons artistiques ne manque jamais de susciter l'intérêt. On se demande toujours ce qu'il prépare dans l'ombre de son atelier.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>El pintor legendario</em> continúa inspirando y fascinando. Su presencia en los salones artísticos nunca deja de suscitar interés. Siempre nos preguntamos qué prepara en la sombra de su taller.
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
                 <article class="sidebar-article">
                     <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
                     <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
@@ -631,6 +959,14 @@
         </div>
     </div>
     
+    <!-- MODAL PARA IMÁGENES -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+    
     <script>
         function toggleLanguage() {
             document.body.classList.toggle('spanish');
@@ -648,6 +984,29 @@
             const savedLanguage = localStorage.getItem('newspaperLanguage');
             if (savedLanguage === 'es') {
                 document.body.classList.add('spanish');
+            }
+        });
+        
+        // Funciones para el modal de imágenes
+        function openImageModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+        }
+        
+        function closeImageModal(event) {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restaurar scroll del body
+        }
+        
+        // Cerrar modal con la tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
             }
         });
     </script>
