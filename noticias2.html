@@ -470,6 +470,166 @@
         body.spanish .lang-es.inline {
             display: inline;
         }
+        
+        /* ESTILOS PARA CRÓNICAS DE SOCIEDAD */
+        .society-chronicle {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+        
+        .society-chronicle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .society-note {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        /* ESTILOS PARA COTILLEOS DE SOLTEROS */
+        .gossip-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .gossip-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #f4e8d0;
+            border: 1px solid #8b7355;
+            border-left: 3px solid #8b7355;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+        
+        .gossip-item:hover {
+            background: #e8d5b7;
+        }
+        
+        .gossip-photo {
+            width: fit-content;
+            height: fit-content;
+            border: 2px solid #2c2416;
+            padding: 1px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #d4c5b0;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        
+        .gossip-photo img {
+            width: 70px;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gossip-photo img:hover {
+            opacity: 0.8;
+        }
+        
+        /* MODAL PARA IMÁGENES */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .image-modal.active {
+            display: flex;
+        }
+        
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #2c2416;
+            padding: 10px;
+            background: #faf7f0;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            height: auto;
+            display: block;
+        }
+        
+        .image-modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: #2c2416;
+            color: #faf7f0;
+            border: 2px solid #2c2416;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+        
+        .image-modal-close:hover {
+            background: #8b7355;
+        }
+        
+        .gossip-info {
+            flex: 1;
+        }
+        
+        .gossip-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 5px;
+        }
+        
+        .gossip-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            color: #2c2416;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        
+        .gossip-text em {
+            font-style: normal;
+            font-weight: 600;
+            color: #5a4a3a;
+        }
     </style>
 </head>
 <body>
@@ -524,8 +684,8 @@
             <div class="left-column">
                 <!-- ARTÍCULO PRINCIPAL -->
                 <article class="main-article">
-                    <h2 class="article-title lang-fr">Formation d'un Comité d'Enquête au Louvre</h2>
-                    <h2 class="article-title lang-es">Formación de un Comité de Investigación en el Louvre</h2>
+                    <h2 class="article-title lang-fr">Formation du Comité des Lumières au Louvre</h2>
+                    <h2 class="article-title lang-es">Formación del Comité de las Luces en el Louvre</h2>
                     <p class="article-subtitle lang-fr">Une commission secrète se réunit pour élucider le mystère du train fantôme</p>
                     <p class="article-subtitle lang-es">Una comisión secreta se reúne para dilucidar el misterio del tren fantasma</p>
                     
@@ -534,7 +694,7 @@
                     </div>
                     
                     <div class="article-text lang-fr">
-                        <p>Paris, 26 Mars — Dans une décision sans précédent, un comité d'enquête spécial a été formé hier soir au Musée du Louvre pour investiguer les événements inexplicables survenus au cinéma Lumière. La réunion, tenue dans le plus grand secret, rassemble des experts des différentes guildes artistiques, tous unis par un objectif commun : comprendre comment et pourquoi un train a pu sortir littéralement de l'écran pour s'écraser dans la salle de projection.</p>
+                        <p>Paris, 26 Mars — Dans une décision sans précédent, un comité d'enquête spécial a été formé hier soir au Musée du Louvre pour investiguer les événements inexplicables survenus au cinéma Lumière. La réunion, tenue dans le plus grand secret, rassemble des experts des différentes guildes artistiques, tous unis par un objectif commun : comprendre comment et pourquoi un train a pu sortir littéralement de l'écran pour s'écraser dans la salle de projection. La presse a rapidement baptisé cette commission le "Comité des Lumières", en référence à la fois aux frères Lumière et à la lumière qu'ils espèrent faire sur ce mystère.</p>
                         
                         <p>Les sources proches du comité ont révélé que l'identité des membres sera strictement protégée afin de garantir la neutralité et l'impartialité de l'enquête. "Il est essentiel que nos investigations ne soient pas entravées par des pressions politiques ou des intérêts particuliers", a déclaré un porte-parole anonyme. "Chaque membre de ce comité a été choisi pour son expertise unique dans son domaine artistique, et leur anonymat est notre meilleure garantie d'objectivité."</p>
                         
@@ -546,7 +706,7 @@
                     </div>
                     
                     <div class="article-text lang-es">
-                        <p>París, 26 de Marzo — En una decisión sin precedentes, un comité de investigación especial fue formado anoche en el Museo del Louvre para investigar los eventos inexplicables ocurridos en el cine Lumière. La reunión, celebrada en el más absoluto secreto, reúne a expertos de los diferentes gremios artísticos, todos unidos por un objetivo común: comprender cómo y por qué un tren pudo salir literalmente de la pantalla para estrellarse en la sala de proyección.</p>
+                        <p>París, 26 de Marzo — En una decisión sin precedentes, un comité de investigación especial fue formado anoche en el Museo del Louvre para investigar los eventos inexplicables ocurridos en el cine Lumière. La reunión, celebrada en el más absoluto secreto, reúne a expertos de los diferentes gremios artísticos, todos unidos por un objetivo común: comprender cómo y por qué un tren pudo salir literalmente de la pantalla para estrellarse en la sala de proyección. La prensa ha bautizado rápidamente esta comisión como el "Comité de las Luces", en referencia tanto a los hermanos Lumière como a la luz que esperan arrojar sobre este misterio.</p>
                         
                         <p>Las fuentes cercanas al comité han revelado que la identidad de los miembros será estrictamente protegida para garantizar la neutralidad e imparcialidad de la investigación. "Es esencial que nuestras investigaciones no sean obstaculizadas por presiones políticas o intereses particulares", declaró un portavoz anónimo. "Cada miembro de este comité ha sido elegido por su experiencia única en su dominio artístico, y su anonimato es nuestra mejor garantía de objetividad."</p>
                         
@@ -603,6 +763,68 @@
                     </div>
                     
                     <div class="typographic-ornament">❦ ◆ ❦</div>
+                    
+                    <!-- CRÓNICAS DE SOCIEDAD -->
+                    <article class="society-chronicle">
+                        <h2 class="society-chronicle-title lang-fr">Chroniques de la Société</h2>
+                        <h2 class="society-chronicle-title lang-es">Crónicas de Sociedad</h2>
+                        <p class="society-note lang-fr">Notes mondaines et événements de la haute société parisienne</p>
+                        <p class="society-note lang-es">Notas mundanas y acontecimientos de la alta sociedad parisina</p>
+                        
+                        <div class="secondary-article">
+                            <h3 class="secondary-title lang-fr">Nuit Mystérieuse : Entre le Louvre et Pigalle</h3>
+                            <h3 class="secondary-title lang-es">Noche Misteriosa: Entre el Louvre y Pigalle</h3>
+                            
+                            <div class="secondary-text lang-fr">
+                                <p>Paris, 26 Mars — Quelle nuit, mes chers lecteurs ! La nuit d'hier a été marquée par deux événements qui ne manqueront pas d'alimenter les conversations dans les salons les plus distingués. Alors que le Comité des Lumières se réunissait dans les salles privées du Louvre — et que dire de cette réunion secrète, n'est-ce pas ? —, nos observateurs les plus attentifs ont remarqué un moment des plus intrigants.</p>
+                                
+                                <p>Cléa Dessendre, cette talentueuse peintre qui hérite si élégamment du prestigieux nom de sa mère, a été vue échangeant un sourire avec une photographe dont l'identité reste un mystère complet. Mais quel sourire, mes amis ! "C'était un sourire différent", nous a confié un observateur discret. "Pas ce sourire poli qu'elle offre habituellement aux invités, mais quelque chose de plus... authentique. Comme si elles se connaissaient intimement, ou comme si quelque chose de significatif — et peut-être même de scandaleux — passait entre elles." Aucun des membres présents ne semble la reconnaître, et elle n'apparaît dans aucun registre officiel. Qui est-elle donc ? Et pourquoi Cléa, si réservée d'ordinaire, lui a-t-elle accordé un sourire si... particulier ?</p>
+                                
+                                <p>Mais attendez, car la nuit n'avait pas fini de nous réserver ses surprises. Plus tard dans la soirée, le célèbre peintre Toulouse-Lautrec a été aperçu dans les rues de Pigalle — oui, vous avez bien lu, Pigalle — dans un état qui a alarmé ceux qui l'ont reconnu. "Il marchait avec difficulté, son visage était pâle, presque livide", nous a déclaré un passant. "Ce n'était certainement pas le Toulouse-Lautrec que nous connaissons."</p>
+                                
+                                <p>Les rumeurs circulent déjà avec une rapidité remarquable. Certains murmurent que le peintre aurait été vu en compagnie de personnes... disons, suspectes. D'autres suggèrent qu'il pourrait être en proie à des problèmes de santé ou personnels — et nous savons tous ce que cela signifie, n'est-ce pas ? Y a-t-il un lien entre cette mystérieuse photographe au Louvre et l'état troublant de notre cher peintre à Pigalle ? Ou s'agit-il simplement de coïncidences dans une nuit parisienne particulièrement mouvementée ?</p>
+                                
+                                <p>Nous ne pouvons que spéculer. Mais dans les salons de la Belle Époque, où chaque geste est observé et chaque rumeur amplifiée avec un plaisir non dissimulé, ces mystères nocturnes continuent de fasciner. Seul le temps — et peut-être quelques indiscrétions bien placées — nous dira si ces événements sont liés. En attendant, nous continuerons d'observer et de rapporter à nos chers lecteurs tout ce qui mérite d'être su... ou supposé.</p>
+                            </div>
+                            
+                            <div class="secondary-text lang-es">
+                                <p>París, 26 de Marzo — ¡Qué noche, queridos lectores! La noche de ayer estuvo marcada por dos eventos que no dejarán de alimentar las conversaciones en los salones más distinguidos. Mientras el Comité de las Luces se reunía en las salas privadas del Louvre — y qué decir de esta reunión secreta, ¿verdad? —, nuestros observadores más atentos notaron un momento de lo más intrigante.</p>
+                                
+                                <p>Cléa Dessendre, esa talentosa pintora que hereda tan elegantemente el prestigioso nombre de su madre, fue vista intercambiando una sonrisa con una fotógrafa cuya identidad permanece un misterio completo. ¡Pero qué sonrisa, amigos míos! "Era una sonrisa diferente", nos confió un observador discreto. "No esa sonrisa cortés que suele ofrecer a los invitados, sino algo más... auténtico. Como si se conocieran íntimamente, o como si algo significativo — y quizás incluso escandaloso — pasara entre ellas." Ninguno de los miembros presentes parece reconocerla, y no aparece en ningún registro oficial. ¿Quién es, entonces? ¿Y por qué Cléa, tan reservada habitualmente, le concedió una sonrisa tan... particular?</p>
+                                
+                                <p>Pero esperen, porque la noche no había terminado de reservarnos sus sorpresas. Más tarde en la velada, el célebre pintor Toulouse-Lautrec fue visto en las calles de Pigalle — sí, han leído bien, Pigalle — en un estado que alarmó a quienes lo reconocieron. "Caminaba con dificultad, su rostro estaba pálido, casi lívido", nos declaró un transeúnte. "Ciertamente no era el Toulouse-Lautrec que conocemos."</p>
+                                
+                                <p>Los rumores ya circulan con una rapidez notable. Algunos murmuran que el pintor habría sido visto en compañía de personas... digamos, sospechosas. Otros sugieren que podría estar presa de problemas de salud o personales — y todos sabemos lo que eso significa, ¿verdad? ¿Hay un vínculo entre esta misteriosa fotógrafa del Louvre y el estado inquietante de nuestro querido pintor en Pigalle? ¿O se trata simplemente de coincidencias en una noche parisina particularmente movida?</p>
+                                
+                                <p>Nosotros solo podemos especular. Pero en los salones de la Belle Époque, donde cada gesto es observado y cada rumor amplificado con un placer no disimulado, estos misterios nocturnos continúan fascinando. Solo el tiempo — y quizás algunas indiscreciones bien colocadas — nos dirá si estos eventos están relacionados. Mientras tanto, continuaremos observando y reportando a nuestros queridos lectores todo lo que merece ser sabido... o supuesto.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="secondary-article">
+                            <h3 class="secondary-title lang-fr">Élodie Lecat : La Voix qui a Ému Aline Dessendre</h3>
+                            <h3 class="secondary-title lang-es">Élodie Lecat: La Voz que Conmovió a Aline Dessendre</h3>
+                            
+                            <div class="secondary-text lang-fr">
+                                <p>Paris, 26 Mars — Mais parlons maintenant d'un moment qui a, disons-le, ému plus qu'un cœur hier soir au Louvre. Parmi les moments les plus remarquables de la réunion du Comité des Lumières, l'intervention musicale d'Élodie Lecat a particulièrement marqué les esprits — et nous ne parlons pas seulement de son talent vocal, mes chers lecteurs.</p>
+                                
+                                <p>Cette jeune cantante, invitée à interpréter quelques morceaux lors de la formation du comité, a su toucher les cœurs de tous les présents. Mais c'est la réaction d'une personne en particulier qui a retenu notre attention : Aline Dessendre elle-même. Oui, vous avez bien lu. La grande dame de l'art parisien, connue pour sa réserve et sa dignité inébranlable, a été vue — et nous insistons sur ce point — essuyant une larme discrète pendant la performance. Une larme, mes amis ! Venant d'une femme si maîtresse d'elle-même, ce geste n'a pas manqué d'être remarqué par nos observateurs les plus attentifs.</p>
+                                
+                                <p>"Il y avait quelque chose dans la voix d'Élodie qui touchait à l'âme", nous a confié un invité. "Sa voix transcende les mots — elle ne chante pas seulement, elle raconte des histoires avec chaque note." Et voir Aline Dessendre, cette figure si imposante de notre monde artistique, émue de cette manière... cela en dit long, n'est-ce pas ?</p>
+                                
+                                <p>Élodie Lecat, dont le nom commence déjà à circuler dans nos cercles artistiques — et nous savons tous comment ces choses fonctionnent —, semble avoir fait une impression durable. Certains murmurent qu'elle pourrait être invitée à se produire dans d'autres événements prestigieux. Mais la question qui brûle les lèvres de tous est : pourquoi cette voix a-t-elle touché si profondément Aline Dessendre ? Y a-t-il une histoire derrière cette émotion ? Nous, bien sûr, ne pouvons que spéculer... mais dans un monde où l'art et les secrets se mêlent si intimement, cette jeune cantante représente certainement une nouvelle voix à surveiller de près.</p>
+                            </div>
+                            
+                            <div class="secondary-text lang-es">
+                                <p>París, 26 de Marzo — Pero hablemos ahora de un momento que, digámoslo, conmovió más que un corazón anoche en el Louvre. Entre los momentos más notables de la reunión del Comité de las Luces, la intervención musical de Élodie Lecat marcó particularmente los espíritus — y no hablamos solo de su talento vocal, queridos lectores.</p>
+                                
+                                <p>Esta joven cantante, invitada a interpretar algunas piezas durante la formación del comité, supo tocar los corazones de todos los presentes. Pero es la reacción de una persona en particular la que llamó nuestra atención: la propia Aline Dessendre. Sí, han leído bien. La gran dama del arte parisino, conocida por su reserva y dignidad inquebrantable, fue vista — y insistimos en este punto — enjugando una lágrima discreta durante la actuación. ¡Una lágrima, amigos míos! Viniendo de una mujer tan dueña de sí misma, este gesto no pasó desapercibido para nuestros observadores más atentos.</p>
+                                
+                                <p>"Había algo en la voz de Élodie que tocaba el alma", nos confió un invitado. "Su voz trasciende las palabras — no solo canta, cuenta historias con cada nota." Y ver a Aline Dessendre, esta figura tan imponente de nuestro mundo artístico, conmovida de esta manera... eso dice mucho, ¿verdad?</p>
+                                
+                                <p>Élodie Lecat, cuyo nombre ya comienza a circular en nuestros círculos artísticos — y todos sabemos cómo funcionan estas cosas —, parece haber causado una impresión duradera. Algunos murmuran que podría ser invitada a actuar en otros eventos prestigiosos. Pero la pregunta que quema los labios de todos es: ¿por qué esta voz tocó tan profundamente a Aline Dessendre? ¿Hay una historia detrás de esta emoción? Nosotros, por supuesto, solo podemos especular... pero en un mundo donde el arte y los secretos se entrelazan tan íntimamente, esta joven cantante representa ciertamente una nueva voz a seguir de cerca.</p>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
             
@@ -665,7 +887,142 @@
                         <p><strong>• Sociedad:</strong> Los salones parisinos continúan bullendo de rumores sobre las investigaciones en curso.</p>
                     </div>
                 </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Formation du Comité des Lumières au Louvre :</strong><br>H. Dubois</p>
+                        <p><strong>Tragédie Littéraire : Alphonse Allais Trouvé Mort :</strong><br>M. Lefebvre</p>
+                        <p><strong>Jules Verne : Un Adieu à l'Imagination :</strong><br>L. Moreau</p>
+                        <p><strong>Nuit Mystérieuse : Entre le Louvre et Pigalle :</strong><br>La Fleuriste</p>
+                        <p><strong>Élodie Lecat : La Voix qui a Ému Aline Dessendre :</strong><br>La Fleuriste</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Formación del Comité de las Luces en el Louvre :</strong><br>H. Dubois</p>
+                        <p><strong>Tragedia Literaria: Alphonse Allais Hallado Muerto :</strong><br>M. Lefebvre</p>
+                        <p><strong>Jules Verne: Un Adiós a la Imaginación :</strong><br>L. Moreau</p>
+                        <p><strong>Noche Misteriosa: Entre el Louvre y Pigalle :</strong><br>La Florista</p>
+                        <p><strong>Élodie Lecat: La Voz que Conmovió a Aline Dessendre :</strong><br>La Florista</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <!-- RANKING DE SOLTEROS - COTILLEOS -->
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Potins & Cancans : Les Célibataires à Suivre</h3>
+                    <h3 class="sidebar-title lang-es">Cotilleos y Chismes: Los Solteros a Seguir</h3>
+                    
+                    <ul class="gossip-list">
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/andré_lèfevre.png" alt="André Lèfevre" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">André Lèfevre</div>
+                                <div class="gossip-name lang-es">André Lèfevre</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Qui ne connaît pas ce bel acteur ?</em> Tous les cœurs de Paris battent pour lui, et nous ne pouvons que comprendre pourquoi. On murmure qu'il a refusé trois propositions de mariage ce mois-ci — mais qui pourrait résister à un tel charme ?
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>¿Quién no conoce a este guapo actor?</em> Todos los corazones de París laten por él, y no podemos más que entender por qué. Se murmura que ha rechazado tres propuestas de matrimonio este mes — pero ¿quién podría resistirse a tal encanto?
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/clea_dessendre.png" alt="Cléa Dessendre" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Cléa Dessendre</div>
+                                <div class="gossip-name lang-es">Cléa Dessendre</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Héritière d'un nom illustre</em>, cette artiste talentueuse fait tourner bien des têtes. On dit qu'elle possède non seulement le pinceau de sa mère, mais aussi un don remarquable pour la sculpture. Une femme à surveiller, assurément.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Heredera de un nombre ilustre</em>, esta artista talentosa hace girar más de una cabeza. Se dice que posee no solo el pincel de su madre, sino también un don notable para la escultura. Una mujer a seguir, sin duda.
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/simon_latour.png" alt="Simon Latour" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Simon Latour</div>
+                                <div class="gossip-name lang-es">Simon Latour</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Ce sculpteur aux épaules imposantes</em> ne passe pas inaperçu. Spécialisé dans les figures colossales, on raconte qu'il travaille avec une force qui défie l'entendement. Certaines dames de la société ne peuvent s'empêcher de jeter un regard discret en sa direction.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Este escultor de hombros imponentes</em> no pasa desapercibido. Especializado en figuras colosales, se cuenta que trabaja con una fuerza que desafía el entendimiento. Algunas damas de la sociedad no pueden evitar lanzar una mirada discreta en su dirección.
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/marine_loremant.png" alt="Marine Loremant" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Marine Loremant</div>
+                                <div class="gossip-name lang-es">Marine Loremant</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Une étoile montante</em> qui apporte une fraîcheur bienvenue dans nos cercles. Originaire d'un milieu plus modeste, elle a su conquérir les cœurs par son charme naturel. On chuchote qu'elle pourrait bientôt recevoir des commandes prestigieuses.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Una estrella emergente</em> que aporta una frescura bienvenida en nuestros círculos. Originaria de un entorno más modesto, ha sabido conquistar los corazones con su encanto natural. Se susurra que pronto podría recibir encargos prestigiosos.
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/lucile_roy.png" alt="Lucile Roy" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Lucile Roy</div>
+                                <div class="gossip-name lang-es">Lucile Roy</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Derrière son sourire timide</em> se cache une compositrice dont la musique touche l'âme. On dit que ses mélodies reflètent une profondeur mélancolique qui contraste avec son apparence joyeuse. Un mystère à découvrir.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Tras su sonrisa tímida</em> se esconde una compositora cuya música toca el alma. Se dice que sus melodías reflejan una profundidad melancólica que contrasta con su apariencia alegre. Un misterio por descubrir.
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/élodie_lecat.png" alt="Élodie Lecat" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Élodie Lecat</div>
+                                <div class="gossip-name lang-es">Élodie Lecat</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>La voix qui a ému Aline Dessendre</em> lors de la réunion du Comité des Lumières. Cette jeune cantante au talent remarquable commence à faire parler d'elle dans les cercles artistiques parisiens. Sa voix pure et émotionnelle semble toucher les âmes les plus réservées.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>La voz que conmovió a Aline Dessendre</em> durante la reunión del Comité de las Luces. Esta joven cantante de talento notable comienza a dar que hablar en los círculos artísticos parisinos. Su voz pura y emocional parece tocar las almas más reservadas.
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
             </aside>
+        </div>
+    </div>
+    
+    <!-- MODAL PARA IMÁGENES -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="">
         </div>
     </div>
     
@@ -686,6 +1043,29 @@
             const savedLanguage = localStorage.getItem('newspaperLanguage');
             if (savedLanguage === 'es') {
                 document.body.classList.add('spanish');
+            }
+        });
+        
+        // Funciones para el modal de imágenes
+        function openImageModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+        }
+        
+        function closeImageModal(event) {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restaurar scroll del body
+        }
+        
+        // Cerrar modal con la tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
             }
         });
     </script>
