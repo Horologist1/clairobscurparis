@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Nouveau - Belle Époque</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #f4e8d0;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        /* CONTENEDOR DE NAVEGACIÓN DE FECHAS */
+        .date-navigation {
+            width: 200px;
+            background: #faf7f0;
+            border: 3px double #2c2416;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        
+        .date-navigation h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c2416;
+            padding-bottom: 10px;
+        }
+        
+        .date-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .date-item {
+            margin-bottom: 15px;
+        }
+        
+        .date-link {
+            display: block;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #2c2416;
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #f4e8d0;
+        }
+        
+        .date-link:hover {
+            background: #e8d5b7;
+            border-color: #8b7355;
+            transform: translateX(5px);
+        }
+        
+        .date-link.active {
+            background: #8b7355;
+            color: #faf7f0;
+            border-color: #2c2416;
+            font-weight: 600;
+        }
+        
+        .date-link.active:hover {
+            background: #6b5a47;
+            transform: none;
+        }
+        
+        .newspaper-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #faf7f0;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            padding: 40px;
+            border: 3px double #2c2416;
+            flex: 1;
+        }
+        
+        /* CABECERA DEL PERIÓDICO */
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 4px double #2c2416;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .ornamental-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        
+        .ornamental-line::before,
+        .ornamental-line::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #2c2416, transparent);
+        }
+        
+        .ornamental-symbol {
+            margin: 0 15px;
+            font-size: 20px;
+            color: #8b7355;
+        }
+        
+        .newspaper-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            color: #2c2416;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin: 15px 0;
+            text-shadow: 2px 2px 0px rgba(139, 115, 85, 0.3);
+        }
+        
+        .newspaper-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #5a4a3a;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .newspaper-date {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            color: #5a4a3a;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+        
+        /* ESTRUCTURA DEL CONTENIDO */
+        .newspaper-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        /* COLUMNA IZQUIERDA */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* ARTÍCULO PRINCIPAL */
+        .main-article {
+            border-bottom: 3px double #2c2416;
+            padding-bottom: 25px;
+        }
+        
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #2c2416;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .article-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .article-image {
+            width: 100%;
+            height: auto;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .main-article .article-image {
+            aspect-ratio: 16/9;
+            min-height: 400px;
+        }
+        
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .article-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.8;
+            column-count: 2;
+            column-gap: 30px;
+            hyphens: auto;
+        }
+        
+        .article-text::first-letter {
+            font-size: 72px;
+            font-weight: bold;
+            float: left;
+            line-height: 0.8;
+            margin: 5px 8px 0 0;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* ARTÍCULOS SECUNDARIOS */
+        .secondary-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .secondary-article {
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 20px;
+        }
+        
+        .secondary-article:last-child {
+            border-bottom: none;
+        }
+        
+        .secondary-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2c2416;
+            padding-bottom: 5px;
+        }
+        
+        .secondary-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+        
+        /* IMAGEN CUADRADA ENTRE ARTÍCULOS */
+        .square-image-container {
+            margin: 20px 0;
+        }
+        
+        .square-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border: 3px solid #2c2416;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .square-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* COLUMNA DERECHA */
+        .right-column {
+            border-left: 3px double #2c2416;
+            padding-left: 25px;
+        }
+        
+        .sidebar-article {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 10px 0;
+        }
+        
+        .vertical-image {
+            width: 100%;
+            aspect-ratio: 9/16;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .vertical-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .sidebar-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+        
+        /* DECORACIONES TIPOGRÁFICAS */
+        .typographic-ornament {
+            text-align: center;
+            font-size: 24px;
+            color: #8b7355;
+            margin: 20px 0;
+            letter-spacing: 10px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .date-navigation {
+                width: 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .newspaper-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .right-column {
+                border-left: none;
+                border-top: 3px double #2c2416;
+                padding-left: 0;
+                padding-top: 25px;
+            }
+            
+            .article-text {
+                column-count: 1;
+            }
+            
+            .newspaper-title {
+                font-size: 48px;
+            }
+        }
+        
+        /* EFECTOS DE PAPEL ENVEJECIDO */
+        .newspaper-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 115, 85, 0.03) 2px,
+                    rgba(139, 115, 85, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+        
+        .newspaper-container {
+            position: relative;
+        }
+        
+        /* Placeholder de imagen */
+        img.placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* BOTÓN DE TRADUCCIÓN */
+        .translate-button {
+            width: 35px;
+            height: 35px;
+            background: rgba(44, 36, 22, 0.1);
+            border: 2px solid rgba(139, 115, 85, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            color: #5a4a3a;
+            margin: 10px auto;
+        }
+        
+        .translate-button:hover {
+            background: rgba(139, 115, 85, 0.2);
+            border-color: #8b7355;
+            transform: scale(1.1);
+        }
+        
+        .translate-button:active {
+            transform: scale(0.95);
+        }
+        
+        .translate-button-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        /* Ocultar contenido de idioma alternativo */
+        .lang-es {
+            display: none;
+        }
+        
+        body.spanish .lang-fr {
+            display: none;
+        }
+        
+        body.spanish .lang-es {
+            display: block;
+        }
+        
+        body.spanish .lang-es.inline {
+            display: inline;
+        }
+        
+        /* ESTILOS PARA CRÓNICAS DE SOCIEDAD */
+        .society-chronicle {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+        
+        .society-chronicle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .society-note {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        /* ESTILOS PARA CARTAS AL DIRECTOR */
+        .letters-section {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+        
+        .letters-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .letter-box {
+            background-color: #f5e6d3;
+            border: 2px solid #d4c4a8;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .letter-content {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #2c2416;
+            text-align: justify;
+        }
+        
+        .letter-signature {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2416;
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        /* ESTILOS PARA COTILLEOS DE SOLTEROS */
+        .gossip-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .gossip-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #f4e8d0;
+            border: 1px solid #8b7355;
+            border-left: 3px solid #8b7355;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+        
+        .gossip-item:hover {
+            background: #e8d5b7;
+        }
+        
+        .gossip-photo {
+            width: fit-content;
+            height: fit-content;
+            border: 2px solid #2c2416;
+            padding: 1px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #d4c5b0;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        
+        .gossip-photo img {
+            width: 70px;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gossip-photo img:hover {
+            opacity: 0.8;
+        }
+        
+        /* MODAL PARA IMÁGENES */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .image-modal.active {
+            display: flex;
+        }
+        
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #2c2416;
+            padding: 10px;
+            background: #faf7f0;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            height: auto;
+            display: block;
+        }
+        
+        .image-modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: #2c2416;
+            color: #faf7f0;
+            border: 2px solid #2c2416;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+        
+        .image-modal-close:hover {
+            background: #8b7355;
+        }
+        
+        .gossip-info {
+            flex: 1;
+        }
+        
+        .gossip-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 5px;
+        }
+        
+        .gossip-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            color: #2c2416;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        
+        .gossip-text em {
+            font-style: normal;
+            font-weight: 600;
+            color: #5a4a3a;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN DE FECHAS -->
+    <nav class="date-navigation">
+        <h3 class="lang-fr">Éditions</h3>
+        <h3 class="lang-es">Ediciones</h3>
+        <ul class="date-list">
+            <li class="date-item">
+                <a href="noticias4.html" class="date-link active">
+                    <span class="lang-fr">28 Mars 1905</span>
+                    <span class="lang-es">28 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias3.html" class="date-link">
+                    <span class="lang-fr">27 Mars 1905</span>
+                    <span class="lang-es">27 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias2.html" class="date-link">
+                    <span class="lang-fr">26 Mars 1905</span>
+                    <span class="lang-es">26 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias1.html" class="date-link">
+                    <span class="lang-fr">25 Mars 1905</span>
+                    <span class="lang-es">25 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias.html" class="date-link">
+                    <span class="lang-fr">18 Mars 1905</span>
+                    <span class="lang-es">18 de Marzo</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="newspaper-container">
+        <!-- CABECERA DEL PERIÓDICO -->
+        <header class="newspaper-header">
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">❦</span>
+            </div>
+            <h1 class="newspaper-title">Paris Nouveau</h1>
+            <p class="newspaper-subtitle">Nouvelles du Monde des Arts et de la Belle Société</p>
+            <div class="translate-button-container">
+                <button class="translate-button" onclick="toggleLanguage()" title="Traducir / Translate">🔍</button>
+            </div>
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+            </div>
+            <p class="newspaper-date">Mardi, 28 Mars 1905 — Prix: 5 Centimes</p>
+        </header>
+        
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="newspaper-content">
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="left-column">
+                <!-- ARTÍCULO PRINCIPAL -->
+                <article class="main-article">
+                    <h2 class="article-title lang-fr">Réorganisation Historique du Conseil des Beaux-Arts : Nouvelles Guildes et Équilibre des Pouvoirs</h2>
+                    <h2 class="article-title lang-es">Reorganización Histórica del Consejo de las Bellas Artes: Nuevos Gremios y Equilibrio de Poderes</h2>
+                    <p class="article-subtitle lang-fr">Une nuit de débats au Palais Garnier redessine la structure du pouvoir artistique français</p>
+                    <p class="article-subtitle lang-es">Una noche de debates en el Palais Garnier redibuja la estructura del poder artístico francés</p>
+                    
+                    <div class="article-image">
+                        <img src="news/bbaa.png" alt="Conseil des Beaux-Arts" class="placeholder">
+                    </div>
+                    
+                    <div class="article-text lang-fr">
+                        <p>Dans une décision qui marquera à jamais l'histoire du Conseil des Beaux-Arts, les membres permanents ont approuvé, au cours d'une réunion nocturne extraordinaire tenue hier soir au Palais Garnier, une réorganisation majeure de la structure du pouvoir artistique en France. Les débats, qui se sont prolongés jusqu'à onze heures du soir, ont abouti à des changements sans précédent depuis la fondation du Conseil en 1795.</p>
+                        
+                        <p>Parmi les décisions les plus significatives, on retiendra que les Guildes du Cinéma et de la Photographie obtiennent chacune un siège consultatif au Conseil. Cette reconnaissance officielle marque l'entrée de ces arts émergents dans les cercles du pouvoir, bien que leur influence reste pour l'instant limitée à un rôle consultatif.</p>
+                        
+                        <p>Les Architectes, longtemps marginalisés avec seulement deux sièges consultatifs, ont obtenu un nouveau siège décisionnel, portant leur représentation à trois sièges au total. Cette décision, attendue depuis plus d'un siècle, corrige en partie l'injustice historique subie par cette guilde lors de la fondation du Conseil.</p>
+                        
+                        <p>Mais c'est sans doute l'inclusion de la Guilde du Théâtre qui constitue le changement le plus radical. Après des décennies d'exclusion, les acteurs, danseurs et artistes scéniques obtiennent enfin une représentation complète : deux sièges consultatifs et un siège décisionnel. Cette victoire, obtenue grâce à l'appui de plusieurs membres influents du Conseil, marque la fin d'une longue lutte pour la reconnaissance.</p>
+                        
+                        <p>Le Conseil des Lumières, récemment établi, obtient également un droit de vote dans les affaires du Conseil, renforçant ainsi son rôle dans la direction artistique de la nation.</p>
+                        
+                        <p>Des rumeurs persistantes circulent selon lesquelles les Artesanos auraient également été considérés pour l'inclusion, notamment grâce à un discours passionné prononcé par Thomas Rédeaux. Bien que leur inclusion formelle n'ait pas été confirmée, certains observateurs notent que cette proposition a été sérieusement débattue, ce qui constitue en soi un progrès significatif pour une guilde longtemps exclue du pouvoir.</p>
+                        
+                        <p>Les débats se poursuivent aujourd'hui même, et il est attendu que d'autres décisions importantes soient prises concernant la régulation des nouvelles techniques artistiques et la codification des pratiques émergentes. Le Conseil des Beaux-Arts se réunira également aujourd'hui pour poursuivre ses délibérations sur ces questions cruciales.</p>
+                    </div>
+                    
+                    <div class="article-text lang-es">
+                        <p>En una decisión que marcará para siempre la historia del Consejo de las Bellas Artes, los miembros permanentes aprobaron, durante una reunión nocturna extraordinaria celebrada anoche en el Palais Garnier, una reorganización mayor de la estructura del poder artístico en Francia. Los debates, que se extendieron hasta las once de la noche, dieron lugar a cambios sin precedentes desde la fundación del Consejo en 1795.</p>
+                        
+                        <p>Entre las decisiones más significativas, cabe destacar que los Gremios del Cine y de la Fotografía obtienen cada uno un asiento consultivo en el Consejo. Este reconocimiento oficial marca la entrada de estas artes emergentes en los círculos del poder, aunque su influencia permanece por ahora limitada a un papel consultivo.</p>
+                        
+                        <p>Los Arquitectos, durante mucho tiempo marginados con solo dos asientos consultivos, han obtenido un nuevo asiento decisor, elevando su representación a tres asientos en total. Esta decisión, esperada desde hace más de un siglo, corrige en parte la injusticia histórica sufrida por este gremio durante la fundación del Consejo.</p>
+                        
+                        <p>Pero es sin duda la inclusión del Gremio del Teatro la que constituye el cambio más radical. Tras décadas de exclusión, los actores, bailarines y artistas escénicos obtienen por fin una representación completa: dos asientos consultivos y un asiento decisor. Esta victoria, obtenida gracias al apoyo de varios miembros influyentes del Consejo, marca el fin de una larga lucha por el reconocimiento.</p>
+                        
+                        <p>El Consejo de las Luces, recientemente establecido, obtiene también un derecho de voto en los asuntos del Consejo, reforzando así su papel en la dirección artística de la nación.</p>
+                        
+                        <p>Circulan rumores persistentes según los cuales los Artesanos habrían sido también considerados para la inclusión, especialmente gracias a un discurso apasionado pronunciado por Thomas Rédeaux. Aunque su inclusión formal no ha sido confirmada, algunos observadores notan que esta propuesta fue seriamente debatida, lo que constituye en sí un progreso significativo para un gremio largamente excluido del poder.</p>
+                        
+                        <p>Los debates continúan hoy mismo, y se espera que otras decisiones importantes sean tomadas respecto a la regulación de las nuevas técnicas artísticas y la codificación de las prácticas emergentes. El Consejo de las Bellas Artes se reunirá también hoy para proseguir sus deliberaciones sobre estas cuestiones cruciales.</p>
+                    </div>
+                </article>
+                
+                <!-- ARTÍCULOS SECUNDARIOS -->
+                <div class="secondary-articles">
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">Incendie de la Rue des Saints-Pères : Une Victime et des Questions</h3>
+                        <h3 class="secondary-title lang-es">Incendio en la Rue des Saints-Pères: Una Víctima y Preguntas</h3>
+                        
+                        <div class="square-image-container">
+                            <div class="square-image">
+                                <img src="news/incendie.jpg" alt="Incendie rue des Saints-Pères" class="placeholder" style="object-fit: cover;">
+                            </div>
+                        </div>
+                        
+                        <p class="secondary-text lang-fr">
+                            Paris, 28 Mars — Un incendie s'est déclaré dans la nuit de lundi à mardi dans un immeuble de la rue des Saints-Pères, causant des dégâts considérables et, hélas, une victime. Les pompiers, alertés peu après minuit, ont mis plusieurs heures à maîtriser les flammes qui avaient pris possession de deux étages de l'édifice.
+                        </p>
+                        <p class="secondary-text lang-es">
+                            París, 28 de Marzo — Un incendio se declaró en la noche del lunes al martes en un edificio de la rue des Saints-Pères, causando daños considerables y, por desgracia, una víctima. Los bomberos, alertados poco después de medianoche, tardaron varias horas en controlar las llamas que se habían apoderado de dos pisos del edificio.
+                        </p>
+                        <p class="secondary-text lang-fr">
+                            Les autorités ont confirmé qu'un homme a perdu la vie dans cet incendie. Cependant, l'identité de la victime n'a pas encore été formellement établie par les autorités. Cette situation inhabituelle s'explique par le fait que le corps, gravement carbonisé, rend l'identification difficile. Les enquêteurs travaillent actuellement à déterminer l'identité de la victime par d'autres moyens.
+                        </p>
+                        <p class="secondary-text lang-es">
+                            Las autoridades han confirmado que un hombre perdió la vida en este incendio. Sin embargo, la identidad de la víctima aún no ha sido formalmente establecida por las autoridades. Esta situación inusual se explica por el hecho de que el cuerpo, gravemente carbonizado, dificulta la identificación. Los investigadores trabajan actualmente para determinar la identidad de la víctima por otros medios.
+                        </p>
+                        <p class="secondary-text lang-fr">
+                            Dans un développement qui n'a pas manqué d'attirer l'attention, des rumeurs circulent selon lesquelles la victime pourrait être Anatole France, le distingué membre du Conseil des Beaux-Arts et de l'Académie Française. Ces spéculations sont alimentées par le fait que M. France n'a pas été vu depuis trois jours, et que son domicile se trouve à proximité de la rue des Saints-Pères. Cependant, ni la famille ni les autorités n'ont confirmé ces rumeurs, et il est prudent d'attendre une déclaration officielle avant de tirer des conclusions.
+                        </p>
+                        <p class="secondary-text lang-es">
+                            En un desarrollo que no ha dejado de llamar la atención, circulan rumores según los cuales la víctima podría ser Anatole France, el distinguido miembro del Consejo de las Bellas Artes y de la Academia Francesa. Estas especulaciones se alimentan por el hecho de que el Sr. France no ha sido visto desde hace tres días, y que su domicilio se encuentra cerca de la rue des Saints-Pères. Sin embargo, ni la familia ni las autoridades han confirmado estos rumores, y es prudente esperar una declaración oficial antes de sacar conclusiones.
+                        </p>
+                        <p class="secondary-text lang-fr">
+                            L'enquête sur les causes de l'incendie se poursuit. Les premiers éléments suggèrent qu'il pourrait s'agir d'un accident, peut-être lié à un problème électrique ou à une cheminée mal entretenue. Cependant, les autorités n'excluent aucune hypothèse et mènent une enquête approfondie pour déterminer les circonstances exactes de cette tragédie.
+                        </p>
+                        <p class="secondary-text lang-es">
+                            La investigación sobre las causas del incendio continúa. Los primeros elementos sugieren que podría tratarse de un accidente, quizás relacionado con un problema eléctrico o una chimenea mal mantenida. Sin embargo, las autoridades no excluyen ninguna hipótesis y llevan a cabo una investigación exhaustiva para determinar las circunstancias exactas de esta tragedia.
+                        </p>
+                    </article>
+                    
+                    <div class="typographic-ornament">❦ ◆ ❦</div>
+                    
+                    <!-- CRÓNICAS DE SOCIEDAD -->
+                    <article class="society-chronicle">
+                        <h2 class="society-chronicle-title lang-fr">Chroniques de la Société</h2>
+                        <h2 class="society-chronicle-title lang-es">Crónicas de Sociedad</h2>
+                        <p class="society-note lang-fr">Notes mondaines et événements de la haute société parisienne</p>
+                        <p class="society-note lang-es">Notas mundanas y acontecimientos de la alta sociedad parisina</p>
+                        
+                        <div class="secondary-article">
+                            <h3 class="secondary-title lang-fr">Une Soirée chez les Straus : La Bonne Volonté et les Jeunes Talents</h3>
+                            <h3 class="secondary-title lang-es">Una Velada en Casa de los Straus: La Buena Voluntad y los Jóvenes Talentos</h3>
+                            
+                            <div class="secondary-text lang-fr">
+                                <p>Paris, 28 Mars — Tandis que les "gros poissons" se réunissaient au Palais Garnier pour redessiner l'avenir du Conseil des Beaux-Arts, la famille Straus organisait l'une de ses célèbres réceptions, cette fois dédiée à la collecte de bonne volonté. Mes chers lecteurs, quelle soirée exquise nous avons eue !</p>
+                                
+                                <p>La demeure des Straus, toujours si élégamment décorée, a accueilli un mélange fascinant de personnalités. Les Hayman étaient présents, bien sûr, ainsi que la famille Haas et plusieurs jeunes promesses du monde de l'art. Mais ce qui a particulièrement retenu l'attention de votre chroniqueuse, c'est la présence de Marine Loremant — oui, cette jeune étoile montante que nous suivons avec tant d'intérêt — qui a été invitée pour la première fois à une fête de la haute société. Quelle ascension remarquable !</p>
+                                
+                                <p>La soirée a été marquée par plusieurs moments délicieux. Certains observateurs ont cru remarquer qu'Émile Labord tentait de courtiser Alexandra Lendemain, la plus brillante étoile de la soirée, bien qu'elle ne soit pas parmi les plus jeunes. Mais votre chroniqueuse, toujours attentive aux nuances, croit plutôt que notre cher dessinateur a simplement invité la nouvelle venue à danser pour qu'elle se sente à l'aise dans ce nouveau cercle. Un geste de gentillesse, rien de plus.</p>
+                                
+                                <p>C'est en fait Jacques Martin, l'écrivain de fiction historique spécialisé dans les aventures des dieux et demi-dieux de l'Antiquité, qui a passé le plus de temps en compagnie d'Alexandra. Leurs conversations semblaient animées, et l'on ne peut s'empêcher de se demander si leurs échanges portaient sur la mythologie ou sur des sujets plus personnels.</p>
+                                
+                                <p>Un autre moment touchant de la soirée : Lucile Roy, notre compositrice au sourire timide, semblait chercher quelqu'un du regard tout au long de la soirée. Ne trouvant apparemment pas la compagnie qu'elle espérait, elle a fini par trouver sa consolation dans les touches du piano de la demeure, ses mains caressant les notes avec une mélancolie qui n'a pas échappé aux observateurs les plus attentifs.</p>
+                                
+                                <p>Cette soirée chez les Straus nous rappelle que même lorsque les puissants se réunissent pour décider de l'avenir, la vie continue dans les salons, les cœurs battent, et les jeunes talents trouvent leur place dans le monde. Et nous, spectateurs privilégiés de ces petits drames mondains, continuerons d'observer avec un intérêt non dissimulé les développements de ces intrigues délicieuses.</p>
+                            </div>
+                            
+                            <div class="secondary-text lang-es">
+                                <p>París, 28 de Marzo — Mientras los "peces gordos" se reunían en el Palais Garnier para redibujar el futuro del Consejo de las Bellas Artes, la familia Straus organizaba una de sus famosas recepciones, esta vez dedicada a la colecta de buena voluntad. Queridos lectores, ¡qué velada exquisita hemos tenido!</p>
+                                
+                                <p>La mansión de los Straus, siempre tan elegantemente decorada, acogió una mezcla fascinante de personalidades. Los Hayman estaban presentes, por supuesto, así como la familia Haas y varias jóvenes promesas del mundo del arte. Pero lo que particularmente llamó la atención de vuestra cronista es la presencia de Marine Loremant — sí, esa joven estrella emergente que seguimos con tanto interés — que fue invitada por primera vez a una fiesta de la alta sociedad. ¡Qué ascenso notable!</p>
+                                
+                                <p>La velada estuvo marcada por varios momentos deliciosos. Algunos observadores creyeron notar que Émile Labord intentaba cortejar a Alexandra Lendemain, la estrella más brillante de la noche, aunque no fuera de las más jóvenes. Pero vuestra cronista, siempre atenta a los matices, cree más bien que nuestro querido dibujante simplemente invitó a bailar a la recién llegada para que se sintiera como en casa en este nuevo círculo. Un gesto de amabilidad, nada más.</p>
+                                
+                                <p>Fue en realidad Jacques Martin, el escritor de ficción histórica especializado en las aventuras de dioses y semidioses de la Antigüedad, quien pasó más tiempo en compañía de Alexandra. Sus conversaciones parecían animadas, y uno no puede evitar preguntarse si sus intercambios versaban sobre la mitología o sobre temas más personales.</p>
+                                
+                                <p>Otro momento conmovedor de la velada: Lucile Roy, nuestra compositora de sonrisa tímida, parecía buscar a alguien con la mirada a lo largo de la noche. Al no encontrar aparentemente la compañía que esperaba, terminó encontrando su consuelo en las teclas del piano de la mansión, sus manos acariciando las notas con una melancolía que no pasó desapercibida para los observadores más atentos.</p>
+                                
+                                <p>Esta velada en casa de los Straus nos recuerda que incluso cuando los poderosos se reúnen para decidir el futuro, la vida continúa en los salones, los corazones laten, y los jóvenes talentos encuentran su lugar en el mundo. Y nosotros, espectadores privilegiados de estos pequeños dramas mundanos, continuaremos observando con un interés no disimulado los desarrollos de estas deliciosas intrigas.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="secondary-article">
+                            <h3 class="secondary-title lang-fr">De l'Interdit</h3>
+                            <h3 class="secondary-title lang-es">De lo Prohibido</h3>
+                            
+                            <div class="secondary-text lang-fr">
+                                <p>Les fleurs, et les fleuristes, ne jugeons pas où ni comment arrive l'amour. Mais il y a ceux qui utilisent la tradition comme un outil pour marquer au fer rouge ceux qui ne cherchent que le bonheur. Ce ne sera pas cette auteure qui mettra dans une situation injustement compliquée ses célibataires les plus admirés, mais la sculpture qui s'est fait photographier, et les mémoires qui tentaient de trouver les cheveux blonds de Paris, devraient faire attention.</p>
+                            </div>
+                            
+                            <div class="secondary-text lang-es">
+                                <p>Las flores, y las floristas, no juzgamos dónde ni cómo llega el amor, pero hay quienes utilizan la tradición como herramienta para marcar con hierros candentes a quienes solo buscan la felicidad. No será esta autora quien ponga en una situación injustamente complicada a sus más admirados solteros, pero la escultura que se hizo una foto, y las memorias que intentaban encontrar los cabellos rubios de París, deberían tener cuidado.</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            
+            <!-- COLUMNA DERECHA -->
+            <aside class="right-column">
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Le Kaiser Guillaume II en Visite à Tanger</h3>
+                    <h3 class="sidebar-title lang-es">El Kaiser Guillermo II en Visita a Tánger</h3>
+                    
+                    <div class="vertical-image">
+                        <img src="news/tanger2.jpg" alt="Tanger - Visite du Kaiser" class="placeholder">
+                    </div>
+                    
+                    <div class="sidebar-text lang-fr">
+                        <p>Tanger, 28 Mars — Les répercussions de la visite inattendue de Sa Majesté l'Empereur Guillaume II à Tanger, survenue hier, continuent de générer des tensions considérables dans les cercles diplomatiques européens. La rencontre entre le souverain allemand et le sultan Abdelaziz, initialement présentée comme une simple visite de courtoisie, révèle désormais des implications bien plus profondes.</p>
+                        
+                        <p>Les observateurs les plus attentifs notent que cette visite intervient à un moment où les relations entre la France et l'Allemagne sont déjà tendues concernant l'influence respective des deux puissances au Maroc. Le discours du Kaiser, qui a affirmé le droit de l'Allemagne à être consultée sur toute question relative au statut du Maroc, a été perçu comme une provocation directe par certains membres du gouvernement français.</p>
+                        
+                        <p>Les chancelleries européennes sont en émoi. Des sources bien informées rapportent que des consultations urgentes ont été organisées entre Paris, Londres et Madrid pour coordonner une réponse à ce qui est désormais considéré comme un défi à l'influence française en Afrique du Nord. Les tensions générées par cette visite pourraient bien redessiner l'équilibre des puissances en Méditerranée occidentale.</p>
+                    </div>
+                    
+                    <div class="sidebar-text lang-es">
+                        <p>Tánger, 28 de Marzo — Las repercusiones de la visita inesperada de Su Majestad el Emperador Guillermo II a Tánger, ocurrida ayer, continúan generando tensiones considerables en los círculos diplomáticos europeos. El encuentro entre el soberano alemán y el sultán Abdelaziz, inicialmente presentado como una simple visita de cortesía, revela ahora implicaciones mucho más profundas.</p>
+                        
+                        <p>Los observadores más atentos notan que esta visita ocurre en un momento en que las relaciones entre Francia y Alemania ya están tensas respecto a la influencia respectiva de las dos potencias en Marruecos. El discurso del Kaiser, que afirmó el derecho de Alemania a ser consultada sobre toda cuestión relativa al estatus de Marruecos, ha sido percibido como una provocación directa por algunos miembros del gobierno francés.</p>
+                        
+                        <p>Las cancillerías europeas están en conmoción. Fuentes bien informadas reportan que se han organizado consultas urgentes entre París, Londres y Madrid para coordinar una respuesta a lo que ahora se considera un desafío a la influencia francesa en el Norte de África. Las tensiones generadas por esta visita podrían bien redibujar el equilibrio de las potencias en el Mediterráneo occidental.</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 16px;">
+                        <p><strong>• Obélisque Égyptien:</strong> Un obélisque antique est sur le point d'arriver d'Égypte en échange d'une peinture de Renoir. Il sera érigé sur la Place de la Concorde.</p>
+                        
+                        <p><strong>• Chez Marine:</strong> La boutique de Marine Loremant est désormais ouverte dans les Galeries Belle Époque.</p>
+                        
+                        <p><strong>• Conseil des Beaux-Arts:</strong> Le Conseil des Beaux-Arts se réunit aujourd'hui même pour poursuivre ses délibérations sur les nouvelles techniques artistiques.</p>
+                        
+                        <p><strong>• Honoré du Feu:</strong> La boulangerie de Thomas Rédeaux annonce de nouveaux macarons en édition limitée, créés spécialement pour célébrer les récentes décisions du Conseil des Beaux-Arts.</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 16px;">
+                        <p><strong>• Obelisco Egipcio:</strong> Un obelisco antiguo está a punto de llegar desde Egipto a cambio de una pintura de Renoir. Será erigido en la Place de la Concorde.</p>
+                        
+                        <p><strong>• Chez Marine:</strong> La tienda de Marine Loremant ya está abierta en las Galerías Belle Époque.</p>
+                        
+                        <p><strong>• Consejo de las Bellas Artes:</strong> El Consejo de las Bellas Artes se reúne hoy mismo para proseguir sus deliberaciones sobre las nuevas técnicas artísticas.</p>
+                        
+                        <p><strong>• Honoré du Feu:</strong> La panadería de Thomas Rédeaux anuncia nuevos macarons en edición limitada, creados especialmente para celebrar las recientes decisiones del Consejo de las Bellas Artes.</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Réorganisation Historique du Conseil des Beaux-Arts :</strong><br>H. Dubois</p>
+                        <p><strong>Incendie de la Rue des Saints-Pères : Une Victime et des Questions :</strong><br>M. Lefebvre</p>
+                        <p><strong>Le Kaiser Guillaume II en Visite à Tanger :</strong><br>P. Bernard</p>
+                        <p><strong>Une Soirée chez les Straus : La Bonne Volonté et les Jeunes Talents :</strong><br>La Fleuriste</p>
+                        <p><strong>De l'Interdit :</strong><br>La Fleuriste</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Reorganización Histórica del Consejo de las Bellas Artes :</strong><br>H. Dubois</p>
+                        <p><strong>Incendio en la Rue des Saints-Pères: Una Víctima y Preguntas :</strong><br>M. Lefebvre</p>
+                        <p><strong>El Kaiser Guillermo II en Visita a Tánger :</strong><br>P. Bernard</p>
+                        <p><strong>Una Velada en Casa de los Straus: La Buena Voluntad y los Jóvenes Talentos :</strong><br>La Florista</p>
+                        <p><strong>De lo Prohibido :</strong><br>La Florista</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <!-- RANKING DE SOLTEROS - COTILLEOS -->
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Potins & Cancans : Les Célibataires à Suivre</h3>
+                    <h3 class="sidebar-title lang-es">Cotilleos y Chismes: Los Solteros a Seguir</h3>
+                    
+                    <ul class="gossip-list">
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/thomas_rédeaux.png" alt="Thomas Rédeaux" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Thomas Rédeaux</div>
+                                <div class="gossip-name lang-es">Thomas Rédeaux</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Un artiste surprenant</em> qui a perfectionné une recette de pain au chocolat. Ce pâtissier crée de véritables œuvres d'art de douceurs et sa boulangerie familiale "Honoré du Feu", située près de la juiverie, ne désemplit jamais. On dit que ses créations sont si délicieuses qu'elles pourraient faire fondre même les cœurs les plus froids. Qui voudrait partager un petit-déjeuner avec lui ? Nous, bien sûr !
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Un artista sorprendente</em> que ha perfeccionado una receta de pain au chocolat. Este cocinero crea verdaderas obras maestras de dulces y su panadería familiar "Honoré du Feu", situada cerca de la judería, siempre está llena. Se dice que sus creaciones son tan deliciosas que podrían derretir incluso los corazones más fríos. ¿Quién querría compartir un desayuno con él? ¡Nosotras, por supuesto!
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/emile_labord.png" alt="Émile Labord" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Émile Labord</div>
+                                <div class="gossip-name lang-es">Émile Labord</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Un dessinateur talentueux</em> qui a adapté le style de Mucha et travaille des aquarelles minimalistes. Mais c'est surtout pour ses vignettes dans le journal qu'on le connaît, où il relate les aventures d'un Gaulois affrontant diverses nations. Un guerrier d'esprit qui peut me dessiner ? Écrivez à l'éditeur !
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Un dibujante talentoso</em> que ha adaptado el estilo de Mucha y trabaja acuarelas minimalistas. Pero se le conoce especialmente por sus viñetas en el periódico, que suelen relatar las aventuras de un Galo enfrentándose a distintas naciones. ¿Un guerrero de espíritu que me puede dibujar? ¡Escribe al editor!
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/clea_dessendre.png" alt="Cléa Dessendre" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Cléa Dessendre</div>
+                                <div class="gossip-name lang-es">Cléa Dessendre</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Héritière d'un nom illustre</em>, cette artiste talentueuse possède non seulement le pinceau de sa mère, mais aussi un don remarquable pour la sculpture. Son talent et son élégance naturelle font d'elle une figure remarquable dans nos cercles artistiques. Une femme dont on suivra la carrière avec grand intérêt.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Heredera de un nombre ilustre</em>, esta artista talentosa posee no solo el pincel de su madre, sino también un don notable para la escultura. Su talento y su elegancia natural la convierten en una figura destacada en nuestros círculos artísticos. Una mujer cuya carrera seguiremos con gran interés.
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/simon_latour.png" alt="Simon Latour" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Simon Latour</div>
+                                <div class="gossip-name lang-es">Simon Latour</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Ce sculpteur aux épaules imposantes</em> ne passe pas inaperçu. Spécialisé dans les figures colossales, on raconte qu'il travaille avec une force qui défie l'entendement. Certaines dames de la société ne peuvent s'empêcher de jeter un regard discret en sa direction. Qui voudrait poser pour lui ? Nous connaissons quelques volontaires...
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Este escultor de hombros imponentes</em> no pasa desapercibido. Especializado en figuras colosales, se cuenta que trabaja con una fuerza que desafía el entendimiento. Algunas damas de la sociedad no pueden evitar lanzar una mirada discreta en su dirección. ¿Quién querría posar para él? Conocemos algunas voluntarias...
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/marine_loremant.png" alt="Marine Loremant" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Marine Loremant</div>
+                                <div class="gossip-name lang-es">Marine Loremant</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Une étoile montante</em> qui apporte une fraîcheur bienvenue dans nos cercles. Originaire d'un milieu plus modeste, elle a su conquérir les cœurs par son charme naturel et son talent indéniable. Sa boutique dans les Galeries Belle Époque témoigne de son ascension remarquable. Une jeune femme à suivre avec attention.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Una estrella emergente</em> que aporta una frescura bienvenida en nuestros círculos. Originaria de un entorno más modesto, ha sabido conquistar los corazones con su encanto natural y su talento indudable. Su boutique en las Galerías Belle Époque da fe de su ascenso notable. Una joven mujer a seguir con atención.
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/lucile_roy.png" alt="Lucile Roy" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Lucile Roy</div>
+                                <div class="gossip-name lang-es">Lucile Roy</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Derrière son sourire timide</em> se cache une compositrice dont la musique touche l'âme. Ses mélodies reflètent une profondeur mélancolique qui contraste avec son apparence joyeuse, révélant une artiste d'une sensibilité remarquable. Son talent musical mérite toute notre attention.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Tras su sonrisa tímida</em> se esconde una compositora cuya música toca el alma. Sus melodías reflejan una profundidad melancólica que contrasta con su apariencia alegre, revelando una artista de una sensibilidad notable. Su talento musical merece toda nuestra atención.
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/élodie_lecat.png" alt="Élodie Lecat" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Élodie Lecat</div>
+                                <div class="gossip-name lang-es">Élodie Lecat</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>La voix qui a ému Aline Dessendre</em> lors de la réunion du Comité des Lumières. Cette jeune cantante au talent remarquable commence à faire parler d'elle dans les cercles artistiques parisiens. Sa voix pure et émotionnelle révèle un don exceptionnel qui promet une belle carrière.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>La voz que conmovió a Aline Dessendre</em> durante la reunión del Comité de las Luces. Esta joven cantante de talento notable comienza a dar que hablar en los círculos artísticos parisinos. Su voz pura y emocional revela un don excepcional que promete una bella carrera.
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/jacques_martin.png" alt="Jacques Martin" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Jacques Martin</div>
+                                <div class="gossip-name lang-es">Jacques Martin</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Un écrivain de fiction historique</em> spécialisé dans l'art de relier les aventures des dieux et demi-dieux de l'Antiquité aux légendes qu'ont inspirées leurs statues vivantes. Son œuvre tisse des liens fascinants entre la mythologie classique et les récits qui ont façonné notre imaginaire. Un esprit érudit qui sait donner vie aux anciens mythes. Plus d'une dizaine de lectrices ont écrit à l'éditeur pour lui demander des épopées près du foyer. Quelle indécence !
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Un escritor de ficción histórica</em> especialista en el arte de atar las aventuras de dioses y semidioses de la Antigüedad a las leyendas que protagonizaron sus estatuas vivas. Su obra teje vínculos fascinantes entre la mitología clásica y los relatos que han moldeado nuestro imaginario. Una mente erudita que sabe dar vida a los antiguos mitos. Más de una decena de lectoras han escrito al editor pidiéndole epopeyas cerca de la hoguera. ¡Qué indecencia!
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/alexandra_lendemain.png" alt="Alexandra Lendemain" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Alexandra Lendemain</div>
+                                <div class="gossip-name lang-es">Alexandra Lendemain</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Une actrice remarquable</em> particulièrement reconnue pour son interprétation de "Le Rossignol" dans Chantecler au Théâtre Italien. On raconte qu'Edmond Rostand fut si impressionné par son talent qu'il remplaça l'actrice qu'il avait initialement prévue pour le rôle, Marthe Mellot, pour lui offrir cette opportunité. Une étoile montante dont la carrière promet d'être brillante.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Una actriz notable</em> especialmente reconocida por su interpretación de "Le Rossignol" en la obra Chantecler en el Teatro Italiano. Se dice que Edmond Rostand quedó tan impresionado con su talento que cambió a la actriz que tenía pensada para el papel, Marthe Mellot, para ofrecerle esta oportunidad. Una estrella emergente cuya carrera promete ser brillante.
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
+            </aside>
+        </div>
+    </div>
+    
+    <!-- MODAL PARA IMÁGENES -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+    
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('spanish');
+            
+            // Guardar preferencia en localStorage
+            if (document.body.classList.contains('spanish')) {
+                localStorage.setItem('newspaperLanguage', 'es');
+            } else {
+                localStorage.setItem('newspaperLanguage', 'fr');
+            }
+        }
+        
+        // Cargar preferencia al cargar la página
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('newspaperLanguage');
+            if (savedLanguage === 'es') {
+                document.body.classList.add('spanish');
+            }
+        });
+        
+        // Funciones para el modal de imágenes
+        function openImageModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+        }
+        
+        function closeImageModal(event) {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restaurar scroll del body
+        }
+        
+        // Cerrar modal con la tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    </script>
+</body>
+</html>
+
