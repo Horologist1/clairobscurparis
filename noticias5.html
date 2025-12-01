@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Nouveau - Belle Époque</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #f4e8d0;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        /* CONTENEDOR DE NAVEGACIÓN DE FECHAS */
+        .date-navigation {
+            width: 200px;
+            background: #faf7f0;
+            border: 3px double #2c2416;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        
+        .date-navigation h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c2416;
+            padding-bottom: 10px;
+        }
+        
+        .date-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .date-item {
+            margin-bottom: 15px;
+        }
+        
+        .date-link {
+            display: block;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #2c2416;
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #f4e8d0;
+        }
+        
+        .date-link:hover {
+            background: #e8d5b7;
+            border-color: #8b7355;
+            transform: translateX(5px);
+        }
+        
+        .date-link.active {
+            background: #8b7355;
+            color: #faf7f0;
+            border-color: #2c2416;
+            font-weight: 600;
+        }
+        
+        .date-link.active:hover {
+            background: #6b5a47;
+            transform: none;
+        }
+        
+        .newspaper-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #faf7f0;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            padding: 40px;
+            border: 3px double #2c2416;
+            flex: 1;
+        }
+        
+        /* CABECERA DEL PERIÓDICO */
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 4px double #2c2416;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .ornamental-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        
+        .ornamental-line::before,
+        .ornamental-line::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #2c2416, transparent);
+        }
+        
+        .ornamental-symbol {
+            margin: 0 15px;
+            font-size: 20px;
+            color: #8b7355;
+        }
+        
+        .newspaper-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            color: #2c2416;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin: 15px 0;
+            text-shadow: 2px 2px 0px rgba(139, 115, 85, 0.3);
+        }
+        
+        .newspaper-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #5a4a3a;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .newspaper-date {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            color: #5a4a3a;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+        
+        /* ESTRUCTURA DEL CONTENIDO */
+        .newspaper-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        /* COLUMNA IZQUIERDA */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* ARTÍCULO PRINCIPAL */
+        .main-article {
+            border-bottom: 3px double #2c2416;
+            padding-bottom: 25px;
+        }
+        
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #2c2416;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .article-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .article-image {
+            width: 100%;
+            height: auto;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .main-article .article-image {
+            aspect-ratio: 16/9;
+            min-height: 400px;
+        }
+        
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .article-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.8;
+            column-count: 2;
+            column-gap: 30px;
+            hyphens: auto;
+        }
+        
+        .article-text::first-letter {
+            font-size: 72px;
+            font-weight: bold;
+            float: left;
+            line-height: 0.8;
+            margin: 5px 8px 0 0;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* ARTÍCULOS SECUNDARIOS */
+        .secondary-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .secondary-article {
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 20px;
+        }
+        
+        .secondary-article:last-child {
+            border-bottom: none;
+        }
+        
+        .secondary-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2c2416;
+            padding-bottom: 5px;
+        }
+        
+        .secondary-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+        
+        /* IMAGEN CUADRADA ENTRE ARTÍCULOS */
+        .square-image-container {
+            margin: 20px 0;
+        }
+        
+        .square-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border: 3px solid #2c2416;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .square-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* COLUMNA DERECHA */
+        .right-column {
+            border-left: 3px double #2c2416;
+            padding-left: 25px;
+        }
+        
+        .sidebar-article {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 10px 0;
+        }
+        
+        .vertical-image {
+            width: 100%;
+            aspect-ratio: 9/16;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .vertical-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .sidebar-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+        
+        /* DECORACIONES TIPOGRÁFICAS */
+        .typographic-ornament {
+            text-align: center;
+            font-size: 24px;
+            color: #8b7355;
+            margin: 20px 0;
+            letter-spacing: 10px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .date-navigation {
+                width: 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .newspaper-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .right-column {
+                border-left: none;
+                border-top: 3px double #2c2416;
+                padding-left: 0;
+                padding-top: 25px;
+            }
+            
+            .article-text {
+                column-count: 1;
+            }
+            
+            .newspaper-title {
+                font-size: 48px;
+            }
+        }
+        
+        /* EFECTOS DE PAPEL ENVEJECIDO */
+        .newspaper-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 115, 85, 0.03) 2px,
+                    rgba(139, 115, 85, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+        
+        .newspaper-container {
+            position: relative;
+        }
+        
+        /* Placeholder de imagen */
+        img.placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* BOTÓN DE TRADUCCIÓN */
+        .translate-button {
+            width: 35px;
+            height: 35px;
+            background: rgba(44, 36, 22, 0.1);
+            border: 2px solid rgba(139, 115, 85, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            color: #5a4a3a;
+            margin: 10px auto;
+        }
+        
+        .translate-button:hover {
+            background: rgba(139, 115, 85, 0.2);
+            border-color: #8b7355;
+            transform: scale(1.1);
+        }
+        
+        .translate-button:active {
+            transform: scale(0.95);
+        }
+        
+        .translate-button-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        /* Ocultar contenido de idioma alternativo */
+        .lang-es {
+            display: none;
+        }
+        
+        body.spanish .lang-fr {
+            display: none;
+        }
+        
+        body.spanish .lang-es {
+            display: block;
+        }
+        
+        body.spanish .lang-es.inline {
+            display: inline;
+        }
+        
+        /* ESTILOS PARA CRÓNICAS DE SOCIEDAD */
+        .society-chronicle {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+        
+        .society-chronicle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .society-note {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        /* ESTILOS PARA CARTAS AL DIRECTOR */
+        .letters-section {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+        
+        .letters-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .letter-box {
+            background-color: #f5e6d3;
+            border: 2px solid #d4c4a8;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .letter-content {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #2c2416;
+            text-align: justify;
+        }
+        
+        .letter-signature {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2416;
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        /* ESTILOS PARA COTILLEOS DE SOLTEROS */
+        .gossip-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .gossip-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #f4e8d0;
+            border: 1px solid #8b7355;
+            border-left: 3px solid #8b7355;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+        
+        .gossip-item:hover {
+            background: #e8d5b7;
+        }
+        
+        .gossip-photo {
+            width: fit-content;
+            height: fit-content;
+            border: 2px solid #2c2416;
+            padding: 1px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #d4c5b0;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        
+        .gossip-photo img {
+            width: 70px;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gossip-photo img:hover {
+            opacity: 0.8;
+        }
+        
+        /* MODAL PARA IMÁGENES */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .image-modal.active {
+            display: flex;
+        }
+        
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #2c2416;
+            padding: 10px;
+            background: #faf7f0;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            height: auto;
+            display: block;
+        }
+        
+        .image-modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: #2c2416;
+            color: #faf7f0;
+            border: 2px solid #2c2416;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+        
+        .image-modal-close:hover {
+            background: #8b7355;
+        }
+        
+        .gossip-info {
+            flex: 1;
+        }
+        
+        .gossip-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 5px;
+        }
+        
+        .gossip-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            color: #2c2416;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        
+        .gossip-text em {
+            font-style: normal;
+            font-weight: 600;
+            color: #5a4a3a;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN DE FECHAS -->
+    <nav class="date-navigation">
+        <h3 class="lang-fr">Éditions</h3>
+        <h3 class="lang-es">Ediciones</h3>
+        <ul class="date-list">
+            <li class="date-item">
+                <a href="noticias5.html" class="date-link active">
+                    <span class="lang-fr">29 Mars 1905</span>
+                    <span class="lang-es">29 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias4.html" class="date-link">
+                    <span class="lang-fr">28 Mars 1905</span>
+                    <span class="lang-es">28 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias3.html" class="date-link">
+                    <span class="lang-fr">27 Mars 1905</span>
+                    <span class="lang-es">27 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias2.html" class="date-link">
+                    <span class="lang-fr">26 Mars 1905</span>
+                    <span class="lang-es">26 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias1.html" class="date-link">
+                    <span class="lang-fr">25 Mars 1905</span>
+                    <span class="lang-es">25 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias.html" class="date-link">
+                    <span class="lang-fr">18 Mars 1905</span>
+                    <span class="lang-es">18 de Marzo</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="newspaper-container">
+        <!-- CABECERA DEL PERIÓDICO -->
+        <header class="newspaper-header">
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">❦</span>
+            </div>
+            <h1 class="newspaper-title">Paris Nouveau</h1>
+            <p class="newspaper-subtitle">Nouvelles du Monde des Arts et de la Belle Société</p>
+            <div class="translate-button-container">
+                <button class="translate-button" onclick="toggleLanguage()" title="Traducir / Translate">🔍</button>
+            </div>
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+            </div>
+            <p class="newspaper-date">Mercredi, 29 Mars 1905 — Prix: 5 Centimes</p>
+        </header>
+        
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="newspaper-content">
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="left-column">
+                <!-- ARTÍCULO PRINCIPAL -->
+                <article class="main-article">
+                    <h2 class="article-title lang-fr">Réorganisation Historique du Conseil des Beaux-Arts (II) : La Nouvelle Structure Définitive</h2>
+                    <h2 class="article-title lang-es">Reorganización Histórica del Consejo de las Bellas Artes (II): La Nueva Estructura Definitiva</h2>
+                    <p class="article-subtitle lang-fr">Clarifications et rectifications sur la composition finale du Conseil</p>
+                    <p class="article-subtitle lang-es">Aclaraciones y rectificaciones sobre la composición final del Consejo</p>
+                    
+                    <div class="article-image">
+                        <img src="news/bbaa.png" alt="Conseil des Beaux-Arts" class="placeholder">
+                    </div>
+                    
+                    <div class="article-text lang-fr">
+                        <p>Je dois présenter mes excuses les plus sincères à nos lecteurs. Dans mon article d'hier, j'ai commis une erreur dans la description de la nouvelle structure du Conseil des Beaux-Arts. Permettez-moi de rectifier ces informations et de présenter la composition exacte telle qu'elle a été définitivement approuvée lors de la réunion nocturne du 28 mars.</p>
+                        
+                        <p>La structure finale du Conseil est la suivante : les Guildes des Peintres, des Écrivains, des Musiciens, des Sculpteurs, des Architectes, ainsi que la Guilde du Théâtre et des Arts Scéniques, possèdent chacune trois sièges avec trois votes. Cette représentation complète marque leur statut de membres permanents et décisionnels du Conseil.</p>
+                        
+                        <p>Les Guildes des Photographes, des Cinématographes et des Artisans possèdent chacune un siège, avec jusqu'à deux sièges consultatifs supplémentaires. Cette reconnaissance, bien que limitée, marque leur entrée officielle dans les cercles du pouvoir artistique français.</p>
+                        
+                        <p>Le Conseil des Lumières, récemment établi, possède également un vote dans les affaires du Conseil, renforçant ainsi son rôle dans la direction artistique de la nation.</p>
+                        
+                        <p>Après les débats de la nuit du 28 mars, cette nouvelle structure est désormais engagée dans l'investigation des nouvelles formes de création artistique et des limites que doit imposer la technique pour la sécurité des citoyens et pour éviter les imprudences. Les délibérations se poursuivent sur ces questions cruciales qui façonneront l'avenir de l'art en France.</p>
+                    </div>
+                    
+                    <div class="article-text lang-es">
+                        <p>Debo presentar mis más sinceras disculpas a nuestros lectores. En mi artículo de ayer, cometí un error en la descripción de la nueva estructura del Consejo de las Bellas Artes. Permítanme rectificar esta información y presentar la composición exacta tal como fue definitivamente aprobada durante la reunión nocturna del 28 de marzo.</p>
+                        
+                        <p>La estructura final del Consejo es la siguiente: los Gremios de Pintores, Escritores, Músicos, Escultores, Arquitectos, así como el Gremio del Teatro y las Artes Escénicas, poseen cada uno tres asientos con tres votos. Esta representación completa marca su estatus de miembros permanentes y decisorios del Consejo.</p>
+                        
+                        <p>Los Gremios de Fotógrafos, Cinematógrafos y Artesanos poseen cada uno un asiento, con hasta dos asientos consultivos adicionales. Este reconocimiento, aunque limitado, marca su entrada oficial en los círculos del poder artístico francés.</p>
+                        
+                        <p>El Consejo de las Luces, recientemente establecido, posee también un voto en los asuntos del Consejo, reforzando así su papel en la dirección artística de la nación.</p>
+                        
+                        <p>Tras los debates de la noche del 28 de marzo, esta nueva estructura está ahora comprometida en la investigación de las nuevas formas de creación artística y de los límites que debe imponer la técnica para la seguridad de los ciudadanos y para evitar las imprudencias. Las deliberaciones continúan sobre estas cuestiones cruciales que darán forma al futuro del arte en Francia.</p>
+                    </div>
+                </article>
+                
+                <!-- ARTÍCULOS SECUNDARIOS -->
+                <div class="secondary-articles">
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">L'Obélisque Arrive à Paris : Les Architectes en Alerte</h3>
+                        <h3 class="secondary-title lang-es">El Obelisco Llega a París: Los Arquitectos en Alerta</h3>
+                        
+                        <div class="square-image-container">
+                            <div class="square-image">
+                                <img src="news/concorde.jpg" alt="Place de la Concorde" class="placeholder" style="object-fit: cover;">
+                            </div>
+                        </div>
+                        
+                        <p class="secondary-text lang-fr">
+                            Paris, 29 Mars — L'obélisque égyptien, objet d'un échange diplomatique avec l'Égypte en contrepartie d'une peinture de Renoir, est enfin arrivé sur les rives de la Seine. Un équipe spécialisée d'archéologues travaille actuellement à son installation sur la Place de la Concorde, où il sera érigé dans les prochains jours.
+                        </p>
+                        <p class="secondary-text lang-es">
+                            París, 29 de Marzo — El obelisco egipcio, objeto de un intercambio diplomático con Egipto a cambio de una pintura de Renoir, ha llegado finalmente a las orillas del Sena. Un equipo especializado de arqueólogos trabaja actualmente en su instalación en la Place de la Concorde, donde será erigido en los próximos días.
+                        </p>
+                        <p class="secondary-text lang-fr">
+                            Cependant, cette installation ne se fait pas sans controverse. Les architectes du Conseil des Beaux-Arts ont exprimé leur mécontentement face à l'érection d'une pièce dont les pouvoirs n'ont pas été examinés. Plusieurs membres de la Guilde des Architectes se sont rapidement dirigés vers le lieu d'installation pour effectuer leurs propres tests et juger la pièce égyptienne avant qu'elle ne soit définitivement placée.
+                        </p>
+                        <p class="secondary-text lang-es">
+                            Sin embargo, esta instalación no se hace sin controversia. Los arquitectos del Consejo de las Bellas Artes han expresado su descontento ante la erección de una pieza cuyos poderes no han sido examinados. Varios miembros del Gremio de Arquitectos se han dirigido rápidamente hacia el lugar de instalación para realizar sus propias pruebas y juzgar la pieza egipcia antes de que sea definitivamente colocada.
+                        </p>
+                        <p class="secondary-text lang-fr">
+                            Les préoccupations des architectes portent notamment sur les propriétés mystérieuses que pourraient posséder des artefacts de cette nature, et sur les conséquences potentielles de leur installation dans un lieu aussi symbolique que la Place de la Concorde. Leurs investigations se poursuivent alors que les travaux d'installation avancent.
+                        </p>
+                        <p class="secondary-text lang-es">
+                            Las preocupaciones de los arquitectos se centran especialmente en las propiedades misteriosas que podrían poseer artefactos de esta naturaleza, y en las consecuencias potenciales de su instalación en un lugar tan simbólico como la Place de la Concorde. Sus investigaciones continúan mientras los trabajos de instalación avanzan.
+                        </p>
+                    </article>
+                    
+                    <div class="typographic-ornament">❦ ◆ ❦</div>
+                    
+                    <!-- CARTAS AL DIRECTOR -->
+                    <article class="letters-section">
+                        <h2 class="letters-section-title lang-fr">Lettres au Directeur</h2>
+                        <h2 class="letters-section-title lang-es">Cartas al Director</h2>
+                        
+                        <div class="letter-box">
+                            <h3 class="letter-title lang-fr">En Défense de la Vertu</h3>
+                            <h3 class="letter-title lang-es">En Defensa de la Virtud</h3>
+                            
+                            <div class="letter-content lang-fr">
+                                <p>Immanuel Kant, le grand philosophe éthique, décrit l'impératif catégorique comme la maxime de la morale : que chacune de nos actions soit responsable et applicable devant l'universalité de l'action humaine. Flexible et adaptable à chaque moment et lieu, dépendant de la volonté et de la conscience morale des personnes. Un pas au-delà des postulations classiques du libéralisme de Hume ou Locke, où la liberté est le bien suprême, un pas qui conclut et lie les maximes morales du stoïcisme de Marc Aurèle.</p>
+                                
+                                <p>Le bien ne peut être codifié dans une série de postulats rigides, même si ceux-ci constituent des phares valides avec lesquels créer les concepts d'une authentique conception éthique de la vie. Les chevaliers du Roi Arthur n'ont pas leur position à la Table Ronde comme résultat des lois et traditions féodales qui leur sont présupposées, mais par les vertus et défauts qu'ils incarnent et les histoires qui en découlent. Gesta et erreurs qui cherchent à éduquer et former cette conscience de ce qui est correct que chacun doit avoir en son intérieur.</p>
+                                
+                                <p>Et je crains qu'en ces temps d'avancée technologique sans précédent, où l'empire de la raison utilitaire s'élève d'est en ouest, le temps de la vertu soit passé ; rejetée, comme quelque chose d'inconfortable, obsolète et ancien. Alors qu'elle est, au contraire, la boussole qui devrait guider chaque action, chaque pas et chaque geste. Être un chevalier ou une dame est quelque chose qui surgit de l'usage vertueux et judicieux de la liberté, de la créativité, depuis l'intérieur de chacun. Les lois, normes et conditions ne sont rien de plus, en fin de compte, que des guides punitifs pour ceux qui n'ont pas l'audace et le courage d'aspirer à être vertueux.</p>
+                            </div>
+                            
+                            <div class="letter-content lang-es">
+                                <p>Immanuel Kant, el gran filósofo ético, describe el imperativo categórico como la máxima de la moral: que cada una de nuestras acciones sea responsable y aplicable ante la universalidad de la acción humana. Flexible y adaptable a cada momento y lugar, dependiente de la voluntad y la conciencia moral de las personas. Un paso más allá de las postulaciones clásicas del liberalismo de Hume o Locke, donde la libertad es el bien mayor, un paso que concluye y ata las máximas morales del estoicismo de Marco Aurelio.</p>
+                                
+                                <p>El bien no se puede codificar en una serie de rígidos postulados, aun si estos resultan válidos faros con los que crear los conceptos de una auténtica concepción ética de la vida. Los caballeros del Rey Arturo no tienen su posición en la Tabla Redonda como resultado de las leyes y tradiciones feudales que se les presuponen, sino por las virtudes y defectos que encarnan y las historias que de ellas se derivan. Gestas y errores que buscan educar y formar esa conciencia de lo correcto que cada uno debe tener en su interior.</p>
+                                
+                                <p>Y temo que en estos tiempos de avance tecnológico sin precedente, en que el imperio de la razón utilitaria se alza de este a oeste, haya pasado el tiempo de la virtud; descartada, como algo incómodo, obsoleto y antiguo. Cuando es, al contrario, la brújula que debería guiar cada acción, cada paso y cada gesto. Ser un caballero o una dama es algo que surge del uso virtuoso y juicioso de la libertad, de la creatividad, desde el interior de cada uno. Las leyes, normas y condiciones no son más, al fin y al cabo, que guías punitivas para aquellos que no tienen la audacia y el valor de aspirar a ser virtuosos.</p>
+                            </div>
+                            
+                            <div class="letter-signature lang-fr">Sir William Shawthorn</div>
+                            <div class="letter-signature lang-es">Sir William Shawthorn</div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            
+            <!-- COLUMNA DERECHA -->
+            <aside class="right-column">
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Découverte au Port Fluvial : Un Insecte Dangereux des Amériques</h3>
+                    <h3 class="sidebar-title lang-es">Descubrimiento en el Puerto Fluvial: Un Insecto Peligroso de las Américas</h3>
+                    
+                    <div class="vertical-image">
+                        <img src="news/seine.jpg" alt="Port fluvial" class="placeholder">
+                    </div>
+                    
+                    <div class="sidebar-text lang-fr">
+                        <p>Paris, 29 Mars — Un insecte dangereux originaire des Amériques a été découvert et éliminé hier dans le port fluvial de Paris par les membres de la Guilde des Estibadores. Cette découverte a suscité une vive inquiétude et a conduit la guilde à envoyer des plaintes formelles à la compagnie propriétaire du transatlantique qui a déchargé la cargaison pour sa distribution ultérieure sur la Seine, ainsi qu'au port de New York.</p>
+                        
+                        <p>Les estibadores, qui ont rapidement identifié et neutralisé la créature, ont exprimé leur préoccupation quant aux mesures de sécurité insuffisantes lors du transport de cargaisons transatlantiques. Cette négligence pourrait avoir des conséquences graves pour la sécurité publique.</p>
+                        
+                        <p>Dans un développement significatif, Romain Crudeaux, investigateur de police, a déclaré que cette découverte apporte un éclairage nouveau sur la mort tragique d'Alphonse Allais. Bien que les détails de cette connexion n'aient pas encore été entièrement révélés, cette déclaration suggère que l'enquête sur la mort de l'écrivain pourrait prendre une nouvelle direction.</p>
+                    </div>
+                    
+                    <div class="sidebar-text lang-es">
+                        <p>París, 29 de Marzo — Un insecto peligroso originario de las Américas ha sido descubierto y eliminado ayer en el puerto fluvial de París por los miembros del Gremio de Estibadores. Este descubrimiento ha suscitado una viva inquietud y ha llevado al gremio a enviar quejas formales a la compañía propietaria del transatlántico que descargó la carga para su distribución posterior en el Sena, así como al puerto de Nueva York.</p>
+                        
+                        <p>Los estibadores, que rápidamente identificaron y neutralizaron la criatura, han expresado su preocupación respecto a las medidas de seguridad insuficientes durante el transporte de cargas transatlánticas. Esta negligencia podría tener consecuencias graves para la seguridad pública.</p>
+                        
+                        <p>En un desarrollo significativo, Romain Crudeaux, investigador de policía, ha declarado que este descubrimiento arroja nueva luz sobre la muerte trágica de Alphonse Allais. Aunque los detalles de esta conexión aún no han sido completamente revelados, esta declaración sugiere que la investigación sobre la muerte del escritor podría tomar una nueva dirección.</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 16px;">
+                        <p><strong>• Galerie René Lalique:</strong> Une nouvelle exposition des œuvres de René Lalique sera présentée dans les Galeries Lafayette. Les amateurs d'art nouveau ne manqueront pas cette occasion unique d'admirer ses créations exceptionnelles.</p>
+                        
+                        <p><strong>• Honoré du Feu:</strong> La boulangerie de Thomas Rédeaux a ouvert un nouveau local dans les Galeries Belle Époque. On espère que cela réduira les longues files d'attente de la petite boulangerie située près du quartier juif.</p>
+                        
+                        <p><strong>• Mariage:</strong> Un mariage est annoncé entre Antoine Hayman et Bernadette Straus. Cette union de deux familles influentes de la haute société parisienne sera célébrée dans les prochaines semaines.</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 16px;">
+                        <p><strong>• Galería René Lalique:</strong> Una nueva exposición de las obras de René Lalique será presentada en las Galerías Lafayette. Los amantes del art nouveau no se perderán esta oportunidad única de admirar sus creaciones excepcionales.</p>
+                        
+                        <p><strong>• Honoré du Feu:</strong> La panadería de Thomas Rédeaux ha abierto un nuevo local en las Galerías Belle Époque. Se espera que esto reduzca las largas colas de la pequeña panadería situada cerca del barrio judío.</p>
+                        
+                        <p><strong>• Matrimonio:</strong> Se anuncia un matrimonio entre Antoine Hayman y Bernadette Straus. Esta unión de dos familias influyentes de la alta sociedad parisina será celebrada en las próximas semanas.</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Réorganisation Historique du Conseil des Beaux-Arts (II) : La Nouvelle Structure Définitive :</strong><br>H. Dubois</p>
+                        <p><strong>L'Obélisque Arrive à Paris : Les Architectes en Alerte :</strong><br>L. Moreau</p>
+                        <p><strong>Découverte au Port Fluvial : Un Insecte Dangereux des Amériques :</strong><br>M. Lefebvre</p>
+                        <p><strong>En Défense de la Vertu :</strong><br>Sir William Shawthorn</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Reorganización Histórica del Consejo de las Bellas Artes (II): La Nueva Estructura Definitiva :</strong><br>H. Dubois</p>
+                        <p><strong>El Obelisco Llega a París: Los Arquitectos en Alerta :</strong><br>L. Moreau</p>
+                        <p><strong>Descubrimiento en el Puerto Fluvial: Un Insecto Peligroso de las Américas :</strong><br>M. Lefebvre</p>
+                        <p><strong>En Defensa de la Virtud :</strong><br>Sir William Shawthorn</p>
+                    </div>
+                </article>
+                
+            </aside>
+        </div>
+    </div>
+    
+    <!-- MODAL PARA IMÁGENES -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+    
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('spanish');
+            
+            // Guardar preferencia en localStorage
+            if (document.body.classList.contains('spanish')) {
+                localStorage.setItem('newspaperLanguage', 'es');
+            } else {
+                localStorage.setItem('newspaperLanguage', 'fr');
+            }
+        }
+        
+        // Cargar preferencia al cargar la página
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('newspaperLanguage');
+            if (savedLanguage === 'es') {
+                document.body.classList.add('spanish');
+            }
+        });
+        
+        // Funciones para el modal de imágenes
+        function openImageModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+        }
+        
+        function closeImageModal(event) {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restaurar scroll del body
+        }
+        
+        // Cerrar modal con la tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    </script>
+</body>
+</html>
+
