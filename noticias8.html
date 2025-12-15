@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Nouveau - Belle Époque</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #f4e8d0;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        /* CONTENEDOR DE NAVEGACIÓN DE FECHAS */
+        .date-navigation {
+            width: 200px;
+            background: #faf7f0;
+            border: 3px double #2c2416;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        
+        .date-navigation h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c2416;
+            padding-bottom: 10px;
+        }
+        
+        .date-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .date-item {
+            margin-bottom: 15px;
+        }
+        
+        .date-link {
+            display: block;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #2c2416;
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #f4e8d0;
+        }
+        
+        .date-link:hover {
+            background: #e8d5b7;
+            border-color: #8b7355;
+            transform: translateX(5px);
+        }
+        
+        .date-link.active {
+            background: #8b7355;
+            color: #faf7f0;
+            border-color: #2c2416;
+            font-weight: 600;
+        }
+        
+        .date-link.active:hover {
+            background: #6b5a47;
+            transform: none;
+        }
+        
+        .newspaper-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #faf7f0;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            padding: 40px;
+            border: 3px double #2c2416;
+            flex: 1;
+        }
+        
+        /* CABECERA DEL PERIÓDICO */
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 4px double #2c2416;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .ornamental-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        
+        .ornamental-line::before,
+        .ornamental-line::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #2c2416, transparent);
+        }
+        
+        .ornamental-symbol {
+            margin: 0 15px;
+            font-size: 20px;
+            color: #8b7355;
+        }
+        
+        .newspaper-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            color: #2c2416;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin: 15px 0;
+            text-shadow: 2px 2px 0px rgba(139, 115, 85, 0.3);
+        }
+        
+        .newspaper-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #5a4a3a;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .newspaper-date {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            color: #5a4a3a;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+        
+        /* ESTRUCTURA DEL CONTENIDO */
+        .newspaper-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        /* COLUMNA IZQUIERDA */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* ARTÍCULO PRINCIPAL */
+        .main-article {
+            border-bottom: 3px double #2c2416;
+            padding-bottom: 25px;
+        }
+        
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #2c2416;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .article-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .article-image {
+            width: 100%;
+            height: auto;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .main-article .article-image {
+            aspect-ratio: 16/9;
+            min-height: 400px;
+        }
+        
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .article-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.8;
+            column-count: 2;
+            column-gap: 30px;
+            hyphens: auto;
+        }
+        
+        .article-text::first-letter {
+            font-size: 72px;
+            font-weight: bold;
+            float: left;
+            line-height: 0.8;
+            margin: 5px 8px 0 0;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* ARTÍCULOS SECUNDARIOS */
+        .secondary-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .secondary-article {
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 20px;
+        }
+        
+        .secondary-article:last-child {
+            border-bottom: none;
+        }
+        
+        .secondary-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2c2416;
+            padding-bottom: 5px;
+        }
+        
+        .secondary-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+        
+        /* IMAGEN CUADRADA ENTRE ARTÍCULOS */
+        .square-image-container {
+            margin: 20px 0;
+        }
+        
+        .square-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border: 3px solid #2c2416;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .square-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* COLUMNA DERECHA */
+        .right-column {
+            border-left: 3px double #2c2416;
+            padding-left: 25px;
+        }
+        
+        .sidebar-article {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 10px 0;
+        }
+        
+        .vertical-image {
+            width: 100%;
+            aspect-ratio: 9/16;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .vertical-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .sidebar-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+        
+        /* DECORACIONES TIPOGRÁFICAS */
+        .typographic-ornament {
+            text-align: center;
+            font-size: 24px;
+            color: #8b7355;
+            margin: 20px 0;
+            letter-spacing: 10px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .date-navigation {
+                width: 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .newspaper-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .right-column {
+                border-left: none;
+                border-top: 3px double #2c2416;
+                padding-left: 0;
+                padding-top: 25px;
+            }
+            
+            .article-text {
+                column-count: 1;
+            }
+            
+            .newspaper-title {
+                font-size: 48px;
+            }
+        }
+        
+        /* EFECTOS DE PAPEL ENVEJECIDO */
+        .newspaper-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 115, 85, 0.03) 2px,
+                    rgba(139, 115, 85, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+        
+        .newspaper-container {
+            position: relative;
+        }
+        
+        /* Placeholder de imagen */
+        img.placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* BOTÓN DE TRADUCCIÓN */
+        .translate-button {
+            width: 35px;
+            height: 35px;
+            background: rgba(44, 36, 22, 0.1);
+            border: 2px solid rgba(139, 115, 85, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            color: #5a4a3a;
+            margin: 10px auto;
+        }
+        
+        .translate-button:hover {
+            background: rgba(139, 115, 85, 0.2);
+            border-color: #8b7355;
+            transform: scale(1.1);
+        }
+        
+        .translate-button:active {
+            transform: scale(0.95);
+        }
+        
+        .translate-button-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        /* Ocultar contenido de idioma alternativo */
+        .lang-es {
+            display: none;
+        }
+        
+        body.spanish .lang-fr {
+            display: none;
+        }
+        
+        body.spanish .lang-es {
+            display: block;
+        }
+        
+        body.spanish .lang-es.inline {
+            display: inline;
+        }
+        
+        /* ESTILOS PARA CRÓNICAS DE SOCIEDAD */
+        .society-chronicle {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+        
+        .society-chronicle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .society-note {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        /* ESTILOS PARA CARTAS AL DIRECTOR */
+        .letters-section {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+        
+        .letters-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .letter-box {
+            background-color: #f5e6d3;
+            border: 2px solid #d4c4a8;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .letter-content {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #2c2416;
+            text-align: justify;
+        }
+        
+        .letter-signature {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2416;
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        /* ESTILOS PARA COTILLEOS DE SOLTEROS */
+        .gossip-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .gossip-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #f4e8d0;
+            border: 1px solid #8b7355;
+            border-left: 3px solid #8b7355;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+        
+        .gossip-item:hover {
+            background: #e8d5b7;
+        }
+        
+        .gossip-photo {
+            width: fit-content;
+            height: fit-content;
+            border: 2px solid #2c2416;
+            padding: 1px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #d4c5b0;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        
+        .gossip-photo img {
+            width: 70px;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gossip-photo img:hover {
+            opacity: 0.8;
+        }
+        
+        /* MODAL PARA IMÁGENES */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .image-modal.active {
+            display: flex;
+        }
+        
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #2c2416;
+            padding: 10px;
+            background: #faf7f0;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            height: auto;
+            display: block;
+        }
+        
+        .image-modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: #2c2416;
+            color: #faf7f0;
+            border: 2px solid #2c2416;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+        
+        .image-modal-close:hover {
+            background: #8b7355;
+        }
+        
+        .gossip-info {
+            flex: 1;
+        }
+        
+        .gossip-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 5px;
+        }
+        
+        .gossip-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            color: #2c2416;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        
+        .gossip-text em {
+            font-style: normal;
+            font-weight: 600;
+            color: #5a4a3a;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN DE FECHAS -->
+    <nav class="date-navigation">
+        <h3 class="lang-fr">Éditions</h3>
+        <h3 class="lang-es">Ediciones</h3>
+        <ul class="date-list">
+            <li class="date-item">
+                <a href="noticias8.html" class="date-link active">
+                    <span class="lang-fr">16 Mai 1905</span>
+                    <span class="lang-es">16 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias7.html" class="date-link">
+                    <span class="lang-fr">15 Mai 1905</span>
+                    <span class="lang-es">15 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias6.html" class="date-link">
+                    <span class="lang-fr">1 Avril 1905</span>
+                    <span class="lang-es">1 de Abril</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias5.html" class="date-link">
+                    <span class="lang-fr">29 Mars 1905</span>
+                    <span class="lang-es">29 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias4.html" class="date-link">
+                    <span class="lang-fr">28 Mars 1905</span>
+                    <span class="lang-es">28 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias3.html" class="date-link">
+                    <span class="lang-fr">27 Mars 1905</span>
+                    <span class="lang-es">27 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias2.html" class="date-link">
+                    <span class="lang-fr">26 Mars 1905</span>
+                    <span class="lang-es">26 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias1.html" class="date-link">
+                    <span class="lang-fr">25 Mars 1905</span>
+                    <span class="lang-es">25 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias.html" class="date-link">
+                    <span class="lang-fr">18 Mars 1905</span>
+                    <span class="lang-es">18 de Marzo</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="newspaper-container">
+        <!-- CABECERA DEL PERIÓDICO -->
+        <header class="newspaper-header">
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">❦</span>
+            </div>
+            <h1 class="newspaper-title">Paris Nouveau</h1>
+            <p class="newspaper-subtitle">Nouvelles du Monde des Arts et de la Belle Société</p>
+            <div class="translate-button-container">
+                <button class="translate-button" onclick="toggleLanguage()" title="Traducir / Translate">🔍</button>
+            </div>
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+            </div>
+            <p class="newspaper-date lang-fr">Mercredi, 16 Mai 1905 — Prix: 5 Centimes</p>
+            <p class="newspaper-date lang-es">Miércoles, 16 de Mayo de 1905 — Precio: 5 Centimes</p>
+        </header>
+        
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="newspaper-content">
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="left-column">
+                <!-- ARTÍCULO PRINCIPAL -->
+                <article class="main-article">
+                    <h2 class="article-title lang-fr">Inquiétude à Paris : La Disparition de l'Actrice Marthe Brandès</h2>
+                    <h2 class="article-title lang-es">Inquietud en París: La Desaparición de la Actriz Marthe Brandès</h2>
+                    <p class="article-subtitle lang-fr">L'actrice n'a pas été vue depuis deux jours par ses proches et ses voisins du Quartier Latin</p>
+                    <p class="article-subtitle lang-es">La actriz no ha sido vista desde hace dos días por sus familiares y vecinos del Barrio Latino</p>
+                    
+                    <div class="article-image">
+                        <img src="news/marthe.jpg" alt="Marthe Brandès" class="placeholder">
+                    </div>
+                    
+                    <div class="article-text lang-fr">
+                        <p>Paris, 16 Mai — Une inquiétude grandissante s'est emparée du Quartier Latin et des cercles artistiques parisiens depuis que l'actrice Marthe Brandès n'a pas été aperçue depuis deux jours. Ses proches, alertés par son absence inhabituelle, ont signalé sa disparition aux autorités, déclenchant une enquête policière qui mobilise désormais les forces de l'ordre.</p>
+                        
+                        <p>Selon les témoignages recueillis par notre correspondant, mademoiselle Brandès n'a pas été vue depuis dimanche dernier, ni par ses voisins du quartier, ni par ses connaissances les plus proches. Cette absence prolongée contraste fortement avec ses habitudes, elle qui était connue pour sa présence régulière dans les théâtres et les salons parisiens.</p>
+                        
+                        <p>Le commissaire Rénaud, qui s'était récemment appuyé sur le Conseil des Beaux-Arts et le Conseil des Lumières pour résoudre le mystère du Louvre, a accepté de s'exprimer sur cette affaire troublante. "Nous vivons des temps convulsifs pour la France", a-t-il déclaré, ajoutant que malgré la baisse des chiffres de criminalité à l'échelle nationale ces derniers mois, chaque disparition doit être prise au sérieux. Le commissaire a également tenu à remercier "les voix conciliatrices et pacificatrices de, entre autres, ce journal", soulignant l'importance d'un dialogue constructif entre les autorités et la presse.</p>
+                        
+                        <p>Les proches de mademoiselle Brandès, visiblement émus, ont refusé de s'exprimer en détail, préférant laisser la police mener son enquête. Cependant, certains ont mentionné que l'actrice semblait préoccupée ces derniers temps, sans pouvoir préciser la nature de ses inquiétudes. Rappelons que mademoiselle Brandès avait récemment mis fin à sa relation avec monsieur Lucien Théophile Noeud Papillon, événement qui avait fait l'objet de commentaires dans nos colonnes.</p>
+                        
+                        <p>Les autorités encouragent toute personne ayant des informations sur la disparition de mademoiselle Brandès à se manifester. L'enquête se poursuit activement, et nous suivrons cette affaire avec attention, espérant un dénouement rapide et favorable.</p>
+                    </div>
+                    
+                    <div class="article-text lang-es">
+                        <p>París, 16 de Mayo — Una inquietud creciente se ha apoderado del Barrio Latino y de los círculos artísticos parisinos desde que la actriz Marthe Brandès no ha sido vista desde hace dos días. Sus familiares, alertados por su ausencia inusual, han denunciado su desaparición a las autoridades, desencadenando una investigación policial que moviliza ahora a las fuerzas del orden.</p>
+                        
+                        <p>Según los testimonios recogidos por nuestro corresponsal, la señorita Brandès no ha sido vista desde el domingo pasado, ni por sus vecinos del barrio, ni por sus conocidos más cercanos. Esta ausencia prolongada contrasta fuertemente con sus costumbres, ella que era conocida por su presencia regular en los teatros y los salones parisinos.</p>
+                        
+                        <p>El comisario Rénaud, que se había apoyado recientemente en el Consejo de las Bellas Artes y el Consejo de las Luces para resolver el misterio del Louvre, ha aceptado expresarse sobre este asunto inquietante. "Vivimos tiempos convulsos para Francia", ha declarado, añadiendo que a pesar del descenso de las cifras de criminalidad a nivel nacional estos últimos meses, cada desaparición debe ser tomada en serio. El comisario también ha querido agradecer "las voces conciliadoras y pacificadoras de, entre otros, este periódico", subrayando la importancia de un diálogo constructivo entre las autoridades y la prensa.</p>
+                        
+                        <p>Los familiares de la señorita Brandès, visiblemente emocionados, han rechazado expresarse en detalle, prefiriendo dejar que la policía lleve a cabo su investigación. Sin embargo, algunos han mencionado que la actriz parecía preocupada últimamente, sin poder precisar la naturaleza de sus inquietudes. Recordemos que la señorita Brandès había puesto recientemente fin a su relación con el señor Lucien Théophile Noeud Papillon, acontecimiento que había sido objeto de comentarios en nuestras columnas.</p>
+                        
+                        <p>Las autoridades animan a toda persona que tenga información sobre la desaparición de la señorita Brandès a manifestarse. La investigación continúa activamente, y seguiremos este asunto con atención, esperando un desenlace rápido y favorable.</p>
+                    </div>
+                </article>
+                
+                <!-- ARTÍCULOS SECUNDARIOS -->
+                <div class="secondary-articles">
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">Victoire Ouvrière : Les Femmes de la Fabrique Retournent au Travail après Deux Semaines de Grève</h3>
+                        <h3 class="secondary-title lang-es">Victoria Obrera: Las Mujeres de la Fábrica Vuelven al Trabajo tras Dos Semanas de Huelga</h3>
+                        
+                        <div class="square-image-container">
+                            <div class="square-image">
+                                <img src="news/fabrica.jpg" alt="Fábrica textil" class="placeholder">
+                            </div>
+                        </div>
+                        
+                        <p class="secondary-text lang-fr">
+                            Paris, 16 Mai — Après deux semaines de grève qui ont paralysé une importante fabrique de textiles dans le nord de Paris, les ouvrières ont repris le travail ce matin, suite à un accord historique conclu avec la direction. Cette victoire marque un tournant significatif dans la lutte pour l'égalité salariale dans l'industrie textile française.
+                        </p>
+                        <p class="secondary-text lang-es">
+                            París, 16 de Mayo — Tras dos semanas de huelga que paralizaron una importante fábrica de textiles en el norte de París, las obreras han vuelto al trabajo esta mañana, tras un acuerdo histórico alcanzado con la dirección. Esta victoria marca un punto de inflexión significativo en la lucha por la igualdad salarial en la industria textil francesa.
+                        </p>
+                        <p class="secondary-text lang-fr">
+                            Les négociations, qui se sont déroulées dans un climat de tension mais aussi de détermination, ont abouti à une augmentation des salaires qui aligne désormais la rémunération des femmes sur celle de leurs collègues masculins du secteur. "Nous avons enfin obtenu ce que nous méritions", a déclaré une porte-parole des grévistes, visiblement émue. "Ce n'est pas seulement une question d'argent, c'est une question de dignité et de reconnaissance de notre travail."
+                        </p>
+                        <p class="secondary-text lang-es">
+                            Las negociaciones, que se desarrollaron en un clima de tensión pero también de determinación, han resultado en un incremento de los salarios que alinea ahora la remuneración de las mujeres con la de sus colegas masculinos del sector. "Por fin hemos obtenido lo que merecíamos", ha declarado una portavoz de las huelguistas, visiblemente emocionada. "No es solo una cuestión de dinero, es una cuestión de dignidad y de reconocimiento de nuestro trabajo."
+                        </p>
+                        <p class="secondary-text lang-fr">
+                            La direction de la fabrique, après avoir résisté initialement aux demandes, a finalement cédé face à la détermination des ouvrières et à l'impact économique de la grève. "Nous reconnaissons la valeur du travail de nos employées", a déclaré un représentant de la direction. "Cette décision était nécessaire et juste." Cette résolution pacifique témoigne de l'évolution des mentalités et de la capacité du dialogue à résoudre les conflits sociaux.
+                        </p>
+                        <p class="secondary-text lang-es">
+                            La dirección de la fábrica, tras haber resistido inicialmente a las demandas, finalmente ha cedido ante la determinación de las obreras y el impacto económico de la huelga. "Reconocemos el valor del trabajo de nuestras empleadas", ha declarado un representante de la dirección. "Esta decisión era necesaria y justa." Esta resolución pacífica da fe de la evolución de las mentalidades y de la capacidad del diálogo para resolver los conflictos sociales.
+                        </p>
+                    </article>
+                    
+                    <div class="typographic-ornament">❦ ◆ ❦</div>
+                    
+                    <!-- CRÓNICAS DE SOCIEDAD -->
+                    <article class="society-chronicle">
+                        <h2 class="society-chronicle-title lang-fr">Chroniques de la Société</h2>
+                        <h2 class="society-chronicle-title lang-es">Crónicas de Sociedad</h2>
+                        <p class="society-note lang-fr">Notes mondaines et événements de la haute société parisienne</p>
+                        <p class="society-note lang-es">Notas mundanas y acontecimientos de la alta sociedad parisina</p>
+                        
+                        <div class="secondary-article">
+                            <h3 class="secondary-title lang-fr">Une Nuit de Danse au Cocobongo : Les Plus Belles Paires de Paris</h3>
+                            <h3 class="secondary-title lang-es">Una Noche de Baile en el Cocobongo: Las Parejas Más Bellas de París</h3>
+                        
+                        <div class="secondary-text lang-fr">
+                            <p><em>Mes chers lecteurs</em>, quelle soirée mémorable ! Votre chroniqueuse a eu le privilège d'assister à la grande ouverture du Cocobongo, et je dois vous avouer que ce qui s'est passé sur la piste de danse a été l'un des moments les plus délicieux de la nuit.</p>
+                            
+                            <p>Tout a commencé comme un jeu entre amies. Élodie Lecat et Chloé Müller s'étaient retrouvées sur la piste de danse, riant et dansant ensemble avec cette liberté joyeuse que seules les jeunes femmes peuvent afficher lorsqu'elles sont entre elles. Leurs robes tourbillonnaient, leurs rires résonnaient dans l'air, et elles formaient un tableau de grâce et de gaieté qui attirait tous les regards.</p>
+                            
+                            <p>Mais c'est alors que la magie s'est produite. André Levèvre, ce solitaire distingué dont nous avons déjà parlé dans ces colonnes, s'est approché de la piste. Son regard s'est posé sur Chloé avec une intensité qui ne trompait pas, et il s'est dirigé vers elle avec cette assurance élégante qui le caractérise. Presque simultanément, Thomas Rédeaux, un autre de nos solitaires les plus remarquables, a fait de même, cherchant des yeux Élodie parmi le groupe.</p>
+                            
+                            <p>Ce qui s'est passé ensuite a été un véritable enchantement. Chacun des deux messieurs a pris la main de sa dame — André celle de Chloé, Thomas celle d'Élodie — et ils ont commencé à danser. Mais pas n'importe comment ! Ces pas de danse étaient d'une élégance et d'une précision qui témoignaient d'années de pratique dans les salons les plus raffinés de Paris. Chaque mouvement était mesuré, chaque tour calculé, chaque geste portait la marque d'une éducation parfaite.</p>
+                            
+                            <p>Le reste de la salle s'est arrêté pour les regarder. Les conversations se sont tues, les verres ont été posés, et tous les yeux se sont tournés vers ces deux couples qui dansaient comme s'ils étaient seuls au monde. La musique semblait s'adapter à leur rythme, et même les machines de jeu, si brillantes et attrayantes, ont été momentanément oubliées.</p>
+                            
+                            <p>Votre chroniqueuse ne saurait dire combien de temps cette danse a duré — le temps semble s'arrêter dans de tels moments. Mais ce qui est certain, c'est que cette scène restera gravée dans la mémoire de tous ceux qui ont eu la chance d'y assister. Deux des plus belles paires de Paris, révélant leur grâce et leur complicité sous les lumières du Cocobongo, dans ce lieu qui promet déjà de devenir le cœur battant de la vie sociale parisienne.</p>
+                            
+                            <p>Et si vous me demandez mon avis, mes chers lecteurs, je dirais que nous avons assisté à quelque chose de plus qu'une simple danse. Nous avons été témoins d'un moment où l'art, la beauté et l'élégance se sont rencontrés, créant une magie que seul Paris peut offrir.</p>
+                        </div>
+                        
+                        <div class="secondary-text lang-es">
+                            <p><em>Mis queridos lectores</em>, ¡qué velada memorable! Vuestra cronista ha tenido el privilegio de asistir a la gran apertura del Cocobongo, y debo confesaros que lo ocurrido en la pista de baile fue uno de los momentos más deliciosos de la noche.</p>
+                            
+                            <p>Todo comenzó como un juego entre amigas. Élodie Lecat y Chloé Müller se habían encontrado en la pista de baile, riendo y bailando juntas con esa libertad alegre que solo las jóvenes mujeres pueden mostrar cuando están entre ellas. Sus vestidos giraban, sus risas resonaban en el aire, y formaban un cuadro de gracia y alegría que atraía todas las miradas.</p>
+                            
+                            <p>Pero fue entonces cuando ocurrió la magia. André Levèvre, ese soltero distinguido del que ya hemos hablado en estas columnas, se acercó a la pista. Su mirada se posó en Chloé con una intensidad que no engañaba, y se dirigió hacia ella con esa seguridad elegante que le caracteriza. Casi simultáneamente, Thomas Rédeaux, otro de nuestros solteros más notables, hizo lo mismo, buscando con la mirada a Élodie entre el grupo.</p>
+                            
+                            <p>Lo que ocurrió después fue un verdadero encantamiento. Cada uno de los dos caballeros tomó la mano de su dama — André la de Chloé, Thomas la de Élodie — y comenzaron a bailar. ¡Pero no de cualquier manera! Estos pasos de baile eran de una elegancia y una precisión que daban fe de años de práctica en los salones más refinados de París. Cada movimiento era medido, cada giro calculado, cada gesto llevaba la marca de una educación perfecta.</p>
+                            
+                            <p>El resto de la sala se detuvo para observarlos. Las conversaciones se callaron, los vasos se depositaron, y todos los ojos se volvieron hacia estas dos parejas que bailaban como si estuvieran solas en el mundo. La música parecía adaptarse a su ritmo, e incluso las máquinas de juego, tan brillantes y atractivas, fueron momentáneamente olvidadas.</p>
+                            
+                            <p>Vuestra cronista no sabría decir cuánto tiempo duró este baile — el tiempo parece detenerse en tales momentos. Pero lo que es cierto es que esta escena quedará grabada en la memoria de todos aquellos que tuvieron la suerte de presenciarla. Dos de las parejas más bellas de París, revelando su gracia y su complicidad bajo las luces del Cocobongo, en este lugar que promete ya convertirse en el corazón palpitante de la vida social parisina.</p>
+                            
+                            <p>Y si me preguntáis mi opinión, queridos lectores, diría que asistimos a algo más que un simple baile. Fuimos testigos de un momento en el que el arte, la belleza y la elegancia se encontraron, creando una magia que solo París puede ofrecer.</p>
+                        </div>
+                        
+                        </div>
+                    </article>
+                    
+                    <div class="typographic-ornament">❦ ◆ ❦</div>
+                    
+                    <!-- CARTAS AL DIRECTOR -->
+                    <article class="letters-section">
+                        <h2 class="letters-section-title lang-fr">Lettres au Directeur</h2>
+                        <h2 class="letters-section-title lang-es">Cartas al Director</h2>
+                        
+                        <div class="letter-box">
+                            <h3 class="letter-title lang-fr">La Relativité de la Vertu</h3>
+                            <h3 class="letter-title lang-es">La Relatividad de la Virtud</h3>
+                            
+                            <div class="letter-content lang-fr">
+                                <p>Il y a quelques mois, j'ai eu l'opportunité surprenante de converser avec un jeune scientifique d'origine allemande mais résidant en Suisse, du nom d'Albert Einstein. Bien que ses découvertes attendent encore d'être présentées cet été, il nous a raconté, à moi et aux physiciens présents ce matin-là, les résultats de sa thèse de doctorat sur l'équivalence de l'énergie et de la matière. Mais, plus important pour moi, son idée que tout est relatif sauf une constante universelle à laquelle tout se réfère : la vitesse de la lumière. Certains de mes compagnons ce jour-là ont décrit ses équations comme ayant une élégance et une beauté qui seraient artistiques, bien qu'un art différent de celui des peintres et des sculpteurs.</p>
+                                
+                                <p>Ce qui m'a marqué, c'est une autre implication dans un domaine très différent. En un temps comme le nôtre, où monte le subjectivisme et le relativisme ; où les travaux du docteur autrichien Sigmund Freud et de ses apprentis comme Karl Jung nous mènent au terrain du personnel, de l'inconscient et de l'irrationnel, il semble que nous ayons tous perdu cette constante à laquelle nous référer et donner sens à nos vies. Le bien, le mal, tout entre dans un bourbier irrésoluble où il n'y a pas d'étoile polaire qui puisse nous guider, et même les maximes du passé comme l'impératif catégorique de l'excellentissime prussien Immanuel Kant restent oubliées sous les vagues de nihilisme du philosophe allemand Friedrich Nietzsche.</p>
+                                
+                                <p>Mais je crois que le jeune physicien a raison, tant dans les lois de l'univers que dans l'éthique humaine. Il y a une constante, une boussole qui peut nous guider dans notre prise de décisions. Un espace objectif qui peut définir la compassion, la justice, la beauté, l'honnêteté et ce qui est, en définitive, bon.</p>
+                                
+                                <p>Je voudrais suggérer de manière tentante, car le cas nécessite plus de travail et d'étude et la publication de traités plus prolongés que cette lettre, que la constante à laquelle regarder est la liberté dont ont tant parlé les classiques britanniques comme John Locke ou David Hume. Non la liberté égoïste de faire ce que l'on veut sans mesurer ni contempler les responsabilités ni les conséquences, mais une utilitariste au sens de Jérémie Bentham, centrée sur fournir liberté et bonheur au plus grand nombre de gens possible, centrée sur l'humain et ce qui nous unit, plus que ce qui nous sépare.</p>
+                                
+                                <p>Le grand empereur romain Marc Aurèle a défini quatre vertus comme le pinacle du stoïcisme : courage, sagesse, maîtrise de soi et justice. Sous la lumière de ses interprétations, ce ne sont pas des éléments subjectifs, ce sont des définitions de conduites objectives, aussi constantes et immuables que la vitesse de la lumière. Et c'est notre devoir en ces temps d'utiliser notre liberté, à la lumière de ces vertus et d'autres comme la loyauté et l'honnêteté, pour élargir l'horizon de l'action humaine et obtenir ainsi un monde guidé par les principes objectifs que tant de subjectivisme semble vouloir noyer pour toujours.</p>
+                                
+                                <p>C'est la plus grande bataille de nos temps, et de nos actions maintenant surgira le legs que nous laisserons à nos enfants et petits-enfants. Seront-ils des hommes de vertu et de liberté ? Ou laisserons-nous qu'ils tombent dans la décadence et l'hédonisme d'un monde nihiliste et subjectiviste ?</p>
+                            </div>
+                            
+                            <div class="letter-content lang-es">
+                                <p>Hace unos meses tuve la sorprendente oportunidad de conversar con un joven científico de origen alemán pero residente en Suiza, de nombre Albert Einstein. Aunque sus hallazgos aún esperan a ser presentados en este verano, nos contó a mí y a los físicos presentes esa mañana, los resultados de su tesis doctoral sobre la equivalencia de energía y materia. Pero, más importante para mí, su idea de que todo es relativo salvo una constante universal a la que todo se remite: la velocidad de la luz. Algunos de mis acompañantes ese día describieron sus ecuaciones como de una elegancia y belleza que serían artísticas, aunque un arte diferente al de pintores y escultores.</p>
+                                
+                                <p>A mí se me quedó grabada otra implicación en un campo muy diferente. En un tiempo como el nuestro, donde asciende el subjetivismo y el relativismo; donde los trabajos del doctor austríaco Sigmund Freud y sus aprendices como Karl Jung nos lleva al terreno de lo personal, de lo inconsciente y de lo irracional, parece que todos hemos perdido esa constante a la que referirnos y dar sentido a nuestras vidas. El bien, el mal, todo entra en un fango irresoluble donde no hay una estrella polar que nos pueda guiar, e incluso las máximas del pasado como el imperativo categórico del excelentísimo prusiano Immanuel Kant quedan olvidadas bajo las olas de nihilismo del filósofo alemán Friedrich Nietzsche.</p>
+                                
+                                <p>Pero yo creo que el joven físico tiene razón, tanto en las leyes del universo como en la ética humana. Hay una constante, una brújula que puede guiarnos en nuestra toma de decisiones. Un espacio objetivo que puede definir la compasión, la justicia, la belleza, la honestidad y lo que es, en definitiva, bueno.</p>
+                                
+                                <p>Me gustaría sugerir tentativamente, pues el caso requiere más trabajo y estudio y la publicación de tratados más prolongados que esta carta, que la constante a la que mirar es la libertad de la que tanto hablaron los clásicos británicos como John Locke o David Hume. No la libertad egoísta de hacer lo que uno quiere sin medir ni contemplar las responsabilidades ni las consecuencias, sino una utilitarista en el sentido de Jeremias Bentham, centrada en proveer libertad y felicidad a la mayor cantidad de gente posible, centrada en lo humano y lo que nos une, más que lo que nos separa.</p>
+                                
+                                <p>El gran emperador romano Marco Aurelio definió cuatro virtudes como el pináculo del estoicismo: coraje, sabiduría, autocontrol y justicia. Bajo la luz de sus interpretaciones esos no son elementos subjetivos, son definiciones de conductas objetivas, tan constantes e inmutables como la velocidad de la luz. Y es nuestro deber en estos tiempos usar nuestra libertad, a la luz de esas y otras virtudes como la lealtad y la honestidad, para ampliar el horizonte de la acción humana y conseguir con ello un mundo guiado por los principios objetivos que tanto subjetivismo parece querer ahogar para siempre.</p>
+                                
+                                <p>Esa es la mayor batalla de nuestros tiempos, y de nuestras acciones ahora surgirá el legado que dejaremos a nuestros hijos y nietos. ¿Serán acaso hombres de virtud y libertad? ¿O dejaremos que caigan en la decadencia y el hedonismo de un mundo nihilista y subjetivista?</p>
+                            </div>
+                            
+                            <div class="letter-signature lang-fr">Sir William Shawthorn</div>
+                            <div class="letter-signature lang-es">Sir William Shawthorn</div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            
+            <!-- COLUMNA DERECHA -->
+            <aside class="right-column">
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Cocobongo : La Naissance d'un Nouveau Point de Rencontre</h3>
+                    <h3 class="sidebar-title lang-es">Cocobongo: El Nacimiento de un Nuevo Punto de Encuentro</h3>
+                    
+                    <div class="vertical-image">
+                        <img src="news/cocobongo.png" alt="Cocobongo" class="placeholder">
+                    </div>
+                    
+                    <div class="sidebar-text lang-fr">
+                        <p>Paris, 16 Mai — Paris a assisté hier soir à l'inauguration du nouveau club social conçu par monsieur Lucien Papillon, le Cocobongo, lors d'une soirée marquée par une exubérance soigneusement mesurée. L'établissement a déployé luxe, spectacle et une mise en scène méticuleuse où chaque élément semblait disposé pour créer une expérience enveloppante et un souvenir mémorable.</p>
+                        
+                        <p>L'attention au détail a été constante, de la décoration aux spectacles préparés pour l'occasion, si singuliers qu'ils sont difficiles à comparer avec d'autres salons parisiens. Parmi eux, le moment musical interprété par mademoiselle Élodie Lecat s'est particulièrement distingué, devenant l'un des points les plus célébrés de la soirée, imposant une rare unanimité d'attention et d'applaudissements parmi les assistants.</p>
+                        
+                        <p>L'édifice qui abrite le Cocobongo, dernière œuvre de monsieur Papillon, mérite une mention à part. En lui, l'architecte expose des techniques constructives novatrices et une claire volonté de rupture avec les styles connus, où les lignes, les volumes et l'usage de matériaux pointent vers une sensibilité nouvelle, difficile encore à classifier. Il est impossible de ne pas la voir comme une innovation dans l'art décoratif moderne, une sorte d'art déco encore en formation, plus intuition que doctrine.</p>
+                        
+                        <p>La soirée s'est déroulée entre conversations animées, musique constante et l'éclat des flambantes machines de jeu, dont la fortune s'est montrée esquive pour certains avec une rapidité qui n'a pas réussi à ternir l'ambiance générale. Parmi les invités se comptaient des personnalités comme monsieur Renoir Dessendre, accompagné de sa fille Cléa, des figures littéraires comme monsieur Zola ou monsieur Proust, ainsi que des noms aussi distingués que le baron Rothschild ou des membres de la maison Straus. À leurs côtés, de nombreux artistes naissants et figures du monde culturel et international ont apporté une diversité qui a défini le caractère de la rencontre.</p>
+                        
+                        <p>Ce croisement de provenances, d'âges et de disciplines n'a pas été un simple accident social. Tout indique que le Cocobongo naît avec la vocation de devenir un point de rencontre essentiel pour Paris, un lieu où la ville se réunit avec elle-même et où l'échange entre mondes distincts renforce, une fois de plus, l'idée d'une capitale unie par la culture, l'art et la vie partagée.</p>
+                    </div>
+                    
+                    <div class="sidebar-text lang-es">
+                        <p>París, 16 de Mayo — París asistió anoche a la inauguración del nuevo club social concebido por monsieur Lucien Papillon, el Cocobongo, en una velada marcada por una exuberancia cuidadosamente medida. El establecimiento desplegó lujo, espectáculo y una ambientación minuciosa donde cada elemento parecía dispuesto para crear una experiencia envolvente y un recuerdo memorable.</p>
+                        
+                        <p>La atención al detalle fue constante, desde la decoración hasta los espectáculos preparados para la ocasión, tan singulares que resultan difíciles de comparar con otros salones parisinos. Entre ellos destacó especialmente el momento musical interpretado por la señorita Élodie Lecat, que se convirtió en uno de los puntos más celebrados de la noche imponiendo una rara unanimidad de atención y aplauso entre los asistentes.</p>
+                        
+                        <p>El edificio que alberga el Cocobongo, última obra de monsieur Papillon, merece una mención aparte. En él, el arquitecto exhibe técnicas constructivas novedosas y una clara voluntad de ruptura con los estilos conocidos donde las líneas, los volúmenes y el uso de materiales apuntan hacia una sensibilidad nueva, difícil aún de clasificar. Resulta imposible no verla como una innovación en el arte decorativo moderno, una suerte de art decó aún en formación, más intuición que doctrina.</p>
+                        
+                        <p>La velada se desarrolló entre conversaciones animadas, música constante y el brillo de las flamantes máquinas de apuestas, cuya fortuna se mostró esquiva para algunos con una rapidez que no logró empañar el ambiente general. Entre los invitados se contaron personalidades como monsieur Renoir Dessendre, acompañado de su hija Cléa, figuras literarias como monsieur Zola o monsieur Proust, así como nombres tan distinguidos como el barón Rothschild o miembros de la casa Straus. Junto a ellos, numerosos artistas incipientes y figuras del mundo cultural e internacional aportaron una diversidad que definió el carácter del encuentro.</p>
+                        
+                        <p>Este cruce de procedencias, edades y disciplinas no fue un simple accidente social. Todo indica que el Cocobongo nace con la vocación de convertirse en un punto de encuentro esencial para París, un lugar donde la ciudad se reúne consigo misma y donde el intercambio entre mundos distintos refuerza, una vez más, la idea de una capital unida por la cultura, el arte y la vida compartida.</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 16px;">
+                        <p><strong>• Première d'"Olympia":</strong> L'œuvre tant attendue "Olympia" sera présentée le 5 mai prochain, promettant d'être un jalon dans la scène culturelle parisienne.</p>
+                        
+                        <p><strong>• Résidence pour jeunes talents:</strong> L'artiste reconnue Élodie Lecat a ouvert les portes de sa résidence pour jeunes talents et accepte les candidatures. Les aspirants peuvent présenter leurs demandes.</p>
+                        
+                        <p><strong>• Projection privée à Versailles:</strong> Le réalisateur italien mentionné dans notre numéro précédent a organisé une projection privée à Versailles de son œuvre "La fille de la tour", à laquelle assisteront des membres de la noblesse de Paris et de Monaco.</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 16px;">
+                        <p><strong>• Estreno de "Olympia":</strong> La esperada obra "Olympia" se estrenará el próximo 5 de mayo, prometiendo ser un hito en la escena cultural parisina.</p>
+                        
+                        <p><strong>• Residencia para jóvenes talentos:</strong> La reconocida artista Élodie Lecat ha abierto las puertas de su residencia para jóvenes talentos y está aceptando candidaturas. Los aspirantes pueden presentar sus solicitudes.</p>
+                        
+                        <p><strong>• Proyección privada en Versalles:</strong> El director italiano mencionado en nuestro número anterior ha organizado una proyección privada en Versalles de su obra "La chica de la torre", a la que asistirán miembros de la nobleza de París y Mónaco.</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Inquiétude à Paris : La Disparition de l'Actrice Marthe Brandès :</strong><br>C. Müller</p>
+                        <p><strong>Cocobongo : La Naissance d'un Nouveau Point de Rencontre :</strong><br>C. Müller</p>
+                        <p><strong>Victoire Ouvrière : Les Femmes de la Fabrique Retournent au Travail :</strong><br>G. Petit</p>
+                        <p><strong>Une Nuit de Danse au Cocobongo : Les Plus Belles Paires de Paris :</strong><br>La Fleuriste</p>
+                        <p><strong>La Relativité de la Vertu :</strong><br>Sir William Shawthorn</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Inquietud en París: La Desaparición de la Actriz Marthe Brandès :</strong><br>C. Müller</p>
+                        <p><strong>Cocobongo: El Nacimiento de un Nuevo Punto de Encuentro :</strong><br>C. Müller</p>
+                        <p><strong>Victoria Obrera: Las Mujeres de la Fábrica Vuelven al Trabajo :</strong><br>G. Petit</p>
+                        <p><strong>Una Noche de Baile en el Cocobongo: Las Parejas Más Bellas de París :</strong><br>La Florista</p>
+                        <p><strong>La Relatividad de la Virtud :</strong><br>Sir William Shawthorn</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <!-- RANKING DE SOLTEROS - COTILLEOS -->
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Potins & Cancans : Les Célibataires à Suivre</h3>
+                    <h3 class="sidebar-title lang-es">Cotilleos y Chismes: Los Solteros a Seguir</h3>
+                    
+                    <ul class="gossip-list">
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/emile_labord.png" alt="Émile Labord" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Émile Labord</div>
+                                <div class="gossip-name lang-es">Émile Labord</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Un dessinateur talentueux</em> qui a adapté le style de Mucha et travaille des aquarelles minimalistes. Mais c'est surtout pour ses vignettes dans le journal qu'on le connaît, où il relate les aventures d'un Gaulois affrontant diverses nations. Un guerrier d'esprit qui peut me dessiner ? Écrivez à l'éditeur !
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Un dibujante talentoso</em> que ha adaptado el estilo de Mucha y trabaja acuarelas minimalistas. Pero se le conoce especialmente por sus viñetas en el periódico, que suelen relatar las aventuras de un Galo enfrentándose a distintas naciones. ¿Un guerrero de espíritu que me puede dibujar? ¡Escribe al editor!
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/simon_latour.png" alt="Simon Latour" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Simon Latour</div>
+                                <div class="gossip-name lang-es">Simon Latour</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Ce sculpteur aux épaules imposantes</em> ne passe pas inaperçu. Spécialisé dans les figures colossales, on raconte qu'il travaille avec une force qui défie l'entendement. Certaines dames de la société ne peuvent s'empêcher de jeter un regard discret en sa direction. Qui voudrait poser pour lui ? Nous connaissons quelques volontaires...
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Este escultor de hombros imponentes</em> no pasa desapercibido. Especializado en figuras colosales, se cuenta que trabaja con una fuerza que desafía el entendimiento. Algunas damas de la sociedad no pueden evitar lanzar una mirada discreta en su dirección. ¿Quién querría posar para él? Conocemos algunas voluntarias...
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/lucile_roy.png" alt="Lucile Roy" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Lucile Roy</div>
+                                <div class="gossip-name lang-es">Lucile Roy</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Derrière son sourire timide</em> se cache une compositrice dont la musique touche l'âme. Ses mélodies reflètent une profondeur mélancolique qui contraste avec son apparence joyeuse, révélant une artiste d'une sensibilité remarquable. Son talent musical mérite toute notre attention.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Tras su sonrisa tímida</em> se esconde una compositora cuya música toca el alma. Sus melodías reflejan una profundidad melancólica que contrasta con su apariencia alegre, revelando una artista de una sensibilidad notable. Su talento musical merece toda nuestra atención.
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/jacques_martin.png" alt="Jacques Martin" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Jacques Martin</div>
+                                <div class="gossip-name lang-es">Jacques Martin</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Un écrivain de fiction historique</em> spécialisé dans l'art de relier les aventures des dieux et demi-dieux de l'Antiquité aux légendes qu'ont inspirées leurs statues vivantes. Son œuvre tisse des liens fascinants entre la mythologie classique et les récits qui ont façonné notre imaginaire. Un esprit érudit qui sait donner vie aux anciens mythes. Plus d'une dizaine de lecteurs ont écrit à l'éditeur pour lui demander des épopées près du foyer. Quelle indécence !
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Un escritor de ficción histórica</em> especialista en el arte de atar las aventuras de dioses y semidioses de la Antigüedad a las leyendas que protagonizaron sus estatuas vivas. Su obra teje vínculos fascinantes entre la mitología clásica y los relatos que han moldeado nuestro imaginario. Una mente erudita que sabe dar vida a los antiguos mitos. Más de una decena de lectores han escrito al editor pidiéndole epopeyas cerca de la hoguera. ¡Qué indecencia!
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="personajes_imagenes/paul_landowski.png" alt="Paul Landowski" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Paul Landowski</div>
+                                <div class="gossip-name lang-es">Paul Landowski</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Un sculpteur qui fait fondre les cœurs</em>, spécialisé dans les monuments et les figures imposantes. Sa présence dans les salons fait invariablement monter la température — et pas seulement à cause de son art. Un artiste dont le charme naturel n'a d'égale que son habileté avec le ciseau et le marteau.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Un escultor que hace derretir los corazones</em>, especializado en monumentos y figuras imponentes. Su presencia en los salones hace invariablemente subir la temperatura — y no solo por su arte. Un artista cuyo encanto natural no tiene igual que su habilidad con el cincel y el martillo.
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/lucien_guitry.png" alt="Lucien Guitry" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Lucien Guitry</div>
+                                <div class="gossip-name lang-es">Lucien Guitry</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Un acteur venu de Normandie</em>, originaire du Havre et fils d'un comédien itinérant, ce jeune talent a fait son apparition dans les cercles parisiens avec une fraîcheur remarquable. Serait-il un remplaçant comme célibataire d'or pour nos lecteurs ? Le temps nous le dira, mais pour l'instant, il semble avoir déjà fait fondre quelques réserves.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Un actor venido de Normandía</em>, originario de El Havre e hijo de un cómico itinerante, este joven talento ha hecho su aparición en los círculos parisinos con una frescura notable. ¿Será un reemplazo como soltero de oro para nuestros lectores? El tiempo nos lo dirá, pero por ahora, parece haber derretido ya algunas reservas.
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/lucien.png" alt="Lucien Théophile Noeud Papillon" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Lucien Théophile Noeud Papillon</div>
+                                <div class="gossip-name lang-es">Lucien Théophile Noeud Papillon</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Un séducteur de la haute société</em>, riche héritier, maître architecte propriétaire des Galeries Belle Époque, membre du conseil et chercheur au Conseil des Lumières. Que demander de plus ? Qu'il vous aime ? Peut-être que certaines d'entre vous sauront conquérir son cœur.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Un seductor de la alta sociedad</em>, rico heredero, maestro arquitecto propietario de las Galerías Belle Époque, miembro del consejo e investigador del Consejo de las Luces. ¿Qué más queréis? ¿Que os quiera? Quizás algunos de vosotros sabréis conquistar su corazón.
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/cleo_de_merode.png" alt="Cléo de Mérode" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Cléo de Mérode</div>
+                                <div class="gossip-name lang-es">Cléo de Mérode</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Une danseuse et actrice</em> dont la beauté et le talent ont déjà fait sensation dans les cercles artistiques parisiens. Née à Paris et élevée dans les milieux artistiques, elle a su conquérir les cœurs par sa grâce sur scène. On murmure qu'elle a déjà posé pour plusieurs artistes renommés, ce qui n'a fait qu'augmenter sa réputation. Mais avouons-le, mes chers lecteurs : nous ne suivons pas sa carrière avec autant d'intérêt que la noblesse.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Una bailarina y actriz</em> cuya belleza y talento ya han causado sensación en los círculos artísticos parisinos. Nacida en París y criada en los medios artísticos, ha sabido conquistar los corazones con su gracia en el escenario. Se murmura que ya ha posado para varios artistas renombrados, lo que no ha hecho más que aumentar su reputación. Pero confesémoslo, queridos lectores: no seguimos su carrera con tanto interés como la nobleza.
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/marine_loremant.png" alt="Marine Loremant" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Marine Loremant</div>
+                                <div class="gossip-name lang-es">Marine Loremant</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Une étoile montante</em> qui apporte une fraîcheur bienvenue dans nos cercles. Originaire d'un milieu plus modeste, elle a su conquérir les cœurs par son charme naturel et son talent indéniable. Sa boutique dans les Galeries Belle Époque témoigne de son ascension remarquable. Une jeune femme à suivre avec attention.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Una estrella emergente</em> que aporta una frescura bienvenida en nuestros círculos. Originaria de un entorno más modesto, ha sabido conquistar los corazones con su encanto natural y su talento indudable. Su boutique en las Galerías Belle Époque da fe de su ascenso notable. Una joven mujer a seguir con atención.
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
+            </aside>
+        </div>
+    
+    <!-- MODAL PARA IMÁGENES -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+    
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('spanish');
+            
+            // Guardar preferencia en localStorage
+            if (document.body.classList.contains('spanish')) {
+                localStorage.setItem('newspaperLanguage', 'es');
+            } else {
+                localStorage.setItem('newspaperLanguage', 'fr');
+            }
+        }
+        
+        // Cargar preferencia al cargar la página
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('newspaperLanguage');
+            if (savedLanguage === 'es') {
+                document.body.classList.add('spanish');
+            }
+        });
+        
+        // Funciones para el modal de imágenes
+        function openImageModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeImageModal(event) {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Cerrar modal con la tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    </script>
+</body>
+</html>
+
