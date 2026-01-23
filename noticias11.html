@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Nouveau - Belle Époque</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #f4e8d0;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        /* CONTENEDOR DE NAVEGACIÓN DE FECHAS */
+        .date-navigation {
+            width: 200px;
+            background: #faf7f0;
+            border: 3px double #2c2416;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        
+        .date-navigation h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c2416;
+            padding-bottom: 10px;
+        }
+        
+        .date-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .date-item {
+            margin-bottom: 15px;
+        }
+        
+        .date-link {
+            display: block;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #2c2416;
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #f4e8d0;
+        }
+        
+        .date-link:hover {
+            background: #e8d5b7;
+            border-color: #8b7355;
+            transform: translateX(5px);
+        }
+        
+        .date-link.active {
+            background: #8b7355;
+            color: #faf7f0;
+            border-color: #2c2416;
+            font-weight: 600;
+        }
+        
+        .date-link.active:hover {
+            background: #6b5a47;
+            transform: none;
+        }
+        
+        .newspaper-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #faf7f0;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            padding: 40px;
+            border: 3px double #2c2416;
+            flex: 1;
+        }
+        
+        /* CABECERA DEL PERIÓDICO */
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 4px double #2c2416;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .ornamental-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        
+        .ornamental-line::before,
+        .ornamental-line::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #2c2416, transparent);
+        }
+        
+        .ornamental-symbol {
+            margin: 0 15px;
+            font-size: 20px;
+            color: #8b7355;
+        }
+        
+        .newspaper-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            color: #2c2416;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin: 15px 0;
+            text-shadow: 2px 2px 0px rgba(139, 115, 85, 0.3);
+        }
+        
+        .newspaper-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #5a4a3a;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .newspaper-date {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            color: #5a4a3a;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+        
+        /* ESTRUCTURA DEL CONTENIDO */
+        .newspaper-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        /* COLUMNA IZQUIERDA */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* ARTÍCULO PRINCIPAL */
+        .main-article {
+            border-bottom: 3px double #2c2416;
+            padding-bottom: 25px;
+        }
+        
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #2c2416;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .article-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .article-image {
+            width: 100%;
+            height: auto;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .main-article .article-image {
+            aspect-ratio: 16/9;
+            min-height: 400px;
+        }
+        
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .article-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.8;
+            column-count: 2;
+            column-gap: 30px;
+            hyphens: auto;
+        }
+        
+        .article-text::first-letter {
+            font-size: 72px;
+            font-weight: bold;
+            float: left;
+            line-height: 0.8;
+            margin: 5px 8px 0 0;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* ARTÍCULOS SECUNDARIOS */
+        .secondary-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .secondary-article {
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 20px;
+        }
+        
+        .secondary-article:last-child {
+            border-bottom: none;
+        }
+        
+        .secondary-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2c2416;
+            padding-bottom: 5px;
+        }
+        
+        .secondary-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+        
+        /* IMAGEN CUADRADA ENTRE ARTÍCULOS */
+        .square-image-container {
+            margin: 20px 0;
+        }
+        
+        .square-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border: 3px solid #2c2416;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .square-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* COLUMNA DERECHA */
+        .right-column {
+            border-left: 3px double #2c2416;
+            padding-left: 25px;
+        }
+        
+        .sidebar-article {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 10px 0;
+        }
+        
+        .vertical-image {
+            width: 100%;
+            aspect-ratio: 9/16;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .vertical-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .sidebar-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+        
+        /* DECORACIONES TIPOGRÁFICAS */
+        .typographic-ornament {
+            text-align: center;
+            font-size: 24px;
+            color: #8b7355;
+            margin: 20px 0;
+            letter-spacing: 10px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .date-navigation {
+                width: 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .newspaper-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .right-column {
+                border-left: none;
+                border-top: 3px double #2c2416;
+                padding-left: 0;
+                padding-top: 25px;
+            }
+            
+            .article-text {
+                column-count: 1;
+            }
+            
+            .newspaper-title {
+                font-size: 48px;
+            }
+        }
+        
+        /* EFECTOS DE PAPEL ENVEJECIDO */
+        .newspaper-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 115, 85, 0.03) 2px,
+                    rgba(139, 115, 85, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+        
+        .newspaper-container {
+            position: relative;
+        }
+        
+        /* Placeholder de imagen */
+        img.placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* BOTÓN DE TRADUCCIÓN */
+        .translate-button {
+            width: 35px;
+            height: 35px;
+            background: rgba(44, 36, 22, 0.1);
+            border: 2px solid rgba(139, 115, 85, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            color: #5a4a3a;
+            margin: 10px auto;
+        }
+        
+        .translate-button:hover {
+            background: rgba(139, 115, 85, 0.2);
+            border-color: #8b7355;
+            transform: scale(1.1);
+        }
+        
+        .translate-button:active {
+            transform: scale(0.95);
+        }
+        
+        .translate-button-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        /* Ocultar contenido de idioma alternativo */
+        .lang-es {
+            display: none;
+        }
+        
+        body.spanish .lang-fr {
+            display: none;
+        }
+        
+        body.spanish .lang-es {
+            display: block;
+        }
+        
+        body.spanish .lang-es.inline {
+            display: inline;
+        }
+        
+        /* ESTILOS PARA CRÓNICAS DE SOCIEDAD */
+        .society-chronicle {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+        
+        .society-chronicle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .society-note {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        /* ESTILOS PARA CARTAS AL DIRECTOR */
+        .letters-section {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+        
+        .letters-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .letter-box {
+            background-color: #f5e6d3;
+            border: 2px solid #d4c4a8;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .letter-content {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #2c2416;
+            text-align: justify;
+        }
+        
+        .letter-signature {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2416;
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        /* ESTILOS PARA COTILLEOS DE SOLTEROS */
+        .gossip-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .gossip-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #f4e8d0;
+            border: 1px solid #8b7355;
+            border-left: 3px solid #8b7355;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+        
+        .gossip-item:hover {
+            background: #e8d5b7;
+        }
+        
+        .gossip-photo {
+            width: fit-content;
+            height: fit-content;
+            border: 2px solid #2c2416;
+            padding: 1px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #d4c5b0;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        
+        .gossip-photo img {
+            width: 70px;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gossip-photo img:hover {
+            opacity: 0.8;
+        }
+        
+        /* MODAL PARA IMÁGENES */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .image-modal.active {
+            display: flex;
+        }
+        
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #2c2416;
+            padding: 10px;
+            background: #faf7f0;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            height: auto;
+            display: block;
+        }
+        
+        .image-modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: #2c2416;
+            color: #faf7f0;
+            border: 2px solid #2c2416;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+        
+        .image-modal-close:hover {
+            background: #8b7355;
+        }
+        
+        .gossip-info {
+            flex: 1;
+        }
+        
+        .gossip-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 5px;
+        }
+        
+        .gossip-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            color: #2c2416;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        
+        .gossip-text em {
+            font-style: normal;
+            font-weight: 600;
+            color: #5a4a3a;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN DE FECHAS -->
+    <nav class="date-navigation">
+        <h3 class="lang-fr">Éditions</h3>
+        <h3 class="lang-es">Ediciones</h3>
+        <ul class="date-list">
+            <li class="date-item">
+                <a href="noticias11.html" class="date-link active">
+                    <span class="lang-fr">19 Mai 1905</span>
+                    <span class="lang-es">19 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias10.html" class="date-link">
+                    <span class="lang-fr">18 Mai 1905</span>
+                    <span class="lang-es">18 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias9.html" class="date-link">
+                    <span class="lang-fr">17 Mai 1905</span>
+                    <span class="lang-es">17 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias8.html" class="date-link">
+                    <span class="lang-fr">16 Mai 1905</span>
+                    <span class="lang-es">16 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias7.html" class="date-link">
+                    <span class="lang-fr">15 Mai 1905</span>
+                    <span class="lang-es">15 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias6.html" class="date-link">
+                    <span class="lang-fr">1 Avril 1905</span>
+                    <span class="lang-es">1 de Abril</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias5.html" class="date-link">
+                    <span class="lang-fr">29 Mars 1905</span>
+                    <span class="lang-es">29 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias4.html" class="date-link">
+                    <span class="lang-fr">28 Mars 1905</span>
+                    <span class="lang-es">28 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias3.html" class="date-link">
+                    <span class="lang-fr">27 Mars 1905</span>
+                    <span class="lang-es">27 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias2.html" class="date-link">
+                    <span class="lang-fr">26 Mars 1905</span>
+                    <span class="lang-es">26 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias1.html" class="date-link">
+                    <span class="lang-fr">25 Mars 1905</span>
+                    <span class="lang-es">25 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias.html" class="date-link">
+                    <span class="lang-fr">18 Mars 1905</span>
+                    <span class="lang-es">18 de Marzo</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="newspaper-container">
+        <!-- CABECERA DEL PERIÓDICO -->
+        <header class="newspaper-header">
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">❦</span>
+            </div>
+            <h1 class="newspaper-title">Paris Nouveau</h1>
+            <p class="newspaper-subtitle">Nouvelles du Monde des Arts et de la Belle Société</p>
+            <div class="translate-button-container">
+                <button class="translate-button" onclick="toggleLanguage()" title="Traducir / Translate">🔍</button>
+            </div>
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+            </div>
+            <p class="newspaper-date lang-fr">Samedi, 19 Mai 1905 — Prix: 5 Centimes</p>
+            <p class="newspaper-date lang-es">Sábado, 19 de Mayo de 1905 — Precio: 5 Centimes</p>
+        </header>
+        
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="newspaper-content">
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="left-column">
+                <!-- ARTÍCULO PRINCIPAL -->
+                <article class="main-article">
+                    <h2 class="article-title lang-fr">Première Journée de la Visite Impériale : Cérémonies Protocolaires et Attentes pour Aujourd'hui</h2>
+                    <h2 class="article-title lang-es">Primera Jornada de la Visita Imperial: Ceremonias Protocolarias y Expectativas para Hoy</h2>
+                    <p class="article-subtitle lang-fr">Hier, arrivée et réception à l'ambassade, visites symboliques et dîner — Aujourd'hui, l'Élysée et l'Opéra attendent l'Empereur</p>
+                    <p class="article-subtitle lang-fr" style="display:none;">De l'Élysée à l'Opéra Garnier, une journée marquée par des échanges diplomatiques intenses et la représentation de “Libuše”</p>
+                    <p class="article-subtitle lang-es">Ayer, llegada y recepción en la embajada, visitas simbólicas y cena — Hoy, el Elíseo y la Ópera esperan al Emperador</p>
+                    <p class="article-subtitle lang-es" style="display:none;">Del Elíseo a la Ópera Garnier, una jornada marcada por intercambios diplomáticos intensos y la representación de “Libuše”</p>
+                    
+                    <div class="article-image">
+                        <img src="news/avenueopera.jpg" alt="Avenue de l'Opéra, Paris 1900 - Visite impériale" class="placeholder">
+                    </div>
+                    
+                    <div class="article-text lang-fr">
+                        <p>Paris, 19 Mai — Hier, Sa Majesté l'Empereur d'Autriche-Hongrie est arrivé à Paris pour une visite officielle dont la solennité est évidente, accompagné de son entourage et d'un diplomate bohémien qui l'assiste dans cette mission. La première journée de cette visite impériale a débuté par une llegada y recepción oficial en la embajada de Austria-Hungría, présidée par l'ambassadeur et ce diplomate bohémien. Cette cérémonie protocolaire a été marquée par la presentación de credenciales y saludos protocolarios, établissant le cadre formel de cette visite impériale.</p>
+                        
+                        <p>L'après-midi d'hier, l'Empereur a effectué des visitas simbólicas a monumentos parisinos, commençant par un paseo privado al Pont Alexandre III, suivi d'une visita al Petit Palais. Le moment le plus symbolique de cette promenade fut sans doute l'ofrenda floral ante una estatua de Libuše, geste qui rappelle l'importance culturelle que le peuple austro-hongrois accorde à cette figure légendaire de la Bohême.</p>
+                        
+                        <p>La soirée s'est poursuivie par une cena en La Petite Chaise, restaurante historique fundado en 1680, où l'Empereur a pu goûter aux saveurs de la gastronomie française dans un cadre chargé d'histoire.</p>
+                        
+                        <p>Aujourd'hui, cette visite impériale prendra une dimension plus formelle. À midi, un déjeuner diplomatique est prévu au Palais de l'Élysée, où Sa Majesté rencontrera le Président de la République ainsi que les ministres des Affaires étrangères et de la Culture. L'après-midi sera marqué par une rencontre avec la presse, une conférence de presse organisée dans le salon de presse de l'Opéra Garnier, modérée par un journaliste bohémien résidant à Paris.</p>
+                        
+                        <p>Mais l'événement le plus attendu de cette journée sera sans conteste la représentation de "Libuše" de Smetana à l'Opéra Garnier. L'Empereur prendra place dans la loge présidentielle, entouré d'invités du gouvernement français. À l'issue de la représentation, il rencontrera les miembros de la representación de Libuše, dans un moment de reconnaissance artistique qui soulignera l'importance que Vienne accorde à la culture comme vecteur de dialogue entre les nations.</p>
+                        
+                        <p>La journée se poursuivra par un dîner de gala au Pavillon Ledoyen, prestigieuse table gourmet située près des Champs-Élysées, où se retrouveront critiques, représentants de la presse diplomatique et invités sélectionnés par l'ambassade.</p>
+                        
+                        <p>Cette première journée de visite impériale aura donc été marquée par des cérémonies protocolaires et des gestes symboliques, ainsi que par d'animées conversations avec ses hôtes de l'ambassade. Cette réception a revêtu un caractère plus familial, créant une atmosphère de cordialité qui a permis des échanges plus détendus. Tandis qu'aujourd'hui promet d'être une journée d'une intensité remarquable, où les cérémonies officielles se mêleront aux échanges culturels et aux discussions diplomatiques. Paris accueille avec élégance cette visite qui promet de marquer les relations entre la France et l'Empire austro-hongrois.</p>
+                    </div>
+                    
+                    <div class="article-text lang-es">
+                        <p>París, 19 de Mayo — Ayer, Su Majestad el Emperador de Austria‑Hungría llegó a París en una visita oficial cuya solemnidad es evidente, acompañado de su séquito y de un diplomático bohemio que le asiste en esta misión. La primera jornada de esta visita imperial comenzó con una llegada y recepción oficial en la embajada de Austria-Hungría, presidida por el embajador y este diplomático bohemio. Esta ceremonia protocolaria estuvo marcada por la presentación de credenciales y saludos protocolarios, estableciendo el marco formal de esta visita imperial.</p>
+                        
+                        <p>La tarde de ayer, el Emperador realizó visitas simbólicas a monumentos parisinos, comenzando por un paseo privado al Pont Alexandre III, seguido de una visita al Petit Palais. El momento más simbólico de este paseo fue sin duda la ofrenda floral ante una estatua de Libuše, gesto que recuerda la importancia cultural que el pueblo austro-húngaro otorga a esta figura legendaria de Bohemia.</p>
+                        
+                        <p>La velada se prosiguió con una cena en La Petite Chaise, restaurante histórico fundado en 1680, donde el Emperador pudo degustar los sabores de la gastronomía francesa en un marco cargado de historia.</p>
+                        
+                        <p>Hoy, esta visita imperial tomará una dimensión más formal. A mediodía, está previsto un desayuno diplomático en el Palacio del Elíseo, donde Su Majestad se encontrará con el Presidente de la República así como con los ministros de Asuntos Exteriores y de Cultura. La tarde estará marcada por un encuentro con la prensa, una conferencia de prensa organizada en el salón de prensa de la Ópera Garnier, moderada por un periodista bohemio residente en París.</p>
+                        
+                        <p>Pero el acontecimiento más esperado de esta jornada será sin duda la representación de "Libuše" de Smetana en la Ópera Garnier. El Emperador tomará asiento en el palco presidencial, rodeado de invitados del gobierno francés. Al término de la representación, encontrará a los miembros de la representación de Libuše, en un momento de reconocimiento artístico que subrayará la importancia que Viena otorga a la cultura como vector de diálogo entre las naciones.</p>
+                        
+                        <p>La jornada se proseguirá con una cena de gala en el Pavillon Ledoyen, prestigiosa mesa gourmet situada cerca de los Campos Elíseos, donde se reunirán críticos, representantes de la prensa diplomática e invitados seleccionados por la embajada.</p>
+                        
+                        <p>Esta primera jornada de visita imperial habrá estado marcada, pues, por ceremonias protocolarias y gestos simbólicos, así como por animadas conversaciones con sus anfitriones de la embajada. Esta recepción ha tenido más bien un carácter "en familia", creando una atmósfera de cordialidad que ha permitido intercambios más relajados. Mientras que hoy promete ser una jornada de intensidad notable, donde las ceremonias oficiales se mezclarán con los intercambios culturales y las discusiones diplomáticas. París acoge con elegancia esta visita que promete marcar las relaciones entre Francia y el Imperio austro-húngaro.</p>
+                    </div>
+                </article>
+                
+                <!-- ARTÍCULOS SECUNDARIOS -->
+                <div class="secondary-articles">
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">Artistes et Intellectuels dans le Débat sur la Séparation : Une Voix qui Compte</h3>
+                        <h3 class="secondary-title lang-es">Artistas e Intelectuales en el Debate sobre la Separación: Una Voz que Cuenta</h3>
+                        
+                        <div class="square-image-container">
+                            <div class="square-image">
+                                <img src="news/madeleine.jpg" alt="La Madeleine, Paris - Débat sur la Séparation Église-État" class="placeholder">
+                            </div>
+                        </div>
+                        
+                        <p class="secondary-text lang-fr">
+                            Paris, 19 Mai — Hier après-midi, alors que l'Assemblée examine les derniers articles du projet de loi sur la séparation des Églises et de l'État, une manifestation d'un caractère particulier s'est déroulée sur les marches de la Madeleine. Ce n'était point la foule habituelle des manifestants politiques, mais un rassemblement où se mêlaient artistes, écrivains et membres des guildes, venus exprimer leur position sur cette question qui divise la France.
+                        </p>
+                        <p class="secondary-text lang-es">
+                            París, 19 de Mayo — Ayer por la tarde, mientras la Asamblea examina los últimos artículos del proyecto de ley sobre la separación de las Iglesias y el Estado, una manifestación de carácter particular se desarrolló en las escaleras de la Madeleine. No era la multitud habitual de manifestantes políticos, sino una concentración donde se mezclaban artistas, escritores y miembros de los gremios, venidos a expresar su posición sobre esta cuestión que divide a Francia.
+                        </p>
+                        <p class="secondary-text lang-fr">
+                            La présence des artistes dans ce débat n'est pas anodine. Dans une société où leur voix porte désormais un poids considérable, plusieurs membres de la Guilde des Écrivains et de la Guilde des Acteurs ont pris la parole pour défendre la liberté de conscience et la neutralité de l'État. "L'art ne peut s'épanouir que dans la liberté," a déclaré un écrivain renommé, "et cette liberté passe par la séparation des pouvoirs temporels et spirituels."
+                        </p>
+                        <p class="secondary-text lang-es">
+                            La presencia de los artistas en este debate no es anodina. En una sociedad donde su voz tiene ahora un peso considerable, varios miembros de la Guilda de los Escritores y de la Guilda de los Actores tomaron la palabra para defender la libertad de conciencia y la neutralidad del Estado. "El arte solo puede florecer en la libertad," declaró un escritor renombrado, "y esta libertad pasa por la separación de los poderes temporales y espirituales."
+                        </p>
+                        <p class="secondary-text lang-fr">
+                            Face à eux, un groupe plus réduit mais tout aussi déterminé, composé notamment de sculpteurs et de peintres ayant travaillé pour des commandes religieuses, exprimait ses craintes quant à l'avenir du patrimoine artistique lié aux édifices cultuels. "Qui financera la restauration des œuvres sacrées si l'État se retire ?" s'interrogeait l'un d'eux, suscitant des échanges animés avec ses confrères.
+                        </p>
+                        <p class="secondary-text lang-es">
+                            Frente a ellos, un grupo más reducido pero igualmente determinado, compuesto en particular por escultores y pintores que habían trabajado para encargos religiosos, expresaba sus temores sobre el futuro del patrimonio artístico ligado a los edificios de culto. "¿Quién financiará la restauración de las obras sagradas si el Estado se retira?" se interrogaba uno de ellos, suscitando intercambios animados con sus colegas.
+                        </p>
+                        <p class="secondary-text lang-fr">
+                            Ce qui frappe l'observateur, c'est la maturité du débat. Les artistes, dont l'influence dans les affaires publiques est depuis longtemps reconnue et établie, s'emparent de cette question avec leur sensibilité et leur vision du monde. Cette intervention dans le débat sur la séparation illustre une fois de plus le rôle historique qu'ils jouent dans les grandes questions qui façonnent la République. Leur parole a toujours compté dans notre société, et cette manifestation en est une nouvelle démonstration éloquente.
+                        </p>
+                        <p class="secondary-text lang-es">
+                            Lo que llama la atención del observador es la madurez del debate. Los artistas, cuya influencia en los asuntos públicos es desde hace tiempo reconocida y establecida, se apoderan de esta cuestión con su sensibilidad y su visión del mundo. Esta intervención en el debate sobre la separación ilustra una vez más el papel histórico que desempeñan en las grandes cuestiones que moldean la República. Su palabra siempre ha contado en nuestra sociedad, y esta manifestación es una nueva demostración elocuente de ello.
+                        </p>
+                    </article>
+                    
+                </div>
+            </div>
+            
+            <!-- COLUMNA DERECHA -->
+            <aside class="right-column">
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Cléa Dessendre Fait Irruption au Louvre avec "Visages Géants"</h3>
+                    <h3 class="sidebar-title lang-es">Cléa Dessendre Irrumpe en el Louvre con "Rostros Gigantes"</h3>
+                    
+                    <div class="vertical-image" style="aspect-ratio: 4/3;">
+                        <img src="news/louvre.jpg" alt="Louvre - Exposition Cléa Dessendre" class="placeholder">
+                    </div>
+                    
+                    <div class="sidebar-text lang-fr">
+                        <p>Paris, 19 Mai — Paris ajoute ces jours-ci un début remarquable à sa scène culturelle avec l'Exposition de Cléa Dessendre, qui présente au Louvre sa première collection, Visages géants. L'artiste fait ainsi son entrée avec assurance dans le monde de l'art parisien, misant dès le départ sur une œuvre ambitieuse et de forte présence qui ne laisse pas indifférent le visiteur.</p>
+                        
+                        <p>Les pièces impressionnent par leur échelle et par la combinaison de peinture et de sculpture, donnant lieu à des formes imposantes qui dominent l'espace ; cependant, au-delà de ce premier impact visuel, les œuvres récompensent celui qui s'arrête pour observer avec attention. Des détails presque cachés, des gestes à peine suggérés et des messages subtils se révèlent peu à peu, offrant une expérience plus profonde qui peut passer inaperçue pour le public le plus pressé et qui montrent le riche monde intérieur de l'artiste et ses expériences.</p>
+                        
+                        <p>Cependant, c'est l'œuvre centrale de l'exposition qui s'érige comme son authentique culmination : un portrait colossal réalisé en huile combiné avec des pièces travaillées de marbre qui complètent l'œuvre, évoquant l'aventure, le voyage et la nécessité d'avancer vers l'avenir. C'est une image ouverte et décidée qui résume avec force l'esprit de la collection et le regard de mademoiselle Dessendre sur son environnement et ses plus proches.</p>
+                        
+                        <p>Il ne reste qu'à souhaiter et espérer que cette exposition réponde aux attentes de l'Empereur d'Autriche-Hongrie, dont la visite au Louvre inclura ce parcours à travers la modernité artistique. Tout indique qu'il sera ébloui par le talent de Cléa Dessendre et par la vitalité de tant d'autres artistes français qui continuent de façonner le prestige culturel de Paris.</p>
+                    </div>
+                    
+                    <div class="sidebar-text lang-es">
+                        <p>París, 19 de Mayo — París suma estos días un debut destacado a su escena cultural con la Exposición de Cléa Dessendre, que presenta en el Louvre su primera colección, Rostros gigantes. La artista entra así con paso firme en el mundo del arte parisino, apostando desde el inicio por una obra ambiciosa y de fuerte presencia que no deja indiferente al visitante.</p>
+                        
+                        <p>Las piezas impresionan por su escala y por la combinación de pintura y escultura, dando lugar a formas imponentes que dominan el espacio; sin embargo, tras ese primer impacto visual, las obras recompensan a quien se detiene a observar con atención. Detalles casi ocultos, gestos apenas sugeridos y mensajes sutiles se revelan poco a poco, ofreciendo una experiencia más profunda que puede pasar desapercibida para el público más apresurado y que muestran el rico mundo interior de la artista y sus experiencias.</p>
+                        
+                        <p>Con todo, es la obra central de la exposición la que se erige como su auténtica culminación: un colosal retrato realizado en óleo combinado con trabajadas piezas de mármol que completan la pieza, evocando la aventura, el viaje y la necesidad de avanzar hacia el futuro. Es una imagen abierta y decidida que resume con fuerza el espíritu de la colección y la mirada de la señorita Dessendre sobre su entorno y sus más allegados.</p>
+                        
+                        <p>Solo cabe desear y confiar en que esta exposición cumpla las expectativas del Emperador de Austria Hungría, cuya visita al Louvre incluirá este recorrido por la modernidad artística. Todo apunta a que quedará deslumbrado por el talento de Cléa Dessendre y por la vitalidad de tantos otros artistas franceses que siguen dando forma al prestigio cultural de París.</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 16px;">
+                        <p><strong>• Renault remporte le contrat des taxis parisiens:</strong> La maison Renault vient d'obtenir un contrat historique pour la fourniture de cinq cents véhicules destinés au transport public parisien. Cette commande marque une étape importante dans l'accessibilité de l'automobile au grand public, jusqu'alors réservée aux plus fortunés.</p>
+                        
+                        <p><strong>• Finale d'Olympia avancée:</strong> La finale d'Olympia a été avancée, suscitant l'enthousiasme des amateurs d'émotions fortes qui se préparent déjà pour cet événement tant attendu.</p>
+                        
+                        <p><strong>• Projection mystérieuse au Coco Bongo:</strong> Une projection mystérieuse est prévue au Cabaret Coco Bongo ce dimanche 20 mai. Les détails restent confidentiels, mais l'événement suscite déjà la curiosité des milieux artistiques parisiens.</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 16px;">
+                        <p><strong>• Renault gana el contrato de los taxis parisinos:</strong> La casa Renault acaba de obtener un contrato histórico para el suministro de quinientos vehículos destinados al transporte público parisino. Este encargo marca una etapa importante en la accesibilidad del automóvil al gran público, hasta ahora reservado a los más afortunados.</p>
+                        
+                        <p><strong>• Finale de Olympia adelantada:</strong> La finale de Olympia ha sido adelantada, suscitando el entusiasmo de los amantes de las emociones fuertes que ya se preparan para este evento tan esperado.</p>
+                        
+                        <p><strong>• Proyección misteriosa en el Coco Bongo:</strong> Una proyección misteriosa está prevista en el Cabaret Coco Bongo este domingo 20 de mayo. Los detalles permanecen confidenciales, pero el evento ya suscita la curiosidad de los medios artísticos parisinos.</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Première Journée de la Visite Impériale : Cérémonies Protocolaires et Attentes pour Aujourd'hui :</strong><br>P. Bernard</p>
+                        <p><strong>Cléa Dessendre Fait Irruption au Louvre avec "Visages Géants" :</strong><br>C. Müller</p>
+                        <p><strong>Artistes et Intellectuels dans le Débat sur la Séparation : Une Voix qui Compte :</strong><br>L. Roy</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Primera Jornada de la Visita Imperial: Ceremonias Protocolarias y Expectativas para Hoy :</strong><br>P. Bernard</p>
+                        <p><strong>Cléa Dessendre Irrumpe en el Louvre con "Rostros Gigantes" :</strong><br>C. Müller</p>
+                        <p><strong>Artistas e Intelectuales en el Debate sobre la Separación: Una Voz que Cuenta :</strong><br>L. Roy</p>
+                    </div>
+                </article>
+            </aside>
+        </div>
+    
+    <!-- MODAL PARA IMÁGENES -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+    
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('spanish');
+            
+            // Guardar preferencia en localStorage
+            if (document.body.classList.contains('spanish')) {
+                localStorage.setItem('newspaperLanguage', 'es');
+            } else {
+                localStorage.setItem('newspaperLanguage', 'fr');
+            }
+        }
+        
+        // Cargar preferencia al cargar la página
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('newspaperLanguage');
+            if (savedLanguage === 'es') {
+                document.body.classList.add('spanish');
+            }
+        });
+        
+        // Funciones para el modal de imágenes
+        function openImageModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeImageModal(event) {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Cerrar modal con la tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    </script>
+</body>
+</html>
+
