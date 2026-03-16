@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Nouveau - Belle Époque</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #f4e8d0;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        /* CONTENEDOR DE NAVEGACIÓN DE FECHAS */
+        .date-navigation {
+            width: 200px;
+            background: #faf7f0;
+            border: 3px double #2c2416;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        
+        .date-navigation h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c2416;
+            padding-bottom: 10px;
+        }
+        
+        .date-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .date-item {
+            margin-bottom: 15px;
+        }
+        
+        .date-link {
+            display: block;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #2c2416;
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #f4e8d0;
+        }
+        
+        .date-link:hover {
+            background: #e8d5b7;
+            border-color: #8b7355;
+            transform: translateX(5px);
+        }
+        
+        .date-link.active {
+            background: #8b7355;
+            color: #faf7f0;
+            border-color: #2c2416;
+            font-weight: 600;
+        }
+        
+        .date-link.active:hover {
+            background: #6b5a47;
+            transform: none;
+        }
+        
+        .newspaper-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #faf7f0;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            padding: 40px;
+            border: 3px double #2c2416;
+            flex: 1;
+        }
+        
+        /* CABECERA DEL PERIÓDICO */
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 4px double #2c2416;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .ornamental-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        
+        .ornamental-line::before,
+        .ornamental-line::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #2c2416, transparent);
+        }
+        
+        .ornamental-symbol {
+            margin: 0 15px;
+            font-size: 20px;
+            color: #8b7355;
+        }
+        
+        .newspaper-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            color: #2c2416;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin: 15px 0;
+            text-shadow: 2px 2px 0px rgba(139, 115, 85, 0.3);
+        }
+        
+        .newspaper-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #5a4a3a;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .newspaper-date {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            color: #5a4a3a;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+        
+        /* ESTRUCTURA DEL CONTENIDO */
+        .newspaper-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        /* COLUMNA IZQUIERDA */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* ARTÍCULO PRINCIPAL */
+        .main-article {
+            border-bottom: 3px double #2c2416;
+            padding-bottom: 25px;
+        }
+        
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #2c2416;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .article-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .article-image {
+            width: 100%;
+            height: auto;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .main-article .article-image {
+            aspect-ratio: 16/9;
+            min-height: 400px;
+        }
+        
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .main-article .article-image img {
+            object-position: center center;
+        }
+        
+        .article-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.8;
+            column-count: 2;
+            column-gap: 30px;
+            hyphens: auto;
+        }
+        
+        .article-text::first-letter {
+            font-size: 72px;
+            font-weight: bold;
+            float: left;
+            line-height: 0.8;
+            margin: 5px 8px 0 0;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* ARTÍCULOS SECUNDARIOS */
+        .secondary-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .secondary-article {
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 20px;
+        }
+        
+        .secondary-article:last-child {
+            border-bottom: none;
+        }
+        
+        .secondary-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2c2416;
+            padding-bottom: 5px;
+        }
+        
+        .secondary-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+        
+        /* IMAGEN CUADRADA ENTRE ARTÍCULOS */
+        .square-image-container {
+            margin: 20px 0;
+        }
+        
+        .square-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border: 3px solid #2c2416;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .square-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* COLUMNA DERECHA */
+        .right-column {
+            border-left: 3px double #2c2416;
+            padding-left: 25px;
+        }
+        
+        .sidebar-article {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 10px 0;
+        }
+        
+        .vertical-image {
+            width: 100%;
+            aspect-ratio: 9/16;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .vertical-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .sidebar-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+        
+        /* DECORACIONES TIPOGRÁFICAS */
+        .typographic-ornament {
+            text-align: center;
+            font-size: 24px;
+            color: #8b7355;
+            margin: 20px 0;
+            letter-spacing: 10px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .date-navigation {
+                width: 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .newspaper-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .right-column {
+                border-left: none;
+                border-top: 3px double #2c2416;
+                padding-left: 0;
+                padding-top: 25px;
+            }
+            
+            .article-text {
+                column-count: 1;
+            }
+            
+            .newspaper-title {
+                font-size: 48px;
+            }
+        }
+        
+        /* EFECTOS DE PAPEL ENVEJECIDO */
+        .newspaper-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 115, 85, 0.03) 2px,
+                    rgba(139, 115, 85, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+        
+        .newspaper-container {
+            position: relative;
+        }
+        
+        /* Placeholder de imagen */
+        img.placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* BOTÓN DE TRADUCCIÓN */
+        .translate-button {
+            width: 35px;
+            height: 35px;
+            background: rgba(44, 36, 22, 0.1);
+            border: 2px solid rgba(139, 115, 85, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            color: #5a4a3a;
+            margin: 10px auto;
+        }
+        
+        .translate-button:hover {
+            background: rgba(139, 115, 85, 0.2);
+            border-color: #8b7355;
+            transform: scale(1.1);
+        }
+        
+        .translate-button:active {
+            transform: scale(0.95);
+        }
+        
+        .translate-button-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        /* Ocultar contenido de idioma alternativo */
+        .lang-es {
+            display: none;
+        }
+        
+        body.spanish .lang-fr {
+            display: none;
+        }
+        
+        body.spanish .lang-es {
+            display: block;
+        }
+        
+        body.spanish .lang-es.inline {
+            display: inline;
+        }
+        
+        /* ESTILOS PARA CRÓNICAS DE SOCIEDAD */
+        .society-chronicle {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+        
+        .society-chronicle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .society-note {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        /* ESTILOS PARA CARTAS AL DIRECTOR */
+        .letters-section {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+        
+        .letters-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .letter-box {
+            background-color: #f5e6d3;
+            border: 2px solid #d4c4a8;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .letter-content {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #2c2416;
+            text-align: justify;
+        }
+        
+        .letter-signature {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2416;
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        /* ESTILOS PARA COTILLEOS DE SOLTEROS */
+        .gossip-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .gossip-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #f4e8d0;
+            border: 1px solid #8b7355;
+            border-left: 3px solid #8b7355;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+        
+        .gossip-item:hover {
+            background: #e8d5b7;
+        }
+        
+        .gossip-photo {
+            width: fit-content;
+            height: fit-content;
+            border: 2px solid #2c2416;
+            padding: 1px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #d4c5b0;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        
+        .gossip-photo img {
+            width: 70px;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gossip-photo img:hover {
+            opacity: 0.8;
+        }
+        
+        /* MODAL PARA IMÁGENES */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .image-modal.active {
+            display: flex;
+        }
+        
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #2c2416;
+            padding: 10px;
+            background: #faf7f0;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            height: auto;
+            display: block;
+        }
+        
+        .image-modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: #2c2416;
+            color: #faf7f0;
+            border: 2px solid #2c2416;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+        
+        .image-modal-close:hover {
+            background: #8b7355;
+        }
+        
+        .gossip-info {
+            flex: 1;
+        }
+        
+        .gossip-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 5px;
+        }
+        
+        .gossip-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            color: #2c2416;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        
+        .gossip-text em {
+            font-style: normal;
+            font-weight: 600;
+            color: #5a4a3a;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN DE FECHAS -->
+    <nav class="date-navigation">
+        <h3 class="lang-fr">Éditions</h3>
+        <h3 class="lang-es">Ediciones</h3>
+        <ul class="date-list">
+            <li class="date-item">
+                <a href="noticias18.html" class="date-link active">
+                    <span class="lang-fr">27 Juillet 1905</span>
+                    <span class="lang-es">27 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias17.html" class="date-link">
+                    <span class="lang-fr">26 Juillet 1905</span>
+                    <span class="lang-es">26 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias16.html" class="date-link">
+                    <span class="lang-fr">25 Juillet 1905</span>
+                    <span class="lang-es">25 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias15.html" class="date-link">
+                    <span class="lang-fr">24 Juillet 1905</span>
+                    <span class="lang-es">24 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias14.html" class="date-link">
+                    <span class="lang-fr">22 Mai 1905</span>
+                    <span class="lang-es">22 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias13.html" class="date-link">
+                    <span class="lang-fr">21 Mai 1905</span>
+                    <span class="lang-es">21 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias12.html" class="date-link">
+                    <span class="lang-fr">20 Mai 1905</span>
+                    <span class="lang-es">20 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias11.html" class="date-link">
+                    <span class="lang-fr">19 Mai 1905</span>
+                    <span class="lang-es">19 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias10.html" class="date-link">
+                    <span class="lang-fr">18 Mai 1905</span>
+                    <span class="lang-es">18 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias9.html" class="date-link">
+                    <span class="lang-fr">17 Mai 1905</span>
+                    <span class="lang-es">17 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias8.html" class="date-link">
+                    <span class="lang-fr">16 Mai 1905</span>
+                    <span class="lang-es">16 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias7.html" class="date-link">
+                    <span class="lang-fr">15 Mai 1905</span>
+                    <span class="lang-es">15 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias6.html" class="date-link">
+                    <span class="lang-fr">1 Avril 1905</span>
+                    <span class="lang-es">1 de Abril</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias5.html" class="date-link">
+                    <span class="lang-fr">29 Mars 1905</span>
+                    <span class="lang-es">29 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias4.html" class="date-link">
+                    <span class="lang-fr">28 Mars 1905</span>
+                    <span class="lang-es">28 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias3.html" class="date-link">
+                    <span class="lang-fr">27 Mars 1905</span>
+                    <span class="lang-es">27 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias2.html" class="date-link">
+                    <span class="lang-fr">26 Mars 1905</span>
+                    <span class="lang-es">26 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias1.html" class="date-link">
+                    <span class="lang-fr">25 Mars 1905</span>
+                    <span class="lang-es">25 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias.html" class="date-link">
+                    <span class="lang-fr">18 Mars 1905</span>
+                    <span class="lang-es">18 de Marzo</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="newspaper-container">
+        <!-- CABECERA DEL PERIÓDICO -->
+        <header class="newspaper-header">
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">❦</span>
+            </div>
+            <h1 class="newspaper-title">Paris Nouveau</h1>
+            <p class="newspaper-subtitle">Nouvelles du Monde des Arts et de la Belle Société</p>
+            <div class="translate-button-container">
+                <button class="translate-button" onclick="toggleLanguage()" title="Traducir / Translate">🔍</button>
+            </div>
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+            </div>
+            <p class="newspaper-date lang-fr">Jeudi, 27 Juillet 1905 — Prix: 5 Centimes</p>
+            <p class="newspaper-date lang-es">Jueves, 27 de Julio de 1905 — Precio: 5 Centimes</p>
+        </header>
+        
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="newspaper-content">
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="left-column">
+                <!-- ARTÍCULO PRINCIPAL (inspirado en « Mes Haines », Zola, 1866) -->
+                <article class="main-article">
+                    <h2 class="article-title lang-fr">Chronique — La haine soulage : indignation et vérité</h2>
+                    <h2 class="article-title lang-es">Crónica — El odio alivia: indignación y verdad</h2>
+                    <p class="article-subtitle lang-fr">Un chroniqueur s'interroge sur le mépris des médiocrités, la soif de vérité en art et en pensée, et le prix de la libre parole dans un Paris où les troupeaux et les dogmes étouffent encore la lumière</p>
+                    <p class="article-subtitle lang-es">Un cronista se pregunta por el desprecio de las mediocridades, la sed de verdad en el arte y en el pensamiento, y el precio de la palabra libre en un París donde los rebaños y los dogmas siguen ahogando la luz</p>
+                    
+                    <div class="article-image">
+                        <img src="news/paris_tuileries_rivoli.jpg" alt="Paris moderne. Les Tuileries, le Louvre et la rue de Rivoli, vue du Jardin des Tuileries — Ch. Fichot, 1860, LOC" class="placeholder">
+                    </div>
+                    
+                    <div class="article-text lang-fr">
+                        <p>Paris, 27 Juillet — La haine est sainte. Elle est l'indignation des cœurs forts : le dédain militant de ceux que révoltent la médiocrité et la sottise. Haïr, c'est aimer ; c'est sentir son âme chaude et généreuse ; c'est vivre largement du mépris des choses honteuses et bêtes. La haine soulage, la haine fait justice, la haine grandit. Je me suis senti plus jeune et plus courageux après chacune de mes révoltes contre les platitudes de mon temps. Si je vaux quelque chose aujourd'hui, c'est que j'ai choisi d'être seul et de haïr ce qui blesse le juste et le vrai.</p>
+                        <p>Je hais ceux qui se parquent dans une idée, qui vont en troupeau, la tête baissée vers la terre pour ne pas voir la grande lueur du ciel. Chaque troupeau a son dieu, son fétiche, sur l'autel duquel il immole la vérité humaine. Ils sont des centaines dans Paris, vingt à trente dans chaque coin, haranguant solennellement le peuple du haut de leur tribune. Dès qu'on les trouble dans leur fanatisme, ils poussent des cris de désespérance. Où sont les hommes libres, ceux qui n'enferment pas leur pensée dans le cercle étroit d'un dogme et qui marchent franchement vers la lumière, n'ayant souci que du juste et du vrai ? Où sont ceux qui n'applaudissent pas, sur un signe du chef, Dieu ou le prince, l'académie ou la coterie ? Lorsqu'ils parlent, les gens graves et bêtes les accablent de leur masse ; puis ils rentrent dans leur digestion et se prouvent entre eux qu'ils ont raison.</p>
+                        <p>Je hais les impuissants qui crient que notre art et notre littérature meurent de leur belle mort. Ce sont les cerveaux les plus vides qui feuillettent avec mépris les œuvres vivantes de notre âge et les déclarent nulles. Moi, je n'ai guère souci de beauté ni de perfection ; je n'ai souci que de vie, de lutte, de fièvre. Nous sommes au seuil d'un siècle de science et de réalité ; nous chancelons parfois comme des hommes ivres devant la grande lueur qui se lève. Nous travaillons, nous préparons la besogne de nos fils ; nous en sommes à l'heure de la démolition, quand la poussière de plâtre emplit l'air et que les décombres tombent avec fracas. Demain l'édifice sera reconstruit. Que les aveugles nient nos efforts : ils ne comprennent pas que nous marchons et que les paysages changent.</p>
+                    </div>
+                    
+                    <div class="article-text lang-es">
+                        <p>París, 27 de Julio — El odio es santo. Es la indignación de los corazones fuertes: el desdén militante de quienes se rebelan contra la mediocridad y la necedad. Odiar es amar; es sentir el alma cálida y generosa; es vivir de lleno del desprecio por lo vergonzoso y lo estúpido. El odio alivia, el odio hace justicia, el odio engrandece. Me he sentido más joven y más valiente después de cada una de mis revueltas contra las banalidades de mi tiempo. Si valgo algo hoy, es porque he elegido estar solo y odiar lo que ofende lo justo y lo verdadero.</p>
+                        <p>Odio a quienes se encierran en una idea, que van en rebaño, con la cabeza baja hacia la tierra para no ver la gran luz del cielo. Cada rebaño tiene su dios, su fetiche, en cuyo altar inmola la verdad humana. Son cientos en París, veinte o treinta en cada rincón, arengando solemnemente al pueblo desde su tribuna. En cuanto se les molesta en su fanatismo, lanzan gritos de desesperación. ¿Dónde están los hombres libres, los que no encierran su pensamiento en el círculo estrecho de un dogma y avanzan con franqueza hacia la luz, sin más cuidado que lo justo y lo verdadero? ¿Dónde los que no aplauden, a una señal del jefe, a Dios o al príncipe, a la academia o a la cofradía? Cuando hablan, los graves y necios los aplastan con su masa; luego vuelven a su digestión y se demuestran entre sí que tienen razón.</p>
+                        <p>Odio a los impotentes que proclaman que nuestro arte y nuestra literatura mueren de buena muerte. Son los cerebros más vacíos los que hojean con desdén las obras vivas de nuestra época y las declaran nulas. Yo no me ocupo de belleza ni de perfección; me ocupo solo de vida, de lucha, de fiebre. Estamos en el umbral de un siglo de ciencia y de realidad; a veces tambaleamos como borrachos ante la gran luz que se alza. Trabajamos, preparamos la tarea de nuestros hijos; estamos en la hora del derribo, cuando el polvo del yeso llena el aire y los escombros caen con estruendo. Mañana se reconstruirá el edificio. Que los ciegos nieguen nuestros esfuerzos: no entienden que avanzamos y que los paisajes cambian.</p>
+                    </div>
+                </article>
+                
+                <div style="margin-top: 1.5em; margin-bottom: 1.5em;">
+                    <div class="article-image">
+                        <img src="news/musabelleza.jpeg" alt="Musa baila indiferente a las críticas a la desnudez — Émile Labord" class="placeholder">
+                    </div>
+                    <p class="image-caption lang-fr" style="font-size: 0.75rem; font-style: italic; margin-top: 0.35em; margin-bottom: 0; text-align: center; line-height: 1.4; color: #2c2416;">Muse danse indifférente aux critiques de la nudité — Émile Labord</p>
+                    <p class="image-caption lang-es" style="font-size: 0.75rem; font-style: italic; margin-top: 0.35em; margin-bottom: 0; text-align: center; line-height: 1.4; color: #2c2416;">Musa baila indiferente a las críticas a la desnudez — Émile Labord</p>
+                </div>
+                
+                <!-- ARTÍCULOS SECUNDARIOS -->
+                <div class="secondary-articles">
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">Sur la décadence</h3>
+                        <h3 class="secondary-title lang-es">Sobre la decadencia</h3>
+                        <div class="secondary-text lang-fr">
+                            <p>Hier est paru dans ces colonnes un article suggérant que certains lieux de loisir de notre ville pourraient être interprétés comme le symptôme d'un délabrement culturel plus large. J'avoue qu'en achevant sa lecture, ce qui m'a le plus surpris n'est pas le jugement émis mais l'étroitesse du chemin qui y a conduit.</p>
+                            <p>Il est toujours curieux d'observer comment un lieu peut offrir tant de choses au regard et pourtant se retrouver réduit à une seule image dans l'esprit de qui le décrit. Quiconque a passé une soirée au Cocobongo sait que l'établissement n'est pas uniquement un décor de frivolité. Son architecture possède une élégance indiscutable, les colonnes dorées reflètent la lumière avec un goût qui ne saurait être attribué au hasard, et la musique en direct, lorsque la salle se remplit, transforme l'espace en quelque chose qui tient davantage du petit théâtre que de la simple salle de divertissement.</p>
+                            <p>Là s'y mêlent des conversations de toute sorte. Les unes profondes, les autres délicieusement futiles, comme il sied à toute soirée animée. Les regards se croisent entre des personnes qui dans la vie quotidienne partageraient rarement table ou verre. Sous ce toit se côtoient artistes, étudiants, commerçants, fonctionnaires et curieux, tous réunis par cette inclination si humaine vers la compagnie, la musique et l'espoir d'être favorisés par la déesse Fortune.</p>
+                            <p>C'est pourquoi il est difficile de ne pas percevoir une certaine naïveté dans un jugement qui observe tout cet ensemble et choisit de s'arrêter exclusivement aux tenues des serveuses et des danseurs. Si quelqu'un est capable de traverser un tel lieu, entouré d'architecture remarquable, de musique vivante et de conversations qui s'entrelacent entre les tables, et d'en revenir avec l'impression que le vrai signe de la décadence réside dans quelques plumes ou quelques jambes dénudées, peut-être le problème ne se trouve-t-il pas dans le lieu observé mais dans le regard qui l'examine.</p>
+                            <p>Paris n'a jamais été une ville que l'on puisse séparer de ses cafés, de ses cabarets ou de ces espaces ambigus où la nuit semble dilater l'esprit humain. Ce sont des lieux qui, avec le temps, deviennent presque institutionnels, non parce qu'ils incarnent une vertu morale particulière, mais parce qu'ils font partie du pouls même de la ville. Là sont nées des idées, des amitiés, des disputes, des poèmes et des projets artistiques qui ont ensuite gagné les scènes, les ateliers de peinture ou les pages de nos livres.</p>
+                            <p>Peut-être le mot décadence est-il prononcé trop vite. La décadence, à certaines doses, a toujours été l'un des luxes discrets de Paris. Une indulgence nocturne qui permet à l'esprit humain de se reposer momentanément de ses propres aspirations. Elle recèle quelque chose du plaisir coupable, mais aussi une énergie singulière qui, bien souvent, finit par se transformer en élan créateur.</p>
+                            <p>Après tout, les grandes symphonies, les sculptures de marbre et les arcs qui dressent leur ombre sur nos avenues ne naissent pas uniquement de la discipline silencieuse de l'atelier. Ils naissent aussi de la vie qui bat dans les rues, des nuits partagées, des conversations erratiques qui commencent sans but et finissent par éveiller une idée inattendue.</p>
+                            <p>Peut-être est-ce pour cela que Paris a toujours toléré une certaine dose d'excès. Non comme une chute définitive, mais comme une phase inévitable du mouvement qui conduit, tôt ou tard, vers quelque chose de plus élevé.</p>
+                            <p>Car celui qui n'est pas prêt à descendre un peu dans les nuits inquiètes de cette ville aura bien du mal à comprendre quelle est l'autre face du décor. Et celui qui craint trop la décadence ignore peut-être qu'il arrive que ce soit précisément depuis ce point que commence la véritable ascension de l'art.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p>Ayer apareció en estas páginas un artículo en el que se sugería que ciertos lugares de ocio de nuestra ciudad podrían ser interpretados como síntoma de un deterioro cultural más amplio. Confieso que, al terminar su lectura, me sorprendió menos el juicio emitido que la estrechez del camino que llevó hasta él.</p>
+                            <p>Resulta siempre curioso observar cómo un lugar puede ofrecer tantas cosas a la mirada y, sin embargo, terminar reducido a una sola imagen en la mente de quien lo describe. Quien haya pasado alguna noche en el Cocobongo sabe que el local no es únicamente un escenario de frivolidad. Su arquitectura posee una elegancia indiscutible, las columnas doradas reflejan la luz con un gusto que no puede atribuirse al azar, y la música en directo, cuando la sala se llena, transforma el espacio en algo más cercano a un pequeño teatro que a una simple sala de entretenimiento.</p>
+                            <p>Allí se reúnen conversaciones de todo tipo. Algunas profundas, otras deliciosamente vacuas, como corresponde a cualquier velada animada. Se cruzan miradas entre personas que en la vida cotidiana rara vez compartirían mesa o copa. Bajo ese techo se mezclan artistas, estudiantes, comerciantes, funcionarios y curiosos, todos ellos reunidos por esa sencilla inclinación humana hacia la compañía, la música, y la esperanza de ser favorecidos por la diosa fortuna.</p>
+                            <p>Por eso resulta difícil no percibir cierta ingenuidad en un juicio que observa todo ese conjunto y decide detenerse exclusivamente en los uniformes de las camareras y bailarines. Si alguien es capaz de atravesar un lugar así, rodeado de arquitectura notable, música viva y conversaciones que se entrelazan entre las mesas, y regresar con la impresión de que el verdadero signo de la decadencia reside en unas plumas o en unas piernas descubiertas, quizá el problema no se encuentre en el lugar observado sino en la mirada que lo examina.</p>
+                            <p>París nunca ha sido una ciudad que pueda separarse de sus cafés, de sus cabarets o de esos espacios ambiguos donde la noche parece dilatar el espíritu humano. Son lugares que, con el tiempo, se vuelven casi institucionales, no porque representen una virtud moral particular, sino porque forman parte del pulso mismo de la ciudad. Allí han nacido ideas, amistades, disputas, poemas y proyectos artísticos que luego han terminado en los escenarios, en los estudios de pintura o en las páginas de nuestros libros.</p>
+                            <p>Tal vez la palabra decadencia se pronuncie con demasiada rapidez. La decadencia, en ciertas dosis, ha sido siempre uno de los lujos discretos de París. Una indulgencia nocturna que permite al espíritu humano descansar momentáneamente de sus propias aspiraciones. Hay en ella algo de placer culpable, pero también una energía particular que, con frecuencia, termina transformándose en impulso creativo.</p>
+                            <p>Después de todo, las grandes sinfonías, las esculturas de mármol y los arcos que elevan su sombra sobre nuestras avenidas no nacen únicamente de la disciplina silenciosa del taller. También nacen de la vida que late en las calles, de las noches compartidas, de las conversaciones erráticas que comienzan sin propósito y terminan despertando una idea inesperada.</p>
+                            <p>Quizá por eso París ha tolerado siempre una cierta dosis de exceso. No como una caída definitiva, sino como una fase inevitable del movimiento que conduce, tarde o temprano, hacia algo más elevado.</p>
+                            <p>Porque quien no está dispuesto a descender un poco en las noches inquietas de esta ciudad difícilmente llegará a comprender cuál es la otra cara de la moneda. Y aquel que teme demasiado a la decadencia tal vez ignore que, en ocasiones, es precisamente desde ese punto desde donde comienza el verdadero ascenso del arte.</p>
+                        </div>
+                    </article>
+                    
+                    <div class="typographic-ornament">❦ ◆ ❦</div>
+                    
+                    <!-- CRÓNICAS DE SOCIEDAD -->
+                    <article class="society-chronicle">
+                        <h2 class="society-chronicle-title lang-fr">Chroniques de la Société</h2>
+                        <h2 class="society-chronicle-title lang-es">Crónicas de Sociedad</h2>
+                        <p class="society-note lang-fr">Notes mondaines et événements de la haute société parisienne</p>
+                        <p class="society-note lang-es">Notas mundanas y acontecimientos de la alta sociedad parisina</p>
+                        
+                        <div class="secondary-article">
+                            <h3 class="secondary-title lang-fr">L'amour était timide, cette nuit</h3>
+                            <h3 class="secondary-title lang-es">Anoche el amor estaba tímido</h3>
+                            <div class="secondary-text lang-fr">
+                                <p><em>Mes chères lectrices</em>, la nuit dernière l'amour était timide — mais votre chroniqueuse a su prêter l'oreille à sa voix discrète. Et que de confidences à vous faire.</p>
+                                <p>L'on murmure que trois flèches de Cupidon ont manqué leur cible. La première, sans conteste : le prince et la princesse de Monaco ont regagné la principauté plus frustrés que rougissants. Sommes-nous donc si fiers, à Paris, qu'un prince ne nous suffit plus ? Ou bien nous serait-il né un petit Napoléon entre les maisons Dessendre et Lecomte ?</p>
+                                <p>Cléa, dit-on, n'a été nullement impressionnée par la perspective d'une vie de palais — et nous sommes persuadées qu'Aline s'en réjouit. Allons, Peintresse : cherchez un mariage arrangé à la hauteur de votre joyau, ou mieux encore… osez laisser le choix à elle-même.</p>
+                                <p>L'affaire du comte serait plus étrange encore, n'était que l'horlogère dont nous parlions la semaine dernière occupe désormais tout l'horizon. Elle a l'un des hommes les plus riches de Paris qui lui fait la cour — sans parler de la plus belle tour, qui semble n'avoir d'yeux que pour elle. Les salons chuchotent qu'elle n'a donné de gage à personne ; le comte, lui, paraît avoir reporté ses espoirs ailleurs, ou s'y perdre. Qui pourrait lui en vouloir ?</p>
+                                <p>Quant à Lucien… Lucien, seriez-vous amoureux ? L'un de ceux qui font naviguer leur propre fleuve d'or en parallèle à la Seine s'est lancé dans plusieurs cortèges. Lucile vous est un peu jeune, soit ; mais allez donc de l'avant : qu'on cesse de la traiter de petite sournoise. L'autre nous plaît davantage pour vous — il ne faudrait pas laisser l'historien tout seul.</p>
+                                <p>J'allais oublier. Parmi ces trois flèches, la troisième est tombée dans le quartier juif : l'on dit que demain le pain aura un goût plus doux dans ces rues — quelque chose s'est adouci. En revanche, votre chroniqueuse a compris la tragédie russe qui fait des planches du Moulin Rouge un art ; elle ne fera pas de bûches de l'arbre abattu et n'ajoutera pas un mot qui blesse quelqu'un déjà à terre.</p>
+                                <p>Voilà pour cette semaine. Votre Fleuriste, toujours à l'écoute, vous salue.</p>
+                            </div>
+                            <div class="secondary-text lang-es">
+                                <p><em>Mis queridas lectoras</em>, anoche el amor estaba tímido — pero vuestra cronista supo escuchar también su voz queda. Y cuánto hay que deciros.</p>
+                                <p>Cuentan que tres flechas de Cupido fallaron. La primera, sin duda: los príncipes de Mónaco han vuelto al principado más frustrados que sonrojados. ¿Seremos los parisinos tan orgullosos que ni un príncipe nos complace? ¿O es que nos ha nacido un pequeño Napoleón entre Dessendre y Lecomte?</p>
+                                <p>Se dice que Cléa no ha quedado en absoluto impresionada por la perspectiva de la vida en palacio — y estamos convencidas de que Aline está encantada. Vamos, Peintresse: buscad un matrimonio concertado a la altura de vuestra joya, o aún mejor… atreveos a dejar que elija ella.</p>
+                                <p>Lo del conde sería más extraño de no ser porque la relojera de la que hablamos la semana pasada ocupa ya todo el horizonte. Tiene a uno de los hombres más ricos de París cortejándola — por no hablar de la torre más bella, que al parecer no tiene ojos más que para ella. Los salones susurran que no ha dado palabra a nadie; el conde, por su parte, parece haber vuelto las esperanzas a otro lado, o perderse en el intento. ¿Quién podría reprocharle nada?</p>
+                                <p>En cuanto a Lucien… Lucien, ¿estás enamorado? Uno de los que navegan su propio río de oro en paralelo al Sena se ha lanzado a varios cortejos. Lucile te pilla un poco joven, pero oye, adelante: que dejen de llamarla mosquita muerta. La otra nos gusta más para ti — no vaya a quedarse el historiador solito.</p>
+                                <p>Se me iba a olvidar. De esas tres flechas, la tercera cayó en el barrio judío: cuentan que mañana el pan sabrá más dulce por esas calles — algo se ha endulzado. En cambio, quien esto escribe ha comprendido la tragedia rusa que convierte en arte las tablas del Moulin Rouge; no hará leña del árbol caído ni añadirá una palabra que lastime a quien ya ha caído.</p>
+                                <p>Hasta aquí por esta semana. Vuestra Florista, siempre al acecho, os saluda.</p>
+                            </div>
+                        </div>
+                    </article>
+                    
+                </div>
+            </div>
+            
+            <!-- COLUMNA DERECHA -->
+            <aside class="right-column">
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Disparition de Didier Riveau : la piste sectaire</h3>
+                    <h3 class="sidebar-title lang-es">Desaparición de Didier Riveau: la pista sectaria</h3>
+                    <div class="vertical-image" style="aspect-ratio: 4/3; margin-bottom: 1em;">
+                        <img src="news/palais_justice_paris_1900.jpg" alt="Pont au Change et Palais de Justice, Paris — carte postale, vers 1900" class="placeholder" style="object-fit: cover; object-position: center center;">
+                    </div>
+                    <div class="sidebar-text lang-fr">
+                        <p>Paris, 27 Juillet — L'enquête ouverte après la disparition de M. Didier Riveau, secrétaire du ministère de la Guerre, prend une direction nouvelle : les autorités envisagent désormais un lien potentiel avec un groupe à caractère sectaire. Le commissaire Réno a accepté de s'exprimer devant la presse ce matin et a précisé plusieurs éléments jusqu'ici tenus pour internes.</p>
+                        <p>« Nous savons que M. Riveau a disparu entre dix heures du soir et deux heures du matin », a indiqué le commissaire. « Les témoignages et les habitudes du concerné nous permettent d'estimer qu'il devait se trouver à une distance raisonnable de son domicile — à portée de marche. » Les équipes ont donc recentré les recherches sur le quartier et les alentours du logis de la victime.</p>
+                        <p>Les rumeurs d'infidelité ou de fuite volontaire, qui avaient circulé dans certains cercles, ont été formellement écartées par la préfecture. La famille et les proches de M. Riveau coopèrent avec l'enquête ; rien ne laisse penser qu'il aurait quitté Paris de son plein gré.</p>
+                        <p>Si la piste sectaire est désormais privilégiée, les détails restent confidentiels. Le commissaire Réno a toutefois affirmé que les effectifs restaient mobilisés et que l'espoir de retrouver M. Riveau vivant n'était pas abandonné. Les lecteurs du Paris Nouveau seront tenus informés de l'évolution de cette affaire.</p>
+                    </div>
+                    <div class="sidebar-text lang-es">
+                        <p>París, 27 de Julio — La investigación abierta tras la desaparición del señor Didier Riveau, secretario del ministerio de la Guerra, toma un rumbo nuevo: las autoridades barajan ya un vínculo potencial con un grupo de carácter sectario. El comisario Réno accedió a declarar ante la prensa esta mañana y precisó varios datos hasta ahora considerados de uso interno.</p>
+                        <p>«Sabemos que el señor Riveau desapareció entre las diez de la noche y las dos de la madrugada», indicó el comisario. «Los testimonios y las costumbres del afectado nos permiten estimar que debía encontrarse a una distancia razonable de su domicilio — a distancia caminada.» Los equipos han recentrado por tanto las pesquisas en el barrio y los alrededores de la vivienda del desaparecido.</p>
+                        <p>Los rumores de infidelidad o de huida voluntaria, que habían circulado en algunos círculos, han sido descartados de forma explícita por la prefectura. La familia y los allegados del señor Riveau colaboran con la investigación; nada hace pensar que hubiera abandonado París por voluntad propia.</p>
+                        <p>Si la pista sectaria es ahora la prioritaria, los detalles siguen siendo confidenciales. El comisario Réno afirmó no obstante que los efectivos siguen movilizados y que la esperanza de encontrar con vida al señor Riveau no se ha abandonado. Los lectores del Paris Nouveau serán informados de la evolución de este asunto.</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 16px;">
+                        <p><strong>• Omnibus à vapeur :</strong> La Compagnie générale des omnibus aurait fait circuler, à titre d'essai, un véhicule à vapeur sur une ligne de la rive droite. Aucune mise en service régulière n'est annoncée avant l'an prochain.</p>
+                        <p><strong>• Exposition de Cherbourg :</strong> L'exposition artistique, industrielle et commerciale ouverte le 11 juillet à Cherbourg attire de nombreux visiteurs ; le palais des arts libéraux présente près de trois cents œuvres. Les quatre pavillons resteront ouverts jusqu'en automne.</p>
+                        <p><strong>• Syndicats d'instituteurs :</strong> La fédération des syndicats d'instituteurs, récemment constituée, tiendrait son premier congrès à l'automne. Les questions d'assistance aux vieillards et infirmes figureraient à l'ordre du jour.</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 16px;">
+                        <p><strong>• Omnibús a vapor :</strong> La Compagnie générale des omnibus habría hecho circular, a título de prueba, un vehículo a vapor en una línea de la orilla derecha. No se anuncia ningún servicio regular hasta el año próximo.</p>
+                        <p><strong>• Exposición de Cherburgo :</strong> La exposición artística, industrial y comercial abierta el 11 de julio en Cherburgo atrae a numerosos visitantes; el palacio de las artes liberales presenta cerca de trescientas obras. Los cuatro pabellones permanecerán abiertos hasta el otoño.</p>
+                        <p><strong>• Sindicatos de institutores :</strong> La federación de sindicatos de institutores, recientemente constituida, celebraría su primer congreso en otoño. Las cuestiones de asistencia a ancianos e inválidos figurarían en el orden del día.</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Chronique — La haine soulage : indignation et vérité :</strong><br>E. Zola</p>
+                        <p><strong>Sur la décadence :</strong><br>C. Müller</p>
+                        <p><strong>Disparition de Didier Riveau : la piste sectaire :</strong><br>H. Dubois</p>
+                        <p><strong>L'amour était timide, cette nuit :</strong><br>La Fleuriste</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Crónica — El odio alivia: indignación y verdad :</strong><br>E. Zola</p>
+                        <p><strong>Sobre la decadencia :</strong><br>C. Müller</p>
+                        <p><strong>Desaparición de Didier Riveau: la pista sectaria :</strong><br>H. Dubois</p>
+                        <p><strong>Anoche el amor estaba tímido :</strong><br>La Florista</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <!-- RANKING DE SOLTEROS - COTILLEOS -->
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Potins & Cancans : Les Célibataires à Suivre</h3>
+                    <h3 class="sidebar-title lang-es">Cotilleos y Chismes: Los Solteros a Seguir</h3>
+                    
+                    <ul class="gossip-list">
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/emile_labord.png" alt="Émile Labord" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Émile Labord</div>
+                                <div class="gossip-name lang-es">Émile Labord</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Un dessinateur talentueux</em> qui a adapté le style de Mucha et travaille des aquarelles minimalistes. Mais c'est surtout pour ses vignettes dans le journal qu'on le connaît, où il relate les aventures d'un Gaulois affrontant diverses nations. Un guerrier d'esprit qui peut me dessiner ? Écrivez à l'éditeur !
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Un dibujante talentoso</em> que ha adaptado el estilo de Mucha y trabaja acuarelas minimalistas. Pero se le conoce especialmente por sus viñetas en el periódico, que suelen relatar las aventuras de un Galo enfrentándose a distintas naciones. ¿Un guerrero de espíritu que me puede dibujar? ¡Escribe al editor!
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/simon_latour.png" alt="Simon Latour" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Simon Latour</div>
+                                <div class="gossip-name lang-es">Simon Latour</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Ce sculpteur aux épaules imposantes</em> ne passe pas inaperçu. Spécialisé dans les figures colossales, on raconte qu'il travaille avec une force qui défie l'entendement. Certaines dames de la société ne peuvent s'empêcher de jeter un regard discret en sa direction. Qui voudrait poser pour lui ? Nous connaissons quelques volontaires...
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Este escultor de hombros imponentes</em> no pasa desapercibido. Especializado en figuras colosales, se cuenta que trabaja con una fuerza que desafía el entendimiento. Algunas damas de la sociedad no pueden evitar lanzar una mirada discreta en su dirección. ¿Quién querría posar para él? Conocemos algunas voluntarias...
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/lucile_roy.png" alt="Lucile Roy" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Lucile Roy</div>
+                                <div class="gossip-name lang-es">Lucile Roy</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Derrière son sourire timide</em> se cache une compositrice dont la musique touche l'âme. Ses mélodies reflètent une profondeur mélancolique qui contraste avec son apparence joyeuse, révélant une artiste d'une sensibilité remarquable. Son talent musical mérite toute notre attention.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Tras su sonrisa tímida</em> se esconde una compositora cuya música toca el alma. Sus melodías reflejan una profundidad melancólica que contrasta con su apariencia alegre, revelando una artista de una sensibilidad notable. Su talento musical merece toda nuestra atención.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/jacques_martin.png" alt="Jacques Martin" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Jacques Martin</div>
+                                <div class="gossip-name lang-es">Jacques Martin</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Un écrivain de fiction historique</em> spécialisé dans l'art de relier les aventures des dieux et demi-dieux de l'Antiquité aux légendes qu'ont inspirées leurs statues vivantes. Son œuvre tisse des liens fascinants entre la mythologie classique et les récits qui ont façonné notre imaginaire. Un esprit érudit qui sait donner vie aux anciens mythes. Plus d'une dizaine de lecteurs ont écrit à l'éditeur pour lui demander des épopées près du foyer. Quelle indécence !
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Un escritor de ficción histórica</em> especialista en el arte de atar las aventuras de dioses y semidioses de la Antigüedad a las leyendas que protagonizaron sus estatuas vivas. Su obra teje vínculos fascinantes entre la mitología clásica y los relatos que han moldeado nuestro imaginario. Una mente erudita que sabe dar vida a los antiguos mitos. Más de una decena de lectores han escrito al editor pidiéndole epopeyas cerca de la hoguera. ¡Qué indecencia!
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="personajes_imagenes/paul_landowski.png" alt="Paul Landowski" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Paul Landowski</div>
+                                <div class="gossip-name lang-es">Paul Landowski</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Un sculpteur qui fait fondre les cœurs</em>, spécialisé dans les monuments et les figures imposantes. Sa présence dans les salons fait invariablement monter la température — et pas seulement à cause de son art. Un artiste dont le charme naturel n'a d'égale que son habileté avec le ciseau et le marteau.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Un escultor que hace derretir los corazones</em>, especializado en monumentos y figuras imponentes. Su presencia en los salones hace invariablemente subir la temperatura — y no solo por su arte. Un artista cuyo encanto natural no tiene igual que su habilidad con el cincel y el martillo.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/lucien.png" alt="Lucien Théophile Noeud Papillon" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Lucien Théophile Noeud Papillon</div>
+                                <div class="gossip-name lang-es">Lucien Théophile Noeud Papillon</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Un séducteur de la haute société</em>, riche héritier, maître architecte propriétaire des Galeries Belle Époque, membre du conseil et chercheur au Conseil des Lumières. Que demander de plus ? Qu'il vous aime ? Peut-être que certaines d'entre vous sauront conquérir son cœur.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Un seductor de la alta sociedad</em>, rico heredero, maestro arquitecto propietario de las Galerías Belle Époque, miembro del consejo e investigador del Consejo de las Luces. ¿Qué más queréis? ¿Que os quiera? Quizás algunos de vosotros sabréis conquistar su corazón.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/marine_loremant.png" alt="Marine Loremant" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Marine Loremant</div>
+                                <div class="gossip-name lang-es">Marine Loremant</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Une étoile montante</em> qui apporte une fraîcheur bienvenue dans nos cercles. Originaire d'un milieu plus modeste, elle a su conquérir les cœurs par son charme naturel et son talent indéniable. Sa boutique dans les Galeries Belle Époque témoigne de son ascension remarquable. Une jeune femme à suivre avec attention.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Una estrella emergente</em> que aporta una frescura bienvenida en nuestros círculos. Originaria de un entorno más modesto, ha sabido conquistar los corazones con su encanto natural y su talento indudable. Su boutique en las Galerías Belle Époque da fe de su ascenso notable. Una joven mujer a seguir con atención.
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
+            </aside>
+        </div>
+    
+    <!-- MODAL PARA IMÁGENES -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+    
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('spanish');
+            
+            // Guardar preferencia en localStorage
+            if (document.body.classList.contains('spanish')) {
+                localStorage.setItem('newspaperLanguage', 'es');
+            } else {
+                localStorage.setItem('newspaperLanguage', 'fr');
+            }
+        }
+        
+        // Cargar preferencia al cargar la página
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('newspaperLanguage');
+            if (savedLanguage === 'es') {
+                document.body.classList.add('spanish');
+            }
+        });
+        
+        // Funciones para el modal de imágenes
+        function openImageModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeImageModal(event) {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Cerrar modal con la tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    </script>
+</body>
+</html>
+
