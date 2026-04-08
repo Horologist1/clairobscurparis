@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Nouveau - Belle Époque</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #f4e8d0;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        /* CONTENEDOR DE NAVEGACIÓN DE FECHAS */
+        .date-navigation {
+            width: 200px;
+            background: #faf7f0;
+            border: 3px double #2c2416;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        
+        .date-navigation h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c2416;
+            padding-bottom: 10px;
+        }
+        
+        .date-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .date-item {
+            margin-bottom: 15px;
+        }
+        
+        .date-link {
+            display: block;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #2c2416;
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #f4e8d0;
+        }
+        
+        .date-link:hover {
+            background: #e8d5b7;
+            border-color: #8b7355;
+            transform: translateX(5px);
+        }
+        
+        .date-link.active {
+            background: #8b7355;
+            color: #faf7f0;
+            border-color: #2c2416;
+            font-weight: 600;
+        }
+        
+        .date-link.active:hover {
+            background: #6b5a47;
+            transform: none;
+        }
+        
+        .newspaper-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #faf7f0;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            padding: 40px;
+            border: 3px double #2c2416;
+            flex: 1;
+        }
+        
+        /* CABECERA DEL PERIÓDICO */
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 4px double #2c2416;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .ornamental-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        
+        .ornamental-line::before,
+        .ornamental-line::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #2c2416, transparent);
+        }
+        
+        .ornamental-symbol {
+            margin: 0 15px;
+            font-size: 20px;
+            color: #8b7355;
+        }
+        
+        .newspaper-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            color: #2c2416;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin: 15px 0;
+            text-shadow: 2px 2px 0px rgba(139, 115, 85, 0.3);
+        }
+        
+        .newspaper-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #5a4a3a;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .newspaper-date {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            color: #5a4a3a;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+        
+        /* ESTRUCTURA DEL CONTENIDO */
+        .newspaper-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        /* COLUMNA IZQUIERDA */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* ARTÍCULO PRINCIPAL */
+        .main-article {
+            border-bottom: 3px double #2c2416;
+            padding-bottom: 25px;
+        }
+        
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #2c2416;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .article-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .article-image {
+            width: 100%;
+            height: auto;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .main-article .article-image {
+            aspect-ratio: 16/9;
+            min-height: 400px;
+        }
+        
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .main-article .article-image img {
+            object-position: center center;
+        }
+        
+        .article-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.8;
+            column-count: 2;
+            column-gap: 30px;
+            hyphens: auto;
+        }
+        
+        .article-text::first-letter {
+            font-size: 72px;
+            font-weight: bold;
+            float: left;
+            line-height: 0.8;
+            margin: 5px 8px 0 0;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* ARTÍCULOS SECUNDARIOS */
+        .secondary-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .secondary-article {
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 20px;
+        }
+        
+        .secondary-article:last-child {
+            border-bottom: none;
+        }
+        
+        .secondary-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2c2416;
+            padding-bottom: 5px;
+        }
+        
+        .secondary-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+        
+        /* IMAGEN CUADRADA ENTRE ARTÍCULOS */
+        .square-image-container {
+            margin: 20px 0;
+        }
+        
+        .square-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border: 3px solid #2c2416;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .square-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* COLUMNA DERECHA */
+        .right-column {
+            border-left: 3px double #2c2416;
+            padding-left: 25px;
+        }
+        
+        .sidebar-article {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 10px 0;
+        }
+        
+        .vertical-image {
+            width: 100%;
+            aspect-ratio: 9/16;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+        
+        .vertical-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .sidebar-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+        
+        /* DECORACIONES TIPOGRÁFICAS */
+        .typographic-ornament {
+            text-align: center;
+            font-size: 24px;
+            color: #8b7355;
+            margin: 20px 0;
+            letter-spacing: 10px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .date-navigation {
+                width: 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .newspaper-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .right-column {
+                border-left: none;
+                border-top: 3px double #2c2416;
+                padding-left: 0;
+                padding-top: 25px;
+            }
+            
+            .article-text {
+                column-count: 1;
+            }
+            
+            .newspaper-title {
+                font-size: 48px;
+            }
+        }
+        
+        /* EFECTOS DE PAPEL ENVEJECIDO */
+        .newspaper-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 115, 85, 0.03) 2px,
+                    rgba(139, 115, 85, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+        
+        .newspaper-container {
+            position: relative;
+        }
+        
+        /* Placeholder de imagen */
+        img.placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* BOTÓN DE TRADUCCIÓN */
+        .translate-button {
+            width: 35px;
+            height: 35px;
+            background: rgba(44, 36, 22, 0.1);
+            border: 2px solid rgba(139, 115, 85, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            color: #5a4a3a;
+            margin: 10px auto;
+        }
+        
+        .translate-button:hover {
+            background: rgba(139, 115, 85, 0.2);
+            border-color: #8b7355;
+            transform: scale(1.1);
+        }
+        
+        .translate-button:active {
+            transform: scale(0.95);
+        }
+        
+        .translate-button-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        /* Ocultar contenido de idioma alternativo */
+        .lang-es {
+            display: none;
+        }
+        
+        body.spanish .lang-fr {
+            display: none;
+        }
+        
+        body.spanish .lang-es {
+            display: block;
+        }
+        
+        body.spanish .lang-es.inline {
+            display: inline;
+        }
+        
+        /* ESTILOS PARA CRÓNICAS DE SOCIEDAD */
+        .society-chronicle {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+        
+        .society-chronicle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .society-note {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        /* ESTILOS PARA CARTAS AL DIRECTOR */
+        .letters-section {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+        
+        .letters-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+        
+        .letter-box {
+            background-color: #f5e6d3;
+            border: 2px solid #d4c4a8;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .letter-content {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #2c2416;
+            text-align: justify;
+        }
+        
+        .letter-signature {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2416;
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        /* ESTILOS PARA COTILLEOS DE SOLTEROS */
+        .gossip-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .gossip-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #f4e8d0;
+            border: 1px solid #8b7355;
+            border-left: 3px solid #8b7355;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+        
+        .gossip-item:hover {
+            background: #e8d5b7;
+        }
+        
+        .gossip-photo {
+            width: fit-content;
+            height: fit-content;
+            border: 2px solid #2c2416;
+            padding: 1px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #d4c5b0;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        
+        .gossip-photo img {
+            width: 70px;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gossip-photo img:hover {
+            opacity: 0.8;
+        }
+        
+        /* MODAL PARA IMÁGENES */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .image-modal.active {
+            display: flex;
+        }
+        
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #2c2416;
+            padding: 10px;
+            background: #faf7f0;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            height: auto;
+            display: block;
+        }
+        
+        .image-modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: #2c2416;
+            color: #faf7f0;
+            border: 2px solid #2c2416;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+        
+        .image-modal-close:hover {
+            background: #8b7355;
+        }
+        
+        .gossip-info {
+            flex: 1;
+        }
+        
+        .gossip-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 5px;
+        }
+        
+        .gossip-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            color: #2c2416;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        
+        .gossip-text em {
+            font-style: normal;
+            font-weight: 600;
+            color: #5a4a3a;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN DE FECHAS -->
+    <nav class="date-navigation">
+        <h3 class="lang-fr">Éditions</h3>
+        <h3 class="lang-es">Ediciones</h3>
+        <ul class="date-list">
+            <li class="date-item">
+                <a href="noticias21.html" class="date-link active">
+                    <span class="lang-fr">30 Juillet 1905</span>
+                    <span class="lang-es">30 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias20.html" class="date-link">
+                    <span class="lang-fr">29 Juillet 1905</span>
+                    <span class="lang-es">29 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias19.html" class="date-link">
+                    <span class="lang-fr">28 Juillet 1905</span>
+                    <span class="lang-es">28 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias18.html" class="date-link">
+                    <span class="lang-fr">27 Juillet 1905</span>
+                    <span class="lang-es">27 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias17.html" class="date-link">
+                    <span class="lang-fr">26 Juillet 1905</span>
+                    <span class="lang-es">26 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias16.html" class="date-link">
+                    <span class="lang-fr">25 Juillet 1905</span>
+                    <span class="lang-es">25 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias15.html" class="date-link">
+                    <span class="lang-fr">24 Juillet 1905</span>
+                    <span class="lang-es">24 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias14.html" class="date-link">
+                    <span class="lang-fr">22 Mai 1905</span>
+                    <span class="lang-es">22 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias13.html" class="date-link">
+                    <span class="lang-fr">21 Mai 1905</span>
+                    <span class="lang-es">21 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias12.html" class="date-link">
+                    <span class="lang-fr">20 Mai 1905</span>
+                    <span class="lang-es">20 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias11.html" class="date-link">
+                    <span class="lang-fr">19 Mai 1905</span>
+                    <span class="lang-es">19 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias10.html" class="date-link">
+                    <span class="lang-fr">18 Mai 1905</span>
+                    <span class="lang-es">18 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias9.html" class="date-link">
+                    <span class="lang-fr">17 Mai 1905</span>
+                    <span class="lang-es">17 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias8.html" class="date-link">
+                    <span class="lang-fr">16 Mai 1905</span>
+                    <span class="lang-es">16 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias7.html" class="date-link">
+                    <span class="lang-fr">15 Mai 1905</span>
+                    <span class="lang-es">15 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias6.html" class="date-link">
+                    <span class="lang-fr">1 Avril 1905</span>
+                    <span class="lang-es">1 de Abril</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias5.html" class="date-link">
+                    <span class="lang-fr">29 Mars 1905</span>
+                    <span class="lang-es">29 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias4.html" class="date-link">
+                    <span class="lang-fr">28 Mars 1905</span>
+                    <span class="lang-es">28 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias3.html" class="date-link">
+                    <span class="lang-fr">27 Mars 1905</span>
+                    <span class="lang-es">27 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias2.html" class="date-link">
+                    <span class="lang-fr">26 Mars 1905</span>
+                    <span class="lang-es">26 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias1.html" class="date-link">
+                    <span class="lang-fr">25 Mars 1905</span>
+                    <span class="lang-es">25 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias.html" class="date-link">
+                    <span class="lang-fr">18 Mars 1905</span>
+                    <span class="lang-es">18 de Marzo</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="newspaper-container">
+        <!-- CABECERA DEL PERIÓDICO -->
+        <header class="newspaper-header">
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">❦</span>
+            </div>
+            <h1 class="newspaper-title">Paris Nouveau</h1>
+            <p class="newspaper-subtitle">Nouvelles du Monde des Arts et de la Belle Société</p>
+            <div class="translate-button-container">
+                <button class="translate-button" onclick="toggleLanguage()" title="Traducir / Translate">🔍</button>
+            </div>
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+            </div>
+            <p class="newspaper-date lang-fr">Dimanche, 30 Juillet 1905 — Prix: 5 Centimes</p>
+            <p class="newspaper-date lang-es">Domingo, 30 de Julio de 1905 — Precio: 5 Centimes</p>
+        </header>
+        
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="newspaper-content">
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="left-column">
+                <!-- ARTÍCULO PRINCIPAL -->
+                                <article class="main-article">
+                    <h2 class="article-title lang-fr">Entretien avec Jean Jaurès</h2>
+                    <h2 class="article-title lang-es">Entrevista con Jean Jaurès</h2>
+                    <p class="article-subtitle lang-fr">Une voix posée pour défendre la fraternité républicaine face aux tensions sociales, au nationalisme et au risque de guerre en Europe.</p>
+                    <p class="article-subtitle lang-es">Una voz serena en defensa de la fraternidad republicana frente a las tensiones sociales, el nacionalismo y el riesgo de guerra en Europa.</p>
+                    
+                    <div class="article-image">
+                        <img src="news/jean_jaures_1907.png" alt="Jean Jaurès lors d'une manifestation pacifiste, 1907 (domaine public, Wikimedia Commons) — Jean Jaurès en una manifestación pacifista, 1907 (dominio público, Wikimedia Commons)." class="placeholder">
+                    </div>
+                    
+                    <div class="article-text lang-fr">
+                        <p>Dans un salon élégant, à l'écart du tumulte habituel de la ville, M. Jaurès consent à répondre avec une sérénité qui contraste avec l'agitation du temps présent. Sa voix, ferme mais sans dureté, semble davantage portée à convaincre qu'à s'imposer.</p>
+                        <p>Interrogé sur la situation actuelle de la République, il souligne aussitôt une inquiétude qui, selon lui, traverse à la fois les institutions et les citoyens. « On parle beaucoup de progrès, dit-il, mais je crains que, dans cet élan, nous ayons négligé l'un des principes les plus délicats de notre coexistence : la fraternité. Sans elle, la liberté devient fragile et l'égalité, incomplète. »</p>
+                        <p>Ses propos ne s'adressent pas à une classe ni à un secteur particulier : ils cherchent un écho plus large. Il insiste sur le fait que les tensions sociales, loin de pouvoir se résoudre par la confrontation permanente, exigent un effort conscient pour reconstruire les liens entre ceux qui partagent le même espace national.</p>
+                        <p>Abordant le climat politique général, il formule une réflexion avec une grande prudence. « Le nationalisme, observe-t-il, contient un risque que l'on ne perçoit pas toujours d'emblée. Il déplace le centre de la conversation vers une idée abstraite de la nation et, ce faisant, nous éloigne de ce qui devrait nous occuper : la vie concrète de ses habitants. »</p>
+                        <p>Sur la politique internationale, sa position est tout aussi nette, bien qu'exprimée sans emphase. M. Jaurès dit son inquiétude grandissante face aux signes de rivalité entre les puissances européennes et souligne la nécessité de contenir toute dérive qui pourrait conduire à un conflit majeur. « Le véritable patriotisme, affirme-t-il, ne consiste pas à se préparer à la guerre, mais à l'éviter tant qu'il en est encore temps. L'Europe ne peut se permettre d'oublier le prix de ses propres erreurs. »</p>
+                        <p>Il ne s'agit pas, chez lui, d'une naïveté détachée du réel, mais d'une conviction qui place la coopération au-dessus d'une concurrence démesurée. Son discours, loin de l'agitation qui accompagne souvent ces sujets, se construit autour d'une idée persistante d'équilibre.</p>
+                        <p>Au terme de l'entretien, demeure l'impression d'avoir entendu non pas tant un agitateur, comme certains le décrivent, qu'un homme qui, au milieu d'une époque inquiète, rappelle des principes que beaucoup croient évidents, mais qui, au vu du cours des événements, ne le sont peut-être pas autant.</p>
+                        <p>À une époque où les voix tendent à s'élever, la sienne semble choisir, avec délibération, la clarté tranquille de celui qui croit encore que la République peut se réconcilier avec elle-même.</p>
+                    </div>
+                    
+                    <div class="article-text lang-es">
+                        <p>En una sala elegante, alejada del bullicio habitual de la ciudad, el señor Jaurès accede a responder con una serenidad que contrasta con la agitación de los tiempos presentes. Su voz, firme pero sin aspereza, parece más inclinada a persuadir que a imponerse.</p>
+                        <p>Al ser interrogado sobre la situación actual de la República, no tarda en señalar una preocupación que, según afirma, atraviesa tanto a las instituciones como a los ciudadanos. "Se habla mucho de progreso," indica, "pero temo que en ese avance hayamos descuidado uno de los principios más delicados que sostienen nuestra convivencia: la fraternidad. Sin ella, la libertad se vuelve frágil y la igualdad, incompleta."</p>
+                        <p>Sus palabras no se dirigen únicamente a una clase o a un sector concreto, sino que parecen buscar un eco más amplio. Insiste en que las tensiones sociales, lejos de resolverse mediante la confrontación constante, exigen un esfuerzo consciente por reconstruir los vínculos entre quienes comparten el mismo espacio nacional.</p>
+                        <p>Al abordar el clima político más amplio, introduce una reflexión que expresa con especial cuidado. "El nacionalismo," señala, "encierra un riesgo que no siempre se percibe de inmediato. Desplaza el centro de la conversación hacia una idea abstracta de nación, y al hacerlo, corre el peligro de alejarnos de aquello que debería ocuparnos: la vida concreta de sus habitantes."</p>
+                        <p>En cuanto a la política internacional, su postura es igualmente clara, aunque expresada sin estridencias. El señor Jaurès manifiesta una inquietud creciente ante los signos de rivalidad entre las potencias europeas, y subraya la necesidad de contener cualquier deriva que pueda desembocar en un conflicto mayor. "El verdadero patriotismo," afirma, "no consiste en prepararse para la guerra, sino en evitarla cuando aún es posible. Europa no puede permitirse olvidar el precio de sus propios errores."</p>
+                        <p>No se trata, en su caso, de una ingenuidad desprovista de realidad, sino de una convicción que sitúa la cooperación por encima de la competencia desmedida. Su discurso, lejos de la agitación que a menudo acompaña a estos temas, se construye sobre una idea persistente de equilibrio.</p>
+                        <p>Al concluir la conversación, queda la impresión de haber escuchado no tanto a un agitador, como algunos lo describen, sino a un hombre que, en medio de un tiempo inquieto, insiste en recordar principios que muchos consideran ya evidentes, pero que, a juzgar por el curso de los acontecimientos, quizá no lo sean tanto.</p>
+                        <p>En una época donde las voces tienden a elevarse, la suya parece optar, con deliberación, por la claridad tranquila de quien aún confía en que la República pueda reconciliarse consigo misma.</p>
+                    </div>
+                </article>
+                
+                <!-- ARTÍCULOS SECUNDARIOS -->
+                <div class="secondary-articles">
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">Les frontières que la République ne doit pas céder</h3>
+                        <h3 class="secondary-title lang-es">Las fronteras que la República no debe ceder</h3>
+                        <div class="article-image" style="aspect-ratio: 5/4; margin-top: 10px;">
+                            <img src="news/separation_eglise_etat_1904.jpg" alt="Manifestation pour la séparation de l'Église et de l'État, France, 1904 (domaine public, Wikimedia Commons) — Manifestación por la separación de la Iglesia y el Estado, Francia, 1904 (dominio público, Wikimedia Commons)." class="placeholder">
+                        </div>
+                        <div class="secondary-text lang-fr">
+                            <p>Ces derniers mois, une présence inattendue se fait sentir dans la ville, une présence que la Révolution avait emportée avec la monarchie ; une présence qui élève des temples, écoute les péchés et promet le salut. Elle n'est pas revenue de manière visible ni déclarée, mais par des coïncidences difficiles à ignorer, dans la répétition de certains accents, dans la manière dont certaines idées trouvent un écho là où elles n'en avaient pas auparavant, comme si une même direction commençait à se suggérer depuis plusieurs lieux sans jamais s'exposer ouvertement.</p>
+                            <p>Paris a toujours su cohabiter avec des courants multiples sans perdre son équilibre, et c'est peut-être pour cela qu'il est plus inquiétant de voir l'un d'eux avancer un peu au-delà de son terrain naturel. Ce n'est ni un changement brutal ni une irruption éclatante, mais un déplacement léger, progressif, assez discret pour ne pas provoquer de réaction immédiate, et pourtant suffisant pour que certaines frontières commencent à se brouiller et, avec le temps, à ne plus paraître nécessaires.</p>
+                            <p>Dans certains débats récents, plus que le contenu lui-même, c'est la manière dont certaines positions se consolident sans friction qui retient l'attention, comme si elles disposaient déjà d'une légitimité préalable jamais discutée. Lorsque cette convergence se répète aux mêmes points sensibles, elle cesse de sembler fortuite et commence à suggérer une structure d'influence qui n'a pas besoin de se montrer pour devenir efficace.</p>
+                            <p>L'Église a sa place en France et dans la République, et cette place n'est pas contestée. Elle est dans les rues, dans les quartiers, auprès de ceux qui cherchent consolation ou guidance, comme une présence proche et humaine. Mais cette place n'est pas celle de la politique ni des instances où se fixe l'orientation commune. Car lorsqu'elle se déplace sur ce terrain, son influence cesse d'être l'une parmi d'autres et acquiert un poids qui conditionne sans se déclarer.</p>
+                            <p>Il ne s'agit pas de nier son rôle, mais de contenir son avance. La République repose sur des limites claires, et l'autorité spirituelle perd sa nature lorsqu'elle se traduit en influence politique. Permettre que cette frontière se dilue, fût-ce graduellement, revient à accepter une transformation contraire aux principes sur lesquels l'ordre actuel a été construit.</p>
+                            <p>L'esprit français ne peut se permettre une telle concession. Là où cette présence tentera de s'étendre au-delà de sa place, elle doit rencontrer une résistance. Non par rejet, mais par cohérence. Car certains équilibres ne se maintiennent qu'à la condition d'être défendus, et celui-ci en fait partie.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p>En los últimos meses, una presencia inesperada se siente en la ciudad, una que desapareció en la revolución junto con la monarquía; una que levanta templos, escucha pecados y promete la salvación. No ha regresado de forma visible ni declarada, sino a través de coincidencias difíciles de ignorar, en la repetición de ciertos tonos, en la forma en que algunas ideas encuentran eco en espacios donde antes no lo tenían, como si una misma dirección comenzara a insinuarse desde distintos lugares sin necesidad de mostrarse abiertamente.</p>
+                            <p>París siempre ha sabido convivir con múltiples corrientes sin perder su equilibrio, y quizá por eso resulta más inquietante cuando alguna de ellas parece avanzar apenas un poco más allá de su lugar natural. No es un cambio brusco ni una irrupción evidente, sino un desplazamiento leve, progresivo, lo bastante discreto como para no provocar una reacción inmediata, pero suficiente para que ciertas fronteras comiencen a difuminarse y, con el tiempo, a dejar de percibirse como necesarias.</p>
+                            <p>En algunos debates recientes, más que el contenido en sí, llama la atención la manera en que determinadas posturas se consolidan sin fricción, como si ya contaran con una legitimidad previa que no ha sido discutida. Cuando esa convergencia se repite en los mismos puntos sensibles, deja de parecer casual y empieza a sugerir una estructura de influencia que no necesita exponerse para hacerse efectiva.</p>
+                            <p>La Iglesia tiene su lugar en Francia y en la República, y ese lugar no está en cuestión. Está en las calles, en los barrios, junto a quienes buscan consuelo o guía, formando parte de una presencia cercana y humana. Pero ese lugar no es el de la política ni el de las instancias donde se define el rumbo común. Porque cuando se desplaza hacia ese terreno, su influencia deja de ser equivalente a la de cualquier otra voz y adquiere un peso que condiciona sin declararse.</p>
+                            <p>No se trata de negar su papel, sino de contener su avance. La República se sostiene en límites claros, y la autoridad espiritual pierde su naturaleza cuando se traduce en influencia política. Permitir que esa frontera se diluya, aunque sea de forma gradual, implica aceptar una transformación que contradice los principios sobre los que se construyó el orden actual.</p>
+                            <p>El espíritu francés no puede permitirse esa concesión. Allí donde esta presencia intente extenderse más allá de su lugar, debe encontrar resistencia. No por rechazo, sino por coherencia. Porque hay equilibrios que solo se mantienen mientras se defienden, y este es uno de ellos.</p>
+                        </div>
+                    </article>
+                    
+                    <div class="typographic-ornament">❦ ◆ ❦</div>
+                    
+                    <!-- CRÓNICAS DE SOCIEDAD -->
+                    <article class="society-chronicle">
+                        <h2 class="society-chronicle-title lang-fr">Chroniques de la Société</h2>
+                        <h2 class="society-chronicle-title lang-es">Crónicas de Sociedad</h2>
+                        <p class="society-note lang-fr">Notes mondaines et événements de la haute société parisienne</p>
+                        <p class="society-note lang-es">Notas mundanas y acontecimientos de la alta sociedad parisina</p>
+                        
+                        <div class="secondary-article">
+                            <h3 class="secondary-title lang-fr">L'éventail d'Orient et les gentilshommes d'Occident</h3>
+                            <h3 class="secondary-title lang-es">El abanico de Oriente y los caballeros de Occidente</h3>
+                            <div class="secondary-text lang-fr">
+                                <p><em>Mes chères lectrices</em>, Paris souffre d'une faiblesse incurable : lorsqu'une femme paraît drapée d'histoire, de soie et de silence, la ville entière choisit de croire ce qui lui convient le mieux. C'est ce qui arrive avec la nouvelle sensation des salons, cette dame qui se présente sous le nom de Mata Hari, un nom qui sonne comme une aube étrangère et que les messieurs prononcent avec la révérence qu'ils réservaient jadis à une duchesse.</p>
+                                <p>On dit tout d'elle, et c'est précisément pour cela qu'on n'en sait rien avec certitude. Les uns assurent qu'elle vient des Indes néerlandaises, élevée entre temples et jardins d'épices ; les autres qu'elle fut initiée à des danses sacrées réservées à très peu d'yeux ; d'autres encore murmurent que son élégance n'est pas née en Orient mais en Europe, et que l'Orient ne fut, au fond, que le masque le plus éclatant qu'une intelligence ambitieuse pouvait choisir pour conquérir Paris.</p>
+                                <p>Les versions se contredisent, mais un fil demeure : avant de parvenir sur nos scènes, elle aurait connu une existence plus âpre que celle qu'on lui prête aujourd'hui. On évoque un mariage précoce avec un militaire hollandais, de longues traversées vers les climats d'outre-mer, une jeunesse moins dorée que ne l'imaginent ses admirateurs. Là, dit-on, elle apprit les langues, les gestes et le plus précieux des arts : regarder les hommes et découvrir, en un instant, ce qu'ils désirent entendre d'eux-mêmes.</p>
+                                <p>Quelle que soit la vérité, son entrée en scène a été calculée avec une précision admirable. Elle ne danse pas pour plaire : elle danse pour imposer un récit. Elle ne séduit pas une salle : elle l'ordonne. En une même nuit, elle parvient à faire partager table, rumeur et trouble à des diplomates, des officiers, des banquiers et des esthètes. Et lorsqu'une artiste rassemble autour d'elle tant de volontés différentes, elle cesse d'être un simple divertissement pour s'approcher — oh, quel mot dangereux — de l'influence.</p>
+                                <p>Dans les coulisses, on commente des fleurs sans carte, des fiacres qui attendent plus que de raison et des dîners privés où la conversation politique devient, mystérieusement, plus douce. Je n'affirmerai rien que je ne puisse soutenir ; je me bornerai à observer que certaines portes, naguère fermées à presque tous, s'ouvrent aujourd'hui avec une aisance nouvelle lorsque son nom figure sur l'invitation.</p>
+                                <p>Est-elle princesse orientale, veuve aventureuse ou fabulatrice de génie ? Peut-être un peu de tout cela, peut-être rien. Paris, au fond, n'exige pas des certificats : il exige du magnétisme. Et elle l'administre avec la patience de celle qui sait qu'un secret bien dosé vaut davantage qu'une vérité complète.</p>
+                                <p>Pendant ce temps, certaines dames demandent si elles doivent la craindre ; je suggère un autre verbe : l'étudier. Car dans cette ville, où les titres vieillissent et les fortunes vacillent, une femme capable de s'inventer et d'être crue possède un pouvoir qui n'apparaît pas toujours dans les registres officiels, mais qui se fait sentir dans l'agenda des ministres, les invitations des ambassades et les silences des loges.</p>
+                                <p>Que demeure donc l'avertissement affectueux de votre chroniqueuse : lorsqu'un nom nouveau surgit à la fois dans les théâtres, les salons et les cabinets, ce n'est pas une mode passagère, mais un signe d'époque. Et cette époque, mes chères, s'écrit à l'encre, au velours... et avec un sourire que nul ne parvient tout à fait à déchiffrer.</p>
+                            </div>
+                            <div class="secondary-text lang-es">
+                                <p><em>Mis queridas lectoras</em>, París tiene una debilidad incurable: cuando una mujer aparece envuelta en historia, seda y silencio, la ciudad entera decide creer lo que más le conviene. Así ha ocurrido con la nueva sensación de los salones, esa dama que se presenta como Mata Hari, nombre que suena a amanecer extranjero y que los caballeros pronuncian con la reverencia que antes reservaban para una duquesa.</p>
+                                <p>De ella se dice todo, y por eso mismo no se sabe nada con certeza. Unos aseguran que procede de las Indias neerlandesas, educada entre templos y jardines de especias; otros, que fue iniciada en danzas sagradas reservadas a muy pocos ojos; no faltan quienes murmuran que su elegancia no nació en Oriente, sino en Europa, y que lo oriental fue, simplemente, la máscara más brillante que una inteligencia ambiciosa podía escoger para conquistar París.</p>
+                                <p>Las versiones se contradicen, pero hay un hilo común: antes de llegar a nuestros teatros, habría conocido una vida más áspera que la que hoy se le atribuye. Se habla de un matrimonio temprano con un militar holandés, de travesías largas hacia climas de ultramar, de una juventud menos dorada de lo que sus admiradores imaginan. Allí, dicen, aprendió lenguas, gestos y el arte más valioso de todos: mirar a los hombres y descubrir, en un instante, qué desean oír de sí mismos.</p>
+                                <p>Sea cual sea la verdad, su entrada en escena ha sido calculada con precisión admirable. No baila para agradar: baila para imponer relato. No seduce a una sala: la organiza. En una misma noche, logra que diplomáticos, oficiales, banqueros y estetas compartan mesa, rumor y desconcierto. Y cuando una artista consigue reunir en torno a sí tantas voluntades distintas, deja de ser mero entretenimiento para acercarse —oh, qué palabra peligrosa— a la influencia.</p>
+                                <p>En los bastidores se comentan flores sin tarjeta, carruajes que esperan más de la cuenta y cenas privadas donde la conversación política se vuelve, misteriosamente, más suave. No afirmaré nada que no pueda sostenerse; me limitaré a observar que ciertas puertas, antes cerradas para casi todos, hoy se abren con facilidad cuando su nombre figura en la invitación.</p>
+                                <p>¿Es princesa oriental, viuda aventurera o fabuladora genial? Quizá un poco de cada cosa, quizá ninguna. París, en el fondo, no exige certificados: exige magnetismo. Y ella lo administra con la paciencia de quien sabe que un secreto bien dosificado vale más que una verdad completa.</p>
+                                <p>Mientras tanto, algunas damas preguntan si deben temerla; yo sugiero otro verbo: estudiarla. Porque en esta ciudad, donde los títulos envejecen y las fortunas oscilan, una mujer capaz de inventarse y ser creída posee un poder que no siempre aparece en los registros oficiales, pero que se deja sentir en la agenda de ministros, en las invitaciones de embajadas y en los silencios del palco.</p>
+                                <p>Quede, pues, la advertencia cariñosa de vuestra cronista: cuando un nombre nuevo aparece a la vez en teatros, salones y despachos, no estamos ante una moda pasajera, sino ante una señal de época. Y esta época, queridas mías, se está escribiendo con tinta, terciopelo... y una sonrisa que nadie logra descifrar del todo.</p>
+                            </div>
+                        </div>
+                    </article>
+                    
+                </div>
+            </div>
+            
+            <!-- COLUMNA DERECHA -->
+            <aside class="right-column">
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Arbalètes à Paris : six Américains arrêtés</h3>
+                    <h3 class="sidebar-title lang-es">Ballestas en París: seis estadounidenses detenidos</h3>
+                    <div class="vertical-image" style="aspect-ratio: 4/3; margin-bottom: 1em;">
+                        <img src="news/paris_palais_justice_pont_change_ca1900.jpg" alt="Carte postale, vers 1900 : le Pont au Change et le Palais de justice, Paris — Postal hacia 1900: Pont au Change y Palacio de Justicia (domaine public, Wikimedia Commons)." class="placeholder" style="object-fit: cover; object-position: center center;">
+                    </div>
+                    <div class="sidebar-text lang-fr">
+                        <p>Paris, 30 Juillet — La Préfecture a confirmé hier soir l'arrestation de plus de six ressortissants américains surpris dans les rues de la capitale en possession d'arbalètes et de matériel de tir. L'interpellation, menée en plusieurs points entre les grands boulevards et la rive droite, ouvre une affaire qui dépasse la simple chronique criminelle : plusieurs artistes, ainsi que des membres du Conseil des Lumières et du Conseil des Beaux-Arts, ont été grièvement blessés.</p>
+                        <p>Le parquet parle de « dossier prioritaire » et la Sûreté privilégie, pour l'heure, l'hypothèse d'une action préparée plutôt que d'une rixe improvisée. Les armes saisies, peu communes dans ce type d'attaque urbaine, soulèvent déjà une question centrale : s'agit-il d'un geste de commanditaires cherchant un symbole, d'une opération de représailles, ou d'une tentative de frapper des figures influentes du monde artistique parisien ?</p>
+                        <p>La dimension diplomatique est immédiate. Des échanges ont été engagés entre le ministère des Affaires étrangères, la Préfecture et le consulat des États-Unis, chacun cherchant à éviter qu'un fait de police ne se transforme en crise entre chancelleries. Le consulat assure vouloir coopérer pleinement, tandis que Paris réclame des éclaircissements sur les parcours, les financements et les contacts locaux des suspects.</p>
+                        <p>Le moment politique rend l'affaire plus sensible encore. Après l'agitation observée au sein du Parti radical lors du scrutin évoqué dans notre édition précédente, et alors que circulent des rumeurs persistantes autour de la présidence, l'événement peut devenir un détonateur pour tous les camps : les uns y verront la preuve d'un relâchement de l'ordre public, les autres une tentative d'instrumentalisation contre la République parlementaire.</p>
+                        <p>Les conséquences possibles, en 1905, sont considérables. Si l'enquête établit une motivation politique ou transnationale, la France pourrait durcir le contrôle des groupes étrangers armés, renforcer la protection des institutions culturelles et réclamer des mécanismes de coopération policière plus stricts avec Washington. À l'inverse, une instruction confuse nourrirait les journaux nationalistes, affaiblirait la confiance des milieux artistiques et compliquerait les équilibres déjà fragiles entre gouvernement, radicaux et oppositions.</p>
+                        <p>Dans ce climat, une part croissante de l'opinion confie sa confiance aux ambassadeurs des deux nations : à eux de préserver la fermeté judiciaire sans glisser vers l'incident diplomatique. La République doit prouver qu'elle peut protéger ses élites culturelles, établir la vérité et défendre ses intérêts sans céder à la panique ni à la surenchère.</p>
+                    </div>
+                    <div class="sidebar-text lang-es">
+                        <p>París, 30 de Julio — La Prefectura confirmó anoche la detención de más de seis ciudadanos estadounidenses sorprendidos en las calles de la capital con ballestas y material de tiro. La operación, realizada en varios puntos entre los grandes bulevares y la ribera derecha, abre un caso que excede la simple crónica criminal: varios artistas, así como miembros del Concilio de las Luces y del Consejo de las Bellas Artes, han resultado heridos de gravedad.</p>
+                        <p>Fiscalía habla de «asunto prioritario» y la Sureté trabaja, por ahora, con la hipótesis de una acción preparada y no de una reyerta improvisada. El tipo de arma incautada, poco habitual en ataques urbanos, deja una pregunta central: ¿se trata de un encargo con intención simbólica, de una represalia, o de un intento deliberado de golpear a figuras influyentes del mundo artístico parisino?</p>
+                        <p>La dimensión diplomática es inmediata. Ya se han iniciado conversaciones entre el Ministerio de Asuntos Exteriores, la Prefectura y el consulado de los Estados Unidos, con un objetivo común: evitar que un hecho policial derive en una crisis entre cancillerías. El consulado afirma su voluntad de cooperación plena, mientras París exige claridad sobre los itinerarios, la financiación y los contactos locales de los detenidos.</p>
+                        <p>El momento político vuelve el caso todavía más sensible. Con la agitación interna en el Partido Radical vista en el número anterior, y con rumores persistentes sobre la presidencia, este episodio puede convertirse en detonador para todos los bloques: unos lo leerán como prueba del debilitamiento del orden público; otros, como una oportunidad de instrumentalizar el miedo contra el parlamentarismo republicano.</p>
+                        <p>Las consecuencias en 1905 pueden ser profundas. Si la investigación acredita una motivación política o transnacional, Francia podría endurecer los controles sobre grupos extranjeros armados, reforzar la protección de instituciones culturales y exigir mecanismos de cooperación policial más estrictos con Washington. Si, por el contrario, el sumario se vuelve confuso o contradictorio, crecerán la prensa nacionalista, la desconfianza en los círculos artísticos y la tensión entre gobierno, radicales y oposición.</p>
+                        <p>En este contexto, buena parte de la confianza pública se deposita en los embajadores de ambas naciones: de su oficio dependerá sostener la firmeza judicial sin abrir un choque diplomático. La República debe demostrar que puede proteger a sus élites culturales, esclarecer los hechos y defender sus intereses sin ceder ni al pánico ni a la sobreactuación política.</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 16px;">
+                        <p><strong>• Norvège indépendante :</strong> Après la rupture de l'union avec la Suède au printemps, les puissances européennes poursuivent en juillet la reconnaissance du nouveau royaume et du règne de Haakon&nbsp;VII ; les journaux parisiens publient dépêches et commentaires sur les démarches diplomatiques et sur les incertitudes encore vives en mer du Nord.</p>
+                        <p><strong>• Tour de France 1905 :</strong> Du 9 au 30 juillet, la deuxième «&nbsp;Grande Boucle&nbsp;» en onze étapes traverse cols et plaines ; les journaux sportifs suivent jour après jour le classement par points et soulignent l'entrée des ascensions dans l'épreuve. L'arrivée à Paris clôt une édition déjà regardée comme un test d'endurance nationale.</p>
+                        <p><strong>• Obsèques de Hector Guimard :</strong> Suite au décès annoncé dans notre livraison du 29 juillet, la municipalité et les sociétés d'artistes invitent le public à se joindre à la cérémonie d'inhumation : rendez-vous aux portes du cimetière convenu, cortège sobre — fleurs et dessins d'atelier les bienvenus — en hommage à l'architecte du métropolitain.</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 16px;">
+                        <p><strong>• Noruega independiente :</strong> Tras la ruptura de la unión con Suecia en primavera, las potencias europeas continúan en julio reconociendo el nuevo reino y el reinado de Haakon&nbsp;VII; los diarios parisinos publican despachos y comentarios sobre la diplomacia y las incertidumbres que aún pesan en el mar del Norte.</p>
+                        <p><strong>• Tour de Francia 1905 :</strong> Del 9 al 30 de julio, la segunda «Grande Boucle» en once etapas recorre puertos y llanuras; la prensa deportiva sigue día a día la clasificación por puntos y subraya la entrada de las ascensiones en la prueba. La llegada a París cierra una edición ya vista como prueba de resistencia nacional.</p>
+                        <p><strong>• Entierro de Hector Guimard :</strong> Tras el fallecimiento anunciado en nuestro número del 29 de julio, el ayuntamiento y las sociedades de artistas convocan al público a sumarse a la ceremonia de inhumación: cita a la entrada del cementerio convenido, cortejo sobrio —flores y dibujos de taller bien recibidos— en homenaje al arquitecto del metropolitano.</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Entretien avec Jean Jaurès :</strong><br>C. Müller</p>
+                        <p><strong>Les frontières que la République ne doit pas céder :</strong><br>E. Caron</p>
+                        <p><strong>Arbalètes à Paris : six Américains arrêtés :</strong><br>L. Roy</p>
+                        <p><strong>L'éventail d'Orient et les gentilshommes d'Occident :</strong><br>La Fleuriste</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Entrevista con Jean Jaurès :</strong><br>C. Müller</p>
+                        <p><strong>Las fronteras que la República no debe ceder :</strong><br>E. Caron</p>
+                        <p><strong>Ballestas en París: seis estadounidenses detenidos :</strong><br>L. Roy</p>
+                        <p><strong>El abanico de Oriente y los caballeros de Occidente :</strong><br>La Florista</p>
+                    </div>
+                </article>
+                
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+                
+                <!-- RANKING DE SOLTEROS - COTILLEOS -->
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Potins & Cancans : Les Célibataires à Suivre</h3>
+                    <h3 class="sidebar-title lang-es">Cotilleos y Chismes: Los Solteros a Seguir</h3>
+                    
+                    <ul class="gossip-list">
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/emile_labord.png" alt="Émile Labord" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Émile Labord</div>
+                                <div class="gossip-name lang-es">Émile Labord</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Un dessinateur talentueux</em> qui a adapté le style de Mucha et travaille des aquarelles minimalistes. Mais c'est surtout pour ses vignettes dans le journal qu'on le connaît, où il relate les aventures d'un Gaulois affrontant diverses nations. Un guerrier d'esprit qui peut me dessiner ? Écrivez à l'éditeur !
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Un dibujante talentoso</em> que ha adaptado el estilo de Mucha y trabaja acuarelas minimalistas. Pero se le conoce especialmente por sus viñetas en el periódico, que suelen relatar las aventuras de un Galo enfrentándose a distintas naciones. ¿Un guerrero de espíritu que me puede dibujar? ¡Escribe al editor!
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/simon_latour.png" alt="Simon Latour" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Simon Latour</div>
+                                <div class="gossip-name lang-es">Simon Latour</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Ce sculpteur aux épaules imposantes</em> ne passe pas inaperçu. Spécialisé dans les figures colossales, on raconte qu'il travaille avec une force qui défie l'entendement. Certaines dames de la société ne peuvent s'empêcher de jeter un regard discret en sa direction. Qui voudrait poser pour lui ? Nous connaissons quelques volontaires...
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Este escultor de hombros imponentes</em> no pasa desapercibido. Especializado en figuras colosales, se cuenta que trabaja con una fuerza que desafía el entendimiento. Algunas damas de la sociedad no pueden evitar lanzar una mirada discreta en su dirección. ¿Quién querría posar para él? Conocemos algunas voluntarias...
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/lucile_roy.png" alt="Lucile Roy" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Lucile Roy</div>
+                                <div class="gossip-name lang-es">Lucile Roy</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Derrière son sourire timide</em> se cache une compositrice dont la musique touche l'âme. Ses mélodies reflètent une profondeur mélancolique qui contraste avec son apparence joyeuse, révélant une artiste d'une sensibilité remarquable. Son talent musical mérite toute notre attention.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Tras su sonrisa tímida</em> se esconde una compositora cuya música toca el alma. Sus melodías reflejan una profundidad melancólica que contrasta con su apariencia alegre, revelando una artista de una sensibilidad notable. Su talento musical merece toda nuestra atención.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/jacques_martin.png" alt="Jacques Martin" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Jacques Martin</div>
+                                <div class="gossip-name lang-es">Jacques Martin</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Un écrivain de fiction historique</em> spécialisé dans l'art de relier les aventures des dieux et demi-dieux de l'Antiquité aux légendes qu'ont inspirées leurs statues vivantes. Son œuvre tisse des liens fascinants entre la mythologie classique et les récits qui ont façonné notre imaginaire. Un esprit érudit qui sait donner vie aux anciens mythes. Plus d'une dizaine de lecteurs ont écrit à l'éditeur pour lui demander des épopées près du foyer. Quelle indécence !
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Un escritor de ficción histórica</em> especialista en el arte de atar las aventuras de dioses y semidioses de la Antigüedad a las leyendas que protagonizaron sus estatuas vivas. Su obra teje vínculos fascinantes entre la mitología clásica y los relatos que han moldeado nuestro imaginario. Una mente erudita que sabe dar vida a los antiguos mitos. Más de una decena de lectores han escrito al editor pidiéndole epopeyas cerca de la hoguera. ¡Qué indecencia!
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="personajes_imagenes/paul_landowski.png" alt="Paul Landowski" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Paul Landowski</div>
+                                <div class="gossip-name lang-es">Paul Landowski</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Un sculpteur qui fait fondre les cœurs</em>, spécialisé dans les monuments et les figures imposantes. Sa présence dans les salons fait invariablement monter la température — et pas seulement à cause de son art. Un artiste dont le charme naturel n'a d'égale que son habileté avec le ciseau et le marteau.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Un escultor que hace derretir los corazones</em>, especializado en monumentos y figuras imponentes. Su presencia en los salones hace invariablemente subir la temperatura — y no solo por su arte. Un artista cuyo encanto natural no tiene igual que su habilidad con el cincel y el martillo.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/mata_hari.png" alt="Mata Hari" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Mata Hari</div>
+                                <div class="gossip-name lang-es">Mata Hari</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Nouvelle apparition des salons</em>, elle se présente comme venue d'Orient, avec une biographie que chaque témoin raconte différemment. Danseuse pour les uns, stratège du regard pour les autres, elle sème derrière elle invitations fermées, soupirs militaires et jalousies diplomatiques. Mes lectrices, quand un nom circule en même temps dans les coulisses, les ambassades et les loges, ce n'est plus une mode : c'est une manœuvre.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Nueva aparición de los salones</em>, se presenta como llegada de Oriente, con una biografía que cada testigo narra de forma distinta. Bailarina para unos, estratega de la mirada para otros, deja a su paso invitaciones cerradas, suspiros militares y celos diplomáticos. Queridas lectoras, cuando un nombre circula al mismo tiempo por bastidores, embajadas y palcos, ya no es una moda: es una maniobra.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/sandrine_cros.png" alt="Sandrine Cros" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Sandrine Cros</div>
+                                <div class="gossip-name lang-es">Sandrine Cros</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Jeune architecte brillante</em> au tempérament singulier, elle dessine comme d'autres intriguent : sans trembler. On la dit admiratrice d'André Lefèvre — mais, franchement, qui ne l'est pas ? Votre Fleuriste l'a remarquée lorsqu'un bal à l'ambassade d'Autriche-Hongrie a fait tourner bien plus que les éventails ; depuis, ses récents mouvements auprès du Conseil des Beaux-Arts la rendent digne d'une surveillance attentive.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Joven arquitecta brillante</em> y de personalidad única, dibuja como otros conspiran: sin temblar. Se dice que es admiradora de André Lefèvre, pero ¿quién no lo es? Vuestra Florista pensó en ella tras verla deslumbrar bailando en la embajada de Austria-Hungría; y sus últimos movimientos junto al Consejo de las Bellas Artes la hacen merecedora de este ojo indiscreto.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/marine_loremant.png" alt="Marine Loremant" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Marine Loremant</div>
+                                <div class="gossip-name lang-es">Marine Loremant</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Une étoile montante</em> qui apporte une fraîcheur bienvenue dans nos cercles. Originaire d'un milieu plus modeste, elle a su conquérir les cœurs par son charme naturel et son talent indéniable. Sa boutique dans les Galeries Belle Époque témoigne de son ascension remarquable. Une jeune femme à suivre avec attention.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Una estrella emergente</em> que aporta una frescura bienvenida en nuestros círculos. Originaria de un entorno más modesto, ha sabido conquistar los corazones con su encanto natural y su talento indudable. Su boutique en las Galerías Belle Époque da fe de su ascenso notable. Una joven mujer a seguir con atención.
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
+            </aside>
+        </div>
+    
+    <!-- MODAL PARA IMÁGENES -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+    
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('spanish');
+            
+            // Guardar preferencia en localStorage
+            if (document.body.classList.contains('spanish')) {
+                localStorage.setItem('newspaperLanguage', 'es');
+            } else {
+                localStorage.setItem('newspaperLanguage', 'fr');
+            }
+        }
+        
+        // Cargar preferencia al cargar la página
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('newspaperLanguage');
+            if (savedLanguage === 'es') {
+                document.body.classList.add('spanish');
+            }
+        });
+        
+        // Funciones para el modal de imágenes
+        function openImageModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeImageModal(event) {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Cerrar modal con la tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    </script>
+</body>
+</html>
+
