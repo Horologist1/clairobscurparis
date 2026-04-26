@@ -223,6 +223,10 @@
             object-fit: cover;
         }
         
+        .main-article .article-image img {
+            object-position: center center;
+        }
+        
         .article-text {
             font-family: 'Crimson Text', serif;
             font-size: 18px;
@@ -422,6 +426,19 @@
             object-fit: cover;
         }
         
+        /* Archives photographiques : ton sépia / noir-et-blanc doux */
+        .article-image img.placeholder,
+        .vertical-image img.placeholder,
+        .secondary-articles .article-image img.placeholder {
+            filter: sepia(0.35) grayscale(0.15) contrast(1.06) brightness(0.98);
+        }
+        
+        /* Recorte visual: el escaneado conserva márgenes blancos en el propio JPEG */
+        .main-article .article-image img.placeholder {
+            transform: scale(1.28);
+            transform-origin: center center;
+        }
+        
         /* BOTÓN DE TRADUCCIÓN */
         .translate-button {
             width: 35px;
@@ -596,6 +613,7 @@
             display: block;
             cursor: pointer;
             transition: opacity 0.3s ease;
+            filter: sepia(0.25) grayscale(0.12) contrast(1.05);
         }
         
         .gossip-photo img:hover {
@@ -693,7 +711,7 @@
         <h3 class="lang-es">Ediciones</h3>
         <ul class="date-list">
             <li class="date-item">
-                <a href="noticias22.html" class="date-link">
+                <a href="noticias22.html" class="date-link active">
                     <span class="lang-fr">1er Août 1905</span>
                     <span class="lang-es">1 de Agosto</span>
                 </a>
@@ -789,7 +807,7 @@
                 </a>
             </li>
             <li class="date-item">
-                <a href="noticias6.html" class="date-link active">
+                <a href="noticias6.html" class="date-link">
                     <span class="lang-fr">1 Avril 1905</span>
                     <span class="lang-es">1 de Abril</span>
                 </a>
@@ -849,7 +867,8 @@
                 <span class="ornamental-symbol">◆</span>
                 <span class="ornamental-symbol">◆</span>
             </div>
-            <p class="newspaper-date">Samedi, 1 Avril 1905 — Prix: 5 Centimes</p>
+            <p class="newspaper-date lang-fr">Mardi, 1er Août 1905 — Prix: 5 Centimes</p>
+            <p class="newspaper-date lang-es">Martes, 1 de Agosto de 1905 — Precio: 5 Centimes</p>
         </header>
         
         <!-- CONTENIDO PRINCIPAL -->
@@ -857,91 +876,55 @@
             <!-- COLUMNA IZQUIERDA -->
             <div class="left-column">
                 <!-- ARTÍCULO PRINCIPAL -->
-                <article class="main-article">
-                    <h2 class="article-title lang-fr">La France en Alerte : Les Tensions avec l'Allemagne Menacent l'Équilibre Européen</h2>
-                    <h2 class="article-title lang-es">Francia en Alerta: Las Tensiones con Alemania Amenazan el Equilibrio Europeo</h2>
-                    <p class="article-subtitle lang-fr">Le gouvernement convoque une réunion d'urgence après la visite du Kaiser à Tanger - Les Gremios mobilisés</p>
-                    <p class="article-subtitle lang-es">El gobierno convoca una reunión urgente tras la visita del Kaiser a Tánger - Los Gremios movilizados</p>
+                                <article class="main-article">
+                    <h2 class="article-title lang-fr">Vers Portsmouth : l'Europe écoute</h2>
+                    <h2 class="article-title lang-es">Hacia Portsmouth: Europa escucha</h2>
+                    <p class="article-subtitle lang-fr">Médiation américaine et télégrammes croisés — à Paris, où l'on digère encore l'affaire des arbalètes alors que ses auteurs présumés sont déjà interpellés ou expulsés, la moindre nouvelle d'outre-mer se lit dans un climat encore tendu.</p>
+                    <p class="article-subtitle lang-es">Mediación estadounidense y cables cruzados; en París, que aún asimila el episodio de las ballestas pese a tener ya a los agresores detenidos o expulsados, cada despacho del extranjero se lee en un ambiente que sigue crispado.</p>
                     
                     <div class="article-image">
-                        <img src="news/tanger3.jpg" alt="Crisis Marroquí" class="placeholder">
+                        <img src="news/portsmouth_correspondents_1905.jpg" alt="Correspondants de presse à la conférence de paix de Portsmouth (N.H.), 1905 — photographie d'époque, Library of Congress / Wikimedia Commons, domaine public — Corresponsales de prensa en la conferencia de paz de Portsmouth, 1905; fotografía de época, Biblioteca del Congreso / Wikimedia Commons, dominio público." class="placeholder">
                     </div>
                     
                     <div class="article-text lang-fr">
-                        <p>Le Kaiser Guillaume II a prononcé hier à Tanger un discours qui résonne aujourd'hui dans toutes les chancelleries d'Europe. Devant le représentant du Sultan Abdelaziz, l'empereur allemand a déclaré son soutien à l'indépendance du Maroc et au maintien de la souveraineté du Sultan — une gifle diplomatique à la France qui considérait le royaume chérifien comme relevant de sa sphère d'influence. "L'Allemagne exige d'être consultée sur toute question concernant le Maroc", a affirmé le Kaiser, remettant en cause les accords que Paris avait patiemment négociés avec Londres et Madrid.</p>
-                        
-                        <p>À l'Élysée, le Président Loubet a convoqué une réunion d'urgence du Conseil des Ministres. Le ministre des Affaires étrangères, Théophile Delcassé, architecte de l'Entente Cordiale avec le Royaume-Uni, se trouve sous une pression immense. Certains au sein du gouvernement souhaiteraient son remplacement par un homme plus conciliant. D'autres voient dans sa fermeté la seule réponse possible à l'arrogance prussienne. La crise a mis en évidence les fractures profondes qui traversent la classe politique française.</p>
-                        
-                        <p>Le spectre de 1870 plane sur ces délibérations. Trente-cinq ans après la défaite humiliante face à la Prusse, la France se retrouve à nouveau face à l'Allemagne. Cette fois, cependant, elle n'est pas seule : l'Entente Cordiale garantit le soutien britannique, et le Foreign Office a déjà fait savoir que Londres se tiendrait aux côtés de Paris. L'Espagne, qui partage avec la France des intérêts au Maroc, observe avec inquiétude, tandis que l'Italie et l'Autriche-Hongrie, alliées de l'Allemagne dans la Triple Alliance, gardent un silence prudent.</p>
-                        
-                        <p>La haute société parisienne est en émoi. Les familles aux intérêts internationaux — les Rothschild, les Straus, les Péreire — se trouvent dans une position délicate. Leurs réseaux financiers traversent l'Europe, et une guerre serait désastreuse pour leurs affaires. Plusieurs réceptions où la présence de diplomates allemands était attendue ont été annulées. Dans les salons, on ne parle que de cela : faut-il la fermeté ou la prudence ? Le souvenir de Sedan et de la Commune divise encore les esprits.</p>
-                        
-                        <p>Dans les milieux artistiques, la tension est également palpable. Les échanges culturels entre Paris et Berlin, si féconds ces dernières décennies, pourraient-ils survivre à un conflit ? Les artistes français et allemands entretiennent des liens étroits — mais aussi, dit-on, leurs propres rivalités et leurs propres enjeux, qui ne recoupent pas toujours les frontières nationales. Ce qui se joue dans ces cercles reste opaque pour le commun des mortels, mais nul ne doute que la crise diplomatique a ses répercussions dans ce monde parallèle.</p>
-                        
-                        <p>Ce matin, l'ambassadeur d'Allemagne a été convoqué au Quai d'Orsay. La rencontre, selon nos sources, a été glaciale. Paris exige des explications sur les déclarations du Kaiser. Berlin, pour l'instant, ne recule pas. Dans les couloirs du pouvoir, on parle déjà d'une conférence internationale pour régler la question marocaine — mais à quelles conditions ? Et qui, de la France ou de l'Allemagne, devra céder du terrain ?</p>
-                        
-                        <p>Alors que l'Europe retient son souffle, une question hante tous les esprits : sommes-nous au bord d'un nouveau conflit ? Les canons de 1870 grondent-ils à nouveau à l'horizon ? Ou la diplomatie parviendra-t-elle à désamorcer cette bombe que le Kaiser a allumée sur les quais de Tanger ?</p>
+                        <p>Paris ne regarde pas seulement ses boulevards : en ce début d'août, une partie de son attention se porte vers l'autre rive de l'Atlantique, là où se nouent des pourparlers dont dépendent des milliers de vies et l'équilibre du Pacifique. Les dépêches, encore fragmentaires, évoquent des allers-retours entre Washington et Saint-Pétersbourg, des invitations pressantes à la retenue, et l'idée d'une rencontre formelle sur le sol américain — une idée qui, même non encore consommée, suffit à modifier le ton des conversations dans les salons comme dans les ministères.</p>
+                        <p>Il serait trompeur d'y voir un intérêt détaché des affaires de la capitale. L'attaque aux arbalètes qui a visé des artistes et des membres du Conseil des Lumières et du Conseil des Beaux-Arts a pris fin sur le plan policier : les assaillants présumés sont, selon les décomptes officiels, en garde à vue ou déjà renvoyés au-delà des frontières. Reste que Paris se remet lentement : l'indignation demeure, l'ordre public y paraît plus fragile qu'avant l'été, les échanges politiques plus vifs, et chaque rumeur diplomatique y est confrontée à une question domestique — la République peut-elle accueillir l'incertitude internationale tout en apaisant la nervosité qu'ont laissée les violences, même jugulées ? Les milieux attentistes redoutent que ce reliquat de tension ne contamine la lecture des signaux venus de l'étranger ; les optimistes répondent qu'une ouverture vers la paix pourrait au contraire hâter le retour au calme. Le débat, lui, est ouvert.</p>
+                        <p>Les diplomates parisiens le formulent avec la prudence de métier : on ne parle pas d'accord acquis, mais d'« ouverture ». Pour autant, l'effet est réel. Les cours des emprunts d'État réagissent au moindre fil télégraphique ; les journaux spécialisés multiplient les cartes ; les opiniâtres de la guerre soudain se mêlent aux partisans d'une paix honorable, comme si le simple fait qu'une date puisse être fixée avait rendu la guerre moins abstraite et la paix moins utopique — même lorsque, dans les couloirs, on chuchote encore le nom des blessés du dimanche précédent.</p>
+                        <p>Du côté japonais, on souligne la fatigue des lignes d'approvisionnement et le coût humain des campagnes terrestres ; du côté russe, les échos sont plus confus, entre fierté navale écornée et besoin évident de regagner du temps. L'Europe, elle, redoute surtout l'escalade : chacun sait qu'un conflit lointain peut, par alliances et dettes, rapprocher les fronts de ceux qui croyaient le feu contenu à l'Extrême-Orient.</p>
+                        <p>La France, dans ce concert, tient une place singulière : alliée par l'esprit plus que par le traité, attentive aux routes maritimes, soucieuse de ne pas apparaître indifférente aux puissances qui comptent en Asie. Les commentaires restent mesurés — trop d'optimisme serait malvenu — mais l'on sent poindre un soulagement sourd : l'idée qu'une table, même éloignée, vaut mieux qu'un silence de canon.</p>
+                        <p>Reste la question des lendemains. Une paix négociée n'efface ni les rancunes ni les cartes ; elle les fige autrement. Les républicains y voient une leçon d'ordre international ; les nationalistes, un moment à exploiter ; les milieux d'affaires, un risque de réorganisation des marchés. Paris Nouveau, pour sa part, se bornera à suivre les faits : car en août, sous le ciel clair, ce sont parfois les nouvelles venues d'outre-mer qui pèsent le plus lourd sur l'avenir des journées d'ici — pourvu que la capitale, qui acheève tout juste de digérer l'épisode des arbalètes sans que la menace immédiate subsiste, sache encore écouter à la fois la voix des canons éloignés et le murmure des passions de proximité que ce répit fragile réveille malgré tout.</p>
                     </div>
                     
                     <div class="article-text lang-es">
-                        <p>El Kaiser Guillermo II pronunció ayer en Tánger un discurso que resuena hoy en todas las cancillerías de Europa. Ante el representante del Sultán Abdelaziz, el emperador alemán declaró su apoyo a la independencia de Marruecos y al mantenimiento de la soberanía del Sultán — una bofetada diplomática a Francia, que consideraba el reino cherifiano como parte de su esfera de influencia. "Alemania exige ser consultada sobre cualquier cuestión relativa a Marruecos", afirmó el Kaiser, cuestionando los acuerdos que París había negociado pacientemente con Londres y Madrid.</p>
-                        
-                        <p>En el Elíseo, el Presidente Loubet ha convocado una reunión de urgencia del Consejo de Ministros. El ministro de Asuntos Exteriores, Théophile Delcassé, arquitecto de la Entente Cordiale con Reino Unido, se encuentra bajo una presión inmensa. Algunos en el seno del gobierno desearían su sustitución por un hombre más conciliador. Otros ven en su firmeza la única respuesta posible a la arrogancia prusiana. La crisis ha puesto de manifiesto las fracturas profundas que atraviesan la clase política francesa.</p>
-                        
-                        <p>El espectro de 1870 planea sobre estas deliberaciones. Treinta y cinco años después de la humillante derrota ante Prusia, Francia se encuentra de nuevo frente a Alemania. Esta vez, sin embargo, no está sola: la Entente Cordiale garantiza el apoyo británico, y el Foreign Office ya ha hecho saber que Londres se mantendrá al lado de París. España, que comparte con Francia intereses en Marruecos, observa con inquietud, mientras Italia y Austria-Hungría, aliadas de Alemania en la Triple Alianza, guardan un silencio prudente.</p>
-                        
-                        <p>La alta sociedad parisina está conmocionada. Las familias con intereses internacionales — los Rothschild, los Straus, los Péreire — se encuentran en una posición delicada. Sus redes financieras atraviesan Europa, y una guerra sería desastrosa para sus negocios. Varias recepciones donde se esperaba la presencia de diplomáticos alemanes han sido canceladas. En los salones, no se habla de otra cosa: ¿firmeza o prudencia? El recuerdo de Sedán y de la Comuna aún divide los espíritus.</p>
-                        
-                        <p>En los círculos artísticos, la tensión es igualmente palpable. Los intercambios culturales entre París y Berlín, tan fecundos en las últimas décadas, ¿podrían sobrevivir a un conflicto? Los artistas franceses y alemanes mantienen lazos estrechos — pero también, se dice, sus propias rivalidades y sus propios intereses, que no siempre coinciden con las fronteras nacionales. Lo que se juega en esos círculos permanece opaco para el común de los mortales, pero nadie duda de que la crisis diplomática tiene sus repercusiones en ese mundo paralelo.</p>
-                        
-                        <p>Esta mañana, el embajador de Alemania ha sido convocado al Quai d'Orsay. El encuentro, según nuestras fuentes, ha sido glacial. París exige explicaciones sobre las declaraciones del Kaiser. Berlín, por ahora, no retrocede. En los pasillos del poder, ya se habla de una conferencia internacional para resolver la cuestión marroquí — pero ¿en qué condiciones? ¿Y quién, Francia o Alemania, deberá ceder terreno?</p>
-                        
-                        <p>Mientras Europa contiene la respiración, una pregunta atormenta todos los espíritus: ¿estamos al borde de un nuevo conflicto? ¿Vuelven a tronar los cañones de 1870 en el horizonte? ¿O la diplomacia logrará desactivar esta bomba que el Kaiser ha encendido en los muelles de Tánger?</p>
+                        <p>París no mira solo sus bulevares: a comienzos de agosto, buena parte de su atención se vuelve hacia la otra orilla del Atlántico, donde se tejen conversaciones de las que dependen miles de vidas y el equilibrio del Pacífico. Los despachos, aún fragmentarios, hablan de idas y venidas entre Washington y San Petersburgo, de invitaciones a la contención y de la idea de un encuentro formal en suelo estadounidense — idea que, aun sin consumarse, basta para cambiar el tono de las conversaciones en salones y ministerios.</p>
+                        <p>Sería engañoso ver en ello un interés ajeno a lo que ocurre en la capital. El asalto con ballestas contra artistas y miembros del Concilio de las Luces y del Consejo de las Bellas Artes ya tiene respuesta judicial y policial: quienes lo ejecutaron figuran, según los partes, detenidos o expulsados del país. Lo que persiste es la resaca: la indignación no se apaga, el orden parece más frágil que antes del verano, el debate político sigue encendido, y cada rumor diplomático se mide frente a una duda doméstica — si la República puede acoger la incertidumbre internacional mientras amortigua el nerviosismo que dejó la violencia, aunque ya esté contenida. Los cautelosos temen que ese poso de tensión contamine la lectura de las señales del exterior; los optimistas responden que una apertura hacia la paz podría acelerar el retorno al sosiego. El debate, en todo caso, está abierto.</p>
+                        <p>Los diplomáticos parisinos lo formulan con la prudencia del oficio: no se habla de acuerdo cerrado, sino de «apertura». El efecto, no obstante, es real. Los mercados de deuda reaccionan al menor cable; la prensa especializada multiplica mapas; los belicistas se mezclan de pronto con quienes defienden una paz honrosa, como si el solo hecho de fijar una fecha hiciera la guerra menos abstracta y la paz menos utópica — aun en los pasillos aún se murmure el nombre de los heridos del domingo anterior.</p>
+                        <p>Del lado japonés se subraya el desgaste de las líneas de aprovisionamiento y el coste humano de las campañas terrestres; del lado ruso, los ecos son más confusos, entre orgullo naval herido y necesidad evidente de ganar tiempo. Europa teme sobre todo la escalada: todos saben que un conflicto lejano puede, por alianzas y deudas, acercar el frente a quienes creían contener el fuego en Extremo Oriente.</p>
+                        <p>Francia ocupa aquí un lugar singular: aliada más por el espíritu que por el tratado, atenta a las rutas marítimas, celosa de no parecer indiferente a las potencias que cuentan en Asia. Los comentarios siguen medidos — demasiado optimismo sería inconveniente — pero se intuye un alivio contenido: la idea de que una mesa, aunque lejana, vale más que un silencio de cañón.</p>
+                        <p>Queda la cuestión del día después. Una paz negociada no borra ni rencores ni mapas; los fija de otro modo. Los republicanos ven en ello una lección de orden internacional; los nacionalistas, un momento a explotar; los negocios, un riesgo de reorganización de mercados. Paris Nouveau se limitará a seguir los hechos: porque en agosto, bajo el cielo claro, a veces son las noticias venidas de ultramar las que más pesan sobre el porvenir de las jornadas de acá — siempre que la ciudad, que termina de asimilar el episodio de las ballestas sin que la amenaza inmediata siga en la calle, sepa aun así escuchar a la vez la voz de los cañones lejanos y el murmullo de las pasiones de cercanía que este alivio aún frágil no deja de agitar.</p>
                     </div>
                 </article>
                 
                 <!-- ARTÍCULOS SECUNDARIOS -->
                 <div class="secondary-articles">
                     <article class="secondary-article">
-                        <h3 class="secondary-title lang-fr">Le Poisson d'Avril et le Corps du Délit</h3>
-                        <h3 class="secondary-title lang-es">El Poisson d'Avril y el Cuerpo del Delito</h3>
-                        
-                        <p class="secondary-text lang-fr">
-                            Paris, 1 Avril — Poisson d'Avril, mes chers lecteurs ! La photographie qui vous a tant fait jaser n'était pas la mienne. Le corps qui a suscité vos murmures indignés le matin et vos rêveries coupables le soir appartenait à une modèle anonyme, complice de cette petite expérience que j'ai menée avec la talentueuse photographe Céline Laguarde. À toutes deux, ma gratitude.
-                        </p>
-                        <p class="secondary-text lang-es">
-                            París, 1 de Abril — ¡Poisson d'Avril, mis queridos lectores! La fotografía que tanto os ha hecho murmurar no era la mía. El cuerpo que suscitó vuestros susurros indignados por la mañana y vuestras ensoñaciones culpables por la noche pertenecía a una modelo anónima, cómplice de este pequeño experimento que he llevado a cabo con la talentosa fotógrafa Céline Laguarde. A ambas, mi gratitud.
-                        </p>
-                        <p class="secondary-text lang-fr">
-                            Mais ne vous réjouissez pas trop vite — car si la chair était d'emprunt, la farce était bien mienne, et son objet n'était autre que vous. Car voyez-vous, je voulais observer de près ce curieux phénomène : comment une société qui accroche des nus dans ses musées, qui applaudit les nymphes de marbre et les Vénus de toile, peut soudain découvrir le scandale lorsque la femme représentée n'est plus une abstraction, mais une personne qui ose exister en dehors du cadre.
-                        </p>
-                        <p class="secondary-text lang-es">
-                            Pero no os regocijéis demasiado pronto — pues si la carne era prestada, la broma era bien mía, y su objeto no erais sino vosotros. Porque veréis, quería observar de cerca este curioso fenómeno: cómo una sociedad que cuelga desnudos en sus museos, que aplaude a las ninfas de mármol y a las Venus de lienzo, puede de pronto descubrir el escándalo cuando la mujer representada ya no es una abstracción, sino una persona que osa existir fuera del marco.
-                        </p>
-                        <p class="secondary-text lang-fr">
-                            Et vous ne m'avez pas déçue. J'ai vu les mêmes messieurs qui contemplent pendant des heures les chairs nacrées du Salon feindre l'horreur devant mon supposé portrait. J'ai entendu des dames — qui portent des décolletés si profonds qu'on y devine les intentions de la couturière — déclarer que c'était "aller trop loin". Trop loin de quoi, exactement ? De cette frontière invisible qui sépare l'art acceptable de la femme inacceptable ?
-                        </p>
-                        <p class="secondary-text lang-es">
-                            Y no me habéis decepcionado. He visto a los mismos caballeros que contemplan durante horas las carnes nacaradas del Salón fingir horror ante mi supuesto retrato. He oído a damas — que llevan escotes tan profundos que se adivinan las intenciones de la costurera — declarar que era "ir demasiado lejos". ¿Demasiado lejos de qué, exactamente? ¿De esa frontera invisible que separa el arte aceptable de la mujer inaceptable?
-                        </p>
-                        <p class="secondary-text lang-fr">
-                            La vérité, c'est que le corps féminin n'est toléré que lorsqu'il est silencieux, lorsqu'il se laisse regarder sans regarder en retour. Dès qu'une femme ose être à la fois le sujet et l'auteur, dès qu'elle possède son propre corps au lieu de le prêter au regard masculin, elle devient dangereuse. Non pas parce qu'elle montre trop, mais parce qu'elle décide elle-même ce qu'elle montre.
-                        </p>
-                        <p class="secondary-text lang-es">
-                            La verdad es que el cuerpo femenino solo se tolera cuando está en silencio, cuando se deja mirar sin devolver la mirada. En cuanto una mujer osa ser a la vez el sujeto y la autora, en cuanto posee su propio cuerpo en lugar de prestarlo a la mirada masculina, se vuelve peligrosa. No porque muestre demasiado, sino porque decide ella misma lo que muestra.
-                        </p>
-                        <p class="secondary-text lang-fr">
-                            Certains diront que cette farce était cruelle. Peut-être. Mais moins cruelle, je crois, que cette comédie quotidienne où l'on exige des femmes qu'elles soient désirables sans jamais désirer, séduisantes sans jamais séduire, belles sans jamais jouir de leur beauté. Moins cruelle que ce tribunal permanent où nous sommes jugées trop pudiques ou trop légères, jamais exactement ce qu'il faudrait être.
-                        </p>
-                        <p class="secondary-text lang-es">
-                            Algunos dirán que esta broma fue cruel. Quizás. Pero menos cruel, creo yo, que esa comedia cotidiana donde se exige de las mujeres que sean deseables sin desear jamás, seductoras sin seducir jamás, bellas sin gozar jamás de su belleza. Menos cruel que ese tribunal permanente donde somos juzgadas demasiado púdicas o demasiado ligeras, jamás exactamente lo que habría que ser.
-                        </p>
-                        <p class="secondary-text lang-fr">
-                            Alors oui, Poisson d'Avril. Vous pouvez ranger vos lorgnettes et reprendre vos conversations. Mais la prochaine fois que vous verrez une femme — sur une toile ou dans la rue — demandez-vous si vous la regardez, si vous la jugez, ou si c'est elle qui se moque de vous.
-                        </p>
-                        <p class="secondary-text lang-es">
-                            Así que sí, Poisson d'Avril. Podéis guardar vuestros gemelos y retomar vuestras conversaciones. Pero la próxima vez que veáis a una mujer — en un lienzo o en la calle — preguntaos si la estáis mirando, si la estáis juzgando, o si es ella quien se burla de vosotros.
-                        </p>
+                        <h3 class="secondary-title lang-fr">Grandes vacances, petite République</h3>
+                        <h3 class="secondary-title lang-es">Grandes vacaciones, pequeña República</h3>
+                        <div class="article-image" style="aspect-ratio: 5/4; margin-top: 10px;">
+                            <img src="news/paris_boulevard_madeleine_1890s.jpg" alt="Paris, boulevard de la Madeleine vers 1890-1900 — photographie d'époque en noir et blanc, Wikimedia Commons, domaine public — París, bulevar de la Madeleina hacia 1890-1900; fotografía de época en blanco y negro, Wikimedia Commons, dominio público." class="placeholder">
+                        </div>
+                        <div class="secondary-text lang-fr">
+                            <p>Les écoles se sont tues, les tribunes politiques respirent, et pourtant la République ne prend pas congé : elle se déplace — sur les quais, dans les squares, aux guichets des musées où s'alignent enfants et bonnes. Ce que l'on appelle « l'été » est, cette année, autre chose qu'une simple pause : les calendriers murmurent déjà des primaires à venir et d'un scrutin qui se rapproche ; le mois d'août ressemble à un couloir vers l'urne, où l'on marche moins vite qu'aux sessions, mais sans cesser de penser au bulletin.</p>
+                            <p>On y lit une leçon modeste mais réelle. L'espace public, lorsqu'il se remplit de familles sans uniforme ni rang affiché, rappelle que la laïcité n'est pas seulement un texte : c'est aussi le partage d'un banc, d'une fontaine, d'une conversation entre voisins qui, cette saison, glissent plus volontiers vers les alliances possibles, les noms de candidats et les craintes communes. Les curés en villégiature, les instituteurs en congé, les marchands de glace : tous coexistent sous une chaleur qui nivelle les poses — et parfois aide à voir plus clair.</p>
+                            <p>Ce calme apparent inquiète ceux qui confondent activité et vertu ; d'autres y voient au contraire une chance rare : le temps de la réflexion sans estrade, celui où l'on lit les professions de foi à l'ombre, où l'on compare les programmes autour d'une table de campagne plutôt que sous les huées de l'hémicycle. Ce n'est plus tant l'heure de « consolider » un vote de printemps que celle de préparer, patiemment, le geste futur : que demander aux élus, quelle ligne tenir aux primaires, quel poids donner aux mots qu'on entendra à la rentrée.</p>
+                            <p>Quand septembre rouvrira les portes, les candidatures se cristalliseront et les machines électorales reprendront leur bruit. D'ici là, la République se mesure encore à des choses simples — file d'attente correcte, égards aux plus âgés, trains de plaisir à l'heure — ; mais elle se mesure aussi à cette conversation tenue à voix basse sur le prochain scrutin, qui commence déjà à compter autant que la courtoisie du quotidien.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p>Las escuelas enmudecen, las tribunas políticas respiran, y sin embargo la República no se va de vacaciones: solo se desplaza — a los muelles, a los jardines, a las taquillas de los museos donde se alinean niños y niñeras. Este año el «verano» es algo más que un descanso: los calendarios ya susurran primarias en ciernes y unas elecciones que se acercan; agosto se parece a un pasillo hacia la urna, donde se camina más despacio que en sesión plena, pero sin dejar de pensar en la papeleta.</p>
+                            <p>De ello cabe extraer una lección modesta pero real. El espacio público, cuando se llena de familias sin uniforme ni rango ostentoso, recuerda que la laicidad no es solo un texto: es también compartir un banco, una fuente, una charla entre vecinos que, esta temporada, deriva más a menudo hacia posibles alianzas, nombres de candidatos y temores compartidos. Cura de estancia, maestro de descanso, heladero: conviven bajo un calor que nivela las poses —y a veces ayuda a ver con más claridad.</p>
+                            <p>Esa calma aparente inquieta a quienes confunden actividad y virtud; otros ven en cambio una ocasión poco frecuente: el tiempo de reflexionar sin tribuna, el de leer las profesiones de fe a la sombra, el de cotejar programas alrededor de una mesa campestre en lugar de bajo los gritos del hemiciclo. Ya no es tanto el momento de «consolidar» lo votado en primavera como el de preparar, con paciencia, el gesto futuro: qué exigir a los elegidos, qué postura tomar en las primarias, qué peso dar a las palabras que se oirán a la vuelta.</p>
+                            <p>Cuando septiembre vuelva a abrir las puertas, las candidaturas cristalizarán y las máquinas electorales retomarán su ruido. Hasta entonces, la República se mide en cosas sencillas —cola ordenada, deferencia a los mayores, trenes puntuales—; pero también en esa conversación a media voz sobre el próximo escrutinio, que ya cuenta tanto como la cortesía cotidiana.</p>
+                        </div>
                     </article>
                     
                     <div class="typographic-ornament">❦ ◆ ❦</div>
@@ -954,64 +937,50 @@
                         <p class="society-note lang-es">Notas mundanas y acontecimientos de la alta sociedad parisina</p>
                         
                         <div class="secondary-article">
-                            <h3 class="secondary-title lang-fr">Potins du Premier Avril : Amours et Intrigues</h3>
-                            <h3 class="secondary-title lang-es">Cotilleos del Primero de Abril: Amores e Intrigas</h3>
-                            
+                            <h3 class="secondary-title lang-fr">Août à Paris : derniers bals avant le calme</h3>
+                            <h3 class="secondary-title lang-es">Agosto en París: últimos bailes antes del silencio</h3>
                             <div class="secondary-text lang-fr">
-                            <p><em>Mes très chères lectrices</em>, en ce jour du Poisson d'Avril, votre dévouée chroniqueuse a des nouvelles qui, elles, ne sont point une farce ! Car les cœurs de Paris battent, et il est de notre devoir sacré de vous tenir informées des derniers rebondissements sentimentaux de notre belle ville.</p>
-                            
-                            <p>Commençons par ce qui fait bruisser tous les coulisses du Théâtre de l'Odéon : Marthe Brandès, l'actrice qui interprète Aude dans la nouvelle adaptation de La Chanson de Roland, aurait trouvé son Roland hors de la scène ! On les a vus à plusieurs reprises lors de dîners et de promenades en compagnie de Lucien Théophile Noeud Papillon, le maître architecte propriétaire des Galeries Belle Époque. Ce riche héritier d'une excellente famille, dont la fortune et le bon goût sont bien connus dans nos cercles, semble avoir conquis le cœur de notre actrice. Les témoins parlent de regards complices, de mains qui s'effleurent, et d'une complicité qui dépasse de loin les exigences du rôle. Serait-ce la magie du théâtre qui a opéré, ou l'attrait d'un mécène généreux ? Votre chroniqueuse garde ses lorgnettes pointées dans cette direction.</p>
-                            
-                            <p>Paul Landowski, le sculpteur aux créations glacées, a fait sensation lors d'une récente réception — mais pas seulement par son art ! On raconte qu'il a passé une grande partie de la soirée en conversation animée avec Marine Loremant, cette jeune couturière dont la boutique dans les Galeries Belle Époque connaît un succès remarquable. Les observateurs ont noté leur complicité évidente, leurs rires partagés, et cette façon qu'ils avaient de se chercher du regard dans la foule. Un sculpteur et une couturière... quelle alliance artistique pourrait naître de cette rencontre ? Votre chroniqueuse, toujours attentive aux signes, ne manquera pas de suivre cette histoire avec intérêt.</p>
-                            
-                            <p>Enfin, Jacques Martin, notre écrivain spécialiste des mythologies antiques, semble avoir pris ses distances avec les mondanités ces derniers temps. On le dit absorbé par un nouveau projet littéraire d'envergure. Mais certaines mauvaises langues murmurent qu'il se remet d'une déception sentimentale. Votre chroniqueuse ne saurait confirmer ni infirmer ces rumeurs...</p>
-                            
-                            <p>Jusqu'à la prochaine révélation, gardez vos oreilles grandes ouvertes !</p>
+                                <p><em>Mes chères lectrices</em>, août n'est pas un mois : c'est une permission que la ville s'accorde. Les grandes maisons ferment leurs persiennes ; les invitations se font plus rares, plus intimes, presque conspiratrices — comme si l'on dansait mieux quand moins de monde peut raconter l'histoire le lendemain.</p>
+                                <p>Les ambassades, pourtant, ne dorment pas tout à fait. On a vu, ces derniers jours, des uniformes que l'on croyait rangés réapparaître pour des soupers où l'on parle télégrammes et ports lointains. Votre Fleuriste ne prétend pas savoir ce qui se décide ; elle observe seulement que les éventails battent plus vite lorsque le mot « paix » est prononcé à voix basse, comme un vœu qu'il ne faudrait pas effrayer.</p>
+                                <p>Entre deux quadrilles, voici ce que tout le monde évente sans oser l'écrire en toutes lettres : les escapades de Mata Hari, toujours dans le sillage d'artistes, d'hommes politiques et de messieurs dont le nom fait trembler les portes cochères. Princesse avide, ou goût pour ces « mariages » avec des puissances déjà liées par une bande de métal au doigt — alliance, secret, caprice d'acier ? Je ne tranche pas ; je constate que la jalousie suit ses pas comme un parfum trop entêtant. Ajoutez-y l'architecte dont nous parlions dimanche, la danseuse attachée au musée des arts, le sculpteur aux épaules fameuses : en août, Paris condense ses intrigues ; moins de monde pour les porter, et chaque rumeur plus éclatante.</p>
+                                <p>Autre feuilleton qui fait trembler les éventails : M. Jacques Martin semble enfin tenir un tempo prometteur auprès de mademoiselle Lucile Roy — on prête à son refus passé devant la scène du musée des arts une influence de bon présage. Rien n'est acquis ; si la chose se confirme, je les effacerai volontiers de ma liste des cœurs à plaindre, car certaines histoires méritent le foyer, non le grimoire des potins. D'ici là, patience — et ne m'obligez pas à répéter cet avertissement.</p>
+                                <p>Fiançailles officielles : Élodie Lecat et Thomas Rédeaux — noms déjà familiers dans nos salons et à la vitrine d'« Honoré du Feu ». Mes lectrices, mes lecteurs, je vous plains un peu ; mais ce lien ne se rompt pas : à défaut de le respecter, les meilleurs sucrés de Paris prendraient une amertume que nulle confiserie ne rattraperait. Soyez raisonnables.</p>
+                                <p>Je vous le dis sans détour : profitez des nuits claires. Septembre ramènera les comptes, les budgets, les visages fermés. Pour l'instant, la ville offre encore du velours et du champagne — et, pour qui sait écouter, le bruit doux des pages qui se tournent vers l'autre côté de l'océan.</p>
                             </div>
-                            
                             <div class="secondary-text lang-es">
-                            <p><em>Mis muy queridas lectoras</em>, en este día del Poisson d'Avril, vuestra devota cronista tiene noticias que, estas sí, ¡no son ninguna broma! Porque los corazones de París laten, y es nuestro sagrado deber manteneros informadas de los últimos giros sentimentales de nuestra bella ciudad.</p>
-                            
-                            <p>Comencemos por lo que hace murmurar a todos los bastidores del Théâtre de l'Odéon: Marthe Brandès, la actriz que interpreta a Aude en la nueva adaptación de La Chanson de Roland, ¡habría encontrado su Roland fuera del escenario! Se les ha visto en varias ocasiones en cenas y paseos en compañía de Lucien Théophile Noeud Papillon, el maestro arquitecto propietario de las Galerías Belle Époque. Este rico heredero de una excelente familia, cuya fortuna y buen gusto son bien conocidos en nuestros círculos, parece haber conquistado el corazón de nuestra actriz. Los testigos hablan de miradas cómplices, de manos que se rozan, y de una complicidad que va mucho más allá de las exigencias del papel. ¿Será la magia del teatro la que ha obrado, o el atractivo de un mecenas generoso? Vuestra cronista mantiene sus gemelos apuntados en esa dirección.</p>
-                            
-                            <p>Paul Landowski, el escultor de las creaciones heladas, ha causado sensación en una reciente recepción — ¡pero no solo por su arte! Se cuenta que pasó gran parte de la velada en animada conversación con Marine Loremant, esa joven costurera cuya boutique en las Galerías Belle Époque conoce un éxito notable. Los observadores notaron su complicidad evidente, sus risas compartidas, y esa forma que tenían de buscarse con la mirada en la multitud. Un escultor y una costurera... ¿qué alianza artística podría nacer de este encuentro? Vuestra cronista, siempre atenta a los signos, no dejará de seguir esta historia con interés.</p>
-                            
-                            <p>Por último, Jacques Martin, nuestro escritor especialista en mitologías antiguas, parece haberse distanciado de las mundanidades últimamente. Se dice que está absorto en un nuevo proyecto literario de envergadura. Pero algunas malas lenguas murmuran que se está recuperando de una decepción sentimental. Vuestra cronista no sabría confirmar ni desmentir estos rumores...</p>
-                            
-                            <p>¡Hasta la próxima revelación, mantened vuestros oídos bien abiertos!</p>
+                                <p><em>Mis queridas lectoras</em>, agosto no es un mes: es un permiso que la ciudad se concede. Las grandes casas cierran sus persianas; las invitaciones se vuelven más escasas, más íntimas, casi conspirativas — como si se bailara mejor cuando menos gente puede contar la historia al día siguiente.</p>
+                                <p>Las embajadas, eso sí, no duermen del todo. Estos días han vuelto a verse uniformes que creíamos guardados, en cenas donde se habla de cables y puertos lejanos. Vuestra Florista no afirma saber qué se decide; solo advierte que los abanicos baten más deprisa cuando se pronuncia «paz» en voz baja, como un deseo que no conviene asustar.</p>
+                                <p>Entre dos cuadrillas, lo que todas ahuecan sin poner titular: los escarceos de Mata Hari, siempre entre artistas, políticos y señores cuyo cargo hace temblar las porteras. ¿Princesa ambiciosa o afición a esos «matrimonios» con hombres poderosos ya sujetos por una bandita de metal en el dedo —alianza, secreto, capricho de acero? No juzgo; constato que los celos la siguen como un perfume demasiado cargado. Sumen a la arquitecta del domingo, a la bailarina ligada al museo de artes, al escultor de los hombros célebres: en agosto París concentra intrigas; menos gente para sostenerlas, y cada rumor más estridente.</p>
+                                <p>Otra historia que mantiene en vilo: Jacques Martin parece hallar ritmo al fin junto a Lucile Roy —y auguran bien quienes lo atan a aquel rechazo claro frente a la escena del museo de artes. Aún no es cosa hecha; si se confirma, entonces sí los borraré de mi lista de corazones a compadecer, porque algunas vidas piden chimenea y no prensa rosa. De momento, paciencia; y no me obliguéis a repetir el anuncio.</p>
+                                <p>Compromiso oficial: Élodie Lecat y Thomas Rédeaux —nombres ya familiares en estas columnas, en los salones y en el escaparate de «Honoré du Feu». Lo siento para mis lectoras y lectores desconsolados; este lazo no admite quiebra: si se rompiera, hasta los mejores dulces de París volverían amargos, y ni el azúcar más fino lo remendaría. Sed sensatos.</p>
+                                <p>Os lo digo sin rodeo: aprovechad las noches claras. Septiembre traerá cuentas, presupuestos, caras cerradas. Por ahora la ciudad aún ofrece terciopelo y champán — y, para quien sepa escuchar, el rumor suave de las páginas que se vuelven hacia la otra orilla del océano.</p>
                             </div>
-                        
                         </div>
                     </article>
+                    
                 </div>
             </div>
             
             <!-- COLUMNA DERECHA -->
             <aside class="right-column">
                 <article class="sidebar-article">
-                    <h3 class="sidebar-title lang-fr">L'Obélisque Égyptien : L'Installation Avance Malgré les Préoccupations</h3>
-                    <h3 class="sidebar-title lang-es">El Obelisco Egipcio: La Instalación Avanza Pese a las Preocupaciones</h3>
-                    
-                    <div class="vertical-image">
-                        <img src="news/concorde3.jpg" alt="Place de la Concorde" class="placeholder">
+                    <h3 class="sidebar-title lang-fr">Le ministre de la Guerre périt dans l'incendie criminel</h3>
+                    <h3 class="sidebar-title lang-es">El ministro de la Guerra muere en un incendio criminal</h3>
+                    <div class="vertical-image" style="aspect-ratio: 4/3; margin-bottom: 1em;">
+                        <img src="news/paris_incendie_bazar_charite_1897.jpg" alt="Paris, lendemain de l'incendie du Bazar de la Charité, 1897 — archive photographique d'époque (illustration d'ambiance pour notre fait divers), Wikimedia Commons, domaine public — París, día siguiente al incendio del Bazar de la Caridad, 1897; archivo fotográfico de época (atmósfera ilustrativa), Wikimedia Commons, dominio público." class="placeholder" style="object-fit: cover; object-position: center center;">
                     </div>
-                    
                     <div class="sidebar-text lang-fr">
-                        <p>Paris, 1 Avril — À trois jours de son arrivée, l'obélisque égyptien continue de générer des débats tandis que son installation avance sans contretemps sur la Place de la Concorde. Certains architectes présents sur les lieux maintiennent que le monument méritait une étude plus approfondie avant d'être érigé, et plusieurs membres du Gremio des Architectes rappellent que ces pièces, étrangères à la tradition européenne, peuvent avoir des fonctions et des interprétations inconnues pour les artistes de la ville.</p>
-                        
-                        <p>Les observations d'un archéologue spécialisé ajoutent une nuance historique à l'affaire, signalant que les obélisques remplissaient à l'origine la fonction de nourrir Ra dans son temple. Néanmoins, ces considérations n'ont pas été suffisantes pour retarder l'œuvre.</p>
-                        
-                        <p>Avec l'installation pratiquement conclue, le gouvernement de la ville a confiance que le monument symbolisera l'amitié entre la France et le Pays d'Égypte, et la majorité des Parisiens semblent disposés à le recevoir avec curiosité et admiration, contemplant comment cette ancienne pièce s'intègre dans la silhouette de la ville comme un geste de bonne volonté.</p>
+                        <p>Paris, 1er Août — Un incendie d'une violence exceptionnelle a dévoré une petite maison de campagne où se trouvait le ministre de la Guerre. Les premiers constats évoquent moins un simple attentat qu'une sorte de <em>mise en scène macabre</em> : l'auteur présumé du feu y aurait trouvé la mort en même temps qu'il l'allumait, mais les victimes — dont le ministre — portaient déjà, selon les médecins légistes, les marques d'un décès antérieur à l'embrasement. Le spectacle public n'était que la conclusion d'un drame joué en coulisses.</p>
+                        <p>L'enjeu véritable fut de retrouver le lieu du crime derrière l'écran de fumée : une fois la maison examinée et les corps replacés dans la chronologie, l'affaire s'est éclaircie avec une rapidité que les officiers eux-mêmes soulignent. Le citoyen « profondément inquiet » qui avait donné l'alarme, et qui a guidé les agents jusqu'à cette petite propriété isolée, a coopéré serré avec la Sûreté ; ensemble, ils ont bouclé le périmètre et recueilli les indices en peu de temps.</p>
+                        <p>Des membres du Conseil des Lumières, présents sur place, ont pris part au sauvetage de la seule personne encore vivante : une vieille dame retirée d'une arrière-pièce de la maisonnette au moment où les flammes gagnaient les murs — le geste décisif de la nuit, au milieu d'une scénographie pensée pour frapper les esprits plutôt que pour laisser le temps d'agir.</p>
+                        <p>Le gouvernement annonce le deuil et une commission chargée d'établir les mobiles de ce théâtre de l'horreur. Paris Nouveau se borne à noter qu'en cette fin de semaine la République perd l'un de ses titulaires les plus exposés, alors que, sur un autre théâtre — diplomatique —, d'autres feux cherchent encore à s'éteindre avant d'embraser l'Europe.</p>
                     </div>
-                    
                     <div class="sidebar-text lang-es">
-                        <p>París, 1 de Abril — A tres días de su llegada, el obelisco egipcio continúa generando debate mientras su instalación avanza sin contratiempos en la Place de la Concorde. Algunos arquitectos presentes en el lugar mantienen que el monumento merecía un estudio más detenido antes de ser erigido, y varios miembros del Gremio de Arquitectos recuerdan que estas piezas, ajenas a la tradición europea, pueden tener funciones e interpretaciones desconocidas para los artistas de la ciudad.</p>
-                        
-                        <p>Las observaciones de un arqueólogo especializado añaden un matiz histórico al asunto, señalando que los obeliscos cumplían originalmente la función de nutrir a Ra en su templo. Aun así, estas consideraciones no han sido suficientes para retrasar la obra.</p>
-                        
-                        <p>Con la instalación prácticamente concluida, el gobierno de la ciudad confía en que el monumento simbolice la amistad entre Francia y el País de Egipto, y la mayoría de los parisinos parecen dispuestos a recibirlo con curiosidad y admiración, contemplando cómo esta antigua pieza se integra en la silueta de la ciudad como un geste de buena voluntad.</p>
+                        <p>París, 1 de agosto — Un incendio de violencia excepcional devoró una pequeña casa de campo donde se hallaba el ministro de la Guerra. Los primeros informes hablan menos de un atentado llano que de una especie de <em>performance macabra</em>: el presunto autor del fuego habría muerto al provocarlo, pero las víctimas —entre ellas el ministro— llevaban, según los forenses, tiempo muertas antes de la llamarada. El espectáculo público no fue sino el desenlace de un drama ensayado entre bastidores.</p>
+                        <p>Lo decisivo fue hallar el escenario del crimen tras la cortina de humo: una vez inspeccionada la casa y ordenada la cronología de los cuerpos, el caso se aclaró con una celeridad que los propios agentes destacan. El ciudadano «profundamente preocupado» que había dado la voz de alarma y encaminó a la brigada hasta esa casa de campo aislada cooperó estrechamente con la policía; juntos acordonaron y reunieron pruebas en poco tiempo.</p>
+                        <p>Miembros del Concilio de las Luces, en el lugar, participaron en el rescate de la única persona con vida: una anciana sacada de un cuarto del fondo de la casita cuando el fuego ya lamía las paredes — el gesto capital de la noche, en medio de una puesta en escena pensada para golpear la opinión más que para dar margen de reacción.</p>
+                        <p>El gobierno decreta luto y una comisión para esclarecer los móviles de este teatro del horror. Paris Nouveau se limita a constatar que, al fin de semana, la República pierde a uno de sus titulares más expuestos, mientras en otro escenario —el diplomático— otros fuegos intentan apagarse antes de prender Europa.</p>
                     </div>
-                    
                 </article>
                 
                 <div class="typographic-ornament">◆ ◆ ◆</div>
@@ -1020,18 +989,14 @@
                     <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
                     <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
                     <div class="sidebar-text lang-fr" style="font-size: 16px;">
-                        <p><strong>• Chez Descourtils:</strong> Le maître luthier Valentin Descourtils ouvre boutique dans les Galeries Belle Époque. Violons et violoncelles de qualité exceptionnelle.</p>
-                        
-                        <p><strong>• Salon des Indépendants:</strong> Ouverture le 24 mars au Cours-la-Reine. Plus de quatre mille artistes exposent; certains promettent une audace chromatique inédite.</p>
-                        
-                        <p><strong>• Métropolitain:</strong> La ligne 4 avance. La traversée sous la Seine devrait s'achever dans les prochains mois.</p>
+                        <p><strong>• Médiation russo-japonaise :</strong> Les chancelleries reçoivent des télégrammes annonçant des pourparlers sous l'égide américaine ; Portsmouth et Washington font l'objet de cartes et de commentaires prudents, alors que Paris suit, sans triomphalisme, les signes d'une possible ouverture.</p>
+                        <p><strong>• Après le Tour :</strong> La «&nbsp;Grande Boucle&nbsp;» s'est achevée dimanche ; les journaux sportifs tirent le bilan des étapes, du classement par points et des ascensions qui ont marqué l'édition 1905, tandis que les cyclistes retrouvent famille et ateliers.</p>
+                        <p><strong>• Chaleur et hygiène :</strong> La préfecture rappelle les consignes de prudence aux heures les plus chaudes ; les médecins des quartiers populaires recommandent eau bouillie, ombre et repos pour les enfants — un été républicain, aussi, se mesure au soin porté aux plus fragiles.</p>
                     </div>
                     <div class="sidebar-text lang-es" style="font-size: 16px;">
-                        <p><strong>• Chez Descourtils:</strong> El maestro luthier Valentin Descourtils abre tienda en las Galerías Belle Époque. Violines y violonchelos de calidad excepcional.</p>
-                        
-                        <p><strong>• Salón de los Independientes:</strong> Apertura el 24 de marzo en el Cours-la-Reine. Más de cuatro mil artistas exponen; algunos prometen una audacia cromática inédita.</p>
-                        
-                        <p><strong>• Metropolitano:</strong> La línea 4 avanza. La travesía bajo el Sena debería completarse en los próximos meses.</p>
+                        <p><strong>• Mediación ruso-japonesa :</strong> Las cancillerías reciben cables sobre conversaciones bajo patrocinio estadounidense; Portsmouth y Washington aparecen en mapas y comentarios prudentes, mientras París sigue, sin triunfalismo, las señales de una posible apertura.</p>
+                        <p><strong>• Tras el Tour:</strong> La «Grande Boucle» cerró el domingo; la prensa deportiva hace balance de etapas, puntos y puertos de la edición de 1905, y los ciclistas vuelven a familia y taller.</p>
+                        <p><strong>• Calor e higiene:</strong> La prefectura recuerda precauciones en las horas más calurosas; los médicos de barrio aconsejan agua hervida, sombra y descanso para los niños — un verano republicano también se mide en el cuidado de los más frágiles.</p>
                     </div>
                 </article>
                 
@@ -1041,16 +1006,16 @@
                     <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
                     <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
                     <div class="sidebar-text lang-fr" style="font-size: 13px; line-height: 1.6;">
-                        <p><strong>La France en Alerte : Les Tensions avec l'Allemagne Menacent l'Équilibre Européen :</strong><br>Rédaction</p>
-                        <p><strong>L'Obélisque Égyptien : L'Installation Avance Malgré les Préoccupations :</strong><br>C. Müller</p>
-                        <p><strong>Le Poisson d'Avril et le Corps du Délit :</strong><br>Colette</p>
-                        <p><strong>Potins du Premier Avril : Amours et Intrigues :</strong><br>La Fleuriste</p>
+                        <p><strong>Vers Portsmouth : l'Europe écoute :</strong><br>R. Delambre</p>
+                        <p><strong>Grandes vacances, petite République :</strong><br>E. Caron</p>
+                        <p><strong>Le ministre de la Guerre périt dans l'incendie criminel :</strong><br>L. Roy</p>
+                        <p><strong>Août à Paris : derniers bals avant le calme :</strong><br>La Fleuriste</p>
                     </div>
                     <div class="sidebar-text lang-es" style="font-size: 13px; line-height: 1.6;">
-                        <p><strong>Francia en Alerta: Las Tensiones con Alemania Amenazan el Equilibrio Europeo :</strong><br>Redacción</p>
-                        <p><strong>El Obelisco Egipcio: La Instalación Avanza Pese a las Preocupaciones :</strong><br>C. Müller</p>
-                        <p><strong>El Poisson d'Avril y el Cuerpo del Delito :</strong><br>Colette</p>
-                        <p><strong>Cotilleos del Primero de Abril: Amores e Intrigas :</strong><br>La Florista</p>
+                        <p><strong>Hacia Portsmouth: Europa escucha :</strong><br>R. Delambre</p>
+                        <p><strong>Grandes vacaciones, pequeña República :</strong><br>E. Caron</p>
+                        <p><strong>El ministro de la Guerra muere en un incendio criminal :</strong><br>L. Roy</p>
+                        <p><strong>Agosto en París: últimos bailes antes del silencio :</strong><br>La Florista</p>
                     </div>
                 </article>
                 
@@ -1077,7 +1042,6 @@
                                 </div>
                             </div>
                         </li>
-                        
                         <li class="gossip-item">
                             <div class="gossip-photo">
                                 <img src="news/Other/solteros/simon_latour.png" alt="Simon Latour" onclick="openImageModal(this.src, this.alt)">
@@ -1093,7 +1057,6 @@
                                 </div>
                             </div>
                         </li>
-                        
                         <li class="gossip-item">
                             <div class="gossip-photo">
                                 <img src="news/Other/solteros/lucile_roy.png" alt="Lucile Roy" onclick="openImageModal(this.src, this.alt)">
@@ -1109,7 +1072,6 @@
                                 </div>
                             </div>
                         </li>
-                        
                         <li class="gossip-item">
                             <div class="gossip-photo">
                                 <img src="news/Other/solteros/jacques_martin.png" alt="Jacques Martin" onclick="openImageModal(this.src, this.alt)">
@@ -1118,14 +1080,13 @@
                                 <div class="gossip-name lang-fr">Jacques Martin</div>
                                 <div class="gossip-name lang-es">Jacques Martin</div>
                                 <div class="gossip-text lang-fr">
-                                    <em>Un écrivain de fiction historique</em> spécialisé dans l'art de relier les aventures des dieux et demi-dieux de l'Antiquité aux légendes qu'ont inspirées leurs statues vivantes. Son œuvre tisse des liens fascinants entre la mythologie classique et les récits qui ont façonné notre imaginaire. Un esprit érudit qui sait donner vie aux anciens mythes. Plus d'une dizaine de lectrices ont écrit à l'éditeur pour lui demander des épopées près du foyer. Quelle indécence !
+                                    <em>Un écrivain de fiction historique</em> spécialisé dans l'art de relier les aventures des dieux et demi-dieux de l'Antiquité aux légendes qu'ont inspirées leurs statues vivantes. Son œuvre tisse des liens fascinants entre la mythologie classique et les récits qui ont façonné notre imaginaire. Un esprit érudit qui sait donner vie aux anciens mythes. Plus d'une dizaine de lecteurs ont écrit à l'éditeur pour lui demander des épopées près du foyer. Quelle indécence !
                                 </div>
                                 <div class="gossip-text lang-es">
-                                    <em>Un escritor de ficción histórica</em> especialista en el arte de atar las aventuras de dioses y semidioses de la Antigüedad a las leyendas que protagonizaron sus estatuas vivas. Su obra teje vínculos fascinantes entre la mitología clásica y los relatos que han moldeado nuestro imaginario. Una mente erudita que sabe dar vida a los antiguos mitos. Más de una decena de lectoras han escrito al editor pidiéndole epopeyas cerca de la hoguera. ¡Qué indecencia!
+                                    <em>Un escritor de ficción histórica</em> especialista en el arte de atar las aventuras de dioses y semidioses de la Antigüedad a las leyendas que protagonizaron sus estatuas vivas. Su obra teje vínculos fascinantes entre la mitología clásica y los relatos que han moldeado nuestro imaginario. Una mente erudita que sabe dar vida a los antiguos mitos. Más de una decena de lectores han escrito al editor pidiéndole epopeyas cerca de la hoguera. ¡Qué indecencia!
                                 </div>
                             </div>
                         </li>
-                        
                         <li class="gossip-item">
                             <div class="gossip-photo">
                                 <img src="personajes_imagenes/paul_landowski.png" alt="Paul Landowski" onclick="openImageModal(this.src, this.alt)">
@@ -1134,46 +1095,43 @@
                                 <div class="gossip-name lang-fr">Paul Landowski</div>
                                 <div class="gossip-name lang-es">Paul Landowski</div>
                                 <div class="gossip-text lang-fr">
-                                    <em>Un sculpteur qui fait fondre les cœurs</em>, Paul Landowski possède un talent qui dépasse les matériaux qu'il travaille. Spécialisé dans les monuments et les figures imposantes, il a su conquérir l'attention des dames de la haute société parisienne, et votre chroniqueuse a noté que sa présence dans les salons fait invariablement monter la température — et pas seulement à cause de son art. Un artiste dont le charme naturel n'a d'égale que son habileté avec les ciseaux et le marteau. Qui voudrait poser pour lui ? Nous connaissons plusieurs volontaires qui ne demanderaient qu'à se faire sculpter... dans tous les sens du terme.
+                                    <em>Un sculpteur qui fait fondre les cœurs</em>, spécialisé dans les monuments et les figures imposantes. Sa présence dans les salons fait invariablement monter la température — et pas seulement à cause de son art. Un artiste dont le charme naturel n'a d'égale que son habileté avec le ciseau et le marteau.
                                 </div>
                                 <div class="gossip-text lang-es">
-                                    <em>Un escultor que hace derretir los corazones</em>, Paul Landowski posee un talento que trasciende los materiales que trabaja. Especializado en monumentos y figuras imponentes, ha sabido conquistar la atención de las damas de la alta sociedad parisina, y vuestra cronista ha notado que su presencia en los salones hace invariablemente subir la temperatura — y no solo por su arte. Un artista cuyo encanto natural no tiene igual que su habilidad con el cincel y el martillo. ¿Quién querría posar para él? Conocemos varias voluntarias que no pedirían más que dejarse esculpir... en todos los sentidos de la palabra.
+                                    <em>Un escultor que hace derretir los corazones</em>, especializado en monumentos y figuras imponentes. Su presencia en los salones hace invariablemente subir la temperatura — y no solo por su arte. Un artista cuyo encanto natural no tiene igual que su habilidad con el cincel y el martillo.
                                 </div>
                             </div>
                         </li>
-                        
                         <li class="gossip-item">
                             <div class="gossip-photo">
-                                <img src="news/Other/solteros/lucien_guitry.png" alt="Lucien Guitry" onclick="openImageModal(this.src, this.alt)">
+                                <img src="news/Other/solteros/mata_hari.png" alt="Mata Hari" onclick="openImageModal(this.src, this.alt)">
                             </div>
                             <div class="gossip-info">
-                                <div class="gossip-name lang-fr">Lucien Guitry</div>
-                                <div class="gossip-name lang-es">Lucien Guitry</div>
+                                <div class="gossip-name lang-fr">Mata Hari</div>
+                                <div class="gossip-name lang-es">Mata Hari</div>
                                 <div class="gossip-text lang-fr">
-                                    <em>Un acteur venu de Normandie</em>, originaire du Havre et fils d'un comédien itinérant, ce jeune talent a fait son apparition dans les cercles parisiens avec une fraîcheur remarquable. Serait-il un remplaçant comme célibataire d'or pour nos lectrices ? Le temps nous le dira, mais pour l'instant, il semble avoir déjà fait fondre quelques réserves.
+                                    <em>Nouvelle apparition des salons</em>, elle se présente comme venue d'Orient, avec une biographie que chaque témoin raconte différemment. Danseuse pour les uns, stratège du regard pour les autres, elle sème derrière elle invitations fermées, soupirs militaires et jalousies diplomatiques. Mes lectrices, quand un nom circule en même temps dans les coulisses, les ambassades et les loges, ce n'est plus une mode : c'est une manœuvre.
                                 </div>
                                 <div class="gossip-text lang-es">
-                                    <em>Un actor venido de Normandía</em>, originario de El Havre e hijo de un cómico itinerante, este joven talento ha hecho su aparición en los círculos parisinos con una frescura notable. ¿Será un reemplazo como soltero de oro para nuestras lectoras? El tiempo nos lo dirá, pero por ahora, parece haber derretido ya algunas reservas.
+                                    <em>Nueva aparición de los salones</em>, se presenta como llegada de Oriente, con una biografía que cada testigo narra de forma distinta. Bailarina para unos, estratega de la mirada para otros, deja a su paso invitaciones cerradas, suspiros militares y celos diplomáticos. Queridas lectoras, cuando un nombre circula al mismo tiempo por bastidores, embajadas y palcos, ya no es una moda: es una maniobra.
                                 </div>
                             </div>
                         </li>
-                        
                         <li class="gossip-item">
                             <div class="gossip-photo">
-                                <img src="news/Other/solteros/cleo_de_merode.png" alt="Cléo de Mérode" onclick="openImageModal(this.src, this.alt)">
+                                <img src="news/Other/solteros/sandrine_cros.png" alt="Sandrine Cros" onclick="openImageModal(this.src, this.alt)">
                             </div>
                             <div class="gossip-info">
-                                <div class="gossip-name lang-fr">Cléo de Mérode</div>
-                                <div class="gossip-name lang-es">Cléo de Mérode</div>
+                                <div class="gossip-name lang-fr">Sandrine Cros</div>
+                                <div class="gossip-name lang-es">Sandrine Cros</div>
                                 <div class="gossip-text lang-fr">
-                                    <em>Une danseuse et actrice</em> dont la beauté et le talent ont déjà fait sensation dans les cercles artistiques parisiens. Née à Paris et élevée dans les milieux artistiques, elle a su conquérir les cœurs par sa grâce sur scène. On murmure qu'elle a déjà posé pour plusieurs artistes renommés, ce qui n'a fait qu'augmenter sa réputation. Mais avouons-le, mes chers lecteurs : nous ne suivons pas sa carrière avec autant d'intérêt que la noblesse.
+                                    <em>Jeune architecte brillante</em> au tempérament singulier, elle dessine comme d'autres intriguent : sans trembler. On la dit admiratrice d'André Lefèvre — mais, franchement, qui ne l'est pas ? Votre Fleuriste l'a remarquée lorsqu'un bal à l'ambassade d'Autriche-Hongrie a fait tourner bien plus que les éventails ; depuis, ses récents mouvements auprès du Conseil des Beaux-Arts la rendent digne d'une surveillance attentive.
                                 </div>
                                 <div class="gossip-text lang-es">
-                                    <em>Una bailarina y actriz</em> cuya belleza y talento ya han causado sensación en los círculos artísticos parisinos. Nacida en París y criada en los medios artísticos, ha sabido conquistar los corazones con su gracia en el escenario. Se murmura que ya ha posado para varios artistas renombrados, lo que no ha hecho más que aumentar su reputación. Pero confesémoslo, queridos lectores: no seguimos su carrera con tanto interés como la nobleza.
+                                    <em>Joven arquitecta brillante</em> y de personalidad única, dibuja como otros conspiran: sin temblar. Se dice que es admiradora de André Lefèvre, pero ¿quién no lo es? Vuestra Florista pensó en ella tras verla deslumbrar bailando en la embajada de Austria-Hungría; y sus últimos movimientos junto al Consejo de las Bellas Artes la hacen merecedora de este ojo indiscreto.
                                 </div>
                             </div>
                         </li>
-                        
                         <li class="gossip-item">
                             <div class="gossip-photo">
                                 <img src="news/Other/solteros/marine_loremant.png" alt="Marine Loremant" onclick="openImageModal(this.src, this.alt)">
@@ -1191,10 +1149,8 @@
                         </li>
                     </ul>
                 </article>
-                
             </aside>
         </div>
-    </div>
     
     <!-- MODAL PARA IMÁGENES -->
     <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
@@ -1231,13 +1187,13 @@
             modalImg.src = imageSrc;
             modalImg.alt = imageAlt;
             modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+            document.body.style.overflow = 'hidden';
         }
         
         function closeImageModal(event) {
             const modal = document.getElementById('imageModal');
             modal.classList.remove('active');
-            document.body.style.overflow = ''; // Restaurar scroll del body
+            document.body.style.overflow = '';
         }
         
         // Cerrar modal con la tecla ESC
