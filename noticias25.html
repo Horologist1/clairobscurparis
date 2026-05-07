@@ -213,14 +213,39 @@
         }
         
         .main-article .article-image {
-            aspect-ratio: 16/9;
-            min-height: 400px;
+            aspect-ratio: 16 / 9;
+            width: 100%;
         }
         
         .article-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+            flex: 1 1 auto;
+            min-width: 0;
+            min-height: 0;
+        }
+        
+        /* Urnes / foule : garder la masse humaine lisible sans bandes vides */
+        .main-article .article-image img {
+            object-position: center 28%;
+        }
+        
+        .secondary-articles .secondary-article .article-image {
+            aspect-ratio: 5 / 4;
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        .secondary-articles .secondary-article .article-image img {
+            object-position: center 45%;
+        }
+        
+        /* Tableau d’origine couleur : pas de vieillissement sépia sur les fauves */
+        .secondary-articles .secondary-article .article-image img.matisse-original {
+            filter: none;
+            object-position: center 32%;
         }
         
         .article-text {
@@ -341,6 +366,17 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+        }
+        
+        /* Portrait pour colonnes étroites (évite le cadre « téléviseur » 9:16 sur une gravure) */
+        .vertical-image.sidebar-portrait {
+            aspect-ratio: 3 / 4;
+            max-width: 100%;
+        }
+        
+        .vertical-image.sidebar-portrait img.placeholder {
+            object-position: center 12%;
         }
         
         .sidebar-text {
@@ -420,6 +456,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+        
+        /* Archives photographiques : ton sépia / noir-et-blanc doux */
+        .article-image img.placeholder,
+        .vertical-image img.placeholder,
+        .secondary-articles .article-image img.placeholder {
+            filter: sepia(0.35) grayscale(0.15) contrast(1.06) brightness(0.98);
         }
         
         /* BOTÓN DE TRADUCCIÓN */
@@ -596,6 +639,7 @@
             display: block;
             cursor: pointer;
             transition: opacity 0.3s ease;
+            filter: sepia(0.25) grayscale(0.12) contrast(1.05);
         }
         
         .gossip-photo img:hover {
@@ -684,6 +728,7 @@
             font-weight: 600;
             color: #5a4a3a;
         }
+        
     </style>
 </head>
 <body>
@@ -693,7 +738,7 @@
         <h3 class="lang-es">Ediciones</h3>
         <ul class="date-list">
             <li class="date-item">
-                <a href="noticias25.html" class="date-link">
+                <a href="noticias25.html" class="date-link active">
                     <span class="lang-fr">2 Novembre 1905</span>
                     <span class="lang-es">2 de Noviembre</span>
                 </a>
@@ -748,7 +793,7 @@
                 </a>
             </li>
             <li class="date-item">
-                <a href="noticias14.html" class="date-link active">
+                <a href="noticias14.html" class="date-link">
                     <span class="lang-fr">22 Mai 1905</span>
                     <span class="lang-es">22 de Mayo</span>
                 </a>
@@ -856,8 +901,8 @@
                 <span class="ornamental-symbol">◆</span>
                 <span class="ornamental-symbol">◆</span>
             </div>
-            <p class="newspaper-date lang-fr">Mardi, 22 Mai 1905 — Prix: 5 Centimes</p>
-            <p class="newspaper-date lang-es">Martes, 22 de Mayo de 1905 — Precio: 5 Centimes</p>
+            <p class="newspaper-date lang-fr">Jeudi, 2 Novembre 1905 — Prix: 5 Centimes</p>
+            <p class="newspaper-date lang-es">Jueves, 2 de Noviembre de 1905 — Precio: 5 Centimes</p>
         </header>
         
         <!-- CONTENIDO PRINCIPAL -->
@@ -865,53 +910,55 @@
             <!-- COLUMNA IZQUIERDA -->
             <div class="left-column">
                 <!-- ARTÍCULO PRINCIPAL -->
-                <article class="main-article">
-                    <h2 class="article-title lang-fr">La Fuite du Comte Cassini : un Palais de Plus à Vincennes</h2>
-                    <h2 class="article-title lang-es">La huida del Conde Cassini: un palacio más en Vincennes</h2>
-                    <p class="article-subtitle lang-fr">Après plus de cinq ans d'impôts esquivés, la haute société française voit un troisième palais tomber en déshérence — chronique d'une noblesse en difficulté</p>
-                    <p class="article-subtitle lang-es">Tras más de cinco años eludiendo impuestos, la alta sociedad francesa ve un tercer palacio quedar abandonado — crónica de una nobleza en apuros</p>
+                                <article class="main-article">
+                    <h2 class="article-title lang-fr">Devant les urnes</h2>
+                    <h2 class="article-title lang-es">Ante las urnas</h2>
+                    <p class="article-subtitle lang-fr">À l'approche du scrutin, deux sensibilités — Jaurès et Fallières — incarnent des voies distinctes au sein d'une même République ; la participation, elle, n'est pas un geste neutre.</p>
+                    <p class="article-subtitle lang-es">Con las elecciones en perspectiva, dos sensibilidades —Jaurès y Fallières— encarnan caminos distintos dentro de una misma República; la participación, en cambio, no es un gesto neutro.</p>
                     
                     <div class="article-image">
-                        <img src="news/vincennes_chateau.jpg" alt="Château de Vincennes — palais abandonné" class="placeholder">
+                        <img src="news/jean_jaures_lisant_humanite.jpg" alt="Jean Jaurès lisant L'Humanité — photographie d'époque (Henri Manuel), domaine public via Wikimedia Commons — Jean Jaurès leyendo L'Humanité; fotografía de época (Henri Manuel), dominio público vía Wikimedia Commons." class="placeholder">
                     </div>
                     
                     <div class="article-text lang-fr">
-                        <p>Paris, 22 Mai — Le comte Cassini a quitté le territoire. Son palais de Vincennes, laissé à l'abandon, n'est plus qu'une coquille vide : meubles sous housses, jardins en friche, créanciers et fisc aux trousses. Voilà plus de cinq ans que le noble aurait esquivé le Trésor public ; les montants en jeu restent à préciser, mais les autorités confirment qu'une instruction est en cours. Ce n'est pas le premier grand nom à disparaître ainsi dans la nuit. C'est le troisième palais — après ceux du marquis de Brézé et du duc de Saint-Aignan — à tomber en déshérence pour des raisons économiques en moins de deux ans.</p>
-                        <p>La haute société française traverse une épreuve que beaucoup préfèrent taire. Les grandes demeures coûtent cher : entretien, domestiques, impôts sur la propriété et sur le revenu que la République exige désormais des plus fortunés. Certains nobles ont su s'adapter, diversifiant leurs ressources ou cédant une partie de leur patrimoine ; d'autres, accrochés à un train de vie d'un autre âge, ont accumulé les dettes. Le comte Cassini illustre ce second cas. Son départ précipité, sans un mot à ses proches ni à ses créanciers, laisse une image peu glorieuse : celle d'un homme qui a préféré fuir plutôt que de rendre des comptes.</p>
-                        <p>Faut-il plaindre la noblesse ? Les uns diront que les privilèges d'antan ont vécu et que l'égalité devant l'impôt est une conquête républicaine non négociable. Les autres rappelleront que derrière chaque palais abandonné, il y a des familles, des employés congédiés, des patrimoines artistiques et historiques menacés. La vérité est sans doute entre les deux : la société française actuelle n'a plus de place pour les grands domaines non productifs, et ceux qui refusent de s'adapter ou de contribuer au bien commun en paient le prix. Le comte Cassini n'est ni un martyr ni un héros — simplement un exemple de plus d'une caste qui doit apprendre à vivre avec son temps.</p>
+                        <p>À mesure que s'approchent les élections, la ville semble se recueillir dans une attente contenue, comme si chaque conversation et chaque geste quotidien portaient en eux une question que l'on n'a pas encore formulée à voix haute. Il ne s'agit pas seulement d'un rendez-vous politique, mais d'un moment qui, par son ampleur, oblige à examiner avec plus d'application la direction que l'on souhaite prendre.</p>
+                        <p>Les candidatures de Jean Jaurès et d'Armand Fallières ont fini par dessiner avec clarté deux sensibilités distinctes, toutes deux profondément enracinées dans la réalité du pays. Dans la première, l'on reconnaît une volonté ferme de réconcilier les tensions sociales par la fraternité, en insistant sur le fait qu'aucun progrès ne sera durable s'il ne repose sur une cohésion sincère entre les citoyens. Dans la seconde, un pari sur la stabilité institutionnelle, sur la continuité d'un ordre qui permet à la République de se soutenir sans secousses superflues.</p>
+                        <p>Ce n'est pas ici le lieu de faire pencher la balance d'un côté ou de l'autre, mais bien de souligner que, dans le choix entre les deux, il ne s'agit pas seulement d'une préférence, mais d'une manière de comprendre la responsabilité partagée. Les différences, bien qu'elles soient réelles, ne devraient pas masquer un fait plus vaste : les deux projets s'inscrivent dans un cadre qui reconnaît la valeur de la République et la nécessité de la préserver.</p>
+                        <p>À l'heure où l'Europe semble s'observer elle-même avec une inquiétude croissante, et où certaines tensions, encore lointaines, commencent à prendre un tour plus grave, la participation à la vie publique cesse d'être un geste facultatif pour devenir une forme de prudence. La paix, si souvent invoquée et si rarement assurée, ne repose pas uniquement sur des accords entre nations, mais aussi sur la solidité intérieure de chacune d'elles.</p>
+                        <p>C'est peut-être pourquoi il convient de rappeler que l'abstention n'est pas une position neutre, mais un renoncement. Choisir, c'est accepter une part, si modeste soit-elle, dans l'orientation que prendra l'ensemble.</p>
+                        <p>Entre la voix qui appelle à renforcer les liens et celle qui insiste pour préserver l'équilibre, le citoyen se trouve face à une décision qui n'admet pas l'indifférence. Et si le résultat appartient à l'avenir, le geste de participer appartient, encore, au présent.</p>
                     </div>
                     
                     <div class="article-text lang-es">
-                        <p>París, 22 de Mayo — El conde Cassini ha abandonado el territorio. Su palacio de Vincennes, dejado a su suerte, no es ya más que una cáscara vacía: muebles bajo fundas, jardines en barbecho, acreedores y Hacienda pisándole los talones. Llevaba más de cinco años, según se dice, eludiendo al Erario público; las cantidades en juego quedan por precisar, pero las autoridades confirman que hay diligencias en curso. No es el primer gran nombre que desaparece así en la noche. Es el tercer palacio — tras los del marqués de Brézé y del duque de Saint-Aignan — en quedar deshabitado por dificultades económicas en menos de dos años.</p>
-                        <p>La alta sociedad francesa atraviesa una prueba que muchos prefieren callar. Las grandes residencias cuestan caro: mantenimiento, servicio, impuestos sobre la propiedad y sobre la renta que la República exige ya a los más acaudalados. Algunos nobles han sabido adaptarse, diversificando sus fuentes de ingresos o cediendo parte de su patrimonio; otros, aferrados a un tren de vida de otro tiempo, han acumulado deudas. El conde Cassini ilustra este segundo caso. Su partida precipitada, sin una palabra a los suyos ni a sus acreedores, deja una imagen poco gloriosa: la de un hombre que prefirió huir a rendir cuentas.</p>
-                        <p>¿Hay que compadecer a la nobleza? Unos dirán que los privilegios de antaño han pasado y que la igualdad ante el impuesto es una conquista republicana intocable. Otros recordarán que detrás de cada palacio abandonado hay familias, empleados despedidos, patrimonios artísticos e históricos en riesgo. La verdad está quizá en medio: la sociedad francesa actual ya no tiene sitio para los grandes dominios improductivos, y quienes se niegan a adaptarse o a contribuir al bien común pagan el precio. El conde Cassini no es ni mártir ni héroe — solo un ejemplo más de una casta que debe aprender a vivir con su tiempo.</p>
+                        <p>A medida que se aproximan las elecciones, la ciudad parece recogerse en una expectación contenida, como si cada conversación y cada gesto cotidiano llevase consigo una pregunta que aún no ha sido formulada en voz alta. No se trata únicamente de una cita política, sino de un momento que, por su alcance, obliga a considerar con mayor detenimiento el rumbo que se desea tomar.</p>
+                        <p>Las candidaturas de Jean Jaurès y Armand Fallières han terminado por perfilar con claridad dos sensibilidades distintas, ambas profundamente arraigadas en la realidad del país. En el primero se reconoce una voluntad firme de reconciliar las tensiones sociales a través de la fraternidad, insistiendo en que ningún progreso será duradero si no descansa sobre una cohesión sincera entre los ciudadanos. En el segundo, una apuesta por la estabilidad institucional, por la continuidad de un orden que permita a la República sostenerse sin sobresaltos innecesarios.</p>
+                        <p>No es este el lugar para inclinar la balanza en uno u otro sentido, pero sí para señalar que, en la elección entre ambos, no se decide únicamente una preferencia, sino una manera de entender la responsabilidad compartida. Las diferencias, aunque reales, no deberían ocultar un hecho más amplio: ambos proyectos se inscriben dentro de un marco que reconoce el valor de la República y la necesidad de preservarla.</p>
+                        <p>En un momento en que Europa parece observarse a sí misma con una inquietud creciente, y donde ciertas tensiones, todavía lejanas, comienzan a adquirir un tono más grave, la participación en la vida pública deja de ser un gesto opcional para convertirse en una forma de prudencia. La paz, tantas veces evocada y tan poco asegurada, no se sostiene únicamente en acuerdos entre naciones, sino también en la solidez interna de cada una de ellas.</p>
+                        <p>Quizá por ello convenga recordar que la abstención no es una posición neutral, sino una renuncia. Elegir implica asumir una parte, por modesta que sea, en la dirección que habrá de tomar el conjunto.</p>
+                        <p>Entre la voz que llama a reforzar los vínculos y aquella que insiste en preservar el equilibrio, el ciudadano se encuentra ante una decisión que no admite indiferencia. Y aunque el resultado pertenezca al porvenir, el gesto de participar pertenece, aún, al presente.</p>
                     </div>
                 </article>
                 
                 <!-- ARTÍCULOS SECUNDARIOS -->
                 <div class="secondary-articles">
                     <article class="secondary-article">
-                        <h3 class="secondary-title lang-fr">Le Président Décide d'Ouvrir une Partie des Catacombes aux Parisiens</h3>
-                        <h3 class="secondary-title lang-es">El Presidente decide abrir una parte de las catacumbas a los parisinos</h3>
-                        
-                        <div class="square-image-container">
-                            <div class="square-image">
-                                <img src="news/catacombes_paris.jpg" alt="Catacombes de Paris — ossuaire, ouverture au public" class="placeholder">
-                            </div>
+                        <h3 class="secondary-title lang-fr">Les « Fauves » sous le regard du Conseil</h3>
+                        <h3 class="secondary-title lang-es">Los «fauves» bajo la mirada del Consejo</h3>
+                        <div class="article-image">
+                            <img src="news/matisse_woman_with_a_hat_1905.jpg" alt="Henri Matisse, Femme au chapeau (Woman with a Hat), 1905 — huile sur toile, SFMOMA, reproduction Wikimedia Commons (domaine public) — Henri Matisse, La mujer con sombrero, 1905; óleo sobre lienzo, SFMOMA, reproducción Wikimedia Commons (dominio público)." class="matisse-original">
                         </div>
-                        
-                        <p class="secondary-text lang-fr">
-                            Paris, 22 Mai — Le président de la République a annoncé la restauration et l'ouverture au public d'une section des catacumbes de Paris, permettant aux Parisiens de visiter un recoin obscur et fascinant de leur ville. Depuis la fin du XVIIIe siècle, les ossuaires aménagés dans d'anciennes carrières de calcaire servent de sépulture à des millions de restes transférés des cimetières paroissiaux ; l'accès, longtemps réservé à des visites sur autorisation, a varié au fil des décennies entre fermetures et ouvertures mensuelles ou trimestrielles.
-                        </p>
-                        <p class="secondary-text lang-es">
-                            París, 22 de Mayo — El presidente de la República ha anunciado la restauración y la apertura al público de un tramo de las catacumbas de París, de modo que los parisinos puedan visitar un rincón oscuro y fascinante de su ciudad. Desde finales del siglo XVIII, los osarios dispuestos en antiguas canteras de caliza acogen los restos de millones de personas trasladados desde los cementerios parroquiales; el acceso, durante mucho tiempo reservado a visitas con autorización, ha alternado a lo largo de las décadas entre cierres y aperturas mensuales o trimestrales.
-                        </p>
-                        <p class="secondary-text lang-fr">
-                            La décision répond à une demande croissante de curiosité et de pédagogie : les catacombes rappellent l'histoire souterraine de la capitale, les travaux de l'inspecteur Guillaumot sous l'Ancien Régime, et la nécessité d'avoir régulièrement contrôlé les vides de carrières pour éviter les effondrements. Les travaux de mise en sécurité et d'éclairage d'un parcours défini devraient être achevés d'ici la fin de l'année. Une partie de Paris que beaucoup n'ont jamais vue sera ainsi rendue à la mémoire collective.
-                        </p>
-                        <p class="secondary-text lang-es">
-                            La decisión responde a una demanda creciente de curiosidad y pedagogía: las catacumbas recuerdan la historia subterránea de la capital, los trabajos del inspector Guillaumot bajo el Antiguo Régimen y la necesidad de haber controlado periódicamente los huecos de las canteras para evitar derrumbes. Las obras de seguridad y de iluminación de un recorrido definido deberían concluir antes de fin de año. Una parte de París que muchos no han visto jamás quedará así devuelta a la memoria colectiva.
-                        </p>
+                        <div class="secondary-text lang-fr">
+                            <p>Paris, 2 novembre — Cette chronique vous informe, très chères lectrices, que le scandale du Salon d'Automne s'est déplacé. Il n'habite plus les nefs du Grand Palais : il a loué appartement dans les salons de l'ambassade d'Autriche-Hongrie, où des hommes en habit brodé débattent de peinture comme s'il s'agissait de la frontière austro-serbe. On ne saurait inventer pareille comédie.</p>
+                            <p>Le coupable s'appelle Henri Matisse. Son crime ? Un portrait de sa propre femme — <em>La Femme au chapeau</em> — peint avec des verts, des roses et des ocres que l'œil académique refuse de recevoir sans protester. Le chapeau est une tache agressive. Le fond n'obéit à aucune règle connue. Et la chair de Mme Matisse n'est pas rendue avec la politesse habituelle, mais avec l'intensité de quelqu'un qui a décidé, une bonne fois, de ne plus feindre. Un critique, M. Vauxcelles — dont on retiendra le nom —, a vu la salle entière et a prononcé le mot <em>fauves</em>. Le surnom a tenu mieux que nombre de mariages de la saison.</p>
+                            <p>Les traditionalistes crient à la barbarie. Les modernes crient au génie. Cette auteure observe, depuis son siège habituel, que les deux camps crient avec une égale conviction et une égale ignorance de l'autre. Ce qui est certain : M. Matisse ne peint pas pour plaire — et c'est précisément ce que ni les uns ni les autres ne lui pardonnent.</p>
+                            <p>Le Conseil des Beaux-Arts, lui, « prend note ». Traduction : il attend de savoir de quel côté souffle le vent avant de décider si la couleur pure est une révolution ou une insolence. Cette auteure leur souhaite bon courage. Et à vous, lectrices, elle recommande d'aller voir le tableau avant qu'on le décroche — ou qu'on l'encadre en or.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p>París, 2 de noviembre — Esta cronista les informa, queridísimas lectoras, que el escándalo del Salón de Otoño ha cambiado de domicilio. Ya no vive bajo las naves del Grand Palais: se ha instalado en los salones de la embajada austrohúngara, donde caballeros de levita bordada debaten de pintura como si se tratara de la frontera austro-serbia. No podría inventarse comedia semejante.</p>
+                            <p>El culpable se llama Henri Matisse. ¿Su crimen? Un retrato de su propia mujer —«La mujer con sombrero»— pintado con verdes, rosas y ocres que el ojo académico se niega a recibir sin protestar. El sombrero es una mancha agresiva. El fondo no obedece norma conocida. Y la carne de la señora Matisse no está resuelta con la cortesía habitual, sino con la intensidad de alguien que ha decidido, de una vez, dejar de fingir. Un crítico, M. Vauxcelles —cuyo nombre conviene retener—, recorrió la sala entera y pronunció la palabra «fauves». El apodo ha durado más que varios matrimonios de la temporada.</p>
+                            <p>Los tradicionalistas gritan «barbarie». Los modernos gritan «genio». Esta autora los observa desde su butaca habitual y constata que ambos bandos gritan con idéntica convicción e idéntico desconocimiento del contrario. Lo que es cierto: M. Matisse no pinta para agradar, y eso es exactamente lo que ninguno de los dos le perdona.</p>
+                            <p>El Consejo de Bellas Artes, por su parte, «toma nota». Traducción: espera a ver de qué lado sopla el viento antes de decidir si el color puro es una revolución o una insolencia. Esta autora les desea suerte. Y a ustedes, lectoras, les recomienda ir a ver el cuadro antes de que lo descuelguen —o lo enmarquen en oro.</p>
+                        </div>
                     </article>
                     
                     <div class="typographic-ornament">❦ ◆ ❦</div>
@@ -924,17 +971,25 @@
                         <p class="society-note lang-es">Notas mundanas y acontecimientos de la alta sociedad parisina</p>
                         
                         <div class="secondary-article">
-                            <h3 class="secondary-title lang-fr">Celles qui aiment les nobles</h3>
-                            <h3 class="secondary-title lang-es">Las que aman a los nobles</h3>
+                            <h3 class="secondary-title lang-fr">Novembre à Paris : entre brouillards et confidences</h3>
+                            <h3 class="secondary-title lang-es">Noviembre en París: entre nieblas y confidencias</h3>
                             <div class="secondary-text lang-fr">
-                                <p><em>Mes chères lectrices</em>, votre chroniqueuse doit aujourd'hui vous parler avec tendresse — et un brin de malice — de celles qui rêvent de vestir de blanc et de sang bleu. Oui, vous savez de qui je parle : celles qui soupirent après un titre, un château, un nom à particule. À vous qui aspirez au mariage avec un noble, je dis : prudence.</p>
-                                <p>Les temps ont changé. Sous la IIIe République, l'égalité devant l'impôt n'épargne plus les grandes familles ; les palais se vident, les héritiers s'exilent ou disparaissent dans la nuit, comme on a pu le lire dans ces colonnes. Les mariages de raison entre filles de la bourgeoisie et fils de la noblesse ont longtemps permis aux uns de redorer un blason et aux autres d'éponger des dettes — mais quand le blason ne paie plus les créanciers, que reste-t-il ? Une belle demeure à entretenir, des domestiques à solder, et parfois un époux parti sans laisser d'adresse.</p>
-                                <p>Alors, mes chères, avant de courir vers le premier duc venu, jetez donc un œil à ma liste de célibataires. Des artistes, des architectes, des hommes de talent qui ont le mérite d'être là, solvables, et fort aimables. Et si votre cœur penche malgré tout pour un noble… il y a bien monsieur Maximilian Belcredi, le duc de Bohême dont tout le monde parle. Charmant, paraît-il, et pas marié. Je ne le mets pas dans ma liste — tout simplement parce qu'il n'a pas de photo, et votre chroniqueuse a ses principes : pas de portrait, pas d'entrée au palmarès. Mais si vous le croisez au Grand Véfour ou au Théâtre Italien, vous pouvez toujours lui sourire. À vos risques et périls, mes chères.</p>
+                                <p><em>Mes chères lectrices</em> — et vous aussi, messieurs, qui lisez par-dessus l'épaule de votre femme —, novembre est arrivé et avec lui une vérité que cette auteure se fait un devoir de proclamer : la saison mondaine d'été est morte, vive la saison mondaine d'automne, où tout le monde prétend être sérieux et personne ne l'est.</p>
+                                <p>Premier fait établi : l'ambassade d'Autriche-Hongrie est devenue la scène officielle du procès Matisse. On y boit du champagne viennois, on y discute de couleurs fauves avec des mines de diplomates en crise, et on y oublie de danser. Cette auteure était présente. Elle a compté trois officiers rougir en entendant défendre un rose outrancier, et deux mécènes boire leur quatrième verre avant de concéder que « peut-être il y a quelque chose ». Peut-être. Quelle audace.</p>
+                                <p>Deuxième fait établi : Mata Hari et Émile Labord ont été vus ensemble — le Moulin Rouge, le Grand Théâtre Belle Époque, un escalier de service dont les domestiques prétendent ignorer l'existence. Sept fois en quinze jours, très chères. Cette auteure ne dit pas que c'est de l'amour. Elle dit que sept coïncidences constituent une politique.</p>
+                                <p>Troisième fait établi : Simon Latour fait une cour officielle à Cléa Dessendre. Sorties, présentations, bras tendu dans la rue. La ville qui les croyait en froid se demande si la paire la plus sculpturale de Paris revient au socle. Cette auteure leur souhaite de ne pas se transformer en monument.</p>
+                                <p>Quatrième fait établi : le prince souverain de Monaco a rendu visite en privé à Katya Einhell. Pas pour un spectacle. Pour du thé. Si quelqu'un croit que deux personnes de cette qualité se réunissent pour du thé, cette auteure a un pont à vendre — parisien, bien situé, vue sur la Seine.</p>
+                                <p>Cinquième et dernier fait : François Tautou, protégé de Mme Lecat et de M. Lefèvre, a tenu les planches du Grand Théâtre Belle Époque aux côtés de Sarah Bernhardt et de Coquelin. Il n'a pas écrit la pièce — cela viendra — mais il l'a jouée comme quelqu'un qui n'a pas l'intention de jouer les seconds rôles longtemps. L'impeccable Sandrine Cros était dans la salle. On jure qu'elle a regardé la scène. Cette auteure, qui ne jure de rien, note simplement que Mme Cros était là, et qu'elle n'est pas du genre à assister à des spectacles par obligation.</p>
+                                <p>Voilà pour novembre. Cette auteure vous retrouvera au prochain numéro — à moins que Paris ne lui fournisse des matériaux avant, ce dont elle ne doute nullement.</p>
                             </div>
                             <div class="secondary-text lang-es">
-                                <p><em>Mis queridas lectoras</em>, vuestra cronista debe hoy hablaros con cariño — y un punto de malicia — de aquellas que sueñan con vestir de blanco y sangrar azul. Sí, sabéis de quién hablo: las que suspiran por un título, un castillo, un apellido con partícula. A vosotras, que aspiráis a casaros con un noble, os digo: cautela.</p>
-                                <p>Los tiempos han cambiado. Bajo la III República, la igualdad ante el impuesto ya no perdona a las grandes familias; los palacios se vacían, los herederos se exilian o se esfuman en la noche, como se ha leído en estas columnas. Los matrimonios de conveniencia entre hijas de la burguesía e hijos de la nobleza llevaron mucho tiempo permitiendo a unos dorar un blasón y a otros saldar deudas — pero cuando el blasón ya no paga a los acreedores, ¿qué queda? Una hermosa residencia que mantener, criados que pagar, y a veces un marido que se ha ido sin dejar dirección.</p>
-                                <p>Así que, queridas mías, antes de correr hacia el primer duque que pase, echad un vistazo a mi lista de solteros. Artistas, arquitectos, hombres de talento que tienen el mérito de estar ahí, de ser solventes y muy amables. Y si vuestro corazón se inclina aun así por un noble… está el señor Maximilian Belcredi, el duque de Bohemia del que todo el mundo habla. Encantador, al parecer, y no está casado. No lo pongo en mi lista — simplemente porque no tiene foto, y vuestra cronista tiene sus principios: sin retrato, no hay entrada en el ranking. Pero si lo cruzáis en el Grand Véfour o en el Teatro Italiano, siempre podéis sonreírle. A vuestro riesgo, queridas.</p>
+                                <p><em>Queridas lectoras</em> —y también ustedes, caballeros que leen por encima del hombro de su esposa—, noviembre ha llegado y con él una verdad que esta autora se ve en el deber de proclamar: la temporada mundana veraniega ha muerto, viva la temporada mundana otoñal, donde todo el mundo pretende ser serio y nadie lo es.</p>
+                                <p>Primer hecho establecido: la embajada austrohúngara se ha convertido en el escenario oficial del proceso Matisse. Se bebe champán vienés, se debate de colores fauves con cara de diplomático en crisis y se olvida completamente de bailar. Esta autora estuvo presente. Contó tres oficiales enrojeciendo al oír defender un rosa descarado, y dos mecenas bebiendo su cuarta copa antes de conceder que «quizá hay algo». Quizá. Qué audacia.</p>
+                                <p>Segundo hecho establecido: Mata Hari y Émile Labord han sido vistos juntos —el Moulin Rouge, el Gran Teatro Belle Époque, una escalera de servicio cuya existencia los criados fingen ignorar. Siete veces en quince días, queridísimas. Esta autora no dice que sea amor. Dice que siete coincidencias constituyen una política.</p>
+                                <p>Tercer hecho establecido: Simon Latour corteja oficialmente a Cléa Dessendre. Salidas, presentaciones, brazo tendido en la calle. La ciudad que los creía en frialdad se pregunta si la pareja más escultural de París vuelve al pedestal. Esta autora les desea que no acaben convertidos en monumento.</p>
+                                <p>Cuarto hecho establecido: el príncipe soberano de Mónaco visitó en privado a Katya Einhell. No para un espectáculo. Para tomar el té. Si alguien cree que dos personas de esa categoría se reúnen por el té, esta autora tiene un puente que vender —parisino, bien ubicado, con vistas al Sena.</p>
+                                <p>Quinto y último hecho: François Tautou, protegido de la señora Lecat y del señor Lefèvre, subió a las tablas del Gran Teatro Belle Époque junto a Sarah Bernhardt y Coquelin. No escribió la obra —eso llegará—, pero la interpretó como alguien que no tiene intención de quedarse en los papeles secundarios. La impecable Sandrine Cros estaba en la sala. Se jura que miró el escenario. Esta autora, que no jura de nada, anota simplemente que la señora Cros estaba allí, y que no es de las que asisten a espectáculos por obligación.</p>
+                                <p>Así es noviembre. Esta autora les encontrará en el próximo número —a menos que París le suministre material antes, cosa de la que no duda en absoluto.</p>
                             </div>
                         </div>
                     </article>
@@ -945,21 +1000,22 @@
             <!-- COLUMNA DERECHA -->
             <aside class="right-column">
                 <article class="sidebar-article">
-                    <h3 class="sidebar-title lang-fr">« La Maison aux cloches » au Théâtre Italien : Premier Succès de Chloé Müller</h3>
-                    <h3 class="sidebar-title lang-es">« La casa de las campanas » en el Teatro Italiano: primer éxito de Chloé Müller</h3>
-                    
-                    <div class="vertical-image" style="aspect-ratio: 4/3;">
-                        <img src="news/theatre-italien.jpg" alt="Théâtre Italien — La Maison aux cloches" class="placeholder">
+                    <h3 class="sidebar-title lang-fr">Vers la réhabilitation : l'Affaire dans l'ombre des plumes</h3>
+                    <h3 class="sidebar-title lang-es">Hacia la rehabilitación: el Affaire en la sombra de las plumas</h3>
+                    <div class="vertical-image sidebar-portrait" style="margin-bottom: 1em;">
+                        <img src="news/alfred_dreyfus_1899_vanity_fair.jpg" alt="Alfred Dreyfus — portrait (« Spy »), Vanity Fair, 7 septembre 1899, lithographie (collection privée / reproduction Commons, domaine public aux États-Unis) — Alfred Dreyfus; retrato publicado en Vanity Fair, 7 de septiembre de 1899, litografía, dominio público en EE. UU. (Commons)." class="placeholder">
                     </div>
-                    
                     <div class="sidebar-text lang-fr">
-                        <p>Paris, 22 Mai — Chloé Müller a triomphé au Théâtre Italien avec « La Maison aux cloches », sa première œuvre dramatique. La pièce, dont l'action se situe dans une ville de frontière de l'Empire austro-hongrois, a conquis le public par son interprétation musicale et rythmique autant que par son thème : l'union du peuple face à un pouvoir supérieur qui tente de s'emparer d'un bien commun. Le folklore austro-hongrois, très en vogue depuis la visite récente de l'Empereur, y trouve une expression scénique remarquable.</p>
-                        <p>Sarah Bernhardt, dans un rôle mûr et d'une difficulté rare à faire briller, a étincelé : chaque réplique, chaque silence portait le poids de l'archiviste Ilona, gardienne de la mémoire et de la loi. André Lèfevre, en messager du district, a conquis la salle par son parcours du jeune homme qui s'éveille à la justice et à l'honneur — une trajectoire interprétée avec une conviction qui a ému plus d'un spectateur. La critique s'accorde : « La Maison aux cloches » est un succès, et Chloé Müller s'impose comme une voix nouvelle du théâtre parisien.</p>
+                        <p>Paris, 2 novembre — Il existe des affaires que la France préférerait oublier. Elle n'y parvient pas, parce que certains ne le permettent pas — et parce que la vérité, contrairement aux modes, ne se démobilise pas seule. L'Affaire Dreyfus en est le plus éloquent exemple : dix ans après les premiers scandales, le nom du capitaine circule encore dans les salons, les ministères et les dîners où l'on prétend parler d'autre chose.</p>
+                        <p>Pour ceux qui l'auraient oublié — ou qui auraient préféré l'oublier — rappelons les faits dans leur brutalité simple : un officier a été condamné sur la base de documents falsifiés. L'armée le savait. Certains le savaient. On a préféré le silence à la correction, et le silence a tenu dix ans, au prix d'une fracture que la France porte encore dans ses os. Les plumes qui ont pris parti — des deux côtés — ont défini une génération entière.</p>
+                        <p>Aujourd'hui, la réhabilitation progresse. Non pas avec l'éclat dramatique d'une révélation romanesque, mais avec la lenteur méthodique d'une institution qui admet, à contrecœur et par accumulation de preuves, qu'elle s'est trompée. C'est plus laborieux qu'une confession, et infiniment plus utile. Le président Loubet avance. Les réformes avancent. La vérité, ce vieux cheval boiteux, avance aussi.</p>
+                        <p><em>Paris Nouveau</em> note avec intérêt que l'obstination de quelques-uns a eu raison de l'intérêt de beaucoup. C'est la leçon de l'Affaire — et elle vaut bien davantage que les tableaux du Salon d'Automne. Il faudrait peut-être l'exposer, elle aussi.</p>
                     </div>
-                    
                     <div class="sidebar-text lang-es">
-                        <p>París, 22 de Mayo — Chloé Müller ha triunfado en el Teatro Italiano con « La casa de las campanas », su primera obra dramática. La pieza, cuya acción transcurre en una ciudad fronteriza del Imperio austrohúngaro, ha conquistado al público por su interpretación musical y rítmica tanto como por su tema: la unión del pueblo frente a un poder superior que intenta apoderarse de un bien común. El folklore austrohúngaro, muy de moda tras la reciente visita del Emperador, encuentra ahí una expresión escénica notable.</p>
-                        <p>Sarah Bernhardt, en un papel maduro y de una dificultad poco común para hacer brillar, ha destellado: cada réplica, cada silencio llevaba el peso de la archivera Ilona, guardiana de la memoria y de la ley. André Lèfevre, como mensajero del distrito, ha conquistado la sala con su viaje juvenil hacia la justicia y el honor — una trayectoria interpretada con una convicción que ha conmovido a más de un espectador. La crítica coincide: « La casa de las campanas » es un éxito, y Chloé Müller se impone como una voz nueva del teatro parisino.</p>
+                        <p>París, 2 de noviembre — Hay asuntos que Francia preferiría olvidar. No puede, porque algunos no lo permiten —y porque la verdad, al contrario que las modas, no se desmobiliza sola. El Affaire Dreyfus es el ejemplo más elocuente: diez años después de los primeros escándalos, el nombre del capitán circula todavía en salones, ministerios y cenas donde se pretende hablar de otra cosa.</p>
+                        <p>Para quien lo haya olvidado —o preferido olvidar—, los hechos en su brutalidad simple: un oficial fue condenado sobre documentos falsificados. El ejército lo sabía. Algunos lo sabían. Se prefirió el silencio a la rectificación, y el silencio duró diez años, al precio de una fractura que Francia carga aún en los huesos. Las plumas que tomaron partido —en ambos lados— definieron a toda una generación.</p>
+                        <p>Hoy, la rehabilitación avanza. No con el estrépito dramático de una revelación novelesca, sino con la lentitud metódica de una institución que admite, a regañadientes y por acumulación de pruebas, que se equivocó. Es más laborioso que una confesión, e infinitamente más útil. El presidente Loubet avanza. Las reformas avanzan. La verdad, ese viejo caballo cojo, avanza también.</p>
+                        <p><em>Paris Nouveau</em> anota con interés que la obstinación de unos pocos se ha impuesto al interés de muchos. Esa es la lección del Affaire —y vale bastante más que los cuadros del Salón de Otoño. Quizá habría que exponerla también.</p>
                     </div>
                 </article>
                 
@@ -969,14 +1025,16 @@
                     <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
                     <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
                     <div class="sidebar-text lang-fr" style="font-size: 16px;">
-                        <p><strong>• « Bal pour les Morts » de Camille Saint-Saëns :</strong> L'œuvre de Camille Saint-Saëns sera portée à la scène dans une création interprétée par Élodie Lecat. Les billets commencent à circuler dans les salons parisiens ; l'événement est annoncé pour les prochaines semaines.</p>
-                        <p><strong>• Nouveaux churros chez Honoré du Feu :</strong> La boulangerie-pâtisserie de Thomas Rédeaux, « Honoré du Feu », annonce ses nouveaux churros, qui rejoignent les succès déjà connus de l'établissement situé près du quartier juif et aux Galeries Belle Époque.</p>
-                        <p><strong>• Ligne 2 du métropolitain :</strong> Le ministère des Transports a annoncé la rénovation complète de la ligne 2 du métro parisien. Ouverte entre 1900 et 1903, la ligne sera modernisée pour améliorer la sécurité et le confort des voyageurs.</p>
+                        <p><strong>• Club de débat sur les fauvistes :</strong> Le club se réunit cette semaine à huis clos pour juger Matisse, Derain et compagnie. Des académiciens gênés, des acheteurs inquiets et de jeunes critiques qui n'ont pas encore appris à avoir peur : le mélange promet. Cette auteure parie sur au moins deux sorties fracassantes et un consensus mou en fin de séance.</p>
+                        <p><strong>• Norvège et Suède :</strong> La dissolution de l'union des deux couronnes scandinaves, actée au printemps, occupe encore les chancelleries. Paris accueille les démarches avec le sérieux appliqué d'un pays qui préfère les traités au désordre — et qui ne veut surtout pas s'y retrouver impliqué.</p>
+                        <p><strong>• Métropolitain :</strong> Les travaux de la ligne 4 progressent sous nos pieds, à une vitesse que l'on qualifie d'encourageante et que les riverains qualifient, eux, d'insupportable. Le percement sous la Seine demeure le sujet favori des ingénieurs et la hantise des voisins du quai.</p>
+                        <p><strong>• Grand Théâtre Belle Époque :</strong> M. Lefèvre a ouvert sa salle avec <em>Paseo a Media Noche</em> — salle comble, rideaux pourpres, lustres dignes d'un autre siècle. La mise en scène a frotté quelques sensibilités délicates. C'est généralement bon signe.</p>
                     </div>
                     <div class="sidebar-text lang-es" style="font-size: 16px;">
-                        <p><strong>• « Baile para los Muertos » de Camille Saint-Saëns :</strong> La obra de Camille Saint-Saëns será llevada a escena en una creación interpretada por Élodie Lecat. Las entradas empiezan a circular por los salones parisinos; el evento está anunciado para las próximas semanas.</p>
-                        <p><strong>• Nuevos churros en Honoré du Feu :</strong> La panadería-pastelería de Thomas Rédeaux, « Honoré du Feu », anuncia sus nuevos churros, que se suman a los éxitos ya conocidos del establecimiento situado cerca del barrio judío y en las Galerías Belle Époque.</p>
-                        <p><strong>• Línea 2 del metropolitano :</strong> El ministerio de Transportes ha anunciado la renovación completa de la línea 2 del metro parisino. Inaugurada entre 1900 y 1903, la línea será modernizada para mejorar la seguridad y el confort de los viajeros.</p>
+                        <p><strong>• Club de debate sobre los fauvistas:</strong> El club se reúne esta semana a puerta cerrada para juzgar a Matisse, Derain y compañía. Académicos incómodos, compradores inquietos y jóvenes críticos que aún no han aprendido a tener miedo: la mezcla promete. Esta autora apuesta por al menos dos salidas estrepitosas y un consenso blando al final de la sesión.</p>
+                        <p><strong>• Noruega y Suecia:</strong> La disolución de la unión escandinava, consumada en primavera, sigue ocupando las cancillerías. París acoge las gestiones con la seriedad aplicada de un país que prefiere los tratados al desorden —y que sobre todo no desea verse implicado en ellos.</p>
+                        <p><strong>• Metropolitano:</strong> Las obras de la línea 4 avanzan bajo nuestros pies a una velocidad que los ingenieros califican de alentadora y los vecinos del quai de insoportable. El cruce bajo el Sena sigue siendo el tema favorito de los primeros y la pesadilla de los segundos.</p>
+                        <p><strong>• Gran Teatro Belle Époque:</strong> El señor Lefèvre ha inaugurado su sala con <em>Paseo a Media Noche</em> —lleno completo, telones rojos, arañas dignas de otro siglo. El montaje ha rozado alguna sensibilidad delicada. Generalmente es buena señal.</p>
                     </div>
                 </article>
                 
@@ -986,22 +1044,16 @@
                     <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
                     <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
                     <div class="sidebar-text lang-fr" style="font-size: 13px; line-height: 1.6;">
-                        <p><strong>La Fuite du Comte Cassini : un Palais de Plus à Vincennes :</strong><br>P. Bernard</p>
-                        <p><strong>Le Président Décide d'Ouvrir une Partie des Catacombes :</strong><br>M. Lefebvre</p>
-                        <p><strong>« La Maison aux cloches » au Théâtre Italien :</strong><br>L. Roy</p>
-                        <p><strong>Celles qui aiment les nobles :</strong><br>La Fleuriste</p>
-                        <p><strong>Annonce : « Bal pour les Morts » de Saint-Saëns, interprété par Élodie Lecat :</strong><br>—</p>
-                        <p><strong>Annonce : Nouveaux churros chez Honoré du Feu (Thomas Rédeaux) :</strong><br>—</p>
-                        <p><strong>Annonce : Rénovation de la ligne 2 du métropolitain :</strong><br>—</p>
+                        <p><strong>Devant les urnes :</strong><br>C. Müller</p>
+                        <p><strong>Les « Fauves » sous le regard du Conseil :</strong><br>L. Roy</p>
+                        <p><strong>Vers la réhabilitation : l'Affaire dans l'ombre des plumes :</strong><br>C. Müller</p>
+                        <p><strong>Novembre à Paris : entre brouillards et confidences :</strong><br>La Fleuriste</p>
                     </div>
                     <div class="sidebar-text lang-es" style="font-size: 13px; line-height: 1.6;">
-                        <p><strong>La huida del Conde Cassini: un palacio más en Vincennes :</strong><br>P. Bernard</p>
-                        <p><strong>El Presidente decide abrir una parte de las catacumbas :</strong><br>M. Lefebvre</p>
-                        <p><strong>« La casa de las campanas » en el Teatro Italiano :</strong><br>L. Roy</p>
-                        <p><strong>Las que aman a los nobles :</strong><br>La Florista</p>
-                        <p><strong>Anuncio: « Baile para los Muertos » de Saint-Saëns, interpretado por Élodie Lecat :</strong><br>—</p>
-                        <p><strong>Anuncio: Nuevos churros en Honoré du Feu (Thomas Rédeaux) :</strong><br>—</p>
-                        <p><strong>Anuncio: Renovación de la línea 2 del metropolitano :</strong><br>—</p>
+                        <p><strong>Ante las urnas :</strong><br>C. Müller</p>
+                        <p><strong>Los «fauves» bajo la mirada del Consejo :</strong><br>L. Roy</p>
+                        <p><strong>Hacia la rehabilitación: el Affaire en la sombra de las plumas :</strong><br>C. Müller</p>
+                        <p><strong>Noviembre en París: entre nieblas y confidencias :</strong><br>La Florista</p>
                     </div>
                 </article>
                 
@@ -1015,16 +1067,31 @@
                     <ul class="gossip-list">
                         <li class="gossip-item">
                             <div class="gossip-photo">
-                                <img src="news/Other/solteros/emile_labord.png" alt="Émile Labord" onclick="openImageModal(this.src, this.alt)">
+                                <img src="news/Other/solteros/katya.png" alt="Katya Einhell" onclick="openImageModal(this.src, this.alt)">
                             </div>
                             <div class="gossip-info">
-                                <div class="gossip-name lang-fr">Émile Labord</div>
-                                <div class="gossip-name lang-es">Émile Labord</div>
+                                <div class="gossip-name lang-fr">Katya Einhell</div>
+                                <div class="gossip-name lang-es">Katya Einhell</div>
                                 <div class="gossip-text lang-fr">
-                                    <em>Un dessinateur talentueux</em> qui a adapté le style de Mucha et travaille des aquarelles minimalistes. Mais c'est surtout pour ses vignettes dans le journal qu'on le connaît, où il relate les aventures d'un Gaulois affrontant diverses nations. Un guerrier d'esprit qui peut me dessiner ? Écrivez à l'éditeur !
+                                    Beauté qui précède les rumeurs et non l'inverse. Artiste du Moulin Rouge — <em>La Sculptrice de chair</em> — dont les spectacles tiennent du cabinet de curiosités : chair, feu et chronométrage des conversations à la seconde près. Elle juge les messieurs au premier regard et ne s'en cache pas. Le prince de Monaco lui a rendu visite. Pour du thé, dit-on. Naturellement.
                                 </div>
                                 <div class="gossip-text lang-es">
-                                    <em>Un dibujante talentoso</em> que ha adaptado el estilo de Mucha y trabaja acuarelas minimalistas. Pero se le conoce especialmente por sus viñetas en el periódico, que suelen relatar las aventuras de un Galo enfrentándose a distintas naciones. ¿Un guerrero de espíritu que me puede dibujar? ¡Escribe al editor!
+                                    Belleza que precede a los rumores, y no al revés. Artista del Moulin Rouge —<em>La escultora de carne</em>— cuyos espectáculos tienen algo de gabinete de curiosidades: carne, fuego y cronometrado de conversaciones al segundo. Juzga a los caballeros a primera vista y no lo disimula. El príncipe de Mónaco la visitó. Para tomar el té, dicen. Naturalmente.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/François Tautou.png" alt="François Tautou" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">François Tautou</div>
+                                <div class="gossip-name lang-es">François Tautou</div>
+                                <div class="gossip-text lang-fr">
+                                    Protégé de Mme Lecat et de M. Lefèvre, ce qui suffirait à ouvrir toutes les portes de Paris — mais il a eu la bonne idée d'avoir du talent en plus. Interprète au Grand Théâtre Belle Époque aux côtés de Bernhardt et Coquelin : pas l'auteur, l'acteur. Pour l'instant. On dit qu'il rappelle le jeune Lefèvre. On dit aussi que Mme Cros l'a regardé jouer. Les deux nouvelles méritent qu'on s'en souvienne.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    Protegido de la señora Lecat y del señor Lefèvre, lo que bastaría para abrir todas las puertas de París —pero ha tenido la sensatez de tener talento además. Intérprete en el Gran Teatro Belle Époque junto a Bernhardt y Coquelin: no el autor, el actor. De momento. Se dice que recuerda al joven Lefèvre. Se dice también que la señora Cros lo miró actuar. Ambas noticias merecen recordarse.
                                 </div>
                             </div>
                         </li>
@@ -1036,40 +1103,10 @@
                                 <div class="gossip-name lang-fr">Simon Latour</div>
                                 <div class="gossip-name lang-es">Simon Latour</div>
                                 <div class="gossip-text lang-fr">
-                                    <em>Ce sculpteur aux épaules imposantes</em> ne passe pas inaperçu. Spécialisé dans les figures colossales, on raconte qu'il travaille avec une force qui défie l'entendement. Certaines dames de la société ne peuvent s'empêcher de jeter un regard discret en sa direction. Qui voudrait poser pour lui ? Nous connaissons quelques volontaires...
+                                    Sculpteur de figures colossales aux épaules, dit-on, à la mesure de son œuvre. Il ne passe pas inaperçu — les salons s'en sont aperçus, les dames aussi. Ce qui est nouveau : il fait une cour officielle à Cléa Dessendre. Sorties, présentations, bras tendu. La ville retient son souffle. Cette auteure retient le sien également — et prend note.
                                 </div>
                                 <div class="gossip-text lang-es">
-                                    <em>Este escultor de hombros imponentes</em> no pasa desapercibido. Especializado en figuras colosales, se cuenta que trabaja con una fuerza que desafía el entendimiento. Algunas damas de la sociedad no pueden evitar lanzar una mirada discreta en su dirección. ¿Quién querría posar para él? Conocemos algunas voluntarias...
-                                </div>
-                            </div>
-                        </li>
-                        <li class="gossip-item">
-                            <div class="gossip-photo">
-                                <img src="news/Other/solteros/lucile_roy.png" alt="Lucile Roy" onclick="openImageModal(this.src, this.alt)">
-                            </div>
-                            <div class="gossip-info">
-                                <div class="gossip-name lang-fr">Lucile Roy</div>
-                                <div class="gossip-name lang-es">Lucile Roy</div>
-                                <div class="gossip-text lang-fr">
-                                    <em>Derrière son sourire timide</em> se cache une compositrice dont la musique touche l'âme. Ses mélodies reflètent une profondeur mélancolique qui contraste avec son apparence joyeuse, révélant une artiste d'une sensibilité remarquable. Son talent musical mérite toute notre attention.
-                                </div>
-                                <div class="gossip-text lang-es">
-                                    <em>Tras su sonrisa tímida</em> se esconde una compositora cuya música toca el alma. Sus melodías reflejan una profundidad melancólica que contrasta con su apariencia alegre, revelando una artista de una sensibilidad notable. Su talento musical merece toda nuestra atención.
-                                </div>
-                            </div>
-                        </li>
-                        <li class="gossip-item">
-                            <div class="gossip-photo">
-                                <img src="news/Other/solteros/jacques_martin.png" alt="Jacques Martin" onclick="openImageModal(this.src, this.alt)">
-                            </div>
-                            <div class="gossip-info">
-                                <div class="gossip-name lang-fr">Jacques Martin</div>
-                                <div class="gossip-name lang-es">Jacques Martin</div>
-                                <div class="gossip-text lang-fr">
-                                    <em>Un écrivain de fiction historique</em> spécialisé dans l'art de relier les aventures des dieux et demi-dieux de l'Antiquité aux légendes qu'ont inspirées leurs statues vivantes. Son œuvre tisse des liens fascinants entre la mythologie classique et les récits qui ont façonné notre imaginaire. Un esprit érudit qui sait donner vie aux anciens mythes. Plus d'une dizaine de lecteurs ont écrit à l'éditeur pour lui demander des épopées près du foyer. Quelle indécence !
-                                </div>
-                                <div class="gossip-text lang-es">
-                                    <em>Un escritor de ficción histórica</em> especialista en el arte de atar las aventuras de dioses y semidioses de la Antigüedad a las leyendas que protagonizaron sus estatuas vivas. Su obra teje vínculos fascinantes entre la mitología clásica y los relatos que han moldeado nuestro imaginario. Una mente erudita que sabe dar vida a los antiguos mitos. Más de una decena de lectores han escrito al editor pidiéndole epopeyas cerca de la hoguera. ¡Qué indecencia!
+                                    Escultor de figuras colosales con hombros, se dice, a la altura de su obra. No pasa desapercibido —los salones se han dado cuenta, las damas también. Lo nuevo: corteja oficialmente a Cléa Dessendre. Salidas, presentaciones, brazo tendido. La ciudad contiene el aliento. Esta autora también —y toma nota.
                                 </div>
                             </div>
                         </li>
@@ -1081,55 +1118,40 @@
                                 <div class="gossip-name lang-fr">Paul Landowski</div>
                                 <div class="gossip-name lang-es">Paul Landowski</div>
                                 <div class="gossip-text lang-fr">
-                                    <em>Un sculpteur qui fait fondre les cœurs</em>, spécialisé dans les monuments et les figures imposantes. Sa présence dans les salons fait invariablement monter la température — et pas seulement à cause de son art. Un artiste dont le charme naturel n'a d'égale que son habileté avec le ciseau et le marteau.
+                                    Sculpteur de monuments, spécialiste des figures imposantes — et, accessoirement, des salons où la température monte dès qu'il entre. Son charme naturel est un mystère que cette auteure n'entend pas percer ; son talent avec le ciseau, en revanche, est une certitude. Il reste disponible. Pour combien de temps encore, personne ne le sait.
                                 </div>
                                 <div class="gossip-text lang-es">
-                                    <em>Un escultor que hace derretir los corazones</em>, especializado en monumentos y figuras imponentes. Su presencia en los salones hace invariablemente subir la temperatura — y no solo por su arte. Un artista cuyo encanto natural no tiene igual que su habilidad con el cincel y el martillo.
+                                    Escultor de monumentos, especialista en figuras imponentes —y, accidentalmente, en salones donde la temperatura sube en cuanto entra. Su encanto natural es un misterio que esta autora no pretende resolver; su talento con el cincel, en cambio, es una certeza. Sigue disponible. Por cuánto tiempo más, nadie lo sabe.
                                 </div>
                             </div>
                         </li>
                         <li class="gossip-item">
                             <div class="gossip-photo">
-                                <img src="news/Other/solteros/lucien_guitry.png" alt="Lucien Guitry" onclick="openImageModal(this.src, this.alt)">
+                                <img src="news/Other/solteros/mata_hari.png" alt="Mata Hari" onclick="openImageModal(this.src, this.alt)">
                             </div>
                             <div class="gossip-info">
-                                <div class="gossip-name lang-fr">Lucien Guitry</div>
-                                <div class="gossip-name lang-es">Lucien Guitry</div>
+                                <div class="gossip-name lang-fr">Mata Hari</div>
+                                <div class="gossip-name lang-es">Mata Hari</div>
                                 <div class="gossip-text lang-fr">
-                                    <em>Un acteur venu de Normandie</em>, originaire du Havre et fils d'un comédien itinérant, ce jeune talent a fait son apparition dans les cercles parisiens avec une fraîcheur remarquable. Serait-il un remplaçant comme célibataire d'or pour nos lecteurs ? Le temps nous le dira, mais pour l'instant, il semble avoir déjà fait fondre quelques réserves.
+                                    Danseuse venue d'Orient — ou du moins, c'est ce qu'elle affirme, et personne n'a encore prouvé le contraire. Ses numéros rivalisent avec ceux de Katya Einhell sur un registre entièrement différent. Dernièrement, on la voit souvent avec Émile Labord — Moulin Rouge, Grand Théâtre, escaliers de service. Quand un même nom circule à la fois dans les coulisses, les ambassades et les conversations que l'on tient à voix basse, c'est qu'il appartient à quelqu'un d'intéressant.
                                 </div>
                                 <div class="gossip-text lang-es">
-                                    <em>Un actor venido de Normandía</em>, originario de El Havre e hijo de un cómico itinerante, este joven talento ha hecho su aparición en los círculos parisinos con una frescura notable. ¿Será un reemplazo como soltero de oro para nuestros lectores? El tiempo nos lo dirá, pero por ahora, parece haber derretido ya algunas reservas.
+                                    Bailarina llegada de Oriente —o eso afirma, y nadie lo ha refutado aún. Sus números rivalizan con los de Katya Einhell en un registro completamente distinto. Últimamente se la ve con frecuencia con Émile Labord —Moulin Rouge, Gran Teatro, escaleras de servicio. Cuando el mismo nombre circula a la vez por bastidores, embajadas y conversaciones en voz baja, es que pertenece a alguien interesante.
                                 </div>
                             </div>
                         </li>
                         <li class="gossip-item">
                             <div class="gossip-photo">
-                                <img src="news/Other/solteros/lucien.png" alt="Lucien Théophile Noeud Papillon" onclick="openImageModal(this.src, this.alt)">
+                                <img src="news/Other/solteros/sandrine_cros.png" alt="Sandrine Cros" onclick="openImageModal(this.src, this.alt)">
                             </div>
                             <div class="gossip-info">
-                                <div class="gossip-name lang-fr">Lucien Théophile Noeud Papillon</div>
-                                <div class="gossip-name lang-es">Lucien Théophile Noeud Papillon</div>
+                                <div class="gossip-name lang-fr">Sandrine Cros</div>
+                                <div class="gossip-name lang-es">Sandrine Cros</div>
                                 <div class="gossip-text lang-fr">
-                                    <em>Un séducteur de la haute société</em>, riche héritier, maître architecte propriétaire des Galeries Belle Époque, membre du conseil et chercheur au Conseil des Lumières. Que demander de plus ? Qu'il vous aime ? Peut-être que certaines d'entre vous sauront conquérir son cœur.
+                                    Architecte brillante dont le regard habituel pourrait refroidir un four. Fréquente le Conseil des Beaux-Arts et l'ambassade d'Autriche-Hongrie avec la même efficacité silencieuse. À la première du Grand Théâtre Belle Époque, elle aurait posé les yeux sur la scène — et sur François Tautou. Cette auteure ne l'affirme pas. Elle le note. Ce n'est pas la même chose.
                                 </div>
                                 <div class="gossip-text lang-es">
-                                    <em>Un seductor de la alta sociedad</em>, rico heredero, maestro arquitecto propietario de las Galerías Belle Époque, miembro del consejo e investigador del Consejo de las Luces. ¿Qué más queréis? ¿Que os quiera? Quizás algunos de vosotros sabréis conquistar su corazón.
-                                </div>
-                            </div>
-                        </li>
-                        <li class="gossip-item">
-                            <div class="gossip-photo">
-                                <img src="news/Other/solteros/cleo_de_merode.png" alt="Cléo de Mérode" onclick="openImageModal(this.src, this.alt)">
-                            </div>
-                            <div class="gossip-info">
-                                <div class="gossip-name lang-fr">Cléo de Mérode</div>
-                                <div class="gossip-name lang-es">Cléo de Mérode</div>
-                                <div class="gossip-text lang-fr">
-                                    <em>Une danseuse et actrice</em> dont la beauté et le talent ont déjà fait sensation dans les cercles artistiques parisiens. Née à Paris et élevée dans les milieux artistiques, elle a su conquérir les cœurs par sa grâce sur scène. On murmure qu'elle a déjà posé pour plusieurs artistes renommés, ce qui n'a fait qu'augmenter sa réputation. Mais avouons-le, mes chers lecteurs : nous ne suivons pas sa carrière avec autant d'intérêt que la noblesse.
-                                </div>
-                                <div class="gossip-text lang-es">
-                                    <em>Una bailarina y actriz</em> cuya belleza y talento ya han causado sensación en los círculos artísticos parisinos. Nacida en París y criada en los medios artísticos, ha sabido conquistar los corazones con su gracia en el escenario. Se murmura que ya ha posado para varios artistas renombrados, lo que no ha hecho más que aumentar su reputación. Pero confesémoslo, queridos lectores: no seguimos su carrera con tanto interés como la nobleza.
+                                    Arquitecta brillante cuya mirada habitual podría enfriar un horno. Frecuenta el Consejo de Bellas Artes y la embajada austrohúngara con la misma eficiencia silenciosa. En el estreno del Gran Teatro Belle Époque, dicen que posó los ojos en el escenario —y en François Tautou. Esta autora no lo afirma. Lo anota. No es lo mismo.
                                 </div>
                             </div>
                         </li>
@@ -1141,10 +1163,10 @@
                                 <div class="gossip-name lang-fr">Marine Loremant</div>
                                 <div class="gossip-name lang-es">Marine Loremant</div>
                                 <div class="gossip-text lang-fr">
-                                    <em>Une étoile montante</em> qui apporte une fraîcheur bienvenue dans nos cercles. Originaire d'un milieu plus modeste, elle a su conquérir les cœurs par son charme naturel et son talent indéniable. Sa boutique dans les Galeries Belle Époque témoigne de son ascension remarquable. Une jeune femme à suivre avec attention.
+                                    <em>Une étoile montante</em> — et l'une des rares à l'être sans avoir hérité le ciel de sa famille. Originaire d'un milieu modeste, elle a conquis les Galeries Belle Époque boutique par boutique, sourire par sourire. Son charme est réel et son talent l'est aussi, ce qui est une combinaison moins fréquente qu'on ne le croit. Cette auteure la surveille. La ville devrait faire de même.
                                 </div>
                                 <div class="gossip-text lang-es">
-                                    <em>Una estrella emergente</em> que aporta una frescura bienvenida en nuestros círculos. Originaria de un entorno más modesto, ha sabido conquistar los corazones con su encanto natural y su talento indudable. Su boutique en las Galerías Belle Époque da fe de su ascenso notable. Una joven mujer a seguir con atención.
+                                    <em>Una estrella emergente</em> —y de las pocas que lo son sin haber heredado el cielo de su familia. De origen modesto, ha conquistado las Galerías Belle Époque boutique a boutique, sonrisa a sonrisa. Su encanto es real y su talento también, combinación menos frecuente de lo que se cree. Esta autora la vigila. La ciudad debería hacer lo mismo.
                                 </div>
                             </div>
                         </li>
