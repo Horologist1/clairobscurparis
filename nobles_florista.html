@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Florista - Nobles de Europa</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Playfair+Display:wght@700;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #f4e8d0;
+            color: #2c2416;
+            padding: 24px;
+        }
+
+        .page {
+            max-width: 1180px;
+            margin: 0 auto;
+            background: #faf7f0;
+            border: 3px double #2c2416;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.25);
+            padding: 30px;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px double #2c2416;
+            padding-bottom: 18px;
+            margin-bottom: 24px;
+        }
+
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            line-height: 1.05;
+        }
+
+        .subtitle {
+            margin-top: 8px;
+            font-size: 18px;
+            font-style: italic;
+            color: #5a4a3a;
+        }
+
+        .florist-note {
+            margin: 20px auto 24px;
+            max-width: 980px;
+            background: #f4e8d0;
+            border: 1px solid #8b7355;
+            border-left: 4px solid #8b7355;
+            padding: 14px 16px;
+            font-size: 18px;
+            line-height: 1.55;
+            text-align: justify;
+        }
+
+        .translate-wrap {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .translate-button {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid rgba(139, 115, 85, 0.4);
+            background: rgba(44, 36, 22, 0.08);
+            color: #5a4a3a;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .noble-card {
+            display: flex;
+            gap: 14px;
+            padding: 14px;
+            background: #f4e8d0;
+            border: 1px solid #8b7355;
+            border-left: 4px solid #8b7355;
+            min-height: 320px;
+        }
+
+        .noble-photo {
+            flex: 0 0 220px;
+            border: 2px solid #2c2416;
+            background: #d4c5b0;
+            overflow: hidden;
+            height: 290px;
+            align-self: center;
+        }
+
+        .noble-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(0.18) grayscale(0.08) contrast(1.04);
+            cursor: pointer;
+            display: block;
+        }
+
+        .noble-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 31px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .noble-meta {
+            font-size: 17px;
+            color: #5a4a3a;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #c4b59a;
+            padding-bottom: 6px;
+        }
+
+        .noble-text {
+            font-size: 18px;
+            line-height: 1.58;
+            text-align: justify;
+            font-style: italic;
+        }
+
+        .noble-text em {
+            font-style: normal;
+            font-weight: 600;
+            color: #5a4a3a;
+        }
+
+        .lang-es {
+            display: block;
+        }
+
+        .lang-fr {
+            display: none;
+        }
+
+        body.french .lang-es {
+            display: none;
+        }
+
+        body.french .lang-fr {
+            display: block;
+        }
+
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #2c2416;
+            padding: 10px;
+            background: #faf7f0;
+        }
+
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 82vh;
+            display: block;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            width: 36px;
+            height: 36px;
+            background: #2c2416;
+            color: #faf7f0;
+            border: 2px solid #2c2416;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 1060px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .noble-card {
+                flex-direction: column;
+            }
+
+            .noble-photo {
+                width: 100%;
+                flex: initial;
+                height: 360px;
+            }
+
+            .title {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <header class="header">
+            <p class="subtitle lang-fr" style="font-size:13px;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;">Paris Nouveau · Fascicule Extraordinaire</p>
+            <p class="subtitle lang-es" style="font-size:13px;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;">Paris Nouveau · Fascículo Extraordinario</p>
+            <h1 class="title lang-fr">Les Nobles de la Saison</h1>
+            <h1 class="title lang-es">Los Nobles de la Temporada</h1>
+            <p class="subtitle lang-fr">Dossiers mondains, rédigés par La Fleuriste</p>
+            <p class="subtitle lang-es">Dossieres mundanos, redactados por La Florista</p>
+        </header>
+
+        <div class="translate-wrap">
+            <button class="translate-button" onclick="toggleLanguage()" title="FR / ES">🔍</button>
+        </div>
+
+        <section class="florist-note" style="font-style:normal;">
+            <div style="text-align:center;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#8b7355;margin-bottom:10px;" class="lang-fr">◆ Note de la Rédaction ◆</div>
+            <div style="text-align:center;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#8b7355;margin-bottom:10px;" class="lang-es">◆ Nota de la Redacción ◆</div>
+
+            <p class="lang-fr" style="font-size:17px;line-height:1.7;margin-bottom:12px;">Ce fascicule extraordinaire est publié à l'occasion d'une nouvelle que Paris retenait depuis quelques semaines comme un secret de salon — et qui ne l'est plus : <strong>S.A.S. Louis de Monaco</strong>, prince héritier du Rocher, organise à Paris un bal d'une ampleur que la capitale n'a pas vue depuis les grandes fêtes du Château de Rose de Boni de Castellane, ni depuis les nuits de l'ambassade d'Autriche-Hongrie qui firent couler tant d'encre en ces colonnes.</p>
+            <p class="lang-fr" style="font-size:17px;line-height:1.7;margin-bottom:12px;">Le lieu retenu serait un hôtel particulier du Faubourg Saint-Germain mis à disposition par une maison amie de la principauté — vaste, discret et doté des salles nécessaires pour accueillir une soirée en plusieurs temps : réception en galerie, souper assis, bal en rotonde. On murmure que les jardins seront illuminés à la vénitienne, procédé que Castellane lui-même avait popularisé à Paris et que les maisons d'envergure ont depuis adopté comme signature d'une soirée sérieuse.</p>
+            <p class="lang-fr" style="font-size:17px;line-height:1.7;margin-bottom:12px;">Côté programme musical, les confidences les plus fiables font état d'un quatuor à cordes pour l'accueil — du Fauré, dit-on, ou peut-être du Saint-Saëns en hommage discret à la récente disparition du maître —, suivi d'un orchestre de danse pour le bal proprement dit : valses viennoises, polkas, mazurkas et, pour les plus hardis, quelques figures de quadrille à la française. Il se dit que la Princesse de Polignac, dont le salon musical est l'un des premiers de Paris, aurait eu voix au chapitre sur ce choix — ce qui expliquerait la rumeur d'une surprise en fin de soirée que plusieurs témoins décrivent comme « audacieuse ».</p>
+            <p class="lang-fr" style="font-size:17px;line-height:1.7;margin-bottom:12px;">La liste des invités, que votre Fleuriste a pu reconstituer par ses voies habituelles, couvre un spectre inhabituel : couronnes et héritiers de toute l'Europe, grandes figures de la finance et du mécénat parisien, et quelques présences dont on ne comprendra le sens qu'une fois la soirée terminée — c'est là, précisément, le charme de ce genre d'événement. Nul n'y vient pour danser seulement.</p>
+            <p class="lang-fr" style="font-size:17px;line-height:1.7;margin-bottom:12px;">Le programme de la soirée réserve, dit-on, deux moments que Paris attendait sans savoir qu'il les attendait. Le premier : une démonstration de danse orientale assurée par <strong>Mata Hari</strong> — dont la réputation n'a plus besoin d'introduction et dont la présence dans une soirée de cette nature soulève autant de questions que de regards. Le prince héritier l'a invitée en qualité d'artiste; si d'autres qualités entrent en jeu, votre Fleuriste ne saurait ni le confirmer ni le démentir — elle se contentera d'observer. Le second : une représentation privée de <strong>Katya Einhell</strong>, dont le spectacle <em>La Sculptrice de chair</em> au Moulin Rouge a divisé Paris avec la précision d'un scalpel. Que fait-elle dans un bal de têtes couronnées ? La même chose qu'elle fait partout : ce qu'elle décide, au moment où elle le décide, et avec la certitude de celui qui sait que la salle ne peut pas se permettre de regarder ailleurs.</p>
+            <p class="lang-fr" style="font-size:17px;line-height:1.7;margin-bottom:14px;font-style:italic;">Paris Nouveau publiera son compte rendu dans l'édition suivant la soirée. D'ici là, voici les personnalités attendues — et ce qu'elles valent, avant même d'entrer dans la salle.</p>
+            <p class="lang-fr" style="font-size:17px;line-height:1.7;font-style:italic;text-align:right;">— La Fleuriste</p>
+
+            <p class="lang-es" style="font-size:17px;line-height:1.7;margin-bottom:12px;">Este fascículo extraordinario se publica con motivo de una noticia que París venía guardando como secreto de salón durante algunas semanas — y que ya no lo es: <strong>S.A.S. Luis de Mónaco</strong>, príncipe heredero de la Roca, organiza en París un baile de una envergadura que la capital no ha presenciado desde las grandes fiestas del Château de Rose de Boni de Castellane, ni desde las noches en la embajada austrohúngara que tanto hicieron escribir a estas columnas.</p>
+            <p class="lang-es" style="font-size:17px;line-height:1.7;margin-bottom:12px;">El lugar elegido sería un hotel particular del Faubourg Saint-Germain puesto a disposición por una casa amiga del principado — amplio, discreto y dotado de las salas necesarias para acoger una velada en varios tiempos: recepción en galería, cena sentada y baile en rotonda. Se murmura que los jardines lucirán iluminación a la veneciana, procedimiento que el propio Castellane popularizó en París y que las casas de alcance han adoptado desde entonces como firma de una velada seria.</p>
+            <p class="lang-es" style="font-size:17px;line-height:1.7;margin-bottom:12px;">En cuanto al programa musical, las confidencias más solventes apuntan a un cuarteto de cuerdas para el recibimiento — Fauré, se dice, o quizá Saint-Saëns en homenaje discreto al reciente fallecimiento del maestro —, seguido de una orquesta de baile para el tiempo de danza: valses vieneses, polcas, mazurcas y, para los más audaces, algunas figuras de cuadrilla a la francesa. Se dice que la Princesa de Polignac, cuyo salón musical es de los primeros de París, habría tenido voz en esa elección — lo que explicaría el rumor de una sorpresa al final de la velada que varios testigos describen como «atrevida».</p>
+            <p class="lang-es" style="font-size:17px;line-height:1.7;margin-bottom:12px;">La lista de invitados, que vuestra Florista ha podido reconstruir por sus vías habituales, cubre un espectro poco común: coronas y herederos de toda Europa, grandes figuras de las finanzas y el mecenazgo parisinos, y algunas presencias cuyo sentido solo se comprenderá una vez terminada la velada — que es, precisamente, el encanto de este tipo de eventos. Nadie acude solo a bailar.</p>
+            <p class="lang-es" style="font-size:17px;line-height:1.7;margin-bottom:12px;">El programa de la velada reserva, se dice, dos momentos que París esperaba sin saber que los esperaba. El primero: una demostración de danza oriental a cargo de <strong>Mata Hari</strong> — cuya reputación ya no necesita presentación y cuya presencia en una noche de esta naturaleza suscita tantas preguntas como miradas. El príncipe heredero la ha invitado en calidad de artista; si entran en juego otras cualidades, vuestra Florista no podría ni confirmarlo ni desmentirlo — se limitará a observar. El segundo: una representación privada de <strong>Katya Einhell</strong>, cuyo espectáculo <em>La escultora de carne</em> en el Moulin Rouge ha dividido París con la precisión de un bisturí. ¿Qué hace en un baile de testas coronadas? Lo mismo que hace en todas partes: lo que decide, en el momento en que lo decide, con la certeza de quien sabe que la sala no puede permitirse mirar a otro lado.</p>
+            <p class="lang-es" style="font-size:17px;line-height:1.7;margin-bottom:14px;font-style:italic;">Paris Nouveau publicará su crónica en la edición siguiente a la velada. Hasta entonces, aquí están las personalidades esperadas — y lo que valen, antes siquiera de cruzar el umbral.</p>
+            <p class="lang-es" style="font-size:17px;line-height:1.7;font-style:italic;text-align:right;">— La Florista</p>
+        </section>
+
+        <section class="cards-grid">
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/nicholas_ii_age37_sepia_v2.png" alt="Nicolás II" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Nicolás II</h2>
+                    <p class="noble-meta lang-fr">37 ans · Tsarskoïe Selo, Russie · Empereur régnant</p>
+                    <p class="noble-meta lang-es">37 años · Tsárskoye Seló, Rusia · Emperador reinante</p>
+                    <p class="noble-text lang-fr">Hérite déjà de tout : trône, armée, tempêtes politiques et un empire qui n'en finit pas sur les cartes. Réservé, formel, dévot à sa famille, il donne l'impression de gouverner avec des gants blancs sur des braises. <em>À la cour, on le craint moins pour ses cris que pour ses hésitations.</em></p>
+                    <p class="noble-text lang-es">Ya ha heredado todo: trono, ejército, tormentas políticas y un imperio que no termina en los mapas. Reservado, formal y devoto de su familia, gobierna con guantes blancos sobre brasas. <em>En corte le temen menos por gritar que por dudar.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/crown_prince_wilhelm_age23_sepia_v2.png" alt="Kronprinz Wilhelm" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Kronprinz Wilhelm</h2>
+                    <p class="noble-meta lang-fr">23 ans · Berlin / Potsdam · Héritier de Prusse et de l'Empire</p>
+                    <p class="noble-meta lang-es">23 años · Berlín / Potsdam · Heredero de Prusia y del Imperio</p>
+                    <p class="noble-text lang-fr">Jeune, nerveux, avide d'entrer dans l'Histoire avant qu'elle ne l'appelle. Il héritera de la couronne prussienne et de la machine impériale allemande; en attendant, il joue au commandant avec un zèle de premier rang. <em>Un homme qui confond parfois autorité et volume.</em></p>
+                    <p class="noble-text lang-es">Joven, nervioso y hambriento de entrar en la Historia antes de que ella lo llame. Heredará la corona prusiana y el engranaje imperial alemán; mientras tanto, juega a comandante con celo de primera fila. <em>Un hombre que a veces confunde autoridad con volumen.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/prince_louis_monaco_age35_sepia_v2.png" alt="Príncipe Luis de Mónaco" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Luis de Mónaco</h2>
+                    <p class="noble-meta lang-fr">35 ans · Paris / Monaco · Héritier du Rocher</p>
+                    <p class="noble-meta lang-es">35 años · París / Mónaco · Heredero de la Roca</p>
+                    <p class="noble-text lang-fr">Son héritage est minuscule en territoire, immense en influence : Monaco, ses fortunes, ses salons et ses portes closes. Courtois, militaire, socialement impeccable, il promet beaucoup par un sourire et reprend tout par un silence. <em>Prince des balcons, roi des ambiguïtés.</em></p>
+                    <p class="noble-text lang-es">Su herencia es mínima en territorio y enorme en influencia: Mónaco, sus fortunas, sus salones y sus puertas cerradas. Cortés, militar y socialmente impecable, promete mucho con una sonrisa y lo retira con un silencio. <em>Príncipe de los balcones, rey de la ambigüedad.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/luis_filipe_portugal_age18_sepia_v2.png" alt="Luis Filipe de Portugal" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Luís Filipe de Portugal</h2>
+                    <p class="noble-meta lang-fr">18 ans · Lisbonne · Prince royal du Portugal</p>
+                    <p class="noble-meta lang-es">18 años · Lisboa · Príncipe real de Portugal</p>
+                    <p class="noble-text lang-fr">À peine majeur et déjà chargé d'un empire colonial que les cartes disent solide et que la rue conteste. Sérieux, discipliné, plus adulte que sa jeunesse ne l'exige. <em>Il a la posture d'un roi avant d'avoir la couronne.</em></p>
+                    <p class="noble-text lang-es">Apenas mayor de edad y ya cargado con un imperio colonial que los mapas llaman sólido y la calle discute. Serio, disciplinado, más adulto de lo que su juventud exige. <em>Tiene postura de rey antes de tener corona.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/ferdinand_romania_age40_sepia_v2.png" alt="Fernando de Rumanía" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Fernando de Rumanía</h2>
+                    <p class="noble-meta lang-fr">40 ans · Bucarest · Prince héritier de Roumanie</p>
+                    <p class="noble-meta lang-es">40 años · Bucarest · Príncipe heredero de Rumanía</p>
+                    <p class="noble-text lang-fr">Héritier d'un royaume-pivot entre empires jaloux, où chaque traité ressemble à une trêve armée. Calme, méthodique, diplomatique jusqu'au scrupule. <em>Il ne fait pas de bruit; il fait des calculs.</em></p>
+                    <p class="noble-text lang-es">Heredero de un reino-bisagra entre imperios celosos, donde cada tratado parece una tregua armada. Calmado, metódico y diplomático hasta el escrúpulo. <em>No hace ruido: hace cuentas.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/constantine_greece_age37_sepia_v2.png" alt="Constantino de Grecia" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Constantino de Grecia</h2>
+                    <p class="noble-meta lang-fr">37 ans · Athènes · Prince héritier de Grèce</p>
+                    <p class="noble-meta lang-es">37 años · Atenas · Príncipe heredero de Grecia</p>
+                    <p class="noble-text lang-fr">Héritier d'Athènes et d'une ambition méditerranéenne plus vaste que son royaume. Martial, orgueilleux, persuadé d'avoir raison avant même que la question soit posée. <em>Chez lui, la conviction précède souvent la prudence.</em></p>
+                    <p class="noble-text lang-es">Heredero de Atenas y de una ambición mediterránea más amplia que su reino. Marcial, orgulloso y convencido de tener razón antes de escuchar la pregunta. <em>En él, la convicción suele llegar antes que la prudencia.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/alexandra_feodorovna_age33_sepia_v2.png" alt="Alejandra Fiódorovna" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Alejandra Fiódorovna</h2>
+                    <p class="noble-meta lang-fr">33 ans · Tsarskoïe Selo, Russie · Impératrice consort</p>
+                    <p class="noble-meta lang-es">33 años · Tsárskoye Seló, Rusia · Emperatriz consorte</p>
+                    <p class="noble-text lang-fr">Elle n'hérite pas d'un trône en son nom, mais possède l'accès direct au souverain et à l'héritier. Mystique, intense, vulnérable aux influences qu'elle juge providentielles. <em>Dans certains palais, cela vaut plus qu'un ministère.</em></p>
+                    <p class="noble-text lang-es">No hereda trono en nombre propio, pero posee acceso directo al soberano y al heredero. Mística, intensa y vulnerable a influencias que ella juzga providenciales. <em>En ciertos palacios, eso vale más que un ministerio.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/wilhelmina_netherlands_age25_sepia_v2.png" alt="Guillermina de los Países Bajos" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Guillermina</h2>
+                    <p class="noble-meta lang-fr">25 ans · La Haye, Pays-Bas · Reine régnante</p>
+                    <p class="noble-meta lang-es">25 años · La Haya, Países Bajos · Reina reinante</p>
+                    <p class="noble-text lang-fr">Pas héritière: souveraine en exercice. Couronne européenne et empire colonial à administrer avec la même plume ferme. Jeune en âge, redoutablement adulte en décision. <em>Une reine qui n'a pas besoin de tuteur.</em></p>
+                    <p class="noble-text lang-es">No heredera: soberana en ejercicio. Corona europea e imperio colonial administrados con la misma pluma firme. Joven en edad, peligrosamente adulta en decisión. <em>Una reina que no necesita tutor.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/sophia_greece_age35_sepia_v2.png" alt="Sofía de Grecia" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Sofía de Grecia</h2>
+                    <p class="noble-meta lang-fr">35 ans · Athènes · Reine consort de Grèce, née Hohenzollern</p>
+                    <p class="noble-meta lang-es">35 años · Atenas · Reina consorte de Grecia, nacida Hohenzollern</p>
+                    <p class="noble-text lang-fr">Née prussienne, reine en Grèce, épouse d'un héritier impatient: un pont vivant entre dynasties et susceptibilités. Élégante, méthodique, politiquement attentive. <em>Elle sourit peu, mais comprend vite.</em></p>
+                    <p class="noble-text lang-es">Nacida prusiana, reina en Grecia, esposa de un heredero impaciente: puente vivo entre dinastías y susceptibilidades. Elegante, metódica y políticamente atenta. <em>Sonríe poco, pero entiende rápido.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/marie_romania_age30_sepia_v2.png" alt="María de Rumanía" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">María de Rumanía</h2>
+                    <p class="noble-meta lang-fr">30 ans · Bucarest · Princesse héritière de Roumanie, née Saxe-Cobourg</p>
+                    <p class="noble-meta lang-es">30 años · Bucarest · Princesa heredera de Rumanía, nacida Sajonia-Coburgo</p>
+                    <p class="noble-text lang-fr">Future reine et présente souveraine des apparences: elle entre dans une pièce et la hiérarchie se réorganise. Charisme incandescent, goût sûr de la mise en scène, instinct politique derrière le velours. <em>Une femme qui sait que l'image gouverne.</em></p>
+                    <p class="noble-text lang-es">Futura reina y actual soberana de las apariencias: entra en una sala y la jerarquía se reordena. Carisma encendido, excelente sentido escénico e instinto político tras el terciopelo. <em>Una mujer que sabe que la imagen gobierna.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/victoria_eugenie_battenberg_age18_sepia_v2.png" alt="Victoria Eugenia de Battenberg" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Victoria Eugenia de Battenberg</h2>
+                    <p class="noble-meta lang-fr">18 ans · Londres (Osborne House) · Casa Battenberg, résidant en Angleterre</p>
+                    <p class="noble-meta lang-es">18 años · Londres (Osborne House) · Casa Battenberg, residente en Inglaterra</p>
+                    <p class="noble-text lang-fr">Jeune, impeccablement formée, et porteuse d'une valeur rare: les alliances qu'elle peut sceller valent davantage que des provinces entières. Douce d'apparence, stratégique en silence. <em>On la croit timide; elle écoute.</em></p>
+                    <p class="noble-text lang-es">Joven, impecablemente educada y portadora de un valor raro: las alianzas que puede sellar valen más que provincias enteras. Dulce en apariencia, estratégica en silencio. <em>La creen tímida; está escuchando.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/marie_bonaparte_age23_sepia_v2.png" alt="María Bonaparte" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">María Bonaparte</h2>
+                    <p class="noble-meta lang-fr">23 ans · Paris (Saint-Cloud) · Héritière Bonaparte, résidant à Paris</p>
+                    <p class="noble-meta lang-es">23 años · París (Saint-Cloud) · Heredera Bonaparte, residente en París</p>
+                    <p class="noble-text lang-fr">Fortune massive, nom impérial et curiosité intellectuelle peu commode pour les salons hypocrites. Elle n'hérite pas d'une couronne; elle hérite d'une liberté que beaucoup de princesses lui envient. <em>Avec elle, l'argent ne cherche pas la permission.</em></p>
+                    <p class="noble-text lang-es">Fortuna inmensa, apellido imperial y una curiosidad intelectual incómoda para los salones hipócritas. No hereda una corona; hereda una libertad que muchas princesas le envidian. <em>Con ella, el dinero no pide permiso.</em></p>
+                </div>
+            </article>
+        </section>
+
+        <section class="cards-grid">
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/genevieve_halevy_straus_sepia_v1.png" alt="Geneviève Halévy Straus" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Geneviève Halévy Straus</h2>
+                    <p class="noble-meta lang-fr">58 ans · Paris · Salonnière de premier ordre</p>
+                    <p class="noble-meta lang-es">58 años · París · Salonnière de primer orden</p>
+                    <p class="noble-text lang-fr">N'hérite pas d'un titre mais d'un capital social qui en vaut dix : son salon décide des réputations avant que la presse ne les imprime. Intelligente, ironique, sans illusions — et donc sans pitié. <em>À sa table, les imbéciles ne sont invités qu'une fois.</em></p>
+                    <p class="noble-text lang-es">No hereda título, sino capital social que vale por diez: su salón decide reputaciones antes de que la prensa las imprima. Inteligente, irónica, sin ilusiones —y por tanto sin piedad. <em>A su mesa, los necios solo son invitados una vez.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/beatrice_de_rothschild_sepia_v1.png" alt="Baronne Béatrice de Rothschild" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Baronne Béatrice de Rothschild</h2>
+                    <p class="noble-meta lang-fr">37 ans · Paris · Héritière Rothschild</p>
+                    <p class="noble-meta lang-es">37 años · París · Heredera Rothschild</p>
+                    <p class="noble-text lang-fr">Elle tient la fortune la plus influente d'Europe avec la rigueur d'une collectionneuse et l'exigence d'une femme qui n'a jamais eu besoin de plaire pour obtenir. Raffinée, perfectionniste, socialement impeccable. <em>Son silence coûte plus cher que les discours des autres.</em></p>
+                    <p class="noble-text lang-es">Sostiene la fortuna más influyente de Europa con el rigor de una coleccionista y la exigencia de quien nunca ha necesitado agradar para conseguir. Refinada, perfeccionista y socialmente impecable. <em>Su silencio vale más que los discursos de los demás.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/winnaretta_singer_polignac_sepia_v1.png" alt="Winnaretta Singer, Princesse de Polignac" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Winnaretta Singer</h2>
+                    <p class="noble-meta lang-fr">40 ans · Paris · Princesse de Polignac, mécène musicale</p>
+                    <p class="noble-meta lang-es">40 años · París · Princesa de Polignac, mecenas musical</p>
+                    <p class="noble-text lang-fr">Fortune Singer, titre de princesse par mariage, et salon qui peut faire ou défaire une carrière musicale en une soirée. Moderne, indépendante, d'un goût artistique que les académiciens redoutent. <em>Elle applaudit rarement — et quand elle le fait, tout Paris le sait.</em></p>
+                    <p class="noble-text lang-es">Fortuna Singer, título de princesa por matrimonio y salón que puede hacer o deshacer una carrera musical en una velada. Moderna, independiente y con gusto artístico que los académicos temen. <em>Aplaude raramente —y cuando lo hace, todo París lo sabe.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/elisabeth_de_greffulhe_sepia_v1.png" alt="Comtesse Élisabeth de Greffulhe" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Comtesse de Greffulhe</h2>
+                    <p class="noble-meta lang-fr">45 ans · Paris · Grande arbitre du monde parisien</p>
+                    <p class="noble-meta lang-es">45 años · París · Gran árbitro del mundo parisino</p>
+                    <p class="noble-text lang-fr">Rang aristocratique, patrimoine solide et une présence scénique qui transforme chaque entrée en événement. Elle ne suit pas les modes — elle les crée, les valide ou les enterre. <em>Être reçue chez elle n'est pas une invitation : c'est un verdict.</em></p>
+                    <p class="noble-text lang-es">Rango aristocrático, patrimonio sólido y una presencia escénica que convierte cada entrada en acontecimiento. No sigue las modas: las crea, las valida o las entierra. <em>Ser recibida en su casa no es una invitación: es un veredicto.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/boni_de_castellane_sepia_v1.png" alt="Boni de Castellane" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Boni de Castellane</h2>
+                    <p class="noble-meta lang-fr">38 ans · Paris · Comte, figure du grand monde</p>
+                    <p class="noble-meta lang-es">38 años · París · Conde, figura del gran mundo</p>
+                    <p class="noble-text lang-fr">Grand nom, fortune d'emprunt et talent réel pour la mise en scène du luxe. Ses fêtes sont des opéras, ses dettes une légende, sa présence un spectacle que personne ne veut manquer. <em>Il sait que l'apparence gouverne — et il y a consacré sa vie avec une discipline admirable.</em></p>
+                    <p class="noble-text lang-es">Gran nombre, fortuna prestada y talento real para la puesta en escena del lujo. Sus fiestas son óperas, sus deudas una leyenda, su presencia un espectáculo que nadie quiere perderse. <em>Sabe que la apariencia gobierna —y le ha dedicado la vida con admirable disciplina.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/armand_de_gramont_sepia_v1.png" alt="Armand de Gramont" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Armand de Gramont</h2>
+                    <p class="noble-meta lang-fr">26 ans · Paris · Duc, aristocratie et modernité</p>
+                    <p class="noble-meta lang-es">26 años · París · Duque, aristocracia y modernidad</p>
+                    <p class="noble-text lang-fr">Ducal de naissance, moderne par tempérament : il arrive aux soupers avec un grand nom et repart en parlant de moteurs et de physique expérimentale. L'ancien régime et le nouveau siècle cohabitent en lui avec une élégance déconcertante. <em>Chez lui, le protocole n'a pas encore tué la curiosité.</em></p>
+                    <p class="noble-text lang-es">Ducal de nacimiento, moderno por temperamento: llega a los banquetes con un gran apellido y se va hablando de motores y física experimental. El antiguo régimen y el nuevo siglo conviven en él con una elegancia desconcertante. <em>En él, el protocolo aún no ha matado la curiosidad.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/maurice_de_broglie_sepia_v1.png" alt="Maurice de Broglie" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Maurice de Broglie</h2>
+                    <p class="noble-meta lang-fr">30 ans · Paris · Prince, science et politique</p>
+                    <p class="noble-meta lang-es">30 años · París · Príncipe, ciencia y política</p>
+                    <p class="noble-text lang-fr">Nom politique parmi les plus lourds de France, tempérament scientifique parmi les plus sérieux de sa génération. Il parle peu, observe beaucoup, et les conclusions qu'il tire ne parviennent jamais par hasard aux bonnes oreilles. <em>Un prince qui préfère les preuves aux rumeurs — ce qui le rend, paradoxalement, plus dangereux.</em></p>
+                    <p class="noble-text lang-es">Apellido político de los más pesados de Francia, temperamento científico de los más serios de su generación. Habla poco, observa mucho, y las conclusiones que saca nunca llegan por casualidad a los oídos correctos. <em>Un príncipe que prefiere las pruebas a los rumores —lo que le hace, paradójicamente, más peligroso.</em></p>
+                </div>
+            </article>
+
+            <article class="noble-card">
+                <div class="noble-photo">
+                    <img src="personajes_imagenes/nobles/anna_gould_sepia_v1.png" alt="Anna Gould" onclick="openImageModal(this.src, this.alt)">
+                </div>
+                <div>
+                    <h2 class="noble-name">Anna Gould</h2>
+                    <p class="noble-meta lang-fr">30 ans · Paris · Comtesse de Castellane, héritière américaine</p>
+                    <p class="noble-meta lang-es">30 años · París · Condesa de Castellane, heredera americana</p>
+                    <p class="noble-text lang-fr">Héritière Gould installée à Paris par mariage : elle a apporté la fortune, son mari a apporté le titre, et Paris a regardé avec fascination les deux se consumer ensemble. Haute visibilité mondaine, instinct matrimonial redoutable. <em>Elle n'a pas acheté la noblesse — elle l'a financée, ce qui n'est pas la même chose.</em></p>
+                    <p class="noble-text lang-es">Heredera Gould instalada en París por matrimonio: ella aportó la fortuna, su marido el título, y París los ha observado consumirse juntos con fascinación. Altísima visibilidad social e instinto matrimonial formidable. <em>No compró la nobleza: la financió, que no es lo mismo.</em></p>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('french');
+            const lang = document.body.classList.contains('french') ? 'fr' : 'es';
+            localStorage.setItem('noblesFloristaLang', lang);
+        }
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const saved = localStorage.getItem('noblesFloristaLang');
+            if (saved === 'fr') {
+                document.body.classList.add('french');
+            }
+        });
+
+        function openImageModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    </script>
+</body>
+</html>
