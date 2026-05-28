@@ -213,14 +213,39 @@
         }
         
         .main-article .article-image {
-            aspect-ratio: 16/9;
-            min-height: 400px;
+            aspect-ratio: 16 / 9;
+            width: 100%;
         }
         
         .article-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+            flex: 1 1 auto;
+            min-width: 0;
+            min-height: 0;
+        }
+        
+        /* Urnes / foule : garder la masse humaine lisible sans bandes vides */
+        .main-article .article-image img {
+            object-position: center 28%;
+        }
+        
+        .secondary-articles .secondary-article .article-image {
+            aspect-ratio: 5 / 4;
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        .secondary-articles .secondary-article .article-image img {
+            object-position: center 45%;
+        }
+        
+        /* Tableau d’origine couleur : pas de vieillissement sépia sur les fauves */
+        .secondary-articles .secondary-article .article-image img.matisse-original {
+            filter: none;
+            object-position: center 32%;
         }
         
         .article-text {
@@ -341,6 +366,17 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+        }
+        
+        /* Portrait pour colonnes étroites (évite le cadre « téléviseur » 9:16 sur une gravure) */
+        .vertical-image.sidebar-portrait {
+            aspect-ratio: 3 / 4;
+            max-width: 100%;
+        }
+        
+        .vertical-image.sidebar-portrait img.placeholder {
+            object-position: center 12%;
         }
         
         .sidebar-text {
@@ -420,6 +456,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+        
+        /* Archives photographiques : ton sépia / noir-et-blanc doux */
+        .article-image img.placeholder,
+        .vertical-image img.placeholder,
+        .secondary-articles .article-image img.placeholder {
+            filter: sepia(0.35) grayscale(0.15) contrast(1.06) brightness(0.98);
         }
         
         /* BOTÓN DE TRADUCCIÓN */
@@ -596,6 +639,7 @@
             display: block;
             cursor: pointer;
             transition: opacity 0.3s ease;
+            filter: sepia(0.25) grayscale(0.12) contrast(1.05);
         }
         
         .gossip-photo img:hover {
@@ -684,6 +728,7 @@
             font-weight: 600;
             color: #5a4a3a;
         }
+        
     </style>
 </head>
 <body>
@@ -693,7 +738,7 @@
         <h3 class="lang-es">Ediciones</h3>
         <ul class="date-list">
             <li class="date-item">
-                <a href="noticias27.html" class="date-link">
+                <a href="noticias27.html" class="date-link active">
                     <span class="lang-fr">6 Novembre 1905</span>
                     <span class="lang-es">6 de Noviembre</span>
                 </a>
@@ -774,7 +819,7 @@
                 </a>
             </li>
             <li class="date-item">
-                <a href="noticias12.html" class="date-link active">
+                <a href="noticias12.html" class="date-link">
                     <span class="lang-fr">20 Mai 1905</span>
                     <span class="lang-es">20 de Mayo</span>
                 </a>
@@ -853,7 +898,7 @@
             </li>
         </ul>
     </nav>
-    
+
     <div class="newspaper-container">
         <!-- CABECERA DEL PERIÓDICO -->
         <header class="newspaper-header">
@@ -870,170 +915,142 @@
                 <span class="ornamental-symbol">◆</span>
                 <span class="ornamental-symbol">◆</span>
             </div>
-            <p class="newspaper-date lang-fr">Dimanche, 20 Mai 1905 — Prix: 5 Centimes</p>
-            <p class="newspaper-date lang-es">Domingo, 20 de Mayo de 1905 — Precio: 5 Centimes</p>
+            <p class="newspaper-date lang-fr">Lundi, 6 Novembre 1905 — Prix: 5 Centimes</p>
+            <p class="newspaper-date lang-es">Lunes, 6 de Noviembre de 1905 — Precio: 5 Centimes</p>
         </header>
-        
+
         <!-- CONTENIDO PRINCIPAL -->
         <div class="newspaper-content">
             <!-- COLUMNA IZQUIERDA -->
             <div class="left-column">
                 <!-- ARTÍCULO PRINCIPAL -->
                 <article class="main-article">
-                    <h2 class="article-title lang-fr">Libuše à l'Opéra Garnier : Une Nuit où l'Art Transcende les Frontières</h2>
-                    <h2 class="article-title lang-es">Libuše en la Ópera Garnier: Una Noche donde el Arte Trasciende las Fronteras</h2>
-                    <p class="article-subtitle lang-fr">La représentation de Smetana couronne une journée marquée par les visites institutionnelles et les échanges diplomatiques</p>
-                    <p class="article-subtitle lang-fr" style="display:none;">De l'Élysée à l'Opéra Garnier, une journée marquée par des échanges diplomatiques intenses et la représentation de “Libuše”</p>
-                    <p class="article-subtitle lang-es">La representación de Smetana corona una jornada marcada por las visitas institucionales y los intercambios diplomáticos</p>
-                    <p class="article-subtitle lang-es" style="display:none;">Del Elíseo a la Ópera Garnier, una jornada marcada por intercambios diplomáticos intensos y la representación de “Libuše”</p>
-                    
+                    <h2 class="article-title lang-fr">Le Roi de Grèce assassiné à Paris ; le Kronprinz d'Allemagne échappe de peu</h2>
+                    <h2 class="article-title lang-es">El Rey de Grecia, asesinado en París; el Kronprinz de Alemania escapa por poco</h2>
+                    <p class="article-subtitle lang-fr">Deux attentats distincts, à quelques heures d'intervalle, frappent deux souverains de passage dans la capitale. Le Concile des Lumières remet à la Préfecture un homme qui se réclame d'une organisation, les « magnicides ».</p>
+                    <p class="article-subtitle lang-es">Dos atentados distintos, con pocas horas de diferencia, golpean a dos soberanos de paso por la capital. El Concilio de las Luces entrega a la Prefectura a un hombre que se reclama de una organización, los «magnicidas».</p>
+
                     <div class="article-image">
-                        <img src="news/operagarnier.jpg" alt="Avenue de l'Opéra, Paris 1900 - Visite impériale" class="placeholder">
+                        <img src="news/constantin_sophie_grece.jpg" alt="S.M. Constantin Ier de Grèce et la reine Sophie, née princesse de Prusse, lors d'une cérémonie à Athènes — photographie d'époque (domaine public, Wikimedia Commons) — S.M. Constantino I de Grecia y la reina Sofía, nacida princesa de Prusia, en una ceremonia en Atenas; fotografía de época (dominio público, Wikimedia Commons)." class="placeholder" style="object-position: center 38%;">
                     </div>
-                    
+
                     <div class="article-text lang-fr">
-                        <p>Paris, 20 Mai — L'arrivée de l'Empereur dans la capitale a été marquée par une journée où la solennité institutionnelle et la vie culturelle parisienne s'entrelacent avec naturel. La représentation de "Libuše" de Bedřich Smetana à l'Opéra Garnier a offert le cadre idéal pour une soirée où l'art s'est à nouveau présenté comme espace de réflexion et de rencontre entre nations, couronnant une journée dense en cérémonies et en échanges diplomatiques.</p>
-                        
-                        <p>La journée d'hier a débuté par un déjeuner diplomatique au Palais de l'Élysée, où Sa Majesté a rencontré le Président de la République ainsi que les ministres des Affaires étrangères et de la Culture. L'après-midi, l'Empereur a effectué des visites institutionnelles au Grand Palais et au pont Alexandre III, monuments qui symbolisent l'excellence architecturale et culturelle de Paris.</p>
-                        
-                        <p>La fonction de la soirée a été précédée d'une brève conférence de presse dans laquelle l'Empereur a manifesté son admiration pour Paris, soulignant l'intensité culturelle de la ville pendant son séjour. Dans un registre mesuré, il a également abordé des questions politiques, défendant la nécessité d'une coopération et d'une coordination plus étroites entre les États européens et condamnant de manière indirecte les récentes actions et l'attitude du Kaiser Guillaume à Tanger, considérées peu constructives pour l'équilibre international.</p>
-                        
-                        <p>Alors que le public attendait pour entrer à l'Opéra, on lui offrit un attentat contre l'art que je préfère oublier et qui n'a pas réussi à entacher une soirée magnifique. Alors pourquoi en parler ?</p>
-                        
-                        <p>Sur scène, l'interprétation de "Libuše" a maintenu un haut niveau artistique. Dans le rôle principal, la soprano Elodie a offert une interprétation d'une grande solidité technique, guidée non par le calcul mais par une émotion sincère et un engagement évident. Son chant, chargé d'émotivité, a profondément ému le public et a laissé flotter dans la salle des questions inévitables sur l'amour de la patrie, le sacrifice et le sens du destin collectif, thèmes centraux de l'œuvre de Smetana.</p>
-                        
-                        <p>La véritable révélation de la soirée fut cependant André Lèfevre. Dans l'un des rôles les plus représentatifs de l'œuvre, son interprétation a dépassé le cadre habituel de la correction scénique pour atteindre une intensité peu commune. Chaque geste, chaque inflexion de sa voix semblait chargé d'une conviction presque personnelle, comme si le drame ne se limitait pas à la scène, mais réclamait une réponse émotionnelle directe du spectateur. Il est impossible de dissimuler l'impression qu'a laissée sa prestation. Il ne s'agit pas uniquement d'une compétence technique incontestable, mais d'une force scénique qui s'est imposée et a capturé l'attention de la salle dès sa première apparition. Lèfevre a élevé chaque intervention à un niveau d'intensité extraordinaire, entraînant avec lui le public parisien et austro-hongrois dans une expérience difficile à oublier.</p>
+                        <p>Paris, 6 novembre — Deux attentats distincts, perpétrés hier à quelques heures d'intervalle, ont frappé deux souverains étrangers de passage dans la capitale. Sa Majesté Constantin Ier, roi des Hellènes, atteint en début de soirée, a succombé cette nuit aux blessures reçues. Le Kronprinz Wilhelm de Prusse, héritier de l'Empire allemand, a été atteint quelques heures plus tard ; ses jours, indiquent ses médecins, ne sont pas en danger.</p>
+                        <p>La Préfecture, qui a confirmé les faits ce matin, invite à la prudence sur leur interprétation. Les magistrats chargés de l'instruction excluent à ce stade tout lien avec le bal donné l'avant-veille par le prince héritier de Monaco, où plusieurs cours d'Europe s'étaient trouvées réunies. La présence des victimes à Paris tenait à ces réceptions ; rien, pour l'heure, ne permet d'y rattacher les attentats.</p>
+                        <p>Selon les premiers éléments communiqués, le roi Constantin a été frappé alors qu'il regagnait sa résidence ; le Kronprinz, à la sortie d'un dîner privé. La nature des armes employées n'a pas été précisée, l'instruction demeurant ouverte.</p>
+                        <p>Au cours de la nuit, des membres du Concile des Lumières, agissant avec la Sûreté, ont procédé à l'arrestation d'un homme. Interrogé, celui-ci a déclaré appartenir à une organisation qu'il a désignée sous le nom de « magnicides ».</p>
+                        <p>D'après ses déclarations, que la Préfecture rapporte sous toutes réserves, ce groupe se serait fixé pour but de mettre fin à certains pouvoirs que détiendraient des élites — les unes par leur rang, les autres par l'exercice de leur art. Les enquêteurs tiennent ces propos pour ceux d'un exalté, sans écarter qu'ils recouvrent une organisation constituée. D'autres arrestations ne sont pas exclues.</p>
+                        <p>Le gouvernement a présenté ses condoléances aux cours d'Athènes et de Berlin et décrété les égards d'usage. La mort d'un roi et la blessure d'un héritier impérial, survenues sur le sol français, placent l'affaire au premier rang des préoccupations diplomatiques ; nous en examinons les conséquences dans nos colonnes.</p>
                     </div>
-                    
+
                     <div class="article-text lang-es">
-                        <p>París, 20 de Mayo — La llegada del Emperador a la ciudad ha quedado marcada por una jornada en la que la solemnidad institucional y la vida cultural parisina se entrelazan con naturalidad. La representación de "Libuše", de Bedřich Smetana, en la Ópera Garnier, ofreció el marco idóneo para una noche en la que el arte volvió a presentarse como espacio de reflexión y de encuentro entre naciones, coronando una jornada densa en ceremonias y en intercambios diplomáticos.</p>
-                        
-                        <p>La jornada de ayer comenzó con un desayuno diplomático en el Palacio del Elíseo, donde Su Majestad se encontró con el Presidente de la República así como con los ministros de Asuntos Exteriores y de Cultura. Por la tarde, el Emperador realizó visitas institucionales al Grand Palais y al puente Alexandre III, monumentos que simbolizan la excelencia arquitectónica y cultural de París.</p>
-                        
-                        <p>La función de la noche estuvo precedida por una breve conferencia de prensa en la que el Emperador manifestó su admiración por París, subrayando la intensidad cultural de la ciudad durante su estancia. En un registro medido, abordó también cuestiones políticas, defendiendo la necesidad de una cooperación y coordinación más estrechas entre los Estados europeos y condenando de manera indirecta las recientes acciones y actitud del Kaiser Guillermo en Tánger, consideradas poco constructivas para el equilibrio internacional.</p>
-                        
-                        <p>Mientras el público esperaba para entrar a la Ópera se le ofreció un atentado al arte que prefiero olvidar y que no logró torcer una velada estupenda. ¿Así que por qué hablar de ello?</p>
-                        
-                        <p>Ya en escena, la interpretación de "Libuše" mantuvo un alto nivel artístico. En el papel protagonista, la soprano Elodie ofreció una interpretación de gran solidez técnica, guiada no por el cálculo sino por una emoción sincera y una entrega evidente. Su canto, cargado de emotividad, conmovió profundamente al público y dejó flotando en la sala preguntas inevitables sobre el amor a la patria, el sacrificio y el sentido del destino colectivo, temas centrales de la obra de Smetana.</p>
-                        
-                        <p>La verdadera revelación de la noche fue, sin embargo, André Lèfevre. En uno de los papeles más representativos de la obra, su interpretación desbordó el marco habitual de la corrección escénica para alcanzar una intensidad poco común. Cada gesto, cada inflexión de su voz parecía cargada de una convicción casi personal, como si el drama no se limitara al escenario, sino que reclamara una respuesta emocional directa del espectador. Resulta imposible disimular la impresión que dejó su actuación. No se trata únicamente de una solvencia técnica incuestionable, sino de una fuerza escénica que se impuso y capturó la atención de la sala desde su primera aparición. Lèfevre elevó cada intervención a un nivel de intensidad extraordinario, arrastrando consigo al público parisino y austrohúngaro en una experiencia difícil de olvidar.</p>
+                        <p>París, 6 de noviembre — Dos atentados distintos, perpetrados ayer con pocas horas de diferencia, golpearon a dos soberanos extranjeros de paso por la capital. Su Majestad Constantino I, rey de los helenos, alcanzado al caer la tarde, sucumbió esta noche a las heridas recibidas. El Kronprinz Wilhelm de Prusia, heredero del Imperio alemán, fue alcanzado horas más tarde; su vida, según sus médicos, no corre peligro.</p>
+                        <p>La Prefectura, que confirmó los hechos esta mañana, invita a la prudencia en su interpretación. Los magistrados encargados de la instrucción descartan por ahora todo vínculo con el baile ofrecido la antevíspera por el príncipe heredero de Mónaco, donde varias cortes de Europa habían coincidido. La presencia de las víctimas en París obedecía a esas recepciones; nada, por el momento, permite ligar a ellas los atentados.</p>
+                        <p>Según los primeros datos comunicados, el rey Constantino fue atacado cuando regresaba a su residencia; el Kronprinz, a la salida de una cena privada. La naturaleza de las armas empleadas no ha sido precisada, y la instrucción sigue abierta.</p>
+                        <p>Durante la noche, miembros del Concilio de las Luces, en colaboración con la Sûreté, procedieron a la detención de un hombre. Interrogado, declaró pertenecer a una organización que designó con el nombre de «magnicidas».</p>
+                        <p>Según sus declaraciones, que la Prefectura recoge con toda reserva, ese grupo se habría propuesto poner fin a ciertos poderes que detentarían algunas élites —unas por su rango, otras por el ejercicio de su arte. Los investigadores tienen tales palabras por las de un exaltado, sin descartar que encubran una organización constituida. No se excluyen otras detenciones.</p>
+                        <p>El gobierno ha presentado sus condolencias a las cortes de Atenas y de Berlín y dispuesto los honores de rigor. La muerte de un rey y la herida de un heredero imperial, ocurridas en suelo francés, sitúan el asunto en el primer plano de las preocupaciones diplomáticas; examinamos sus consecuencias en nuestras columnas.</p>
                     </div>
                 </article>
-                
+
                 <!-- ARTÍCULOS SECUNDARIOS -->
                 <div class="secondary-articles">
                     <article class="secondary-article">
-                        <h3 class="secondary-title lang-fr">Liberté, Égalité, Fatalité</h3>
-                        <h3 class="secondary-title lang-es">Libertad, Igualdad, Fatalidad</h3>
-                        
-                        <div class="square-image-container">
-                            <div class="square-image">
-                                <img src="news/avenueopera.jpg" alt="Ópera Garnier - Atentado ante la función de Libuše" class="placeholder">
-                            </div>
+                        <h3 class="secondary-title lang-fr">Tribune — Ce que ce double attentat engage pour l'Europe</h3>
+                        <h3 class="secondary-title lang-es">Tribuna — Lo que este doble atentado compromete para Europa</h3>
+                        <div class="article-image">
+                            <img src="news/kronprinz_wilhelm_bieber.jpg" alt="Le Kronprinz Wilhelm de Prusse, héritier de l'Empire allemand — portrait par E. Bieber, vers 1905 (domaine public, Wikimedia Commons) — El Kronprinz Wilhelm de Prusia, heredero del Imperio alemán; retrato de E. Bieber, hacia 1905 (dominio público, Wikimedia Commons)." class="placeholder" style="object-position: center 22%;">
                         </div>
-                        
-                        <p class="secondary-text lang-fr">
-                            Paris, 20 Mai — Le tableau volé il y a quelques semaines au Louvre — une œuvre de Klimt, peintre autrichien dont notre publication a rendu compte — a été brûlé hier soir aux portes de l'Opéra Garnier, sous les yeux du public qui attendait l'entrée pour la représentation de "Libuše". Un cartel proclamait : "Liberté, égalité, fraternité pour l'Autriche". L'intention de s'adresser à l'Empereur d'Autriche-Hongrie, alors présent dans la capitale, ne fait guère de doute. Reste à comprendre ce que son auteur entendait vraiment dire.
-                        </p>
-                        <p class="secondary-text lang-es">
-                            París, 20 de Mayo — El cuadro robado hace unas semanas en el Louvre — una obra de Klimt, pintor austriaco de la que dio cuenta esta publicación — fue quemado anoche a las puertas de la Ópera Garnier, ante el público que aguardaba para entrar a la función de "Libuše". Un cartel proclamaba: "Libertad, igualdad, fraternidad para Austria". La intención de dirigir un mensaje al Emperador de Austria-Hungría, presente entonces en la capital, apenas admite dudas. Queda por entender qué quiso decir en verdad quien lo cometió.
-                        </p>
-                        <p class="secondary-text lang-fr">
-                            Brûler un Klimt — un artiste né à Vienne, symbole d'une certaine modernité austro-hongroise — dans un lieu parisien, en invoquant la devise française : le geste se prête à plusieurs lectures. Peut-être le responsable voulait-il dénoncer l'hypocrisie d'un Empire qui se pare de culture tout en refusant, selon lui, ces principes à ses peuples. Peut-être cherchait-il à rappeler que la fraternité ne s'arrête pas aux frontières, et que les idéaux de la Révolution concernent aussi les sujets des Habsbourg. Ou peut-être visait-il à montrer que l'art, quand il est instrumentalisé, peut être détruit au nom de n'importe quel slogan — y compris le plus noble. Nous ne le saurons sans doute jamais. Ce qui est certain, c'est qu'une œuvre a disparu. Un tableau qui appartenait au patrimoine du Louvre, qui avait été confié à la garde de la France, et qui n'appartenait à aucun camp politique.
-                        </p>
-                        <p class="secondary-text lang-es">
-                            Quemar un Klimt — un artista nacido en Viena, símbolo de una cierta modernidad austrohúngara — en un lugar parisino, invocando el lema francés: el gesto admite varias lecturas. Quizá el responsable quiso denunciar la hipocresía de un Imperio que se adorna de cultura y niega, a su juicio, esos principios a sus pueblos. Quizá quiso recordar que la fraternidad no se detiene en las fronteras y que los ideales de la Revolución conciernen también a los súbditos de los Habsburgo. O quizá pretendía mostrar que el arte, cuando se instrumentaliza, puede ser destruido en nombre de cualquier consigna — incluso la más noble. No lo sabremos con seguridad. Lo cierto es que una obra ha desaparecido. Un cuadro que pertenecía al patrimonio del Louvre, que había sido confiado a la custodia de Francia, y que no pertenecía a ningún bando político.
-                        </p>
-                        <p class="secondary-text lang-fr">
-                            On peut discuter des motifs, respecter la colère ou l'idéal de qui s'est égaré, et même reconnaître que le message — "liberté, égalité, fraternité pour l'Autriche" — mérite réflexion. Mais la destruction du tableau, elle, ne se défend pas. Elle ne sert aucune cause. Elle prive tout le monde, pour toujours, d'une œuvre qui ne menaçait personne. Liberté, égalité, fraternité : des mots que l'on brandit en brûlant ce qu'un autre a créé ne sont plus que fatalité.
-                        </p>
-                        <p class="secondary-text lang-es">
-                            Se pueden discutir los motivos, respetar la cólera o el ideal de quien se equivocó de camino, y hasta reconocer que el mensaje — "libertad, igualdad, fraternidad para Austria" — merece reflexión. Pero la destrucción del cuadro no se defiende. No sirve a ninguna causa. Priva a todos, para siempre, de una obra que no amenazaba a nadie. Libertad, igualdad, fraternidad: las palabras que se esgrimen al quemar lo que otro creó no son ya sino fatalidad.
-                        </p>
+                        <div class="secondary-text lang-fr">
+                            <p>Le deuil une fois rendu, il faut considérer froidement la situation, car c'est froidement qu'elle sera traitée dans les chancelleries. Les deux maisons frappées hier ne sont pas indifférentes l'une à l'autre. Le roi assassiné avait épousé une princesse née Hohenzollern ; le prince blessé appartient lui-même à cette maison, dont il est l'héritier en Prusse. En une seule soirée, c'est la même parenté dynastique qui a été atteinte — et elle l'a été à Paris.</p>
+                            <p>Berlin ne manquera pas de s'en émouvoir. Qu'un héritier de l'Empire ait été visé sur le sol français, fût-ce par un isolé, fournit à la diplomatie allemande un grief réel à un moment délicat : celui où s'annonce, pour le début de l'année prochaine, la conférence d'Algésiras sur le Maroc, où Paris et Berlin devront déjà confronter leurs vues.</p>
+                            <p>Il faut y ajouter l'état de l'Empire russe, notre allié, à peine engagé dans les réformes promises par le Manifeste d'octobre et dont les difficultés intérieures réduisent d'autant le poids extérieur. La République se trouve l'hôte involontaire d'un crime qu'elle n'a pas voulu ; il lui faudra néanmoins en rendre compte à deux cours en deuil.</p>
+                            <p>Le risque n'est pas tant dans l'attentat que dans l'usage qui pourrait en être fait. Un acte isolé peut, si l'on n'y prend garde, servir de prétexte à des desseins qui le dépassent. La prudence commande donc que l'enquête soit conduite avec rigueur, et que la mesure préside aux échanges entre les cabinets. C'est, en pareille circonstance, le premier devoir de tous.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p>Rendido el duelo, conviene considerar con frialdad la situación, pues con frialdad se tratará en las cancillerías. Las dos casas golpeadas ayer no son ajenas entre sí. El rey asesinado había desposado a una princesa nacida Hohenzollern; el príncipe herido pertenece él mismo a esa casa, de la que es heredero en Prusia. En una sola velada ha resultado alcanzado el mismo parentesco dinástico —y lo ha sido en París.</p>
+                            <p>Berlín no dejará de inquietarse. Que un heredero del Imperio haya sido atacado en suelo francés, aunque fuera por un solitario, ofrece a la diplomacia alemana un agravio real en un momento delicado: aquel en que se anuncia, para comienzos del año próximo, la conferencia de Algeciras sobre Marruecos, donde París y Berlín habrán ya de confrontar sus posiciones.</p>
+                            <p>Hay que añadir el estado del Imperio ruso, nuestro aliado, apenas iniciado en las reformas prometidas por el Manifiesto de octubre y cuyas dificultades interiores reducen otro tanto su peso exterior. La República se halla anfitriona involuntaria de un crimen que no ha querido; habrá, sin embargo, de responder de él ante dos cortes de luto.</p>
+                            <p>El riesgo no está tanto en el atentado como en el uso que de él pudiera hacerse. Un acto aislado puede, si no se vigila, servir de pretexto a designios que lo exceden. La prudencia exige, pues, que la investigación se conduzca con rigor y que la mesura presida los intercambios entre los gabinetes. Es, en tal circunstancia, el primer deber de todos.</p>
+                        </div>
                     </article>
-                    
                 </div>
             </div>
-            
+
             <!-- COLUMNA DERECHA -->
             <aside class="right-column">
                 <article class="sidebar-article">
-                    <h3 class="sidebar-title lang-fr">Séparation et Charité : le Législatif à la Croisée des Chemins</h3>
-                    <h3 class="sidebar-title lang-es">Separación y Caridad: el Legislativo en la Encrucijada</h3>
-                    
-                    <div class="vertical-image" style="aspect-ratio: 4/3;">
-                        <img src="news/assemblee.jpg" alt="Assemblée nationale - Débat séparation Église État" class="placeholder">
+                    <h3 class="sidebar-title lang-fr">Les « fauves » après le Salon : la critique persiste, le marché s'éveille</h3>
+                    <h3 class="sidebar-title lang-es">Los «fauves» tras el Salón: la crítica persiste, el mercado despierta</h3>
+                    <div class="vertical-image sidebar-portrait" style="margin-bottom: 1em;">
+                        <img src="news/matisse_atelier.jpg" alt="Henri Matisse dans son atelier, palette en main, vers 1905 — photographie d'époque (domaine public, Wikimedia Commons) — Henri Matisse en su taller, paleta en mano, hacia 1905; fotografía de época (dominio público, Wikimedia Commons)." class="placeholder" style="object-position: center top;">
                     </div>
-                    
                     <div class="sidebar-text lang-fr">
-                        <p>Paris, 20 Mai — Les débats au Palais Bourbon sur la loi de séparation des Églises et de l'État se poursuivent, mais un nouveau chapitre s'ouvre : celui de la charité et de l'assistance aux plus démunis. Malades, sans-abri, aliénés — des milliers de personnes dépendaient jusqu'ici des œuvres caritatives chrétiennes. La séparation une fois actée, qui prendra en charge ces tâches ?</p>
-                        
-                        <p>Le législatif étudie désormais l'octroi de prérogatives à l'Église pour que, tout en restant séparée de l'État, elle puisse recevoir des aides publiques destinées à ces missions d'assistance. L'idée n'est pas de revenir sur le principe de laïcité, mais de reconnaître que les congrégations et les paroisses ont, sur le terrain, une expérience et un maillage que l'État seul ne saurait remplacer du jour au lendemain. Les députés s'interrogent : subventionner ces œuvres, est-ce favoriser le culte ou servir l'intérêt général ?</p>
-                        
-                        <p>La question divise. Les uns y voient un pragmatisme nécessaire pour éviter que les plus fragiles ne paient le prix de la séparation. Les autres dénoncent une brèche dans la loi et un risque de dépendance persistante. Le débat est vif, mais il place au centre une évidence : la République doit à la fois garantir la neutralité de l'État et ne pas abandonner ceux qui ont besoin d'aide. Comment concilier les deux ? L'Assemblée cherche la voie.</p>
+                        <p>Le Salon d'Automne, ouvert au Grand Palais depuis le mois d'octobre, fermera ses portes le 25 de ce mois. À mesure qu'il s'achève, la querelle née dans sa salle VII — celle où l'on a réuni les toiles de MM. Matisse, Derain, Vlaminck, Marquet et quelques autres — entre dans une phase plus mesurée, où aux éclats de la critique répondent les premiers mouvements du marché.</p>
+                        <p>La critique, il est vrai, ne désarme pas. M. Camille Mauclair et M. Marcel Nicolle comptent parmi les plus sévères, et l'on a entendu parler, à propos de ces tableaux, d'un « pot de couleur jeté à la face du public ». Le mot lancé par M. Louis Vauxcelles, qui rapprochait une sculpture florentine des toiles environnantes — « Donatello chez les fauves » —, a fini par donner son nom au groupe, que la jeunesse des ateliers revendique désormais sans embarras.</p>
+                        <p>Pendant que l'on débat, d'autres achètent. La <em>Femme au chapeau</em> de M. Matisse, l'une des toiles les plus discutées du Salon, a trouvé acquéreur auprès de collectionneurs américains établis à Paris, rue de Fleurus. Le marchand Ambroise Vollard s'intéresse aux œuvres de MM. Derain et Vlaminck, et la galerie de Mlle Berthe Weill expose ce que les Salons officiels hésitent encore à recevoir.</p>
+                        <p>Il serait prématuré de juger de la place que ces peintres occuperont. On observera seulement que la salle la plus contestée du Salon aura été l'une des plus fréquentées, et que des œuvres rejetées par la critique commencent à trouver, auprès d'amateurs étrangers, une faveur que Paris leur refuse encore. <em>Paris Nouveau</em> rendra compte de la suite.</p>
                     </div>
-                    
                     <div class="sidebar-text lang-es">
-                        <p>París, 20 de Mayo — Los debates en el Palacio Borbón sobre la ley de separación de las Iglesias y del Estado continúan, pero se abre un nuevo capítulo: el de la caridad y la asistencia a los más desfavorecidos. Enfermos, sin techo, alienados — miles de personas dependían hasta ahora de las obras caritativas cristianas. Una vez consumada la separación, ¿quién asumirá esas tareas?</p>
-                        
-                        <p>El legislativo estudia ahora conceder prerrogativas a la Iglesia para que, aun estando separada del Estado, pueda recibir ayudas públicas destinadas a estas labores de asistencia. No se trata de dar marcha atrás en el principio de laicidad, sino de reconocer que las congregaciones y las parroquias tienen, sobre el terreno, una experiencia y una red que el Estado solo no podría sustituir de la noche a la mañana. Los diputados se preguntan: subvencionar estas obras, ¿es favorecer el culto o servir al interés general?</p>
-                        
-                        <p>La cuestión divide. Unos ven en ello un pragmatismo necesario para que los más frágiles no paguen el precio de la separación. Otros denuncian una brecha en la ley y un riesgo de dependencia persistente. El debate es vivo, pero coloca en el centro una evidencia: la República debe a la vez garantizar la neutralidad del Estado y no abandonar a quienes necesitan ayuda. ¿Cómo conciliar ambas cosas? La Asamblea busca el camino.</p>
+                        <p>El Salón de Otoño, abierto en el Grand Palais desde el mes de octubre, cerrará sus puertas el día 25 de este mes. A medida que concluye, la disputa nacida en su sala VII —aquella en que se reunieron los lienzos de los señores Matisse, Derain, Vlaminck, Marquet y algún otro— entra en una fase más mesurada, en la que a los exabruptos de la crítica responden los primeros movimientos del mercado.</p>
+                        <p>La crítica, cierto es, no depone las armas. Los señores Camille Mauclair y Marcel Nicolle figuran entre los más severos, y se ha llegado a hablar, a propósito de estos cuadros, de «un bote de pintura arrojado al rostro del público». La expresión «Donatello entre las fieras», lanzada por el señor Louis Vauxcelles —que comparaba una escultura florentina con los lienzos que la rodeaban—, ha terminado por dar nombre al grupo, que la juventud de los talleres reivindica ya sin reparo.</p>
+                        <p>Mientras se debate, otros compran. La <em>Mujer con sombrero</em> del señor Matisse, uno de los lienzos más discutidos del Salón, ha encontrado comprador en unos coleccionistas americanos establecidos en París, en la rue de Fleurus. El marchante Ambroise Vollard se interesa por las obras de los señores Derain y Vlaminck, y la galería de la señorita Berthe Weill expone lo que los Salones oficiales aún vacilan en acoger.</p>
+                        <p>Sería prematuro juzgar el lugar que estos pintores habrán de ocupar. Obsérvese tan solo que la sala más discutida del Salón habrá sido una de las más visitadas, y que obras rechazadas por la crítica empiezan a hallar, entre aficionados extranjeros, un favor que París todavía les niega. <em>Paris Nouveau</em> dará cuenta de lo que siga.</p>
                     </div>
                 </article>
-                
+
                 <div class="typographic-ornament">◆ ◆ ◆</div>
-                
+
                 <article class="sidebar-article">
                     <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
                     <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
                     <div class="sidebar-text lang-fr" style="font-size: 16px;">
-                        <p><strong>• Pétition publique pour améliorer le métro parisien:</strong> Un collectif de commerçants et d'habitants des quartiers desservis par la ligne 1 a lancé une pétition demandant à la Compagnie du chemin de fer métropolitain de Paris davantage de rames aux heures de pointe, un éclairage renforcé dans les couloirs et une meilleure aération des stations. La pétition circule déjà dans les mairies d'arrondissement et aurait recueilli plusieurs centaines de signatures.</p>
-                        
-                        <p><strong>• Prochain triomphe : "La Maison aux cloches" avec Sarah Bernhardt et André Lèfevre:</strong> La prochaine création de "La Maison aux cloches" est annoncé pour la fin du mois. La pièce réunira sur scène Sarah Bernhardt et André Lèfevre. Les billets commencent à circuler dans les salons parisiens et l'on s'attend à une affluence exceptionnelle.</p>
-                        
-                        <p><strong>• Projection mystérieuse au Coco Bongo:</strong> Une projection mystérieuse est prévue au Cabaret Coco Bongo ce dimanche 20 mai. Les détails restent confidentiels, mais l'événement suscite déjà la curiosité des milieux artistiques parisiens.</p>
+                        <p><strong>• Au-dessus de Paris :</strong> M. Santos-Dumont, aperçu de nouveau aux abords de Longchamp, promet pour le printemps de nouvelles évolutions de son dirigeable ; l'Aéro-Club s'en réjouit, les cochers un peu moins.</p>
+                        <p><strong>• Curiosité savante :</strong> Quelques mathématiciens s'entretiennent à mi-voix des articles d'un obscur employé d'un bureau de brevets suisse, qui soutient que le temps lui-même ne serait pas tout à fait ce que l'on croit.</p>
+                        <p><strong>• Rumeur d'atelier :</strong> Un gardien du Louvre affirme avoir vu, deux nuits de suite, une toile changer imperceptiblement de teinte. La direction dément ; les ateliers, eux, n'en finissent pas d'en parler.</p>
+                        <p><strong>• L'enquête :</strong> Sur l'affaire d'hier, la Préfecture et le Concile des Lumières gardent le silence ; on dit seulement que le détenu n'a livré aucun nom.</p>
                     </div>
                     <div class="sidebar-text lang-es" style="font-size: 16px;">
-                        <p><strong>• Petición pública para mejorar el metro de París:</strong> Un colectivo de comerciantes y vecinos de los barrios servidos por la línea 1 ha lanzado una petición en la que pide a la Compañía del ferrocarril metropolitano de París más trenes en hora punta, mejor iluminación en los pasillos y una mayor ventilación en las estaciones. La petición circula ya por las alcaldías de distrito y habría reunido varios centenares de firmas.</p>
-                        
-                        <p><strong>• Próximo estreno: "La casa de las campanas" con Sarah Bernhardt y André Lèfevre:</strong> El próximo estreno de "La casa de las campanas" está anunciado para finales de mes. La obra reunirá en escena a Sarah Bernhardt y a André Lèfevre. Las entradas empiezan a circular por los salones parisinos y se espera una afluencia excepcional.</p>
-                        
-                        <p><strong>• Proyección misteriosa en el Coco Bongo:</strong> Una proyección misteriosa está prevista en el Cabaret Coco Bongo este domingo 20 de mayo. Los detalles permanecen confidenciales, pero el evento ya suscita la curiosidad de los medios artísticos parisinos.</p>
+                        <p><strong>• Sobre París:</strong> El señor Santos-Dumont, visto de nuevo cerca de Longchamp, promete para la primavera nuevas evoluciones de su dirigible; el Aéro-Club se felicita, los cocheros algo menos.</p>
+                        <p><strong>• Curiosidad sabia:</strong> Algunos matemáticos comentan a media voz los artículos de un oscuro empleado de una oficina de patentes suiza, que sostiene que el tiempo mismo no sería del todo lo que se cree.</p>
+                        <p><strong>• Rumor de taller:</strong> Un vigilante del Louvre asegura haber visto, dos noches seguidas, un lienzo cambiar imperceptiblemente de tono. La dirección lo desmiente; los talleres, en cambio, no hablan de otra cosa.</p>
+                        <p><strong>• La investigación:</strong> Sobre el suceso de ayer, la Prefectura y el Concilio de las Luces guardan silencio; solo se dice que el detenido no ha dado nombre alguno.</p>
                     </div>
                 </article>
-                
+
                 <div class="typographic-ornament">◆ ◆ ◆</div>
-                
+
                 <article class="sidebar-article">
                     <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
                     <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
                     <div class="sidebar-text lang-fr" style="font-size: 13px; line-height: 1.6;">
-                        <p><strong>Libuše à l'Opéra Garnier : Une Nuit où l'Art Transcende les Frontières :</strong><br>C. Müller</p>
-                        <p><strong>Séparation et Charité : le Législatif à la Croisée des Chemins :</strong><br>P. Bernard</p>
-                        <p><strong>Liberté, Égalité, Fatalité :</strong><br>E. Zola</p>
+                        <p><strong>Le Roi de Grèce assassiné à Paris ; le Kronprinz d'Allemagne échappe de peu :</strong><br>L. Moreau</p>
+                        <p><strong>Tribune — Ce que ce double attentat engage pour l'Europe :</strong><br>H. Dubois</p>
+                        <p><strong>Les « fauves » après le Salon :</strong><br>L. Roy</p>
                     </div>
                     <div class="sidebar-text lang-es" style="font-size: 13px; line-height: 1.6;">
-                        <p><strong>Libuše en la Ópera Garnier: Una Noche donde el Arte Trasciende las Fronteras :</strong><br>C. Müller</p>
-                        <p><strong>Separación y Caridad: el Legislativo en la Encrucijada :</strong><br>P. Bernard</p>
-                        <p><strong>Libertad, Igualdad, Fatalidad :</strong><br>E. Zola</p>
+                        <p><strong>El Rey de Grecia, asesinado en París; el Kronprinz de Alemania escapa por poco :</strong><br>L. Moreau</p>
+                        <p><strong>Tribuna — Lo que este doble atentado compromete para Europa :</strong><br>H. Dubois</p>
+                        <p><strong>Los «fauves» tras el Salón :</strong><br>L. Roy</p>
                     </div>
                 </article>
             </aside>
         </div>
-    
+
     <!-- MODAL PARA IMÁGENES -->
+
+
     <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
         <div class="image-modal-content" onclick="event.stopPropagation()">
             <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
             <img id="modalImage" src="" alt="">
         </div>
     </div>
-    
+
     <script>
         function toggleLanguage() {
             document.body.classList.toggle('spanish');
-            
+
             // Guardar preferencia en localStorage
             if (document.body.classList.contains('spanish')) {
                 localStorage.setItem('newspaperLanguage', 'es');
@@ -1041,7 +1058,7 @@
                 localStorage.setItem('newspaperLanguage', 'fr');
             }
         }
-        
+
         // Cargar preferencia al cargar la página
         window.addEventListener('DOMContentLoaded', function() {
             const savedLanguage = localStorage.getItem('newspaperLanguage');
@@ -1049,7 +1066,7 @@
                 document.body.classList.add('spanish');
             }
         });
-        
+
         // Funciones para el modal de imágenes
         function openImageModal(imageSrc, imageAlt) {
             const modal = document.getElementById('imageModal');
@@ -1059,13 +1076,13 @@
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-        
+
         function closeImageModal(event) {
             const modal = document.getElementById('imageModal');
             modal.classList.remove('active');
             document.body.style.overflow = '';
         }
-        
+
         // Cerrar modal con la tecla ESC
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
@@ -1075,4 +1092,3 @@
     </script>
 </body>
 </html>
-
