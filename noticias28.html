@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Nouveau - Belle Époque</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #f4e8d0;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        /* CONTENEDOR DE NAVEGACIÓN DE FECHAS */
+        .date-navigation {
+            width: 200px;
+            background: #faf7f0;
+            border: 3px double #2c2416;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .date-navigation h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c2416;
+            padding-bottom: 10px;
+        }
+
+        .date-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .date-item {
+            margin-bottom: 15px;
+        }
+
+        .date-link {
+            display: block;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #2c2416;
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #f4e8d0;
+        }
+
+        .date-link:hover {
+            background: #e8d5b7;
+            border-color: #8b7355;
+            transform: translateX(5px);
+        }
+
+        .date-link.active {
+            background: #8b7355;
+            color: #faf7f0;
+            border-color: #2c2416;
+            font-weight: 600;
+        }
+
+        .date-link.active:hover {
+            background: #6b5a47;
+            transform: none;
+        }
+
+        .newspaper-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #faf7f0;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            padding: 40px;
+            border: 3px double #2c2416;
+            flex: 1;
+        }
+
+        /* CABECERA DEL PERIÓDICO */
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 4px double #2c2416;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .ornamental-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .ornamental-line::before,
+        .ornamental-line::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #2c2416, transparent);
+        }
+
+        .ornamental-symbol {
+            margin: 0 15px;
+            font-size: 20px;
+            color: #8b7355;
+        }
+
+        .newspaper-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            color: #2c2416;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin: 15px 0;
+            text-shadow: 2px 2px 0px rgba(139, 115, 85, 0.3);
+        }
+
+        .newspaper-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #5a4a3a;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .newspaper-date {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            color: #5a4a3a;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* ESTRUCTURA DEL CONTENIDO */
+        .newspaper-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* COLUMNA IZQUIERDA */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* ARTÍCULO PRINCIPAL */
+        .main-article {
+            border-bottom: 3px double #2c2416;
+            padding-bottom: 25px;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #2c2416;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .article-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .article-image {
+            width: 100%;
+            height: auto;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .main-article .article-image {
+            aspect-ratio: 16 / 9;
+            width: 100%;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            flex: 1 1 auto;
+            min-width: 0;
+            min-height: 0;
+        }
+
+        .main-article .article-image img {
+            object-position: center 28%;
+        }
+
+        .secondary-articles .secondary-article .article-image {
+            aspect-ratio: 5 / 4;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .secondary-articles .secondary-article .article-image img {
+            object-position: center 38%;
+        }
+
+        .article-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.8;
+            column-count: 2;
+            column-gap: 30px;
+            hyphens: auto;
+        }
+
+        .article-text::first-letter {
+            font-size: 72px;
+            font-weight: bold;
+            float: left;
+            line-height: 0.8;
+            margin: 5px 8px 0 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ARTÍCULOS SECUNDARIOS */
+        .secondary-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .secondary-article {
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 20px;
+        }
+
+        .secondary-article:last-child {
+            border-bottom: none;
+        }
+
+        .secondary-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2c2416;
+            padding-bottom: 5px;
+        }
+
+        .secondary-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+
+        /* IMAGEN CUADRADA ENTRE ARTÍCULOS */
+        .square-image-container {
+            margin: 20px 0;
+        }
+
+        .square-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border: 3px solid #2c2416;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .square-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* COLUMNA DERECHA */
+        .right-column {
+            border-left: 3px double #2c2416;
+            padding-left: 25px;
+        }
+
+        .sidebar-article {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 10px 0;
+        }
+
+        .vertical-image {
+            width: 100%;
+            aspect-ratio: 9/16;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .vertical-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .vertical-image.sidebar-portrait {
+            aspect-ratio: 3 / 4;
+            max-width: 100%;
+        }
+
+        .vertical-image.sidebar-portrait img.placeholder {
+            object-position: center 30%;
+        }
+
+        .sidebar-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+
+        /* DECORACIONES TIPOGRÁFICAS */
+        .typographic-ornament {
+            text-align: center;
+            font-size: 24px;
+            color: #8b7355;
+            margin: 20px 0;
+            letter-spacing: 10px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+
+            .date-navigation {
+                width: 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+
+            .newspaper-content {
+                grid-template-columns: 1fr;
+            }
+
+            .right-column {
+                border-left: none;
+                border-top: 3px double #2c2416;
+                padding-left: 0;
+                padding-top: 25px;
+            }
+
+            .article-text {
+                column-count: 1;
+            }
+
+            .newspaper-title {
+                font-size: 48px;
+            }
+        }
+
+        /* EFECTOS DE PAPEL ENVEJECIDO */
+        .newspaper-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 115, 85, 0.03) 2px,
+                    rgba(139, 115, 85, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+
+        .newspaper-container {
+            position: relative;
+        }
+
+        /* Placeholder de imagen */
+        img.placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Archives photographiques : ton sépia / noir-et-blanc doux */
+        .article-image img.placeholder,
+        .vertical-image img.placeholder,
+        .secondary-articles .article-image img.placeholder {
+            filter: sepia(0.35) grayscale(0.15) contrast(1.06) brightness(0.98);
+        }
+
+        /* BOTÓN DE TRADUCCIÓN */
+        .translate-button {
+            width: 35px;
+            height: 35px;
+            background: rgba(44, 36, 22, 0.1);
+            border: 2px solid rgba(139, 115, 85, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            color: #5a4a3a;
+            margin: 10px auto;
+        }
+
+        .translate-button:hover {
+            background: rgba(139, 115, 85, 0.2);
+            border-color: #8b7355;
+            transform: scale(1.1);
+        }
+
+        .translate-button:active {
+            transform: scale(0.95);
+        }
+
+        .translate-button-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        /* Ocultar contenido de idioma alternativo */
+        .lang-es {
+            display: none;
+        }
+
+        body.spanish .lang-fr {
+            display: none;
+        }
+
+        body.spanish .lang-es {
+            display: block;
+        }
+
+        body.spanish .lang-es.inline {
+            display: inline;
+        }
+
+        /* ESTILOS PARA CRÓNICAS DE SOCIEDAD */
+        .society-chronicle {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .society-chronicle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .society-note {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* ESTILOS PARA CARTAS AL DIRECTOR */
+        .letters-section {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .letters-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .letter-box {
+            background-color: #f5e6d3;
+            border: 2px solid #d4c4a8;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .letter-content {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #2c2416;
+            text-align: justify;
+        }
+
+        .letter-signature {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2416;
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* ESTILOS PARA COTILLEOS DE SOLTEROS */
+        .gossip-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .gossip-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #f4e8d0;
+            border: 1px solid #8b7355;
+            border-left: 3px solid #8b7355;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .gossip-item:hover {
+            background: #e8d5b7;
+        }
+
+        .gossip-photo {
+            width: fit-content;
+            height: fit-content;
+            border: 2px solid #2c2416;
+            padding: 1px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #d4c5b0;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+
+        .gossip-photo img {
+            width: 70px;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            filter: sepia(0.25) grayscale(0.12) contrast(1.05);
+        }
+
+        .gossip-photo img:hover {
+            opacity: 0.8;
+        }
+
+        /* MODAL PARA IMÁGENES */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #2c2416;
+            padding: 10px;
+            background: #faf7f0;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            height: auto;
+            display: block;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: #2c2416;
+            color: #faf7f0;
+            border: 2px solid #2c2416;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .image-modal-close:hover {
+            background: #8b7355;
+        }
+
+        .gossip-info {
+            flex: 1;
+        }
+
+        .gossip-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 5px;
+        }
+
+        .gossip-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            color: #2c2416;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .gossip-text em {
+            font-style: normal;
+            font-weight: 600;
+            color: #5a4a3a;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN DE FECHAS -->
+    <nav class="date-navigation">
+        <h3 class="lang-fr">Éditions</h3>
+        <h3 class="lang-es">Ediciones</h3>
+        <ul class="date-list">
+            <li class="date-item">
+                <a href="noticias28.html" class="date-link active">
+                    <span class="lang-fr">10 Novembre 1905</span>
+                    <span class="lang-es">10 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias27.html" class="date-link">
+                    <span class="lang-fr">6 Novembre 1905</span>
+                    <span class="lang-es">6 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias26.html" class="date-link">
+                    <span class="lang-fr">5 Novembre 1905</span>
+                    <span class="lang-es">5 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias25.html" class="date-link">
+                    <span class="lang-fr">2 Novembre 1905</span>
+                    <span class="lang-es">2 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias22.html" class="date-link">
+                    <span class="lang-fr">1er Août 1905</span>
+                    <span class="lang-es">1 de Agosto</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias21.html" class="date-link">
+                    <span class="lang-fr">30 Juillet 1905</span>
+                    <span class="lang-es">30 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias20.html" class="date-link">
+                    <span class="lang-fr">29 Juillet 1905</span>
+                    <span class="lang-es">29 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias19.html" class="date-link">
+                    <span class="lang-fr">28 Juillet 1905</span>
+                    <span class="lang-es">28 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias18.html" class="date-link">
+                    <span class="lang-fr">27 Juillet 1905</span>
+                    <span class="lang-es">27 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias17.html" class="date-link">
+                    <span class="lang-fr">26 Juillet 1905</span>
+                    <span class="lang-es">26 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias16.html" class="date-link">
+                    <span class="lang-fr">25 Juillet 1905</span>
+                    <span class="lang-es">25 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias15.html" class="date-link">
+                    <span class="lang-fr">24 Juillet 1905</span>
+                    <span class="lang-es">24 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias14.html" class="date-link">
+                    <span class="lang-fr">22 Mai 1905</span>
+                    <span class="lang-es">22 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias13.html" class="date-link">
+                    <span class="lang-fr">21 Mai 1905</span>
+                    <span class="lang-es">21 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias12.html" class="date-link">
+                    <span class="lang-fr">20 Mai 1905</span>
+                    <span class="lang-es">20 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias11.html" class="date-link">
+                    <span class="lang-fr">19 Mai 1905</span>
+                    <span class="lang-es">19 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias10.html" class="date-link">
+                    <span class="lang-fr">18 Mai 1905</span>
+                    <span class="lang-es">18 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias9.html" class="date-link">
+                    <span class="lang-fr">17 Mai 1905</span>
+                    <span class="lang-es">17 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias8.html" class="date-link">
+                    <span class="lang-fr">16 Mai 1905</span>
+                    <span class="lang-es">16 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias7.html" class="date-link">
+                    <span class="lang-fr">15 Mai 1905</span>
+                    <span class="lang-es">15 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias6.html" class="date-link">
+                    <span class="lang-fr">1 Avril 1905</span>
+                    <span class="lang-es">1 de Abril</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias5.html" class="date-link">
+                    <span class="lang-fr">29 Mars 1905</span>
+                    <span class="lang-es">29 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias4.html" class="date-link">
+                    <span class="lang-fr">28 Mars 1905</span>
+                    <span class="lang-es">28 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias3.html" class="date-link">
+                    <span class="lang-fr">27 Mars 1905</span>
+                    <span class="lang-es">27 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias2.html" class="date-link">
+                    <span class="lang-fr">26 Mars 1905</span>
+                    <span class="lang-es">26 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias1.html" class="date-link">
+                    <span class="lang-fr">25 Mars 1905</span>
+                    <span class="lang-es">25 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias.html" class="date-link">
+                    <span class="lang-fr">18 Mars 1905</span>
+                    <span class="lang-es">18 de Marzo</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="newspaper-container">
+        <!-- CABECERA DEL PERIÓDICO -->
+        <header class="newspaper-header">
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">❦</span>
+            </div>
+            <h1 class="newspaper-title">Paris Nouveau</h1>
+            <p class="newspaper-subtitle">Nouvelles du Monde des Arts et de la Belle Société</p>
+            <div class="translate-button-container">
+                <button class="translate-button" onclick="toggleLanguage()" title="Traducir / Translate">🔍</button>
+            </div>
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+            </div>
+            <p class="newspaper-date lang-fr">Vendredi, 10 Novembre 1905 — Prix: 5 Centimes</p>
+            <p class="newspaper-date lang-es">Viernes, 10 de Noviembre de 1905 — Precio: 5 Centimes</p>
+        </header>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="newspaper-content">
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="left-column">
+                <!-- ARTÍCULO PRINCIPAL : ARTS SCÉNIQUES DE PARIS -->
+                <article class="main-article">
+                    <h2 class="article-title lang-fr">Arts Scéniques de Paris : la nuit qui défie l'ombre</h2>
+                    <h2 class="article-title lang-es">Artes Escénicas de París: la noche que desafía la sombra</h2>
+                    <p class="article-subtitle lang-fr">Quatre jours après les attentats du 5 novembre, la soirée d'André Lefèvre et d'Élodie Lecat au Grand Théâtre Belle Époque s'est tenue sans rideau noir et sans concession. Quatre temps forts en restent — et la promesse d'une suite que cette rédaction réserve à son prochain numéro.</p>
+                    <p class="article-subtitle lang-es">Cuatro días después de los atentados del 5 de noviembre, la velada de André Lefèvre y Élodie Lecat en el Gran Teatro Belle Époque se celebró sin telón de luto y sin concesión. Quedan cuatro momentos altos — y la promesa de una continuación que esta redacción reserva para su próxima entrega.</p>
+
+                    <div class="article-image">
+                        <img src="news/claire_croiza_messaline_1905.jpg" alt="Scène d'opéra Belle Époque — Claire Croiza dans Messaline d'Isidore de Lara, 1905, photographie de scène, Bibliothèque nationale de France (domaine public, Wikimedia Commons) — Escena de ópera Belle Époque; Claire Croiza en Messaline de Isidore de Lara, 1905, fotografía de escena, Bibliothèque nationale de France (dominio público, Wikimedia Commons)." class="placeholder" style="object-position: center 20%;">
+                    </div>
+
+                    <div class="article-text lang-fr">
+                        <p>Paris, 10 novembre — On craignait une salle clairsemée, des fauteuils tendus de noir, une scène qui s'excuse d'avoir lieu. Rien de cela hier soir au Grand Théâtre Belle Époque, où la soirée d'<em>Arts Scéniques de Paris</em> — annoncée pour le 9 par M. André Lefèvre et Mme Élodie Lecat, quatre jours après les attentats du 5 — s'est tenue comme prévu, devant un parterre nourri et un balcon qui n'a pas désarmé. Que la ville ait choisi, en cette semaine que personne n'aurait osé qualifier de propice, de remplir les fauteuils plutôt que de les laisser muets, dit assez ce qu'elle est encore capable de faire en pareil moment.</p>
+                        <p>Mme Élodie Lecat a ouvert la nuit par une danse dont on dira qu'elle valait à elle seule le prix d'entrée. Sur scène, deux braseros et quelques torches basses ; sur la danseuse, une étoffe d'inspiration orientale — taille libre, voiles superposés dans les rouges et les ors — qui tenait, devant le feu, une conversation tantôt provoquée, tantôt esquivée, comme si la flamme et le tissu s'étaient mis d'accord avant le rideau. Pas la pyrotechnie facile : une science du danger calibrée au geste près, que cette rédaction ne connaissait pas à Mme Lecat. La salle a applaudi avec cette intensité particulière qui n'est pas seulement le tribut d'un public à une artiste, mais le soulagement d'avoir trouvé, dans un mois pénible, quelque chose qui mérite la verticale du dos.</p>
+                        <p>M. André Lefèvre, présentateur, a tenu la corde fragile que la circonstance imposait : ne pas plaisanter de ce qu'il ne faut pas plaisanter, sans renoncer à plaisanter du reste. Ses brèves interventions — chacune jamais plus longue que nécessaire — ont relié les numéros avec l'élégance d'un homme qui sait exactement combien de mots la scène lui doit avant de la rendre à l'artiste suivant. Quelques aphorismes resteront ; nous nous bornerons à en citer un, qu'on entendra cité dans les salons toute la semaine prochaine : « Paris demeure Paris parce qu'on y joue, même quand on n'en a pas envie. »</p>
+                        <p>Le soliloque de M. François Tautou — pas l'auteur, l'acteur, comme on le rappelle depuis quelques semaines — a fait le silence. Le jeune homme, dont nos colonnes ont déjà eu à parler à l'occasion de la première saison du Grand Théâtre, a livré un monologue de huit minutes sur un texte original dont nous n'avons pu identifier la plume — il faudra le demander à l'intéressé — d'une tenue dramatique que cette rédaction n'attendait pas si tôt. Il y a chez ce comédien quelque chose qui se passe de coup d'éclat ; et c'est peut-être ce qui frappe le plus. Un acteur de cette mesure, à cet âge, n'est pas un fait courant.</p>
+                        <p>Mais la nuit avait gardé sa surprise. Au moment où la salle pensait passer à un autre numéro, M. <strong>Camille Saint-Saëns</strong> — invité, parmi les présents, sans qu'on l'eût annoncé — est monté sur scène et s'est assis au piano. Le maître a appelé à ses côtés Mlle <strong>Lucile Roy</strong>, dont notre chronique de société avait signalé les talents de compositrice ; et l'on a entendu, pendant une dizaine de minutes, un duo improvisé — Saint-Saëns au clavier principal, Mlle Roy en seconde voix — qu'aucun programme n'avait prévu et que personne, dans la salle, n'a osé interrompre par un applaudissement avant qu'il s'achevât de lui-même. Tout Paris, au moins celui qui aura su jouer du coude pour entrer, se le racontera dans la semaine.</p>
+                        <p>Les autres numéros de la soirée — Mme Bernhardt, M. Coquelin et plusieurs encore, qui méritent qu'on s'y arrête — feront l'objet d'un compte rendu détaillé dans notre prochaine édition. Pour aujourd'hui, qu'il suffise de dire ceci : à un mois qui demandait une réponse, la ville en a donné une, et elle l'a donnée sur la scène d'un théâtre.</p>
+                    </div>
+
+                    <div class="article-text lang-es">
+                        <p>París, 10 de noviembre — Se temía una sala mermada, butacas vestidas de luto, un escenario que se disculpa de existir. Nada de eso anoche en el Gran Teatro Belle Époque, donde la velada de <em>Artes Escénicas de París</em> — anunciada para el día 9 por el señor André Lefèvre y la señora Élodie Lecat, cuatro días después de los atentados del 5 — se celebró como estaba previsto, ante un patio de butacas nutrido y un anfiteatro que no aflojó. Que la ciudad haya elegido, en una semana que nadie habría osado calificar de propicia, llenar los asientos antes que dejarlos mudos, dice bastante de lo que aún es capaz en momentos como este.</p>
+                        <p>La señora Élodie Lecat abrió la noche con una danza que por sí sola valía la entrada. En el escenario, dos braseros y unas pocas antorchas bajas; sobre la bailarina, una tela de inspiración oriental — cintura libre, velos superpuestos en rojos y oros — que mantenía, ante el fuego, una conversación a ratos provocada, a ratos esquivada, como si llama y tejido se hubiesen puesto de acuerdo antes del telón. No la pirotecnia fácil: una ciencia del peligro calibrada al gesto, que esta redacción no le conocía a la señora Lecat. La sala aplaudió con esa intensidad particular que no es solo el tributo de un público a una artista, sino el alivio de haber encontrado, en un mes penoso, algo que merece la verticalidad de la espalda.</p>
+                        <p>El señor André Lefèvre, en tarea de presentador, mantuvo la cuerda frágil que la circunstancia imponía: no bromear con lo que no debe bromearse, sin renunciar a bromear con lo demás. Sus breves intervenciones — ninguna más larga de lo necesario — enlazaron los números con la elegancia de un hombre que sabe exactamente cuántas palabras le debe la escena antes de devolvérsela al siguiente artista. Algunos aforismos quedarán; nos limitaremos a citar uno, que se oirá repetir en los salones la semana próxima: «París sigue siendo París porque aquí se actúa, incluso cuando no se tienen ganas.»</p>
+                        <p>El soliloquio del señor François Tautou — no el autor, el actor, como se recuerda desde hace algunas semanas — hizo el silencio. El joven, del que nuestras columnas ya han tenido ocasión de ocuparse con motivo de la primera temporada del Gran Teatro, entregó un monólogo de ocho minutos sobre un texto original cuya pluma no hemos podido identificar — habrá que preguntárselo al interesado — de una hondura dramática que esta redacción no esperaba tan pronto. Hay en este comediante algo que prescinde del golpe de efecto; y quizá sea eso lo que más impresiona. Un actor con esa medida, a esa edad, no es un dato corriente.</p>
+                        <p>Pero la noche guardaba su sorpresa. Cuando la sala pensaba pasar a otro número, el señor <strong>Camille Saint-Saëns</strong> — invitado entre los presentes, sin que se le hubiera anunciado — subió al escenario y se sentó al piano. El maestro llamó a su lado a la señorita <strong>Lucile Roy</strong>, cuyas dotes de compositora nuestra crónica de sociedad ya había señalado; y se oyó, durante diez minutos largos, un dúo improvisado — Saint-Saëns al teclado principal, la señorita Roy en segunda voz — que ningún programa había previsto y que nadie, en la sala, se atrevió a interrumpir con un aplauso antes de que se acabara por sí mismo. Todo París, al menos el que supo abrirse paso a codazos para entrar, se lo contará durante la semana.</p>
+                        <p>Los demás números de la velada — la señora Bernhardt, el señor Coquelin y varios más, que merecen detenerse en ellos — serán objeto de una reseña detallada en nuestra próxima edición. Por hoy, baste con decir esto: a un mes que pedía una respuesta, la ciudad la ha dado, y la ha dado sobre el escenario de un teatro.</p>
+                    </div>
+                </article>
+
+                <!-- ARTÍCULOS SECUNDARIOS -->
+                <div class="secondary-articles">
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">Magnicides : l'enquête conclut à des agents isolés</h3>
+                        <h3 class="secondary-title lang-es">Magnicidas: la investigación concluye que se trata de agentes aislados</h3>
+                        <div class="article-image">
+                            <img src="news/gouvernement_rouvier_1905.jpg" alt="Le second gouvernement de Maurice Rouvier — dessin de Carrier publié dans Le Pèlerin, dimanche 6 février 1905 (domaine public, Wikimedia Commons) — El segundo gobierno de Maurice Rouvier; dibujo de Carrier publicado en Le Pèlerin, domingo 6 de febrero de 1905 (dominio público, Wikimedia Commons)." class="placeholder" style="object-position: center 35%;">
+                        </div>
+                        <div class="secondary-text lang-fr">
+                            <p>Paris, 10 novembre — L'instruction ouverte au lendemain des attentats du 5 novembre a, selon les éléments parvenus jusqu'à notre rédaction, atteint une première conclusion provisoire. Les détenus, hier décrits comme « membres » d'une organisation que l'un d'eux avait nommée « magnicides », apparaissent à présent comme <strong>des agents isolés</strong>, partageant un même fond de discours mais sans hiérarchie commune, sans direction reconnue, sans logistique partagée. Des sources policières — que la Préfecture ne dément pas — parlent d'un « courant » plutôt que d'un parti, et d'un courant que la propagande seule, et non l'organisation, paraît relier.</p>
+                            <p>Cette première conclusion, qui sera précisée à mesure que les arrestations se poursuivent, ne lève pas la difficulté principale. Les responsables de l'assassinat de S.M. Constantin I<sup>er</sup> — ceux qui ont effectivement frappé, et non ceux qui ont depuis revendiqué — demeurent en fuite ; et de leur arrestation dépendent, on ne le cachera pas, l'apaisement des deux cours en deuil et la possibilité, pour la diplomatie française, de tenir l'affaire à l'écart de l'agenda d'Algésiras qui s'annonce. Ces hommes-là, indique-t-on rue des Saussaies, sont « essentiels pour calmer les esprits ».</p>
+                            <p>Les échanges entre les chancelleries de Paris, Berlin et Athènes se sont multipliés. À Berlin, dont l'héritier impérial a été blessé sur notre sol, l'on s'est tenu jusqu'ici dans une réserve dont il faut souligner qu'elle n'allait pas de soi ; le Kronprinz, dont l'état est jugé hors de danger, a fait communiquer ses remerciements aux médecins parisiens. À Athènes, le gouvernement provisoire a accepté les égards funéraires et confirmé que la translation du corps de S.M. Constantin I<sup>er</sup> se tiendrait par voie maritime, sans cérémonie publique sur le sol français.</p>
+                            <p>Ce climat — meilleur que ce qu'on pouvait craindre — tient à plusieurs raisons. La première est la rapidité avec laquelle la Préfecture et le Concile des Lumières ont procédé aux premières arrestations. La seconde est l'attitude des deux cours, qui ont préféré l'attente à la déclaration. La troisième, qu'il faut nommer, est que la République ne dispose pas, en ce moment, du luxe d'une querelle avec ses voisins : il en va — sans surcharge de mots — de ce qui se jouera dans le sud de l'Espagne au début de l'année.</p>
+                            <p>La Préfecture annoncera dans les prochains jours les premiers résultats de l'extension de l'enquête aux milieux étudiants et aux feuilles d'opinion les plus extrêmes. On se gardera, en attendant, de devancer ses conclusions.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p>París, 10 de noviembre — La instrucción abierta al día siguiente de los atentados del 5 de noviembre ha alcanzado, según los elementos llegados a esta redacción, una primera conclusión provisional. Los detenidos, descritos hasta ayer como «miembros» de una organización que uno de ellos había nombrado «magnicidas», aparecen ahora como <strong>agentes aislados</strong>, que comparten un mismo fondo de discurso pero sin jerarquía común, sin dirección reconocida, sin logística compartida. Fuentes policiales — que la Prefectura no desmiente — hablan de una «corriente» antes que de un partido, y de una corriente que solo la propaganda, no la organización, parece enhebrar.</p>
+                            <p>Esta primera conclusión, que se irá precisando a medida que las detenciones se prolonguen, no resuelve la dificultad principal. Los responsables del asesinato de S.M. Constantino I — los que efectivamente golpearon, no los que después han reivindicado — siguen huidos; y de su detención dependen, no se ocultará, el apaciguamiento de las dos cortes de luto y la posibilidad, para la diplomacia francesa, de mantener el caso fuera del orden del día de la conferencia de Algeciras que se aproxima. Esos hombres, se indica desde la rue des Saussaies, son «esenciales para calmar los ánimos».</p>
+                            <p>Los intercambios entre las cancillerías de París, Berlín y Atenas se han multiplicado. En Berlín, cuyo heredero imperial fue herido en suelo francés, se ha guardado hasta aquí una reserva que conviene subrayar que no era evidente; el Kronprinz, cuyo estado se considera fuera de peligro, ha hecho llegar su agradecimiento a los médicos parisinos. En Atenas, el gobierno provisional ha aceptado los honores fúnebres y confirmado que el traslado del cuerpo de S.M. Constantino I se hará por vía marítima, sin ceremonia pública en suelo francés.</p>
+                            <p>Este clima — mejor del que podía temerse — obedece a varias razones. La primera, la rapidez con que la Prefectura y el Concilio de las Luces procedieron a las primeras detenciones. La segunda, la actitud de ambas cortes, que han preferido la espera a la declaración. La tercera, que es preciso nombrar, es que la República no dispone, en este momento, del lujo de una disputa con sus vecinos: se juega en ello — y dígase sin más palabras — lo que habrá de jugarse en el sur de España al comienzo del año.</p>
+                            <p>La Prefectura anunciará en los próximos días los primeros resultados de la extensión de la investigación a los círculos estudiantiles y a las hojas de opinión más extremas. Hasta entonces, conviene no anticipar sus conclusiones.</p>
+                        </div>
+                    </article>
+
+                    <div class="typographic-ornament">❦ ◆ ❦</div>
+
+                    <!-- CRÓNICAS DE SOCIEDAD -->
+                    <article class="society-chronicle">
+                        <h2 class="society-chronicle-title lang-fr">Chroniques de la Société</h2>
+                        <h2 class="society-chronicle-title lang-es">Crónicas de Sociedad</h2>
+                        <p class="society-note lang-fr">Spécial — Le nouveau célibataire d'or de Paris, et autres notes prises sous la lumière de scène</p>
+                        <p class="society-note lang-es">Especial — El nuevo soltero de oro de París, y otras notas tomadas bajo la luz de la escena</p>
+
+                        <div class="secondary-article">
+                            <h3 class="secondary-title lang-fr">François, l'aphorisme d'André, et le feu d'Élodie</h3>
+                            <h3 class="secondary-title lang-es">François, el aforismo de André, y el fuego de Élodie</h3>
+                            <div class="secondary-text lang-fr">
+                                <p><em>Mes très chères lectrices</em> — et messieurs qui lisez par-dessus l'épaule de votre épouse avec la même assiduité qu'un mari qui paye l'abonnement —, cette auteure va, par exception, trahir le secret professionnel et vous dire ce qui s'est joué hier soir au Grand Théâtre, parce que cela ne tiendra pas une semaine de plus sans déborder.</p>
+                                <p><strong>Premier fait.</strong> Paris a un nouveau célibataire d'or. Il s'appelle <strong>François Tautou</strong>, il a livré au public un soliloque de huit minutes dont la moitié de la salle est ressortie en silence, et il a — c'est cela qui m'occupera ici — une distance ironique avec le succès qui le rend, comment le dire avec délicatesse ?, <em>cuit</em>. La concurrence n'est pas mince. Avec la permission de M. <strong>André Lefèvre</strong>, qui semble vivre une histoire d'amour que nous lui envions en silence — et cette auteure, qui ne se tait jamais, le fera ici par exception —, François devient à compter d'hier la chasse la plus disputée de la saison.</p>
+                                <p><strong>Deuxième fait</strong>, qu'elle ne tenait pas, à dire la vérité, de tenir : S.A.I. la princesse <strong>Marie Bonaparte</strong> avait, paraît-il, sollicité un entretien — appelons cela une promenade — avec le jeune homme. Ses sources, qu'elle paye en sourires et en cassis, soutiennent que la rencontre n'a jamais pu se tenir, peut-être à cause des événements dramatiques que la ville traverse ; peut-être aussi parce que les promenades ne tiennent leur intérêt, à Paris, qu'à la condition d'avoir eu lieu. La princesse, du moins, n'aura pas eu à recevoir publiquement le refus d'un acteur, ce qui est, dans son rang, déjà une forme de courtoisie.</p>
+                                <p><strong>Troisième fait — et c'est le moment des robes.</strong> Mme <strong>Élodie Lecat</strong> dansait dans une étoffe d'inspiration orientale — taille libre, voiles rouges et fils d'or qui jouaient avec le feu de la scène à chaque tour de hanche : on aurait juré que la flamme et le tissu avaient répété ensemble. La maison signataire, cette auteure ne l'a pas vue ; mais le secret d'atelier ne survit jamais à la deuxième tasse de thé, et elle le saura avant samedi. Mlle <strong>Katya Einhell</strong>, présente dans la salle — oui, dans la salle, et non sur la scène : la curiosité, parfois, sort en spectatrice — portait du grenat sombre, fendu d'argent, dont l'effet, je l'ai compté, retira l'attention d'au moins trois maris légitimes pendant les neuf minutes du soliloque. L'on ne saurait reprocher à M. Tautou de n'avoir pas senti la concurrence.</p>
+                                <p><strong>Quatrième fait, et plus tendre.</strong> Message à Mlle <strong>Marine Loremant</strong>. Cette auteure a, par devoir, recensé les nations que vous avez conquises ces dernières semaines — il s'en trouve une où la princesse Bonaparte avait, depuis quelque temps, posé l'œil, et il s'en trouve d'autres où l'on ne s'attendait pas à ce que la couturière des Galeries Belle Époque parvînt avant les couronnes. Votre Fleuriste vous félicite — pour votre travail de couturière et pour votre travail de femme — avec une envie qui, cette fois, sera nettement moins silencieuse que d'habitude. La justice de Paris veut que ce soit dit.</p>
+                                <p><strong>Pour fermer</strong>, et parce que cette auteure tient à ses lectrices : qu'il soit clair que Mme Élodie Lecat reste fiancée à M. <strong>Thomas Rédeaux</strong>. Les voiles rouges et le feu de la scène ne se prêtent, dans cette colonne, qu'aux yeux ; le contrat, lui, reste signé. Soyez raisonnables — <em>vous le serez d'autant mieux que vous saurez que je le suis pour vous</em>.</p>
+                            </div>
+                            <div class="secondary-text lang-es">
+                                <p><em>Queridísimas lectoras</em> — y caballeros que leen por encima del hombro de su esposa con la misma asiduidad de un marido que paga la suscripción —, esta autora va a traicionar por excepción el secreto profesional y a contarles lo que se jugó anoche en el Gran Teatro, porque no aguanta una semana más sin desbordarse.</p>
+                                <p><strong>Primer hecho.</strong> París tiene un nuevo soltero de oro. Se llama <strong>François Tautou</strong>, entregó al público un soliloquio de ocho minutos del que la mitad de la sala salió en silencio, y tiene — y es esto lo que va a ocuparme — una distancia irónica con el éxito que lo deja, ¿cómo decirlo con delicadeza?, <em>cocinado</em>. La competencia no es poca. Con el permiso del señor <strong>André Lefèvre</strong>, que parece vivir una historia de amor que envidiamos en silencio — y esta autora, que nunca calla, lo hará aquí por excepción —, François se convierte desde ayer en la caza más disputada de la temporada.</p>
+                                <p><strong>Segundo hecho</strong>, que no tenía, a decir verdad, intención de comentar: S.A.I. la princesa <strong>María Bonaparte</strong>, según se dice, había solicitado una entrevista — llamémoslo un paseo — con el joven. Sus fuentes, a las que esta cronista paga en sonrisas y en casís, sostienen que el encuentro nunca llegó a celebrarse, quizá por los acontecimientos dramáticos que atraviesa la ciudad; quizá también porque los paseos solo conservan su interés, en París, si efectivamente se han dado. Cuando menos, la princesa no habrá tenido que recibir públicamente el rechazo de un actor, lo cual, en su rango, ya es una forma de cortesía.</p>
+                                <p><strong>Tercer hecho — y este es el momento de los vestidos.</strong> La señora <strong>Élodie Lecat</strong> bailaba en una tela de inspiración oriental — cintura libre, velos rojos e hilos de oro que jugaban con el fuego de la escena a cada giro de cadera: se hubiese jurado que llama y tejido habían ensayado juntos. La casa firmante, esta autora no la vio; pero el secreto de taller no sobrevive nunca a la segunda taza de té, y la sabrá antes del sábado. La señorita <strong>Katya Einhell</strong>, presente en la sala — sí, en la sala y no en el escenario: la curiosidad, a veces, sale en calidad de espectadora — vestía granate oscuro, hendido de plata, cuyo efecto, lo conté, apartó la atención de al menos tres maridos legítimos durante los nueve minutos del soliloquio. No podría reprocharse al señor Tautou no haber sentido la competencia.</p>
+                                <p><strong>Cuarto hecho, y más tierno.</strong> Mensaje para la señorita <strong>Marine Loremant</strong>. Esta autora ha, por deber, censado las naciones que usted ha conquistado en las últimas semanas — hay una en la que la princesa Bonaparte llevaba algún tiempo poniendo el ojo, y hay otras donde no se esperaba que la costurera de las Galerías Belle Époque llegase antes que las coronas. Su Florista la felicita — por su trabajo como sastra y por su trabajo como mujer — con una envidia que esta vez será notablemente menos silenciosa que de costumbre. La justicia de París exige que se diga.</p>
+                                <p><strong>Para cerrar</strong>, y porque esta autora aprecia a sus lectoras: que quede claro que la señora Élodie Lecat sigue prometida con el señor <strong>Thomas Rédeaux</strong>. Los velos rojos y el fuego de la escena se prestan, en esta columna, solo a los ojos; el contrato, en cambio, sigue firmado. Sean ustedes sensatas — <em>lo serán tanto más cuanto sepan que yo lo soy por ustedes</em>.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="typographic-ornament">❦ ◆ ❦</div>
+
+                    <!-- CARTAS AL DIRECTOR -->
+                    <article class="letters-section">
+                        <h2 class="letters-section-title lang-fr">Lettres au Directeur</h2>
+                        <h2 class="letters-section-title lang-es">Cartas al Director</h2>
+
+                        <div class="letter-box">
+                            <h3 class="letter-title lang-fr">Qu'est-ce que le bien ?</h3>
+                            <h3 class="letter-title lang-es">¿Qué es el bien?</h3>
+
+                            <div class="letter-content lang-fr">
+                                <p>Monsieur le Directeur,</p>
+                                <br>
+                                <p>Je me débats avec cette question toute ma vie, depuis que j'étais un garçon penché sur les livres que mes parents me recommandaient, ou à l'école sur les manuels académiques, ou dans le temps que je passai au front à écrire mes lettres. Et j'en suis encore, à mon âge, sans réponse nette.</p>
+                                <p>Les utilitaristes soutenaient que le bien est le bonheur, et qu'il incombe aux gens de bien d'assurer le plus grand bonheur au plus grand nombre. Bentham et ses compagnons ne sont pourtant pas parvenus à résoudre le paradoxe qui naît dès lors que l'on comprend que ce qui fait le bonheur des uns peut faire le malheur des autres, de sorte que la maximisation du bonheur engendre, à la marge, des niveaux inacceptables et immoraux de douleur infligés à une minorité. L'esclavage, ce grand péché de ma nation et de tant d'autres, en est l'exemple parfait.</p>
+                                <p>Mes chers libéraux, Locke en tête, ont défendu que le bien naît de la liberté. Que nous devons ensemble bâtir une société dont les institutions garantissent la liberté de la population, afin que chacun puisse agir, naturellement, en faveur de son propre intérêt et qu'à travers la main invisible en sorte le bénéfice de l'ensemble. Le bien est un procédé, une série de préconditions nécessaires, car par nature l'homme est relativement bon, jusque dans son égoïsme. Ils s'opposaient vivement à Hobbes et à sa vision sombre de la nature que nous portons tous.</p>
+                                <p>Marx, pour sa part, affirmerait que le bien naît de la liberté d'une communauté unie et du service de chacun à celle-ci, débarrassée des chaînes de la propriété privée. C'est un service au tout, c'est l'appartenance de chaque vie et de son travail à celui qui habite cette peau. Ses idées, fort débattues en ces temps tumultueux, ne sont pas si éloignées de celles des anarchistes — le français Proudhon et ses concepts notables comme le mutualisme. Encore que je suppose que communistes et anarchistes, dans le sillage de Bakounine, se refuseront toujours à voir la proximité des uns et des autres.</p>
+                                <p>Où donc se trouve le bien dans les rues et les villes de notre monde convulsé ? En tant qu'anglican, j'ai du mal à ignorer l'appel de l'Église qui me dit que le bien consiste à agir hors du péché, à rechercher les vertus qui mènent à l'entrée du Ciel.</p>
+                                <p>Peut-être est-il plus simple de définir le mal. Là-dessus, nous nous accordons tous. L'Irlandais Burke est souvent (et à tort, en un certain sens) cité comme ayant exprimé, en plusieurs versions, l'idée que tout ce dont le mal a besoin pour triompher, c'est que les hommes bons ne fassent rien. Je crois, dans la ligne de quelques-unes des idées brièvement esquissées dans cette lettre, que le mal s'aligne sur trois versants distincts : la douleur, l'absence de liberté et l'oppression. Voilà la base de l'immoralité et du péché.</p>
+                                <p>Et à présent je regarde les rues de ma chère Londres, ou les places de Paris, les tours de Berlin, ou les rives de Saint-Pétersbourg, et je ne puis qu'observer que ces trois maux demeurent aussi vivants, aussi forts qu'autrefois. Et si je ne sais définir le bien, je ne puis qu'épouser la position de mon cher Locke et décider que l'action de tout homme bon est de créer la liberté nécessaire pour abattre la douleur et l'oppression. L'homme bon est celui qui ne laisse pas le mal triompher.</p>
+                                <p>Soyons cet homme. Disons Non lorsque le mal se présente à nous. Et reconnaissons que, comme avec les péchés, nous portons tous un peu de ce monstre au-dedans.</p>
+                                <br>
+                            </div>
+
+                            <div class="letter-content lang-es">
+                                <p>Señor Director,</p>
+                                <br>
+                                <p>Llevo peleando con esa pregunta toda mi vida, desde que era un muchacho estudiando lo que mis padres me recomendaban, o en la escuela con los libros académicos, o en mi tiempo en el frente de guerra escribiendo mis cartas. Y sigo, aún a mi edad, sin una respuesta clara.</p>
+                                <p>Los utilitaristas defendían que el bien es felicidad, y que el deber de la gente buena es proveer de la máxima felicidad al máximo número de personas. Bentham y sus compañeros no fueron capaces de resolver la paradoja, sin embargo, que surge de entender que lo que proporciona felicidad a unos puede provocar dolor a otros, de tal modo que maximizar la felicidad puede generar niveles inaceptables e inmorales de dolor a una minoría. La esclavitud, el gran pecado de mi nación y la de tantas otras, es perfecto ejemplo de esto.</p>
+                                <p>Mis queridos liberales, con Locke a la cabeza, defendieron que el bien surge de la libertad. Que debemos entre todos crear una sociedad con unas instituciones que garanticen la libertad para la población de tal manera que puedan inherentemente actuar en su propio beneficio y, a través de la mano invisible, de ahí surge el beneficio del conjunto. El bien es un procedimiento, una serie de precondiciones necesarias, porque por naturaleza el hombre es relativamente bueno, aún en su egoísmo. Estaban muy en contra de Hobbes, y su visión negativa de la naturaleza que todos tenemos.</p>
+                                <p>Marx, por su parte, afirmaría que el bien surge de la libertad de una comunidad unida y en el servicio de cada uno a la misma, libre de las ataduras de la propiedad privada. Es un servicio al conjunto, es la posesión de cada vida y su trabajo por aquel que está en esa piel. Sus ideas, muy discutidas en estos tiempos turbulentos, no están demasiado alejadas de los anarquistas como el francés Proudhon y sus notables ideas para crear sus conceptos como el mutualismo. Aunque supongo que comunistas y anarquistas, tras la estela de Bakunin, siempre se negarán a ver las cercanías entre ambos.</p>
+                                <p>¿Dónde se encuentra entonces el bien en las calles y ciudades de nuestro mundo convulso? Como anglicano, me es difícil ignorar la llamada de la iglesia que dice que el bien es actuar fuera de pecado. En buscar las virtudes asociadas a la entrada en el Cielo.</p>
+                                <p>Quizás es más sencillo definir qué es el mal. En eso todos estamos de acuerdo. El irlandés Burke es a menudo (aunque en cierto sentido sin fundamento) citado como diciendo versiones distintas de la idea de que todo lo que el mal necesita para triunfar es que los hombres buenos no hagan nada. Y yo creo que, en línea con algunas de las ideas brevemente expuestas en esta carta, el mal se alinea en tres versiones distintas: el dolor, la falta de libertad y la opresión. Todo eso es la base de la inmoralidad, y del pecado.</p>
+                                <p>Y ahora, miro a las calles de mi querida Londres, o a las plazas de París, a los torreones de Berlín o las orillas de San Petersburgo, y no puedo evitar darme cuenta de que esos tres males siguen tan vivos y tan fuertes como siempre. Y si bien no puedo definir el bien, no puedo más que estar en sintonía con mi querido Locke y decidir que la acción de todo hombre bueno es crear la libertad necesaria para derribar el dolor y la opresión. El hombre bueno, es el que no permite que el mal triunfe.</p>
+                                <p>Seamos ese hombre. Digamos No cuando tengamos el mal ante nosotros. Y reconozcamos que, como los pecados, todos tenemos algo de ese monstruo en el interior.</p>
+                                <br>
+                            </div>
+
+                            <div class="letter-signature lang-fr">Sir William Shawthorne</div>
+                            <div class="letter-signature lang-es">Sir William Shawthorne</div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA -->
+            <aside class="right-column">
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Un hiver à Belleville — chez les Béranger</h3>
+                    <h3 class="sidebar-title lang-es">Un invierno en Belleville — en casa de los Béranger</h3>
+                    <div class="vertical-image sidebar-portrait" style="margin-bottom: 1em;">
+                        <img src="news/atget_interieur_ouvriere_belleville.jpg" alt="Eugène Atget, Intérieur d'une ouvrière, Rue de Belleville — photographie, série « Intérieurs parisiens », début du XXᵉ siècle (domaine public, Wikimedia Commons / Zeno Fotografie) — Eugène Atget, Interior de una obrera, Rue de Belleville; fotografía, serie «Intérieurs parisiens», principios del siglo XX (dominio público, Wikimedia Commons / Zeno Fotografie)." class="placeholder">
+                    </div>
+                    <div class="sidebar-text lang-fr">
+                        <p>Paris, 10 novembre — Aux confins du XX<sup>e</sup> arrondissement, là où la rue de Belleville monte vers la dernière colline avant la banlieue, l'on trouve par paliers des immeubles de cinq étages dont la couleur fut peut-être ocre et que la pluie a, depuis un quart de siècle, ramenés à l'indigence chromatique de leurs habitants. C'est dans l'un d'eux, au quatrième sans monte-charge, que vit la famille Béranger, dont la maîtresse de maison nous a, deux après-midi de suite, ouvert sa porte.</p>
+                        <p>L'appartement compte deux pièces, plus la cuisine où la mère travaille à la machine et qui sert le soir de salle à manger, la nuit — lorsque le froid descend — de pièce commune. Un lit, un poêle, une chaise paillée, une table couverte d'une toile cirée que les enfants ont héritée d'une voisine. Aux murs, deux gravures que M<sup>me</sup> Béranger refuse de commenter, et un calendrier de la Compagnie d'Orléans dont elle dit qu'il sert moins à mesurer le temps qu'à fermer une fissure dans le plâtre.</p>
+                        <p>M. Béranger est ébéniste, comme son père l'a été, et comme son fils — onze ans — ne le sera peut-être pas. L'atelier où il travaille, boulevard du Temple, l'occupe douze heures par jour, six jours sur sept, pour un salaire qui suffit, en saison, à entretenir le foyer, à condition que la maîtresse de maison renonce à ce que les manuels d'économie domestique appellent <em>l'imprévu</em>. Le repas du soir, que nous avons partagé en silence, fut composé d'une soupe de pommes de terre, d'un quart de pain et d'un morceau de fromage que l'aîné n'a pas voulu accepter le premier ; la politesse, ici aussi, se transmet.</p>
+                        <p>À la question de savoir ce que l'on attendait de la loi sur les retraites ouvrières et paysannes, dont la Chambre achevait, le matin même, d'examiner les premiers articles, M. Béranger a répondu d'une phrase : « Mon père est mort avant la sienne. » M<sup>me</sup> Béranger, plus prolixe, a ajouté qu'elle lisait la presse — Le Petit Parisien plus volontiers que ces colonnes-ci, dont elle ignorait l'existence — et que la promesse d'une rente de vieillesse, si elle se réalisait, lui paraissait moins lointaine que celle d'un dimanche complet par mois. Le mari, à cette dernière phrase, n'a pas répondu.</p>
+                        <p>L'on nous reprochera peut-être de n'apporter aucune statistique, aucun chiffre, aucune référence à l'enquête de 1902 ou au rapport Mirman dont les conclusions sont à présent dans toutes les mains. La rédaction y a renoncé sciemment : ce qu'il fallait dire ici, c'est ce qu'un foyer parisien, parmi des dizaines de milliers, mange à dîner. Le reste — la statistique, le tableau, la projection actuarielle — se trouve aisément ailleurs. Les Béranger, eux, ne se trouvent que là où ils sont.</p>
+                    </div>
+                    <div class="sidebar-text lang-es">
+                        <p>París, 10 de noviembre — En los confines del distrito XX, allí donde la rue de Belleville sube hacia la última colina antes de los suburbios, se hallan, en sucesivos rellanos, edificios de cinco plantas cuyo color quizá fue ocre y a los que la lluvia ha devuelto, en un cuarto de siglo, a la indigencia cromática de sus habitantes. Es en uno de ellos, en el cuarto piso sin montacargas, donde vive la familia Béranger, cuya señora de la casa nos ha abierto la puerta dos tardes consecutivas.</p>
+                        <p>El piso tiene dos habitaciones, más la cocina donde la madre trabaja a máquina y que de noche sirve de comedor y, cuando el frío baja, de sala común. Una cama, una estufa, una silla de enea, una mesa cubierta con un hule que los niños han heredado de una vecina. En las paredes, dos grabados que la señora Béranger se niega a comentar, y un calendario de la Compagnie d'Orléans del que dice que sirve menos para medir el tiempo que para tapar una grieta en el yeso.</p>
+                        <p>El señor Béranger es ebanista, como lo fue su padre, y como quizá no lo sea su hijo — once años. El taller en que trabaja, boulevard du Temple, lo ocupa doce horas al día, seis días por semana, a cambio de un salario que basta, en temporada, para sostener el hogar, a condición de que la señora de la casa renuncie a lo que los manuales de economía doméstica llaman <em>el imprevisto</em>. La cena, que compartimos en silencio, se compuso de una sopa de patatas, un cuarto de pan y un trozo de queso que el mayor no quiso aceptar el primero; la cortesía, también aquí, se hereda.</p>
+                        <p>A la pregunta de qué se esperaba de la ley sobre las jubilaciones obreras y campesinas, cuyos primeros artículos terminaba la Cámara de examinar esa misma mañana, el señor Béranger respondió con una frase: «Mi padre murió antes que la suya.» La señora Béranger, más locuaz, añadió que leía la prensa — Le Petit Parisien con más frecuencia que estas columnas, cuya existencia ignoraba — y que la promesa de una renta de vejez, si se cumplía, le parecía menos lejana que la de un domingo completo al mes. El marido, a esta última frase, no respondió.</p>
+                        <p>Se nos reprochará quizá no aportar ninguna estadística, ninguna cifra, ninguna referencia a la encuesta de 1902 o al informe Mirman cuyas conclusiones están ya en todas las manos. La redacción ha renunciado a ello a sabiendas: lo que aquí había que decir es lo que un hogar parisino, entre decenas de miles, cena. Lo demás — la estadística, el cuadro, la proyección actuarial — se halla con facilidad en otra parte. Los Béranger, en cambio, solo se encuentran allí donde están.</p>
+                    </div>
+                </article>
+
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 16px;">
+                        <p><strong>• Algésiras :</strong> La composition de la délégation française à la conférence sur le Maroc a été précisée. Le Quai d'Orsay s'attend à voir Paris et Berlin confronter leurs vues dès la première séance.</p>
+                        <p><strong>• L'enquête :</strong> La Préfecture autorise la publication d'un premier chiffre — six arrestations, aucun lien hiérarchique établi entre les détenus. Le silence sur les noms se prolonge.</p>
+                        <p><strong>• Saint-Saëns :</strong> Après son irruption au piano du Grand Théâtre, le maître a confirmé un cycle de concerts pour décembre ; les salles déjà engagées font état d'une demande de places sans précédent.</p>
+                        <p><strong>• Retraites ouvrières :</strong> La commission de la Chambre achève l'examen des articles relatifs à l'âge d'ouverture des droits. Le rapport Mirman demeure la référence des débats.</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 16px;">
+                        <p><strong>• Algeciras:</strong> Se ha precisado la composición de la delegación francesa en la conferencia sobre Marruecos. El Quai d'Orsay prevé que París y Berlín confronten sus posiciones desde la primera sesión.</p>
+                        <p><strong>• La investigación:</strong> La Prefectura autoriza la publicación de una primera cifra — seis detenciones, ningún vínculo jerárquico establecido entre los detenidos. El silencio sobre los nombres se prolonga.</p>
+                        <p><strong>• Saint-Saëns:</strong> Tras su irrupción al piano del Gran Teatro, el maestro ha confirmado un ciclo de conciertos para diciembre; las salas ya comprometidas hablan de una demanda de localidades sin precedente.</p>
+                        <p><strong>• Jubilaciones obreras:</strong> La comisión de la Cámara concluye el examen de los artículos relativos a la edad de apertura de derechos. El informe Mirman sigue siendo la referencia de los debates.</p>
+                    </div>
+                </article>
+
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Arts Scéniques de Paris : la nuit qui défie l'ombre :</strong><br>M. Lefort</p>
+                        <p><strong>Magnicides : l'enquête conclut à des agents isolés :</strong><br>H. Dubois</p>
+                        <p><strong>Un hiver à Belleville — chez les Béranger :</strong><br>M. Rousseau</p>
+                        <p><strong>François, l'aphorisme d'André, et le feu d'Élodie :</strong><br>La Fleuriste</p>
+                        <p><strong>Qu'est-ce que le bien ? (Lettre) :</strong><br>Sir W. Shawthorne</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Artes Escénicas de París: la noche que desafía la sombra :</strong><br>M. Lefort</p>
+                        <p><strong>Magnicidas: la investigación concluye que se trata de agentes aislados :</strong><br>H. Dubois</p>
+                        <p><strong>Un invierno en Belleville — en casa de los Béranger :</strong><br>M. Rousseau</p>
+                        <p><strong>François, el aforismo de André y el fuego de Élodie :</strong><br>La Florista</p>
+                        <p><strong>¿Qué es el bien? (Carta) :</strong><br>Sir W. Shawthorne</p>
+                    </div>
+                </article>
+
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+
+                <!-- RANKING DE SOLTEROS - COTILLEOS -->
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Potins & Cancans : Les Célibataires à Suivre</h3>
+                    <h3 class="sidebar-title lang-es">Cotilleos y Chismes: Los Solteros a Seguir</h3>
+
+                    <ul class="gossip-list">
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/François Tautou.png" alt="François Tautou" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">François Tautou — <em>célibataire d'or</em></div>
+                                <div class="gossip-name lang-es">François Tautou — <em>soltero de oro</em></div>
+                                <div class="gossip-text lang-fr">
+                                    Promu hier soir par cette auteure, par devoir et non par humeur. Soliloque de huit minutes au Grand Théâtre, salle silencieuse, sortie en silence : on ne s'en remet pas en deux jours. Avec la permission de M. Lefèvre — qui semble vivre une histoire que la rédaction lui envie —, François est, depuis avant-hier, la chasse la plus disputée de Paris. Une princesse aurait demandé une promenade ; la promenade n'a pas eu lieu. Cela tient lieu, dans son rang, de réponse.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    Promovido anoche por esta autora, por deber y no por capricho. Soliloquio de ocho minutos en el Gran Teatro, sala en silencio, salida en silencio: no se recupera uno en dos días. Con el permiso del señor Lefèvre — que parece vivir una historia que la redacción le envidia —, François es, desde anteanoche, la caza más disputada de París. Se dice que una princesa pidió un paseo; el paseo no llegó a darse. En su rango, eso ya es una respuesta.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/katya.png" alt="Katya Einhell" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Katya Einhell</div>
+                                <div class="gossip-name lang-es">Katya Einhell</div>
+                                <div class="gossip-text lang-fr">
+                                    Hier soir, dans la salle, en grenat sombre fendu d'argent — pas sur la scène, en spectatrice. La curiosité, parfois, sort en robe et regarde. L'effet a été compté : trois maris légitimes distraits pendant neuf minutes. Le prince de Monaco lui rend toujours visite. Pour du thé, dit-on. Cette auteure persiste à n'en rien croire.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    Anoche, en la sala, en granate oscuro hendido de plata — no en el escenario, como espectadora. La curiosidad, a veces, sale en vestido y mira. El efecto fue contado: tres maridos legítimos distraídos durante nueve minutos. El príncipe de Mónaco sigue visitándola. Para tomar el té, dicen. Esta autora persiste en no creérselo.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/lucile_roy.png" alt="Lucile Roy" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Lucile Roy</div>
+                                <div class="gossip-name lang-es">Lucile Roy</div>
+                                <div class="gossip-text lang-fr">
+                                    Compositrice à la sensibilité que cette auteure avait déjà signalée. Hier soir, appelée au piano par M. Saint-Saëns lui-même, devant une salle qui n'osait pas applaudir avant la fin. Dix minutes de duo improvisé. La discrétion mondaine de Mlle Roy n'y survit pas — et c'est tant mieux. Paris attendait cela d'elle.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    Compositora cuya sensibilidad esta autora ya había señalado. Anoche, llamada al piano por el propio M. Saint-Saëns, ante una sala que no se atrevía a aplaudir antes del final. Diez minutos de dúo improvisado. La discreción mundana de la señorita Roy no sobrevive a eso — y mejor así. París lo esperaba de ella.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/marine_loremant.png" alt="Marine Loremant" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Marine Loremant</div>
+                                <div class="gossip-name lang-es">Marine Loremant</div>
+                                <div class="gossip-text lang-fr">
+                                    Couturière des Galeries Belle Époque dont l'envergure dépasse à présent largement les vitrines. Cette auteure a recensé les nations qu'elle a conquises ces dernières semaines : il s'en trouve une où la princesse Bonaparte avait posé l'œil, et il s'en trouve d'autres où l'on n'attendait pas la couturière avant les couronnes. Envie nettement moins silencieuse que d'habitude. La justice de Paris veut que ce soit dit.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    Costurera de las Galerías Belle Époque cuyo alcance excede ya con creces los escaparates. Esta autora ha censado las naciones que ha conquistado en las últimas semanas: hay una en la que la princesa Bonaparte había puesto el ojo, y hay otras donde no se esperaba a la costurera antes que a las coronas. Envidia notablemente menos silenciosa de lo habitual. La justicia de París exige que se diga.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/simon_latour.png" alt="Simon Latour" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Simon Latour</div>
+                                <div class="gossip-name lang-es">Simon Latour</div>
+                                <div class="gossip-text lang-fr">
+                                    Sculpteur de figures colossales, courtisan officiel de Cléa Dessendre. Sorties, présentations, bras tendu. La ville retient son souffle ; cette auteure aussi, et prend note.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    Escultor de figuras colosales, cortejante oficial de Cléa Dessendre. Salidas, presentaciones, brazo tendido. La ciudad contiene el aliento; esta autora también, y toma nota.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="personajes_imagenes/paul_landowski.png" alt="Paul Landowski" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Paul Landowski</div>
+                                <div class="gossip-name lang-es">Paul Landowski</div>
+                                <div class="gossip-text lang-fr">
+                                    Sculpteur de monuments, spécialiste des figures imposantes — et des salons où la température monte dès qu'il entre. Il reste disponible. Pour combien de temps encore, personne ne le sait.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    Escultor de monumentos, especialista en figuras imponentes — y en salones donde la temperatura sube en cuanto entra. Sigue disponible. Por cuánto tiempo más, nadie lo sabe.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/mata_hari.png" alt="Mata Hari" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Mata Hari</div>
+                                <div class="gossip-name lang-es">Mata Hari</div>
+                                <div class="gossip-text lang-fr">
+                                    Danseuse venue d'Orient, ou du moins l'affirme-t-elle. On la voit toujours avec Émile Labord — Moulin Rouge, Grand Théâtre, escaliers de service. Quand un même nom circule à la fois dans les coulisses, les ambassades et les conversations à voix basse, c'est qu'il appartient à quelqu'un d'intéressant.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    Bailarina llegada de Oriente, o eso afirma. Se la sigue viendo con Émile Labord — Moulin Rouge, Gran Teatro, escaleras de servicio. Cuando un mismo nombre circula a la vez por bastidores, embajadas y conversaciones en voz baja, es que pertenece a alguien interesante.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/emile_labord.png" alt="Émile Labord" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Émile Labord</div>
+                                <div class="gossip-name lang-es">Émile Labord</div>
+                                <div class="gossip-text lang-fr">
+                                    <em>Un dessinateur talentueux</em> qui a adapté le style de Mucha et travaille des aquarelles minimalistes. On le reconnaît surtout à ses vignettes dans ces colonnes — un Gaulois qui rosse les nations chaque semaine. La robe qu'il avait peinte pour Mlle Mata Hari fut, dit notre chronique, « profanée » au bal de la Roca ; il n'a pas commenté. Un guerrier d'esprit qui peut me dessiner ? Écrivez à l'éditeur !
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    <em>Un dibujante talentoso</em> que ha adaptado el estilo de Mucha y trabaja acuarelas minimalistas. Se le conoce sobre todo por sus viñetas en estas columnas — un galo que zurra a las naciones cada semana. El vestido que había pintado para la señorita Mata Hari fue, dice nuestra crónica, «profanado» en el baile de la Roca; él no ha comentado. ¿Un guerrero de espíritu que pueda dibujarme? ¡Escribid al editor!
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/sandrine_cros.png" alt="Sandrine Cros" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Sandrine Cros</div>
+                                <div class="gossip-name lang-es">Sandrine Cros</div>
+                                <div class="gossip-text lang-fr">
+                                    Architecte au regard capable de refroidir un four. Au Grand Théâtre, hier, on l'a vue regarder la scène. Cette auteure ne l'affirme pas. Elle le note. Ce n'est pas la même chose.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    Arquitecta cuya mirada podría enfriar un horno. Anoche, en el Gran Teatro, se la vio mirar al escenario. Esta autora no lo afirma. Lo anota. No es lo mismo.
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
+            </aside>
+        </div>
+
+    <!-- MODAL PARA IMÁGENES -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('spanish');
+
+            if (document.body.classList.contains('spanish')) {
+                localStorage.setItem('newspaperLanguage', 'es');
+            } else {
+                localStorage.setItem('newspaperLanguage', 'fr');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('newspaperLanguage');
+            if (savedLanguage === 'es') {
+                document.body.classList.add('spanish');
+            }
+        });
+
+        function openImageModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageModal(event) {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    </script>
+</body>
+</html>
