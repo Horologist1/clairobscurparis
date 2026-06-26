@@ -6,13 +6,13 @@
     <title>Paris Nouveau - Belle Époque</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Crimson Text', serif;
             background: #f4e8d0;
@@ -22,7 +22,7 @@
             display: flex;
             gap: 20px;
         }
-        
+
         /* CONTENEDOR DE NAVEGACIÓN DE FECHAS */
         .date-navigation {
             width: 200px;
@@ -34,7 +34,7 @@
             top: 20px;
             height: fit-content;
         }
-        
+
         .date-navigation h3 {
             font-family: 'Playfair Display', serif;
             font-size: 18px;
@@ -45,17 +45,17 @@
             border-bottom: 2px solid #2c2416;
             padding-bottom: 10px;
         }
-        
+
         .date-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-        
+
         .date-item {
             margin-bottom: 15px;
         }
-        
+
         .date-link {
             display: block;
             padding: 12px 15px;
@@ -69,25 +69,25 @@
             text-align: center;
             background: #f4e8d0;
         }
-        
+
         .date-link:hover {
             background: #e8d5b7;
             border-color: #8b7355;
             transform: translateX(5px);
         }
-        
+
         .date-link.active {
             background: #8b7355;
             color: #faf7f0;
             border-color: #2c2416;
             font-weight: 600;
         }
-        
+
         .date-link.active:hover {
             background: #6b5a47;
             transform: none;
         }
-        
+
         .newspaper-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -97,7 +97,7 @@
             border: 3px double #2c2416;
             flex: 1;
         }
-        
+
         /* CABECERA DEL PERIÓDICO */
         .newspaper-header {
             text-align: center;
@@ -105,14 +105,14 @@
             padding-bottom: 20px;
             margin-bottom: 30px;
         }
-        
+
         .ornamental-line {
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 10px 0;
         }
-        
+
         .ornamental-line::before,
         .ornamental-line::after {
             content: '';
@@ -120,13 +120,13 @@
             height: 2px;
             background: linear-gradient(to right, transparent, #2c2416, transparent);
         }
-        
+
         .ornamental-symbol {
             margin: 0 15px;
             font-size: 20px;
             color: #8b7355;
         }
-        
+
         .newspaper-title {
             font-family: 'Playfair Display', serif;
             font-size: 72px;
@@ -137,7 +137,7 @@
             margin: 15px 0;
             text-shadow: 2px 2px 0px rgba(139, 115, 85, 0.3);
         }
-        
+
         .newspaper-subtitle {
             font-family: 'Crimson Text', serif;
             font-size: 18px;
@@ -146,7 +146,7 @@
             letter-spacing: 2px;
             margin-bottom: 10px;
         }
-        
+
         .newspaper-date {
             font-family: 'Crimson Text', serif;
             font-size: 16px;
@@ -154,7 +154,7 @@
             margin-top: 15px;
             letter-spacing: 1px;
         }
-        
+
         /* ESTRUCTURA DEL CONTENIDO */
         .newspaper-content {
             display: grid;
@@ -162,20 +162,20 @@
             gap: 30px;
             margin-top: 30px;
         }
-        
+
         /* COLUMNA IZQUIERDA */
         .left-column {
             display: flex;
             flex-direction: column;
             gap: 30px;
         }
-        
+
         /* ARTÍCULO PRINCIPAL */
         .main-article {
             border-bottom: 3px double #2c2416;
             padding-bottom: 25px;
         }
-        
+
         .article-title {
             font-family: 'Playfair Display', serif;
             font-size: 42px;
@@ -188,7 +188,7 @@
             border-bottom: 2px solid #2c2416;
             padding: 15px 0;
         }
-        
+
         .article-subtitle {
             font-family: 'Crimson Text', serif;
             font-size: 20px;
@@ -197,7 +197,7 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        
+
         .article-image {
             width: 100%;
             height: auto;
@@ -211,18 +211,36 @@
             color: #5a4a3a;
             overflow: hidden;
         }
-        
+
         .main-article .article-image {
-            aspect-ratio: 16/9;
-            min-height: 400px;
+            aspect-ratio: 16 / 9;
+            width: 100%;
         }
-        
+
         .article-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+            flex: 1 1 auto;
+            min-width: 0;
+            min-height: 0;
         }
-        
+
+        .main-article .article-image img {
+            object-position: center 28%;
+        }
+
+        .secondary-articles .secondary-article .article-image {
+            aspect-ratio: 5 / 4;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .secondary-articles .secondary-article .article-image img {
+            object-position: center 38%;
+        }
+
         .article-text {
             font-family: 'Crimson Text', serif;
             font-size: 18px;
@@ -233,7 +251,7 @@
             column-gap: 30px;
             hyphens: auto;
         }
-        
+
         .article-text::first-letter {
             font-size: 72px;
             font-weight: bold;
@@ -242,23 +260,23 @@
             margin: 5px 8px 0 0;
             font-family: 'Playfair Display', serif;
         }
-        
+
         /* ARTÍCULOS SECUNDARIOS */
         .secondary-articles {
             display: flex;
             flex-direction: column;
             gap: 25px;
         }
-        
+
         .secondary-article {
             border-bottom: 2px solid #8b7355;
             padding-bottom: 20px;
         }
-        
+
         .secondary-article:last-child {
             border-bottom: none;
         }
-        
+
         .secondary-title {
             font-family: 'Playfair Display', serif;
             font-size: 28px;
@@ -268,7 +286,7 @@
             border-bottom: 1px solid #2c2416;
             padding-bottom: 5px;
         }
-        
+
         .secondary-text {
             font-family: 'Crimson Text', serif;
             font-size: 17px;
@@ -276,12 +294,12 @@
             color: #2c2416;
             line-height: 1.7;
         }
-        
+
         /* IMAGEN CUADRADA ENTRE ARTÍCULOS */
         .square-image-container {
             margin: 20px 0;
         }
-        
+
         .square-image {
             width: 100%;
             aspect-ratio: 1/1;
@@ -294,23 +312,23 @@
             color: #5a4a3a;
             overflow: hidden;
         }
-        
+
         .square-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
+
         /* COLUMNA DERECHA */
         .right-column {
             border-left: 3px double #2c2416;
             padding-left: 25px;
         }
-        
+
         .sidebar-article {
             margin-bottom: 30px;
         }
-        
+
         .sidebar-title {
             font-family: 'Playfair Display', serif;
             font-size: 32px;
@@ -322,7 +340,7 @@
             border-bottom: 2px solid #2c2416;
             padding: 10px 0;
         }
-        
+
         .vertical-image {
             width: 100%;
             aspect-ratio: 9/16;
@@ -336,13 +354,23 @@
             color: #5a4a3a;
             overflow: hidden;
         }
-        
+
         .vertical-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
-        
+
+        .vertical-image.sidebar-portrait {
+            aspect-ratio: 3 / 4;
+            max-width: 100%;
+        }
+
+        .vertical-image.sidebar-portrait img.placeholder {
+            object-position: center 30%;
+        }
+
         .sidebar-text {
             font-family: 'Crimson Text', serif;
             font-size: 17px;
@@ -350,7 +378,7 @@
             color: #2c2416;
             line-height: 1.7;
         }
-        
+
         /* DECORACIONES TIPOGRÁFICAS */
         .typographic-ornament {
             text-align: center;
@@ -359,39 +387,39 @@
             margin: 20px 0;
             letter-spacing: 10px;
         }
-        
+
         /* RESPONSIVE */
         @media (max-width: 900px) {
             body {
                 flex-direction: column;
             }
-            
+
             .date-navigation {
                 width: 100%;
                 position: static;
                 margin-bottom: 20px;
             }
-            
+
             .newspaper-content {
                 grid-template-columns: 1fr;
             }
-            
+
             .right-column {
                 border-left: none;
                 border-top: 3px double #2c2416;
                 padding-left: 0;
                 padding-top: 25px;
             }
-            
+
             .article-text {
                 column-count: 1;
             }
-            
+
             .newspaper-title {
                 font-size: 48px;
             }
         }
-        
+
         /* EFECTOS DE PAPEL ENVEJECIDO */
         .newspaper-container::before {
             content: '';
@@ -400,7 +428,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
+            background:
                 repeating-linear-gradient(
                     0deg,
                     transparent,
@@ -410,18 +438,25 @@
                 );
             pointer-events: none;
         }
-        
+
         .newspaper-container {
             position: relative;
         }
-        
+
         /* Placeholder de imagen */
         img.placeholder {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
+
+        /* Archives photographiques : ton sépia / noir-et-blanc doux */
+        .article-image img.placeholder,
+        .vertical-image img.placeholder,
+        .secondary-articles .article-image img.placeholder {
+            filter: sepia(0.35) grayscale(0.15) contrast(1.06) brightness(0.98);
+        }
+
         /* BOTÓN DE TRADUCCIÓN */
         .translate-button {
             width: 35px;
@@ -438,46 +473,46 @@
             color: #5a4a3a;
             margin: 10px auto;
         }
-        
+
         .translate-button:hover {
             background: rgba(139, 115, 85, 0.2);
             border-color: #8b7355;
             transform: scale(1.1);
         }
-        
+
         .translate-button:active {
             transform: scale(0.95);
         }
-        
+
         .translate-button-container {
             text-align: center;
             margin: 10px 0;
         }
-        
+
         /* Ocultar contenido de idioma alternativo */
         .lang-es {
             display: none;
         }
-        
+
         body.spanish .lang-fr {
             display: none;
         }
-        
+
         body.spanish .lang-es {
             display: block;
         }
-        
+
         body.spanish .lang-es.inline {
             display: inline;
         }
-        
+
         /* ESTILOS PARA CRÓNICAS DE SOCIEDAD */
         .society-chronicle {
             border-top: 3px double #2c2416;
             padding-top: 30px;
             margin-top: 30px;
         }
-        
+
         .society-chronicle-title {
             font-family: 'Playfair Display', serif;
             font-size: 36px;
@@ -489,7 +524,7 @@
             border-bottom: 2px solid #2c2416;
             padding: 15px 0;
         }
-        
+
         .society-note {
             font-family: 'Crimson Text', serif;
             font-size: 16px;
@@ -498,14 +533,14 @@
             text-align: center;
             margin-bottom: 25px;
         }
-        
+
         /* ESTILOS PARA CARTAS AL DIRECTOR */
         .letters-section {
             border-top: 3px double #2c2416;
             padding-top: 30px;
             margin-top: 30px;
         }
-        
+
         .letters-section-title {
             font-family: 'Playfair Display', serif;
             font-size: 36px;
@@ -517,7 +552,7 @@
             border-bottom: 2px solid #2c2416;
             padding: 15px 0;
         }
-        
+
         .letter-box {
             background-color: #f5e6d3;
             border: 2px solid #d4c4a8;
@@ -525,7 +560,7 @@
             margin-bottom: 25px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        
+
         .letter-title {
             font-family: 'Playfair Display', serif;
             font-size: 24px;
@@ -534,7 +569,7 @@
             margin-bottom: 15px;
             text-align: left;
         }
-        
+
         .letter-content {
             font-family: 'Crimson Text', serif;
             font-size: 17px;
@@ -542,7 +577,7 @@
             color: #2c2416;
             text-align: justify;
         }
-        
+
         .letter-signature {
             font-family: 'Crimson Text', serif;
             font-size: 18px;
@@ -552,14 +587,14 @@
             margin-top: 20px;
             font-style: italic;
         }
-        
+
         /* ESTILOS PARA COTILLEOS DE SOLTEROS */
         .gossip-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-        
+
         .gossip-item {
             display: flex;
             gap: 12px;
@@ -571,11 +606,11 @@
             position: relative;
             transition: background 0.3s ease;
         }
-        
+
         .gossip-item:hover {
             background: #e8d5b7;
         }
-        
+
         .gossip-photo {
             width: fit-content;
             height: fit-content;
@@ -589,19 +624,20 @@
             display: inline-block;
             box-sizing: border-box;
         }
-        
+
         .gossip-photo img {
             width: 70px;
             height: auto;
             display: block;
             cursor: pointer;
             transition: opacity 0.3s ease;
+            filter: sepia(0.25) grayscale(0.12) contrast(1.05);
         }
-        
+
         .gossip-photo img:hover {
             opacity: 0.8;
         }
-        
+
         /* MODAL PARA IMÁGENES */
         .image-modal {
             display: none;
@@ -615,11 +651,11 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         .image-modal.active {
             display: flex;
         }
-        
+
         .image-modal-content {
             position: relative;
             max-width: 90%;
@@ -629,14 +665,14 @@
             background: #faf7f0;
             box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
         }
-        
+
         .image-modal-content img {
             max-width: 100%;
             max-height: 80vh;
             height: auto;
             display: block;
         }
-        
+
         .image-modal-close {
             position: absolute;
             top: -15px;
@@ -654,15 +690,15 @@
             justify-content: center;
             transition: background 0.3s ease;
         }
-        
+
         .image-modal-close:hover {
             background: #8b7355;
         }
-        
+
         .gossip-info {
             flex: 1;
         }
-        
+
         .gossip-name {
             font-family: 'Playfair Display', serif;
             font-size: 18px;
@@ -670,7 +706,7 @@
             color: #2c2416;
             margin-bottom: 5px;
         }
-        
+
         .gossip-text {
             font-family: 'Crimson Text', serif;
             font-size: 14px;
@@ -678,12 +714,13 @@
             line-height: 1.5;
             font-style: italic;
         }
-        
+
         .gossip-text em {
             font-style: normal;
             font-weight: 600;
             color: #5a4a3a;
         }
+
     </style>
 </head>
 <body>
@@ -693,12 +730,12 @@
         <h3 class="lang-es">Ediciones</h3>
         <ul class="date-list">
             <li class="date-item">
-                <a href="noticias30.html" class="date-link">
+                <a href="noticias30.html" class="date-link active">
                     <span class="lang-fr">12 Novembre 1905</span>
                     <span class="lang-es">12 de Noviembre</span>
                 </a>
             </li>
-                        <li class="date-item">
+            <li class="date-item">
                 <a href="noticias29.html" class="date-link">
                     <span class="lang-fr">11 Novembre 1905</span>
                     <span class="lang-es">11 de Noviembre</span>
@@ -716,21 +753,18 @@
                     <span class="lang-es">6 de Noviembre</span>
                 </a>
             </li>
-
             <li class="date-item">
                 <a href="noticias26.html" class="date-link">
                     <span class="lang-fr">5 Novembre 1905</span>
                     <span class="lang-es">5 de Noviembre</span>
                 </a>
             </li>
-
             <li class="date-item">
                 <a href="noticias25.html" class="date-link">
                     <span class="lang-fr">2 Novembre 1905</span>
                     <span class="lang-es">2 de Noviembre</span>
                 </a>
             </li>
-
             <li class="date-item">
                 <a href="noticias22.html" class="date-link">
                     <span class="lang-fr">1er Août 1905</span>
@@ -792,7 +826,7 @@
                 </a>
             </li>
             <li class="date-item">
-                <a href="noticias12.html" class="date-link active">
+                <a href="noticias12.html" class="date-link">
                     <span class="lang-fr">20 Mai 1905</span>
                     <span class="lang-es">20 de Mayo</span>
                 </a>
@@ -871,7 +905,7 @@
             </li>
         </ul>
     </nav>
-    
+
     <div class="newspaper-container">
         <!-- CABECERA DEL PERIÓDICO -->
         <header class="newspaper-header">
@@ -888,158 +922,150 @@
                 <span class="ornamental-symbol">◆</span>
                 <span class="ornamental-symbol">◆</span>
             </div>
-            <p class="newspaper-date lang-fr">Dimanche, 20 Mai 1905 — Prix: 5 Centimes</p>
-            <p class="newspaper-date lang-es">Domingo, 20 de Mayo de 1905 — Precio: 5 Centimes</p>
+            <p class="newspaper-date lang-fr">Dimanche, 12 Novembre 1905 — Prix: 5 Centimes</p>
+            <p class="newspaper-date lang-es">Domingo, 12 de Noviembre de 1905 — Precio: 5 Centimes</p>
         </header>
-        
+
         <!-- CONTENIDO PRINCIPAL -->
         <div class="newspaper-content">
             <!-- COLUMNA IZQUIERDA -->
             <div class="left-column">
                 <!-- ARTÍCULO PRINCIPAL -->
                 <article class="main-article">
-                    <h2 class="article-title lang-fr">Libuše à l'Opéra Garnier : Une Nuit où l'Art Transcende les Frontières</h2>
-                    <h2 class="article-title lang-es">Libuše en la Ópera Garnier: Una Noche donde el Arte Trasciende las Fronteras</h2>
-                    <p class="article-subtitle lang-fr">La représentation de Smetana couronne une journée marquée par les visites institutionnelles et les échanges diplomatiques</p>
-                    <p class="article-subtitle lang-fr" style="display:none;">De l'Élysée à l'Opéra Garnier, une journée marquée par des échanges diplomatiques intenses et la représentation de “Libuše”</p>
-                    <p class="article-subtitle lang-es">La representación de Smetana corona una jornada marcada por las visitas institucionales y los intercambios diplomáticos</p>
-                    <p class="article-subtitle lang-es" style="display:none;">Del Elíseo a la Ópera Garnier, una jornada marcada por intercambios diplomáticos intensos y la representación de “Libuše”</p>
-                    
+                    <h2 class="article-title lang-fr">La nuit du 10 novembre</h2>
+                    <h2 class="article-title lang-es">La noche del 10 de noviembre</h2>
+                    <p class="article-subtitle lang-fr">Sur les attentats des Magnicides, sur une ville blessée, et sur le silence où demeure André Lèfevre.</p>
+                    <p class="article-subtitle lang-es">Sobre los atentados de los Magnicidas, sobre una ciudad herida, y sobre el silencio en que permanece André Lèfevre.</p>
+
                     <div class="article-image">
-                        <img src="news/operagarnier.jpg" alt="Avenue de l'Opéra, Paris 1900 - Visite impériale" class="placeholder">
+                        <img src="news/scene_theatre_acteur.jpg" alt="Un comédien seul sur la scène d'un théâtre, la salle plongée dans l'ombre — Un actor solo en el escenario de un teatro, la sala sumida en la penumbra." class="placeholder">
                     </div>
-                    
+
                     <div class="article-text lang-fr">
-                        <p>Paris, 20 Mai — L'arrivée de l'Empereur dans la capitale a été marquée par une journée où la solennité institutionnelle et la vie culturelle parisienne s'entrelacent avec naturel. La représentation de "Libuše" de Bedřich Smetana à l'Opéra Garnier a offert le cadre idéal pour une soirée où l'art s'est à nouveau présenté comme espace de réflexion et de rencontre entre nations, couronnant une journée dense en cérémonies et en échanges diplomatiques.</p>
-                        
-                        <p>La journée d'hier a débuté par un déjeuner diplomatique au Palais de l'Élysée, où Sa Majesté a rencontré le Président de la République ainsi que les ministres des Affaires étrangères et de la Culture. L'après-midi, l'Empereur a effectué des visites institutionnelles au Grand Palais et au pont Alexandre III, monuments qui symbolisent l'excellence architecturale et culturelle de Paris.</p>
-                        
-                        <p>La fonction de la soirée a été précédée d'une brève conférence de presse dans laquelle l'Empereur a manifesté son admiration pour Paris, soulignant l'intensité culturelle de la ville pendant son séjour. Dans un registre mesuré, il a également abordé des questions politiques, défendant la nécessité d'une coopération et d'une coordination plus étroites entre les États européens et condamnant de manière indirecte les récentes actions et l'attitude du Kaiser Guillaume à Tanger, considérées peu constructives pour l'équilibre international.</p>
-                        
-                        <p>Alors que le public attendait pour entrer à l'Opéra, on lui offrit un attentat contre l'art que je préfère oublier et qui n'a pas réussi à entacher une soirée magnifique. Alors pourquoi en parler ?</p>
-                        
-                        <p>Sur scène, l'interprétation de "Libuše" a maintenu un haut niveau artistique. Dans le rôle principal, la soprano Elodie a offert une interprétation d'une grande solidité technique, guidée non par le calcul mais par une émotion sincère et un engagement évident. Son chant, chargé d'émotivité, a profondément ému le public et a laissé flotter dans la salle des questions inévitables sur l'amour de la patrie, le sacrifice et le sens du destin collectif, thèmes centraux de l'œuvre de Smetana.</p>
-                        
-                        <p>La véritable révélation de la soirée fut cependant André Lèfevre. Dans l'un des rôles les plus représentatifs de l'œuvre, son interprétation a dépassé le cadre habituel de la correction scénique pour atteindre une intensité peu commune. Chaque geste, chaque inflexion de sa voix semblait chargé d'une conviction presque personnelle, comme si le drame ne se limitait pas à la scène, mais réclamait une réponse émotionnelle directe du spectateur. Il est impossible de dissimuler l'impression qu'a laissée sa prestation. Il ne s'agit pas uniquement d'une compétence technique incontestable, mais d'une force scénique qui s'est imposée et a capturé l'attention de la salle dès sa première apparition. Lèfevre a élevé chaque intervention à un niveau d'intensité extraordinaire, entraînant avec lui le public parisien et austro-hongrois dans une expérience difficile à oublier.</p>
-                    </div>
-                    
+                        <p>La nuit du 10 novembre restera marquée dans Paris comme l'une de ces journées où la ville se voit contrainte de contempler, avec un mélange d'incrédulité et de chagrin, jusqu'où peut aller la violence lorsqu'elle abandonne toute mesure et tout dessein qu'on puisse reconnaître.</p>
+                        <p>Après plusieurs alertes et menaces dirigées contre des citoyens français, comme contre des membres des maisons royales d'Europe présents dans la capitale, le groupe connu sous le nom de « Magnicides » a mené une série d'attaques qui ont ébranlé non seulement Paris, mais l'équilibre même d'une Europe qui traverse déjà des temps incertains. Parmi ses victimes se compte le Roi de Grèce, dont la vie fut ravie au cours de ces événements, outre l'attentat contre la famille royale de Portugal, qui a porté la gravité de la situation à son comble.</p>
+                        <p>Mais s'il est un nom qui a provoqué chez les Parisiens une émotion particulièrement profonde, c'est celui d'André Lèfevre. Le jeune comédien, qui venait d'inaugurer sa propre salle avec <em>Promenade à minuit</em>, demeure dans un état critique et ne reçoit aucune visite, tandis que la ville attend des nouvelles de son sort.</p>
+                        <p>Il est malaisé de comprendre quel message prétend transmettre un groupe qui choisit pour cible une figure dont la plus grande influence ne réside pas dans le pouvoir, mais dans le don de réunir des êtres si divers sous une même émotion. Lèfevre fut célébré aussi bien par les cercles artistiques que par ces simples citoyens qui trouvaient dans son jeu une forme de beauté et de compagnie. Faire d'un tel homme une cible ne témoigne ni de force ni de justesse, mais d'une inquiétante incapacité à comprendre ce que l'on prétend frapper.</p>
+                        <p>Les actes de ceux qu'on nomme « Magnicides » ne paraissent obéir à aucune logique claire, sinon à la destruction qu'ils laissent derrière eux. Si leur dessein était de semer la crainte, ils n'ont réussi qu'à révéler une absence de direction qui devrait faire réfléchir jusqu'à ceux qui observent ces événements de loin. Une cause qui a besoin de frapper sans discernement pour se faire entendre finit par perdre cela même qu'elle dit défendre.</p>
+                        <p>Le mal causé n'atteint pas seulement la sûreté de Paris, mais la confiance que la ville a bâtie comme lieu de rencontre entre des cultures, des idées et des expressions différentes. La violence sans mesure ne saurait devenir un instrument politique ni une forme de revendication, surtout lorsque ses victimes se trouvent être précisément ceux qui appartiennent au tissu le plus cher d'une société.</p>
+                        <p>Face à cette menace, le Concile des Lumières a déjà commencé d'agir, procédant hier à l'arrestation du responsable de l'assassinat du Roi de Grèce, ainsi qu'à la capture d'un autre individu tenu pour dangereux et qui demeure à la disposition de la police. Ces opérations, rendues possibles par le concours de collaborateurs extérieurs, témoignent d'une réponse organisée au désordre que les Magnicides semblent s'obstiner à répandre.</p>
+                        <p>Paris a connu bien des querelles, bien des idées affrontées, bien des nuits de tension ; mais il a toujours trouvé sa force dans la conversation et dans la création, non chez ceux qui croient que la destruction peut tenir lieu d'argument. Il est des blessures qui ne se referment pas aisément, et certaines décisions laissent une marque plus profonde que n'importe quelle déclaration.</p>
+                        <p>La ville attend à présent le rétablissement de ceux qui ont souffert de ces attaques — parmi eux un artiste dont la voix, pour l'heure, demeure silencieuse.</p>                    </div>
+
                     <div class="article-text lang-es">
-                        <p>París, 20 de Mayo — La llegada del Emperador a la ciudad ha quedado marcada por una jornada en la que la solemnidad institucional y la vida cultural parisina se entrelazan con naturalidad. La representación de "Libuše", de Bedřich Smetana, en la Ópera Garnier, ofreció el marco idóneo para una noche en la que el arte volvió a presentarse como espacio de reflexión y de encuentro entre naciones, coronando una jornada densa en ceremonias y en intercambios diplomáticos.</p>
-                        
-                        <p>La jornada de ayer comenzó con un desayuno diplomático en el Palacio del Elíseo, donde Su Majestad se encontró con el Presidente de la República así como con los ministros de Asuntos Exteriores y de Cultura. Por la tarde, el Emperador realizó visitas institucionales al Grand Palais y al puente Alexandre III, monumentos que simbolizan la excelencia arquitectónica y cultural de París.</p>
-                        
-                        <p>La función de la noche estuvo precedida por una breve conferencia de prensa en la que el Emperador manifestó su admiración por París, subrayando la intensidad cultural de la ciudad durante su estancia. En un registro medido, abordó también cuestiones políticas, defendiendo la necesidad de una cooperación y coordinación más estrechas entre los Estados europeos y condenando de manera indirecta las recientes acciones y actitud del Kaiser Guillermo en Tánger, consideradas poco constructivas para el equilibrio internacional.</p>
-                        
-                        <p>Mientras el público esperaba para entrar a la Ópera se le ofreció un atentado al arte que prefiero olvidar y que no logró torcer una velada estupenda. ¿Así que por qué hablar de ello?</p>
-                        
-                        <p>Ya en escena, la interpretación de "Libuše" mantuvo un alto nivel artístico. En el papel protagonista, la soprano Elodie ofreció una interpretación de gran solidez técnica, guiada no por el cálculo sino por una emoción sincera y una entrega evidente. Su canto, cargado de emotividad, conmovió profundamente al público y dejó flotando en la sala preguntas inevitables sobre el amor a la patria, el sacrificio y el sentido del destino colectivo, temas centrales de la obra de Smetana.</p>
-                        
-                        <p>La verdadera revelación de la noche fue, sin embargo, André Lèfevre. En uno de los papeles más representativos de la obra, su interpretación desbordó el marco habitual de la corrección escénica para alcanzar una intensidad poco común. Cada gesto, cada inflexión de su voz parecía cargada de una convicción casi personal, como si el drama no se limitara al escenario, sino que reclamara una respuesta emocional directa del espectador. Resulta imposible disimular la impresión que dejó su actuación. No se trata únicamente de una solvencia técnica incuestionable, sino de una fuerza escénica que se impuso y capturó la atención de la sala desde su primera aparición. Lèfevre elevó cada intervención a un nivel de intensidad extraordinario, arrastrando consigo al público parisino y austrohúngaro en una experiencia difícil de olvidar.</p>
-                    </div>
+                        <p>La noche del 10 de noviembre quedará marcada en París como una de aquellas jornadas en las que la ciudad se ve obligada a contemplar, con una mezcla de incredulidad y pesar, hasta dónde puede llegar la violencia cuando abandona cualquier forma de medida o propósito reconocible.</p>
+                        <p>Tras varias alarmas y amenazas dirigidas contra ciudadanos franceses, así como contra miembros de las casas reales europeas presentes en la capital, el grupo conocido como «los Magnicidas» llevó a cabo una serie de ataques que han sacudido no solo a París, sino también al equilibrio de una Europa que ya atraviesa tiempos de incertidumbre. Entre sus víctimas se encuentra el Rey de Grecia, cuya vida fue arrebatada durante estos acontecimientos, además de un ataque contra la familia real portuguesa que ha elevado aún más la gravedad de la situación.</p>
+                        <p>Pero si hay un nombre que ha provocado una reacción especialmente profunda entre los parisinos, es el de André Lèfevre. El joven actor, que recientemente había inaugurado su propia sala con <em>Paseo a Medianoche</em>, permanece en estado crítico y sin recibir visitas públicas mientras la ciudad espera nuevas noticias sobre su estado.</p>
+                        <p>Resulta difícil comprender qué clase de mensaje pretende transmitir un grupo que elige como objetivo a una figura cuya mayor influencia no reside en el poder, sino en la capacidad de reunir a personas tan distintas bajo una misma emoción. Lèfevre ha sido celebrado tanto por los círculos artísticos como por aquellos ciudadanos que simplemente encontraron en sus interpretaciones una forma de belleza y de compañía. Convertir a alguien así en un objetivo no demuestra fuerza ni precisión, sino una preocupante incapacidad para comprender aquello que se pretende atacar.</p>
+                        <p>Las acciones de los llamados «Magnicidas» no parecen seguir una lógica clara más allá de la destrucción que dejan tras de sí. Si su intención era sembrar temor, han conseguido únicamente revelar una falta de dirección que debería hacer reflexionar incluso a quienes observan estos acontecimientos desde la distancia. Una causa que necesita golpear indiscriminadamente para ser escuchada termina perdiendo aquello que dice defender.</p>
+                        <p>El daño causado no afecta únicamente a la seguridad de París, sino también a la confianza que la ciudad ha construido como lugar de encuentro entre culturas, ideas y expresiones distintas. La violencia sin criterio no puede convertirse en una herramienta política ni en una forma de reivindicación, especialmente cuando sus víctimas terminan siendo precisamente aquellos que forman parte del tejido más querido de una sociedad.</p>
+                        <p>Frente a esta amenaza, el Concilio de las Luces ha comenzado ya a actuar, procediendo en la jornada de ayer a la detención del responsable del asesinato del Rey de Grecia, así como a la captura de otro individuo considerado peligroso y pendiente de interrogación policial. Estas operaciones, posibles gracias a la asistencia de colaboradores externos, muestran una respuesta organizada frente al caos que los Magnicidas parecen empeñados en extender.</p>
+                        <p>París ha conocido muchas disputas, muchas ideas enfrentadas y muchas noches de tensión, pero siempre ha encontrado su fuerza en la conversación y en la creación, no en quienes creen que la destrucción puede sustituir a cualquier argumento. Hay heridas que no se reparan fácilmente, y algunas decisiones dejan una marca más profunda que cualquier declaración.</p>
+                        <p>La ciudad espera ahora la recuperación de aquellos que han sufrido estos ataques, entre ellos un artista cuya voz, por el momento, permanece en silencio.</p>                    </div>
                 </article>
-                
+
                 <!-- ARTÍCULOS SECUNDARIOS -->
                 <div class="secondary-articles">
                     <article class="secondary-article">
-                        <h3 class="secondary-title lang-fr">Liberté, Égalité, Fatalité</h3>
-                        <h3 class="secondary-title lang-es">Libertad, Igualdad, Fatalidad</h3>
-                        
-                        <div class="square-image-container">
-                            <div class="square-image">
-                                <img src="news/avenueopera.jpg" alt="Ópera Garnier - Atentado ante la función de Libuše" class="placeholder">
-                            </div>
+                        <h3 class="secondary-title lang-fr">« La Mer » de M. Debussy déconcerte</h3>
+                        <h3 class="secondary-title lang-es">« La Mer », del señor Debussy, desconcierta</h3>
+                        <div class="article-image">
+                            <img src="news/hokusai_grande_vague.jpg" alt="« La Grande Vague de Kanagawa » de Hokusai, estampe reproduite sur la couverture de la partition de « La Mer » ; domaine public — « La gran ola de Kanagawa » de Hokusai, estampa reproducida en la cubierta de la partitura de « La Mer »; dominio público." class="placeholder">
                         </div>
-                        
-                        <p class="secondary-text lang-fr">
-                            Paris, 20 Mai — Le tableau volé il y a quelques semaines au Louvre — une œuvre de Klimt, peintre autrichien dont notre publication a rendu compte — a été brûlé hier soir aux portes de l'Opéra Garnier, sous les yeux du public qui attendait l'entrée pour la représentation de "Libuše". Un cartel proclamait : "Liberté, égalité, fraternité pour l'Autriche". L'intention de s'adresser à l'Empereur d'Autriche-Hongrie, alors présent dans la capitale, ne fait guère de doute. Reste à comprendre ce que son auteur entendait vraiment dire.
-                        </p>
-                        <p class="secondary-text lang-es">
-                            París, 20 de Mayo — El cuadro robado hace unas semanas en el Louvre — una obra de Klimt, pintor austriaco de la que dio cuenta esta publicación — fue quemado anoche a las puertas de la Ópera Garnier, ante el público que aguardaba para entrar a la función de "Libuše". Un cartel proclamaba: "Libertad, igualdad, fraternidad para Austria". La intención de dirigir un mensaje al Emperador de Austria-Hungría, presente entonces en la capital, apenas admite dudas. Queda por entender qué quiso decir en verdad quien lo cometió.
-                        </p>
-                        <p class="secondary-text lang-fr">
-                            Brûler un Klimt — un artiste né à Vienne, symbole d'une certaine modernité austro-hongroise — dans un lieu parisien, en invoquant la devise française : le geste se prête à plusieurs lectures. Peut-être le responsable voulait-il dénoncer l'hypocrisie d'un Empire qui se pare de culture tout en refusant, selon lui, ces principes à ses peuples. Peut-être cherchait-il à rappeler que la fraternité ne s'arrête pas aux frontières, et que les idéaux de la Révolution concernent aussi les sujets des Habsbourg. Ou peut-être visait-il à montrer que l'art, quand il est instrumentalisé, peut être détruit au nom de n'importe quel slogan — y compris le plus noble. Nous ne le saurons sans doute jamais. Ce qui est certain, c'est qu'une œuvre a disparu. Un tableau qui appartenait au patrimoine du Louvre, qui avait été confié à la garde de la France, et qui n'appartenait à aucun camp politique.
-                        </p>
-                        <p class="secondary-text lang-es">
-                            Quemar un Klimt — un artista nacido en Viena, símbolo de una cierta modernidad austrohúngara — en un lugar parisino, invocando el lema francés: el gesto admite varias lecturas. Quizá el responsable quiso denunciar la hipocresía de un Imperio que se adorna de cultura y niega, a su juicio, esos principios a sus pueblos. Quizá quiso recordar que la fraternidad no se detiene en las fronteras y que los ideales de la Revolución conciernen también a los súbditos de los Habsburgo. O quizá pretendía mostrar que el arte, cuando se instrumentaliza, puede ser destruido en nombre de cualquier consigna — incluso la más noble. No lo sabremos con seguridad. Lo cierto es que una obra ha desaparecido. Un cuadro que pertenecía al patrimonio del Louvre, que había sido confiado a la custodia de Francia, y que no pertenecía a ningún bando político.
-                        </p>
-                        <p class="secondary-text lang-fr">
-                            On peut discuter des motifs, respecter la colère ou l'idéal de qui s'est égaré, et même reconnaître que le message — "liberté, égalité, fraternité pour l'Autriche" — mérite réflexion. Mais la destruction du tableau, elle, ne se défend pas. Elle ne sert aucune cause. Elle prive tout le monde, pour toujours, d'une œuvre qui ne menaçait personne. Liberté, égalité, fraternité : des mots que l'on brandit en brûlant ce qu'un autre a créé ne sont plus que fatalité.
-                        </p>
-                        <p class="secondary-text lang-es">
-                            Se pueden discutir los motivos, respetar la cólera o el ideal de quien se equivocó de camino, y hasta reconocer que el mensaje — "libertad, igualdad, fraternidad para Austria" — merece reflexión. Pero la destrucción del cuadro no se defiende. No sirve a ninguna causa. Priva a todos, para siempre, de una obra que no amenazaba a nadie. Libertad, igualdad, fraternidad: las palabras que se esgrimen al quemar lo que otro creó no son ya sino fatalidad.
-                        </p>
+                        <div class="secondary-text lang-fr">
+                            <p>Paris, 12 novembre — On reparle, dans les salons et les foyers de concert, des trois esquisses symphoniques que M. Claude Debussy a réunies sous le titre de « La Mer », et que les Concerts Lamoureux ont données voici quelques semaines sous la direction de M. Chevillard. L'accueil, disons-le sans détour, fut des plus partagés.</p>
+                            <p>Le public était venu chercher l'océan ; il a reçu, selon le mot cruel d'un confrère, « de l'eau agitée dans une soucoupe ». M. Pierre Lalo, du <em>Temps</em>, naguère des plus favorables au compositeur, a confessé n'y point voir, n'y point entendre, n'y point sentir la mer. D'autres, en revanche, ont salué une musique qui ne peint pas la vague mais sa lumière, et qui demande à l'auditeur moins de reconnaître que d'éprouver.</p>
+                            <p>Il faut dire un mot de la partition elle-même, dont la couverture s'orne d'une estampe japonaise — cette « Grande Vague » de Hokusai que les amateurs connaissent. Le rapprochement n'est pas fortuit : M. Debussy ne cherche pas à décrire la mer comme on dresse un inventaire, mais à en fixer l'impression mouvante, ainsi que le graveur d'Orient saisit l'écume au moment où elle se brise.</p>
+                            <p>Que la ville se soit divisée n'étonnera personne. Notre époque aime qu'on lui nomme ce qu'elle écoute, et se trouble lorsqu'on lui propose une émotion sans légende. Le temps dira si « La Mer » rejoint les œuvres qu'on siffle d'abord pour les applaudir ensuite. Cette feuille, qui se défie autant des huées que des engouements, se contentera d'observer qu'une musique capable de tant diviser n'est jamais tout à fait négligeable.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p>París, 12 de noviembre — Vuelve a hablarse, en los salones y en los vestíbulos de los conciertos, de los tres esbozos sinfónicos que el señor Claude Debussy ha reunido bajo el título de « La Mer », y que los Conciertos Lamoureux ofrecieron hace algunas semanas bajo la dirección del señor Chevillard. La acogida, dígase sin rodeos, fue de las más divididas.</p>
+                            <p>El público había venido a buscar el océano; recibió, según la frase cruel de un colega, « agua agitada en una taza ». El señor Pierre Lalo, de <em>Le Temps</em>, otrora de los más favorables al compositor, confesó no ver, no oír, no oler en ella el mar. Otros, en cambio, saludaron una música que no pinta la ola, sino su luz, y que pide al oyente menos reconocer que sentir.</p>
+                            <p>Conviene decir algo de la partitura misma, cuya cubierta se adorna con una estampa japonesa —esa « Gran Ola » de Hokusai que los aficionados conocen. El acercamiento no es fortuito: el señor Debussy no busca describir el mar como quien levanta un inventario, sino fijar su impresión cambiante, así como el grabador de Oriente atrapa la espuma en el instante en que se quiebra.</p>
+                            <p>Que la ciudad se haya dividido no sorprenderá a nadie. Nuestra época gusta de que le nombren lo que escucha, y se turba cuando se le ofrece una emoción sin leyenda. El tiempo dirá si « La Mer » se suma a las obras que primero se silban para después aplaudirlas. Esta hoja, que desconfía tanto de los abucheos como de los entusiasmos, se contentará con observar que una música capaz de dividir tanto no es nunca del todo desdeñable.</p>
+                        </div>
                     </article>
-                    
+
+                    <div class="typographic-ornament">❦ ◆ ❦</div>
+
+                    <article class="secondary-article" style="border-bottom:none;">
+                        <h3 class="secondary-title lang-fr">Le sortilège de lumière de Loïe Fuller</h3>
+                        <h3 class="secondary-title lang-es">El sortilegio de luz de Loïe Fuller</h3>
+                        <div class="article-image">
+                            <img src="news/loie_fuller_danse.jpg" alt="Loïe Fuller dans sa danse serpentine, photographie d'époque (S. J. Beckett, vers 1900), domaine public — Loïe Fuller en su danza serpentina, fotografía de época (S. J. Beckett, hacia 1900), dominio público." class="placeholder">
+                        </div>
+                        <div class="secondary-text lang-fr">
+                            <p>Paris, 12 novembre — Tandis que la ville retient son souffle, il n'est pas inutile de rappeler que l'art, lui, continue de tisser ses prodiges. Mlle Loïe Fuller, que l'on revoit ces jours-ci sur une scène parisienne, demeure sans rivale dans ce qu'elle a inventé : une danse où ce n'est pas la femme qui se meut, mais la lumière qui semble vivre.</p>
+                            <p>Sous ses voiles de soie démesurés, agités par des baguettes que l'œil ne saisit pas, et baignés d'un jeu de projecteurs colorés dont elle garde le secret, Mlle Fuller paraît moins danser que se dissoudre. La « danse serpentine », qui fit la fortune de son théâtre lors de l'Exposition de 1900, n'a rien perdu de son empire : on en sort les yeux éblouis et l'esprit incertain d'avoir vu une personne ou une flamme.</p>
+                            <p>Les photographes et les hommes du cinématographe la suivent avec une dévotion qui en dit long. Car cette artiste américaine, venue à Paris chercher ce que l'Amérique ne savait pas lui donner, a compris avant beaucoup que le siècle nouveau serait celui de la lumière domptée — et qu'il y aurait, dans le maniement de l'ombre et du rayon, autant d'art que dans le pinceau ou l'archet.</p>
+                            <p>On nous pardonnera de chercher, en ces journées sombres, un peu de cette clarté. Il y a quelque douceur à songer qu'au moment même où certains s'emploient à éteindre, une femme, sur une scène, s'emploie à faire de la lumière une chose vivante. Paris, qui aime ses deuils dignes, n'en goûte pas moins ses enchantements ; et celui-là, du moins, ne fait de mal à personne.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p>París, 12 de noviembre — Mientras la ciudad contiene el aliento, no está de más recordar que el arte, por su parte, sigue tejiendo sus prodigios. La señorita Loïe Fuller, a quien se vuelve a ver estos días en un escenario parisino, sigue sin rival en lo que ella misma inventó: una danza en la que no es la mujer quien se mueve, sino la luz la que parece vivir.</p>
+                            <p>Bajo sus velos de seda desmesurados, agitados por varillas que el ojo no alcanza, y bañados en un juego de proyectores de color cuyo secreto guarda, la señorita Fuller parece menos danzar que disolverse. La « danza serpentina », que hizo la fortuna de su teatro en la Exposición de 1900, nada ha perdido de su imperio: se sale de ella con los ojos deslumbrados y el ánimo inseguro de haber visto a una persona o a una llama.</p>
+                            <p>Los fotógrafos y los hombres del cinematógrafo la siguen con una devoción que dice mucho. Pues esta artista americana, venida a París a buscar lo que América no supo darle, comprendió antes que muchos que el siglo nuevo sería el de la luz domada —y que habría, en el manejo de la sombra y del rayo, tanto arte como en el pincel o en el arco del violín.</p>
+                            <p>Se nos perdonará que busquemos, en estas jornadas sombrías, un poco de esa claridad. Hay cierta dulzura en pensar que, en el momento mismo en que algunos se afanan en apagar, una mujer, sobre un escenario, se afana en hacer de la luz una cosa viva. París, que ama sus duelos dignos, no por ello desdeña sus encantamientos; y este, al menos, no hace daño a nadie.</p>
+                        </div>
+                    </article>
+
                 </div>
             </div>
-            
+
             <!-- COLUMNA DERECHA -->
             <aside class="right-column">
                 <article class="sidebar-article">
-                    <h3 class="sidebar-title lang-fr">Séparation et Charité : le Législatif à la Croisée des Chemins</h3>
-                    <h3 class="sidebar-title lang-es">Separación y Caridad: el Legislativo en la Encrucijada</h3>
-                    
-                    <div class="vertical-image" style="aspect-ratio: 4/3;">
-                        <img src="news/assemblee.jpg" alt="Assemblée nationale - Débat séparation Église État" class="placeholder">
-                    </div>
-                    
+                    <h3 class="sidebar-title lang-fr">Éditorial — Garder la tête</h3>
+                    <h3 class="sidebar-title lang-es">Editorial — Mantener la cabeza</h3>
                     <div class="sidebar-text lang-fr">
-                        <p>Paris, 20 Mai — Les débats au Palais Bourbon sur la loi de séparation des Églises et de l'État se poursuivent, mais un nouveau chapitre s'ouvre : celui de la charité et de l'assistance aux plus démunis. Malades, sans-abri, aliénés — des milliers de personnes dépendaient jusqu'ici des œuvres caritatives chrétiennes. La séparation une fois actée, qui prendra en charge ces tâches ?</p>
-                        
-                        <p>Le législatif étudie désormais l'octroi de prérogatives à l'Église pour que, tout en restant séparée de l'État, elle puisse recevoir des aides publiques destinées à ces missions d'assistance. L'idée n'est pas de revenir sur le principe de laïcité, mais de reconnaître que les congrégations et les paroisses ont, sur le terrain, une expérience et un maillage que l'État seul ne saurait remplacer du jour au lendemain. Les députés s'interrogent : subventionner ces œuvres, est-ce favoriser le culte ou servir l'intérêt général ?</p>
-                        
-                        <p>La question divise. Les uns y voient un pragmatisme nécessaire pour éviter que les plus fragiles ne paient le prix de la séparation. Les autres dénoncent une brèche dans la loi et un risque de dépendance persistante. Le débat est vif, mais il place au centre une évidence : la République doit à la fois garantir la neutralité de l'État et ne pas abandonner ceux qui ont besoin d'aide. Comment concilier les deux ? L'Assemblée cherche la voie.</p>
-                    </div>
-                    
+                        <p>Une ville frappée a deux ennemis : celui qui l'a frappée, et la peur qui vient ensuite. Le premier se voit ; le second se glisse partout, et c'est souvent lui qui fait le plus de dégâts. Paris vient de l'apprendre à ses dépens, et c'est à lui, autant qu'aux meurtriers, qu'il faut aujourd'hui résister.</p>
+                        <p>Déjà l'on entend monter les voix qui réclament qu'on soupçonne en masse, qu'on surveille au hasard, qu'on tienne l'étranger pour coupable d'être étranger. Le mot de « Magnicides » devient commode : il sert à nommer un mal réel, mais il sert aussi, entre des mains pressées, à désigner n'importe qui. Une police qui frappe au hasard fait le travail de ceux qu'elle poursuit.</p>
+                        <p>Que l'on arrête les coupables, et qu'on les juge : nul n'en demande moins. Mais qu'on se garde de confondre la fermeté avec l'affolement. La force d'un État ne se mesure pas au nombre de ses rafles, mais à sa capacité de rester juste quand il aurait mille raisons de ne plus l'être.</p>
+                        <p><em>Paris Nouveau</em> n'a pas pour office de rassurer à bon compte. Il croit pourtant qu'une ville garde mieux ses rues en gardant d'abord sa tête. Le sang-froid n'est pas de l'indifférence : c'est la seule bravoure qui dure.</p>                    </div>
                     <div class="sidebar-text lang-es">
-                        <p>París, 20 de Mayo — Los debates en el Palacio Borbón sobre la ley de separación de las Iglesias y del Estado continúan, pero se abre un nuevo capítulo: el de la caridad y la asistencia a los más desfavorecidos. Enfermos, sin techo, alienados — miles de personas dependían hasta ahora de las obras caritativas cristianas. Una vez consumada la separación, ¿quién asumirá esas tareas?</p>
-                        
-                        <p>El legislativo estudia ahora conceder prerrogativas a la Iglesia para que, aun estando separada del Estado, pueda recibir ayudas públicas destinadas a estas labores de asistencia. No se trata de dar marcha atrás en el principio de laicidad, sino de reconocer que las congregaciones y las parroquias tienen, sobre el terreno, una experiencia y una red que el Estado solo no podría sustituir de la noche a la mañana. Los diputados se preguntan: subvencionar estas obras, ¿es favorecer el culto o servir al interés general?</p>
-                        
-                        <p>La cuestión divide. Unos ven en ello un pragmatismo necesario para que los más frágiles no paguen el precio de la separación. Otros denuncian una brecha en la ley y un riesgo de dependencia persistente. El debate es vivo, pero coloca en el centro una evidencia: la República debe a la vez garantizar la neutralidad del Estado y no abandonar a quienes necesitan ayuda. ¿Cómo conciliar ambas cosas? La Asamblea busca el camino.</p>
-                    </div>
+                        <p>Una ciudad golpeada tiene dos enemigos: el que la golpeó, y el miedo que viene después. Al primero se le ve; el segundo se desliza por todas partes, y suele ser él quien causa más estragos. París acaba de aprenderlo a su costa, y es a él, tanto como a los asesinos, a quien hoy hay que resistir.</p>
+                        <p>Ya se oyen alzarse las voces que reclaman que se sospeche en masa, que se vigile al azar, que se tenga al extranjero por culpable de ser extranjero. La palabra « Magnicidas » se vuelve cómoda: sirve para nombrar un mal real, pero sirve también, en manos apresuradas, para señalar a cualquiera. Una policía que golpea al azar hace el trabajo de aquellos a quienes persigue.</p>
+                        <p>Que se detenga a los culpables, y que se los juzgue: nadie pide menos. Mas guárdese uno de confundir la firmeza con el aturdimiento. La fuerza de un Estado no se mide por el número de sus redadas, sino por su capacidad de seguir siendo justo cuando tendría mil razones para dejar de serlo.</p>
+                        <p><em>Paris Nouveau</em> no tiene por oficio tranquilizar a poco precio. Cree, con todo, que una ciudad guarda mejor sus calles guardando antes la cabeza. La sangre fría no es indiferencia: es la única valentía que perdura.</p>                    </div>
                 </article>
-                
+
                 <div class="typographic-ornament">◆ ◆ ◆</div>
-                
+
                 <article class="sidebar-article">
                     <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
                     <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
                     <div class="sidebar-text lang-fr" style="font-size: 16px;">
-                        <p><strong>• Pétition publique pour améliorer le métro parisien:</strong> Un collectif de commerçants et d'habitants des quartiers desservis par la ligne 1 a lancé une pétition demandant à la Compagnie du chemin de fer métropolitain de Paris davantage de rames aux heures de pointe, un éclairage renforcé dans les couloirs et une meilleure aération des stations. La pétition circule déjà dans les mairies d'arrondissement et aurait recueilli plusieurs centaines de signatures.</p>
-                        
-                        <p><strong>• Prochain triomphe : "La Maison aux cloches" avec Sarah Bernhardt et André Lèfevre:</strong> La prochaine création de "La Maison aux cloches" est annoncé pour la fin du mois. La pièce réunira sur scène Sarah Bernhardt et André Lèfevre. Les billets commencent à circuler dans les salons parisiens et l'on s'attend à une affluence exceptionnelle.</p>
-                        
-                        <p><strong>• Projection mystérieuse au Coco Bongo:</strong> Une projection mystérieuse est prévue au Cabaret Coco Bongo ce dimanche 20 mai. Les détails restent confidentiels, mais l'événement suscite déjà la curiosité des milieux artistiques parisiens.</p>
+                        <p><strong>• La flotte de la mer Noire en rébellion :</strong> De Russie parviennent des dépêches confuses : à Sébastopol, des équipages se seraient soulevés, et le croiseur <em>Otchakov</em> aurait hissé le pavillon de la révolte. Après le manifeste d'octobre, l'Empire des tsars ne paraît pas avoir retrouvé le calme qu'on lui promettait.</p>
+                        <p><strong>• Académie Goncourt :</strong> Les dix couverts de la jeune académie s'apprêtent à décerner leur prix avant les fêtes. On murmure le nom de M. Claude Farrère et de ses « Civilisés », roman d'Extrême-Orient ; les paris vont bon train dans les cafés littéraires.</p>
+                        <p><strong>• La voix de la Tour Eiffel :</strong> Les essais de télégraphie sans fil conduits au sommet de la tour de M. Eiffel portent, dit-on, toujours plus loin. Sauvée de la démolition par ses antennes, la grande dame de fer trouve dans la science une raison de durer que l'art seul ne lui eût pas value.</p>
                     </div>
                     <div class="sidebar-text lang-es" style="font-size: 16px;">
-                        <p><strong>• Petición pública para mejorar el metro de París:</strong> Un colectivo de comerciantes y vecinos de los barrios servidos por la línea 1 ha lanzado una petición en la que pide a la Compañía del ferrocarril metropolitano de París más trenes en hora punta, mejor iluminación en los pasillos y una mayor ventilación en las estaciones. La petición circula ya por las alcaldías de distrito y habría reunido varios centenares de firmas.</p>
-                        
-                        <p><strong>• Próximo estreno: "La casa de las campanas" con Sarah Bernhardt y André Lèfevre:</strong> El próximo estreno de "La casa de las campanas" está anunciado para finales de mes. La obra reunirá en escena a Sarah Bernhardt y a André Lèfevre. Las entradas empiezan a circular por los salones parisinos y se espera una afluencia excepcional.</p>
-                        
-                        <p><strong>• Proyección misteriosa en el Coco Bongo:</strong> Una proyección misteriosa está prevista en el Cabaret Coco Bongo este domingo 20 de mayo. Los detalles permanecen confidenciales, pero el evento ya suscita la curiosidad de los medios artísticos parisinos.</p>
+                        <p><strong>• La flota del mar Negro, sublevada:</strong> De Rusia llegan despachos confusos: en Sebastopol, varias dotaciones se habrían amotinado, y el crucero <em>Otchakov</em> habría izado la bandera de la revuelta. Tras el manifiesto de octubre, el Imperio de los zares no parece haber recobrado la calma que se le prometía.</p>
+                        <p><strong>• Academia Goncourt:</strong> Los diez cubiertos de la joven academia se disponen a otorgar su premio antes de las fiestas. Se murmura el nombre del señor Claude Farrère y de sus « Civilizados », novela de Extremo Oriente; las apuestas corren en los cafés literarios.</p>
+                        <p><strong>• La voz de la Torre Eiffel:</strong> Los ensayos de telegrafía sin hilos realizados en la cima de la torre del señor Eiffel llegan, según se dice, cada vez más lejos. Salvada de la demolición por sus antenas, la gran dama de hierro halla en la ciencia una razón para perdurar que el arte por sí solo no le habría dado.</p>
                     </div>
                 </article>
-                
+
                 <div class="typographic-ornament">◆ ◆ ◆</div>
-                
+
                 <article class="sidebar-article">
                     <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
                     <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
                     <div class="sidebar-text lang-fr" style="font-size: 13px; line-height: 1.6;">
-                        <p><strong>Libuše à l'Opéra Garnier : Une Nuit où l'Art Transcende les Frontières :</strong><br>C. Müller</p>
-                        <p><strong>Séparation et Charité : le Législatif à la Croisée des Chemins :</strong><br>P. Bernard</p>
-                        <p><strong>Liberté, Égalité, Fatalité :</strong><br>E. Zola</p>
+                        <p><strong>La nuit du 10 novembre :</strong><br>C. Müller</p>
+                        <p><strong>« La Mer » de M. Debussy déconcerte :</strong><br>L. Moreau</p>
+                        <p><strong>Le sortilège de lumière de Loïe Fuller :</strong><br>M. Dubois</p>
+                        <p><strong>Éditorial — Garder la tête :</strong><br>L. Roy</p>
                     </div>
                     <div class="sidebar-text lang-es" style="font-size: 13px; line-height: 1.6;">
-                        <p><strong>Libuše en la Ópera Garnier: Una Noche donde el Arte Trasciende las Fronteras :</strong><br>C. Müller</p>
-                        <p><strong>Separación y Caridad: el Legislativo en la Encrucijada :</strong><br>P. Bernard</p>
-                        <p><strong>Libertad, Igualdad, Fatalidad :</strong><br>E. Zola</p>
+                        <p><strong>La noche del 10 de noviembre :</strong><br>C. Müller</p>
+                        <p><strong>« La Mer », del señor Debussy, desconcierta :</strong><br>L. Moreau</p>
+                        <p><strong>El sortilegio de luz de Loïe Fuller :</strong><br>M. Dubois</p>
+                        <p><strong>Editorial — Mantener la cabeza :</strong><br>L. Roy</p>
                     </div>
                 </article>
             </aside>
         </div>
-    
+
     <!-- MODAL PARA IMÁGENES -->
     <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
         <div class="image-modal-content" onclick="event.stopPropagation()">
@@ -1047,28 +1073,25 @@
             <img id="modalImage" src="" alt="">
         </div>
     </div>
-    
+
     <script>
         function toggleLanguage() {
             document.body.classList.toggle('spanish');
-            
-            // Guardar preferencia en localStorage
+
             if (document.body.classList.contains('spanish')) {
                 localStorage.setItem('newspaperLanguage', 'es');
             } else {
                 localStorage.setItem('newspaperLanguage', 'fr');
             }
         }
-        
-        // Cargar preferencia al cargar la página
+
         window.addEventListener('DOMContentLoaded', function() {
             const savedLanguage = localStorage.getItem('newspaperLanguage');
             if (savedLanguage === 'es') {
                 document.body.classList.add('spanish');
             }
         });
-        
-        // Funciones para el modal de imágenes
+
         function openImageModal(imageSrc, imageAlt) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
@@ -1077,14 +1100,13 @@
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-        
+
         function closeImageModal(event) {
             const modal = document.getElementById('imageModal');
             modal.classList.remove('active');
             document.body.style.overflow = '';
         }
-        
-        // Cerrar modal con la tecla ESC
+
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeImageModal();
@@ -1093,4 +1115,3 @@
     </script>
 </body>
 </html>
-
