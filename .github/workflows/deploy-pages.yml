@@ -4,12 +4,6 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  # Auto-retry every 15 min so the site self-publishes once GitHub Pages'
-  # deploy backend recovers. The "gate" job below stops deploying as soon
-  # as the live page already shows the current content, so this does NOT
-  # keep redeploying forever.
-  schedule:
-    - cron: '*/15 * * * *'
 
 permissions:
   contents: read
@@ -21,26 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  gate:
-    runs-on: ubuntu-latest
-    outputs:
-      publish: ${{ steps.check.outputs.publish }}
-    steps:
-      - name: Skip if live site already up to date
-        id: check
-        run: |
-          url="https://horologist1.github.io/clairobscurparis/noticias31.html?ci=${{ github.run_id }}"
-          if curl -fsS "$url" | grep -q "fuera de peligro"; then
-            echo "Live site already shows current content; nothing to deploy."
-            echo "publish=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "Live site out of date; will deploy."
-            echo "publish=true" >> "$GITHUB_OUTPUT"
-          fi
-
   deploy:
-    needs: gate
-    if: needs.gate.outputs.publish == 'true'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -56,7 +31,4 @@ jobs:
           path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
-        # Don't fail the whole run (or spam failure e-mails) while GitHub's
-        # Pages backend is unhealthy; the schedule will simply try again.
-        continue-on-error: true
         uses: actions/deploy-pages@v4
