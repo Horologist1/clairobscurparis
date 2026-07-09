@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Nouveau - Belle Époque</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #f4e8d0;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        /* CONTENEDOR DE NAVEGACIÓN DE FECHAS */
+        .date-navigation {
+            width: 200px;
+            background: #faf7f0;
+            border: 3px double #2c2416;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .date-navigation h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c2416;
+            padding-bottom: 10px;
+        }
+
+        .date-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .date-item {
+            margin-bottom: 15px;
+        }
+
+        .date-link {
+            display: block;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #2c2416;
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #f4e8d0;
+        }
+
+        .date-link:hover {
+            background: #e8d5b7;
+            border-color: #8b7355;
+            transform: translateX(5px);
+        }
+
+        .date-link.active {
+            background: #8b7355;
+            color: #faf7f0;
+            border-color: #2c2416;
+            font-weight: 600;
+        }
+
+        .date-link.active:hover {
+            background: #6b5a47;
+            transform: none;
+        }
+
+        .newspaper-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #faf7f0;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            padding: 40px;
+            border: 3px double #2c2416;
+            flex: 1;
+        }
+
+        /* CABECERA DEL PERIÓDICO */
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 4px double #2c2416;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .ornamental-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .ornamental-line::before,
+        .ornamental-line::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #2c2416, transparent);
+        }
+
+        .ornamental-symbol {
+            margin: 0 15px;
+            font-size: 20px;
+            color: #8b7355;
+        }
+
+        .newspaper-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            color: #2c2416;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin: 15px 0;
+            text-shadow: 2px 2px 0px rgba(139, 115, 85, 0.3);
+        }
+
+        .newspaper-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #5a4a3a;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .newspaper-date {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            color: #5a4a3a;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* ESTRUCTURA DEL CONTENIDO */
+        .newspaper-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* COLUMNA IZQUIERDA */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* ARTÍCULO PRINCIPAL */
+        .main-article {
+            border-bottom: 3px double #2c2416;
+            padding-bottom: 25px;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #2c2416;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .article-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .article-image {
+            width: 100%;
+            height: auto;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .main-article .article-image {
+            aspect-ratio: 16 / 9;
+            width: 100%;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            flex: 1 1 auto;
+            min-width: 0;
+            min-height: 0;
+        }
+
+        .main-article .article-image img {
+            object-position: center 28%;
+        }
+
+        .secondary-articles .secondary-article .article-image {
+            aspect-ratio: 5 / 4;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .secondary-articles .secondary-article .article-image img {
+            object-position: center 38%;
+        }
+
+        .article-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.8;
+            column-count: 2;
+            column-gap: 30px;
+            hyphens: auto;
+        }
+
+        .article-text::first-letter {
+            font-size: 72px;
+            font-weight: bold;
+            float: left;
+            line-height: 0.8;
+            margin: 5px 8px 0 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ARTÍCULOS SECUNDARIOS */
+        .secondary-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .secondary-article {
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 20px;
+        }
+
+        .secondary-article:last-child {
+            border-bottom: none;
+        }
+
+        .secondary-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2c2416;
+            padding-bottom: 5px;
+        }
+
+        .secondary-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+
+        /* IMAGEN CUADRADA ENTRE ARTÍCULOS */
+        .square-image-container {
+            margin: 20px 0;
+        }
+
+        .square-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border: 3px solid #2c2416;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .square-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* COLUMNA DERECHA */
+        .right-column {
+            border-left: 3px double #2c2416;
+            padding-left: 25px;
+        }
+
+        .sidebar-article {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 10px 0;
+        }
+
+        .vertical-image {
+            width: 100%;
+            aspect-ratio: 9/16;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .vertical-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .vertical-image.sidebar-portrait {
+            aspect-ratio: 3 / 4;
+            max-width: 100%;
+        }
+
+        .vertical-image.sidebar-portrait img.placeholder {
+            object-position: center 30%;
+        }
+
+        .sidebar-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+
+        /* DECORACIONES TIPOGRÁFICAS */
+        .typographic-ornament {
+            text-align: center;
+            font-size: 24px;
+            color: #8b7355;
+            margin: 20px 0;
+            letter-spacing: 10px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+
+            .date-navigation {
+                width: 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+
+            .newspaper-content {
+                grid-template-columns: 1fr;
+            }
+
+            .right-column {
+                border-left: none;
+                border-top: 3px double #2c2416;
+                padding-left: 0;
+                padding-top: 25px;
+            }
+
+            .article-text {
+                column-count: 1;
+            }
+
+            .newspaper-title {
+                font-size: 48px;
+            }
+        }
+
+        /* EFECTOS DE PAPEL ENVEJECIDO */
+        .newspaper-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 115, 85, 0.03) 2px,
+                    rgba(139, 115, 85, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+
+        .newspaper-container {
+            position: relative;
+        }
+
+        /* Placeholder de imagen */
+        img.placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Archives photographiques : ton sépia / noir-et-blanc doux */
+        .article-image img.placeholder,
+        .vertical-image img.placeholder,
+        .secondary-articles .article-image img.placeholder {
+            filter: sepia(0.35) grayscale(0.15) contrast(1.06) brightness(0.98);
+        }
+
+        /* BOTÓN DE TRADUCCIÓN */
+        .translate-button {
+            width: 35px;
+            height: 35px;
+            background: rgba(44, 36, 22, 0.1);
+            border: 2px solid rgba(139, 115, 85, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            color: #5a4a3a;
+            margin: 10px auto;
+        }
+
+        .translate-button:hover {
+            background: rgba(139, 115, 85, 0.2);
+            border-color: #8b7355;
+            transform: scale(1.1);
+        }
+
+        .translate-button:active {
+            transform: scale(0.95);
+        }
+
+        .translate-button-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        /* Ocultar contenido de idioma alternativo */
+        .lang-es {
+            display: none;
+        }
+
+        body.spanish .lang-fr {
+            display: none;
+        }
+
+        body.spanish .lang-es {
+            display: block;
+        }
+
+        body.spanish .lang-es.inline {
+            display: inline;
+        }
+
+        /* ESTILOS PARA CRÓNICAS DE SOCIEDAD */
+        .society-chronicle {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .society-chronicle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .society-note {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* ESTILOS PARA CARTAS AL DIRECTOR */
+        .letters-section {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .letters-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .letter-box {
+            background-color: #f5e6d3;
+            border: 2px solid #d4c4a8;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .letter-content {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #2c2416;
+            text-align: justify;
+        }
+
+        .letter-signature {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2416;
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* ESTILOS PARA COTILLEOS DE SOLTEROS */
+        .gossip-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .gossip-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #f4e8d0;
+            border: 1px solid #8b7355;
+            border-left: 3px solid #8b7355;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .gossip-item:hover {
+            background: #e8d5b7;
+        }
+
+        .gossip-photo {
+            width: fit-content;
+            height: fit-content;
+            border: 2px solid #2c2416;
+            padding: 1px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #d4c5b0;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+
+        .gossip-photo img {
+            width: 70px;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            filter: sepia(0.25) grayscale(0.12) contrast(1.05);
+        }
+
+        .gossip-photo img:hover {
+            opacity: 0.8;
+        }
+
+        /* MODAL PARA IMÁGENES */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #2c2416;
+            padding: 10px;
+            background: #faf7f0;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            height: auto;
+            display: block;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: #2c2416;
+            color: #faf7f0;
+            border: 2px solid #2c2416;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .image-modal-close:hover {
+            background: #8b7355;
+        }
+
+        .gossip-info {
+            flex: 1;
+        }
+
+        .gossip-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 5px;
+        }
+
+        .gossip-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            color: #2c2416;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .gossip-text em {
+            font-style: normal;
+            font-weight: 600;
+            color: #5a4a3a;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN DE FECHAS -->
+    <nav class="date-navigation">
+        <h3 class="lang-fr">Éditions</h3>
+        <h3 class="lang-es">Ediciones</h3>
+        <ul class="date-list">
+            <li class="date-item">
+                <a href="noticias32.html" class="date-link active">
+                    <span class="lang-fr">16 Novembre 1905</span>
+                    <span class="lang-es">16 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias31.html" class="date-link">
+                    <span class="lang-fr">13 Novembre 1905</span>
+                    <span class="lang-es">13 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias30.html" class="date-link">
+                    <span class="lang-fr">12 Novembre 1905</span>
+                    <span class="lang-es">12 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias29.html" class="date-link">
+                    <span class="lang-fr">11 Novembre 1905</span>
+                    <span class="lang-es">11 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias28.html" class="date-link">
+                    <span class="lang-fr">10 Novembre 1905</span>
+                    <span class="lang-es">10 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias27.html" class="date-link">
+                    <span class="lang-fr">6 Novembre 1905</span>
+                    <span class="lang-es">6 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias26.html" class="date-link">
+                    <span class="lang-fr">5 Novembre 1905</span>
+                    <span class="lang-es">5 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias25.html" class="date-link">
+                    <span class="lang-fr">2 Novembre 1905</span>
+                    <span class="lang-es">2 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias22.html" class="date-link">
+                    <span class="lang-fr">1er Août 1905</span>
+                    <span class="lang-es">1 de Agosto</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias21.html" class="date-link">
+                    <span class="lang-fr">30 Juillet 1905</span>
+                    <span class="lang-es">30 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias20.html" class="date-link">
+                    <span class="lang-fr">29 Juillet 1905</span>
+                    <span class="lang-es">29 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias19.html" class="date-link">
+                    <span class="lang-fr">28 Juillet 1905</span>
+                    <span class="lang-es">28 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias18.html" class="date-link">
+                    <span class="lang-fr">27 Juillet 1905</span>
+                    <span class="lang-es">27 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias17.html" class="date-link">
+                    <span class="lang-fr">26 Juillet 1905</span>
+                    <span class="lang-es">26 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias16.html" class="date-link">
+                    <span class="lang-fr">25 Juillet 1905</span>
+                    <span class="lang-es">25 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias15.html" class="date-link">
+                    <span class="lang-fr">24 Juillet 1905</span>
+                    <span class="lang-es">24 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias14.html" class="date-link">
+                    <span class="lang-fr">22 Mai 1905</span>
+                    <span class="lang-es">22 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias13.html" class="date-link">
+                    <span class="lang-fr">21 Mai 1905</span>
+                    <span class="lang-es">21 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias12.html" class="date-link">
+                    <span class="lang-fr">20 Mai 1905</span>
+                    <span class="lang-es">20 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias11.html" class="date-link">
+                    <span class="lang-fr">19 Mai 1905</span>
+                    <span class="lang-es">19 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias10.html" class="date-link">
+                    <span class="lang-fr">18 Mai 1905</span>
+                    <span class="lang-es">18 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias9.html" class="date-link">
+                    <span class="lang-fr">17 Mai 1905</span>
+                    <span class="lang-es">17 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias8.html" class="date-link">
+                    <span class="lang-fr">16 Mai 1905</span>
+                    <span class="lang-es">16 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias7.html" class="date-link">
+                    <span class="lang-fr">15 Mai 1905</span>
+                    <span class="lang-es">15 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias6.html" class="date-link">
+                    <span class="lang-fr">1 Avril 1905</span>
+                    <span class="lang-es">1 de Abril</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias5.html" class="date-link">
+                    <span class="lang-fr">29 Mars 1905</span>
+                    <span class="lang-es">29 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias4.html" class="date-link">
+                    <span class="lang-fr">28 Mars 1905</span>
+                    <span class="lang-es">28 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias3.html" class="date-link">
+                    <span class="lang-fr">27 Mars 1905</span>
+                    <span class="lang-es">27 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias2.html" class="date-link">
+                    <span class="lang-fr">26 Mars 1905</span>
+                    <span class="lang-es">26 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias1.html" class="date-link">
+                    <span class="lang-fr">25 Mars 1905</span>
+                    <span class="lang-es">25 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias.html" class="date-link">
+                    <span class="lang-fr">18 Mars 1905</span>
+                    <span class="lang-es">18 de Marzo</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="newspaper-container">
+        <!-- CABECERA DEL PERIÓDICO -->
+        <header class="newspaper-header">
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">❦</span>
+            </div>
+            <h1 class="newspaper-title">Paris Nouveau</h1>
+            <p class="newspaper-subtitle">Nouvelles du Monde des Arts et de la Belle Société</p>
+            <div class="translate-button-container">
+                <button class="translate-button" onclick="toggleLanguage()" title="Traducir / Translate">🔍</button>
+            </div>
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+            </div>
+            <p class="newspaper-date lang-fr">Jeudi, 16 Novembre 1905 — Prix: 5 Centimes</p>
+            <p class="newspaper-date lang-es">Jueves, 16 de Noviembre de 1905 — Precio: 5 Centimes</p>
+        </header>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="newspaper-content">
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="left-column">
+                <!-- ARTÍCULO PRINCIPAL -->
+                <article class="main-article">
+                    <h2 class="article-title lang-fr">À la veille des primaires</h2>
+                    <h2 class="article-title lang-es">Ante las próximas primarias</h2>
+                    <p class="article-subtitle lang-fr">À la veille du scrutin, deux sensibilités — Jaurès et Fallières — dessinent des voies distinctes au sein d'une même République ; mais le premier choix n'est pas entre elles, il est entre voter et s'abstenir.</p>
+                    <p class="article-subtitle lang-es">A las puertas del escrutinio, dos sensibilidades —Jaurès y Fallières— señalan caminos distintos dentro de una misma República; pero la primera decisión no es entre ellos, sino entre acudir o abstenerse.</p>
+
+                    <div class="article-image">
+                        <img src="news/jean_jaures_nadar_1904.jpg" alt="Jean Jaurès, portrait par Nadar, 1904 — photographie d'époque (domaine public, Wikimedia Commons) — Jean Jaurès, retrato por Nadar, 1904; fotografía de época (dominio público, Wikimedia Commons)." class="placeholder" style="object-position: center 20%;">
+                    </div>
+
+                    <div class="article-text lang-fr">
+                        <p>À mesure qu'approche la tenue des élections primaires, la France s'achemine vers l'un de ces moments discrets qui, sans le fracas des grands événements, finissent par décider du cours des années à venir. Dans une Europe où les incertitudes semblent se succéder plus vite qu'il ne serait souhaitable, la sérénité avec laquelle une nation sait choisir ceux qui la représenteront constitue, à elle seule, une démonstration de force.</p>
+                        <p>Parmi les figures qui aspirent à conduire ce cours, Jean Jaurès continue de susciter une attention grandissante. Son insistance sur la fraternité comme fondement de la République, sur la dignité du travailleur et sur la nécessité que la voix du peuple ne soit pas un artifice de rhétorique, mais la source véritable de l'action politique, offre une réponse apaisée à un continent où trop de tensions paraissent se nourrir de la discorde. Il n'est pas difficile de croire que même certains de ces citoyens aujourd'hui tentés par des voies plus radicales, s'ils conservent encore la volonté d'être entendus plutôt que celle de détruire, puissent trouver dans une proposition semblable un espace de dialogue au sein des institutions, et non hors d'elles.</p>
+                        <p>Cela ne retire rien au mérite de la candidature d'Armand Fallières, qui présente un programme étonnamment solide et pleinement recevable pour qui estime que la stabilité des institutions et la prudence doivent guider l'heure présente. Son expérience et sa volonté de préserver l'équilibre de la République constituent une alternative digne de considération, en nous rappelant que le renforcement de la France peut aussi se bâtir sur la continuité.</p>
+                        <p>Tandis que la République raffermit ses relations avec des nations amies telles que la Bohême ou Monaco, et s'emploie à adoucir les tensions qui ont marqué, ces derniers mois, ses liens avec l'Allemagne, il convient de rappeler que la position d'un pays au-dehors dépend aussi de la confiance qu'il projette au-dedans. Nulle alliance ne sera véritablement ferme si les Français eux-mêmes renoncent à prendre part au destin commun.</p>
+                        <p>Peut-être est-ce pour cela que ces prochaines semaines réclament davantage que des opinions. Elles réclament la participation. Quelle que soit la préférence de chaque électeur, se rendre aux urnes constitue aujourd'hui une responsabilité partagée et une marque de confiance envers la République, en des temps surtout qui semblent exiger de l'Europe plus de sagesse que d'orgueil.</p>
+                    </div>
+
+                    <div class="article-text lang-es">
+                        <p>Con la celebración de las elecciones primarias cada vez más cercana, Francia se aproxima a uno de esos momentos discretos que, sin el estruendo de los grandes acontecimientos, terminan por definir el curso de los años venideros. En una Europa donde las incertidumbres parecen sucederse con mayor rapidez de la deseable, la serenidad con la que una nación es capaz de elegir a quienes la representarán constituye, en sí misma, una demostración de fortaleza.</p>
+                        <p>Entre las figuras que aspiran a dirigir ese rumbo, Jean Jaurès continúa despertando una atención creciente. Su insistencia en la fraternidad como fundamento de la República, en la dignidad del trabajador y en la necesidad de que la voz del pueblo no sea un recurso retórico, sino el verdadero origen de la acción política, ofrece una respuesta serena a un continente donde demasiadas tensiones parecen alimentarse del desencuentro. No resulta difícil pensar que incluso algunos de aquellos ciudadanos hoy tentados por caminos más radicales, si todavía conservan la voluntad de ser escuchados antes que la de destruir, puedan encontrar en una propuesta semejante un espacio para el diálogo dentro de las instituciones y no fuera de ellas.</p>
+                        <p>Ello no resta mérito a la candidatura de Armand Fallières, que presenta una propuesta sorprendentemente sólida y plenamente válida para quienes consideran que la estabilidad institucional y la prudencia deben guiar el momento presente. Su experiencia y su voluntad de preservar el equilibrio de la República representan una alternativa digna de consideración, recordándonos que el fortalecimiento de Francia también puede construirse desde la continuidad.</p>
+                        <p>Mientras la República afianza sus relaciones con naciones amigas como Bohemia o Mónaco y trabaja por suavizar las tensiones que durante los últimos meses han marcado sus vínculos con Alemania, conviene recordar que la posición de un país en el exterior depende también de la confianza que proyecta desde su interior. Ninguna alianza será verdaderamente firme si los propios franceses renuncian a participar en el destino común.</p>
+                        <p>Quizá por ello estas próximas semanas reclamen algo más que opiniones. Reclaman participación. Sea cual sea la preferencia de cada elector, acudir a las urnas constituye hoy una responsabilidad compartida y una demostración de confianza en la República, especialmente en unos tiempos que parecen exigir de Europa más sensatez que orgullo.</p>
+                    </div>
+                </article>
+
+                <!-- ARTÍCULOS SECUNDARIOS -->
+                <div class="secondary-articles">
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">La flotte de la mer Noire se soulève</h3>
+                        <h3 class="secondary-title lang-es">La flota del mar Negro se subleva</h3>
+                        <div class="article-image">
+                            <img src="news/croiseur_ochakov_sebastopol_1905.jpg" alt="Le croiseur Otchakov mouillé à Sébastopol — photographie d'époque (domaine public, Wikimedia Commons) — El crucero Otchakov fondeado en Sebastopol; fotografía de época (dominio público, Wikimedia Commons)." class="placeholder" style="object-position: center 45%;">
+                        </div>
+                        <div class="secondary-text lang-fr">
+                            <p>Paris, 15 novembre — Ce qui parvenait il y a trois jours de Russie sous la forme de dépêches confuses a désormais, hélas, des contours précis. À Sébastopol, principal arsenal de l'Empire sur la mer Noire, une partie des équipages de l'escadre s'est mutinée, et le croiseur <em>Otchakov</em>, hissant le pavillon rouge, s'est proclamé tête de la révolte. Un officier de la réserve, le lieutenant Schmidt, en a pris le commandement et a fait transmettre aux autres bâtiments un signal qui court déjà l'Europe : « Je commande la flotte. »</p>
+                            <p>Durant quelques heures, l'insurrection parut gagner la rade. Plusieurs petits bâtiments, un contingent de l'infanterie de marine et de nombreux ouvriers de l'arsenal se joignirent au mouvement, qui réclamait, plus qu'un butin, la convocation d'une assemblée constituante et le respect des libertés promises par le Manifeste d'octobre. Des témoins arrivés à Constantinople décrivent une ville coupée en deux, canons pointés les uns sur les autres à travers les eaux mêmes du port impérial.</p>
+                            <p>La réponse ne se fit pas attendre. Fidèle à l'Amirauté, le gros de l'escadre, appuyé par les batteries de terre, ouvrit le feu sur l'<em>Otchakov</em> et les navires soulevés. Le croiseur, atteint et incendié, brûla toute la nuit à la vue de la population ; le nombre des morts, que les autorités russes se gardent de préciser, se compte selon toute vraisemblance par centaines. Le lieutenant Schmidt, capturé, attend un conseil de guerre dont nul, à Saint-Pétersbourg, ne feint d'ignorer l'issue.</p>
+                            <p>Il serait imprudent de voir dans cet épisode une simple mutinerie de caserne. Après le Manifeste du 30 octobre, qui promettait aux sujets du tsar un État partagé, l'agitation n'a pas cédé : aux pogroms du sud et aux grèves des capitales s'ajoute à présent l'insubordination d'une flotte, c'est-à-dire du dernier instrument par lequel un pouvoir s'impose quand tous les autres lui manquent. L'Empire découvre que l'octroi d'une liberté, lorsqu'il vient tard et à contrecœur, n'éteint pas le feu : il l'attise.</p>
+                            <p>La France observe ces événements avec l'attention qu'imposent sa vieille amitié pour la Russie et les intérêts qu'elle y a engagés. Cette rédaction se bornera, pour aujourd'hui, à consigner les faits, et à rappeler que les scènes de Sébastopol — une nation qui retourne ses canons contre elle-même — sont précisément celles qu'un continent sensé devrait s'efforcer de ne jamais connaître de près.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p>París, 15 de noviembre — Lo que hace tres días llegaba de Rusia en forma de despachos confusos tiene ya, por desgracia, contornos precisos. En Sebastopol, principal arsenal del Imperio en el mar Negro, una parte de las dotaciones de la escuadra se ha amotinado, y el crucero <em>Otchakov</em>, izando la bandera roja, se ha proclamado cabeza de la revuelta. Un oficial de la reserva, el teniente Schmidt, ha asumido su mando y ha hecho transmitir a las demás naves una señal que ya recorre Europa: «Mando la flota.»</p>
+                            <p>Durante unas horas, la insurrección pareció ganar la rada. Varios buques menores, un contingente de la infantería de marina y numerosos obreros del arsenal se sumaron al movimiento, que reclamaba, más que un botín, la convocatoria de una asamblea constituyente y el cumplimiento de las libertades prometidas por el Manifiesto de octubre. Testigos llegados a Constantinopla describen una ciudad partida en dos, con los cañones apuntándose unos a otros a través de las aguas del propio puerto imperial.</p>
+                            <p>La respuesta no se hizo esperar. Fiel al Almirantazgo, el grueso de la escuadra, secundado por las baterías de tierra, abrió fuego sobre el <em>Otchakov</em> y los buques sublevados. El crucero, alcanzado e incendiado, ardió durante la noche a la vista de la población; las cifras de muertos, que las autoridades rusas se guardan de precisar, se cuentan, según toda verosimilitud, por centenares. El teniente Schmidt, apresado, aguarda un consejo de guerra cuyo desenlace nadie en San Petersburgo finge ignorar.</p>
+                            <p>Sería imprudente ver en este episodio un simple motín de cuartel. Tras el Manifiesto del 30 de octubre, que prometía a los súbditos del zar un Estado compartido, la agitación no ha cedido: a los pogromos del sur y a las huelgas de las capitales se añade ahora la insubordinación de una flota, esto es, del último instrumento con que un poder suele imponerse cuando todos los demás le fallan. El Imperio descubre que la concesión de una libertad, cuando llega tarde y a regañadientes, no apaga el fuego: lo atiza.</p>
+                            <p>Francia observa estos acontecimientos con la atención que imponen su vieja amistad con Rusia y los intereses que en ella tiene comprometidos. Esta redacción se limitará, por hoy, a consignar los hechos, y a recordar que las escenas de Sebastopol —una nación que vuelve sus cañones contra sí misma— son precisamente las que un continente sensato debería esforzarse en no conocer nunca de cerca.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="typographic-ornament">❦ ◆ ❦</div>
+
+                <!-- ILUSTRACIÓN — ÉMILE LABORD -->
+                <figure class="central-illustration" style="margin: 1.5em 0 0; text-align: center;">
+                    <img src="news/lo_que_no_pudo_ser_emile_labord.jpg" alt="Ce qui n'a pu être — Émile Labord — Lo que no pudo ser — Émile Labord" class="placeholder" style="max-width: 100%; height: auto; display: block; margin: 0 auto; cursor: pointer;" onclick="openImageModal(this.src, this.alt)">
+                    <figcaption style="margin-top: 0.75em; font-family: 'Crimson Text', serif; font-size: 15px; font-style: italic; color: #2c2416;">
+                        <span class="lang-fr">Ce qui n'a pu être — <strong style="font-style: normal;">Émile Labord</strong></span>
+                        <span class="lang-es">Lo que no pudo ser — <strong style="font-style: normal;">Émile Labord</strong></span>
+                    </figcaption>
+                </figure>
+
+                <!-- CRÓNICAS DE SOCIEDAD -->
+                <article class="society-chronicle">
+                    <h2 class="society-chronicle-title lang-fr">Chroniques de la Société</h2>
+                    <h2 class="society-chronicle-title lang-es">Crónicas de Sociedad</h2>
+                    <p class="society-note lang-fr">Spécial — Comment l'architecte des cœurs se trompa de porte, et d'un père qui croit encore aux portes</p>
+                    <p class="society-note lang-es">Especial — De cómo el arquitecto de los corazones erró la puerta, y de un padre que aún cree en las puertas</p>
+
+                    <div class="secondary-article">
+                        <h3 class="secondary-title lang-fr">Eh bien, je m'en vais</h3>
+                        <h3 class="secondary-title lang-es">Pues entonces me voy</h3>
+                        <div class="secondary-text lang-fr">
+                            <p><em>Mes très chères lectrices</em> — et vous, messieurs, qui lisez cette colonne par-dessus l'épaule de votre épouse avec une ponctualité que vous voudriez bien avoir pour la messe —, la Fleuriste revient, et elle revient contente, car la ville, après des semaines d'alarme, lui offre enfin une histoire qui ne laisse pas de morts, mais tout juste un orgueil meurtri. Et vous savez qu'un orgueil meurtri, bien conté, vaut mieux qu'un mariage.</p>
+                            <p>Le héros ne vous surprendra pas : notre infatigable M. Lucien Nœud-Papillon, architecte de profession et de quelques autres choses qui ne figurent pas sur ses plans. On l'a vu, cette semaine, approcher sa voiture de la résidence de Mlle Lucile Roy. Rien n'y aurait paru — Lucien accumule les fronts comme d'autres les timbres, et tant que ses fiançailles avec certaine dame sans visage du bal de la Roca ne seront pas rendues publiques, s'il ose jamais les rendre, il continuera d'en collectionner —, si ce qui suivit n'avait été, tout simplement, délicieux.</p>
+                            <p>L'architecte frappa, et ce ne fut pas la demoiselle qui ouvrit, mais M. Roy, le père, qui garde sa fille comme on gardait jadis les jeunes filles de bonne maison : sous clef, sous nom et sous une idée du décorum qu'à Paris l'on ne trouve plus que dans les musées. Lucien demanda Lucile, tenant pour acquis — ô imprudence des conquérants ! — qu'elle vivait seule. Et M. Roy, avec la dignité de qui défend une place, lui fit savoir que sa fille n'était point, et je cite l'idée en adoucissant le mot, une femme de mœurs légères, mais une jeune personne qui habite sous le toit et la surveillance de son père.</p>
+                            <p>Ici, mes lectrices, nous attendions toutes une galanterie, une excuse, un bouquet promis pour le lendemain. Il y eut mieux. « Ah, eh bien, je m'en vais », dit l'architecte ; et ces quelques mots — que cette chroniqueuse voudrait broder sur un coussin — furent tout son discours avant de remonter en voiture et de disparaître. Vous ne vous étonnerez pas que M. Roy, à peine les roues éloignées, ait comblé la rue entière d'invectives avec une vigueur qui dément ses années.</p>
+                            <p>Comment le sais-je ? Ne me le demandez pas, ou demandez-le-moi, car c'est pour cela que je vis : je m'adressai, comme toujours, à qui sait tout et ne se paye qu'en confidences — le service. Non celui des Roy, qu'ils dorment tranquilles et ne renvoient personne, mais celui d'une certaine maison voisine, dont les fenêtres ont le bon goût de donner sur la scène. Les meilleures chroniques de Paris s'écrivent encore depuis une cuisine qui n'est pas la vôtre.</p>
+                            <p>Y aura-t-il duel ? Je l'ignore. Un père offensé et un architecte qui s'en va sans se battre composent, plus qu'une affaire d'honneur, une comédie ; et cette écrivaine, qui a vu couler par la ville trop de sang ces dernières semaines, avoue qu'elle préférerait, cette fois, que nous riions tous sans avoir besoin de ruisseaux. Qu'ils se battent, si vraiment il le faut, à coups de portes : M. Roy défendant les siennes, et M. Nœud-Papillon cherchant, comme à l'accoutumée, celle qui reste encore ouverte.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p><em>Mis queridísimas lectoras</em> —y ustedes, caballeros, que leen esta columna por encima del hombro de su esposa con una puntualidad que ya quisieran para la misa—, la Florista vuelve, y vuelve contenta, porque la ciudad, tras semanas de sobresalto, le regala por fin una historia que no deja muertos, sino apenas un orgullo magullado. Y ya saben ustedes que un orgullo magullado, bien contado, vale más que una boda.</p>
+                            <p>El protagonista no les sorprenderá: nuestro incansable señor Lucien Nœud-Papillon, arquitecto de profesión y de otras cosas que no figuran en sus planos. Se le vio, esta semana, aproximar su coche a la residencia de la señorita Lucile Roy. Nada tendría de particular —Lucien acumula frentes como otros acumulan sellos, y hasta que su compromiso con cierta dama sin rostro del baile de la Roca se haga público, si es que se atreve a hacerlo, seguirá coleccionándolos—, si lo que ocurrió a continuación no fuese, sencillamente, delicioso.</p>
+                            <p>Llamó el arquitecto, y le abrió no la señorita, sino el señor Roy, padre de la casa, que guarda a su hija como se guardaban antaño las señoritas de bien: bajo llave, bajo apellido y bajo un concepto del decoro que en París ya sólo se encuentra en los museos. Preguntó Lucien por Lucile, dando por hecho —¡oh, imprudencia de los conquistadores!— que vivía sola. Y el señor Roy, con la dignidad de quien defiende una plaza, le hizo saber que su hija no era, y cito la idea aunque suavice la palabra, una mujer de vida ligera, sino una joven que habita bajo el techo y la vigilancia de su padre.</p>
+                            <p>Aquí, lectoras mías, esperábamos todas una galantería, una excusa, un ramo prometido para el día siguiente. Lo que hubo fue mejor. «Ah, pues entonces me voy», dijo el arquitecto; y esas cinco palabras —que esta cronista quisiera bordar en un cojín— fueron todo su discurso antes de subir al coche y desaparecer. No les extrañará que el señor Roy, apenas se alejaron las ruedas, colmara de improperios la calle entera con un vigor que desmiente sus años.</p>
+                            <p>¿Cómo lo sé? No me lo pregunten, o pregúntenmelo, que para eso vivo: acudí, como siempre, a quien todo lo sabe y nada cobra sino en confidencias —el servicio. No el de los Roy, que duerman tranquilos y no despidan a nadie, sino el de cierta casa vecina, cuyas ventanas tienen el buen gusto de dar a la escena. Las mejores crónicas de París se escriben, todavía, desde una cocina ajena.</p>
+                            <p>¿Habrá duelo? Lo ignoro. Un padre ofendido y un arquitecto que se marcha sin pelear componen, más que un lance de honor, una comedia; y esta escritora, que ha visto correr por la ciudad demasiada sangre en las últimas semanas, confiesa que preferiría, esta vez, que riéramos todos sin necesidad de riachuelos. Que se batan, si acaso, a puertas: el señor Roy defendiendo las suyas, y el señor Nœud-Papillon buscando, como de costumbre, la que aún esté abierta.</p>
+                        </div>
+                    </article>
+                </article>
+            </div>
+
+            <!-- COLUMNA DERECHA -->
+            <aside class="right-column">
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Les amitiés de la République : Bohême, Monaco et le bras de fer avec Berlin</h3>
+                    <h3 class="sidebar-title lang-es">Las amistades de la República: Bohemia, Mónaco y el pulso con Berlín</h3>
+                    <div class="vertical-image sidebar-portrait" style="margin-bottom: 1em;">
+                        <img src="news/rocher_monaco_1905_b.jpg" alt="Le rocher de Monaco, résidence des princes de la Roca — photographie d'Eugène Trutat, avril 1905 (domaine public, Bibliothèque de Toulouse / Wikimedia Commons) — El peñón de Mónaco, residencia de los príncipes de la Roca; fotografía de Eugène Trutat, abril de 1905 (dominio público, Biblioteca de Toulouse / Wikimedia Commons)." class="placeholder" style="object-position: center 42%;">
+                    </div>
+                    <div class="sidebar-text lang-fr">
+                        <p>Paris, 16 novembre — Lorsque M<sup>me</sup> Müller rappelle, en une autre page de ce numéro, que la France raffermit son amitié avec la Bohême et Monaco tandis qu'elle s'efforce d'apaiser l'Allemagne, elle résume d'une phrase le travail silencieux qui occupe, depuis des semaines, les bureaux du Quai d'Orsay. Il vaut la peine de s'y arrêter, car c'est de ces équilibres discrets, plus que des discours, que dépend la tranquillité d'une nation.</p>
+                        <p>Avec la Bohême, le rapprochement est de ceux qui se cultivent par la musique avant que par les traités. La soirée consacrée cet automne à « Libuše » sur une scène de la capitale, la présence assidue de ses nobles dans les salons parisiens — M. Belcredi le premier d'entre eux —, et une communauté de goûts que les cours germaniques observent avec méfiance, tissent entre Paris et Prague une sympathie qu'aucun protocole n'a signée et qui, pourtant, se laisse sentir.</p>
+                        <p>Avec Monaco, le lien est plus ancien et plus mondain. Le bal offert voici quelques jours par Louis de Monaco, prince héritier de la Roca, réunit sur son rocher la moitié de l'Europe couronnée, et offrit à la diplomatie française ce qu'aucune conférence ne lui accorde : un terrain neutre et riant où des souverains qui se surveillent peuvent, l'espace d'une nuit, se parler. Que la petite principauté serve de salon à l'Europe est, pour la France, une commodité qu'elle sait apprécier.</p>
+                        <p>Reste Berlin, et là le sourire se fait calcul. La question du Maroc, que la prochaine conférence d'Algésiras devra traiter, oppose sourdement les deux nations ; et l'attentat auquel le Kronprinz échappa de justesse sur le sol parisien a ajouté au dossier une gêne que ni l'une ni l'autre chancellerie ne souhaite éventer. Adoucir cette tension sans céder sur l'essentiel est la tâche la plus délicate que la République affronte aujourd'hui : l'amitié se cultive, mais le respect se tient.</p>
+                        <p>De ces trois fronts — une sympathie qui croît, un salon qui arrange, un rival qu'il faut apaiser — se compose la politique étrangère que les électeurs, dans quelques semaines, ratifieront sans la nommer. Car on vote rarement une alliance ; mais toute alliance, à la fin, repose sur la confiance qu'une nation sait inspirer, à commencer par celle qu'elle a en elle-même.</p>
+                    </div>
+                    <div class="sidebar-text lang-es">
+                        <p>París, 16 de noviembre — Cuando la señora Müller recuerda, en otra página de este número, que Francia afianza su amistad con Bohemia y con Mónaco mientras se esfuerza por calmar a Alemania, resume en una frase el trabajo silencioso que ocupa, desde hace semanas, a los despachos del Quai d'Orsay. Conviene detenerse en él, porque de esos equilibrios discretos depende, más que de los discursos, la tranquilidad de una nación.</p>
+                        <p>Con Bohemia, la aproximación es de las que se cultivan con música antes que con tratados. La velada consagrada este otoño a «Libuše» en un teatro de la capital, la presencia asidua de sus nobles en los salones parisinos —el señor Belcredi el primero de ellos—, y una comunidad de gustos que las cortes germánicas observan con recelo, tejen entre París y Praga una simpatía que ningún protocolo ha firmado y que, sin embargo, se deja sentir.</p>
+                        <p>Con Mónaco, el vínculo es más antiguo y más mundano. El baile ofrecido hace unos días por Luis de Mónaco, príncipe heredero de la Roca, reunió sobre su peñón a media Europa coronada, y ofreció a la diplomacia francesa lo que ninguna conferencia le concede: un terreno neutral y risueño donde soberanos que se vigilan pueden, por una noche, hablarse. Que el pequeño principado sirva de salón a Europa es, para Francia, una comodidad que sabe apreciar.</p>
+                        <p>Queda Berlín, y ahí la sonrisa se vuelve cálculo. La cuestión de Marruecos, que la próxima conferencia de Algeciras deberá tratar, enfrenta sordamente a las dos naciones; y el atentado del que a duras penas escapó el Kronprinz en suelo parisino ha añadido al expediente una incomodidad que ni una ni otra cancillería desean airear. Suavizar esa tensión sin ceder en lo esencial es la tarea más delicada que hoy afronta la República: la amistad se cultiva, pero el respeto se sostiene.</p>
+                        <p>De estos tres frentes —una simpatía que crece, un salón que conviene y un rival al que apaciguar— se compone la política exterior que los electores, dentro de pocas semanas, refrendarán sin nombrarla. Pues rara vez se vota una alianza; pero toda alianza, a la postre, descansa sobre la confianza que una nación es capaz de inspirar, empezando por la que se tiene a sí misma.</p>
+                    </div>
+                </article>
+
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 16px;">
+                        <p><strong>• Les prix de Stockholm :</strong> Les académies suédoises préparent la remise de leurs distinctions de décembre. Parmi les noms qui circulent dans les rédactions revient celui d'une dame autrichienne, apôtre infatigable de la paix, dont le « Bas les armes ! » a fait plus de bruit en Europe que bien des canons. Qu'un prix décerné à la concorde s'annonce en cet automne ne manque pas d'ironie.</p>
+                        <p><strong>• Le portrait sans maître :</strong> Dans une salle du Louvre est apparu, adossé à un mur, un portrait de femme qu'aucun conservateur ne reconnaît, qu'aucun catalogue ne mentionne et que nul n'avoue avoir accroché. La direction l'attribue à une farce d'apprentis ; les gardiens, plus superstitieux, préfèrent ne pas le regarder deux fois. La dame du tableau, cependant, leur sourit à tous avec une même et déconcertante patience.</p>
+                        <p><strong>• Sur la route d'Algésiras :</strong> On achève les préparatifs de la conférence qui, l'an nouveau, devra traiter la question du Maroc. Les délégués français et allemands aiguisent leurs arguments ; les observateurs, leur patience. De la mesure qu'on y gardera dépendra une bonne part de l'humeur avec laquelle l'Europe entrera en 1906.</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 16px;">
+                        <p><strong>• Los premios de Estocolmo:</strong> Las academias suecas preparan la entrega de sus galardones de diciembre. Entre los nombres que circulan por las redacciones se repite el de una dama austríaca, apóstol infatigable de la paz, cuyo «¡Abajo las armas!» ha hecho más ruido en Europa que muchos cañones. Que un premio a la concordia se anuncie en este otoño no deja de tener su ironía.</p>
+                        <p><strong>• El retrato sin dueño:</strong> En una sala del Louvre ha aparecido, apoyado contra un muro, un retrato de mujer que ningún conservador reconoce, que ningún catálogo menciona y que nadie confiesa haber colgado. La dirección lo atribuye a una broma de aprendices; los guardias, más supersticiosos, prefieren no mirarlo dos veces. La dama del cuadro, entretanto, sonríe a todos con idéntica y desconcertante paciencia.</p>
+                        <p><strong>• Camino de Algeciras:</strong> Se ultiman los preparativos de la conferencia que, en el nuevo año, habrá de tratar la cuestión de Marruecos. Los delegados franceses y alemanes afilan argumentos; los observadores, la paciencia. De la mesura que allí se guarde dependerá buena parte del humor con que Europa entre en 1906.</p>
+                    </div>
+                </article>
+
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>À la veille des primaires :</strong><br>C. Müller</p>
+                        <p><strong>La flotte de la mer Noire se soulève :</strong><br>L. Moreau</p>
+                        <p><strong>Les amitiés de la République : Bohême, Monaco et Berlin :</strong><br>P. Bernard</p>
+                        <p><strong>Eh bien, je m'en vais :</strong><br>La Fleuriste</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Ante las próximas primarias :</strong><br>C. Müller</p>
+                        <p><strong>La flota del mar Negro se subleva :</strong><br>L. Moreau</p>
+                        <p><strong>Las amistades de la República: Bohemia, Mónaco y Berlín :</strong><br>P. Bernard</p>
+                        <p><strong>Pues entonces me voy :</strong><br>La Florista</p>
+                    </div>
+                </article>
+
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+
+                <!-- RANKING DE SOLTEROS - COTILLEOS -->
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Potins & Cancans : Les Célibataires à Suivre</h3>
+                    <h3 class="sidebar-title lang-es">Cotilleos y Chismes: Los Solteros a Seguir</h3>
+
+                    <ul class="gossip-list">
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/lucien.png" alt="Lucien Théophile Nœud-Papillon" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Lucien Théophile Nœud-Papillon — <em>l'architecte des cœurs</em></div>
+                                <div class="gossip-name lang-es">Lucien Théophile Nœud-Papillon — <em>el arquitecto de los corazones</em></div>
+                                <div class="gossip-text lang-fr">
+                                    L'homme de la semaine, pour cinq mots : « Eh bien, je m'en vais. » Il frappa chez les Roy en croyant Mlle Lucile seule au monde ; il trouva un père, une porte et un décorum de musée. Toujours fiancé, dit-on, à la dame sans visage du bal de la Roca — s'il ose un jour l'avouer. En attendant, il cherche la porte qui reste ouverte. Il en reste. Pour combien de temps ?
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    El hombre de la semana, por cinco palabras: «Pues entonces me voy.» Llamó a casa de los Roy creyendo a la señorita Lucile sola en el mundo; encontró un padre, una puerta y un decoro de museo. Sigue prometido, dicen, con la dama sin rostro del baile de la Roca — si es que un día se atreve a confesarlo. Entretanto, busca la puerta que queda abierta. Aún quedan. ¿Por cuánto tiempo?
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/lucile_roy.png" alt="Lucile Roy" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Lucile Roy</div>
+                                <div class="gossip-name lang-es">Lucile Roy</div>
+                                <div class="gossip-text lang-fr">
+                                    Compositrice au talent que cette auteure a signalé avant tout le monde, et fille sous bonne garde : la porte que Lucien n'a pas su ouvrir, c'est la sienne. Elle n'y était pour rien — elle n'y était pas, tout court. Le cœur de Mlle Roy, si l'on en croit une certaine barque et un certain Lion peureux, regarde depuis quelque temps dans une autre direction.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    Compositora de un talento que esta autora señaló antes que nadie, e hija bien guardada: la puerta que Lucien no supo abrir es la suya. Ella no tuvo culpa alguna — sencillamente, no estaba. El corazón de la señorita Roy, si hemos de creer a cierta barca y a cierto León cobarde, mira desde hace un tiempo en otra dirección.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/jacques_martin.png" alt="Jacques Martin" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Jacques Martin</div>
+                                <div class="gossip-name lang-es">Jacques Martin</div>
+                                <div class="gossip-text lang-fr">
+                                    Le Lion peureux du bal de la Roca, aux côtés de Mlle Roy en Dorothée — et le seul, dans cette histoire, qui ait compris qu'on gagne un cœur par la patience et non par la voiture. Pendant que l'architecte frappait à la mauvaise porte, Jacques était déjà, sans bruit, dans le récit. On ne rit pas de lui, cette semaine. On le note.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    El León cobarde del baile de la Roca, junto a la señorita Roy como Dorothy — y el único, en toda esta historia, que ha entendido que un corazón se gana con paciencia y no con carruaje. Mientras el arquitecto llamaba a la puerta equivocada, Jacques estaba ya, sin ruido, dentro del relato. De él no nos reímos, esta semana. Lo anotamos.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/marine_loremant.png" alt="Marine Loremant" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Marine Loremant</div>
+                                <div class="gossip-name lang-es">Marine Loremant</div>
+                                <div class="gossip-text lang-fr">
+                                    Couturière des Galeries Belle Époque et conquérante en titre, dont l'architecte fut jadis l'un des drapeaux tombés. Elle, au moins, ne se laisse pas trouver derrière une porte fermée : c'est elle qui choisit lesquelles s'ouvrent. La leçon n'a pas été perdue pour tout le monde — sauf, peut-être, pour l'intéressé.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    Costurera de las Galerías Belle Époque y conquistadora en propiedad, de quien el arquitecto fue en su día una de las banderas caídas. Ella, al menos, no se deja hallar tras una puerta cerrada: es ella quien decide cuáles se abren. La lección no se ha perdido para todos — salvo, quizá, para el interesado.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/François Tautou.png" alt="François Tautou" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">François Tautou — <em>célibataire d'or</em></div>
+                                <div class="gossip-name lang-es">François Tautou — <em>soltero de oro</em></div>
+                                <div class="gossip-text lang-fr">
+                                    Toujours en tête de cette colonne, et toujours cette distance ironique avec le succès qui le rend impossible à attraper. Tandis que d'autres se trompent de porte, lui n'en ouvre aucune et les laisse toutes frapper à la sienne. La chasse la plus disputée de Paris reste ouverte — c'est bien là tout le problème.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    Sigue a la cabeza de esta columna, y sigue con esa distancia irónica con el éxito que lo vuelve imposible de atrapar. Mientras otros yerran la puerta, él no abre ninguna y deja que todas llamen a la suya. La caza más disputada de París continúa abierta — y ahí, justamente, está el problema.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/katya.png" alt="Katya Einhell" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Katya Einhell</div>
+                                <div class="gossip-name lang-es">Katya Einhell</div>
+                                <div class="gossip-text lang-fr">
+                                    Le prince de Monaco lui rend toujours visite ; pour du thé, dit-on ; cette auteure persiste à n'en rien croire. Par les temps qui courent, où les rocher et les couronnes font de la haute politique, une amitié qui donne sur la Roca vaut plus d'un traité. Elle le sait. C'est bien ce qui l'intéresse.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    El príncipe de Mónaco sigue visitándola; para tomar el té, dicen; esta autora persiste en no creérselo. En estos tiempos, en que peñones y coronas hacen alta política, una amistad que da a la Roca vale más que un tratado. Ella lo sabe. Y es justo eso lo que le interesa.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="gossip-item">
+                            <div class="gossip-photo">
+                                <img src="news/Other/solteros/sandrine_cros.png" alt="Sandrine Cros" onclick="openImageModal(this.src, this.alt)">
+                            </div>
+                            <div class="gossip-info">
+                                <div class="gossip-name lang-fr">Sandrine Cros</div>
+                                <div class="gossip-name lang-es">Sandrine Cros</div>
+                                <div class="gossip-text lang-fr">
+                                    Architecte au regard capable de refroidir un four — et, accessoirement, consœur de M. Nœud-Papillon. On imagine sans peine ce qu'elle a pensé de l'affaire des Roy. Elle n'a rien dit. Elle a, dit-on, souri une fois. À Paris, quand Mlle Cros sourit, on prend son manteau.
+                                </div>
+                                <div class="gossip-text lang-es">
+                                    Arquitecta cuya mirada podría enfriar un horno — y, de paso, colega del señor Nœud-Papillon. Fácil es imaginar lo que pensó del asunto de los Roy. No dijo nada. Sonrió, dicen, una vez. En París, cuando la señorita Cros sonríe, uno va a por su abrigo.
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
+            </aside>
+        </div>
+
+    <!-- MODAL PARA IMÁGENES -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('spanish');
+
+            if (document.body.classList.contains('spanish')) {
+                localStorage.setItem('newspaperLanguage', 'es');
+            } else {
+                localStorage.setItem('newspaperLanguage', 'fr');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('newspaperLanguage');
+            if (savedLanguage === 'es') {
+                document.body.classList.add('spanish');
+            }
+        });
+
+        function openImageModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageModal(event) {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    </script>
+</body>
+</html>
