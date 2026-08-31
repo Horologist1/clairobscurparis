@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neues Berlin — Kaiserzeit</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=UnifrakturMaguntia&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #f4e8d0;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        /* CONTENEDOR DE NAVEGACIÓN DE FECHAS */
+        .date-navigation {
+            width: 200px;
+            background: #faf7f0;
+            border: 3px double #2c2416;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .date-navigation h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c2416;
+            padding-bottom: 10px;
+        }
+
+        .date-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .date-item {
+            margin-bottom: 15px;
+        }
+
+        .date-link {
+            display: block;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #2c2416;
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #f4e8d0;
+        }
+
+        .date-link:hover {
+            background: #e8d5b7;
+            border-color: #8b7355;
+            transform: translateX(5px);
+        }
+
+        .date-link.active {
+            background: #8b7355;
+            color: #faf7f0;
+            border-color: #2c2416;
+            font-weight: 600;
+        }
+
+        .date-link.active:hover {
+            background: #6b5a47;
+            transform: none;
+        }
+
+        .newspaper-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #faf7f0;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            padding: 40px;
+            border: 3px double #2c2416;
+            flex: 1;
+        }
+
+        /* CABECERA DEL PERIÓDICO */
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 4px double #2c2416;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .ornamental-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .ornamental-line::before,
+        .ornamental-line::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #2c2416, transparent);
+        }
+
+        .ornamental-symbol {
+            margin: 0 15px;
+            font-size: 20px;
+            color: #8b7355;
+        }
+
+        .newspaper-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            color: #2c2416;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin: 15px 0;
+            text-shadow: 2px 2px 0px rgba(139, 115, 85, 0.3);
+        }
+
+        .newspaper-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #5a4a3a;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .newspaper-date {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            color: #5a4a3a;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* ESTRUCTURA DEL CONTENIDO */
+        .newspaper-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* COLUMNA IZQUIERDA */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* ARTÍCULO PRINCIPAL */
+        .main-article {
+            border-bottom: 3px double #2c2416;
+            padding-bottom: 25px;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #2c2416;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .article-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .article-image {
+            width: 100%;
+            height: auto;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .main-article .article-image {
+            aspect-ratio: 16 / 9;
+            width: 100%;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            flex: 1 1 auto;
+            min-width: 0;
+            min-height: 0;
+        }
+
+        .main-article .article-image img {
+            object-position: center 28%;
+        }
+
+        .secondary-articles .secondary-article .article-image {
+            aspect-ratio: 5 / 4;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .secondary-articles .secondary-article .article-image img {
+            object-position: center 38%;
+        }
+
+        .article-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.8;
+            column-count: 2;
+            column-gap: 30px;
+            hyphens: auto;
+        }
+
+        .article-text::first-letter {
+            font-size: 72px;
+            font-weight: bold;
+            float: left;
+            line-height: 0.8;
+            margin: 5px 8px 0 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ARTÍCULOS SECUNDARIOS */
+        .secondary-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .secondary-article {
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 20px;
+        }
+
+        .secondary-article:last-child {
+            border-bottom: none;
+        }
+
+        .secondary-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2c2416;
+            padding-bottom: 5px;
+        }
+
+        .secondary-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+
+        /* IMAGEN CUADRADA ENTRE ARTÍCULOS */
+        .square-image-container {
+            margin: 20px 0;
+        }
+
+        .square-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border: 3px solid #2c2416;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .square-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* COLUMNA DERECHA */
+        .right-column {
+            border-left: 3px double #2c2416;
+            padding-left: 25px;
+        }
+
+        .sidebar-article {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 10px 0;
+        }
+
+        .vertical-image {
+            width: 100%;
+            aspect-ratio: 9/16;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .vertical-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .vertical-image.sidebar-portrait {
+            aspect-ratio: 3 / 4;
+            max-width: 100%;
+        }
+
+        .vertical-image.sidebar-portrait img.placeholder {
+            object-position: center 30%;
+        }
+
+        .sidebar-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+
+        /* DECORACIONES TIPOGRÁFICAS */
+        .typographic-ornament {
+            text-align: center;
+            font-size: 24px;
+            color: #8b7355;
+            margin: 20px 0;
+            letter-spacing: 10px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+
+            .date-navigation {
+                width: 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+
+            .newspaper-content {
+                grid-template-columns: 1fr;
+            }
+
+            .right-column {
+                border-left: none;
+                border-top: 3px double #2c2416;
+                padding-left: 0;
+                padding-top: 25px;
+            }
+
+            .article-text {
+                column-count: 1;
+            }
+
+            .newspaper-title {
+                font-size: 48px;
+            }
+        }
+
+        /* EFECTOS DE PAPEL ENVEJECIDO */
+        .newspaper-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 115, 85, 0.03) 2px,
+                    rgba(139, 115, 85, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+
+        .newspaper-container {
+            position: relative;
+        }
+
+        /* Placeholder de imagen */
+        img.placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Archives photographiques : ton sépia / noir-et-blanc doux */
+        .article-image img.placeholder,
+        .vertical-image img.placeholder,
+        .secondary-articles .article-image img.placeholder {
+            filter: sepia(0.35) grayscale(0.15) contrast(1.06) brightness(0.98);
+        }
+
+        /* BOTÓN DE TRADUCCIÓN */
+        .translate-button {
+            width: 35px;
+            height: 35px;
+            background: rgba(44, 36, 22, 0.1);
+            border: 2px solid rgba(139, 115, 85, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            color: #5a4a3a;
+            margin: 10px auto;
+        }
+
+        .translate-button:hover {
+            background: rgba(139, 115, 85, 0.2);
+            border-color: #8b7355;
+            transform: scale(1.1);
+        }
+
+        .translate-button:active {
+            transform: scale(0.95);
+        }
+
+        .translate-button-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        /* ESTILOS PARA CRÓNICAS DE SOCIEDAD */
+        .society-chronicle {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .society-chronicle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .society-note {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* ESTILOS PARA CARTAS AL DIRECTOR */
+        .letters-section {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .letters-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .letter-box {
+            background-color: #f5e6d3;
+            border: 2px solid #d4c4a8;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .letter-content {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #2c2416;
+            text-align: justify;
+        }
+
+        .letter-signature {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2416;
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* ESTILOS PARA COTILLEOS DE SOLTEROS */
+        .gossip-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .gossip-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #f4e8d0;
+            border: 1px solid #8b7355;
+            border-left: 3px solid #8b7355;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .gossip-item:hover {
+            background: #e8d5b7;
+        }
+
+        .gossip-photo {
+            width: fit-content;
+            height: fit-content;
+            border: 2px solid #2c2416;
+            padding: 1px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #d4c5b0;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+
+        .gossip-photo img {
+            width: 70px;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            filter: sepia(0.25) grayscale(0.12) contrast(1.05);
+        }
+
+        .gossip-photo img:hover {
+            opacity: 0.8;
+        }
+
+        /* MODAL PARA IMÁGENES */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #2c2416;
+            padding: 10px;
+            background: #faf7f0;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            height: auto;
+            display: block;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: #2c2416;
+            color: #faf7f0;
+            border: 2px solid #2c2416;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .image-modal-close:hover {
+            background: #8b7355;
+        }
+
+        .gossip-info {
+            flex: 1;
+        }
+
+        .gossip-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 5px;
+        }
+
+        .gossip-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            color: #2c2416;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .gossip-text em {
+            font-style: normal;
+            font-weight: 600;
+            color: #5a4a3a;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN DE FECHAS -->
+    <nav class="date-navigation">
+        <h3>Ausgaben · Ediciones</h3>
+        <ul class="date-list">
+            <li class="date-item">
+                <a href="neuesberlin1.html" class="date-link active">
+                    <span>18. November 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="berlin.html" class="date-link">
+                    <span>✠ Dossier: Berlín</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias34.html" class="date-link">
+                    <span>Presse de Paris · Prensa de París</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="index.html" class="date-link">
+                    <span>Índice</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="newspaper-container">
+        <!-- CABECERA DEL PERIÓDICO -->
+        <header class="newspaper-header">
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">❦</span>
+            </div>
+            <h1 class="newspaper-title" style="font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;">Neues Berlin</h1>
+            <p class="newspaper-subtitle">Nachrichten aus der Reichshauptstadt · Noticias de la Capital Imperial</p>
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+            </div>
+            <p class="newspaper-date">Montag, 18. November 1907 — Preis: 10 Pfennig</p>
+        </header>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="newspaper-content">
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="left-column">
+                <!-- ARTÍCULO PRINCIPAL -->
+                <article class="main-article">
+                    <h2 class="article-title lang-fr">L'opinion avant l'applaudissement</h2>
+                    <h2 class="article-title lang-es">La opinión antes que el aplauso</h2>
+                    <p class="article-subtitle lang-fr">Ce qui commença comme une réunion légitime s'est achevé en marche non autorisée sous l'Arc de Triomphe, au nom de Philippe d'Orléans ; et cette rédaction se demande ce qui reste de la volonté du citoyen lorsqu'on l'émeut avant de le laisser penser.</p>
+                    <p class="article-subtitle lang-es">Lo que empezó como una reunión legítima ha terminado en una marcha no autorizada bajo el Arco de Triunfo, en nombre de Felipe de Orleans; y esta redacción se pregunta qué queda de la voluntad del ciudadano cuando se le conmueve antes de dejarle pensar.</p>
+
+                    <div class="article-image">
+                        <img src="news/arc_triomphe_foule.jpg" alt="Foule et musique militaire au pied de l'Arc de Triomphe — photographie de l'agence Rol (domaine public, Bibliothèque nationale de France) — Multitud y música militar al pie del Arco de Triunfo; fotografía de la agencia Rol (dominio público, Biblioteca Nacional de Francia)." class="placeholder" style="object-position: center 40%;">
+                    </div>
+
+                    <div class="article-text lang-fr">
+                        <p>La manifestation qui a commencé ces jours-ci comme l'expression d'une opinion politique a fini par prendre une tout autre nature. Ce que l'on pouvait d'abord entendre comme une réunion légitime de citoyens a débouché sur une marche non autorisée qui traverse sans pudeur l'Arc de Triomphe et descend les Champs-Élysées, brandissant la cause du retour de Philippe d'Orléans et faisant de quelques-unes des principales avenues de Paris le théâtre d'une revendication qui mérite, à tout le moins, une réflexion plus attentive.</p>
+                        <p>La République permet, et doit permettre, que ses citoyens expriment leurs préférences politiques. Il n'est nulle vertu dans une société où les opinions ne pourraient se manifester que lorsqu'elles arrangent ceux qui gouvernent. Mais précisément parce que nous accordons cet espace de liberté, nous devons nous demander ce qu'il advient lorsque ceux qui participent à une manifestation recourent à l'art non pour exprimer une conviction, mais pour en fabriquer une chez autrui. Comme journaliste, et aussi comme femme de lettres, je mesure l'apparente contradiction que renferment ces mots ; mais les caractères que chaque jour nous imprimons dans les pages d'un journal finissent par se perdre dès que le lecteur pense, raisonne et les confronte à d'autres idées ; il en va tout autrement de ce que nous avons vu aujourd'hui, où l'émotion paraît s'être imposée avant que beaucoup aient seulement eu l'occasion de former leur propre jugement.</p>
+                        <p>De la musique, des représentations et d'autres formes d'expression artistique ont accompagné la marche, entraînant de nombreux citoyens vers une émotion collective qui risque de confondre l'enthousiasme avec la volonté propre. L'art possède sur nous un pouvoir extraordinaire, et c'est peut-être pour cela même qu'il exige une certaine responsabilité. Une mélodie peut réveiller un souvenir, une image peut altérer notre humeur, et une représentation peut nous faire ressentir comme nôtre ce qui, quelques minutes plus tôt, nous était tout à fait étranger. Où demeure alors l'opinion du citoyen lorsqu'on le conduit vers elle avant même qu'il ait eu l'occasion de la former ?</p>
+                        <p>Je ne conteste pas le droit de ceux qui souhaitent le retour de la monarchie de le défendre publiquement. Ce que je conteste, c'est qu'une telle proposition puisse s'avancer sur les citoyens au moyen d'instruments destinés à les émouvoir plutôt qu'à les convaincre. La monarchie appartient au passé de la France ; et si l'on devait un jour envisager sérieusement son retour, ce ne devrait pas être par des foules entraînées par la musique ni par la force d'une représentation, mais par une proposition politique soumise au libre jugement de tous les Français.</p>
+                        <p>L'art doit pouvoir provoquer, émouvoir et jusqu'à déranger. C'est précisément parce que je défends sa liberté qu'il m'inquiète de le voir changé en instrument pour restreindre la liberté d'autrui. Une République peut supporter bien des opinions, même celles qui la voudraient transformée. Ce qu'elle ne devrait pas accepter, c'est que la volonté de ses citoyens soit remplacée, fût-ce durant quelques minutes, par la volonté de ceux qui savent le mieux manier leurs émotions.</p>
+                        <p>Qu'on discute, qu'on vote, qu'on convainque. Mais laissons Paris décider les yeux ouverts, et non au rythme d'une musique qui aurait déjà décidé pour lui.</p>
+                    </div>
+
+                    <div class="article-text lang-es">
+                        <p>La manifestación que comenzó estos días como una expresión política ha terminado adquiriendo una naturaleza muy distinta. Lo que en un principio podía entenderse como una reunión legítima de ciudadanos ha desembocado en una marcha no autorizada que atraviesa sin pudor el Arco de Triunfo y desciende por los Campos Elíseos, enarbolando la causa del regreso de Felipe de Orleans y convirtiendo algunas de las principales avenidas de París en escenario de una reivindicación que merece, cuanto menos, una reflexión más detenida.</p>
+                        <p>La República permite, y debe permitir, que sus ciudadanos expresen sus preferencias políticas. No existe virtud alguna en una sociedad donde las opiniones solo puedan manifestarse cuando resultan convenientes para quienes gobiernan. Pero precisamente porque concedemos ese espacio de libertad, debemos preguntarnos qué ocurre cuando quienes participan en una manifestación recurren al arte no para expresar una convicción, sino para fabricar una en los demás. Como periodista, y también como Escritora, puedo comprender la aparente contradicción que contienen estas palabras; pero las letras que cada día imprimimos en las páginas de un periódico terminan perdiéndose cuando el lector piensa, razona y las contrasta con otras ideas; muy distinto es aquello que hemos presenciado hoy, donde la emoción parece haberse impuesto antes de que muchos tuvieran siquiera ocasión de formar su propio juicio.</p>
+                        <p>Música, representaciones y otras formas de expresión artística han acompañado la marcha, arrastrando a numerosos ciudadanos hacia una emoción colectiva que puede terminar confundiendo entusiasmo con voluntad propia. El arte posee un poder extraordinario sobre nosotros, y quizá por ello mismo exige cierta responsabilidad. Una melodía puede despertar un recuerdo, una imagen puede alterar nuestro ánimo y una representación puede hacernos sentir como propio aquello que, unos minutos antes, nos era completamente ajeno. ¿Dónde queda entonces la opinión del ciudadano cuando se le conduce hacia ella antes siquiera de haber tenido ocasión de formarla?</p>
+                        <p>No cuestiono el derecho de quienes desean el regreso de la monarquía a defenderlo públicamente. Lo que cuestiono es que semejante propuesta pueda avanzar sobre los ciudadanos a través de herramientas destinadas a conmoverlos antes que a convencerlos. La monarquía pertenece al pasado de Francia y, si alguna vez se plantease seriamente su regreso, no debería hacerlo mediante multitudes arrastradas por la música ni por la fuerza de una representación, sino mediante una propuesta política sometida al juicio libre de todos los franceses.</p>
+                        <p>El arte debe poder provocar, emocionar y hasta incomodar. Precisamente por defender su libertad me preocupa verlo convertido en instrumento para limitar la libertad ajena. Una República puede soportar muchas opiniones, incluso aquellas que desean verla transformada. Lo que no debería aceptar es que la voluntad de sus ciudadanos sea sustituida, aunque sea durante unos minutos, por la voluntad de quienes mejor saben manejar sus emociones.</p>
+                        <p>Que se discuta, que se vote, que se convenza. Pero dejemos que París decida con los ojos abiertos y no al compás de una música que ya haya decidido por ella.</p>
+                    </div>
+                </article>
+
+                <!-- ARTÍCULOS SECUNDARIOS -->
+                <div class="secondary-articles">
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">Avant le scrutin : le tableau des candidatures</h3>
+                        <h3 class="secondary-title lang-es">Antes de la elección: el tablero de las candidaturas</h3>
+                        <div class="article-image">
+                            <img src="news/palais_bourbon.jpg" alt="Le Palais Bourbon, siège de la Chambre des députés — photochrome vers 1900 (domaine public) — El Palacio Borbón, sede de la Cámara de los Diputados; fotocromo hacia 1900 (dominio público)." class="placeholder" style="object-position: center 45%;">
+                        </div>
+                        <div class="secondary-text lang-fr">
+                            <p>Paris, 16 novembre — Il est peu d'élections, dans l'histoire de la République, qui aient offert aux électeurs des chemins si éloignés les uns des autres. Tandis que l'Europe s'agite, la France s'apprête à choisir — et le choix, cette fois, ne se fait pas entre deux nuances d'un même régime, mais entre des siècles. Voici, exposé sans faveur ni malveillance, le tableau des candidatures telles qu'elles se présentent à ce jour.</p>
+                            <p>À droite de tout, l'Action française de M. Charles Maurras ne cache plus rien de son dessein : rendre à la France un roi, et ce roi serait Monseigneur Philippe, duc d'Orléans. Le programme est d'une cohérence qui force l'attention, à défaut de l'adhésion : seule une maison régnante, placée au-dessus des partis, saurait — disent ses orateurs — abriter le pays des tempêtes qui secouent le continent. Et ces messieurs d'ajouter, dans leurs réunions, un argument d'un autre âge : que le sacre de Reims ne fut jamais une cérémonie vide, que les rois de France guérissaient les écrouelles d'un attouchement, et qu'à l'heure où des armées étrangères marchent, dit-on, derrière des images peintes, il serait imprudent de laisser dormir ce qu'ils nomment « le vieux miracle capétien ». Nous rapportons l'argument sans le faire nôtre ; il en dit long, du moins, sur l'esprit du temps, où les programmes politiques se mettent à parler comme des légendes dorées.</p>
+                            <p>Au centre, la surprise est venue des modérés eux-mêmes : M. Armand Fallières, que les républicains de gouvernement tenaient pour leur candidat naturel, s'est retiré — avec cette bonhomie qui ne l'a jamais quitté — pour laisser le champ libre à M. Charles Garnier. L'architecte de l'Opéra, que ses quatre-vingt-deux ans n'ont privé ni de verbe ni de panache, propose à la France une république d'ordre et de grandeur : des monuments contre le désordre, des chantiers contre la peur. On ne s'y trompe point : l'homme fut celui de l'Empire, et son goût le porte vers les fastes napoléoniens bien davantage que vers les lys d'Orléans. Sa candidature rassemble ainsi, sous des dehors modérés, tout ce que le pays compte de nostalgies impériales — et l'on murmure que plus d'un salon bonapartiste a déjà retenu ses loges.</p>
+                            <p>À gauche enfin, l'événement n'est pas moindre : M. Jean Jaurès, renonçant à porter lui-même les couleurs de son camp, s'est effacé pour prendre la vice-présidence de la Section française de l'Internationale ouvrière ; et c'est Mademoiselle Anaïs Vernier, de la Guilde des Artisans, qui conduira une candidature commune des radicaux-socialistes et de la Section. L'union de la gauche est chose assez rare pour être notée ; les mauvaises langues expliquent qu'après les scandales qui ont terni la fin de la précédente présidence, les radicaux n'espéraient plus être reconduits seuls, et qu'ils ont préféré partager une victoire possible plutôt que de garder une défaite entière. Quoi qu'il en soit du calcul, la voix de Mademoiselle Vernier — celle des ateliers, du pain et du travail — porte loin, et jusque dans des quartiers où l'on n'avait jamais applaudi un discours socialiste.</p>
+                            <p>Un roi, un bâtisseur, une artisane : rarement scrutin aura mieux ressemblé à une allégorie. Cette rédaction ne dira pas où va sa préférence ; elle se borne à constater que les trois France qui se présentent regardent l'une vers Reims, l'autre vers les fastes de l'Empire, la troisième vers les ateliers — et que c'est à l'électeur, non aux prodiges dont chacun se réclame, qu'il appartiendra de trancher.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p>París, 16 de noviembre — Pocas elecciones, en la historia de la República, han ofrecido a los electores caminos tan alejados unos de otros. Mientras Europa se agita, Francia se dispone a elegir — y la elección, esta vez, no es entre dos matices de un mismo régimen, sino entre siglos. He aquí, expuesto sin favor ni malevolencia, el tablero de las candidaturas tal como se presentan a día de hoy.</p>
+                            <p>A la derecha de todo, la Acción Francesa del señor Charles Maurras ya no oculta nada de su designio: devolver a Francia un rey, y ese rey sería Monseñor Felipe, duque de Orleans. El programa es de una coherencia que obliga a la atención, ya que no a la adhesión: sólo una casa reinante, situada por encima de los partidos, sabría —dicen sus oradores— resguardar al país de las tempestades que sacuden el continente. Y añaden estos señores, en sus reuniones, un argumento de otra edad: que la consagración de Reims nunca fue una ceremonia vacía, que los reyes de Francia curaban las escrófulas con sólo tocarlas, y que en la hora en que ejércitos extranjeros marchan, según se dice, detrás de imágenes pintadas, sería imprudente dejar dormir lo que ellos llaman «el viejo milagro capeto». Referimos el argumento sin hacerlo nuestro; dice mucho, cuando menos, del espíritu del tiempo, en el que los programas políticos se ponen a hablar como leyendas doradas.</p>
+                            <p>En el centro, la sorpresa ha venido de los propios moderados: el señor Armand Fallières, a quien los republicanos de gobierno tenían por su candidato natural, se ha retirado —con esa bonhomía que nunca le ha abandonado— para dejar el campo libre al señor Charles Garnier. El arquitecto de la Ópera, a quien sus ochenta y dos años no han privado ni de verbo ni de empaque, propone a Francia una república de orden y de grandeza: monumentos contra el desorden, obras contra el miedo. Nadie se engaña: el hombre fue el del Imperio, y su gusto lo inclina hacia los fastos napoleónicos mucho más que hacia los lises de Orleans. Su candidatura reúne así, bajo apariencias moderadas, cuanto el país guarda de nostalgias imperiales — y se murmura que más de un salón bonapartista ha reservado ya sus palcos.</p>
+                            <p>En la izquierda, por fin, el acontecimiento no es menor: el señor Jean Jaurès, renunciando a llevar él mismo los colores de su campo, se ha hecho a un lado para asumir la vicepresidencia de la Sección Francesa de la Internacional Obrera; y es la señorita Anaïs Vernier, del Gremio de Artesanos, quien encabezará una candidatura común de los radical-socialistas y de la Sección. La unión de la izquierda es cosa lo bastante rara como para anotarla; las malas lenguas explican que, tras los escándalos que empañaron el final de la anterior presidencia, los radicales ya no esperaban ser reelegidos solos, y que han preferido compartir una victoria posible antes que guardarse una derrota entera. Sea lo que fuere del cálculo, la voz de la señorita Vernier —la de los talleres, el pan y el trabajo— llega lejos, hasta barrios donde jamás se había aplaudido un discurso socialista.</p>
+                            <p>Un rey, un constructor, una artesana: rara vez una elección se habrá parecido tanto a una alegoría. Esta redacción no dirá hacia dónde va su preferencia; se limita a constatar que las tres Francias que se presentan miran una hacia Reims, otra hacia los fastos del Imperio, la tercera hacia los talleres — y que es al elector, no a los prodigios que cada cual invoca, a quien corresponderá decidir.</p>
+                        </div>
+                    </article>
+                </div>
+
+
+            </div>
+
+            <!-- COLUMNA DERECHA -->
+            <aside class="right-column">
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">De la richesse qui s'affiche</h3>
+                    <h3 class="sidebar-title lang-es">De la riqueza que se exhibe</h3>
+                    <div class="vertical-image sidebar-portrait" style="margin-bottom: 1em;">
+                        <img src="news/elegantes_courses.jpg" alt="Élégantes aux courses — photographie de l'agence Rol, début du siècle (domaine public, Bibliothèque nationale de France) — Elegantes en las carreras; fotografía de la agencia Rol, principios de siglo (dominio público, Biblioteca Nacional de Francia)." class="placeholder" style="object-position: center 25%;">
+                    </div>
+                    <div class="sidebar-text lang-fr">
+                        <p>On me pardonnera d'abandonner un instant le crayon pour la plume : il est des spectacles qu'un dessinateur ne peut plus regarder sans protester. Paris n'a jamais été si riche — ou du moins n'a jamais tant tenu à le faire savoir. Les automobiles se dorent comme des châsses, les petits chiens portent des colliers qui feraient rougir des reliquaires, et l'on donne des dîners où la vaisselle coûte ce que gagne en dix ans l'ouvrier qui l'a ciselée.</p>
+                        <p>Qu'on ne me fasse pas dire ce que je ne dis point : je n'en veux pas à la fortune, qui fait vivre les ateliers, mais à l'ostentation, qui est d'abord une faute de goût. L'or est une couleur avant d'être une valeur ; qui en couvre tout n'éclaire rien. Un salon où tout brille est un tableau sans ombre — et un tableau sans ombre, chacun le sait, est un tableau manqué. Le vrai luxe choisit, retranche, se tait ; l'autre s'étale, et en s'étalant s'annule.</p>
+                        <p>Il y a plus grave que la faute d'école. Par les temps qui courent, quand les gares du Midi se remplissent de familles qui ont tout laissé derrière les Pyrénées, les diamants portés en grappe prennent un éclat qui n'est plus de la lumière. La pudeur est la politesse de la fortune ; ceux qui l'oublient travaillent, sans le savoir, pour ceux qui rêvent de la leur rappeler.</p>
+                        <p>Un conseil de praticien, pour finir : que ceux qui ont trop d'or en fassent des commandes plutôt que des devantures. Un portrait, une façade, un vitrail leur survivront ; leurs lustres, non. Le goût ne s'achète pas au poids — mais il se commande à l'atelier, et c'est même, de nos jours, la seule dépense dont personne n'ait jamais rougi.</p>
+                    </div>
+                    <div class="sidebar-text lang-es">
+                        <p>Se me perdonará que abandone un instante el lápiz por la pluma: hay espectáculos que un dibujante ya no puede mirar sin protestar. París nunca ha sido tan rico — o, cuando menos, nunca ha tenido tanto empeño en hacerlo saber. Los automóviles se doran como relicarios, los perritos llevan collares que sonrojarían a más de una custodia, y se dan cenas en las que la vajilla cuesta lo que gana en diez años el obrero que la cinceló.</p>
+                        <p>Que no se me haga decir lo que no digo: no le guardo rencor a la fortuna, que da de vivir a los talleres, sino a la ostentación, que es ante todo una falta de gusto. El oro es un color antes que un valor; quien lo cubre todo con él no ilumina nada. Un salón donde todo brilla es un cuadro sin sombra — y un cuadro sin sombra, todos lo saben, es un cuadro fallido. El verdadero lujo escoge, suprime, calla; el otro se despliega y, al desplegarse, se anula.</p>
+                        <p>Hay algo más grave que la falta de escuela. En los tiempos que corren, cuando las estaciones del Mediodía se llenan de familias que lo han dejado todo al otro lado de los Pirineos, los diamantes llevados en racimo cobran un brillo que ya no es luz. El pudor es la cortesía de la fortuna; quienes lo olvidan trabajan, sin saberlo, para quienes sueñan con recordárselo.</p>
+                        <p>Un consejo de practicante, para terminar: que quienes tienen oro de sobra hagan con él encargos antes que escaparates. Un retrato, una fachada, una vidriera les sobrevivirán; sus lámparas, no. El gusto no se compra al peso — pero se encarga en el taller, y es incluso, en nuestros días, el único gasto del que nadie se ha sonrojado jamás.</p>
+                    </div>
+                </article>
+
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 16px;">
+                        <p><strong>• Vienne rentre chez elle :</strong> Les dernières dépêches confirment ce que l'on pressentait : la marche autrichienne sur l'Allemagne s'est achevée là où elle avait commencé, aux portes de la double monarchie. Repoussées avant même d'avoir pu donner leur mesure, les colonnes impériales sont rentrées sous la pluie, sans musique et sans communiqué. À Vienne, on parle déjà d'autre chose ; c'est la manière des cours qui ont perdu de faire croire qu'elles n'ont rien joué.</p>
+                        <p><strong>• Les dieux repeints :</strong> On mande de Rome et d'Athènes que se poursuit l'étrange travail de ces érudits qui rendent aux marbres antiques leurs couleurs d'origine — pourpre, or et chair — et rouvrent des temples que l'on croyait morts depuis quinze siècles. Les savants y voient une restitution ; une frange d'enthousiastes, davantage, et s'agenouille devant des statues repeintes comme devant des vivants. Nous nous garderons de juger : il fut toujours plus aisé de raviver une couleur que d'éteindre une ferveur.</p>
+                        <p><strong>• Adieu à Pinocchio :</strong> On annonce pour cette semaine, au théâtre de la Belle Époque, la dernière représentation du <em>Pinocchio</em> qui aura fait, tout l'automne, la joie des petits et la rêverie des grands. La direction promet une soirée d'apparat pour ce pantin de bois que tant d'enfants ont vu, chaque soir, se rêver homme. Il se trouvera bien quelque père, au tomber du rideau, pour se demander lequel des deux, du pantin ou du public, aura le plus appris à mentir.</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 16px;">
+                        <p><strong>• Viena vuelve a casa:</strong> Los últimos despachos confirman lo que se presentía: la marcha austríaca sobre Alemania ha terminado allí donde había empezado, a las puertas de la doble monarquía. Rechazadas antes incluso de poder dar su medida, las columnas imperiales han regresado bajo la lluvia, sin música y sin comunicado. En Viena ya se habla de otra cosa; es la manera de las cortes que han perdido: hacer creer que no habían jugado nada.</p>
+                        <p><strong>• Los dioses repintados:</strong> Comunican de Roma y de Atenas que prosigue el extraño trabajo de esos eruditos que devuelven a los mármoles antiguos sus colores originales —púrpura, oro y carne— y reabren templos que se creían muertos desde hacía quince siglos. Los sabios ven en ello una restitución; una franja de entusiastas ve algo más, y se arrodilla ante estatuas repintadas como ante seres vivos. Nos guardaremos de juzgar: siempre fue más fácil reavivar un color que apagar un fervor.</p>
+                        <p><strong>• Adiós a Pinocho:</strong> Se anuncia para esta semana, en el teatro de la Belle Époque, la última función del <em>Pinocho</em> que ha hecho, durante todo el otoño, las delicias de los pequeños y el ensueño de los mayores. La dirección promete una velada de gala para ese muñeco de madera al que tantos niños han visto, cada noche, soñarse hombre. No faltará algún padre que, al caer el telón, se pregunte cuál de los dos, si el muñeco o el público, habrá aprendido mejor a mentir.</p>
+                    </div>
+                </article>
+
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>L'opinion avant l'applaudissement :</strong><br>C. Müller</p>
+                        <p><strong>Avant le scrutin : le tableau des candidatures :</strong><br>L. Roy</p>
+                        <p><strong>De la richesse qui s'affiche :</strong><br>É. Labord</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>La opinión antes que el aplauso :</strong><br>C. Müller</p>
+                        <p><strong>Antes de la elección: el tablero de las candidaturas :</strong><br>L. Roy</p>
+                        <p><strong>De la riqueza que se exhibe :</strong><br>É. Labord</p>
+                    </div>
+                </article>
+
+            </aside>
+        </div>
+
+    <!-- MODAL PARA IMÁGENES -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        function openImageModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageModal(event) {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    </script>
+</body>
+</html>
