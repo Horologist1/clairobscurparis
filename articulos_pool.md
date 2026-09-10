@@ -5,35 +5,37 @@ Al usarlos: pegar el bloque HTML en `secondary-articles`, añadir la entrada al 
 
 ---
 
-## Los bailarines que cruzan Europa / Les danseurs qui traversent l'Europe
+## Le kilomètre se joue dans le virage / El kilómetro se juega en el viraje
 
-- **Reservado para**: el número siguiente al 18 de noviembre de 1907 (retirado de `noticias35.html`).
-- **Firma**: H. Dubois
-- **Imagen**: `news/pavlova_1905.jpg` (ya en el repo — retrato de bailarina rusa con pieles, tarjeta postal de San Petersburgo hacia 1905, dominio público).
-- **Entrada de sumario FR**: `Les danseurs qui traversent l'Europe : H. Dubois`
-- **Entrada de sumario ES**: `Los bailarines que cruzan Europa : H. Dubois`
-- **Nota de continuidad**: menciona la «temporada rusa» de Diaghilew en preparación y el éxodo de artistas rusos; si al publicarlo han pasado días, cambiar «la semaine passée / la semana pasada» si hiciera falta.
+- **Reservado para**: una edición posterior al 20 de noviembre de 1907 (retirado de `noticias36.html`, donde se publicó en su lugar «Los bailarines que cruzan Europa»).
+- **Firma**: É. Garnier
+- **Imagen**: `news/voisin_farman_atelier_1907.jpg` (ya en el repo — Charles Voisin y Henri Farman junto al bastidor y el motor de un biplano, agencia Rol, 1907, dominio público, BnF).
+- **Entrada de sumario FR**: `Le kilomètre se joue dans le virage : É. Garnier`
+- **Entrada de sumario ES**: `El kilómetro se juega en el viraje : É. Garnier`
+- **Nota de continuidad**: continúa «Farman roule vers le kilomètre» (`noticias35.html`, 18 nov 1907). Dice «hace diez días» por el vuelo de más de mil metros en recta y sitúa la escena «martes»; si se publica bastante más tarde, ajustar esas referencias. El premio Deutsch-Archdeacon sigue sin ganarse mientras no se cierre el kilómetro en circuito.
 
 ```html
 <article class="secondary-article">
-    <h3 class="secondary-title lang-fr">Les danseurs qui traversent l'Europe</h3>
-    <h3 class="secondary-title lang-es">Los bailarines que cruzan Europa</h3>
-    <div class="article-image">
-        <img src="news/pavlova_1905.jpg" alt="Portrait d'une danseuse russe en fourrures, carte postale de Saint-Pétersbourg vers 1905 (domaine public) — Retrato de una bailarina rusa con pieles, tarjeta postal de San Petersburgo hacia 1905 (dominio público)." class="placeholder" style="object-position: center 22%;">
+    <h3 class="secondary-title lang-fr">Le kilomètre se joue dans le virage</h3>
+    <h3 class="secondary-title lang-es">El kilómetro se juega en el viraje</h3>
+    <div class="article-image" style="aspect-ratio: 4 / 3;">
+        <img src="news/voisin_farman_atelier_1907.jpg" alt="MM. Charles Voisin et Henri Farman auprès du bâti et du moteur d'un biplan, 1907 — photographie de l'agence Rol (domaine public, Bibliothèque nationale de France) — Los señores Charles Voisin y Henri Farman junto al bastidor y el motor de un biplano, 1907; fotografía de la agencia Rol (dominio público, Biblioteca Nacional de Francia)." class="placeholder" style="object-position: center 30%;">
     </div>
     <div class="secondary-text lang-fr">
-        <p>Gare du Nord, chaque semaine — De l'express de Cologne descendent des voyageurs aux valises légères et aux noms difficiles : danseurs, musiciens, peintres de décors. Ils laissent derrière eux la Russie du Tsar, devenue caserne, où les théâtres ferment plus vite que les forteresses ne s'ouvrent, et où l'on mobilise jusqu'aux orchestres.</p>
-        <p>Leurs papiers disent « choristes ». À Saint-Pétersbourg, on les tient pour des déserteurs — car la désertion, depuis que la Russie marche, atteint aussi les théâtres. Une première danseuse des scènes impériales est arrivée la semaine passée, dit-on, les pieds bandés et le port intact ; elle a demandé, dans un français d'école, où l'on trouvait à Paris un plancher qui ne fût pas un quai de gare.</p>
-        <p>M. Serge de Diaghilew, que l'on connaît ici depuis ses concerts russes du printemps dernier, réunit ce monde dispersé et prépare pour la belle saison une « saison russe » complète : ballet, opéra, décors et costumes. « La Russie exporte à présent la seule chose qui lui reste en excédent, » dit-il à qui veut l'entendre : « du talent. »</p>
-        <p>À la douane, conte un porteur, la malle d'un maître de ballet pesait davantage qu'elle n'eût dû ; on ne l'ouvrit point, les papiers étant en règle, et cette rédaction n'y veut voir que le poids des souvenirs. Paris, qui accueille déjà ceux du sud, fera place à ceux de l'est : il n'a jamais su résister aux gens qui arrivent en fuyant et en dansant.</p>
-        <p style="text-align: right; font-style: italic;">H. Dubois</p>
+        <p>Issy-les-Moulineaux, mardi — Le champ était gelé dur et les chronométreurs de l'Aéro-Club soufflaient dans leurs gants. On sait ce qui se joue : cinquante mille francs au premier kilomètre en circuit fermé. Ce que l'on sait moins, et que cette rédaction a mis quelque temps à comprendre, c'est que la difficulté n'est plus la distance. Elle est le virage.</p>
+        <p>M. Henri Farman a couvert, il y a dix jours, plus de mille mètres en ligne droite, et personne n'en doute plus. Mais le prix ne se gagne pas en ligne droite : il faut partir d'un poteau, en contourner un second et revenir, ce qui fait un kilomètre et une courbe. Or la machine de MM. Voisin, qui tient l'air avec une stabilité de bouée, s'entête à aller devant elle. « Ce qui la rend sûre en ligne droite la rend têtue en courbe », résume un mécanicien de Billancourt, où l'on lime, recolle et retend depuis trois semaines. On y parle du gouvernail comme d'un homme à convaincre.</p>
+        <p>M. Léon Delagrange, sur une machine sœur, s'exerce au même problème avec une courtoisie parfaite : les deux équipes se prêtent des outils et se cachent leurs chiffres. On rappelle, dans les hangars, que les frères Wright tournent en Amérique depuis des années et ne montrent rien ; l'un d'eux a passé l'automne à Paris à discuter des contrats sans ouvrir une seule caisse. Cinquante chevaux, du bois, de la toile et de l'acier : les ingénieurs répètent qu'il n'y a là-dedans aucun mystère, et ils le répètent un peu plus fort qu'il ne serait nécessaire.</p>
+        <p>Au bord du champ, on a revu ces messieurs que l'on dit du métier des arts. L'un d'eux, que l'on assure du Conseil des Beaux-Arts, a demandé à un ingénieur si une machine qui vole relevait des arts. L'ingénieur a répondu que non, et l'on a ri : par les temps qui courent, c'est presque une déclaration. Le siècle, à ce qu'il paraît, aura deux sortes de prodiges, et l'une d'elles se fabriquera à l'atelier, en série, avec un devis.</p>
+        <p>Le kilomètre viendra, disent les mécaniciens ; il ne demande qu'un virage et un peu de patience. On souhaite qu'il vienne, et qu'il ne demande rien d'autre.</p>
+        <p style="text-align: right; font-style: italic;">É. Garnier</p>
     </div>
     <div class="secondary-text lang-es">
-        <p>Gare du Nord, cada semana — Del expreso de Colonia bajan viajeros de maletas ligeras y apellidos difíciles: bailarines, músicos, pintores de decorados. Dejan atrás la Rusia del Zar, convertida en cuartel, donde los teatros cierran más deprisa de lo que se abren las fortalezas y donde se moviliza hasta a las orquestas.</p>
-        <p>Sus papeles dicen «coristas». En San Petersburgo se les tiene por desertores — porque la deserción, desde que Rusia marcha, alcanza también a los teatros. Una primera bailarina de los escenarios imperiales llegó la semana pasada, según se cuenta, con los pies vendados y el porte intacto; preguntó, en un francés de escuela, dónde se encontraba en París un entarimado que no fuese un andén de estación.</p>
-        <p>El señor Sergio de Diaghilew, a quien aquí se conoce desde sus conciertos rusos de la primavera pasada, va reuniendo a ese mundo disperso y prepara para la buena estación una «temporada rusa» completa: ballet, ópera, decorados y vestuario. «Rusia exporta ahora lo único que le sobra», dice a quien quiera oírle: «talento.»</p>
-        <p>En la aduana, cuenta un mozo, el baúl de un maestro de ballet pesaba más de lo que debiera; no se abrió, porque los papeles estaban en regla, y esta redacción no quiere ver en ello más que el peso de los recuerdos. París, que ya acoge a los del sur, hará sitio a los del este: nunca ha sabido resistirse a la gente que llega huyendo y bailando.</p>
-        <p style="text-align: right; font-style: italic;">H. Dubois</p>
+        <p>Issy-les-Moulineaux, martes — El campo estaba helado y los cronometradores del Aéro-Club se soplaban los guantes. Se sabe lo que está en juego: cincuenta mil francos al primer kilómetro en circuito cerrado. Lo que se sabe menos, y que a esta redacción le ha costado un rato entender, es que la dificultad ya no es la distancia. Es el viraje.</p>
+        <p>El señor Henri Farman cubrió, hace diez días, más de mil metros en línea recta, y nadie lo pone ya en duda. Pero el premio no se gana en línea recta: hay que partir de un poste, rodear un segundo y volver, lo que hace un kilómetro y una curva. Y la máquina de los señores Voisin, que se sostiene en el aire con una estabilidad de boya, se empeña en ir hacia adelante. «Lo que la hace segura en recta la hace testaruda en curva», resume un mecánico de Billancourt, donde se lima, se encola y se retensa desde hace tres semanas. Allí se habla del timón como de un hombre al que hay que convencer.</p>
+        <p>El señor Léon Delagrange, sobre una máquina hermana, se ejercita en el mismo problema con una cortesía perfecta: los dos equipos se prestan herramientas y se ocultan las cifras. Se recuerda, en los cobertizos, que los hermanos Wright vuelan en América desde hace años y no enseñan nada; uno de ellos ha pasado el otoño en París discutiendo contratos sin abrir una sola caja. Cincuenta caballos, madera, tela y acero: los ingenieros repiten que ahí dentro no hay misterio alguno, y lo repiten algo más alto de lo necesario.</p>
+        <p>Al borde del campo se ha vuelto a ver a esos señores que se dicen del oficio de las artes. Uno de ellos, a quien aseguran del Consejo de Bellas Artes, preguntó a un ingeniero si una máquina que vuela pertenecía a las artes. El ingeniero respondió que no, y hubo risas: en los tiempos que corren, eso es casi una declaración. El siglo, por lo visto, tendrá dos clases de prodigios, y una de ellas se fabricará en el taller, en serie, con presupuesto.</p>
+        <p>El kilómetro llegará, dicen los mecánicos; no pide más que un viraje y un poco de paciencia. Ojalá llegue, y ojalá no pida nada más.</p>
+        <p style="text-align: right; font-style: italic;">É. Garnier</p>
     </div>
 </article>
 ```
