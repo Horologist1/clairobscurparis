@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Nouveau - Belle Époque</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #f4e8d0;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        /* CONTENEDOR DE NAVEGACIÓN DE FECHAS */
+        .date-navigation {
+            width: 200px;
+            background: #faf7f0;
+            border: 3px double #2c2416;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .date-navigation h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c2416;
+            padding-bottom: 10px;
+        }
+
+        .date-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .date-item {
+            margin-bottom: 15px;
+        }
+
+        .date-link {
+            display: block;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #2c2416;
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #f4e8d0;
+        }
+
+        .date-link:hover {
+            background: #e8d5b7;
+            border-color: #8b7355;
+            transform: translateX(5px);
+        }
+
+        .date-link.active {
+            background: #8b7355;
+            color: #faf7f0;
+            border-color: #2c2416;
+            font-weight: 600;
+        }
+
+        .date-link.active:hover {
+            background: #6b5a47;
+            transform: none;
+        }
+
+        .newspaper-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #faf7f0;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            padding: 40px;
+            border: 3px double #2c2416;
+            flex: 1;
+        }
+
+        /* CABECERA DEL PERIÓDICO */
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 4px double #2c2416;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .ornamental-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .ornamental-line::before,
+        .ornamental-line::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #2c2416, transparent);
+        }
+
+        .ornamental-symbol {
+            margin: 0 15px;
+            font-size: 20px;
+            color: #8b7355;
+        }
+
+        .newspaper-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            color: #2c2416;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin: 15px 0;
+            text-shadow: 2px 2px 0px rgba(139, 115, 85, 0.3);
+        }
+
+        .newspaper-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #5a4a3a;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .newspaper-date {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            color: #5a4a3a;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* ESTRUCTURA DEL CONTENIDO */
+        .newspaper-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* COLUMNA IZQUIERDA */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* ARTÍCULO PRINCIPAL */
+        .main-article {
+            border-bottom: 3px double #2c2416;
+            padding-bottom: 25px;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #2c2416;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .article-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .article-image {
+            width: 100%;
+            height: auto;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .main-article .article-image {
+            aspect-ratio: 16 / 9;
+            width: 100%;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            flex: 1 1 auto;
+            min-width: 0;
+            min-height: 0;
+        }
+
+        .main-article .article-image img {
+            object-position: center 28%;
+        }
+
+        .secondary-articles .secondary-article .article-image {
+            aspect-ratio: 5 / 4;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .secondary-articles .secondary-article .article-image img {
+            object-position: center 38%;
+        }
+
+        .article-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.8;
+            column-count: 2;
+            column-gap: 30px;
+            hyphens: auto;
+        }
+
+        .article-text::first-letter {
+            font-size: 72px;
+            font-weight: bold;
+            float: left;
+            line-height: 0.8;
+            margin: 5px 8px 0 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ARTÍCULOS SECUNDARIOS */
+        .secondary-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .secondary-article {
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 20px;
+        }
+
+        .secondary-article:last-child {
+            border-bottom: none;
+        }
+
+        .secondary-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2c2416;
+            padding-bottom: 5px;
+        }
+
+        .secondary-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+
+        /* IMAGEN CUADRADA ENTRE ARTÍCULOS */
+        .square-image-container {
+            margin: 20px 0;
+        }
+
+        .square-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border: 3px solid #2c2416;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .square-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* COLUMNA DERECHA */
+        .right-column {
+            border-left: 3px double #2c2416;
+            padding-left: 25px;
+        }
+
+        .sidebar-article {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 10px 0;
+        }
+
+        .vertical-image {
+            width: 100%;
+            aspect-ratio: 9/16;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .vertical-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .vertical-image.sidebar-portrait {
+            aspect-ratio: 3 / 4;
+            max-width: 100%;
+        }
+
+        .vertical-image.sidebar-portrait img.placeholder {
+            object-position: center 30%;
+        }
+
+        .sidebar-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+
+        /* DECORACIONES TIPOGRÁFICAS */
+        .typographic-ornament {
+            text-align: center;
+            font-size: 24px;
+            color: #8b7355;
+            margin: 20px 0;
+            letter-spacing: 10px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+
+            .date-navigation {
+                width: 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+
+            .newspaper-content {
+                grid-template-columns: 1fr;
+            }
+
+            .right-column {
+                border-left: none;
+                border-top: 3px double #2c2416;
+                padding-left: 0;
+                padding-top: 25px;
+            }
+
+            .article-text {
+                column-count: 1;
+            }
+
+            .newspaper-title {
+                font-size: 48px;
+            }
+        }
+
+        /* EFECTOS DE PAPEL ENVEJECIDO */
+        .newspaper-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 115, 85, 0.03) 2px,
+                    rgba(139, 115, 85, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+
+        .newspaper-container {
+            position: relative;
+        }
+
+        /* Placeholder de imagen */
+        img.placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Archives photographiques : ton sépia / noir-et-blanc doux */
+        .article-image img.placeholder,
+        .vertical-image img.placeholder,
+        .secondary-articles .article-image img.placeholder {
+            filter: sepia(0.35) grayscale(0.15) contrast(1.06) brightness(0.98);
+        }
+
+        /* BOTÓN DE TRADUCCIÓN */
+        .translate-button {
+            width: 35px;
+            height: 35px;
+            background: rgba(44, 36, 22, 0.1);
+            border: 2px solid rgba(139, 115, 85, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            color: #5a4a3a;
+            margin: 10px auto;
+        }
+
+        .translate-button:hover {
+            background: rgba(139, 115, 85, 0.2);
+            border-color: #8b7355;
+            transform: scale(1.1);
+        }
+
+        .translate-button:active {
+            transform: scale(0.95);
+        }
+
+        .translate-button-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        /* Ocultar contenido de idioma alternativo */
+        .lang-es {
+            display: none;
+        }
+
+        body.spanish .lang-fr {
+            display: none;
+        }
+
+        body.spanish .lang-es {
+            display: block;
+        }
+
+        body.spanish .lang-es.inline {
+            display: inline;
+        }
+
+        /* ESTILOS PARA CRÓNICAS DE SOCIEDAD */
+        .society-chronicle {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .society-chronicle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .society-note {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* ESTILOS PARA CARTAS AL DIRECTOR */
+        .letters-section {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .letters-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .letter-box {
+            background-color: #f5e6d3;
+            border: 2px solid #d4c4a8;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .letter-content {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #2c2416;
+            text-align: justify;
+        }
+
+        .letter-signature {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2416;
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* ESTILOS PARA COTILLEOS DE SOLTEROS */
+        .gossip-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .gossip-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #f4e8d0;
+            border: 1px solid #8b7355;
+            border-left: 3px solid #8b7355;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .gossip-item:hover {
+            background: #e8d5b7;
+        }
+
+        .gossip-photo {
+            width: fit-content;
+            height: fit-content;
+            border: 2px solid #2c2416;
+            padding: 1px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #d4c5b0;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+
+        .gossip-photo img {
+            width: 70px;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            filter: sepia(0.25) grayscale(0.12) contrast(1.05);
+        }
+
+        .gossip-photo img:hover {
+            opacity: 0.8;
+        }
+
+        /* MODAL PARA IMÁGENES */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #2c2416;
+            padding: 10px;
+            background: #faf7f0;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            height: auto;
+            display: block;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: #2c2416;
+            color: #faf7f0;
+            border: 2px solid #2c2416;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .image-modal-close:hover {
+            background: #8b7355;
+        }
+
+        .gossip-info {
+            flex: 1;
+        }
+
+        .gossip-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 5px;
+        }
+
+        .gossip-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            color: #2c2416;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .gossip-text em {
+            font-style: normal;
+            font-weight: 600;
+            color: #5a4a3a;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN DE FECHAS -->
+    <nav class="date-navigation">
+        <p style="margin: 0 0 12px 0; text-align: center; border: 1px solid #8b7355; padding: 6px 4px;">
+            <a href="neuesberlin1.html" class="date-link" style="font-weight: bold;">
+                <span class="lang-fr">✠ Presse de Berlin</span>
+                <span class="lang-es">✠ Prensa de Berlín</span>
+            </a>
+        </p>
+        <h3 class="lang-fr">Éditions</h3>
+        <h3 class="lang-es">Ediciones</h3>
+        <ul class="date-list">
+            <li class="date-item">
+                <a href="noticias37.html" class="date-link">
+                    <span class="lang-fr">22 Novembre 1907</span>
+                    <span class="lang-es">22 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias37.html" class="date-link active">
+                    <span class="lang-fr">22 Novembre 1907</span>
+                    <span class="lang-es">22 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias36.html" class="date-link">
+                    <span class="lang-fr">20 Novembre 1907</span>
+                    <span class="lang-es">20 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias35.html" class="date-link">
+                    <span class="lang-fr">18 Novembre 1907</span>
+                    <span class="lang-es">18 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias34.html" class="date-link">
+                    <span class="lang-fr">17 Novembre 1907</span>
+                    <span class="lang-es">17 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias33.html" class="date-link">
+                    <span class="lang-fr">16 Novembre 1907</span>
+                    <span class="lang-es">16 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias32.html" class="date-link">
+                    <span class="lang-fr">16 Novembre 1905</span>
+                    <span class="lang-es">16 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias31.html" class="date-link">
+                    <span class="lang-fr">13 Novembre 1905</span>
+                    <span class="lang-es">13 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias30.html" class="date-link">
+                    <span class="lang-fr">12 Novembre 1905</span>
+                    <span class="lang-es">12 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias29.html" class="date-link">
+                    <span class="lang-fr">11 Novembre 1905</span>
+                    <span class="lang-es">11 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias28.html" class="date-link">
+                    <span class="lang-fr">10 Novembre 1905</span>
+                    <span class="lang-es">10 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias27.html" class="date-link">
+                    <span class="lang-fr">6 Novembre 1905</span>
+                    <span class="lang-es">6 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias26.html" class="date-link">
+                    <span class="lang-fr">5 Novembre 1905</span>
+                    <span class="lang-es">5 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias25.html" class="date-link">
+                    <span class="lang-fr">2 Novembre 1905</span>
+                    <span class="lang-es">2 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias22.html" class="date-link">
+                    <span class="lang-fr">1er Août 1905</span>
+                    <span class="lang-es">1 de Agosto</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias21.html" class="date-link">
+                    <span class="lang-fr">30 Juillet 1905</span>
+                    <span class="lang-es">30 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias20.html" class="date-link">
+                    <span class="lang-fr">29 Juillet 1905</span>
+                    <span class="lang-es">29 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias19.html" class="date-link">
+                    <span class="lang-fr">28 Juillet 1905</span>
+                    <span class="lang-es">28 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias18.html" class="date-link">
+                    <span class="lang-fr">27 Juillet 1905</span>
+                    <span class="lang-es">27 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias17.html" class="date-link">
+                    <span class="lang-fr">26 Juillet 1905</span>
+                    <span class="lang-es">26 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias16.html" class="date-link">
+                    <span class="lang-fr">25 Juillet 1905</span>
+                    <span class="lang-es">25 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias15.html" class="date-link">
+                    <span class="lang-fr">24 Juillet 1905</span>
+                    <span class="lang-es">24 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias14.html" class="date-link">
+                    <span class="lang-fr">22 Mai 1905</span>
+                    <span class="lang-es">22 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias13.html" class="date-link">
+                    <span class="lang-fr">21 Mai 1905</span>
+                    <span class="lang-es">21 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias12.html" class="date-link">
+                    <span class="lang-fr">20 Mai 1905</span>
+                    <span class="lang-es">20 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias11.html" class="date-link">
+                    <span class="lang-fr">19 Mai 1905</span>
+                    <span class="lang-es">19 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias10.html" class="date-link">
+                    <span class="lang-fr">18 Mai 1905</span>
+                    <span class="lang-es">18 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias9.html" class="date-link">
+                    <span class="lang-fr">17 Mai 1905</span>
+                    <span class="lang-es">17 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias8.html" class="date-link">
+                    <span class="lang-fr">16 Mai 1905</span>
+                    <span class="lang-es">16 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias7.html" class="date-link">
+                    <span class="lang-fr">15 Mai 1905</span>
+                    <span class="lang-es">15 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias6.html" class="date-link">
+                    <span class="lang-fr">1 Avril 1905</span>
+                    <span class="lang-es">1 de Abril</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias5.html" class="date-link">
+                    <span class="lang-fr">29 Mars 1905</span>
+                    <span class="lang-es">29 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias4.html" class="date-link">
+                    <span class="lang-fr">28 Mars 1905</span>
+                    <span class="lang-es">28 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias3.html" class="date-link">
+                    <span class="lang-fr">27 Mars 1905</span>
+                    <span class="lang-es">27 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias2.html" class="date-link">
+                    <span class="lang-fr">26 Mars 1905</span>
+                    <span class="lang-es">26 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias1.html" class="date-link">
+                    <span class="lang-fr">25 Mars 1905</span>
+                    <span class="lang-es">25 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias.html" class="date-link">
+                    <span class="lang-fr">18 Mars 1905</span>
+                    <span class="lang-es">18 de Marzo</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="newspaper-container">
+        <!-- CABECERA DEL PERIÓDICO -->
+        <header class="newspaper-header">
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">❦</span>
+            </div>
+            <h1 class="newspaper-title">Paris Nouveau</h1>
+            <p class="newspaper-subtitle">Nouvelles du Monde des Arts et de la Belle Société</p>
+            <div class="translate-button-container">
+                <button class="translate-button" onclick="toggleLanguage()" title="Traducir / Translate">🔍</button>
+            </div>
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+            </div>
+            <p class="newspaper-date lang-fr">Vendredi, 22 Novembre 1907 — Prix: 5 Centimes</p>
+            <p class="newspaper-date lang-es">Viernes, 22 de Noviembre de 1907 — Precio: 5 Centimes</p>
+        </header>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="newspaper-content">
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="left-column">
+                <!-- ARTÍCULO PRINCIPAL -->
+                <article class="main-article">
+                    <h2 class="article-title lang-fr">Les poètes de Berlin</h2>
+                    <h2 class="article-title lang-es">Los poetas de Berlín</h2>
+                    <p class="article-subtitle lang-fr">Quelques observations sur ces messieurs qui ont résolu de sauver la poésie allemande — de notre correspondant à Berlin</p>
+                    <p class="article-subtitle lang-es">Algunas observaciones sobre aquellos caballeros que han decidido salvar la poesía alemana — de nuestro corresponsal en Berlín</p>
+
+                    <div class="article-image">
+                        <img src="news/cafe_des_westens_berlin.jpg" alt="Le Café des Westens, sur le Kurfürstendamm, que les Berlinois appellent « Café Größenwahn » — carte photographique, vers 1905 (domaine public) — El Café des Westens, en el Kurfürstendamm, al que los berlineses llaman «Café Größenwahn»; tarjeta fotográfica, hacia 1905 (dominio público)." class="placeholder" style="object-position: center 45%;">
+                    </div>
+
+                    <div class="article-text lang-fr">
+                        <p>Berlin, novembre — Il faut reconnaître aux Allemands une vertu que nous autres Français ne possédons pas au même degré : lorsqu'ils découvrent une forme d'art nouvelle, ils ont la courtoisie de la prendre entièrement au sérieux. Ils ne se bornent pas à écrire des vers en attendant que quelqu'un les lise. Ils fondent une école, trouvent des disciples, lancent une revue et, si les circonstances s'y prêtent, obtiennent que deux professeurs d'université cessent de se parler pendant six mois.</p>
+                        <p>La poésie allemande traverse en ce moment l'une de ces petites révolutions qui plaisent tant aux jeunes gens et déplaisent tant à leurs pères. Le nom qui revient dans presque toutes les conversations est celui de M. Stefan George, dont le nouvel ouvrage, <em>Der siebente Ring</em>, a fourni aux étudiants en lettres un sujet inépuisable et aux libraires une excellente raison de mettre un livre de plus en vitrine.</p>
+                        <p>J'avoue n'avoir pas d'abord tout à fait compris cet enthousiasme. On ouvre un volume de M. George en comptant le lire tranquillement au café, et l'on éprouve la désagréable impression d'être entré dans une cérémonie à laquelle on a oublié de venir en tenue. Tout y paraît important. Les vers semblent savoir quelque chose que l'on ignore, et les mots s'y regardent entre eux avec une gravité extraordinaire. Par moments, on soupçonne que si l'on rit un peu trop haut, quelque disciple du poète surgira de derrière le rideau pour vous expulser de la littérature.</p>
+                        <p>Cela n'a naturellement pas empêché tous mes camarades de le lire. Bien au contraire. Les étudiants qui assurent que George est insupportable connaissent d'ordinaire ses poèmes bien mieux que ceux qui l'admirent. J'ai assisté à des discussions de près d'une heure sur un seul vers, où personne ne semblait se rappeler exactement ce qu'il signifiait, mais où tous s'accordaient à reconnaître qu'il signifiait quelque chose de considérable. C'est une habitude très allemande et, je dois l'admettre, elle ne manque pas de charme.</p>
+                        <p>Berlin est plein de jeunes gens qui désirent trouver quelque chose de nouveau, sans savoir encore tout à fait quoi. On parle de littérature dans les cafés, dans les universités et à la sortie des théâtres, quand la conversation commence par une actrice et s'achève sur quelqu'un qui déclare que le naturalisme est mort. J'ai appris que, dans cette ville, on peut annoncer la mort d'un courant artistique avec une tranquillité admirable, surtout lorsqu'on sait que l'on pourra annoncer la semaine suivante celle d'un autre.</p>
+                        <p>Parmi les dramaturges, le nom de M. Gerhart Hauptmann continue de peser d'un poids considérable. Ses personnages appartiennent au monde des familles, des ouvriers, de l'argent et de ces petites misères qui font qu'un spectateur se reconnaît sur la scène malgré lui. Il est difficile de décider ce qui est le plus dangereux pour un jeune étudiant : une pièce de Hauptmann, qui l'oblige à penser à la société, ou un poème de George, qui lui fait soupçonner qu'il manque peut-être de sensibilité. Pour ma part, je préfère le premier danger.</p>
+                        <p>Il ne serait pas juste de mépriser M. George. On peut plaisanter sur ses admirateurs et sur l'air d'absolue conviction avec lequel ils prononcent le mot « art », mais on revient ensuite au livre et l'on découvre que certaines pages demeurent dans la mémoire bien plus longtemps qu'elles ne le devraient. C'est là le défaut des poètes : on peut se moquer d'eux tout un après-midi et finir par leur acheter le livre avant de rentrer chez soi.</p>
+                        <p>Ce qui se passe à Berlin est plus intéressant que l'apparition d'un seul poète. Il y a là une génération lasse de recevoir des instructions sur ce qui doit lui plaire. Les jeunes gens veulent décider par eux-mêmes quelle littérature mérite de survivre, quel théâtre doit changer et quelle sorte d'art convient à ce siècle nouveau.</p>
+                        <p>Nous autres, à Paris, parlons sans cesse des limites de l'artiste. Nous discutons jusqu'où peut aller la peinture, ce qu'un écrivain peut se permettre et ce qui devrait demeurer hors de l'art. Pendant ce temps, à Berlin, les jeunes gens semblent fort occupés à chercher ce qu'il y a de l'autre côté de ces limites.</p>
+                        <p>Peut-être se trompent-ils. Peut-être, dans vingt ans, personne ne se souviendra-t-il de ces discussions. Mais pour l'heure, tandis que nous discutons de l'endroit où finit l'art, ils semblent résolus à découvrir où il peut commencer.</p>
+                        <p style="text-align: right; font-style: italic;">Louis Beaumont</p>
+                    </div>
+
+                    <div class="article-text lang-es">
+                        <p>Berlín, noviembre — Hay que reconocer a los alemanes una virtud que nosotros, los franceses, no poseemos en la misma medida: cuando descubren una nueva forma de arte, tienen la cortesía de tomársela completamente en serio. No se limitan a escribir versos y esperar que alguien los lea. Crean una escuela, encuentran discípulos, fundan una revista y, si las circunstancias son favorables, consiguen que dos profesores de universidad dejen de hablarse durante seis meses.</p>
+                        <p>La poesía alemana atraviesa actualmente una de esas pequeñas revoluciones que tanto gustan a los jóvenes y tanto disgustan a sus padres. El nombre que aparece en casi todas las conversaciones es el de Stefan George, cuya nueva obra, <em>Der siebente Ring</em>, ha proporcionado a los estudiantes de letras un tema inagotable y a los libreros una excelente razón para poner otro libro en el escaparate.</p>
+                        <p>Confieso que al principio no comprendí del todo el entusiasmo. Uno abre un volumen de George esperando leer tranquilamente en un café y se encuentra con la desagradable sensación de haber entrado en una ceremonia a la que ha olvidado llevar la vestimenta adecuada. Todo parece importante. Los versos parecen saber algo que uno ignora y las palabras se miran entre ellas con una gravedad extraordinaria. Por momentos, uno sospecha que si se ríe demasiado alto algún discípulo de George aparecerá detrás de la cortina para expulsarlo de la literatura.</p>
+                        <p>Naturalmente, esto no ha impedido que todos mis compañeros lo lean. Al contrario. Los estudiantes que aseguran que George es insoportable suelen conocer sus poemas mucho mejor que aquellos que lo admiran. He asistido a discusiones de casi una hora sobre un solo verso, en las que nadie parecía recordar exactamente qué significaba, pero todos estaban de acuerdo en que significaba algo de considerable importancia. Es una costumbre muy alemana y, debo admitirlo, tiene cierto encanto.</p>
+                        <p>Berlín está lleno de jóvenes que desean encontrar algo nuevo, aunque todavía no sepan exactamente qué. Se habla de literatura en los cafés, en las universidades y después de las funciones de teatro, cuando la conversación empieza siendo sobre una actriz y termina con alguien declarando que el naturalismo ha muerto. He aprendido que en esta ciudad una persona puede anunciar la muerte de una corriente artística con una tranquilidad admirable, especialmente si sabe que la semana siguiente podrá anunciar la muerte de otra.</p>
+                        <p>Entre los dramaturgos, el nombre de Gerhart Hauptmann continúa teniendo un peso considerable. Sus personajes pertenecen al mundo de las familias, los obreros, el dinero y las pequeñas miserias que hacen que un espectador se reconozca en el escenario contra su voluntad. Es difícil decidir qué resulta más peligroso para un joven estudiante: una obra de Hauptmann que le obliga a pensar en la sociedad o un poema de George que le hace sospechar que quizá no tiene suficiente sensibilidad. Yo, personalmente, prefiero el primer peligro.</p>
+                        <p>No sería justo despreciar a George. Se puede bromear sobre sus admiradores y sobre la expresión de absoluto convencimiento con que pronuncian la palabra «arte», pero después uno vuelve al libro y descubre que algunas páginas permanecen en la memoria mucho más tiempo del que deberían. Ése es el problema con los poetas: uno puede burlarse de ellos durante toda una tarde y terminar comprándoles el libro antes de volver a casa.</p>
+                        <p>Lo que ocurre en Berlín resulta más interesante que la aparición de un solo poeta. Hay una generación cansada de recibir instrucciones sobre lo que debe gustarle. Los jóvenes quieren decidir por sí mismos qué literatura merece sobrevivir, qué teatro debe cambiar y qué clase de arte corresponde a este nuevo siglo.</p>
+                        <p>Nosotros, en París, hablamos constantemente de los límites del artista. Discutimos hasta dónde puede llegar la pintura, qué puede permitirse un escritor y qué debería permanecer fuera del arte. Mientras tanto, en Berlín, los jóvenes parecen bastante ocupados intentando averiguar qué hay al otro lado de esos límites.</p>
+                        <p>Quizá se equivoquen. Quizá dentro de veinte años nadie recuerde estas discusiones. Pero, por el momento, mientras nosotros discutimos dónde termina el arte, ellos parecen empeñados en descubrir dónde puede comenzar.</p>
+                        <p style="text-align: right; font-style: italic;">Louis Beaumont</p>
+                    </div>
+                </article>
+
+                <!-- ARTÍCULOS SECUNDARIOS -->
+                <div class="secondary-articles">
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">Le kilomètre se joue dans le virage</h3>
+                        <h3 class="secondary-title lang-es">El kilómetro se juega en el viraje</h3>
+                        <div class="article-image" style="aspect-ratio: 4 / 3;">
+                            <img src="news/voisin_farman_atelier_1907.jpg" alt="MM. Charles Voisin et Henri Farman auprès du bâti et du moteur d'un biplan, 1907 — photographie de l'agence Rol (domaine public, Bibliothèque nationale de France) — Los señores Charles Voisin y Henri Farman junto al bastidor y el motor de un biplano, 1907; fotografía de la agencia Rol (dominio público, Biblioteca Nacional de Francia)." class="placeholder" style="object-position: center 30%;">
+                        </div>
+                        <div class="secondary-text lang-fr">
+                            <p>Issy-les-Moulineaux, mardi — Le champ était gelé dur et les chronométreurs de l'Aéro-Club soufflaient dans leurs gants. On sait ce qui se joue : cinquante mille francs au premier kilomètre en circuit fermé. Ce que l'on sait moins, et que cette rédaction a mis quelque temps à comprendre, c'est que la difficulté n'est plus la distance. Elle est le virage.</p>
+                            <p>M. Henri Farman a couvert, il y a quinze jours, plus de mille mètres en ligne droite, et personne n'en doute plus. Mais le prix ne se gagne pas en ligne droite : il faut partir d'un poteau, en contourner un second et revenir, ce qui fait un kilomètre et une courbe. Or la machine de MM. Voisin, qui tient l'air avec une stabilité de bouée, s'entête à aller devant elle. « Ce qui la rend sûre en ligne droite la rend têtue en courbe », résume un mécanicien de Billancourt, où l'on lime, recolle et retend depuis trois semaines. On y parle du gouvernail comme d'un homme à convaincre.</p>
+                            <p>M. Léon Delagrange, sur une machine sœur, s'exerce au même problème avec une courtoisie parfaite : les deux équipes se prêtent des outils et se cachent leurs chiffres. On rappelle, dans les hangars, que les frères Wright tournent en Amérique depuis des années et ne montrent rien ; l'un d'eux a passé l'automne à Paris à discuter des contrats sans ouvrir une seule caisse. Cinquante chevaux, du bois, de la toile et de l'acier : les ingénieurs répètent qu'il n'y a là-dedans aucun mystère, et ils le répètent un peu plus fort qu'il ne serait nécessaire.</p>
+                            <p>Au bord du champ, on a revu ces messieurs que l'on dit du métier des arts. L'un d'eux, que l'on assure du Conseil des Beaux-Arts, a demandé à un ingénieur si une machine qui vole relevait des arts. L'ingénieur a répondu que non, et l'on a ri : par les temps qui courent, c'est presque une déclaration. Le siècle, à ce qu'il paraît, aura deux sortes de prodiges, et l'une d'elles se fabriquera à l'atelier, en série, avec un devis.</p>
+                            <p>Le kilomètre viendra, disent les mécaniciens ; il ne demande qu'un virage et un peu de patience. On souhaite qu'il vienne, et qu'il ne demande rien d'autre.</p>
+                            <p style="text-align: right; font-style: italic;">É. Garnier</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p>Issy-les-Moulineaux, martes — El campo estaba helado y los cronometradores del Aéro-Club se soplaban los guantes. Se sabe lo que está en juego: cincuenta mil francos al primer kilómetro en circuito cerrado. Lo que se sabe menos, y que a esta redacción le ha costado un rato entender, es que la dificultad ya no es la distancia. Es el viraje.</p>
+                            <p>El señor Henri Farman cubrió, hace quince días, más de mil metros en línea recta, y nadie lo pone ya en duda. Pero el premio no se gana en línea recta: hay que partir de un poste, rodear un segundo y volver, lo que hace un kilómetro y una curva. Y la máquina de los señores Voisin, que se sostiene en el aire con una estabilidad de boya, se empeña en ir hacia adelante. «Lo que la hace segura en recta la hace testaruda en curva», resume un mecánico de Billancourt, donde se lima, se encola y se retensa desde hace tres semanas. Allí se habla del timón como de un hombre al que hay que convencer.</p>
+                            <p>El señor Léon Delagrange, sobre una máquina hermana, se ejercita en el mismo problema con una cortesía perfecta: los dos equipos se prestan herramientas y se ocultan las cifras. Se recuerda, en los cobertizos, que los hermanos Wright vuelan en América desde hace años y no enseñan nada; uno de ellos ha pasado el otoño en París discutiendo contratos sin abrir una sola caja. Cincuenta caballos, madera, tela y acero: los ingenieros repiten que ahí dentro no hay misterio alguno, y lo repiten algo más alto de lo necesario.</p>
+                            <p>Al borde del campo se ha vuelto a ver a esos señores que se dicen del oficio de las artes. Uno de ellos, a quien aseguran del Consejo de Bellas Artes, preguntó a un ingeniero si una máquina que vuela pertenecía a las artes. El ingeniero respondió que no, y hubo risas: en los tiempos que corren, eso es casi una declaración. El siglo, por lo visto, tendrá dos clases de prodigios, y una de ellas se fabricará en el taller, en serie, con presupuesto.</p>
+                            <p>El kilómetro llegará, dicen los mecánicos; no pide más que un viraje y un poco de paciencia. Ojalá llegue, y ojalá no pida nada más.</p>
+                            <p style="text-align: right; font-style: italic;">É. Garnier</p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="typographic-ornament">❦ ◆ ❦</div>
+
+                <!-- CARTAS AL DIRECTOR -->
+                <article class="letters-section">
+                    <h2 class="letters-section-title lang-fr">Lettres au Directeur</h2>
+                    <h2 class="letters-section-title lang-es">Cartas al Director</h2>
+
+                    <p class="society-note lang-fr">Sir William Shawthorn, dont nos lecteurs se rappellent les lettres, écrit à présent de Berlin. Il nous a fait parvenir copie d'une lettre adressée à la presse de cette capitale ; nous ignorons si elle y a paru. Nous la donnons ici en entier, sans en faire nôtres les opinions.</p>
+                    <p class="society-note lang-es">Sir William Shawthorn, cuyas cartas recordarán nuestros lectores, escribe ahora desde Berlín. Nos ha hecho llegar copia de una carta dirigida a la prensa de aquella capital; ignoramos si ha llegado a publicarse allí. La reproducimos íntegra, sin hacer nuestras sus opiniones.</p>
+
+                    <div class="letter-box">
+                        <h3 class="letter-title lang-fr">Leçons de Tocqueville et de l'histoire</h3>
+                        <h3 class="letter-title lang-es">Aprendiendo de Tocqueville y la historia</h3>
+
+                        <div class="letter-content lang-fr">
+                            <p>Alexis de Tocqueville écrit, dans son classique <em>L'Ancien Régime et la Révolution</em>, que la Révolution française prend sa source dans les réformes qui précédèrent la chute de la monarchie absolue. Le souci plus grand que le Régime prit des besoins du peuple et des conditions de vie des plus démunis ouvrit la porte à l'espérance, au progrès, et fit comprendre à l'opinion publique qu'un monde meilleur était possible et qu'il valait la peine de se battre pour lui.</p>
+                            <p>Il écrit, fort justement, que ce fut une révolution créée et entretenue par les écrivains et les philosophes, des génies de la taille de Voltaire ou de Rousseau, qui allumèrent dans le cœur du peuple la passion de la liberté et de l'égalité. Mais ils n'étaient pas des chefs : ils ne fournirent que les idées, et le peuple s'en empara et, avec elles, du pouvoir. Et des bonnes intentions de ceux qui avaient couvert le blanc de la page d'une encre savante sortit la Terreur, parce que l'on abattit toutes les barrières éthiques, morales et religieuses qui bornaient l'action du pouvoir sans en abolir les structures ; beaucoup d'entre elles furent reprises sous de nouveaux noms par ceux que Tocqueville tenait pour les moins préparés, les moins cultivés et les moins capables des Français. Au-delà de ses doutes sur les capacités du petit peuple — n'oublions pas que le bon écrivain était, après tout, comte —, les fruits de cette prise du pouvoir cimentent aujourd'hui encore l'autorité que la corporation des écrivains exerce sur le cours et le destin de la France.</p>
+                            <p>Mais l'approche de Tocqueville souffre d'un défaut grave, qu'il est aisé de transporter tel quel dans les rues animées de Berlin. Lorsqu'il décrit les décennies qui précèdent la Révolution — le progrès que connaît la France, l'amélioration des conditions de vie, la croissance économique et technique —, tout cela devient le fondement du refus, par le peuple, d'un régime absolu, et conduit avec le temps à sa chute et à l'avènement d'un autre, plus moderne et plus terrible, sous la main de Napoléon, qui menaça de dominer l'Europe entière. Le tout résulte, pour une bonne part, de la concentration du pouvoir dans la ville de Paris et de sa consécration comme reflet direct de la France entière. Il est facile de voir en cette ville d'électricité et de progrès qu'est Berlin le même lustre que présentait aux yeux de Tocqueville la capitale parisienne il y a plus d'un siècle.</p>
+                            <p>Nous y retrouvons une fois de plus le progrès, l'idée d'un monde meilleur, la croissance économique et politique. Nous y voyons les élites éclairées encourager débats et discussions, depuis les thèses de M. Max Weber sur la rationalité croissante du monde et les périls qu'elle comporte jusqu'aux écrivains les plus subversifs, éloignés des conventions, dont les courts récits du jeune Kafka sont le reflet parfait de la critique de l'ordre établi. Et la réponse de Sa Majesté impériale est plus habile que celle de Louis XVI : le contrôle, par l'argent et par la censure, des arts qui menacent son trône. Mais, comme autrefois le monarque français, ce pouvoir sous-estime la volonté de changement du peuple et sa résistance à se laisser brider lorsque les idées de liberté et d'égalité inondent son cœur. Comme l'écrit Tocqueville, ce n'est pas une révolution des faits et des guillotines, mais des esprits : celle d'hommes enflammés par une opinion publique exaltée jusqu'à imaginer un monde meilleur.</p>
+                            <p>Et nous vivons un temps où cette flamme brûle déjà avec force dans l'âme de tous les peuples européens, sous des signes divers : l'essor néoclassique de l'Italie, le néo-absolutisme artistique parisien, le libéralisme distant et retiré de mon Royaume-Uni. Et ici, le contrôle de cette ardeur par le contrôle de l'art. Mais artistes et gouvernants feraient bien de se rappeler les avertissements de Tocqueville : progrès et changement social vont de pair, l'imagination s'enflamme devant les possibilités des idées et des techniques nouvelles, et cette force ne se peut arrêter une fois lancée. Nous l'avons vu à Boston, quand les colons jetèrent le thé à la mer ; nous l'avons vu à Paris, quand les citoyens prirent la Bastille. Plus l'autorité oppose de résistance, plus elle déchaîne de violence contre son peuple, et plus la réponse de celui-ci est grande. Le docteur Jung le dit déjà : l'âme des gens communique dans le subconscient collectif, et celui-ci exige d'entrer de plain-pied dans un vingtième siècle moderne, actuel, délivré des entraves du passé et embrassant pleinement la démocratie, la liberté, l'égalité… les grands rêves de Locke et de Hume.</p>
+                            <p>C'est ma recommandation, humble comme il sied à l'étranger de passage que je suis, à l'empereur Guillaume II : qu'il profite de la vigueur des changements du temps pour les embrasser. Le temps des monarchies touche à sa fin ; le roi Édouard VII modernise déjà un Royaume-Uni qui a découvert l'importance de l'équilibre des pouvoirs et de la démocratie après les guerres civiles conduites par Cromwell aux siècles passés. Et Sa Majesté impériale a aujourd'hui l'occasion, peut-être unique dans l'histoire, de tirer toutes les leçons de Tocqueville et de bien d'autres, et de faire entrer l'Allemagne, et la Prusse avec elle, dans l'histoire comme la puissance qui sut aborder le vingtième siècle par la paix, l'intelligence, la culture et l'acceptation de la liberté humaine.</p>
+                        </div>
+
+                        <div class="letter-content lang-es">
+                            <p>Escribe Alexis de Tocqueville, en su clásico <em>L'Ancien Régime et la Révolution</em>, que el comienzo de la Revolución Francesa se halla en las modernizaciones previas a la caída del absolutismo monárquico. La mayor preocupación del Régimen por las necesidades del pueblo y por las condiciones de vida de los más desfavorecidos abrió la puerta a la esperanza, al progreso, a que la opinión pública se diera cuenta de que un mundo mejor era posible y de que valía la pena luchar por él.</p>
+                            <p>Escribe, muy acertadamente, que fue una revolución creada y alentada por los escritores y filósofos, genios de la talla de Voltaire o Rousseau, que encendieron la pasión por la libertad y la igualdad en los corazones del pueblo. Pero no eran líderes: solo pusieron las ideas, y la gente las tomó y, con ellas, el poder. Y de las buenas intenciones de aquellos que habían cubierto el blanco de la página con la sabia tinta lo que surgió fue el Terror, porque se derribaron todas las barreras éticas, morales y religiosas a la acción del poder, pero no se abolieron sus estructuras, y muchas de ellas fueron recuperadas bajo nuevos nombres por quienes Tocqueville consideraba los menos preparados, cultos y capaces de entre los franceses. Más allá de sus dudas con respecto a la capacidad del pueblo llano —no olvidemos que el buen escritor era, al fin y al cabo, conde—, los réditos de esa toma del poder aún hoy cimentan el poder que el gremio de escritores tiene sobre el devenir y el destino de Francia.</p>
+                            <p>Pero la aproximación de Tocqueville a la Revolución Francesa adolece de un problema grave, que es fácil trasladar tal cual a las bulliciosas calles de Berlín. Cuando describe las décadas precedentes a la Revolución —el progreso que vive Francia, las mejoras en la calidad de vida, el crecimiento económico y tecnológico—, todo ello se vuelve la base del rechazo del pueblo a un régimen absolutista y acabará llevando a su caída y al ascenso de otro, más moderno y más terrible, de la mano de Napoleón, que llegó a amenazar con dominar toda Europa. Todo ello como resultado, en buena medida, de la concentración del poder en la ciudad de París y de su consolidación como reflejo directo de toda Francia. Es fácil ver en esta ciudad de electricidad y progreso, Berlín, el mismo lustre que lucía a ojos de Tocqueville la capital parisina hace más de un siglo.</p>
+                            <p>Aquí encontramos una vez más el progreso, la idea de un mundo mejor, el crecimiento económico y político. Vemos a las élites ilustradas propugnando debates y discusiones, desde las tesis de Max Weber sobre la creciente racionalidad del mundo y los peligros que supone hasta los escritores más subversivos, alejados de las convenciones, con los relatos cortos del joven Kafka como perfecto reflejo de la crítica al orden establecido. Y la respuesta de Su Majestad Imperial es más hábil que la de Luis XVI: el control, por medio del dinero y la censura, de las artes que amenazan su trono. Pero, como el monarca francés antes que él, ese poder menosprecia la voluntad de cambio del pueblo y su resistencia a dejarse embridar cuando las ideas de libertad e igualdad inundan su corazón. Como escribe Tocqueville, no es una revolución de los hechos y las guillotinas, sino de los espíritus de los hombres, inflamados en una opinión pública enaltecida hasta imaginar un mundo mejor.</p>
+                            <p>Y vivimos en un tiempo en que esa llama ya arde con fuerza en los ánimos de todas las poblaciones europeas, con sus distintos signos: el ascenso neoclásico de Italia, el neoabsolutismo artístico parisino, el liberalismo distante y apartado de mi Reino Unido. Y aquí, el control de ese ánimo a través del control del arte. Pero artistas y gobernantes harían bien en recordar las advertencias de Tocqueville: progreso y cambio social van de la mano, la imaginación se inflama ante las posibilidades de las nuevas ideas y tecnologías, y esa fuerza no se puede detener una vez puesta en marcha. Lo vimos en Boston, con los colonos arrojando el té al mar; lo vimos en París, con los ciudadanos asaltando la Bastilla. Cuanta mayor resistencia muestre la autoridad, mayor violencia desata contra su pueblo, y mayor es la respuesta de este. Ya dice el doctor Jung que el ánimo de la gente está conectado en el subconsciente colectivo, y este demanda la entrada con todas las letras en un siglo XX moderno, actual, que se libre de los lastres del pasado y abrace por completo la democracia, la libertad, la igualdad… los grandes sueños de Locke y Hume.</p>
+                            <p>Es mi recomendación, humilde como extranjero de paso que soy, al emperador Guillermo II que aproveche el vigor de los cambios de los tiempos para abrazarlos. El tiempo de las monarquías llega a su final; el rey Eduardo VII ya está modernizando un Reino Unido que descubrió la importancia de los equilibrios de poderes y de la democracia tras las guerras civiles dirigidas por Cromwell en siglos pasados. Y Su Majestad Imperial tiene ahora la oportunidad, acaso única en la historia, de tomar todas las lecciones de Tocqueville y de tantos otros, y de poner a Alemania, y a Prusia con ella, en la historia como la potencia que fue capaz de entrar en el siglo XX por medio de la paz, la inteligencia, la cultura y la aceptación de la libertad humana.</p>
+                        </div>
+
+                        <div class="letter-signature lang-fr">Sir William Shawthorn</div>
+                        <div class="letter-signature lang-es">Sir William Shawthorn</div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- COLUMNA DERECHA -->
+            <aside class="right-column">
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">Vienne perd sa baguette</h3>
+                    <h3 class="sidebar-title lang-es">Viena pierde su batuta</h3>
+                    <div class="vertical-image sidebar-portrait" style="margin-bottom: 1em;">
+                        <img src="news/mahler_nahr_1907.jpg" alt="M. Gustav Mahler à l'Opéra de la Cour de Vienne, 1907 — photographie de Moritz Nähr (domaine public) — El señor Gustav Mahler en la Ópera de la Corte de Viena, 1907; fotografía de Moritz Nähr (dominio público)." class="placeholder" style="object-position: center 25%;">
+                    </div>
+                    <div class="sidebar-text lang-fr">
+                        <p>Dimanche, dans la grande salle du Musikverein, M. Gustav Mahler dirigera sa deuxième symphonie, que l'on appelle « Résurrection », et ce sera pour dire adieu à Vienne. Après dix ans à la tête de l'Opéra de la Cour, le compositeur a remis sa démission ; M. Felix Weingartner lui succède au premier janvier, et M. Mahler s'embarquera en décembre pour New-York, où le Metropolitan Opera l'attend pour la saison.</p>
+                        <p>Dix ans lui ont suffi pour faire de la maison de la Ringstrasse la première scène lyrique d'Europe, et pour s'y faire autant d'ennemis qu'elle comptait d'abonnés. On lui reprochait les retardataires refoulés à la porte, la salle plongée dans le noir, la claque congédiée, les chanteurs contraints de répéter comme des débutants. Une certaine presse viennoise, qui ne lui a jamais rien pardonné — pas même sa naissance —, le poursuivait depuis des années ; elle a fini par l'emporter, et se demande à présent qui elle attaquera.</p>
+                        <p>M. Mahler aime à dire qu'il est trois fois sans patrie : Bohémien parmi les Autrichiens, Autrichien parmi les Allemands, Juif parmi tous les peuples du monde. Les cartes, depuis deux ans, lui ont donné raison sur le premier point.</p>
+                        <p>Ceux qui assistèrent le 15 octobre à son dernier <em>Fidelio</em> assurent que la salle ne toussa pas une seule fois en trois heures, ce qui, à Vienne, en octobre, tient de l'exploit. Nous n'y voyons qu'un effet de la discipline. Vienne perd son chef ; New-York gagne un homme qui ne supporte ni le retard ni la toux. L'Amérique a de l'argent : elle va découvrir qu'il faut aussi du silence.</p>
+                        <p style="text-align: right; font-style: italic;">L. Martin</p>
+                    </div>
+                    <div class="sidebar-text lang-es">
+                        <p>El domingo, en la gran sala del Musikverein, el señor Gustav Mahler dirigirá su segunda sinfonía, a la que llaman «Resurrección», y será para despedirse de Viena. Tras diez años al frente de la Ópera de la Corte, el compositor ha presentado su dimisión; el señor Felix Weingartner le sucede el primero de enero, y el señor Mahler embarcará en diciembre rumbo a Nueva York, donde la Metropolitan Opera le espera para la temporada.</p>
+                        <p>Diez años le han bastado para hacer de la casa de la Ringstrasse el primer escenario lírico de Europa, y para ganarse en ella tantos enemigos como abonados tenía. Se le reprochaban los rezagados rechazados en la puerta, la sala sumida en la oscuridad, la claque despedida, los cantantes obligados a ensayar como principiantes. Cierta prensa vienesa, que nunca le ha perdonado nada —ni siquiera su origen—, le perseguía desde hacía años; ha acabado saliéndose con la suya, y se pregunta ahora a quién atacará.</p>
+                        <p>Al señor Mahler le gusta decir que es tres veces apátrida: bohemio entre los austríacos, austríaco entre los alemanes, judío entre todos los pueblos del mundo. Los mapas, desde hace dos años, le han dado la razón en lo primero.</p>
+                        <p>Quienes asistieron el 15 de octubre a su último <em>Fidelio</em> aseguran que la sala no tosió ni una sola vez en tres horas, lo que en Viena, en octubre, tiene algo de hazaña. No vemos en ello más que un efecto de la disciplina. Viena pierde a su director; Nueva York gana a un hombre que no soporta ni la tardanza ni la tos. América tiene dinero: va a descubrir que también hace falta silencio.</p>
+                        <p style="text-align: right; font-style: italic;">L. Martin</p>
+                    </div>
+                </article>
+
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 16px;">
+                        <p><strong>• L'automobile au Grand Palais :</strong> Le Salon de l'Automobile tient ses assises sous la verrière du Grand Palais jusqu'au 1er décembre. On y voit des limousines plus richement tendues que bien des salons, des moteurs présentés sous vitrine comme des bijoux, et des fiacres automobiles à compteur que les cochers de la Compagnie générale regardent avec méfiance. La foule est telle que l'on rêverait d'une voiture pour aller d'un stand à l'autre.</p>
+                        <p><strong>• Une quarante-sixième étoile :</strong> L'Oklahoma, hier encore territoire réservé aux nations indiennes, est entré le 16 dans l'Union américaine. Le drapeau étoilé devra compter une étoile de plus ; les brodeuses de Philadelphie s'en réjouissent, les Cherokees un peu moins.</p>
+                        <p><strong>• L'Atlantique sans fil :</strong> Depuis un mois, M. Marconi tient ouvert un service public de télégraphie sans fil entre l'Irlande et le Canada, de Clifden à Glace Bay. Les dépêches passent l'Océan sans câble et sans escale. Les compagnies de câbles sous-marins ont fait savoir que tout allait pour le mieux, ce qui est le signe le plus sûr du contraire.</p>
+                        <p><strong>• Un calorifère au Louvre :</strong> La salle des primitifs italiens a été fermée deux heures mardi ; l'administration parle d'un calorifère défectueux. Les copistes que l'on a priés de sortir assurent que leurs toiles, commencées le matin, étaient sèches à midi, et que l'une d'elles ressemblait un peu trop à l'original. Nous rapportons ; nous ne commentons pas.</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 16px;">
+                        <p><strong>• El automóvil en el Grand Palais:</strong> El Salón del Automóvil celebra sus sesiones bajo la cristalera del Grand Palais hasta el 1 de diciembre. Se ven allí limusinas tapizadas con más lujo que muchos salones, motores expuestos en vitrina como joyas y coches de punto automóviles con taxímetro que los cocheros de la Compañía General miran con desconfianza. Hay tanta gente que uno desearía un automóvil para ir de un expositor a otro.</p>
+                        <p><strong>• Una cuadragésima sexta estrella:</strong> Oklahoma, hasta ayer territorio reservado a las naciones indias, entró el día 16 en la Unión americana. La bandera estrellada tendrá que contar una estrella más; las bordadoras de Filadelfia se alegran, los cheroquis algo menos.</p>
+                        <p><strong>• El Atlántico sin hilos:</strong> Desde hace un mes, el señor Marconi mantiene abierto un servicio público de telegrafía sin hilos entre Irlanda y Canadá, de Clifden a Glace Bay. Los despachos cruzan el Océano sin cable y sin escalas. Las compañías de cables submarinos han hecho saber que todo va de maravilla, que es la señal más segura de lo contrario.</p>
+                        <p><strong>• Una estufa en el Louvre:</strong> La sala de los primitivos italianos estuvo cerrada dos horas el martes; la administración habla de una estufa averiada. Los copistas a los que se rogó que salieran aseguran que sus lienzos, empezados por la mañana, estaban secos al mediodía, y que uno de ellos se parecía demasiado al original. Informamos; no comentamos.</p>
+                    </div>
+                </article>
+
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Les poètes de Berlin :</strong><br>L. Beaumont</p>
+                        <p><strong>Le kilomètre se joue dans le virage :</strong><br>É. Garnier</p>
+                        <p><strong>Leçons de Tocqueville et de l'histoire (Lettre de Berlin) :</strong><br>Sir W. Shawthorn</p>
+                        <p><strong>Vienne perd sa baguette :</strong><br>L. Martin</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 13px; line-height: 1.6;">
+                        <p><strong>Los poetas de Berlín :</strong><br>L. Beaumont</p>
+                        <p><strong>El kilómetro se juega en el viraje :</strong><br>É. Garnier</p>
+                        <p><strong>Aprendiendo de Tocqueville y la historia (Carta desde Berlín) :</strong><br>Sir W. Shawthorn</p>
+                        <p><strong>Viena pierde su batuta :</strong><br>L. Martin</p>
+                    </div>
+                </article>
+
+            </aside>
+        </div>
+
+    <!-- MODAL PARA IMÁGENES -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('spanish');
+
+            if (document.body.classList.contains('spanish')) {
+                localStorage.setItem('newspaperLanguage', 'es');
+            } else {
+                localStorage.setItem('newspaperLanguage', 'fr');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('newspaperLanguage');
+            if (savedLanguage === 'es') {
+                document.body.classList.add('spanish');
+            }
+        });
+
+        function openImageModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageModal(event) {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    </script>
+</body>
+</html>
