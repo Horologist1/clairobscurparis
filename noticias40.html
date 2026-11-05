@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Nouveau - Belle Époque</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #f4e8d0;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        /* CONTENEDOR DE NAVEGACIÓN DE FECHAS */
+        .date-navigation {
+            width: 200px;
+            background: #faf7f0;
+            border: 3px double #2c2416;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .date-navigation h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c2416;
+            padding-bottom: 10px;
+        }
+
+        .date-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .date-item {
+            margin-bottom: 15px;
+        }
+
+        .date-link {
+            display: block;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #2c2416;
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #f4e8d0;
+        }
+
+        .date-link:hover {
+            background: #e8d5b7;
+            border-color: #8b7355;
+            transform: translateX(5px);
+        }
+
+        .date-link.active {
+            background: #8b7355;
+            color: #faf7f0;
+            border-color: #2c2416;
+            font-weight: 600;
+        }
+
+        .date-link.active:hover {
+            background: #6b5a47;
+            transform: none;
+        }
+
+        .newspaper-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #faf7f0;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            padding: 40px;
+            border: 3px double #2c2416;
+            flex: 1;
+        }
+
+        /* CABECERA DEL PERIÓDICO */
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 4px double #2c2416;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .ornamental-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .ornamental-line::before,
+        .ornamental-line::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #2c2416, transparent);
+        }
+
+        .ornamental-symbol {
+            margin: 0 15px;
+            font-size: 20px;
+            color: #8b7355;
+        }
+
+        .newspaper-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            color: #2c2416;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin: 15px 0;
+            text-shadow: 2px 2px 0px rgba(139, 115, 85, 0.3);
+        }
+
+        .newspaper-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #5a4a3a;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .newspaper-date {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            color: #5a4a3a;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* ESTRUCTURA DEL CONTENIDO */
+        .newspaper-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* COLUMNA IZQUIERDA */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* ARTÍCULO PRINCIPAL */
+        .main-article {
+            border-bottom: 3px double #2c2416;
+            padding-bottom: 25px;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #2c2416;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .article-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .article-image {
+            width: 100%;
+            height: auto;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .main-article .article-image {
+            aspect-ratio: 16 / 9;
+            width: 100%;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            flex: 1 1 auto;
+            min-width: 0;
+            min-height: 0;
+        }
+
+        .main-article .article-image img {
+            object-position: center 28%;
+        }
+
+        .secondary-articles .secondary-article .article-image {
+            aspect-ratio: 5 / 4;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .secondary-articles .secondary-article .article-image img {
+            object-position: center 38%;
+        }
+
+        .article-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.8;
+            column-count: 2;
+            column-gap: 30px;
+            hyphens: auto;
+        }
+
+        .article-text::first-letter {
+            font-size: 72px;
+            font-weight: bold;
+            float: left;
+            line-height: 0.8;
+            margin: 5px 8px 0 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ARTÍCULOS SECUNDARIOS */
+        .secondary-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .secondary-article {
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 20px;
+        }
+
+        .secondary-article:last-child {
+            border-bottom: none;
+        }
+
+        .secondary-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2c2416;
+            padding-bottom: 5px;
+        }
+
+        .secondary-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+
+        /* IMAGEN CUADRADA ENTRE ARTÍCULOS */
+        .square-image-container {
+            margin: 20px 0;
+        }
+
+        .square-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border: 3px solid #2c2416;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .square-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* COLUMNA DERECHA */
+        .right-column {
+            border-left: 3px double #2c2416;
+            padding-left: 25px;
+        }
+
+        .sidebar-article {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 10px 0;
+        }
+
+        .vertical-image {
+            width: 100%;
+            aspect-ratio: 9/16;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .vertical-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .vertical-image.sidebar-portrait {
+            aspect-ratio: 3 / 4;
+            max-width: 100%;
+        }
+
+        .vertical-image.sidebar-portrait img.placeholder {
+            object-position: center 30%;
+        }
+
+        .sidebar-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+
+        /* DECORACIONES TIPOGRÁFICAS */
+        .typographic-ornament {
+            text-align: center;
+            font-size: 24px;
+            color: #8b7355;
+            margin: 20px 0;
+            letter-spacing: 10px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+
+            .date-navigation {
+                width: 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+
+            .newspaper-content {
+                grid-template-columns: 1fr;
+            }
+
+            .right-column {
+                border-left: none;
+                border-top: 3px double #2c2416;
+                padding-left: 0;
+                padding-top: 25px;
+            }
+
+            .article-text {
+                column-count: 1;
+            }
+
+            .newspaper-title {
+                font-size: 48px;
+            }
+        }
+
+        /* EFECTOS DE PAPEL ENVEJECIDO */
+        .newspaper-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 115, 85, 0.03) 2px,
+                    rgba(139, 115, 85, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+
+        .newspaper-container {
+            position: relative;
+        }
+
+        /* Placeholder de imagen */
+        img.placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Archives photographiques : ton sépia / noir-et-blanc doux */
+        .article-image img.placeholder,
+        .vertical-image img.placeholder,
+        .secondary-articles .article-image img.placeholder {
+            filter: sepia(0.35) grayscale(0.15) contrast(1.06) brightness(0.98);
+        }
+
+        /* BOTÓN DE TRADUCCIÓN */
+        .translate-button {
+            width: 35px;
+            height: 35px;
+            background: rgba(44, 36, 22, 0.1);
+            border: 2px solid rgba(139, 115, 85, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            color: #5a4a3a;
+            margin: 10px auto;
+        }
+
+        .translate-button:hover {
+            background: rgba(139, 115, 85, 0.2);
+            border-color: #8b7355;
+            transform: scale(1.1);
+        }
+
+        .translate-button:active {
+            transform: scale(0.95);
+        }
+
+        .translate-button-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        /* Ocultar contenido de idioma alternativo */
+        .lang-es {
+            display: none;
+        }
+
+        body.spanish .lang-fr {
+            display: none;
+        }
+
+        body.spanish .lang-es {
+            display: block;
+        }
+
+        body.spanish .lang-es.inline {
+            display: inline;
+        }
+
+        /* ESTILOS PARA CRÓNICAS DE SOCIEDAD */
+        .society-chronicle {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .society-chronicle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .society-note {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* ESTILOS PARA CARTAS AL DIRECTOR */
+        .letters-section {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .letters-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .letter-box {
+            background-color: #f5e6d3;
+            border: 2px solid #d4c4a8;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .letter-content {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #2c2416;
+            text-align: justify;
+        }
+
+        .letter-signature {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2416;
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* ESTILOS PARA COTILLEOS DE SOLTEROS */
+        .gossip-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .gossip-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #f4e8d0;
+            border: 1px solid #8b7355;
+            border-left: 3px solid #8b7355;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .gossip-item:hover {
+            background: #e8d5b7;
+        }
+
+        .gossip-photo {
+            width: fit-content;
+            height: fit-content;
+            border: 2px solid #2c2416;
+            padding: 1px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #d4c5b0;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+
+        .gossip-photo img {
+            width: 70px;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            filter: sepia(0.25) grayscale(0.12) contrast(1.05);
+        }
+
+        .gossip-photo img:hover {
+            opacity: 0.8;
+        }
+
+        /* MODAL PARA IMÁGENES */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #2c2416;
+            padding: 10px;
+            background: #faf7f0;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            height: auto;
+            display: block;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: #2c2416;
+            color: #faf7f0;
+            border: 2px solid #2c2416;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .image-modal-close:hover {
+            background: #8b7355;
+        }
+
+        .gossip-info {
+            flex: 1;
+        }
+
+        .gossip-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 5px;
+        }
+
+        .gossip-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            color: #2c2416;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .gossip-text em {
+            font-style: normal;
+            font-weight: 600;
+            color: #5a4a3a;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN DE FECHAS -->
+    <nav class="date-navigation">
+        <p style="margin: 0 0 12px 0; text-align: center; border: 1px solid #8b7355; padding: 6px 4px;">
+            <a href="neuesberlin1.html" class="date-link" style="font-weight: bold;">
+                <span class="lang-fr">✠ Presse de Berlin</span>
+                <span class="lang-es">✠ Prensa de Berlín</span>
+            </a>
+        </p>
+        <h3 class="lang-fr">Éditions</h3>
+        <h3 class="lang-es">Ediciones</h3>
+        <ul class="date-list">
+            <li class="date-item">
+                <a href="noticias40.html" class="date-link active">
+                    <span class="lang-fr">1<sup>er</sup> Janvier 1914</span>
+                    <span class="lang-es">1 de Enero de 1914</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias39.html" class="date-link">
+                    <span class="lang-fr">26 Novembre 1907</span>
+                    <span class="lang-es">26 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias38.html" class="date-link">
+                    <span class="lang-fr">24 Novembre 1907</span>
+                    <span class="lang-es">24 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias37.html" class="date-link">
+                    <span class="lang-fr">22 Novembre 1907</span>
+                    <span class="lang-es">22 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias36.html" class="date-link">
+                    <span class="lang-fr">20 Novembre 1907</span>
+                    <span class="lang-es">20 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias35.html" class="date-link">
+                    <span class="lang-fr">18 Novembre 1907</span>
+                    <span class="lang-es">18 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias34.html" class="date-link">
+                    <span class="lang-fr">17 Novembre 1907</span>
+                    <span class="lang-es">17 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias33.html" class="date-link">
+                    <span class="lang-fr">16 Novembre 1907</span>
+                    <span class="lang-es">16 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias32.html" class="date-link">
+                    <span class="lang-fr">16 Novembre 1905</span>
+                    <span class="lang-es">16 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias31.html" class="date-link">
+                    <span class="lang-fr">13 Novembre 1905</span>
+                    <span class="lang-es">13 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias30.html" class="date-link">
+                    <span class="lang-fr">12 Novembre 1905</span>
+                    <span class="lang-es">12 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias29.html" class="date-link">
+                    <span class="lang-fr">11 Novembre 1905</span>
+                    <span class="lang-es">11 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias28.html" class="date-link">
+                    <span class="lang-fr">10 Novembre 1905</span>
+                    <span class="lang-es">10 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias27.html" class="date-link">
+                    <span class="lang-fr">6 Novembre 1905</span>
+                    <span class="lang-es">6 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias26.html" class="date-link">
+                    <span class="lang-fr">5 Novembre 1905</span>
+                    <span class="lang-es">5 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias25.html" class="date-link">
+                    <span class="lang-fr">2 Novembre 1905</span>
+                    <span class="lang-es">2 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias22.html" class="date-link">
+                    <span class="lang-fr">1er Août 1905</span>
+                    <span class="lang-es">1 de Agosto</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias21.html" class="date-link">
+                    <span class="lang-fr">30 Juillet 1905</span>
+                    <span class="lang-es">30 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias20.html" class="date-link">
+                    <span class="lang-fr">29 Juillet 1905</span>
+                    <span class="lang-es">29 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias19.html" class="date-link">
+                    <span class="lang-fr">28 Juillet 1905</span>
+                    <span class="lang-es">28 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias18.html" class="date-link">
+                    <span class="lang-fr">27 Juillet 1905</span>
+                    <span class="lang-es">27 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias17.html" class="date-link">
+                    <span class="lang-fr">26 Juillet 1905</span>
+                    <span class="lang-es">26 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias16.html" class="date-link">
+                    <span class="lang-fr">25 Juillet 1905</span>
+                    <span class="lang-es">25 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias15.html" class="date-link">
+                    <span class="lang-fr">24 Juillet 1905</span>
+                    <span class="lang-es">24 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias14.html" class="date-link">
+                    <span class="lang-fr">22 Mai 1905</span>
+                    <span class="lang-es">22 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias13.html" class="date-link">
+                    <span class="lang-fr">21 Mai 1905</span>
+                    <span class="lang-es">21 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias12.html" class="date-link">
+                    <span class="lang-fr">20 Mai 1905</span>
+                    <span class="lang-es">20 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias11.html" class="date-link">
+                    <span class="lang-fr">19 Mai 1905</span>
+                    <span class="lang-es">19 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias10.html" class="date-link">
+                    <span class="lang-fr">18 Mai 1905</span>
+                    <span class="lang-es">18 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias9.html" class="date-link">
+                    <span class="lang-fr">17 Mai 1905</span>
+                    <span class="lang-es">17 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias8.html" class="date-link">
+                    <span class="lang-fr">16 Mai 1905</span>
+                    <span class="lang-es">16 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias7.html" class="date-link">
+                    <span class="lang-fr">15 Mai 1905</span>
+                    <span class="lang-es">15 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias6.html" class="date-link">
+                    <span class="lang-fr">1 Avril 1905</span>
+                    <span class="lang-es">1 de Abril</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias5.html" class="date-link">
+                    <span class="lang-fr">29 Mars 1905</span>
+                    <span class="lang-es">29 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias4.html" class="date-link">
+                    <span class="lang-fr">28 Mars 1905</span>
+                    <span class="lang-es">28 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias3.html" class="date-link">
+                    <span class="lang-fr">27 Mars 1905</span>
+                    <span class="lang-es">27 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias2.html" class="date-link">
+                    <span class="lang-fr">26 Mars 1905</span>
+                    <span class="lang-es">26 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias1.html" class="date-link">
+                    <span class="lang-fr">25 Mars 1905</span>
+                    <span class="lang-es">25 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias.html" class="date-link">
+                    <span class="lang-fr">18 Mars 1905</span>
+                    <span class="lang-es">18 de Marzo</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="newspaper-container">
+        <!-- CABECERA DEL PERIÓDICO -->
+        <header class="newspaper-header">
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">❦</span>
+            </div>
+            <h1 class="newspaper-title">Paris Nouveau</h1>
+            <p class="newspaper-subtitle">Nouvelles du Monde des Arts et de la Belle Société</p>
+            <div class="translate-button-container">
+                <button class="translate-button" onclick="toggleLanguage()" title="Traducir / Translate">🔍</button>
+            </div>
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+            </div>
+            <p class="newspaper-date lang-fr">Jeudi, 1<sup>er</sup> Janvier 1914 — Prix: 5 Centimes</p>
+            <p class="newspaper-date lang-es">Jueves, 1 de Enero de 1914 — Precio: 5 Centimes</p>
+        </header>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="newspaper-content">
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="left-column">
+                <!-- ARTÍCULO PRINCIPAL -->
+                <article class="main-article">
+                    <h2 class="article-title lang-fr">Le Grand Défi : le monde a répondu à Paris</h2>
+                    <h2 class="article-title lang-es">El Gran Desafío: el mundo ha respondido a París</h2>
+                    <p class="article-subtitle lang-fr">Une vingtaine de nations exposeront à Paris au printemps et neuf inscriront des champions dans la Lice ; la Chine et le Japon viennent en force, les États-Unis arbitreront, et les chancelleries, qui ont fait leur l'idée de Mme Dessendre, en déposeront l'acte à La Haye</p>
+                    <p class="article-subtitle lang-es">Una veintena de naciones expondrán en París en primavera y nueve inscribirán campeones en la Liza; China y Japón vienen con todas sus fuerzas, los Estados Unidos arbitrarán, y las cancillerías, que han hecho suya la idea de la señora Dessendre, depositarán el acta en La Haya</p>
+
+                    <div class="article-image">
+                        <img src="news/serment_des_horaces_david.jpg" alt="Jacques-Louis David, « Le Serment des Horaces », 1784, musée du Louvre (domaine public) — Jacques-Louis David, «El juramento de los Horacios», 1784, museo del Louvre (dominio público)." class="placeholder" style="object-position: center 55%;">
+                    </div>
+
+                    <div class="article-text lang-fr">
+                        <p>Paris, 31 décembre — Le délai fixé par le Conseil des Beaux-Arts expirait cette nuit à minuit. À cette heure, le Quai d'Orsay avait reçu l'adhésion d'une vingtaine de gouvernements à la seconde Exposition mondiale des Arts, qui s'ouvrira à Paris au printemps. Tous n'y viendront pas pour la même chose. La plupart se borneront à exposer. Neuf nations, la France comprise, inscriront des champions dans la Lice, et c'est entre elles que se jouera ce que l'on appelle désormais le Grand Défi.</p>
+                        <p>On se souvient de la lettre par laquelle Mme Cléa Dessendre en lança l'idée : « S'il est vrai que l'art décide des batailles, que luttent les champions et non les armées. » Elle y rappelait l'exemple des Horaces, que David a peints et que le Louvre conserve : Rome et Albe, plutôt que de lever leurs armées, s'en remirent à trois frères de chaque camp. Mme Dessendre parlait d'art et d'honneur. On assure qu'elle a vu non sans surprise sa lettre passer, annotée, d'une chancellerie à l'autre, puis figurer à l'ordre du jour de l'assemblée des chefs d'État réunie cet automne à Paris. Les souverains et les présidents de l'Europe, qui ne s'accordaient plus sur rien, s'y sont accordés sur une chose : les différends qu'ils ne savaient plus régler, ils les porteraient désormais devant cette épreuve.</p>
+                        <p>Leurs juristes ont tenu à ce que l'accord repose sur le droit des gens, et non sur la seule parole des souverains. Les résultats de la Lice auront la valeur d'une sentence arbitrale au sens des conventions de La Haye de 1899 et de 1907, et l'acte final sera déposé au Palais de la Paix, inauguré en août dernier. « Nous n'avons pas inventé un tournoi, résumait hier un diplomate ; nous avons donné un tribunal aux querelles que l'on confiait jusqu'ici aux canons. » Au Conseil des Beaux-Arts, on se borne à rappeler que l'Exposition demeure une exposition.</p>
+                        <p>Chaque nation de la Lice inscrira quatorze champions, deux par art. Outre la France, y concourront l'Espagne, le Royaume-Uni, la Suède, l'Empire hellénique, la Russie, la Serbie, la Chine et le Japon. La Chine est la surprise de l'hiver. Issue d'une révolution qui n'a rien emprunté à nos républicains, et qui a remis la tradition la plus ancienne au cœur de l'État, la Chine passe pour l'alliée de Saint-Pétersbourg. Elle a inscrit d'un coup ses quatorze champions et annonce, après la nôtre, la plus nombreuse des délégations. Son ministre à Paris a toutefois tenu à préciser qu'elle ne venait « contre personne, et moins encore contre la France ». Le Japon, qui a battu la Russie il y a neuf ans et qu'une alliance lie à l'Angleterre, a inscrit lui aussi ses quatorze champions ; M. Foujita, arrivé l'été dernier à Montparnasse, espère être du nombre.</p>
+                        <p>Les autres viennent pour les Salons. Les États-Unis exposeront, mais n'ont pas voulu de champions et ne prendront part à aucun duel ; ils fourniront une part du jury et des arbitres, Washington entendant être juge et non partie. La Norvège annonce des toiles de M. Edvard Munch, et l'Égypte, qui n'aura pas de pavillon, sera représentée par un jeune sculpteur, M. Mahmoud Mokhtar, élève de notre École des Beaux-Arts.</p>
+                        <p>Le règlement reste à écrire. Une conférence se réunira à Paris en avril sous l'arbitrage de M. Pierre de Coubertin, rénovateur des Jeux olympiques. On y décidera notamment des arts admis : aux cinq arts des concours olympiques de Stockholm, l'architecture, la littérature, la musique, la peinture et la sculpture, la Russie demande que l'on ajoute la danse, et la France défendra le cinématographe. Les rencontres se tiendront dans une rotonde dont l'emplacement n'a pas été rendu public et qui abritera un panorama peint par des maîtres de pays neutres. Les organisateurs assurent que nul n'y sera blessé autrement « qu'en peinture ». La formule a fait sourire au Palais-Bourbon. Elle n'a fait sourire personne à l'état-major.</p>
+                        <p>L'enjeu est connu. Tant que durera l'Exposition, une trêve interdira aux nations inscrites de s'attaquer. Si les nations attachées à la paix l'emportent, une « Paix des Champions » gèlera les frontières de l'Europe pendant vingt ans, sous la garantie de tous les signataires. Si la Russie l'emporte, la trêve expirera sans que personne soit tenu d'intervenir. On n'a pas manqué de relever au Quai d'Orsay que Saint-Pétersbourg fut la première capitale à inscrire ses champions, onze jours à peine après l'assemblée.</p>
+                        <p>L'Allemagne, qui a signé l'accord, aura ses pavillons dans les Salons, mais n'inscrira aucun champion dans la Lice : Berlin entend montrer ses œuvres sans se mêler au tournoi. Vienne, Prague et Budapest ont fait le même choix : elles enverront leurs œuvres et leurs artistes, et pas un seul champion. Les premières délégations sont attendues en avril. À Paris, les hôtels de la rive droite affichent déjà complet pour le mois de mai.</p>
+                    </div>
+
+                    <div class="article-text lang-es">
+                        <p>París, 31 de diciembre — El plazo fijado por el Consejo de las Bellas Artes expiraba esta noche a las doce. A esa hora, el Quai d'Orsay había recibido la adhesión de una veintena de gobiernos a la segunda Exposición Mundial de las Artes, que se abrirá en París en primavera. No todos vendrán a lo mismo. La mayoría se limitará a exponer. Nueve naciones, Francia incluida, inscribirán campeones en la Liza, y entre ellas se jugará lo que ya se llama el Gran Desafío.</p>
+                        <p>Se recordará la carta con la que la señora Cléa Dessendre lanzó la idea: «Si es cierto que el arte decide las batallas, que luchen los campeones y no los ejércitos.» Evocaba en ella el ejemplo de los Horacios, que David pintó y que el Louvre conserva: Roma y Alba, antes que levantar sus ejércitos, se remitieron a tres hermanos de cada bando. La señora Dessendre hablaba de arte y de honor. Se asegura que vio no sin sorpresa cómo su carta pasaba, anotada, de una cancillería a otra, hasta figurar en el orden del día de la asamblea de jefes de Estado reunida este otoño en París. Los soberanos y presidentes de Europa, que ya no se ponían de acuerdo en nada, se pusieron allí de acuerdo en una cosa: las diferencias que ya no sabían resolver, las llevarían en adelante ante esta prueba.</p>
+                        <p>Sus juristas se empeñaron en que el acuerdo descansara en el derecho de gentes, y no sólo en la palabra de los soberanos. Los resultados de la Liza tendrán valor de sentencia arbitral en el sentido de los convenios de La Haya de 1899 y de 1907, y el acta final se depositará en el Palacio de la Paz, inaugurado el pasado agosto. «No hemos inventado un torneo, resumía ayer un diplomático; hemos dado un tribunal a las querellas que hasta ahora se confiaban a los cañones.» En el Consejo de las Bellas Artes se limitan a recordar que la Exposición sigue siendo una exposición.</p>
+                        <p>Cada nación de la Liza inscribirá catorce campeones, dos por arte. Además de Francia, competirán España, el Reino Unido, Suecia, el Imperio Heleno, Rusia, Serbia, China y Japón. China es la sorpresa del invierno. Salida de una revolución que nada ha tomado de nuestros republicanos, y que ha devuelto la tradición más antigua al corazón del Estado, China pasa por aliada de San Petersburgo. Ha inscrito de una vez a sus catorce campeones y anuncia, después de la nuestra, la más numerosa de las delegaciones. Su ministro en París ha querido precisar, no obstante, que no viene «contra nadie, y mucho menos contra Francia». Japón, que derrotó a Rusia hace nueve años y al que una alianza une a Inglaterra, ha inscrito también a sus catorce campeones; el señor Foujita, llegado el verano pasado a Montparnasse, espera figurar entre ellos.</p>
+                        <p>Los demás vienen a los Salones. Los Estados Unidos expondrán, pero no han querido campeones ni tomarán parte en duelo alguno; aportarán una parte del jurado y de los árbitros, pues Washington pretende ser juez y no parte. Noruega anuncia lienzos del señor Edvard Munch, y Egipto, que no tendrá pabellón, estará representado por un joven escultor, el señor Mahmud Mojtar, alumno de nuestra Escuela de Bellas Artes.</p>
+                        <p>El reglamento está por escribir. Una conferencia se reunirá en París en abril bajo el arbitraje del señor Pierre de Coubertin, renovador de los Juegos Olímpicos. En ella se decidirá, entre otras cosas, qué artes se admiten: a las cinco artes de los concursos olímpicos de Estocolmo, la arquitectura, la literatura, la música, la pintura y la escultura, Rusia pide que se añada la danza, y Francia defenderá el cinematógrafo. Los encuentros se celebrarán en una rotonda cuyo emplazamiento no se ha hecho público y que albergará un panorama pintado por maestros de países neutrales. Los organizadores aseguran que nadie resultará herido en ella más que «en pintura». La fórmula hizo sonreír en el Palais-Bourbon. No hizo sonreír a nadie en el estado mayor.</p>
+                        <p>Lo que está en juego es conocido. Mientras dure la Exposición, una tregua prohibirá a las naciones inscritas atacarse entre sí. Si vencen las naciones partidarias de la paz, una «Paz de los Campeones» congelará las fronteras de Europa durante veinte años, bajo la garantía de todos los firmantes. Si vence Rusia, la tregua expirará sin que nadie esté obligado a intervenir. En el Quai d'Orsay no se ha dejado de señalar que San Petersburgo fue la primera capital en inscribir a sus campeones, apenas once días después de la asamblea.</p>
+                        <p>Alemania, que firmó el acuerdo, tendrá sus pabellones en los Salones, pero no inscribirá campeón alguno en la Liza: Berlín quiere mostrar sus obras sin mezclarse en el torneo. Viena, Praga y Budapest han hecho la misma elección: enviarán sus obras y sus artistas, y ni un solo campeón. Las primeras delegaciones se esperan en abril. En París, los hoteles de la orilla derecha anuncian ya que no les queda sitio para el mes de mayo.</p>
+                    </div>
+                </article>
+
+                <!-- ARTÍCULOS SECUNDARIOS -->
+                <div class="secondary-articles">
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">Les vœux du Président Jaurès</h3>
+                        <h3 class="secondary-title lang-es">Los votos del Presidente Jaurès</h3>
+                        <div class="article-image">
+                            <img src="news/jaures_pre_saint_gervais_1913.jpg" alt="M. Jean Jaurès s'adressant à la foule au Pré-Saint-Gervais, 25 mai 1913 — Agence Rol (domaine public, Gallica) — El señor Jean Jaurès dirigiéndose a la multitud en el Pré-Saint-Gervais, 25 de mayo de 1913; Agencia Rol (dominio público, Gallica)." class="placeholder" style="object-position: 60% 55%;">
+                        </div>
+                        <div class="secondary-text lang-fr">
+                            <p>Paris, 31 décembre — Selon l'usage, le Président de la République recevra ce matin à l'Élysée le corps diplomatique, puis les présidents des Chambres et les membres du Gouvernement. Le texte de l'allocution que M. Jean Jaurès adressera aux ambassadeurs a été communiqué hier soir à la presse. On y lit notamment : « La France n'a convié le monde ni à une fête ni à un tribunal, mais à une épreuve où la grandeur des peuples se mesurera à leurs œuvres et non à leurs morts. Elle forme le vœu que l'année qui s'ouvre soit la première où l'Europe aura préféré ses artistes à ses canons. »</p>
+                            <p>On observera avec attention la réponse de M. Isvolski, ambassadeur de Russie, dont le gouvernement a accepté le défi avant tous les autres et qui n'a pas, depuis, cessé de renforcer ses garnisons du Nord.</p>
+                            <p>Le président du Conseil, M. Joseph Caillaux, aborde l'année nouvelle avec un autre souci : le projet d'impôt sur le revenu, voté par la Chambre, revient ce mois-ci devant le Sénat, où on lui promet une rude séance. Notre confrère <em>Le Figaro</em> annonce de son côté, sous la plume de son directeur, M. Gaston Calmette, une série d'articles consacrés au passé financier du président du Conseil. Dans l'entourage de M. Caillaux, on parle de « campagne » ; au <em>Figaro</em>, d'« information ».</p>
+                            <p>Le Conseil des Beaux-Arts, enfin, tiendra le 15 janvier sa première séance plénière de l'année sous la présidence de Mme Chloé Müller. Il y nommera la commission chargée des épreuves de sélection de l'équipe de France : quatorze places pour tous les artistes français qui voudront y prétendre. Les inscriptions seront ouvertes au secrétariat du Conseil dès le lendemain.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p>París, 31 de diciembre — Según la costumbre, el Presidente de la República recibirá esta mañana en el Elíseo al cuerpo diplomático, y después a los presidentes de las Cámaras y a los miembros del Gobierno. El texto de la alocución que el señor Jean Jaurès dirigirá a los embajadores se comunicó anoche a la prensa. Se lee en él, entre otras cosas: «Francia no ha convocado al mundo ni a una fiesta ni a un tribunal, sino a una prueba en la que la grandeza de los pueblos se medirá por sus obras y no por sus muertos. Hace votos por que el año que comienza sea el primero en que Europa haya preferido sus artistas a sus cañones.»</p>
+                            <p>Se observará con atención la respuesta del señor Izvolski, embajador de Rusia, cuyo gobierno aceptó el desafío antes que todos los demás y que desde entonces no ha dejado de reforzar sus guarniciones del Norte.</p>
+                            <p>El presidente del Consejo, el señor Joseph Caillaux, empieza el año nuevo con otra preocupación: el proyecto de impuesto sobre la renta, votado por la Cámara, vuelve este mes al Senado, donde se le augura una sesión difícil. Nuestro colega <em>Le Figaro</em> anuncia por su parte, firmada por su director, el señor Gaston Calmette, una serie de artículos dedicados al pasado financiero del presidente del Consejo. En el entorno del señor Caillaux se habla de «campaña»; en <em>Le Figaro</em>, de «información».</p>
+                            <p>El Consejo de las Bellas Artes, por último, celebrará el 15 de enero su primera sesión plenaria del año bajo la presidencia de la señora Chloé Müller. En ella nombrará la comisión encargada de las pruebas de selección del equipo de Francia: catorce plazas para todos los artistas franceses que quieran optar a ellas. Las inscripciones se abrirán en la secretaría del Consejo al día siguiente.</p>
+                        </div>
+                    </article>
+
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">La Joconde est rentrée à Paris</h3>
+                        <h3 class="secondary-title lang-es">La Gioconda ha vuelto a París</h3>
+                        <div class="article-image">
+                            <img src="news/joconde_offices_1913.jpg" alt="La Joconde examinée à la galerie des Offices, à Florence, décembre 1913 (domaine public) — La Gioconda examinada en la galería de los Uffizi, en Florencia, diciembre de 1913 (dominio público)." class="placeholder" style="object-position: center 40%;">
+                        </div>
+                        <div class="secondary-text lang-fr">
+                            <p>Le train de Milan est entré hier soir en gare de Lyon avec, dans un compartiment réservé et sous la garde de trois fonctionnaires des Beaux-Arts, une caisse de bois capitonnée de velours. La Joconde, volée au Salon Carré en août 1911, est rentrée à Paris après vingt-huit mois d'absence. Elle sera rendue au public dimanche.</p>
+                            <p>On sait comment elle a été retrouvée. Le 10 décembre, un nommé Vincenzo Peruggia, vitrier, qui avait travaillé au Louvre, la proposa à un antiquaire de Florence, M. Alfredo Geri. Celui-ci prévint le directeur des Offices, M. Giovanni Poggi, qui reconnut le tableau à ses marques au revers. Peruggia, arrêté le lendemain, affirme qu'il n'a rien volé : il aurait seulement voulu « rendre à l'Italie » ce que Napoléon lui avait pris, ce qui est inexact, François Ier l'ayant acquise de Léonard lui-même. Il attend son procès à Florence.</p>
+                            <p>Avant de la rendre, l'Italie l'a montrée à Florence, à Rome et à Milan, où l'on a fait la queue des heures pour la voir. La restitution s'est faite sans condition, et le Conseil des Arts de Rome l'a voulue comme un geste de bonne volonté à la veille de l'Exposition. Il a toutefois fait savoir que la question de la « patrie véritable » du tableau serait posée en temps utile devant les Salons. On sait que le règlement en préparation permettrait au vainqueur d'un Salon de réclamer au vaincu une œuvre qu'il tient pour sienne.</p>
+                            <p>Les conservateurs du Louvre examineront le tableau avant de le raccrocher. Ce n'est, assure-t-on, qu'une formalité. Un gardien du Salon Carré, qui veillait sur elle depuis quinze ans et qui était à la gare hier soir, s'est pourtant contenté de dire qu'il la trouvait « changée ». On l'a mis sur le compte de l'émotion.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p>El tren de Milán entró anoche en la estación de Lyon con una caja de madera acolchada de terciopelo, en un compartimento reservado y bajo la custodia de tres funcionarios de Bellas Artes. La Gioconda, robada del Salon Carré en agosto de 1911, ha vuelto a París tras veintiocho meses de ausencia. Se devolverá al público el domingo.</p>
+                            <p>Se sabe cómo apareció. El 10 de diciembre, un tal Vincenzo Peruggia, vidriero, que había trabajado en el Louvre, se la ofreció a un anticuario de Florencia, el señor Alfredo Geri. Éste avisó al director de los Uffizi, el señor Giovanni Poggi, que reconoció el cuadro por las marcas del reverso. Peruggia, detenido al día siguiente, afirma que no robó nada: sólo habría querido «devolver a Italia» lo que Napoleón le quitó, lo cual es inexacto, pues Francisco I la adquirió del propio Leonardo. Espera juicio en Florencia.</p>
+                            <p>Antes de devolverla, Italia la ha mostrado en Florencia, en Roma y en Milán, donde se hacían horas de cola para verla. La restitución se ha hecho sin condiciones, y el Consejo de las Artes de Roma ha querido que fuese un gesto de buena voluntad en vísperas de la Exposición. Ha hecho saber, sin embargo, que la cuestión de la «verdadera patria» del cuadro se planteará a su debido tiempo ante los Salones. Es sabido que el reglamento en preparación permitiría al vencedor de un Salón reclamar al vencido una obra que considere suya.</p>
+                            <p>Los conservadores del Louvre examinarán el cuadro antes de volver a colgarlo. No es, aseguran, más que una formalidad. Un vigilante del Salon Carré, que velaba por ella desde hacía quince años y que estaba anoche en la estación, se limitó sin embargo a decir que la encontraba «cambiada». Se ha atribuido a la emoción.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="typographic-ornament">❦ ◆ ❦</div>
+
+                <!-- CHRONIQUES DE LA SOCIÉTÉ -->
+                <article class="society-chronicle">
+                    <h2 class="society-chronicle-title lang-fr">Chroniques de la Société</h2>
+                    <h2 class="society-chronicle-title lang-es">Crónicas de Sociedad</h2>
+                    <p class="society-note lang-fr">Où votre Fleuriste a dansé jusqu'à l'aube et vous rapporte ce qu'elle a entendu entre deux figures</p>
+                    <p class="society-note lang-es">Donde vuestra Florista ha bailado hasta el alba y os cuenta lo que oyó entre figura y figura</p>
+
+                    <div class="secondary-article">
+                        <h3 class="secondary-title lang-fr">Réveillon, tango et un dieu sans maître</h3>
+                        <h3 class="secondary-title lang-es">Cotillón, tango y un dios sin amo</h3>
+                        <div class="secondary-text lang-fr">
+                            <p><em>Mes chères lectrices</em>, bonne année ! Votre Fleuriste vous écrit les pieds en compote et le cœur en fête, au retour d'un réveillon où l'on a bu le champagne de 1914 dans des coupes de 1913, et où personne, je vous l'assure, n'a parlé de canons avant trois heures du matin.</p>
+                            <p>On n'a parlé que de tango. Paris en est fou depuis l'automne : thés-tango à l'hôtel, tango aux Acacias, robes fendues à la cheville, bottines à lacets croisés, et jusqu'à une couleur, l'orange « tango », que l'on porte du chapeau aux bas. On murmure que l'archevêché prépare une condamnation en règle. Je connais au moins trois dames de la Plaine-Monceau qui ont déjà pris leurs dispositions : elles se confesseront en février et danseront d'ici là.</p>
+                            <p>Mais la vraie nouvelle de la nuit, mes chéries, je l'ai apprise au vestiaire. Vous vous rappelez qu'en septembre, à Buenos Aires, M. Nijinski a épousé à la surprise générale une jeune Hongroise, Mlle Romola de Pulszky ? Eh bien, M. de Diaghilev ne l'a pas pardonné. Il l'a congédié des Ballets russes par un télégramme de deux lignes. Le plus grand danseur du monde est donc libre, et la Russie, qui a tant voulu la danse au programme de l'Exposition, se retrouve sans son dieu.</p>
+                            <p>Vous devinez la suite. On assure que Londres lui a fait des offres, que Budapest compte sur Madame pour plaider la cause de son pays natal, et qu'un monsieur de notre Conseil des Beaux-Arts a pris hier le train pour Budapest, où le jeune ménage passe l'hiver chez la mère de Madame. Saint-Pétersbourg, de son côté, ferait savoir qu'un sujet du tsar reste un sujet du tsar, même marié. Je ne sais pas qui l'aura. Je sais seulement que l'on ne s'est jamais tant disputé un homme qui ne touche pas terre.</p>
+                            <p>Votre Fleuriste vous souhaite pour 1914 des bals, des amours et des frontières bien tranquilles. Elle vous promet, pour les beaux jours, plus d'étrangers à Paris qu'on n'en a vu depuis 1900. Préparez vos toilettes, mes chéries : le monde entier viendra nous regarder.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p><em>Mis queridas lectoras</em>, ¡feliz año! Vuestra Florista os escribe con los pies molidos y el corazón de fiesta, al volver de un cotillón donde se bebió el champán de 1914 en copas de 1913, y donde nadie, os lo aseguro, habló de cañones antes de las tres de la mañana.</p>
+                            <p>No se habló más que de tango. París está loco por él desde el otoño: tés-tango en el hotel, tango en los Acacias, vestidos abiertos hasta el tobillo, botines de cordones cruzados, y hasta un color, el naranja «tango», que se lleva del sombrero a las medias. Se murmura que el arzobispado prepara una condena en toda regla. Conozco al menos a tres señoras de la Plaine-Monceau que ya han tomado sus disposiciones: se confesarán en febrero y bailarán hasta entonces.</p>
+                            <p>Pero la verdadera noticia de la noche, queridas mías, la supe en el guardarropa. ¿Recordáis que en septiembre, en Buenos Aires, el señor Nijinski se casó, para sorpresa de todos, con una joven húngara, la señorita Romola de Pulszky? Pues bien, el señor de Diáguilev no se lo ha perdonado. Lo ha despedido de los Ballets Rusos con un telegrama de dos líneas. El mayor bailarín del mundo está, pues, libre, y Rusia, que tanto quiso la danza en el programa de la Exposición, se encuentra sin su dios.</p>
+                            <p>Adivináis el resto. Se asegura que Londres le ha hecho ofertas, que Budapest cuenta con la señora para defender la causa de su país natal, y que un caballero de nuestro Consejo de las Bellas Artes tomó ayer el tren de Budapest, donde el joven matrimonio pasa el invierno en casa de la madre de la señora. San Petersburgo, por su parte, haría saber que un súbdito del zar sigue siendo súbdito del zar, aunque se case. No sé quién se lo llevará. Sólo sé que nunca se han disputado tanto a un hombre que no toca el suelo.</p>
+                            <p>Vuestra Florista os desea para 1914 bailes, amores y fronteras muy tranquilas. Os promete, para el buen tiempo, más extranjeros en París de los que se han visto desde 1900. Preparad vuestros vestidos, queridas mías: el mundo entero vendrá a mirarnos.</p>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- COLUMNA DERECHA -->
+            <aside class="right-column">
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">L'Europe au seuil de 1914</h3>
+                    <h3 class="sidebar-title lang-es">Europa en el umbral de 1914</h3>
+                    <div class="vertical-image sidebar-portrait" style="margin-bottom: 1em;">
+                        <img src="news/francois_joseph_portrait.jpg" alt="S. M. François-Joseph, empereur d'Autriche, roi de Bohême et de Hongrie — photographie, vers 1914 (domaine public) — S. M. Francisco José, emperador de Austria, rey de Bohemia y de Hungría; fotografía, hacia 1914 (dominio público)." class="placeholder" style="object-position: center 25%;">
+                    </div>
+                    <div class="sidebar-text lang-fr">
+                        <p>L'année qui s'achève laisse une carte que nos pères ne reconnaîtraient pas. À l'est, la Russie a célébré en grande pompe le tricentenaire des Romanov ; la Galicie et la Slovaquie vivent désormais sous ses aigles, la Pologne et la Finlande sous ses lois, et la Suède, qui voit ses garnisons se multiplier sur l'autre rive de la Baltique, ne cache plus ses craintes.</p>
+                        <p>Au sud, l'Empire hellénique, où les Conseils des Arts d'Athènes, de Rome et de Constantinople gouvernent ensemble, tient les Détroits et restaure ses temples. Il se dispute la Macédoine avec la Serbie, que soutient Saint-Pétersbourg, et deux années d'escarmouches n'ont été suivies d'aucune paix. À l'ouest, l'Espagne de l'Internationale reste l'alliée la plus sûre de la République, et Londres, qui craint la Russie, se rapproche de nous sans tout à fait se fier aux « nations gouvernées par des artistes ».</p>
+                        <p>Au centre, l'Allemagne, brouillée avec Saint-Pétersbourg depuis l'affaire de Crète, s'est faite la tête d'un bloc germanique qui ne demande qu'à rester neutre. Elle y entraîne l'Autriche et la Bohême. François-Joseph y règne sur trois couronnes et de trois manières : empereur à Vienne, roi constitutionnel à Prague et à Budapest, où gouvernent désormais les Parlements. Il aura quatre-vingt-quatre ans en août ; l'archiduc François-Ferdinand est son héritier pour les trois.</p>
+                        <p>Jamais, dit-on dans les chancelleries, l'Europe n'a compté tant de frontières neuves. Jamais non plus elle n'a tant parlé de paix.</p>
+                    </div>
+                    <div class="sidebar-text lang-es">
+                        <p>El año que termina deja un mapa que nuestros padres no reconocerían. Al este, Rusia ha celebrado con gran pompa el tricentenario de los Románov; Galitzia y Eslovaquia viven ya bajo sus águilas, Polonia y Finlandia bajo sus leyes, y Suecia, que ve multiplicarse sus guarniciones en la otra orilla del Báltico, ya no oculta sus temores.</p>
+                        <p>Al sur, el Imperio Heleno, donde gobiernan juntos los Consejos de las Artes de Atenas, Roma y Constantinopla, domina los Estrechos y restaura sus templos. Se disputa Macedonia con Serbia, a la que sostiene San Petersburgo, y a dos años de escaramuzas no ha seguido paz alguna. Al oeste, la España de la Internacional sigue siendo la aliada más segura de la República, y Londres, que teme a Rusia, se acerca a nosotros sin fiarse del todo de las «naciones gobernadas por artistas».</p>
+                        <p>En el centro, Alemania, enemistada con San Petersburgo desde el asunto de Creta, se ha puesto a la cabeza de un bloque germánico que sólo aspira a seguir siendo neutral. Arrastra en él a Austria y a Bohemia. Francisco José reina en él sobre tres coronas y de tres maneras: emperador en Viena, rey constitucional en Praga y en Budapest, donde gobiernan ahora los Parlamentos. Cumplirá ochenta y cuatro años en agosto; el archiduque Francisco Fernando es su heredero en las tres.</p>
+                        <p>Nunca, se dice en las cancillerías, ha contado Europa tantas fronteras nuevas. Nunca tampoco ha hablado tanto de paz.</p>
+                    </div>
+                </article>
+
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 16px;">
+                        <p><strong>• Le premier billet d'aéroplane :</strong> En Floride, une compagnie doit inaugurer aujourd'hui entre Saint-Pétersbourg et Tampa, de part et d'autre d'une baie de trente kilomètres, le premier service régulier de passagers par hydroaéroplane. Un seul voyageur par traversée, assis à côté du pilote ; la place du premier vol a été adjugée aux enchères pour quatre cents dollars.</p>
+                        <p><strong>• Le prix Nobel au Bengale :</strong> Le poète bengali Rabindranath Tagore, lauréat du prix Nobel de littérature, n'a pu se rendre à Stockholm pour le recevoir. C'est la première fois que le prix quitte l'Europe et l'Amérique. Les traductions anglaises de son <em>Gitanjali</em> sont épuisées à Londres.</p>
+                        <p><strong>• Panama :</strong> Les eaux ont été lâchées dans la tranchée de la Culebra, et l'on annonce pour les prochains jours la première traversée complète du canal de Panama par un bateau-grue. Les navires de commerce devront attendre l'été. Trente-trois ans après les premiers coups de pioche de M. de Lesseps, l'œuvre est achevée par d'autres.</p>
+                        <p><strong>• Les cloches de Moscou :</strong> M. Alexandre Scriabine travaille à Moscou à son <em>Mystère</em>, une œuvre qu'il voudrait faire jouer au pied de l'Himalaya et qui devrait, dit-il, transfigurer ceux qui l'entendront. Ses voisins se plaignent que, les nuits où il compose, les cloches de l'église voisine sonnent sans que personne soit monté au clocher.</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 16px;">
+                        <p><strong>• El primer billete de aeroplano:</strong> En Florida, una compañía debe inaugurar hoy entre San Petersburgo y Tampa, a uno y otro lado de una bahía de treinta kilómetros, el primer servicio regular de pasajeros en hidroaeroplano. Un solo viajero por travesía, sentado junto al piloto; la plaza del primer vuelo se adjudicó en subasta por cuatrocientos dólares.</p>
+                        <p><strong>• El premio Nobel en Bengala:</strong> El poeta bengalí Rabindranath Tagore, galardonado con el premio Nobel de literatura, no pudo viajar a Estocolmo para recibirlo. Es la primera vez que el premio sale de Europa y América. Las traducciones inglesas de su <em>Gitanjali</em> están agotadas en Londres.</p>
+                        <p><strong>• Panamá:</strong> Se han soltado las aguas en la trinchera de la Culebra, y se anuncia para los próximos días la primera travesía completa del canal de Panamá por una grúa flotante. Los buques mercantes tendrán que esperar al verano. Treinta y tres años después de los primeros golpes de pico del señor de Lesseps, otros terminan la obra.</p>
+                        <p><strong>• Las campanas de Moscú:</strong> El señor Alexandr Scriabin trabaja en Moscú en su <em>Misterio</em>, una obra que quisiera hacer interpretar al pie del Himalaya y que debería, dice, transfigurar a quienes la escuchen. Sus vecinos se quejan de que, las noches en que compone, las campanas de la iglesia vecina suenan sin que nadie haya subido al campanario.</p>
+                    </div>
+                </article>
+
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 14px; line-height: 1.6;">
+                        <p><strong>Le Grand Défi : le monde a répondu à Paris :</strong><br>C. Mercier</p>
+                        <p><strong>Les vœux du Président Jaurès :</strong><br>L. Moreau</p>
+                        <p><strong>La Joconde est rentrée à Paris :</strong><br>L. Roy</p>
+                        <p><strong>L'Europe au seuil de 1914 :</strong><br>P. Bernard</p>
+                        <p><strong>Réveillon, tango et un dieu sans maître :</strong><br>La Fleuriste</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 14px; line-height: 1.6;">
+                        <p><strong>El Gran Desafío: el mundo ha respondido a París :</strong><br>C. Mercier</p>
+                        <p><strong>Los votos del Presidente Jaurès :</strong><br>L. Moreau</p>
+                        <p><strong>La Gioconda ha vuelto a París :</strong><br>L. Roy</p>
+                        <p><strong>Europa en el umbral de 1914 :</strong><br>P. Bernard</p>
+                        <p><strong>Cotillón, tango y un dios sin amo :</strong><br>La Florista</p>
+                    </div>
+                </article>
+
+            </aside>
+        </div>
+
+    <!-- MODAL PARA IMÁGENES -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('spanish');
+
+            if (document.body.classList.contains('spanish')) {
+                localStorage.setItem('newspaperLanguage', 'es');
+            } else {
+                localStorage.setItem('newspaperLanguage', 'fr');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('newspaperLanguage');
+            if (savedLanguage === 'es') {
+                document.body.classList.add('spanish');
+            }
+        });
+
+        function openImageModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageModal(event) {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    </script>
+</body>
+</html>
