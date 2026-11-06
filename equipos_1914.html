@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Los Doce — Equipos del Grand Défi, 1914</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Federant&family=Spectral:ital,wght@0,400;0,600;1,400&family=Spectral+SC:wght@500&display=swap">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+html { -webkit-text-size-adjust: 100%; }
+/* Layout: programa oficial en una columna; capítulos plegables de reglamento y, debajo, una delegación por bloque con sus tarjetas en rejilla. Misma familia visual que «Le Grand Défi 1914». */
+:root {
+  --paper: #eef0ea;
+  --card: #f8f9f4;
+  --ink: #1c2a3a;
+  --muted: #56646b;
+  --gold: #8f6a1c;
+  --rouge: #a02c2e;
+  --purple: #6a3a78;
+  --line: #c9cdbf;
+  --neutral: #7c878c;
+  --hover: #e4e8da;
+  --f-display: "Federant", "Cormorant Garamond", Georgia, serif;
+  --f-body: "Spectral", Georgia, "Times New Roman", serif;
+  --f-label: "Spectral SC", "Spectral", Georgia, serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #10171f; --card: #17212c; --ink: #e8e4d6; --muted: #9aa6ab;
+    --gold: #d6b162; --rouge: #e26a6c; --purple: #c79ad6; --line: #2c3a47;
+    --neutral: #8a969b; --hover: #1f2b38;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #10171f; --card: #17212c; --ink: #e8e4d6; --muted: #9aa6ab;
+  --gold: #d6b162; --rouge: #e26a6c; --purple: #c79ad6; --line: #2c3a47;
+  --neutral: #8a969b; --hover: #1f2b38;
+  color-scheme: dark;
+}
+body { background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.55; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+.wrap {
+  max-width: 1240px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 64px;
+  display: grid; gap: 28px;
+}
+.wrap > * { min-width: 0; }
+header.top { display: grid; gap: 12px; max-width: 70ch; }
+.eyebrow { font-family: var(--f-label); font-size: 15px; letter-spacing: .12em; color: var(--gold); text-transform: lowercase; }
+h1 { font-family: var(--f-display); font-weight: 400; font-size: clamp(44px, 8vw, 80px); line-height: 1; margin: 0; text-wrap: balance; }
+h1 small { display: block; font-size: .36em; color: var(--muted); margin-top: 10px; line-height: 1.2; }
+.lede { font-size: 19px; margin: 0; }
+.note { font-size: 16px; color: var(--muted); margin: 0; }
+h2 { font-family: var(--f-display); font-weight: 400; font-size: clamp(27px, 4vw, 36px); margin: 0; line-height: 1.15; text-wrap: balance; }
+h3 { font-family: var(--f-display); font-weight: 400; font-size: 23px; margin: 0; line-height: 1.2; text-wrap: balance; }
+h4 { font-family: var(--f-display); font-weight: 400; font-size: 23px; margin: 0; line-height: 1.15; }
+p { margin: 0; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+.kicker { font-family: var(--f-label); font-size: 14px; letter-spacing: .08em; color: var(--gold); }
+.chip { font-family: var(--f-label); font-size: 14px; letter-spacing: .06em; color: var(--muted); }
+.prop { font-family: var(--f-label); font-size: 14px; letter-spacing: .06em; color: var(--muted); border: 1px dashed var(--neutral); padding: 0 8px; white-space: nowrap; }
+
+/* Capítulos */
+details.chap { border-top: 1px solid var(--line); }
+details.chap > summary {
+  list-style: none; cursor: pointer; padding-block: 20px;
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 4px 16px; align-items: baseline;
+}
+summary::-webkit-details-marker { display: none; }
+.roman { font-family: var(--f-display); font-size: 22px; color: var(--gold); min-width: 2ch; }
+.sum-text { display: grid; gap: 4px; min-width: 0; }
+.sum-desc { color: var(--muted); font-size: 16px; }
+.chev { font-family: var(--f-label); font-size: 14px; color: var(--muted); letter-spacing: .06em; white-space: nowrap; }
+.chev::after { content: " ▾"; }
+details[open] > summary .chev .closed, details:not([open]) > summary .chev .opened { display: none; }
+details.chap > summary:hover h2 { color: var(--gold); }
+.chap-body { display: grid; gap: 18px; padding-bottom: 32px; }
+.chap-body > * { min-width: 0; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+.card { background: var(--card); border: 1px solid var(--line); padding: 16px 18px 18px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.card p, .card li { font-size: 16px; }
+.card ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+.quote { font-style: italic; border-left: 3px solid var(--gold); padding-left: 14px; font-size: 18px; max-width: 66ch; }
+
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 16px; }
+table.wide { min-width: 720px; }
+th { font-family: var(--f-label); font-weight: 500; font-size: 14px; letter-spacing: .08em; color: var(--muted); text-align: left; padding: 8px 12px; border-bottom: 2px solid var(--ink); }
+td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.lead { font-family: var(--f-display); font-size: 19px; }
+td.dim { color: var(--muted); }
+.c-hel { color: var(--purple); } .c-paz { color: var(--gold); } .c-rev { color: var(--rouge); }
+
+/* Barra de filtros */
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--paper); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--line);
+  padding-block: 10px; display: grid; gap: 10px;
+}
+.bar-row { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.scroll-x { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; min-width: 0; }
+#filtro-arte button, .tools button {
+  font-family: var(--f-label); font-size: 15px; letter-spacing: .05em; white-space: nowrap;
+  background: var(--card); border: 1px solid var(--line); padding: 7px 12px; cursor: pointer;
+}
+#filtro-arte button:hover, .tools button:hover { background: var(--hover); }
+#filtro-arte button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.search { display: flex; gap: 8px; align-items: center; flex: 1 1 220px; min-width: 0; }
+.search label { font-family: var(--f-label); font-size: 14px; letter-spacing: .06em; color: var(--muted); }
+.search input { flex: 1 1 auto; min-width: 0; font-size: 16px; padding: 7px 10px; background: var(--card); border: 1px solid var(--line); }
+#count { font-family: var(--f-label); font-size: 14px; letter-spacing: .06em; color: var(--muted); white-space: nowrap; }
+.tools { display: flex; gap: 6px; }
+
+#nav-naciones { display: flex; flex-wrap: wrap; gap: 6px; }
+#nav-naciones a {
+  font-family: var(--f-label); font-size: 15px; letter-spacing: .04em; color: var(--ink); text-decoration: none;
+  border: 1px solid var(--line); border-bottom: 3px solid var(--neutral); padding: 5px 11px; background: var(--card);
+}
+#nav-naciones a:hover { background: var(--hover); }
+#nav-naciones a.b-paz { border-bottom-color: var(--gold); }
+#nav-naciones a.b-rev { border-bottom-color: var(--rouge); }
+#nav-naciones a.b-bis { border-bottom-color: var(--purple); }
+#nav-naciones a:not(.liza) { color: var(--muted); }
+
+/* Delegaciones */
+#delegaciones { display: grid; gap: 20px; }
+details.nat { border-top: 4px solid var(--neutral); scroll-margin-top: 150px; min-width: 0; }
+details.nat.b-paz { border-top-color: var(--gold); }
+details.nat.b-rev { border-top-color: var(--rouge); }
+details.nat.b-bis { border-top-color: var(--purple); }
+details.nat > summary { list-style: none; cursor: pointer; padding: 14px 0 12px; display: grid; gap: 4px; }
+details.nat > summary:hover h3 { color: var(--gold); }
+.nat-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; }
+.nat-head h3 { font-size: clamp(28px, 4vw, 36px); }
+.one { color: var(--muted); font-size: 17px; max-width: 80ch; }
+.nat-body { display: grid; gap: 16px; padding-bottom: 12px; }
+.nat-body > * { min-width: 0; }
+.wants { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 0; border: 1px solid var(--line); background: var(--card); }
+.want { padding: 12px 16px 14px; display: grid; gap: 4px; align-content: start; min-width: 0; border-left: 1px solid var(--line); margin-left: -1px; border-top: 1px solid var(--line); margin-top: -1px; }
+.want p { font-size: 16px; }
+.want.w-roja .kicker { color: var(--rouge); }
+.also { font-size: 16px; color: var(--muted); max-width: 90ch; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); gap: 14px; }
+.pc { background: var(--card); border: 1px solid var(--line); padding: 12px 16px 16px; display: grid; gap: 9px; align-content: start; min-width: 0; }
+.pc-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+.art { font-family: var(--f-label); font-size: 15px; letter-spacing: .1em; color: var(--gold); }
+.mast { display: flex; align-items: center; gap: 8px; }
+.mast b { font-family: var(--f-display); font-weight: 400; font-size: 22px; line-height: 1; }
+.pips { display: flex; gap: 5px; }
+.pips i { width: 8px; height: 8px; transform: rotate(45deg); border: 1px solid var(--ink); }
+.pips i.on { background: var(--ink); }
+.pips i.six.on { background: var(--gold); border-color: var(--gold); }
+.meta { font-size: 15px; color: var(--muted); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-family: var(--f-label); font-size: 14px; letter-spacing: .05em; padding: 0 8px; border: 1px solid var(--neutral); color: var(--muted); }
+.tag.t-for, .tag.t-dis { border-color: var(--rouge); color: var(--rouge); }
+.tag.t-plz { border-color: var(--purple); color: var(--purple); }
+.tag.t-jur, .tag.t-asp { border-color: var(--gold); color: var(--gold); }
+.tag.t-prop, .tag.t-fic { border-style: dashed; }
+.attrs { margin: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border: 1px solid var(--line); }
+.attrs div { text-align: center; padding: 5px 2px 6px; border-left: 1px solid var(--line); }
+.attrs div:first-child { border-left: none; }
+.attrs dt { font-family: var(--f-label); font-size: 14px; letter-spacing: .04em; color: var(--muted); }
+.attrs dt abbr { text-decoration: none; }
+.attrs dd { margin: 0; font-family: var(--f-display); font-size: 22px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.attrs .key { background: var(--hover); }
+.attrs .key dt, .attrs .key dd { color: var(--gold); }
+.roll { display: grid; gap: 0; }
+.roll .big { font-family: var(--f-display); font-size: 24px; line-height: 1.15; }
+.roll .sub { font-size: 14px; color: var(--muted); }
+.vit { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 15px; color: var(--muted); }
+.vit b { font-family: var(--f-display); font-weight: 400; font-size: 19px; color: var(--ink); }
+.skills { display: flex; flex-wrap: wrap; gap: 2px 14px; font-size: 16px; }
+.skills b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.txt { font-size: 16px; }
+.txt .k { display: block; font-family: var(--f-label); font-size: 14px; letter-spacing: .08em; color: var(--gold); }
+.txt.hook { border-top: 1px dashed var(--line); padding-top: 8px; }
+.txt.hook .k { color: var(--rouge); }
+
+footer { font-size: 15px; color: var(--muted); max-width: 80ch; }
+#plantel { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+#plantel > * { min-width: 0; }
+.bar { grid-template-columns: minmax(0, 1fr); }
+.bar-row { min-width: 0; }
+.scroll-x { max-width: 100%; }
+.chap-body > h3 { font-size: 28px; margin-top: 12px; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+.search { flex-basis: 150px; }
+@media (max-width: 520px) { .tools .lg { display: none; } }
+.tools { flex-wrap: wrap; }
+.tools a { font-family: var(--f-label); font-size: 15px; letter-spacing: .05em; white-space: nowrap; color: var(--ink); text-decoration: none; background: var(--card); border: 1px solid var(--ink); padding: 7px 12px; }
+.tools a:hover { background: var(--hover); }
+.jump { display: flex; flex-wrap: wrap; gap: 8px; }
+.jump a { font-family: var(--f-label); font-size: 16px; letter-spacing: .04em; color: var(--ink); text-decoration: none; border: 1px solid var(--ink); padding: 7px 14px; background: var(--card); }
+.jump a:hover { background: var(--hover); }
+
+/* Los Doce */
+.teamnav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--line); padding-block: 10px; min-width: 0; }
+.teamnav a { font-family: var(--f-label); font-size: 16px; letter-spacing: .04em; white-space: nowrap; color: var(--ink); text-decoration: none; border: 1px solid var(--line); border-bottom: 3px solid var(--neutral); padding: 6px 12px; background: var(--card); }
+.teamnav a:hover { background: var(--hover); }
+.teamnav a.b-paz { border-bottom-color: var(--gold); }
+.teamnav a.b-rev { border-bottom-color: var(--rouge); }
+.teamnav a.b-bis { border-bottom-color: var(--purple); }
+.block { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+td.lead a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--gold); }
+td.lead a:hover { color: var(--gold); }
+#equipos { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; }
+details.nat { scroll-margin-top: 92px; }
+details.chap { scroll-margin-top: 92px; }
+details.nat > summary:hover h2 { color: var(--gold); }
+.nat-head h2 { font-size: clamp(32px, 5vw, 44px); }
+.wants { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.sec { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; font-size: 28px; margin-top: 10px; border-bottom: 2px solid var(--ink); padding-bottom: 6px; }
+.sec small { font-family: var(--f-label); font-size: 15px; letter-spacing: .06em; color: var(--muted); }
+.plan { font-size: 17px; max-width: 80ch; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <span class="eyebrow">clair obscur · belle époque — le grand défi, 1914</span>
+    <h1>Los Doce<small>Equipos de la Liza: seis titulares, seis reemplazantes y lo que exige cada nación</small></h1>
+    <p class="note">Los doce cubren las siete artes y los seis titulares son de artes distintas, así que cada nación deja un arte en el banquillo. Eso y las alineaciones son propuesta mía: cambia lo que no te encaje.</p>
+  </header>
+
+  <nav class="teamnav" aria-label="Equipos"><div id="nav-equipos" class="scroll-x"></div></nav>
+
+  <section class="block">
+    <h2>De un vistazo</h2>
+    <div class="table-wrap">
+      <table class="wide">
+        <thead><tr><th>Nación</th><th>Titulares</th><th>Sin titular</th></tr></thead>
+        <tbody id="vistazo"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <div id="equipos"></div>
+
+  <details class="chap" id="sin-bandera" open>
+    <summary>
+      <span class="roman">§</span>
+      <span class="sum-text"><h2>Sin bandera</h2><span class="sum-desc">Reclamados por varias naciones. Quien los inscriba tiene que hacerles sitio entre sus doce.</span></span>
+      <span class="chev"><span class="opened">cerrar</span><span class="closed">abrir</span></span>
+    </summary>
+    <div class="chap-body"><div class="cards" id="libres"></div></div>
+  </details>
+
+  <details class="chap" id="exponen" open>
+    <summary>
+      <span class="roman">§</span>
+      <span class="sum-text"><h2>Los que solo exponen</h2><span class="sum-desc">No tienen equipo en la Liza, pero también llegan con exigencias.</span></span>
+      <span class="chev"><span class="opened">cerrar</span><span class="closed">abrir</span></span>
+    </summary>
+    <div class="chap-body">
+      <div class="table-wrap">
+        <table class="wide">
+          <thead><tr><th>Nación</th><th>Qué exige</th><th>No cederá</th></tr></thead>
+          <tbody id="solo-exponen"></tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+</div>
+
+<script>
+var NATIONS = [];
+/* Persona: [nombre, arte, Maestría, nacimiento, origen, atributos VCIGS, atributo del arte, rango de Arte, habilidades, expone, en la Liza, gancho, etiquetas]
+   Ficha ligera (solo Salones): atributos "" y en "rango de Arte" va el total de Arte. */
+NATIONS.push({
+id:"francia", name:"Francia", bloc:"paz", mode:"liza", chip:"Liza · anfitriona · pruebas de selección",
+line:"Catorce plazas por decidir en las pruebas de abril. Estos son los favoritos a los que tendrán que ganar los PJ: tres por arte para dos plazas.",
+q:{
+liza:"Que gane el bloque de la paz, mejor con bandera francesa: el Gobierno de Jaurès y el prestigio de Cléa dependen de ello. Llegar a la final sin que nadie muera en su casa.",
+salon:"Juega a la defensiva: el Louvre guarda la Gioconda, la Victoria de Samotracia, la Venus de Milo y la Dama de Elche. Quiere presidir la comisión garante para escribir la letra pequeña. Puede ofrecer la Samotracia al Imperio Heleno a cambio de su apoyo.",
+conf:"El cine entre las siete artes. Nacionalidad por residencia, para poder inscribir a Picasso, Apollinaire, Duncan o Nijinski. Que la Restitución solo alcance a lo tomado por la fuerza.",
+roja:"La Gioconda no sale del Louvre. Y firmar la paz es reconocer con la firma de Francia las conquistas rusas."},
+also:"PJ con plaza posible: Chloé Müller (literatura), Élodie Lecat (música), Jean Luigi David (cine), Lucien Nœud-Papillon (arquitectura). Otros aspirantes: Monet (no quiere salir de Giverny), Colette, Gide, Fauré, Satie, Maillol, Landowski, Max Linder, Émile Cohl. Fuera de las siete artes: Sarah Bernhardt, Lalique, Atget.",
+people:[
+["Jules Lavirotte","arq",4,1864,"Lyon","24543","I",6,"Pericia 4, Encanto 4, Ocultismo 4, Estoicismo 3","El inmueble de la avenida Rapp (1901) y el Céramic Hôtel: fachadas de cerámica esmaltada donde todo se retuerce.","Fachadas vivas: hace brotar del muro tallos, lagartos y rostros de gres que sujetan a quien pasa. Cuatro portales, escondidos en sus puertas.","Desde la muerte de Guimard en 1905 es el último grande del Art Nouveau, un estilo que ya nadie encarga. Ganar una plaza es su ocasión de volver.",""],
+["Auguste Perret","arq",4,1874,"Ixelles","33534","I",6,"Ciencia 5, Pericia 4, Presencia 3, Estoicismo 4","El Théâtre des Champs-Élysées (1913), de hormigón armado visto.","Pilares y vigas: lo que levanta no se cae ni se dobla. Modifica la obra de otro arquitecto enfrentándose a su tirada.","En su teatro se estrenó «La consagración de la primavera» entre golpes. Los rusos conocen la sala palmo a palmo.",""],
+["Tony Garnier","arq",3,1869,"Lyon","23534","I",5,"Academicismo 4, Ciencia 4, Estoicismo 3, Observar 3","«Una ciudad industrial»: láminas de una ciudad socialista sin iglesias ni cuarteles.","Planifica: una vez por escena reordena el terreno en zonas, y cada equipo queda en la suya.","El arquitecto favorito del Gobierno de Jaurès. Los demás aspirantes dicen que la plaza está dada.",""],
+["Marcel Proust","lit",5,1871,"París","12655","I",6,"Observar 6, Etiqueta 5, Charlatanería 5, Estoicismo 3","«Por el camino de Swann» (noviembre de 1913), pagado de su bolsillo.","No nombra cosas: nombra recuerdos. El rival vuelve a una tarde de su infancia y se queda allí. Al Sobrepasado le hace recordar lo que no fue.","Encerrado en su cuarto de corcho, compite por carta. Su secretario Agostinelli acaba de dejarlo para hacerse aviador (en la historia real muere en un vuelo el 30 de mayo).",""],
+["Romain Rolland","lit",4,1866,"Clamecy","22554","I",6,"Academicismo 5, Estoicismo 5, Encanto 4, Observar 4","«Jean-Christophe» (1904–1912): diez tomos sobre la vida de un músico alemán.","No nombra armas: nombra puentes. El rival comprende de pronto al que tiene enfrente y no quiere herirlo. Sus choques son bienintencionados y puede bajar el daño que causa.","Pacifista: quiere la plaza para demostrar que se puede ganar sin humillar. Los nacionalistas del Consejo ya lo llaman traidor.",""],
+["Guillaume Apollinaire","lit",3,1880,"Roma","33542","I",5,"Charlatanería 4, Encanto 4, Callejeo 4, Aguante 3","«Alcoholes» (1913) y los primeros caligramas: poemas con forma de lluvia, de corbata, de torre.","Sus palabras tienen forma: escribe «il pleut» y llueven letras. Rápido y barato; nada de lo que nombra dura más de una escena.","Hijo de polaca y nacido en Roma: no es francés. Estuvo preso en 1911 por el robo de la Gioconda. ¿Puede inscribirse?","plz"],
+["Claude Debussy","mus",5,1862,"Saint-Germain-en-Laye","14545","I",6,"Observar 5, Estoicismo 4, Ocultismo 4, Etiqueta 3","«El mar», los «Preludios» y «Jeux», escrito para Nijinski (1913).","Niebla y agua: el panorama pierde los contornos y nadie ve a más de diez pasos. Emoción fija de «La catedral sumergida»: algo enorme que sube del fondo.","Enfermo de cáncer desde 1909 y lleno de deudas. Cada combate le cuesta salud de verdad.",""],
+["Maurice Ravel","mus",4,1875,"Ciboure","25533","I",6,"Pericia 5, Etiqueta 4, Estoicismo 4, Observar 3","«Dafnis y Cloe» (1912) y «Gaspard de la nuit».","Relojero: «Scarbo» pone un duende a correr por la arena; «Le gibet», una campana que no para. Emoción fija: inquietud exacta.","Le negaron cinco veces el Premio de Roma. Quiere la plaza para que el Conservatorio lo vea ganarla.",""],
+["Lili Boulanger","mus",2,1893,"París","14542","I",5,"Estoicismo 5, Academicismo 3, Encanto 3, Etiqueta 3","La cantata «Fausto y Helena», primer Premio de Roma concedido a una mujer (1913).","Una sola obra maestra y una sola emoción: consuelo. Sirve para levantar a los caídos, no para tumbar a nadie.","Veinte años y una enfermedad que no se cura. La aspirante a la que el público quiere ver ganar a los consagrados.",""],
+["Henri Matisse","pin",5,1869,"Le Cateau","45555","C",6,"Presencia 5, Observar 5, Estoicismo 5, Academicismo 4","«La danza» y «La música» (1910), y los lienzos de Tánger.","Color puro: tiñe el panorama entero de rojo y el rival arde por dentro (social en remoto, maniobra +1). Sus bailarines salen del cuadro y forman corro.","Los dos paneles son de un coleccionista de Moscú, Shchukin: están en Rusia. Pedirlos prestados es pedirle un favor al zar.",""],
+["André Derain","pin",3,1880,"Chatou","45434","C",5,"Lucha 3, Aguante 4, Observar 4, Callejeo 3","Los puentes de Londres en colores que no existen (1906).","Pinta con colores imposibles: frío donde había sol, verde donde había piedra. Condiciones adversas (−2) para quien no sea de su equipo.","Amigo de Picasso y de Vlaminck, corpulento y pendenciero: el único pintor que también sabe pegar.",""],
+["Georges Braque","pin",3,1882,"Argenteuil","55334","C",5,"Lucha 4, Aguante 4, Pericia 4, Observar 3","«El portugués» (1911) y sus papiers collés con falsa madera.","Descompone al rival en planos: nadie sabe por dónde atacarlo ni por dónde ataca. Imita cualquier material con el peine de pintor.","Boxeador aficionado e inseparable de Picasso. Si Picasso firma por España, combatirán uno contra otro.",""],
+["Auguste Rodin","esc",6,1840,"París","46343","C",6,"Pericia 6, Presencia 5, Aguante 4, Encanto 4","«La puerta del Infierno», «El pensador» y «Los burgueses de Calais».","Seis gólems. El Pensador (Vitalidad 6) no se levanta hasta que hace falta; la Puerta es un gólem que es un sitio. Con su tirada de Arte actúa a través de cualquier estatua que vea.","Setenta y tres años. Si se presenta, la plaza es suya; pero el Consejo lo quiere en el jurado de honor, y el Imperio Heleno dice que sus bronces son griegos de alma.",""],
+["Antoine Bourdelle","esc",4,1861,"Montauban","45333","C",6,"Aguante 4, Pericia 5, Presencia 4, Disparo 3","«Heracles arquero» (1909) y los relieves del Théâtre des Champs-Élysées.","Gólem: Heracles arquero (Vitalidad 4; +6 disparando). El único gólem de la Liza que ataca a distancia.","Jefe de taller de Rodin durante quince años. Quiere ganarle una vez, delante de todos.",""],
+["Camille Claudel","esc",4,1864,"Fère-en-Tardenois","25434","C",6,"Pericia 5, Estoicismo 2, Observar 4, Ocultismo 3","«La edad madura» y «Las chismosas».","Gólems que sienten: los suyos sí pueden conmover, aunque no Sobrepasar. «La edad madura» son tres figuras y una súplica: quien la mira suelta lo que lleva en la mano.","En la historia real su familia la internó en marzo de 1913. Aquí está por decidir: una plaza la sacaría de Ville-Évrard, y hay quien prefiere que no salga.","prop"],
+["Isadora Duncan","dan",5,1877,"San Francisco","35353","G",6,"Presencia 5, Encanto 5, Atletismo 4, Estoicismo 2","La «Marsellesa» bailada sola, con túnica roja.","Compás ±5. Baila el viento y el agua: el tiempo del panorama cambia con ella. Infunde arrojo a todo su equipo a la vez.","Sus dos hijos se ahogaron en el Sena en abril de 1913. Baila de luto, y es norteamericana: Washington protesta porque arbitra.","plz"],
+["Loïe Fuller","dan",4,1862,"Illinois","24543","G",6,"Ciencia 5, Pericia 4, Presencia 4, Esquiva 3","La «Danza serpentina» y la «Danza del radio», con sales fosforescentes.","Luz sólida: sus velos son muros que ciegan o queman. Ilusiones de luz en apoyo de cualquier aliado (ayuda +2).","Amiga de los Curie y de Rodin, y madrina de Sadayakko y de Hanako en Europa: la puerta de entrada a la delegación japonesa.",""],
+["Carlotta Zambelli","dan",4,1875,"Milán","36243","C",5,"Esquiva 5, Etiqueta 4, Atletismo 4, Estoicismo 4","«Coppélia» y «Sylvia» en la Ópera de París, de la que es estrella desde 1898.","Técnica pura: no falla un paso. Compás ±4; su especialidad improvisada es casi siempre Esquiva.","Milanesa. El Imperio Heleno la reclama como súbdita italiana; ella dice que es de la Ópera y de nadie más.","plz"],
+["Georges Méliès","cin",5,1861,"París","25543","I",6,"Pericia 5, Charlatanería 5, Encanto 4, Sigilo 3","«Viaje a la Luna» (1902) y «A la conquista del Polo» (1912).","Corta y pega la realidad: desaparece, se multiplica, cambia a un rival por una silla. En su película sustituye cualquier tirada por su Arte; el vencido sale expulsado.","Arruinado: Pathé se queda con su estudio de Montreuil. Una plaza lo salvaría, y un prestamista discreto podría comprarlo.",""],
+["Louis Feuillade","cin",4,1873,"Lunel","23544","I",5,"Investigar 4, Charlatanería 4, Presencia 4, Callejeo 4","«Fantômas» (1913–1914): cinco películas sobre un criminal sin rostro.","París de noche, tejados y trampillas: en su película el rival persigue a un enmascarado que siempre es otra persona. Daño a la Voluntad por paranoia.","Media policía de París cree que Fantômas enseña a delinquir. El Concilio de las Luces no lo quiere en el equipo.",""],
+["Alice Guy-Blaché","cin",4,1873,"Saint-Mandé","23544","I",6,"Presencia 4, Encanto 4, Observar 4, Estoicismo 4","«El hada de las coles» (1896) y las películas de su estudio Solax.","Verdad emocional: su película hace sentir exactamente lo que ella decide, y siempre lo mismo. La más fiable del equipo.","Lleva años en Nueva Jersey con estudio propio. Vuelve para competir, y Washington puede alegar que una empresaria americana no combate.",""]
+]});
+
+NATIONS.push({
+id:"espana", name:"España", bloc:"paz", mode:"liza", chip:"Liza · bloque de la paz",
+line:"Ganaron los gaudistas y gobierna la Internacional. Aliada firme de Francia, y aun así le reclama la Dama de Elche.",
+q:{
+liza:"La paz, y que se vea que la España de la Internacional combate al nivel de las grandes. Su baza es Gaudí: quiere el asalto de arquitectura en todos los encuentros.",
+salon:"La Dama de Elche, en el Louvre desde 1897: un aliado que reclama al anfitrión. Oro en arquitectura y en pintura.",
+conf:"Que cada arte se juzgue en su terreno: un edificio no cabe en un Salón. En casi todo lo demás vota con Francia.",
+roja:"No votará nada que humille a Francia en público. La Dama se negocia en privado."},
+also:"También en el pabellón: Zuloaga (entra si Picasso no firma), Casas, Rusiñol, Juan Gris, Domènech i Montaner, Puig i Cadafalch, Casals, Antonio Machado, Galdós, Julio González, Tórtola Valencia.",
+people:[
+["Antoni Gaudí","arq",6,1852,"Reus","23636","I",6,"Ocultismo 6, Academicismo 5, Estoicismo 5, Pericia 5","La Sagrada Familia no cabe en ningún pabellón: trae la maqueta de cuerdas y saquitos de plomo, colgada boca abajo.","Nuestros Reinos: dentro de su obra el espacio es seis veces mayor que fuera. En la Liza hace brotar columnas arbóreas y bóvedas que encierran al rival; la sala ataca por él.","Vive como un asceta en el taller del templo. Los gaudistas lo veneran; él no quería una guerra civil con su nombre.",""],
+["Josep Maria Jujol","arq",3,1879,"Tarragona","25433","C",5,"Pericia 5, Observar 4, Esquiva 3, Encanto 3","Los bancos de trencadís del Park Güell y los techos de la Casa Batlló: color hecho de platos rotos.","Recompone lo roto: cierra con trencadís las grietas y puertas que otros abren. Especialista en deshacer la obra del arquitecto rival (tirada enfrentada).","Mano derecha de Gaudí. Si el maestro falta, la plaza y la obra recaen en él.",""],
+["Ramón del Valle-Inclán","lit",4,1866,"Vilanova de Arousa","23544","I",6,"Charlatanería 5, Presencia 5, Estoicismo 4, Lucha 3","Las «Sonatas» y las «Comedias bárbaras».","Nombra con espejos cóncavos: lo que describe aparece deforme y grotesco, y el rival se ve a sí mismo como fantoche. Texto de dominio: 2 de daño a la Voluntad.","Manco desde una pelea a bastonazos en 1899. Carlista por estética en una España internacionalista: lo mandan a París para tenerlo lejos.",""],
+["Miguel de Unamuno","lit",4,1864,"Bilbao","32634","I",5,"Academicismo 6, Estoicismo 5, Presencia 4, Observar 3","«Del sentimiento trágico de la vida» (1913) y «Niebla», recién salida de imprenta.","Siembra la duda de existir: sus personajes discuten con su autor, y el rival afectado duda de ser real dentro del lienzo. Modifica la memoria del Conmovido.","Rector de Salamanca. Discute con su propio Gobierno tanto como con el enemigo.",""],
+["Manuel de Falla","mus",4,1876,"Cádiz","24444","G",6,"Estoicismo 5, Ocultismo 4, Observar 4, Etiqueta 3","«La vida breve», en la Opéra-Comique desde enero de 1914, y los bocetos de «El amor brujo».","Emoción fija: embrujo, la fascinación del fuego fatuo. 2 de daño a la Voluntad sin defensa a quien escucha; una orquesta fantasma lo repite seis días.","Vive en París desde 1907 y es amigo de Debussy y de Ravel: el puente natural entre las dos delegaciones.",""],
+["Enrique Granados","mus",4,1867,"Lleida","25353","C",6,"Encanto 5, Etiqueta 4, Estoicismo 3, Esquiva 2","«Goyescas» para piano (1911), que toca él mismo ante cartones de Goya.","Toca los cuadros: con «Goyescas» da ritmo a las figuras pintadas del panorama, que bailan o estorban a su orden. Emoción fija: melancolía galante.","Tiene pánico al mar y no quiere embarcar hacia ninguna gira. Alguien lo sabe.",""],
+["Joaquín Sorolla","pin",5,1863,"Valencia","46455","C",6,"Observar 6, Aguante 5, Encanto 5, Esquiva 4","«Visión de España», los paneles para la Hispanic Society, a medio pintar: trae «Castilla: la fiesta del pan».","Pinta luz. Añade al panorama un mediodía de playa que ciega y agota, o lo borra a la sombra. Mete y saca a otros de sus lienzos con el ritual.","Trabaja hasta reventar. Los paneles pertenecen a un mecenas de Nueva York: ¿puede reclamarlos quien gane un desafío a España?",""],
+["Pablo Picasso","pin",4,1881,"Málaga","45544","C",6,"Charlatanería 5, Observar 5, Encanto 4, Callejeo 4","Papiers collés y construcciones de 1913: una guitarra de cartón y cuerda. El jurado no sabe en qué Salón ponerla.","Rompe la perspectiva del panorama: el rival ve varias caras de cada cosa a la vez y pierde el paso (−2). Añade objetos pegados que son lo que parecen.","Plaza sin firmar. Vive en Montparnasse, desprecia las academias y lo quieren España y Francia. Si no firma, entra Zuloaga.","plz"],
+["Mariano Benlliure","esc",4,1862,"Valencia","35343","C",6,"Pericia 5, Etiqueta 4, Encanto 4, Aguante 3","El monumento a Castelar y sus bronces taurinos.","Gólem: un toro de bronce (Vitalidad 4; +6 embistiendo, +3 en lo demás). Inicia choques con cualquier estatua que vea, con su tirada de Arte.","Escultor oficial de la vieja monarquía, tolerado por la Internacional porque nadie funde como él.",""],
+["Pablo Gargallo","esc",3,1881,"Maella","35333","C",5,"Pericia 5, Callejeo 3, Esquiva 3, Observar 3","Máscaras de chapa de cobre recortada: rostros hechos de hueco.","Gólem de chapa hueca, ligero y rápido (Vitalidad 3). Moldea con las manos el metal sin forma: dobla y desarma lo que le pongan delante.","Amigo de Picasso desde Barcelona. Irá a donde vaya Picasso.",""],
+["Pastora Imperio","dan",4,1887,"Sevilla","35253","G",6,"Presencia 6, Encanto 5, Esquiva 4, Callejeo 3","La danza del fuego que Falla está escribiendo para ella.","Compás ±4. Baila a todos los que miran (social, maniobra +1) y altera cómo se mueven: el rival baila a su son o abandona.","Gitana de Triana y la mujer más famosa de España. La Internacional la exhibe; ella no les debe nada.",""],
+["Antonia Mercé, «la Argentina»","dan",3,1890,"Buenos Aires","35342","C",5,"Esquiva 5, Encanto 4, Etiqueta 3, Atletismo 3","Escuela bolera y castañuelas de concierto.","Las castañuelas marcan un compás que corta el del músico rival (tirada enfrentada). Improvisa un baile para ganar una especialidad física por escena.","Nació en Buenos Aires y triunfa en París: los del tango la reclaman para Argentina.","plz"],
+["Segundo de Chomón","cin",4,1871,"Teruel","25524","I",6,"Pericia 6, Ciencia 5, Observar 4, Sigilo 3","«El hotel eléctrico» (1908) y sus trucajes coloreados a mano.","Proyecta y mete a los rivales en su película: allí los objetos se mueven solos, fotograma a fotograma, y él sustituye cualquier tirada por su Arte. Todo daño va a la Voluntad.","Rival histórico de Méliès. Trabaja en Turín para Pastrone en «Cabiria»: el Imperio Heleno le paga mejor que España.",""],
+["Fructuós Gelabert","cin",2,1874,"Barcelona","34423","I",5,"Pericia 5, Ciencia 4, Observar 3, Aguante 2","«Riña en un café» (1897), la primera película de ficción rodada en España.","Película corta, golpe corto: una riña de café en la que el rival recibe los sillazos. Modifica la cinta mientras se proyecta.","Construye sus propias cámaras. El más prescindible del equipo, y lo sabe.",""]
+]});
+
+NATIONS.push({
+id:"reino-unido", name:"Reino Unido", bloc:"paz", mode:"liza", chip:"Liza · bloque de la paz · receloso",
+line:"Se acerca a Francia y a España por miedo a Rusia, pero recela de las «naciones gobernadas por artistas». Viene a competir y a vigilar.",
+q:{
+liza:"Frenar a Rusia sin pagar una guerra. Le basta con que gane cualquiera que no sea Rusia; si es Japón, su aliado, mejor. De paso, anotar qué puede hacer cada Maestro extranjero.",
+salon:"No perder los mármoles del Partenón. No reclama nada: tiene de todo.",
+conf:"Prescripción de cien años para la Restitución (los mármoles llegaron en 1812). El Imperio británico como una sola nación, para inscribir a Tagore o a Chaplin.",
+roja:"Ninguna pieza del British Museum cruza el Canal. Y desconfía de una paz redactada por artistas."},
+also:"También en el pabellón: Thomas Hardy, Conan Doyle, Yeats, Bernard Shaw, Conrad, Vaughan Williams, Augustus John, Wyndham Lewis y los vorticistas, Alfred Gilbert.",
+people:[
+["Edwin Lutyens","arq",4,1869,"Londres","23544","I",6,"Etiqueta 5, Encanto 4, Academicismo 4, Estoicismo 3","Los planos de Nueva Delhi y de la Casa del Virrey.","Ejes y avenidas: ordena el terreno en perspectivas que obligan a avanzar por donde él quiere. Sella y abre puertas en lo que no sea obra de otro Maestro.","Construye una capital para un imperio. Su Gobierno le ha pedido que mida también la rotonda de la Liza.",""],
+["Charles Rennie Mackintosh","arq",4,1868,"Glasgow","25434","I",6,"Pericia 5, Observar 4, Ocultismo 4, Estoicismo 2","La Escuela de Arte de Glasgow (1909) y los salones de té de Miss Cranston.","Rejas, rosas y verticales: encierra al rival en una habitación blanca cuatro veces mayor por dentro. Su sala lanza una tirada social permanente de sosiego.","Sin encargos y bebiendo. En su propio país sospechan de él por sus amigos de Viena.",""],
+["Rudyard Kipling","lit",5,1865,"Bombay","33544","I",6,"Presencia 5, Observar 5, Supervivencia 4, Estoicismo 4","«Kim», «El libro de la selva» y los versos de «If—».","Nombra la selva y la selva acude: lobos, una pantera, la Ley. Sus textos de dominio hacen 2 de daño a la Voluntad; al Conmovido le inculca un deber.","Nobel de 1907 y voz del Imperio. Cree que la guerra con Rusia llegará y que los artistas en el poder son una moda peligrosa.",""],
+["H. G. Wells","lit",4,1866,"Bromley","23544","I",6,"Ciencia 5, Charlatanería 4, Encanto 4, Investigar 3","«La guerra de los mundos» y «El mundo liberado» (1914), donde imagina una bomba atómica.","Nombra máquinas que aún no existen: un trípode, un rayo de calor. Duran una escena y asustan más de lo que hieren (daño a la Voluntad).","Socialista y utópico: simpatiza con la Francia de los artistas más que con su propio Foreign Office.",""],
+["Edward Elgar","mus",5,1857,"Worcester","24454","G",6,"Etiqueta 5, Presencia 5, Estoicismo 4, Academicismo 3","Las «Variaciones Enigma» y «Pompa y circunstancia».","«Nimrod»: emoción fija, duelo solemne; 2 de daño a la Voluntad sin defensa. Cada variación retrata a una persona: conoce al rival y la música dice su secreto.","El enigma de sus variaciones nunca se ha resuelto, y hay quien paga por resolverlo.",""],
+["Gustav Holst","mus",3,1874,"Cheltenham","24533","I",5,"Ocultismo 5, Academicismo 4, Estoicismo 3, Observar 3","«Marte, el portador de la guerra», primer movimiento de una suite de planetas que aún no existe.","Un 5/4 implacable al que todo obedece: quien lo oye marcha. Emoción fija: pavor de guerra. Es la pieza más temida del Salón de Música.","Maestro de escuela y astrólogo aficionado. Escribió «Marte» antes de que nadie disparase: ¿qué oyó?",""],
+["John William Waterhouse","pin",5,1849,"Roma","35556","C",6,"Observar 6, Ocultismo 5, Estoicismo 5, Etiqueta 4","«La dama de Shalott» (1888) y «Hilas y las ninfas».","Sus lienzos son aguas quietas con alguien dentro. Añade al panorama un estanque, una barca, unas ninfas: quien se acerca es invitado a entrar y no quiere salir.","Enfermo y callado. Lleva años viviendo más dentro de sus cuadros que fuera.",""],
+["Walter Sickert","pin",4,1860,"Múnich","45445","C",5,"Callejeo 5, Charlatanería 5, Observar 5, Sigilo 4","La serie del «Asesinato de Camden Town» (1908).","Interiores sórdidos a media luz: borra el sol del panorama y deja un cuarto cerrado. Habla con los retratos que miran al espectador: ven y recuerdan.","Actor antes que pintor y aficionado a los disfraces; escribe crítica en la prensa. Es «el crítico de arte que no lo es»: trabaja para el servicio secreto.","prop"],
+["Jacob Epstein","esc",4,1880,"Nueva York","45324","C",6,"Pericia 5, Aguante 4, Presencia 3, Callejeo 3","«El taladro» (1913): un autómata de yeso montado sobre una perforadora de minas auténtica.","Gólem excepcional: el Taladro (Vitalidad 4). No es un hombre ni finge serlo; perfora muros, suelos y otras estatuas.","Nacido en Nueva York y judío: la prensa conservadora no lo quiere en el equipo. Los vorticistas, sí.",""],
+["George Frampton","esc",4,1860,"Londres","35343","C",5,"Pericia 5, Etiqueta 4, Encanto 4, Estoicismo 3","El «Peter Pan» de Kensington Gardens (1912), que apareció en el parque de la noche a la mañana.","Gólem: Peter Pan (Vitalidad 4; +6 burlando y esquivando). Habla con cualquier estatua: saben lo que han visto, aunque lo entiendan despacio.","Sus estatuas de parque son los mejores informadores de Londres.",""],
+["Phyllis Bedells","dan",2,1893,"Bristol","35242","C",5,"Atletismo 4, Esquiva 4, Etiqueta 3, Encanto 3","Su debut como primera bailarina del Empire Theatre: la primera inglesa en el puesto.","Compás ±2. Pareja ideal: cuando ayuda a un compañero suma 1 extra. Es la que cubre al resto del equipo.","Veinte años. Londres la inscribió porque no logró fichar a Nijinski.",""],
+["Maud Allan","dan",4,1873,"Toronto","35352","G",6,"Encanto 5, Presencia 5, Esquiva 4, Estoicismo 2","«La visión de Salomé» (1906), descalza y con la cabeza del Bautista.","Infunde deseo y espanto a quien mira (social, maniobra +1): el rival la sigue o se va. Baila para ganar una especialidad por escena.","Su hermano fue ahorcado por asesinato en San Francisco y ella lo oculta. Chantaje servido.",""],
+["Cecil Hepworth","cin",3,1874,"Londres","24533","I",5,"Pericia 5, Ciencia 4, Observar 3, Etiqueta 2","«Rescatada por Rover» (1905) y un «Hamlet» filmado en 1913.","Persecuciones montadas plano a plano: en su película el perro siempre encuentra a quien busca. Dentro, sustituye cualquier tirada por su Arte.","Industrial metódico. Guarda todos sus negativos; alguien podría querer fundirlos.",""],
+["Charlie Chaplin","cin",3,1889,"Londres","35342","C",5,"Esquiva 5, Callejeo 4, Encanto 4, Atletismo 3","«Carreras de autos para niños» (febrero de 1914): un vagabundo con bombín al que nadie había visto.","En su película nada le acierta: cae, resbala y es el otro quien acaba en el suelo. Daño a la Voluntad por puro ridículo.","Lleva meses en California con la Keystone. Londres lo reclama como súbdito; él pregunta cuánto pagan.","plz"]
+]});
+
+NATIONS.push({
+id:"suecia", name:"Suecia", bloc:"paz", mode:"liza", chip:"Liza · bloque de la paz · amenazada",
+line:"Las Åland fortificadas apuntan a Estocolmo. Es la que más necesita la paz y la más débil en la arena, salvo en el cine.",
+q:{
+liza:"Sobrevivir. Cada ronda que pasa es una semana más de escudo; si rige la variante dura de la tregua, caer eliminada es quedarse sola frente a Rusia esa misma noche.",
+salon:"Conservar el Codex Gigas frente a Bohemia. Ganar el Salón de Cine con Sjöström para sentarse en la comisión garante y escribir en el tratado la desmilitarización de las Åland.",
+conf:"Tregua blanda. Relevos generosos: su banquillo es corto.",
+roja:"Acepta casi cualquier ayuda, incluso dudosa. No entrega el Codex sin una garantía escrita a cambio."},
+also:"También en el pabellón: Hilma af Klint (cuadros que no enseña a nadie), John Bauer, Bruno Liljefors, el príncipe Eugenio, Ellen Key.",
+people:[
+["Ragnar Östberg","arq",3,1866,"Estocolmo","23543","I",5,"Etiqueta 4, Academicismo 4, Encanto 3, Estoicismo 3","El Ayuntamiento de Estocolmo, en obras desde 1911: trae la Sala Azul en maqueta.","Ladrillo y agua: levanta una logia que da refugio al equipo (su obra protege a quien él invita por su nombre). Un portal lo devuelve a Estocolmo.","Cada ladrillo del Ayuntamiento lo paga una ciudad que no sabe si existirá en 1915.",""],
+["Ferdinand Boberg","arq",3,1860,"Falun","24443","I",5,"Etiqueta 4, Pericia 4, Encanto 4, Observar 2","Los pabellones de la Exposición de Estocolmo de 1909 y la iglesia de Saltsjöbaden (1913).","Arquitecto de exposiciones: monta y desmonta en un turno (1 de Voluntad por grado de tiempo). Conoce los pabellones ajenos mejor que sus dueños.","Viaja con su mujer, la pintora Anna Boberg, que dibuja todo lo que ve.",""],
+["Selma Lagerlöf","lit",5,1858,"Mårbacka","22555","I",6,"Encanto 5, Estoicismo 5, Academicismo 4, Observar 4","«El maravilloso viaje de Nils Holgersson» y «La saga de Gösta Berling».","Nombra a los gansos y Suecia entera pasa volando: saca del combate a un aliado a lomos de Akka. Sus lectores recuerdan como propia la infancia que ella cuenta.","Primera mujer Nobel (1909) y, desde mayo de 1914, primera en la Academia Sueca. Es la capitana moral del equipo.",""],
+["Verner von Heidenstam","lit",4,1859,"Olshammar","33543","I",5,"Presencia 5, Academicismo 4, Etiqueta 4, Lucha 2","«Los carolinos», la epopeya de los soldados de Carlos XII.","Nombra a los carolinos: una compañía helada y muda que aguanta la línea (ayuda +2 a la defensa de un aliado). Conmueve hasta el sacrificio.","Nacionalista, apoyó la marcha campesina por el rearme de febrero de 1914. Para él perder con honor es aceptable; para Lagerlöf, no.",""],
+["Wilhelm Stenhammar","mus",4,1871,"Estocolmo","25443","C",5,"Etiqueta 4, Estoicismo 4, Academicismo 3, Encanto 3","La cantata «Ett folk» y su himno «Sverige».","«Sverige»: emoción fija, amor sereno a lo propio. Cura más que hiere: un choque curativo que saca a un aliado de Conmovido.","Dirige en Gotemburgo. Si Suecia cae, su himno será lo que se cante a escondidas.",""],
+["Hugo Alfvén","mus",3,1872,"Estocolmo","34343","G",5,"Encanto 5, Presencia 3, Aguante 3, Callejeo 2","«Vigilia de San Juan» (Rapsodia sueca n.º 1).","Una polska de noche blanca: emoción fija, euforia de fiesta. El rival baila, ríe y baja la guardia (2 de daño a la Voluntad sin defensa).","Vividor, violinista y acuarelista. El único del equipo que no parece asustado.",""],
+["Anders Zorn","pin",5,1860,"Mora","56355","C",6,"Encanto 5, Observar 5, Aguante 5, Charlatanería 4","«Baile de San Juan» (1897) y sus retratos de tres presidentes americanos.","Agua y carne: pinta un lago en el panorama y lo que entra en él sale más lento. Usa su arte en remoto sobre quien haya posado para él.","Rico, célebre y amigo de medio Washington: la mejor baza sueca ante el jurado americano.",""],
+["Carl Larsson","pin",4,1853,"Estocolmo","35455","C",6,"Encanto 5, Observar 4, Estoicismo 3, Etiqueta 3","«Sacrificio de invierno» (Midvinterblot), el mural que el Museo Nacional se niega a colgar.","Dos mundos: el hogar luminoso de Sundborn, donde nadie puede ser herido, y el «Midvinterblot», donde un rey se deja degollar por su pueblo. Elige cuál pinta.","Herido por el rechazo de su obra mayor. Un rey que se sacrifica para que acabe el hambre: en 1914 nadie lo mira ya como historia antigua.",""],
+["Carl Milles","esc",4,1875,"Lagga","35433","C",6,"Pericia 5, Atletismo 3, Academicismo 3, Estoicismo 3","El monumento a Sten Sture en Upsala y sus águilas de granito.","Gólem: un águila de granito (Vitalidad 4; +6 en picado). Sus figuras pesan toneladas y parecen flotar.","Trabajó años en París a la sombra de Rodin: conoce el taller francés por dentro.",""],
+["Carl Eldh","esc",3,1873,"Östhammar","35333","C",5,"Pericia 4, Aguante 3, Encanto 3, Observar 3","«Juventud» y su Strindberg desnudo como un titán.","Gólem: el Titán de Strindberg (Vitalidad 3; +6 resistiendo, falla todo lo que pida Ingenio). Aguanta golpes que no le corresponden.","Strindberg murió en 1912 y medio país lo llora. La estatua tiene su mal genio.",""],
+["Jean Börlin","dan",2,1893,"Härnösand","45232","C",5,"Atletismo 5, Esquiva 4, Encanto 3, Aguante 2","Un solo sobre danzas campesinas de Dalecarlia, montado con Fokine.","Compás ±2. Salta donde no hay suelo: usa Atletismo para cruzar partes del panorama que nadie pintó.","Fokine, alejado de los Ballets Russes, lo entrena en Estocolmo desde 1913. ¿De parte de quién está Fokine?",""],
+["Anna Behle","dan",2,1876,"Estocolmo","24343","G",5,"Encanto 4, Estoicismo 3, Etiqueta 3, Esquiva 3","Rítmica de Dalcroze y danza libre: la primera escuela de Suecia (1907).","Marca el pulso del grupo: una vez por escena concede a un aliado la especialidad que acaba de bailar.","Formada con Isadora Duncan y con Dalcroze. Tiene amigas en todos los equipos.",""],
+["Victor Sjöström","cin",4,1879,"Silbodal","33543","I",6,"Presencia 4, Estoicismo 4, Supervivencia 4, Observar 3","«Ingeborg Holm» (1913): una madre a la que el asilo le quita los hijos. Cambió la ley de pobres.","Paisaje y culpa: en su película el rival vive la vida de otro hasta el final. Daño a la Voluntad; al Sobrepasado le deja un recuerdo que no es suyo.","El mejor campeón de Suecia está en el arte que Francia impuso. Los franceses lo saben y lo cortejan.",""],
+["Mauritz Stiller","cin",3,1883,"Helsinki","24443","I",5,"Charlatanería 4, Encanto 4, Etiqueta 3, Sigilo 2","«Las máscaras negras» (1912), intriga de circo y espías.","Comedia elegante con doble fondo: en su película todos llevan antifaz y nadie sabe a quién golpea. Modifica la cinta sobre la marcha.","Judío de Helsinki, huyó del servicio militar del zar con papeles falsos. La Okhrana tiene su expediente.",""]
+]});
+
+NATIONS.push({
+id:"imperio-heleno", name:"Imperio Heleno", bloc:"bis", mode:"liza", chip:"Liza · bisagra",
+line:"Roma, Atenas y Constantinopla bajo tres consejos del arte. Restaura templos, mueve dioses de mármol y teme a Rusia, pero la paz le impide tomar Macedonia.",
+q:{
+liza:"Derrotar a Serbia: Macedonia se juega en la arena. Después, llegar lo bastante lejos para vender caro su apoyo. Sin paz, Rusia va a por los Estrechos; con paz, no puede tomar Macedonia, Chipre ni Creta entera.",
+salon:"La Restitución es su verdadero torneo: los mármoles del Partenón, la Victoria de Samotracia, la Venus de Milo y la Gioconda. Cada obra recuperada fortalece a sus dioses. Defiende Santa Sofía de la reclamación rusa.",
+conf:"Una sola nación en la Liza y tres pabellones en los Salones. Restitución sin prescripción. La tregua se llama ekecheiria y sus guardianes son ellos.",
+roja:"Constantinopla y Santa Sofía. Todo lo demás tiene precio: por la Samotracia apoyaría la paz."},
+also:"También en el pabellón: Caruso, Mascagni, Modigliani y Severini (viven en París), Balla, Russolo y sus máquinas de ruido, Sant'Elia, Kalomiris, Cavafis, Halide Edib. D'Annunzio, exiliado en Francia, no está invitado.",
+people:[
+["Anastasios Metaxás","arq",4,1862,"Atenas","33543","I",5,"Etiqueta 5, Disparo 4, Academicismo 4, Presencia 3","El Estadio Panatenaico, reconstruido en mármol del Pentélico para los Juegos de 1896.","Graderíos: convierte cualquier claro en un estadio y a los presentes en público; su sala lanza una tirada social permanente de solemnidad. Invoca la ekecheiria.","Arquitecto de la Corona y tirador olímpico, con medalla en 1908 y en 1912. El único arquitecto de la Liza que sabe disparar.",""],
+["Mimar Kemaleddin","arq",4,1870,"Constantinopla","24534","I",6,"Academicismo 5, Estoicismo 4, Pericia 4, Observar 3","La mezquita de Bebek (1913) y los edificios de las Fundaciones Pías.","Cúpulas y patios: cubre al equipo bajo una bóveda donde no entra el ruido de fuera (el músico rival no alcanza). Cuatro portales entre sus mezquitas.","Restaura lo otomano mientras Atenas restaura lo griego sobre las mismas piedras. Santa Sofía es el pleito que nadie quiere abrir.",""],
+["Kostís Palamás","lit",5,1859,"Patras","22645","I",5,"Academicismo 5, Estoicismo 5, Presencia 4, Observar 4","El «Himno olímpico» (1896) y «La flauta del rey».","Nombra a los dioses y los dioses de mármol vuelven la cabeza: sus versos dan +2 a los gólems del Imperio. Poeta de coro, no de duelo.","Voz de la Gran Idea. Cree de verdad que el Imperio es un poema; los consejos de Roma lo usan.",""],
+["Filippo Tommaso Marinetti","lit",3,1876,"Alejandría","34442","I",5,"Presencia 5, Charlatanería 5, Lucha 3, Aguante 3","«Zang Tumb Tumb» (1914): un asedio contado en onomatopeyas y tipografía suelta.","Nombra ruidos y son reales: metralla, motores, sirenas. Daño a la Voluntad en área, a amigos y enemigos por igual.","Inscrito para tenerlo vigilado. Desprecia el mármol de su propio equipo y admira a quien golpea más fuerte: Rusia le ha escrito.","dis"],
+["Giacomo Puccini","mus",5,1858,"Lucca","23464","G",6,"Encanto 5, Etiqueta 4, Observar 4, Disparo 3","«Tosca», «Madama Butterfly» y «La fanciulla del West».","Cinco obras maestras, cinco emociones fijas: «Un bel dì» hace esperar a quien debería atacar. 2 de daño a la Voluntad sin defensa; nadie sale seco de un aria suya.","«Butterfly» ofende a la delegación japonesa. Cazador, fumador y mujeriego: fácil de distraer.",""],
+["Tanburi Cemil Bey","mus",4,1873,"Constantinopla","26343","C",6,"Estoicismo 4, Observar 4, Ocultismo 3, Encanto 3","Taksim improvisados al tanbur y al kemençe, grabados en disco.","No trae partitura: improvisa sobre el rival y le devuelve su propia emoción cambiada de modo. Contra otro músico, tira primero.","Melancólico y bebedor. Es el músico de los derviches: cuando toca él, giran.",""],
+["Giorgio de Chirico","pin",3,1888,"Volos","34535","S",5,"Ocultismo 5, Observar 5, Estoicismo 4, Academicismo 4","«La nostalgia del infinito» y «El enigma de una tarde de otoño»: plazas vacías con sombras demasiado largas.","Añade al panorama soportales, una torre, un tren que no llega. El tiempo se para a las tres de la tarde y los rivales se sienten observados por una estatua.","Griego de nacimiento, italiano de sangre y pintor en Montparnasse: el Imperio en una persona. Apollinaire lo protege; el ejército italiano lo busca por prófugo.",""],
+["Abdülmecid Efendi","pin",3,1868,"Constantinopla","34553","C",5,"Etiqueta 5, Academicismo 4, Presencia 4, Encanto 3","«Beethoven en el harén»: un trío toca para las damas de palacio.","Pinta salones: mete al rival en una velada de palacio donde atacar sería una grosería (Etiqueta contra el impulso). Habla con los retratos de sus antepasados.","Príncipe de la casa de Osmán, pintor y pianista: preside el Consejo de las Artes de Constantinopla. Si lo hieren en la Liza, hieren a una dinastía.","prop"],
+["Yannoulis Chalepás","esc",5,1851,"Tinos","36226","C",6,"Pericia 6, Ocultismo 5, Supervivencia 3, Estoicismo 1","«La durmiente» de la tumba de Sofía Afentaki (1878).","Cinco gólems, todos dormidos hasta que él los despierta. La cofradía le ha confiado el Zeus de Candia (Vitalidad 5): es su tirada de Arte la que mueve al dios.","Catorce años en el manicomio de Corfú; desde 1902 pastorea ovejas en Tinos y su madre le rompe cuanto modela. La cofradía lo sacó de la isla. No siempre sabe dónde está.","prop"],
+["Umberto Boccioni","esc",3,1882,"Reggio Calabria","45332","C",5,"Lucha 4, Atletismo 4, Presencia 3, Aguante 3","«Formas únicas de continuidad en el espacio» (1913): un hombre que avanza, hecho de viento.","Gólem excepcional: las Formas Únicas (Vitalidad 3, Coordinación 5). No se detiene nunca; el turno que no avanza, no ataca.","Futurista: quiere romper los mármoles de su propio pabellón. Si el Zeus cae, será por un golpe de espaldas.","dis"],
+["Nuri Dede","dan",5,"h. 1860","Konya","45334","C",6,"Estoicismo 6, Aguante 5, Ocultismo 4, Esquiva 4","El sema: la ceremonia giratoria completa de los mevlevíes de Gálata, con ney y timbales.","Compás ±5. Gira y nada le acierta: se defiende con su Arte incluso de disparos. Quien lo mira girar siente un terror sin causa (social a todos, maniobra +1).","Estuvo en Erzurum en 1907, cuando los rusos retrocedieron ante hombres desarmados. La delegación rusa ha pedido que se le prohíba bailar.","fic"],
+["Vassos Kanellos","dan",2,1887,"Grecia","45232","C",5,"Atletismo 4, Esquiva 4, Lucha 3, Presencia 3","La pírrica: la danza armada de los antiguos, reconstruida a partir de los vasos del museo.","Compás ±2. Baila con escudo y lanza: su especialidad improvisada es de combate, y puede prestársela a un aliado.","Discípulo de los Duncan en Atenas. Baila lo que los arqueólogos le dictan; los derviches bailan lo que saben.",""],
+["Giovanni Pastrone","cin",4,1883,"Montechiaro d'Asti","24534","I",6,"Pericia 5, Ciencia 4, Presencia 4, Investigar 3","«Cabiria» (abril de 1914): Cartago, Aníbal, el templo de Moloch y un gigante llamado Maciste.","La mayor película del mundo, con decorados de treinta metros. Dentro, Maciste (Vigor 6) pelea por él y Moloch exige un sacrificio.","Los rótulos los firma D'Annunzio, el exiliado, por cincuenta mil liras. Roma debe decidir si la obra de un proscrito puede ganar un Salón.",""],
+["Milton Manaki","cin",2,1882,"Avdela","34333","C",5,"Observar 4, Supervivencia 4, Sigilo 3, Estoicismo 3","Las primeras películas de los Balcanes: su abuela Despina hilando, a los 114 años (1905).","No inventa: lo que filmó ocurrió. Su película es Monastir tal como era, y dentro nadie puede mentir ni cambiar el paisaje.","Valaco de Monastir, en la Macedonia que disputan el Imperio y Serbia. Ha filmado lo que hicieron allí los dos ejércitos.",""]
+]});
+
+NATIONS.push({
+id:"rusia", name:"Rusia", bloc:"rev", mode:"liza", chip:"Liza · revisionista · rival principal",
+line:"Nicolás II, con Rasputín detrás del trono. Fue la primera en inscribir a sus catorce. Varios son finlandeses, polacos o ucranianos que no eligieron bandera.",
+q:{
+liza:"Ganar: si vence, la tregua expira y tiene las manos libres sobre los Estrechos, Suecia y las Åland. Si no puede ganar, firmar una paz que reconozca sus fronteras de hoy. Entretanto, entender y anotar lo que hace cada Maestro.",
+salon:"Los iconos y reliquias de Santa Sofía: Constantinopla por otra vía. Lucir los Ballets Russes. Que ningún pueblo sometido exponga con bandera propia.",
+conf:"La danza (conseguido). Nacionalidad por pasaporte: un súbdito del zar lo es donde viva. Reliquias sin límite. Variante dura de la tregua.",
+roja:"No devuelve Galitzia ni Eslovaquia. No tolera un pabellón polaco, finlandés ni ucraniano."},
+also:"También en el pabellón: Chaliapin, Rajmáninov, Prokófiev, Repin, Roerich, Goncharova y Lariónov, Nésterov, Kandinski (vive en Múnich), Gorki (vigilado), Ajmátova, Sibelius (retenido en Finlandia).",
+people:[
+["Fiódor Schechtel","arq",4,1859,"San Petersburgo","24543","I",6,"Etiqueta 4, Pericia 4, Academicismo 4, Encanto 3","La estación de Yaroslavl y la mansión Riabushinski, con su escalera en forma de ola.","Escaleras que suben como agua: arrastra al rival de un piso a otro. Cuatro portales, todos en estaciones de Moscú.","Alemán del Volga. Construyó los pabellones rusos de Glasgow en 1901: sabe montar una exposición y lo que cabe dentro.",""],
+["Eliel Saarinen","arq",4,1873,"Rantasalmi","33534","I",6,"Estoicismo 5, Academicismo 4, Observar 4, Pericia 3","La Estación Central de Helsinki (1914), con sus cuatro gigantes de granito que sostienen lámparas.","Granito y luz: sus portadores de lámparas alumbran lo que el rival quiere esconder. Puede abrir un portal a Helsinki. No lo ha dicho.","Finlandés, inscrito por decreto. Su familia responde por él. Suecia está a un portal de distancia.","for"],
+["Aleksandr Blok","lit",4,1880,"San Petersburgo","23553","I",6,"Encanto 4, Ocultismo 4, Presencia 4, Estoicismo 3","«Versos de la Bella Dama» y «La barraca de feria».","Nombra a una Desconocida que cruza la arena entre la niebla: quien la sigue sale del combate. Una vez por escena oye «la música» de lo que va a pasar.","Presiente una catástrofe y casi la desea. Escribe lo que oye, y lo que oye no le gusta al Santo Sínodo.",""],
+["Henryk Sienkiewicz","lit",5,1846,"Wola Okrzejska","22654","I",5,"Academicismo 5, Presencia 5, Estoicismo 5, Etiqueta 4","«Quo vadis» (Nobel de 1905) y la «Trilogía».","Nombra arenas: Roma, los leones, los mártires que cantan. El rival queda del lado de Nerón ante el público. También sabe nombrar húsares alados; no para Rusia.","Polaco, 68 años, inscrito por decreto. Si deserta en París, Varsovia paga; si combate, Varsovia no se lo perdona.","for"],
+["Aleksandr Scriabin","mus",5,1872,"Moscú","15535","C",6,"Ocultismo 6, Presencia 4, Estoicismo 3, Observar 3","«Prometeo, el poema del fuego», con teclado de luces, y los esbozos del «Mysterium».","Sonido y color a la vez: su acorde místico tiñe el panorama. Emoción fija: éxtasis. Con el «Mysterium» terminado no habría panorama, ni Liza, ni público: solo la obra.","Compone bajo la tutela de Rasputín, cuyo canto lo calma. Si el stárets cae el 29 de junio, nadie frena el «Mysterium»: es el campeón sin correa.","prop"],
+["Ígor Stravinski","mus",4,1882,"Oranienbaum","24633","I",5,"Academicismo 4, Charlatanería 4, Estoicismo 4, Etiqueta 3","«El pájaro de fuego», «Petrushka» y «La consagración de la primavera» (1913).","Ritmo que no se puede contar: todo obedece a compases que cambian cada segundo. Emoción fija de la «Consagración»: una elegida baila hasta morir, y la elegida es del otro equipo.","Vive en Suiza y trabaja para Diáguilev, no para el zar. Estrena «El ruiseñor» en París en mayo.",""],
+["Léon Bakst","pin",4,1866,"Grodno","35554","C",6,"Observar 5, Etiqueta 4, Encanto 4, Academicismo 4","Decorados y figurines de «Scheherazade» y de «La siesta de un fauno».","No pinta el paisaje: viste a los que están en él. Con un figurín cambia el papel de un aliado (una especialidad) o deja al rival vestido de esclavo persa.","Judío de Grodno, expulsado de San Petersburgo en 1912 por serlo. Combate por un país que no lo deja vivir en su capital.",""],
+["Kazimir Malévich","pin",3,1879,"Kiev","44534","I",5,"Estoicismo 5, Ocultismo 4, Aguante 3, Academicismo 3","El telón de «Victoria sobre el Sol» (diciembre de 1913): un cuadrado partido en negro y blanco.","Borra. Donde pinta su cuadrado no queda panorama: ni suelo, ni luz, ni heridas de pintura. Es el único que puede abrir un hueco en el lienzo desde dentro sin rasgarlo.","Hijo de polacos, nacido en Kiev, inscrito sin preguntar. La Okhrana no entiende su pintura y por eso la deja pasar.","for"],
+["Serguéi Koniónkov","esc",4,1874,"Karakóvichi","55233","C",6,"Pericia 5, Supervivencia 4, Aguante 4, Lucha 3","Los «viejos del bosque»: espíritus tallados en troncos enteros.","Cuatro gólems de madera, nudosos y pacientes (Vitalidad 4). Moldea con las manos la madera sin forma: cualquier árbol pintado le sirve.","Campesino de Smolensk; estuvo en las barricadas de 1905. Bebe con los eslavos sometidos y los escucha.",""],
+["Paolo Troubetzkoy","esc",4,1866,"Intra","35352","C",5,"Encanto 5, Etiqueta 4, Supervivencia 3, Presencia 3","El monumento ecuestre a Alejandro III (1909): un zar enorme sobre un caballo que no quiere andar.","Gólem: el Zar a caballo (Vitalidad 4; +6 arrollando). Pesado y terco: cuesta un turno ponerlo en marcha y otro pararlo.","Príncipe ruso nacido en Italia, vegetariano y amigo de Tolstói; apenas habla ruso. Vive en París, y el Imperio Heleno lo reclama.","plz"],
+["Anna Pávlova","dan",5,1881,"San Petersburgo","26353","C",6,"Presencia 5, Estoicismo 5, Esquiva 5, Etiqueta 4","«La muerte del cisne»: dos minutos.","Compás ±5. Muere en escena y todos los que miran sienten que algo suyo muere con ella (social a todos, maniobra +1). Después se levanta.","Tiene compañía propia y casa en Londres: baila por Rusia porque el zar se lo pidió por carta. Londres cree que aún puede ficharla.",""],
+["Tamara Karsávina","dan",4,1885,"San Petersburgo","35442","C",6,"Encanto 4, Etiqueta 4, Esquiva 4, Academicismo 3","«El pájaro de fuego» y «El espectro de la rosa», que bailó con Nijinski.","Compás ±4. Una pluma del Pájaro de Fuego llama ayuda: una vez por combate, un aliado actúa fuera de turno. Pareja ideal: +1 extra al ayudar.","Culta, sensata y cortejada por un diplomático británico. Dice que sin Nijinski el equipo va cojo.",""],
+["Yevgueni Bauer","cin",3,1865,"Moscú","24443","I",5,"Observar 4, Pericia 4, Etiqueta 3, Estoicismo 3","«Crepúsculo de un alma de mujer» (1913).","Salones hondos, columnas y cortinas: en su película el espacio se alarga y nadie llega a tiempo. Finales tristes: el vencido sale además Conmovido.","Antiguo decorador de teatro. No le interesa la política; le interesan las muertas hermosas.",""],
+["Władysław Starewicz","cin",3,1882,"Moscú","25523","C",5,"Ciencia 5, Pericia 5, Observar 4, Sigilo 3","«La venganza del camarógrafo» (1912): un adulterio entre escarabajos, animado con insectos disecados.","En su película todos son insectos, salvo él. Mueve a los muertos fotograma a fotograma: lo que cayó en la arena vuelve a andar.","Polaco de Lituania y entomólogo. El zar lo condecoró por una película de hormigas; él colecciona cosas muertas y favores.","for"],
+["Grigori Rasputín","mus",5,1869,"Pokróvskoie","52354","G",6,"Presencia 6, Aguante 5, Charlatanería 5, Ocultismo 5","No expone. Canta en la capilla de la embajada.","Maestro del canto litúrgico. 2 de daño a la Voluntad sin defensa a quien lo escucha; emoción fija, obediencia consolada. Su canto calma al zarévich, a la zarina y a Scriabin.","En la historia real, Jionia Gúseva lo apuñala en su aldea el 29 de junio. Si sobrevive vuelve cambiado; si no, Rusia juega sin freno.","som"],
+["Serguéi Diáguilev","dil",4,1872,"Sélischi","22554","G",5,"Charlatanería 6, Etiqueta 5, Encanto 5, Observar 4","Los Ballets Russes enteros: «La leyenda de José», de Strauss, y «El gallo de oro», en la Ópera en mayo.","Capitán sin plaza. Diletante: accede a cuatro poderes activos de otras artes por escena (tirada a 15). Su arte es juntar a los demás: ayuda +2 a cualquier campeón ruso.","Despidió a Nijinski por casarse y ahora le exigen que lo recupere. Teme morir en el agua y no se embarca. Debe dinero en cuatro capitales.","som"],
+["Carl Fabergé","art",5,1846,"San Petersburgo","25444","C",6,"Pericia 6, Etiqueta 5, Observar 5, Estoicismo 3","El Huevo del Mosaico y el Huevo de Catalina la Grande, los dos de la Pascua de 1914.","No combate: arma. Quince reliquias (+1 a un atributo o habilidad, hasta 7); cada campeón ruso puede llevar tantas como su Maestría. Sus huevos guardan dentro una acción de ayuda.","Regala un huevo a cada jefe de delegación. Nadie sabe qué hace la sorpresa hasta que se abre.","som"]
+]});
+
+NATIONS.push({
+id:"serbia", name:"Serbia", bloc:"rev", mode:"liza", chip:"Liza · revisionista · satélite ruso",
+line:"Armada e influida por Rusia. Su duelo con el Imperio Heleno es una guerra delegada. Un solo campeón de primera fila y trece que no piensan rendirse.",
+q:{
+liza:"Vencer al Imperio Heleno y quedarse Macedonia; después, una salida al mar. Si gana Rusia, Serbia cobra.",
+salon:"Los iconos, frescos y manuscritos de los monasterios medievales de Macedonia, en manos helenas. Un oro en escultura con Meštrović.",
+conf:"Vota con Rusia. Pide que el perdedor de un encuentro pueda exigir revancha una vez.",
+roja:"Si pierde contra el Imperio, ¿acepta el resultado o cruza la frontera? Depende de quién mande esa noche en Belgrado."},
+also:"También en el pabellón: Uroš Predić, Isidora Sekulić, Milan Rakić, Petar Konjović, Đorđe Jovanović. Rusia le presta reliquias de Fabergé.",
+people:[
+["Jelisaveta Načić","arq",3,1878,"Belgrado","23534","I",5,"Estoicismo 4, Academicismo 4, Observar 3, Pericia 3","La escuela Rey Pedro I (1907) y las primeras viviendas obreras de Belgrado.","Escaleras, patios y aulas: da refugio y salida al equipo. Su obra protege a quien ella invita por su nombre; lo dice siempre completo.","Primera arquitecta de Serbia. Diseñó un arco de triunfo para los vencedores de las guerras balcánicas; no quiere diseñar otro.",""],
+["Momir Korunović","arq",2,1883,"Glogovac","43432","I",5,"Aguante 4, Lucha 3, Academicismo 3, Presencia 3","Proyectos en estilo nacional: arcos de monasterio medieval en edificios de correos.","Muros de monasterio: gruesos, bajos, con una sola puerta. Sella mejor de lo que abre.","Combatió en las dos guerras balcánicas. Para él Macedonia no es un Salón.",""],
+["Branislav Nušić","lit",4,1864,"Belgrado","23544","I",5,"Charlatanería 5, Encanto 4, Observar 4, Callejeo 3","«El diputado» y «Un individuo sospechoso»: comedias sobre funcionarios.","Nombra burócratas: un gendarme, un sello, una ventanilla. El rival pierde el turno haciendo cola. Daño a la Voluntad por ridículo.","Estuvo preso por un poema contra el rey y fue cónsul en la Macedonia otomana. De familia valaca: Manaki lo conoce.",""],
+["Jovan Dučić","lit",3,1871,"Trebinje","23453","I",5,"Etiqueta 5, Encanto 4, Charlatanería 3, Estoicismo 3","«Sonetos imperiales»: el zar Dušan y su corte medieval, en alejandrinos a la francesa.","Nombra una corte: quien entra queda obligado por un protocolo que solo él conoce. Elegante y frío.","Poeta y diplomático, formado en Ginebra y en París. Lee a los simbolistas franceses mejor que la mitad del equipo francés.",""],
+["Stevan Mokranjac","mus",4,1856,"Negotin","23454","G",6,"Estoicismo 4, Presencia 4, Academicismo 4, Etiqueta 3","Las quince «Rukoveti»: guirnaldas de canciones de Serbia, Macedonia, Kosovo y Bosnia.","Un coro fantasma a cuatro voces canta seis días sin él. Emoción fija: nostalgia de una aldea. La décima guirnalda es de Ohrid: canta Macedonia como propia.","Enfermo; en la historia real muere en septiembre de 1914. Sus guirnaldas son el mapa de lo que Serbia reclama.",""],
+["Stanislav Binički","mus",3,1872,"Jasika","33443","G",5,"Presencia 4, Aguante 3, Estoicismo 3, Etiqueta 3","«Al alba» (1903), la primera ópera serbia, y marchas para la banda de la Guardia Real.","Marcha militar: todo su equipo avanza al paso (ayuda +1 a los aliados, en lugar de atacar). Emoción fija: resolución.","Director de la música de la Guardia Real. Lleva uniforme también en París.",""],
+["Paja Jovanović","pin",4,1859,"Vršac","35554","C",6,"Etiqueta 5, Academicismo 4, Encanto 4, Observar 4","«La migración de los serbios» (1896) y «La coronación del zar Dušan».","Pinta multitudes: mete en el panorama a un pueblo entero en marcha, con sus rebaños y sus popes, y el rival tiene que abrirse paso.","Vive en Viena y retrata a la aristocracia austríaca: un súbdito de Francisco José que pinta para Belgrado.",""],
+["Nadežda Petrović","pin",3,1873,"Čačak","44444","C",5,"Medicina 4, Aguante 4, Presencia 4, Estoicismo 4","«Peonías de Kosovo» y «Gračanica» (1913), en rojos fauves.","Rojo sobre el campo: donde pinta peonías la tierra recuerda una batalla, y quien la pisa siente que debe vengarla. Es además la enfermera del equipo.","Enfermera voluntaria en las guerras balcánicas, condecorada. Expuso en París en 1910 y conoce a los fauves.",""],
+["Ivan Meštrović","esc",5,1883,"Vrpolje","46342","C",6,"Presencia 5, Pericia 5, Aguante 4, Estoicismo 4","El Templo de Vidovdan: las cariátides, las viudas y el «Marko Kraljević» a caballo del ciclo de Kosovo.","Cinco gólems. Marko Kraljević (Vitalidad 5; +6 a caballo y con la maza) es el más fuerte de la Liza fuera de los de Rodin y del Zeus.","Croata de Dalmacia y súbdito austríaco: en Roma, en 1911, eligió exponer en el pabellón serbio. Formado en Viena y admirado por Rodin. Viena lo considera un traidor.",""],
+["Toma Rosandić","esc",3,1878,"Split","45332","C",5,"Pericia 4, Aguante 4, Lucha 3, Estoicismo 3","Tallas en madera y piedra para el ciclo de Kosovo.","Gólem de piedra de Brač (Vitalidad 3; +6 sosteniendo, cargando y cubriendo). Guarda la espalda de Marko.","Hijo de cantero. Hace sin firmar la mitad del trabajo de Meštrović y empieza a cansarse.",""],
+["Maga Magazinović","dan",2,1882,"Užice","34432","C",5,"Academicismo 4, Atletismo 3, Estoicismo 3, Esquiva 3","Su escuela de rítmica y danza plástica en Belgrado (1910).","Compás ±2. Baila ideas: improvisa una especialidad y la explica, de modo que un aliado puede copiarla al turno siguiente.","Filósofa, periodista y feminista; estudió en Berlín. Conoce a la gente de Hellerau y de Múnich.",""],
+["Vojin Stanković","dan",2,1885,"Vranje","45232","C",4,"Atletismo 4, Lucha 4, Aguante 3, Callejeo 3","El kolo: la rueda de las bodas y de los regimientos.","Compás ±2. Encabeza la rueda: quien entra en el kolo no sale hasta que acaba la vuelta, sea amigo o enemigo.","Sargento de infantería. Varios de la delegación saludan a un tal «Apis» cuando creen que nadie mira.","fic"],
+["Ilija Stanojević, «Čiča Ilija»","cin",2,1859,"Belgrado","23443","I",4,"Charlatanería 4, Encanto 4, Presencia 3, Observar 3","«Vida y hazañas del inmortal caudillo Karađorđe» (1911), la primera película serbia.","Epopeya de cartón y fe: en su película el rival se enfrenta a un levantamiento entero. Corta; el efecto dura poco.","Actor cómico del Teatro Nacional metido a director. El único del equipo que hace reír a los rusos.",""],
+["Đoka Bogdanović","cin",1,"h. 1860","Serbia","33333","I",4,"Observar 4, Aguante 3, Callejeo 3, Pericia 3","Noticiarios del frente de las guerras balcánicas, proyectados en su cine de Belgrado.","Actualidades: su película es lo que pasó ayer en la Liza, vuelto a pasar. Sirve para estudiar al rival, no para tumbarlo.","Dueño de cine y patriota. Filma todos los combates; alguien le compra las copias.",""]
+]});
+
+NATIONS.push({
+id:"sin-bandera", name:"Sin bandera", bloc:"neu", mode:"libre", chip:"reclamados, exiliados e invitados",
+line:"Artistas que varias naciones se disputan o que ninguna puede inscribir. Cada uno es una escena de la Conferencia del Reglamento.",
+q:{
+liza:"Quien los inscriba gana un campeón de primera y un conflicto diplomático.",
+salon:"Dónde cuelgan sus obras es ya una declaración: el pabellón que los acoja ofende a otro."},
+also:"Otros casos: Ida Rubinstein (rusa, vive en París), Brancusi (rumano de Montparnasse), Rilke (nacido en Praga, escribe en alemán, vive en París).",
+people:[
+["Vaslav Nijinski","dan",5,1889,"Kiev","46243","C",6,"Atletismo 6, Esquiva 5, Presencia 4, Estoicismo 1","«La siesta de un fauno» y «El espectro de la rosa»: el salto por la ventana.","Compás ±5. Salta y se queda arriba: se mueve por el aire del panorama como por un suelo. Nadie más llega donde él está.","Despedido por Diáguilev tras casarse con Romola de Pulszky. Rusia lo reclama como súbdito, Londres le paga, Budapest lo aloja y Francia le ha enviado a un consejero. Hijo de polacos. Frágil.","plz"],
+["Marc Chagall","pin",3,1887,"Vítebsk","25445","C",5,"Encanto 4, Observar 4, Estoicismo 3, Callejeo 3","«Yo y la aldea» (1911) y «París a través de la ventana».","En sus cuadros la gente vuela, las vacas tocan el violín y la aldea cabe en una cara. Quien entra flota: Lucha y Atletismo no funcionan como siempre (−2).","Exiliado en La Ruche desde 1910. Rusia exige que exponga en su pabellón o que no exponga. Su prometida Bella sigue en Vítebsk.","plz"],
+["Aleksandr Archipenko","esc",3,1887,"Kiev","35432","C",5,"Pericia 5, Callejeo 3, Estoicismo 3, Atletismo 2","«Medrano I» (1912): un malabarista de madera, vidrio y alambre, con huecos donde debería haber cuerpo.","Gólem articulado y hueco (Vitalidad 3): los golpes lo atraviesan y resta 1 al daño que recibe. No lo inscribirá por Rusia.","Ucraniano de Kiev, exiliado en París. Los eslavos sometidos lo quieren de portavoz; la Okhrana, de ejemplo.","plz"],
+["Rabindranath Tagore","lit",5,1861,"Calcuta","22564","I",6,"Estoicismo 6, Presencia 5, Encanto 5, Academicismo 4","«Gitanjali» (Nobel de 1913) y sus propias canciones.","No combate. Si lo hiciera, nombraría un lugar donde la mente no tiene miedo, y allí nadie puede atacar a nadie. Es también músico: dos artes.","Londres quiere inscribirlo como campeón del Imperio; él responde que la India no es una plaza. Medio jurado lo admira.","plz"]
+]});
+
+NATIONS.push({
+id:"china", name:"China", bloc:"neu", mode:"liza", chip:"Liza · sin bloque · catorce de una vez",
+line:"Salida de una revolución tradicionalista, no republicana. La mayor delegación tras la francesa. Pasa por aliada de Rusia, pero su ministro dice que no viene contra Francia.",
+q:{
+liza:"Demostrar ante todos, y sobre todo ante Japón, que la tradición vence a lo moderno. No quiere cruzarse con Francia. Si gana, decide ella si hay paz: todos la cortejan.",
+salon:"La Restitución: el saqueo del Palacio de Verano (1860) que guardan Fontainebleau y el British Museum, lo que se llevaron en 1900, y los manuscritos de Dunhuang que Stein y Pelliot sacaron hacia Londres y París.",
+conf:"El teatro de sombras como cine y la caligrafía como literatura. Ser tratada como igual: que el tratado hable también de concesiones y tratados desiguales.",
+roja:"No acepta un jurado que no sepa leer un rollo. No será la comparsa de San Petersburgo."},
+also:"También en el pabellón: Gu Hongming (portavoz, educado en Edimburgo), Tan Xinpei (el rey de la ópera de Pekín), Huang Binhong, Chen Shizeng, Wang Guowei.",
+people:[
+["Lei Xiancai","arq",4,1877,"Pekín","24534","I",6,"Academicismo 5, Pericia 5, Etiqueta 4, Estoicismo 3","Las maquetas de cartón y papel de los palacios y tumbas imperiales: su familia construye para el trono desde hace siete generaciones.","Patios dentro de patios: quien entra debe cruzar tres puertas y en cada una se le pregunta quién es. Su obra es cuatro veces mayor por dentro.","Su oficio era servir a un emperador. La revolución tradicionalista le ha devuelto el trabajo; nadie le ha dicho para quién.",""],
+["Yao Chengzu","arq",4,1866,"Suzhou","35433","C",5,"Pericia 6, Observar 4, Estoicismo 3, Aguante 3","Un jardín de Suzhou completo, desmontado en cajas: rocas, puentes en zigzag y una ventana por cada vista.","Jardín: ningún camino es recto y cada ventana da a otro sitio. Los espíritus, dicen, solo andan en línea recta; los gólems también.","Maestro de los carpinteros de Xiangshan: construye sin un solo clavo. Mantiene un trato cortés con el japonés Itō Chūta, que midió sus templos.",""],
+["Kang Youwei","lit",5,1858,"Nanhai","24643","I",5,"Academicismo 6, Presencia 5, Estoicismo 4, Pericia 3","«El libro de la Gran Unidad» y su caligrafía de estilo de estela.","Escribe un carácter en el aire y la cosa está: 山, y hay montaña. Los caracteres antiguos pesan más que las palabras de alfabeto: +2 al nombrar cosas grandes y simples.","Quiso reformar el Imperio en cien días (1898) y pasó quince años exiliado. Ahora es el maestro del nuevo orden confuciano. Sueña con un mundo sin fronteras: la Paz de los Campeones le parece poco.","prop"],
+["Lin Shu","lit",4,1852,"Fuzhou","23544","I",6,"Academicismo 5, Charlatanería 4, Estoicismo 4, Lucha 2","«La dama de las camelias» y más de cien novelas europeas vertidas al chino clásico sin saber una sola lengua extranjera.","Traduce: reescribe en prosa clásica lo que el escritor rival acaba de nombrar, y la cosa cambia de bando. Identifica la función de cualquier texto.","Conoce a Dumas, a Dickens y a Hugo de oídas, por lo que le cuentan sus ayudantes. Quiere conocer a un autor francés vivo y preguntarle si lo ha entendido bien.",""],
+["Yang Zongji","mus",4,1865,"Hunan","25434","C",6,"Estoicismo 5, Academicismo 4, Ocultismo 4, Observar 3","«Aguas que fluyen» al guqin, la cítara de siete cuerdas de seda.","Suena tan bajo que hay que callar para oírlo, y todos callan. Emoción fija: quietud. Mientras toca, nadie inicia un choque físico sin superar antes su tirada.","Funcionario retirado y maestro de qin en Pekín. Cree que tocar ante una multitud es una vulgaridad y lo hace por obediencia.",""],
+["Shen Zhaozhou","mus",4,1858,"Haimen","36333","C",5,"Pericia 4, Aguante 3, Presencia 3, Estoicismo 3","«Emboscada por diez lados» a la pipa: una batalla antigua con sus caballos, tambores y espadas.","Una batalla entera en cuatro cuerdas: el rival oye un ejército que lo rodea. 2 de daño a la Voluntad sin defensa; emoción fija, estar cercado.","Protegido de Kang Youwei. Viejo y casi sordo de un oído.",""],
+["Wu Changshuo","pin",5,1844,"Anji","36555","C",6,"Pericia 6, Estoicismo 5, Academicismo 5, Observar 4","Ciruelos, glicinias y calabazas a tinta y color, con poema y sello tallado por él mismo.","Un trazo y no se corrige: lo que pinta en el panorama queda firmado con sello rojo y nadie más puede borrarlo. Poeta, calígrafo y grabador: tres artes en una mano.","Setenta años, sordo, decano de la escuela de Shanghái. Los coleccionistas japoneses lo adoran: es el puente entre dos delegaciones que no se hablan.",""],
+["Qi Baishi","pin",4,1864,"Xiangtan","45445","C",6,"Pericia 5, Observar 5, Supervivencia 4, Callejeo 3","Gambas, cangrejos, pollitos e insectos: lo pequeño, con cuatro pinceladas.","Pinta cosas vivas y diminutas, a cientos: una nube de gambas, de abejas, de renacuajos. Ninguna hace daño; todas estorban (−2).","Carpintero hasta los veintisiete años. Los letrados de la delegación lo tratan de campesino; él los pinta como cangrejos.",""],
+["Zhang Yuting","esc",4,1863,"Tianjin","26343","C",5,"Observar 5, Pericia 5, Encanto 4, Callejeo 3","Figurillas de barro pintado: vendedores, actores y generales de ópera del tamaño de una mano. Lo llaman «Zhang el de los muñecos».","Cuatro gólems de un palmo (Vitalidad 4 cada uno), rápidos y difíciles de acertar. Modela un retrato del rival en lo que dura un turno, y el retrato habla con él.","Su padre modelaba la cara de un hombre dentro de la manga, mirándolo en el teatro. Él hace lo mismo con los jueces.",""],
+["Liu Hesheng","esc",3,"h. 1855","Quyang","54224","V",5,"Aguante 5, Pericia 4, Estoicismo 4, Supervivencia 3","Una pareja de leones guardianes de mármol blanco de Quyang, de cuatro toneladas.","Dos leones que cuentan como un gólem (Vitalidad 3; +6 guardando una puerta, +3 fuera de ella). No atacan: no dejan pasar.","Cantero de aldea; no ha leído un libro. Pregunta a quien lo escuche si es cierto que en Occidente han despertado a un dios de mármol.","fic"],
+["Mei Lanfang","dan",3,1894,"Pekín","25352","G",5,"Encanto 5, Etiqueta 4, Esquiva 3, Estoicismo 3","Papeles de dama de la ópera de Pekín: mangas de agua, manos y mirada.","Compás ±3. Con las mangas dibuja lo que no hay: una puerta, un río, una barca. El público lo ve, y el rival tropieza con ello.","Veinte años y ya llena los teatros de Shanghái. Un hombre que baila mujeres: media Europa no sabrá qué está mirando, y él cuenta con eso.",""],
+["Yang Xiaolou","dan",4,1878,"Pekín","55242","C",6,"Lucha 5, Atletismo 5, Presencia 4, Esquiva 4","Papeles marciales: el general Zhao Yun y el Rey Mono.","Compás ±4. El Rey Mono: salta de nube en nube sobre el panorama y pelea con bastón. Es el bailarín que mejor pega de toda la Liza.","Favorito de la difunta emperatriz viuda. Taoísta devoto: hay días en que no combatirá.",""],
+["Ren Qingtai","cin",3,1850,"Shenyang","24434","I",5,"Pericia 5, Observar 4, Ciencia 3, Etiqueta 3","«La montaña Dingjun» (1905): el viejo actor Tan Xinpei como general, filmado en el patio de su estudio fotográfico.","Proyecta la batalla de Dingjun y mete dentro a los rivales: allí manda el general Huang Zhong, setenta años y un sable.","Su estudio ardió en 1909 y con él casi todas sus películas. La que trae es la última copia.",""],
+["Lu Fuyuan","cin",4,"h. 1860","Luanzhou","26343","C",5,"Pericia 5, Charlatanería 4, Presencia 4, Sigilo 3","Teatro de sombras de Luanzhou: figuras de piel de burro caladas, una lámpara y una sábana. «El cine tiene mil años», alegó China ante Coubertin.","Su pantalla es una película sin máquina: mete a los rivales entre las sombras, donde son planos y solo se mueven de perfil. Él canta todas las voces.","Francia defendió el cine pensando en Méliès y ahora tiene que aceptar a un titiritero. Los Lumière han protestado; Méliès, encantado, quiere conocerlo.","fic"]
+]});
+
+NATIONS.push({
+id:"japon", name:"Japón", bloc:"neu", mode:"liza", chip:"Liza · aliado del Reino Unido",
+line:"Venció a Rusia en 1905. Equipo disciplinado, mitad tradición y mitad Occidente aprendido en una generación.",
+q:{
+liza:"Ser reconocido gran potencia entre iguales. Vencer a Rusia otra vez, ahora en las artes. Quedar por delante de China.",
+salon:"Oros, no obras: no reclama nada y teme que China o Corea reclamen. Una paz que congele fronteras le reconoce Corea, anexionada en 1910.",
+conf:"Una cláusula de igualdad entre las naciones firmantes. Vota con Londres, salvo en lo que favorezca a China.",
+roja:"No tolera que lo traten de exotismo. «Madama Butterfly» en el pabellón heleno es ya una ofensa en busca de reparación."},
+also:"También en el pabellón: Mori Ōgai (jefe de la delegación, general médico y novelista), Kuroda Seiki, Tomioka Tessai, Uemura Shōen, Yamada Kōsaku, Matsumoto Kōshirō VII. En París vive ya el novelista Shimazaki Tōson.",
+people:[
+["Tatsuno Kingo","arq",4,1854,"Karatsu","33543","I",6,"Presencia 4, Academicismo 4, Estoicismo 4, Lucha 3","La Estación de Tokio, de ladrillo rojo, que se inaugura en diciembre de 1914, y el Banco de Japón.","Sólido: lo que levanta aguanta terremotos; lo apodan «Tatsuno el Firme». Cuatro portales, todos en bancos y estaciones.","Discípulo del inglés Josiah Conder: el arquitecto más británico de Japón. Los ingleses lo tratan como a un alumno aventajado y eso lo irrita.",""],
+["Itō Chūta","arq",4,1867,"Yonezawa","33534","I",5,"Academicismo 5, Supervivencia 4, Ocultismo 4, Observar 4","El santuario Heian de Kioto (1895) y sus cuadernos de viaje: tres años a lomo de mula, de China a Grecia.","Puebla sus edificios de quimeras: elefantes alados y yōkai en las vigas. Son parte de la sala, y la sala ataca a los intrusos.","Sostiene que las columnas de Hōryū-ji vienen de Grecia por la Ruta de la Seda. El Imperio Heleno lo corteja; China recela de lo que midió allí.",""],
+["Natsume Sōseki","lit",5,1867,"Tokio","13645","I",6,"Observar 5, Academicismo 5, Estoicismo 4, Etiqueta 3","«Kokoro» (1914), por entregas en el Asahi, y «Soy un gato».","Nombra la soledad de cada uno: el rival queda solo en la arena aunque esté rodeado. Daño a la Voluntad; al Conmovido le deja una culpa antigua.","Úlcera de estómago y nervios destrozados: dos años en Londres casi lo vuelven loco. No quería volver a Europa.",""],
+["Yosano Akiko","lit",4,1878,"Sakai","23553","I",6,"Encanto 5, Presencia 4, Estoicismo 4, Etiqueta 3","«Cabello revuelto» (1901) y el poema «No entregues tu vida», escrito a su hermano en el frente de Port Arthur.","Treinta y una sílabas: nombra una sola cosa, exacta, y es más real que todo lo demás. Su poema contra la guerra hace bajar las armas (social, maniobra +1, bienintencionada).","Estuvo en París en 1912 y conoció a Rodin. Los militares de la delegación no olvidan que pidió a un soldado que no muriera por el emperador.",""],
+["Miyagi Michio","mus",3,1894,"Kobe","16433","C",5,"Observar 4, Estoicismo 4, Etiqueta 3, Academicismo 2","«Variaciones del agua» (1909), para koto, compuesta a los catorce años.","Ciego desde los ocho años: la niebla de Debussy y los borrones de Malévich no le afectan. Emoción fija: el agua que cambia de forma. Oye dónde está cada uno.","Veinte años. Vive en Corea, donde enseña koto para mantener a su familia. Debussy ha pedido escucharlo.",""],
+["Nakao Tozan","mus",4,1876,"Osaka","35343","C",6,"Aguante 4, Estoicismo 4, Presencia 3, Encanto 3","Piezas nuevas para shakuhachi, la flauta de bambú de los monjes mendicantes.","Un soplo es una nota y una nota basta. Corta el ritmo de otro músico con un silencio (tirada enfrentada). Emoción fija: vacío sereno.","Fundó su propia escuela a los veinte años y vende partituras impresas. Los puristas de Kioto lo desprecian.",""],
+["Yokoyama Taikan","pin",4,1868,"Mito","45445","C",6,"Observar 5, Aguante 4, Estoicismo 4, Presencia 4","Paisajes de «estilo borroso», sin línea: bruma, el monte Fuji y agua.","Pinta sin contorno: añade niebla, lluvia y distancia. Lo que está lejos en su pintura está lejos de verdad: el rival tarda un turno más en llegar.","Bebedor de sake a todas horas. Reabre este año el Instituto de Arte de Japón; ganar en París es su propaganda.",""],
+["Takeuchi Seihō","pin",4,1864,"Kioto","36445","C",5,"Observar 6, Pericia 5, Encanto 3, Etiqueta 3","Animales tan vivos que se dice que se huelen: monos, gorriones y un león dibujado del natural en un zoo de Europa.","Sus animales salen del papel y obedecen: un tigre que acecha, gorriones que avisan. Usa su tirada de Arte para lo que el animal haga.","Viajó por Europa en 1900 y admira a Turner y a Corot. Rival de Taikan: Kioto contra Tokio. Solo se hablan por intermediarios.",""],
+["Tsuguharu Foujita","pin",1,1886,"Tokio","25342","C",4,"Encanto 4, Callejeo 3, Observar 3, Etiqueta 2","Aún nada que el jurado conozca: dibujos a pincel fino sobre fondo blanco.","Una línea de tinta finísima y un gato. Todavía no es un arma; es una promesa.","Llegó a Montparnasse en 1913 y ya conoce a Picasso, a Modigliani y a medio París. La delegación lo quiere de guía e intérprete; él quiere una plaza.","asp"],
+["Takamura Kōun","esc",5,1852,"Tokio","36343","C",6,"Pericia 6, Estoicismo 5, Etiqueta 4, Observar 4","«El mono viejo» (1893), en madera de castaño, y el bronce ecuestre de Kusunoki Masashige ante el Palacio Imperial.","Cinco gólems. Kusunoki a caballo (Vitalidad 5; +6 cargando) murió por su emperador hace seis siglos y volvería a hacerlo: nunca huye, aunque se lo ordenen.","Tallista de budas, formado en el taller antes de que hubiera academias. No entiende a su hijo.",""],
+["Takamura Kōtarō","esc",3,1883,"Tokio","35432","C",5,"Pericia 4, Academicismo 3, Encanto 3, Estoicismo 2","«La mano» y el poemario «El camino» (1914).","Gólem: una Mano de bronce del tamaño de un hombre (Vitalidad 3; +6 agarrando). También es poeta: una vez por combate nombra una cosa pequeña.","Estudió en Nueva York, Londres y París, y volvió rodiniano. Ha escrito que el arte japonés debe liberarse de los padres. El suyo está en el equipo.",""],
+["Kawakami Sadayakko","dan",4,1871,"Tokio","25353","G",6,"Encanto 5, Etiqueta 5, Estoicismo 4, Esquiva 3","«La geisha y el caballero» y la danza de Dōjōji, que París aplaudió en la Exposición de 1900.","Compás ±4. La doncella de Dōjōji se vuelve serpiente: cambia de forma de moverse a mitad de escena (1 de Voluntad) y nadie espera la segunda.","Geisha de un primer ministro y luego actriz. Loïe Fuller la presentó en París; Picasso la dibujó. Viuda desde 1911, dirige su propia compañía.",""],
+["Hanako (Ōta Hisa)","dan",3,1868,"Aichi","25343","G",5,"Presencia 5, Estoicismo 5, Esquiva 3, Callejeo 3","La escena de la muerte: un harakiri lentísimo que recorre los teatros de Europa desde 1902.","Compás ±3. Muere mirando al rival, y el rival cree que es él quien muere (social, maniobra +1). No lo hace dos veces en un mismo combate.","Mide menos de metro y medio. Rodin la ha modelado más de cincuenta veces y la trata como a una hija: la delegación francesa lo sabe todo de ella.",""],
+["Makino Shōzō","cin",3,1878,"Kioto","33443","I",5,"Presencia 4, Observar 4, Pericia 3, Charlatanería 3","«Chūshingura» (1910): los cuarenta y siete rōnin.","En su película el rival es el señor Kira y vienen a por él cuarenta y siete hombres. No hay prisa; llegan.","Hijo de la dueña de un teatro. Dice que un film es primero guion, luego claridad y luego movimiento. Paga mal a su estrella.",""],
+["Onoe Matsunosuke","cin",3,1875,"Okayama","45242","C",5,"Atletismo 5, Lucha 4, Esquiva 4, Presencia 3","Cientos de películas en cinco años: samuráis, ninjas y magos que desaparecen con un corte de cámara.","Ninja de trucaje: desaparece, reaparece detrás, se convierte en sapo gigante. En su película sustituye Lucha y Esquiva por su Arte.","«Matchan el de los ojazos», el primer ídolo del cine japonés. Quiere contrato propio, y Pathé se lo ha ofrecido.",""]
+]});
+
+NATIONS.push({
+id:"estados-unidos", name:"Estados Unidos", bloc:"neu", mode:"salon", chip:"Salones · jurado y árbitros",
+line:"Expone y arbitra, sin un solo campeón. Washington quiere ser juez y no parte, lo que convierte a cada jurado americano en la persona más cortejada de París.",
+q:{
+liza:"Ninguna plaza. Que la decisión parezca limpia y que no haya una guerra que cierre los mercados.",
+salon:"Vender y comprar. Sus coleccionistas pujan por todo lo que la Restitución ponga en circulación, y Edison quiere cobrar licencia por cada cámara de la Exposición.",
+conf:"Árbitros americanos en la Liza y voto de calidad en los empates.",
+roja:"Ningún americano combate. Duncan, Fuller o Epstein inscritos por otros países son un problema diplomático."},
+also:"También exponen: Mary Cassatt (vive en París), Scott Joplin (enfermo y sin dinero, invitado por Debussy con su ópera «Treemonisha»), Winsor McCay con «Gertie el dinosaurio», Tiffany, Stieglitz.",
+people:[
+["John Singer Sargent","pin",5,1856,"Florencia","","",16,"","«El Jaleo» y los retratos de media aristocracia de Londres y Boston.","Jurado de pintura. Vive en Londres y rechazó un título británico por no dejar de ser americano. Ha retratado a casi todos los que mandan y sabe demasiado de cada modelo.","","jur"],
+["Edith Wharton","lit",4,1862,"Nueva York","","",14,"","«La casa de la alegría» y «Ethan Frome».","Jurado de literatura. Vive en París, en la rue de Varenne, recién divorciada. Francófila sin remedio: la delegación rusa la recusará.","","jur"],
+["Daniel Chester French","esc",4,1850,"Exeter","","",14,"","El «Minute Man» y los modelos del Lincoln sentado para el memorial de Washington.","Jurado de escultura. Recto y aburrido: imposible de comprar, fácil de acusar de favorecer a lo académico.","","jur"],
+["Frank Lloyd Wright","arq",5,1867,"Richland Center","","",16,"","La casa Robie y Taliesin, su casa de Wisconsin.","Jurado de arquitectura. Dejó a su familia por la esposa de un cliente y media prensa pide su cabeza. En la historia real, en agosto de 1914 un criado incendia Taliesin y mata a siete personas.","","jur"],
+["John Philip Sousa","mus",4,1854,"Washington","","",14,"","«Barras y estrellas para siempre». Su banda toca en la inauguración.","Jurado de música. Detesta los discos, «música enlatada». Honrado y vanidoso: se le gana con una ovación.","","jur"],
+["Ruth St. Denis","dan",3,1879,"Newark","","",12,"","«Radha» y «Egypta»: Oriente imaginado desde Nueva Jersey.","Jurado de danza. Sus danzas «orientales» ofenden a las mismas delegaciones en las que dice inspirarse.","","jur"],
+["D. W. Griffith","cin",4,1875,"Kentucky","","",14,"","«Judith de Betulia» (1914). Rueda en secreto una película de tres horas sobre la guerra civil.","Árbitro de cine propuesto por Edison. Su próxima película glorifica al Ku Klux Klan: desacreditarlo es fácil; soportarlo, no.","","jur"],
+["Thomas Edison","art",5,1847,"Milan (Ohio)","","",16,"","El kinetoscopio, el fonógrafo y un despacho de abogados.","No juzga: cobra. Su consorcio de patentes pretende que toda cámara de la Exposición le pague licencia. Ya se carteó con Jean Luigi David y dijo que le gustaría venir a París.","","som"]
+]});
+
+NATIONS.push({
+id:"alemania", name:"Alemania", bloc:"neu", mode:"salon", chip:"Salones · eje germano · neutral",
+line:"Firmó el acuerdo y tiene sus pabellones, pero ni un campeón en la Liza. Encabeza el eje germano con Austria y Bohemia para no verse arrastrada a una guerra.",
+q:{
+liza:"No compite. Si se firma la Paz de los Campeones, queda protegida sin haber arriesgado nada.",
+salon:"Mostrar sus obras y medirse con París. Los escritores disconformes de Berlín exponen contra la voluntad de la corte. Puede presidir la comisión garante sin pisar la Liza.",
+conf:"Que los neutrales puedan vetar a un juez.",
+roja:"Nada que la obligue a elegir entre Rusia y Francia."},
+also:"También exponen: Gerhart Hauptmann, Heinrich Mann, Stefan George, Kirchner y Die Brücke, Franz von Stuck, Ernst Barlach, Peter Behrens, Max Reinhardt, Busoni. Kandinski, súbdito ruso, vive en Múnich.",
+people:[
+["Richard Strauss","mus",5,1864,"Múnich","","",16,"","«El caballero de la rosa» y «La leyenda de José», ballet para Diáguilev que se estrena en la Ópera de París en mayo.","Compone para los rusos y cobra de los rusos. ¿Neutralidad o doble juego? Dirige él mismo el estreno.","",""],
+["Max Liebermann","pin",4,1847,"Berlín","","",15,"","Jardines de Wannsee y escenas de playa holandesa.","Presidente de la Secesión de Berlín y la cara amable del pabellón. El káiser detesta su pintura; por eso está aquí.","",""],
+["Käthe Kollwitz","pin",4,1867,"Königsberg","","",15,"","Los ciclos de grabados «La revuelta de los tejedores» y «La guerra de los campesinos».","Sus estampas se reparten por cientos: cada copia lanza su tirada social a quien la mira. El pabellón oficial no las quería.","",""],
+["Thomas Mann","lit",4,1875,"Lübeck","","",14,"","«Los Buddenbrook» y «La muerte en Venecia» (1912).","Lee en público con voz de notario. Defiende la neutralidad como una virtud alemana; su hermano Heinrich piensa lo contrario y también expone.","",""],
+["Bruno Taut","arq",3,1880,"Königsberg","","",12,"","El Pabellón de Cristal de la Werkbund, en Colonia (1914): una cúpula de vidrios de colores.","«El vidrio de color destruye el odio», dice el friso. Su sala lanza una tirada social permanente de concordia. Los rusos la visitan con gafas ahumadas.","",""],
+["Mary Wigman","dan",2,1886,"Hannover","","",11,"","«Danza de la bruja» (1914): sentada en el suelo, con máscara, sin música.","Alumna de Laban. No compite, pero media Liza va a verla para aprender a moverse sin belleza.","",""],
+["Paul Wegener","cin",3,1874,"Arnoldsdorf","","",12,"","«El estudiante de Praga» (1913): un hombre vende su reflejo y el reflejo lo persigue.","Prepara una película sobre el gólem de Praga. Los escultores de todas las delegaciones quieren hablar con él.","",""],
+["Elise de Vries","pin",2,1879,"Ámsterdam","","",11,"","Jardines puntillistas, luminosos, con algo de cuento.","El puente con la mesa de Berlín. Holandesa: puede colgar en el pabellón alemán o en el neerlandés, y cada opción dice una cosa distinta.","",""]
+]});
+
+NATIONS.push({
+id:"austria", name:"Austria", bloc:"neu", mode:"salon", chip:"Salones · eje germano · neutral",
+line:"Lo que queda del imperio: un país pequeño y germanohablante a la sombra de Berlín. Francisco José tiene 83 años. Rusia le arrancó Galitzia.",
+q:{
+liza:"No compite: la neutralidad del eje le impide intentar recuperar Galitzia. La tentación es un campeón «a título personal».",
+salon:"Prestigio. «El beso» y el Friso de Beethoven quedan en juego si Viena acepta un desafío.",
+roja:"Sarajevo: el 28 de junio el heredero de tres coronas visita la ciudad."},
+also:"También exponen: Adolf Loos, Josef Hoffmann y los Talleres Vieneses, Schnitzler, Karl Kraus, Stefan Zweig, Alban Berg, Anton Webern. Alma Mahler recibe en su salón.",
+people:[
+["Gustav Klimt","pin",5,1862,"Viena","","",16,"","«El beso» y el Friso de Beethoven.","Oro sobre el lienzo: quien entra en sus cuadros no quiere salir. No habla en público y pinta en bata. Es la pieza que todos querrían ganarle a Viena.","",""],
+["Egon Schiele","pin",3,1890,"Tulln","","",13,"","Autorretratos descarnados y paisajes de Krumau.","Estuvo preso en 1912 por «inmoralidad» y un juez quemó un dibujo suyo. Sus retratos dicen del modelo lo que el modelo calla.","",""],
+["Oskar Kokoschka","pin",3,1886,"Pöchlarn","","",13,"","«La novia del viento» (1914): él y Alma Mahler, abrazados en una tormenta.","Pintor y dramaturgo. El cuadro es una carta de amor que ella no ha contestado. Capaz de retar a quien lo mire torcido.","",""],
+["Arnold Schönberg","mus",4,1874,"Viena","","",14,"","«Pierrot lunaire» (1912) y las «Cinco piezas para orquesta».","Atonal: su música desafina la realidad del panorama. Los árbitros han pedido que no suene cerca de la rotonda.","",""],
+["Otto Wagner","arq",5,1841,"Viena","","",16,"","La Caja Postal de Ahorros y la iglesia del sanatorio de Steinhof.","Setenta y dos años. Sus edificios son de aluminio, vidrio y cálculo. Considera los portales masónicos una superstición y los usa de todos modos.","",""],
+["Hugo von Hofmannsthal","lit",4,1874,"Viena","","",14,"","«Jedermann» y los libretos para Strauss, incluido el de «La leyenda de José».","Escribe para un alemán un ballet que bailan los rusos: tres delegaciones en una sola obra. Si alguien la humilla, ofende a las tres.","",""],
+["Grete Wiesenthal","dan",3,1885,"Viena","","",12,"","El vals vienés bailado sola, con el pelo suelto.","Dejó la Ópera para bailar a su manera. El tango le está quitando el público y no lo perdona.","",""]
+]});
+
+NATIONS.push({
+id:"bohemia", name:"Bohemia", bloc:"paz", mode:"salon", chip:"Salones · eje germano · quiere la paz",
+line:"Praga y Budapest: dos monarquías parlamentarias con Francisco José como rey. Rusia le arrancó Eslovaquia y la Rutenia; la paz es su única garantía.",
+q:{
+liza:"No compite. Necesita que gane el bloque de la paz más que nadie, salvo Suecia.",
+salon:"El Codex Gigas, saqueado en Praga en 1648 y guardado en Estocolmo: un aliado contra otro. Exponer la «Epopeya eslava» sin que Rusia la reclame como suya.",
+conf:"Tregua blanda. Que los que solo exponen puedan presidir la comisión garante.",
+roja:"Checos y magiares no siempre votan lo mismo: dos parlamentos, una sola delegación."},
+also:"También exponen: Janáček, Josef Suk, Jan Kotěra, Max Brod, Endre Ady, Ferenc Molnár. Gustav Meyrink publica por entregas «El Golem». Maximilian Belcredi es el rostro de Bohemia en París; Romola de Pulszky, la esposa de Nijinski, es húngara.",
+people:[
+["Alfons Mucha","arq",5,1860,"Ivančice","","",16,"","Los primeros lienzos de la «Epopeya eslava», de seis por ocho metros.","Artista decorativo adoptado por los Arquitectos: sus arabescos esconden portales. Viajó a Rusia en 1913 para documentarse. ¿Qué vio, y qué le prometieron?","",""],
+["Franz Kafka","lit",3,1883,"Praga","","",12,"","«La condena» (1913). Tiene escrita y sin publicar «La metamorfosis».","Activo entre los escritores disconformes de Berlín. Sus textos no dominan: enredan. Quien los lee pierde un día en un trámite que no existe.","",""],
+["Béla Bartók","mus",4,1881,"Nagyszentmiklós","","",14,"","«El castillo de Barbazul» (1911), sin estrenar, y sus cilindros de cera con canciones campesinas.","Recogió canciones eslovacas antes de la conquista rusa: guarda la música de una tierra perdida. Rusia dice que esos cilindros le pertenecen.","",""],
+["Zoltán Kodály","mus",3,1882,"Kecskemét","","",12,"","Canciones populares húngaras armonizadas y una sonata para violonchelo solo.","Compañero de recolección de Bartók y el diplomático de los dos. Sabe en qué aldeas cantan todavía.","",""],
+["František Kupka","pin",4,1871,"Opočno","","",15,"","«Amorfa, fuga en dos colores» (1912): la primera pintura sin objeto que cuelga en un Salón.","Checo de Puteaux, a las afueras de París. Espiritista y anarquista. Francia lo cuenta como suyo y Praga también.","","plz"],
+["Josef Václav Myslbek","esc",4,1848,"Praga","","",14,"","El San Wenceslao ecuestre de la plaza de Praga.","Si Bohemia tuviese un campeón sería este gólem: un santo a caballo con cuatro patronos de escolta. Dice la leyenda que saldrá a combatir cuando el país esté en su peor hora.","",""],
+["Ödön Lechner","arq",4,1845,"Pest","","",14,"","La Caja Postal de Ahorros de Budapest, con su tejado de cerámica lleno de abejas.","El «Gaudí húngaro»: los gaudistas lo adoran. Muy enfermo; en la historia real muere en junio de 1914, en plena Exposición.","",""]
+]});
+
+NATIONS.push({
+id:"noruega", name:"Noruega", bloc:"neu", mode:"salon", chip:"Salones",
+line:"Independiente de Suecia desde 1905 y decidida a que se note.",
+q:{salon:"Que se la vea como nación. Apoya a Suecia frente a Rusia sin decirlo muy alto."},
+also:"",
+people:[
+["Edvard Munch","pin",5,1863,"Løten","","",16,"","«El sol», para el Aula de la Universidad de Cristianía, y «El grito».","«El grito» hace 2 de daño a la Voluntad a quien se detiene delante; el comisario lo ha colgado en una sala aparte. Munch bebe menos desde su internamiento de 1908.","",""],
+["Gustav Vigeland","esc",4,1869,"Mandal","","",14,"","La fuente de los hombres-árbol y los primeros grupos de granito.","Cientos de figuras desnudas de todas las edades. Ninguna está despierta. Él no dice si podrían estarlo.","",""],
+["Knut Hamsun","lit",4,1859,"Lom","","",14,"","«Hambre» y «Pan».","Odia a los ingleses y admira a los alemanes, y lo dice. El pabellón noruego reza para que no dé entrevistas.","",""]
+]});
+
+NATIONS.push({
+id:"egipto", name:"Egipto", bloc:"neu", mode:"salon", chip:"Salones · sin pabellón",
+line:"Bajo tutela británica y sin pabellón propio: un solo artista en un rincón del pabellón francés.",
+q:{salon:"No tiene voz para reclamar, pero mira la piedra de Rosetta en Londres y el obelisco de la Concordia en París."},
+also:"",
+people:[
+["Mahmud Mojtar","esc",1,1891,"Tanbara","","",9,"","Bustos y figuras de campesinas del Delta.","Alumno de la Escuela de Bellas Artes desde 1912. Estudia cómo los helenos despiertan sus mármoles y se pregunta qué pasaría con el granito de los faraones.","",""]
+]});
+
+NATIONS.push({
+id:"belgica", name:"Bélgica", bloc:"neu", mode:"salon", chip:"Salones · propuesta",
+line:"Neutral por tratado desde 1839. Sabe lo que vale una firma.",
+q:{salon:"Que la comisión garante proteja a los países pequeños, con inspectores y no solo con palabras."},
+also:"También exponen: Verhaeren, Khnopff, Van de Velde, George Minne.",
+people:[
+["Maurice Maeterlinck","lit",5,1862,"Gante","","",16,"","«El pájaro azul» y «Pelléas y Mélisande» (Nobel de 1911).","Teatro de silencios: lo que no se dice pesa más que lo dicho. Vive en Francia; Debussy le debe una ópera y una pelea.","","prop"],
+["James Ensor","pin",4,1860,"Ostende","","",15,"","«La entrada de Cristo en Bruselas» y sus máscaras de carnaval.","En sus cuadros todos llevan careta. Dicen que quien entra sale con una puesta.","","prop"],
+["Victor Horta","arq",4,1861,"Gante","","",14,"","La casa Tassel y el Palacio de Bellas Artes, en proyecto.","Padre del Art Nouveau. Lo proponen para inspeccionar la rotonda de la Liza.","","prop"]
+]});
+
+NATIONS.push({
+id:"paises-bajos", name:"Países Bajos", bloc:"neu", mode:"salon", chip:"Salones · propuesta",
+line:"Custodia el acta final en el Palacio de la Paz de La Haya.",
+q:{salon:"No reclama nada y quiere seguir así. Su interés es que el acta se cumpla: es su nombre el que figura en el sello."},
+also:"Elise de Vries, holandesa, llega con la delegación de Berlín.",
+people:[
+["Piet Mondrian","pin",3,1872,"Amersfoort","","",13,"","Árboles que se van volviendo retícula (1912–1914).","Vive en Montparnasse. Teósofo. Cada cuadro tiene menos mundo que el anterior, y dentro se está muy tranquilo.","","prop"],
+["Hendrik Petrus Berlage","arq",4,1856,"Ámsterdam","","",14,"","La Bolsa de Ámsterdam: ladrillo desnudo y ningún adorno.","Honrado hasta la incomodidad. El juez de arquitectura que nadie podrá comprar ni convencer.","","prop"],
+["Kees van Dongen","pin",3,1877,"Róterdam","","",13,"","Retratos de bailarinas y damas de Montmartre en rojos y verdes fauves.","Da las mejores fiestas de París. Todas las delegaciones pasan por su estudio, y él escucha.","","prop"]
+]});
+
+NATIONS.push({
+id:"suiza", name:"Suiza", bloc:"neu", mode:"salon", chip:"Salones · jurado · propuesta",
+line:"Aporta, con los Estados Unidos, la mayor parte del jurado.",
+q:{salon:"Su negocio es ser el terreno neutral donde todos se reúnen. Quiere que la próxima Exposición sea en Ginebra."},
+also:"También exponen: Paul Klee (vive en Múnich), Félix Vallotton y Blaise Cendrars (viven en París).",
+people:[
+["Ferdinand Hodler","pin",5,1853,"Berna","","",16,"","«La noche» y «Unanimidad»: filas de figuras que repiten el mismo gesto.","Jurado de pintura. Su compañera Valentine se muere en Vevey y él la dibuja cada día. No está para sobornos ni para nada.","","jur"],
+["Émile Jaques-Dalcroze","mus",4,1865,"Viena","","",14,"","La rítmica: música que se aprende con el cuerpo. Su instituto está en Hellerau, cerca de Dresde.","Jurado de danza y de música. Media Liza ha sido alumna suya: tiene que juzgar a sus discípulos.","","jur"],
+["Adolphe Appia","arq",3,1862,"Ginebra","","",12,"","«Espacios rítmicos»: escaleras, rampas y luz, sin decorado.","Diseña escenarios, no edificios. Ha propuesto cómo debe ser por dentro la rotonda de la Liza, y casi nadie ha visto sus planos.","","prop"]
+]});
+
+NATIONS.push({
+id:"dinamarca", name:"Dinamarca", bloc:"neu", mode:"salon", chip:"Salones · propuesta",
+line:"Pequeña, neutral y con la industria de cine que más exporta al norte de Europa.",
+q:{salon:"Vender películas: sus cintas llenan las salas de Berlín y de San Petersburgo, y no quiere perder ninguna de las dos."},
+also:"",
+people:[
+["Carl Nielsen","mus",4,1865,"Fionia","","",14,"","La Sinfonía «Expansiva» (1911).","Hijo de un pintor de brocha gorda. Su música empuja hacia delante; tocada en el Salón, la gente sale andando más deprisa.","","prop"],
+["Vilhelm Hammershøi","pin",4,1864,"Copenhague","","",15,"","Interiores grises con una mujer de espaldas y una puerta abierta.","Enfermo. En sus cuartos no hay nadie más y nunca pasa nada: los que huyen de algo piden entrar.","","prop"],
+["Asta Nielsen","cin",4,1881,"Copenhague","","",14,"","«El abismo» (1910) y sus películas alemanas.","La primera estrella del cine europeo; trabaja en Berlín. Sin gestos de teatro: mira, y el espectador hace el resto.","","prop"]
+]});
+
+NATIONS.push({
+id:"argentina", name:"Argentina", bloc:"neu", mode:"salon", chip:"Salones · sin pabellón · propuesta",
+line:"No trae pabellón: trae una moda. París baila tango desde el otoño y el arzobispado prepara una condena.",
+q:{salon:"Que la danza de salón cuente como danza. Y recuperar a Antonia Mercé, nacida en Buenos Aires e inscrita por España."},
+also:"",
+people:[
+["Enrique Saborido","mus",3,1877,"Montevideo","","",12,"","«La morocha» y «Felicia». Da clases de tango a la aristocracia de París desde 1913.","Su academia de la orilla derecha es el único sitio donde coinciden duquesas, agregados militares y bailarinas de todas las delegaciones.","","prop"],
+["Ovidio Bianquet, «el Cachafaz»","dan",3,1885,"Buenos Aires","","",12,"","Tango de arrabal, con cortes y quebradas.","El mejor bailarín de tango de Buenos Aires. Baila en pareja, y el compás lo manda quien lleva: un problema para cualquiera que baile con él.","","prop"]
+]});
+
+// Equipos de doce: seis titulares y seis reemplazantes por nación. Los nombres son prefijos de los de data*.js.
+var TEAMS = [
+  {
+    id: "francia", chip: "anfitriona · bloque de la paz",
+    lema: "Doce plazas por decidir en las pruebas de abril. Este es el equipo si ningún PJ gana la suya.",
+    plan: "Sin titular en danza: sus dos mejores bailarinas son extranjeras y su plaza depende de la Conferencia.",
+    tit: ["Auguste Perret", "Marcel Proust", "Claude Debussy", "Henri Matisse", "Auguste Rodin", "Georges Méliès"],
+    rem: ["Isadora Duncan", "Loïe Fuller", "Romain Rolland", "Maurice Ravel", "Antoine Bourdelle", "Louis Feuillade"],
+    fuera: "Sin plaza: Lavirotte, Garnier, Apollinaire, Lili Boulanger, Derain, Braque, Camille Claudel, Zambelli y Alice Guy-Blaché. PJ con plaza posible: Chloé Müller (literatura), Élodie Lecat (música), Jean Luigi David (cine) y Lucien Nœud-Papillon (arquitectura). Quien gane su prueba desplaza al titular o al reemplazante de su arte."
+  },
+  {
+    id: "espana", chip: "bloque de la paz",
+    lema: "Ganaron los gaudistas y gobierna la Internacional. Aliada firme de Francia, y aun así le reclama la Dama de Elche.",
+    plan: "Todo gira en torno a Gaudí. La escultura sale desde el banquillo.",
+    tit: ["Antoni Gaudí", "Ramón del Valle-Inclán", "Manuel de Falla", "Joaquín Sorolla", "Pastora Imperio", "Segundo de Chomón"],
+    rem: ["Mariano Benlliure", "Josep Maria Jujol", "Miguel de Unamuno", "Enrique Granados", "Pablo Picasso", "Pablo Gargallo"],
+    fuera: "Fuera de la lista: Fructuós Gelabert, el más prescindible, y Antonia Mercé, a la que reclama Argentina. Si Picasso no firma, su plaza de reemplazante es para Zuloaga."
+  },
+  {
+    id: "reino-unido", chip: "bloque de la paz · receloso",
+    lema: "Se acerca a Francia y a España por miedo a Rusia, pero recela de las naciones gobernadas por artistas. Viene a competir y a vigilar.",
+    plan: "Alineación de consagrados. El cine espera en el banquillo a que Chaplin cruce el Atlántico.",
+    tit: ["Edwin Lutyens", "Rudyard Kipling", "Edward Elgar", "John William Waterhouse", "George Frampton", "Maud Allan"],
+    rem: ["Charlie Chaplin", "Charles Rennie Mackintosh", "H. G. Wells", "Gustav Holst", "Walter Sickert", "Jacob Epstein"],
+    fuera: "Fuera de la lista: Phyllis Bedells, que solo estaba inscrita porque no llegó Nijinski, y Cecil Hepworth."
+  },
+  {
+    id: "suecia", chip: "bloque de la paz · amenazada",
+    lema: "Las Åland fortificadas apuntan a Estocolmo. Es la que más necesita la paz y la más débil en la arena, salvo en el cine.",
+    plan: "Los seis mejores de un equipo corto. La danza, su arte más débil, se queda en el banquillo.",
+    tit: ["Ragnar Östberg", "Selma Lagerlöf", "Wilhelm Stenhammar", "Anders Zorn", "Carl Milles", "Victor Sjöström"],
+    rem: ["Jean Börlin", "Verner von Heidenstam", "Hugo Alfvén", "Carl Larsson", "Carl Eldh", "Mauritz Stiller"],
+    fuera: "Fuera de la lista: Ferdinand Boberg y Anna Behle."
+  },
+  {
+    id: "imperio-heleno", chip: "bisagra",
+    lema: "Roma, Atenas y Constantinopla bajo tres consejos del arte. Teme a Rusia, pero la paz le impide tomar Macedonia.",
+    plan: "Dos titulares por consejo: Puccini y Pastrone por Roma, Palamás y Chalepás por Atenas, Kemaleddin y Nuri Dede por Constantinopla. La pintura espera, y los dos futuristas van al banquillo, donde se los vigila mejor.",
+    tit: ["Mimar Kemaleddin", "Kostís Palamás", "Giacomo Puccini", "Yannoulis Chalepás", "Nuri Dede", "Giovanni Pastrone"],
+    rem: ["Giorgio de Chirico", "Abdülmecid Efendi", "Anastasios Metaxás", "Tanburi Cemil Bey", "Filippo Tommaso Marinetti", "Umberto Boccioni"],
+    fuera: "Fuera de la lista: Vassos Kanellos y Milton Manaki. La película de Manaki sobre Macedonia sigue en el Salón."
+  },
+  {
+    id: "rusia", chip: "revisionista · rival principal",
+    lema: "Nicolás II, con Rasputín detrás del trono. Fue la primera en inscribir a los suyos, y varios no eligieron bandera.",
+    plan: "Dos de los seis titulares combaten por decreto, y otros dos forzados esperan en el banquillo. El cine, el arte que impuso Francia, no tiene titular.",
+    tit: ["Eliel Saarinen", "Henryk Sienkiewicz", "Aleksandr Scriabin", "Léon Bakst", "Serguéi Koniónkov", "Anna Pávlova"],
+    rem: ["Władysław Starewicz", "Fiódor Schechtel", "Aleksandr Blok", "Ígor Stravinski", "Kazimir Malévich", "Tamara Karsávina"],
+    fuera: "Fuera de la lista: Yevgueni Bauer y Paolo Troubetzkoy, que apenas habla ruso y vive en París. Rasputín, Diáguilev y Fabergé siguen sin inscribir."
+  },
+  {
+    id: "serbia", chip: "revisionista · satélite ruso",
+    lema: "Armada e influida por Rusia. Su duelo con el Imperio Heleno es una guerra delegada.",
+    plan: "Meštrović y cinco que no piensan rendirse. El cine, su arte más flojo, al banquillo.",
+    tit: ["Jelisaveta Načić", "Branislav Nušić", "Stevan Mokranjac", "Paja Jovanović", "Ivan Meštrović", "Vojin Stanković"],
+    rem: ["Ilija Stanojević", "Momir Korunović", "Jovan Dučić", "Stanislav Binički", "Nadežda Petrović", "Toma Rosandić"],
+    fuera: "Fuera de la lista: Maga Magazinović y Đoka Bogdanović, que seguirá filmando todos los combates."
+  },
+  {
+    id: "china", chip: "sin bloque",
+    lema: "Salida de una revolución tradicionalista. Pasa por aliada de Rusia, pero su ministro dice que no viene contra Francia.",
+    plan: "La música se queda en el banquillo: su maestro de qin cree que tocar ante una multitud es una vulgaridad. El titiritero Lu Fuyuan es titular para que nadie discuta que las sombras son cine.",
+    tit: ["Yao Chengzu", "Kang Youwei", "Wu Changshuo", "Zhang Yuting", "Yang Xiaolou", "Lu Fuyuan"],
+    rem: ["Yang Zongji", "Lei Xiancai", "Lin Shu", "Qi Baishi", "Liu Hesheng", "Mei Lanfang"],
+    fuera: "Fuera de la lista: Shen Zhaozhou y Ren Qingtai."
+  },
+  {
+    id: "japon", chip: "aliado del Reino Unido",
+    lema: "Venció a Rusia en 1905. Equipo disciplinado, mitad tradición y mitad Occidente aprendido en una generación.",
+    plan: "Equipo equilibrado. El cine, el arte más joven, espera en el banquillo con su ídolo Onoe.",
+    tit: ["Tatsuno Kingo", "Natsume Sōseki", "Nakao Tozan", "Yokoyama Taikan", "Takamura Kōun", "Kawakami Sadayakko"],
+    rem: ["Onoe Matsunosuke", "Itō Chūta", "Yosano Akiko", "Takeuchi Seihō", "Takamura Kōtarō", "Hanako"],
+    fuera: "Fuera de la lista: Makino Shōzō y Miyagi Michio. Foujita sigue de aspirante: la delegación lo quiere de guía, no de campeón."
+  }
+];
+
+(function () {
+  var ARTS = { arq: "Arquitectura", lit: "Literatura", mus: "Música", pin: "Pintura", esc: "Escultura", dan: "Danza", cin: "Cine", art: "Artesanía", dil: "Diletante" };
+  var SEVEN = ["arq", "lit", "mus", "pin", "esc", "dan", "cin"];
+  var ATTR = { V: "Vigor", C: "Coordinación", I: "Ingenio", G: "Gracia", S: "Sagacidad" };
+  var ORDER = ["V", "C", "I", "G", "S"];
+  var SHORT = { V: "Vig", C: "Coo", I: "Ing", G: "Gra", S: "Sag" };
+  var SK = { Atletismo: "V", Aguante: "V", Lucha: "V", Supervivencia: "V", Sigilo: "C", Pericia: "C", Disparo: "C", Esquiva: "C", Academicismo: "I", Ciencia: "I", Medicina: "I", Ocultismo: "I", Estoicismo: "G", Presencia: "G", Encanto: "G", Etiqueta: "G", Observar: "S", Investigar: "S", "Charlatanería": "S", Callejeo: "S" };
+  var FLAGS = { fic: "personaje ficticio", "for": "forzado", plz: "plaza en disputa", dis: "disidente", som: "no inscrito", jur: "jurado", asp: "aspirante", prop: "propuesta" };
+  var QLABEL = { liza: "exige en la liza", salon: "exige en los salones", conf: "exige en la conferencia", roja: "no cederá" };
+
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+  function pips(m) {
+    var out = "";
+    for (var i = 1; i <= Math.max(5, m); i++) out += '<i class="' + (i <= m ? "on" : "off") + (i === 6 ? " six" : "") + '"></i>';
+    return out;
+  }
+  function card(p) {
+    var name = p[0], art = p[1], m = p[2], born = p[3], origin = p[4], attrs = p[5], aAttr = p[6], aRank = p[7],
+      skills = p[8], work = p[9], liza = p[10], hook = p[11], flags = (p[12] || "").split(" ").filter(Boolean);
+    var age = typeof born === "number" ? " · " + (1914 - born) + " años" : "";
+    var h = '<article class="pc">';
+    h += '<header class="pc-top"><span class="art">' + ARTS[art] + '</span><span class="mast" role="img" aria-label="Maestría ' + m + '"><span class="pips">' + pips(m) + '</span><b>' + m + '</b></span></header>';
+    h += '<h4>' + esc(name) + '</h4>';
+    h += '<p class="meta">' + esc(origin) + ", " + esc(born) + age + '</p>';
+    if (flags.length) {
+      h += '<p class="tags">' + flags.map(function (f) { return '<span class="tag t-' + f + '">' + FLAGS[f] + '</span>'; }).join("") + '</p>';
+    }
+    var a = {};
+    ORDER.forEach(function (k, i) { a[k] = +attrs.charAt(i); });
+    var bonus = a[aAttr] + aRank + m;
+    h += '<dl class="attrs">' + ORDER.map(function (k) {
+      return '<div' + (k === aAttr ? ' class="key"' : '') + '><dt><abbr title="' + ATTR[k] + '">' + SHORT[k] + '</abbr></dt><dd>' + a[k] + '</dd></div>';
+    }).join("") + '</dl>';
+    h += '<p class="roll"><span class="big">Arte +' + bonus + '</span><span class="sub">' + ATTR[aAttr] + ' ' + a[aAttr] + ' + Arte ' + aRank + ' + Maestría ' + m + '</span></p>';
+    h += '<p class="vit"><span><b>' + (3 + m) + '</b> Vitalidad</span><span><b>' + (3 + m) + '</b> Voluntad</span></p>';
+    h += '<p class="skills">' + skills.split(", ").map(function (s) {
+      var i = s.lastIndexOf(" "), nm = s.slice(0, i), r = +s.slice(i + 1);
+      return '<span>' + nm + ' <b>+' + (a[SK[nm]] + r) + '</b></span>';
+    }).join("") + '</p>';
+    h += '<p class="txt"><span class="k">Expone</span>' + esc(work) + '</p>';
+    if (liza) h += '<p class="txt"><span class="k">En la Liza</span>' + esc(liza) + '</p>';
+    if (hook) h += '<p class="txt hook"><span class="k">Gancho</span>' + esc(hook) + '</p>';
+    return h + '</article>';
+  }
+
+  var byId = {};
+  NATIONS.forEach(function (n) { byId[n.id] = n; });
+  function pick(n, prefix) {
+    for (var i = 0; i < n.people.length; i++) if (n.people[i][0].indexOf(prefix) === 0) return n.people[i];
+    return null;
+  }
+
+  var html = "", navHtml = "", rows = "";
+  TEAMS.forEach(function (t) {
+    var n = byId[t.id];
+    var tit = t.tit.map(function (x) { return pick(n, x); });
+    var rem = t.rem.map(function (x) { return pick(n, x); });
+    var started = {};
+    tit.forEach(function (p) { started[p[1]] = true; });
+    var bench = SEVEN.filter(function (k) { return !started[k]; }).map(function (k) { return ARTS[k]; }).join(", ");
+    navHtml += '<a class="b-' + n.bloc + '" href="#e-' + t.id + '">' + esc(n.name) + '</a>';
+    rows += '<tr><td class="lead"><a href="#e-' + t.id + '">' + esc(n.name) + '</a></td><td>' + tit.map(function (p) { return esc(p[0].split(",")[0]); }).join(" · ") + '</td><td class="dim">' + bench + '</td></tr>';
+    html += '<details class="nat b-' + n.bloc + '" id="e-' + t.id + '" open><summary><span class="nat-head"><h2>' + esc(n.name) + '</h2><span class="chip">' + esc(t.chip) + '</span></span>';
+    html += '<span class="one">' + esc(t.lema) + '</span></summary><div class="nat-body">';
+    html += '<div class="wants">' + ["liza", "salon", "conf", "roja"].filter(function (k) { return n.q[k]; }).map(function (k) {
+      return '<div class="want w-' + k + '"><span class="kicker">' + QLABEL[k] + '</span><p>' + esc(n.q[k]) + '</p></div>';
+    }).join("") + '</div>';
+    html += '<h3 class="sec"><span>Titulares</span><small>sin titular en ' + bench.toLowerCase() + '</small></h3>';
+    html += '<p class="plan">' + esc(t.plan) + '</p>';
+    html += '<div class="cards">' + tit.map(card).join("") + '</div>';
+    html += '<h3 class="sec"><span>Reemplazantes</span></h3>';
+    html += '<div class="cards">' + rem.map(card).join("") + '</div>';
+    html += '<p class="also">' + esc(t.fuera) + '</p>';
+    html += '</div></details>';
+  });
+  document.getElementById("equipos").innerHTML = html;
+  document.getElementById("nav-equipos").innerHTML = navHtml;
+  document.getElementById("vistazo").innerHTML = rows;
+
+  var libres = byId["sin-bandera"];
+  if (libres) document.getElementById("libres").innerHTML = libres.people.map(card).join("");
+
+  document.getElementById("solo-exponen").innerHTML = NATIONS.filter(function (n) { return n.mode === "salon"; }).map(function (n) {
+    var parts = [n.q.salon, n.q.conf].filter(Boolean).join(" ");
+    return '<tr><td class="lead">' + esc(n.name) + '</td><td>' + esc(parts) + '</td><td class="dim">' + esc(n.q.roja || "") + '</td></tr>';
+  }).join("");
+
+  function openTarget(id) {
+    var el = id ? document.getElementById(id) : null;
+    if (!el) return;
+    var p = el;
+    while (p) { if (p.tagName === "DETAILS") p.open = true; p = p.parentElement; }
+    el.scrollIntoView({ block: "start" });
+  }
+  window.addEventListener("hashchange", function () { openTarget(location.hash.slice(1)); });
+  if (location.hash) openTarget(location.hash.slice(1));
+})();
+</script>
+</body>
+</html>
