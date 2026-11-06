@@ -223,6 +223,14 @@ details.nat > summary:hover h2 { color: var(--gold); }
 .sec { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; font-size: 28px; margin-top: 10px; border-bottom: 2px solid var(--ink); padding-bottom: 6px; }
 .sec small { font-family: var(--f-label); font-size: 15px; letter-spacing: .06em; color: var(--muted); }
 .plan { font-size: 17px; max-width: 80ch; }
+.pc-id { display: grid; grid-template-columns: 108px minmax(0, 1fr); gap: 14px; align-items: start; }
+.pc-id.no-ph { grid-template-columns: minmax(0, 1fr); }
+.pc-who { display: grid; gap: 6px; align-content: start; min-width: 0; }
+.ph { display: block; width: 108px; height: 135px; object-fit: cover; border: 1px solid var(--line); background: var(--hover); }
+.txt.look .k { color: var(--muted); }
+.credits { margin: 0; padding-left: 1.1em; columns: 320px; column-gap: 32px; font-size: 15px; color: var(--muted); }
+.credits li { break-inside: avoid; padding-block: 2px; overflow-wrap: anywhere; }
+.credits a { color: var(--ink); }
 </style>
 </head>
 <body>
@@ -270,6 +278,18 @@ details.nat > summary:hover h2 { color: var(--gold); }
           <tbody id="solo-exponen"></tbody>
         </table>
       </div>
+    </div>
+  </details>
+
+  <details class="chap" id="retratos">
+    <summary>
+      <span class="roman">§</span>
+      <span class="sum-text"><h2>Créditos de los retratos</h2><span class="sum-desc">Fotografías y retratos de época tomados de Wikimedia Commons, recortados y virados a sepia.</span></span>
+      <span class="chev"><span class="opened">cerrar</span><span class="closed">abrir</span></span>
+    </summary>
+    <div class="chap-body">
+      <p class="note">Los retratos del equipo francés son los del propio sitio. El resto procede de Wikimedia Commons; cada nombre enlaza con el archivo original, su autor y su licencia.</p>
+      <ul class="credits" id="creditos"></ul>
     </div>
   </details>
 </div>
@@ -764,6 +784,125 @@ var TEAMS = [
   }
 ];
 
+// Generado por fotos/process.py
+var PHOTOS = {
+ "Romain Rolland": "romain_rolland",
+ "Louis Feuillade": "louis_feuillade",
+ "Antoni Gaudí": "antoni_gaudi",
+ "Ramón del Valle-Inclán": "valle_inclan",
+ "Manuel de Falla": "manuel_de_falla",
+ "Joaquín Sorolla": "joaquin_sorolla",
+ "Pastora Imperio": "pastora_imperio",
+ "Segundo de Chomón": "segundo_de_chomon",
+ "Mariano Benlliure": "mariano_benlliure",
+ "Josep Maria Jujol": "josep_maria_jujol",
+ "Miguel de Unamuno": "miguel_de_unamuno",
+ "Enrique Granados": "enrique_granados",
+ "Pablo Picasso": "pablo_picasso",
+ "Pablo Gargallo": "pablo_gargallo",
+ "Edwin Lutyens": "edwin_lutyens",
+ "Rudyard Kipling": "rudyard_kipling",
+ "Edward Elgar": "edward_elgar",
+ "John William Waterhouse": "john_william_waterhouse",
+ "George Frampton": "george_frampton",
+ "Maud Allan": "maud_allan",
+ "Charlie Chaplin": "charlie_chaplin",
+ "Charles Rennie Mackintosh": "charles_rennie_mackintosh",
+ "H. G. Wells": "h_g_wells",
+ "Gustav Holst": "gustav_holst",
+ "Walter Sickert": "walter_sickert",
+ "Jacob Epstein": "jacob_epstein",
+ "Ragnar Östberg": "ragnar_ostberg",
+ "Selma Lagerlöf": "selma_lagerlof",
+ "Wilhelm Stenhammar": "wilhelm_stenhammar",
+ "Anders Zorn": "anders_zorn",
+ "Carl Milles": "carl_milles",
+ "Victor Sjöström": "victor_sjostrom",
+ "Jean Börlin": "jean_borlin",
+ "Verner von Heidenstam": "verner_von_heidenstam",
+ "Hugo Alfvén": "hugo_alfven",
+ "Carl Larsson": "carl_larsson",
+ "Carl Eldh": "carl_eldh",
+ "Mauritz Stiller": "mauritz_stiller",
+ "Mimar Kemaleddin": "mimar_kemaleddin",
+ "Kostís Palamás": "kostis_palamas",
+ "Giacomo Puccini": "giacomo_puccini",
+ "Yannoulis Chalepás": "yannoulis_chalepas",
+ "Giovanni Pastrone": "giovanni_pastrone",
+ "Giorgio de Chirico": "giorgio_de_chirico",
+ "Abdülmecid Efendi": "abdulmecid_efendi",
+ "Anastasios Metaxás": "anastasios_metaxas",
+ "Tanburi Cemil Bey": "tanburi_cemil_bey",
+ "Filippo Tommaso Marinetti": "marinetti",
+ "Umberto Boccioni": "umberto_boccioni",
+ "Eliel Saarinen": "eliel_saarinen",
+ "Henryk Sienkiewicz": "henryk_sienkiewicz",
+ "Aleksandr Scriabin": "aleksandr_scriabin",
+ "Léon Bakst": "leon_bakst",
+ "Anna Pávlova": "anna_pavlova",
+ "Władysław Starewicz": "wladyslaw_starewicz",
+ "Fiódor Schechtel": "fiodor_schechtel",
+ "Aleksandr Blok": "aleksandr_blok",
+ "Ígor Stravinski": "igor_stravinski",
+ "Kazimir Malévich": "kazimir_malevich",
+ "Tamara Karsávina": "tamara_karsavina",
+ "Jelisaveta Načić": "jelisaveta_nacic",
+ "Branislav Nušić": "branislav_nusic",
+ "Stevan Mokranjac": "stevan_mokranjac",
+ "Paja Jovanović": "paja_jovanovic",
+ "Ivan Meštrović": "ivan_mestrovic",
+ "Ilija Stanojević": "ilija_stanojevic",
+ "Momir Korunović": "momir_korunovic",
+ "Jovan Dučić": "jovan_ducic",
+ "Stanislav Binički": "stanislav_binicki",
+ "Nadežda Petrović": "nadezda_petrovic",
+ "Kang Youwei": "kang_youwei",
+ "Wu Changshuo": "wu_changshuo",
+ "Yang Zongji": "yang_zongji",
+ "Lin Shu": "lin_shu",
+ "Qi Baishi": "qi_baishi",
+ "Mei Lanfang": "mei_lanfang",
+ "Tatsuno Kingo": "tatsuno_kingo",
+ "Natsume Sōseki": "natsume_soseki",
+ "Nakao Tozan": "nakao_tozan",
+ "Yokoyama Taikan": "yokoyama_taikan",
+ "Takamura Kōun": "takamura_koun",
+ "Kawakami Sadayakko": "sadayakko",
+ "Onoe Matsunosuke": "onoe_matsunosuke",
+ "Itō Chūta": "ito_chuta",
+ "Yosano Akiko": "yosano_akiko",
+ "Takeuchi Seihō": "takeuchi_seiho",
+ "Takamura Kōtarō": "takamura_kotaro",
+ "Hanako": "hanako",
+ "Vaslav Nijinski": "vaslav_nijinski",
+ "Marc Chagall": "marc_chagall",
+ "Aleksandr Archipenko": "aleksandr_archipenko",
+ "Rabindranath Tagore": "rabindranath_tagore",
+ "Auguste Perret": "auguste_perret",
+ "Marcel Proust": "marcel_proust",
+ "Claude Debussy": "claude_debussy",
+ "Henri Matisse": "henri_matisse",
+ "Auguste Rodin": "auguste_rodin",
+ "Georges Méliès": "georges_melies",
+ "Isadora Duncan": "isadora_duncan",
+ "Loïe Fuller": "loie_fuller",
+ "Maurice Ravel": "maurice_ravel",
+ "Antoine Bourdelle": "antoine_bourdelle"
+};
+var LOOKS = {
+ "Nuri Dede": "Unos cincuenta y cinco años, enjuto, de barba gris recortada. Viste la túnica blanca de los mevlevíes y el gorro alto de fieltro pardo; fuera de la ceremonia, un manto negro. Habla poco y mira al suelo.",
+ "Vojin Stanković": "Veintinueve años, ancho de hombros, bigote negro y el pelo rapado del cuartel. Lleva el traje de paisano como si fuera un uniforme, y una cicatriz le parte la ceja izquierda.",
+ "Liu Hesheng": "Cerca de sesenta años, bajo y macizo, con las manos grises de polvo de mármol y los nudillos deformados. Chaqueta acolchada de algodón azul y gorro de fieltro. Sonríe con pocos dientes.",
+ "Lu Fuyuan": "Unos cincuenta y cinco años, flaco y de ojos vivos, con bigote ralo y una túnica larga gastada en los codos. Lleva colgada la caja de las figuras y no la suelta ni para comer.",
+ "Serguéi Koniónkov": "Cuarenta años, alto y fuerte, con melena y barba de campesino. Manos enormes, hechas a tallar madera. Viste blusa rusa ceñida con un cordón, también en los salones.",
+ "Toma Rosandić": "Treinta y seis años, moreno y nervudo, de bigote espeso y manos de cantero. Habla poco, con acento dálmata, y siempre lleva polvo de piedra en las mangas.",
+ "Zhang Yuting": "Cincuenta y un años, menudo y de gesto risueño, con las yemas de los dedos teñidas de arcilla. Túnica larga de mangas anchas, donde siempre guarda un puñado de barro.",
+ "Yang Xiaolou": "Treinta y seis años, alto y de espaldas anchas, con la voz grave y el andar medido de los generales que interpreta. Fuera de escena viste con sobriedad y habla en voz baja.",
+ "Yao Chengzu": "Cuarenta y ocho años, enjuto y curtido, con las manos callosas del carpintero y una regla de madera metida en la faja. Túnica gris sin adornos.",
+ "Lei Xiancai": "Treinta y siete años, pálido y pulcro, con los dedos finos manchados de cola. Viste como un funcionario de la vieja corte y se inclina antes de hablar."
+};
+var CREDITS = [{"n": "Romain Rolland", "a": "Agence de presse Meurisse", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Romain_Rolland_de_face_au_balcon,_Meurisse,_1914_retouche.jpg"}, {"n": "Louis Feuillade", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Louis_Feuillade.jpg"}, {"n": "Antoni Gaudí", "a": "Pau Audouard Deglaire", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Antoni_Gaudi_1878.jpg"}, {"n": "Ramón del Valle-Inclán", "a": "Pau Audouard Deglaire", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Ram%C3%B3n_Mar%C3%ADa_del_Valle_Incl%C3%A1n,_de_Audouard.jpg"}, {"n": "Manuel de Falla", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:ManuelDeFalla.JPG"}, {"n": "Joaquín Sorolla", "a": "Gertrude Käsebier", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Joaquin_Sorolla_by_Gertrude_K%C3%A4sebier,_1908.jpg"}, {"n": "Pastora Imperio", "a": "No consta", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Pastora_Imperio_junio_1914.png"}, {"n": "Segundo de Chomón", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Segundo_de_Chom%C3%B3n.jpg"}, {"n": "Mariano Benlliure", "a": "", "l": "CC BY-SA 3.0", "u": "https://commons.wikimedia.org/wiki/File:Luna_Mariano_Benlliure.jpg"}, {"n": "Josep Maria Jujol", "a": "Amadalvarez", "l": "CC BY 3.0", "u": "https://commons.wikimedia.org/wiki/File:Jujol-JosepMaria-9119.jpg"}, {"n": "Miguel de Unamuno", "a": "Agence de presse Meurisse", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Miguel_de_Unamuno_Meurisse_c_1925.JPG"}, {"n": "Enrique Granados", "a": "", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Granados.jpg"}, {"n": "Pablo Picasso", "a": "AnonymousUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Portrait_de_Picasso,_1908_cropped.jpg"}, {"n": "Pablo Gargallo", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:PauGargalloCatalan1910.jpg"}, {"n": "Edwin Lutyens", "a": "Weaver, Lawrence, 1876-1930", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Edwin_Lutyens.jpg"}, {"n": "Rudyard Kipling", "a": "Elliott & Fry", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Rudyard_Kipling_(portrait).jpg"}, {"n": "Edward Elgar", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Edward_Elgar.jpg"}, {"n": "John William Waterhouse", "a": "Elliott & Fry", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:The_late_John_William_Waterhouse_in_his_studio.jpg"}, {"n": "George Frampton", "a": "W. H. (or W. M.) Latham, 19th/20th Century", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:George_James_Frampton_(1860-1928)_by_WH_Latham.jpg"}, {"n": "Maud Allan", "a": "", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Maud_Allan.jpg"}, {"n": "Charlie Chaplin", "a": "Strauss-Peyton Studio", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Charlie_Chaplin_portrait_Getty_1739411952.jpg"}, {"n": "Charles Rennie Mackintosh", "a": "James Craig Annan", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Charles-Rennie-Mackintosh.jpg"}, {"n": "H. G. Wells", "a": "George Charles Beresford", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:H.G._Wells_by_Beresford.jpg"}, {"n": "Gustav Holst", "a": "Herbert Lambert", "l": "PD-US", "u": "https://en.wikipedia.org/wiki/File:Gustav-Holst-1921.jpg"}, {"n": "Walter Sickert", "a": "George Charles Beresford", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Walter_Sickert_photo_by_George_Charles_Beresford_1911_(1).jpg"}, {"n": "Jacob Epstein", "a": "George Charles Beresford", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Jacob_Epstein_photo_by_George_Charles_Beresford_1921.jpg"}, {"n": "Ragnar Östberg", "a": "Unknown authorUnknown author", "l": "CC BY-SA 4.0", "u": "https://commons.wikimedia.org/wiki/File:Ragnar_%C3%96stberg_1934a.jpg"}, {"n": "Selma Lagerlöf", "a": "", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Selma_Lagerl%C3%B6f.jpg"}, {"n": "Wilhelm Stenhammar", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Stenhammar,_Vilhelm_i_VJ_5_1916.jpg"}, {"n": "Anders Zorn", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Anders_Zorn_1908.jpg"}, {"n": "Carl Milles", "a": "ingen uppgift", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Carl_Milles_1940-tal.jpg"}, {"n": "Victor Sjöström", "a": "", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:VictorSjostrom.jpg"}, {"n": "Jean Börlin", "a": "Comœdia illustré", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Jean_B%C3%B6rlin_dans_Comoedia_illustr%C3%A9_du_1er_novembre_1920.png"}, {"n": "Verner von Heidenstam", "a": "Not credited", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Verner_von_Heidenstam_in_the_1890s.jpg"}, {"n": "Hugo Alfvén", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Hugo_Alfv%C3%A9n_ca_1906.png"}, {"n": "Carl Larsson", "a": "Carl Larsson", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Larsson_-_Self_Portrait.jpg"}, {"n": "Carl Eldh", "a": "Bertil Norberg", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Carl_Eldh_1935.jpg"}, {"n": "Mauritz Stiller", "a": "Arnold Genthe", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Mauritz_Stiller_1927.jpg"}, {"n": "Mimar Kemaleddin", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Mimar_Kemaleddin.jpg"}, {"n": "Kostís Palamás", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Kostis_Palamas_(Imerologion_Skokou_1891).jpg"}, {"n": "Giacomo Puccini", "a": "Miscellaneous Items in High Demand, PPOC, Library of Congress", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Giacomo_Puccini_LCCN2005685154_(1)_cropped.jpg"}, {"n": "Yannoulis Chalepás", "a": "Κωνσταντίνος Π. Καλαϊτζίδης", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Yannoulis_Chalepas_(1929).jpeg"}, {"n": "Giovanni Pastrone", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Giovanni_Pastrone_-_Foto_da_giovane_1910_ca..jpg"}, {"n": "Giorgio de Chirico", "a": "Carl Van Vechten", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Giorgio_de_Chirico_(portrait).jpg"}, {"n": "Abdülmecid Efendi", "a": "Jean Pascal Sébah", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Portrait_Caliph_Abdulmecid_II.jpg"}, {"n": "Anastasios Metaxás", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Anastasios_Metaxas.JPG"}, {"n": "Tanburi Cemil Bey", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Cemil.jpg"}, {"n": "Filippo Tommaso Marinetti", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Filippo_Tommaso_Marinetti.jpg"}, {"n": "Umberto Boccioni", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Umberto_Boccioni,_portrait_photograph.jpg"}, {"n": "Eliel Saarinen", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Eliel_Saarinen.jpg"}, {"n": "Henryk Sienkiewicz", "a": "Marian Fuks", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Henryk_Sienkiewicz,_ok._1910.jpg"}, {"n": "Aleksandr Scriabin", "a": "Charles-Louis Klary", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Scriabin_1909_Cropped.jpg"}, {"n": "Léon Bakst", "a": "Léon Bakst", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Bakst_self.JPG"}, {"n": "Anna Pávlova", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Anna_Pavlova_as_the_Dying_Swan.jpg"}, {"n": "Władysław Starewicz", "a": "", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Starevich_1.jpg"}, {"n": "Fiódor Schechtel", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Fyodor_Schechtel_1890th.jpg"}, {"n": "Aleksandr Blok", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Alexander_Blok.jpeg"}, {"n": "Ígor Stravinski", "a": "George Grantham Bain Collection", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Igor_Stravinsky_LOC_32392u.jpg"}, {"n": "Kazimir Malévich", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Casimir_Malevich_photo.jpg"}, {"n": "Tamara Karsávina", "a": "", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Tamara_Karsavina_as_Armide_in_Pavillon_d_Armide_1911.jpg"}, {"n": "Jelisaveta Načić", "a": "", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:%D0%88%D0%B5%D0%BB%D0%B8%D1%81%D0%B0%D0%B2%D0%B5%D1%82%D0%B0_%D0%9D%D0%B0%D1%87%D0%B8%D1%9B.jpg"}, {"n": "Branislav Nušić", "a": "Milan Jovanović (1863-1944)", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Branislav_Nu%C5%A1i%C4%87_(cropped).jpg"}, {"n": "Stevan Mokranjac", "a": "Milan Jovanovic", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:%D0%A1%D1%82%D0%B5%D0%B2%D0%B0%D0%BD_%D0%A1%D1%82%D0%BE%D1%98%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%9B_%D0%9C%D0%BE%D0%BA%D1%80%D0%B0%D1%9A%D0%B0%D1%86-%D0%9C%D0%B8%D0%BB%D0%B0%D0%BD_%D0%88%D0%BE%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%9B.jpg"}, {"n": "Paja Jovanović", "a": "Milan Jovanović (1863–1944)", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:PajaJovanovic.jpg"}, {"n": "Ivan Meštrović", "a": "George Grantham Bain Collection (Library of Congress)", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Ivan_Me%C5%A1trovic.jpg"}, {"n": "Ilija Stanojević", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Ilija_Stanojevi%C4%87_photo.jpg"}, {"n": "Momir Korunović", "a": "", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Momir_korunovic.jpg"}, {"n": "Jovan Dučić", "a": "The original uploader was Obradovic Goran at English Wikipedia.", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Ducic.jpg"}, {"n": "Stanislav Binički", "a": "Milan Jovanović", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Stanislav_Bini%C4%8Dki.jpg"}, {"n": "Nadežda Petrović", "a": "AnonymousUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Nadezda_Petrovic.jpg"}, {"n": "Kang Youwei", "a": "Elmer Chickering", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Kang_Yu-wei_cph.3a45114.jpg"}, {"n": "Wu Changshuo", "a": "Original uploader was zh:User:Prattflora at [1]", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Wu-Chang-Shi.jpg"}, {"n": "Yang Zongji", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Yang_Zongji.jpg"}, {"n": "Lin Shu", "a": "Lin Shu", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Lin_Shu.jpg"}, {"n": "Qi Baishi", "a": "Zheng Jingkang", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Qi_Baishi_(1956),_by_Zheng_Jingkang.jpg"}, {"n": "Mei Lanfang", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Mei_Lanfang.jpg"}, {"n": "Tatsuno Kingo", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Tatsuno_Kingo.jpg"}, {"n": "Natsume Sōseki", "a": "Ogawa Kazumasa", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Natsume_Soseki_photo.jpg"}, {"n": "Nakao Tozan", "a": "日本教育資料刊行会", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Tozan_Nakao.jpg"}, {"n": "Yokoyama Taikan", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Yokoyama_Taikan.jpg"}, {"n": "Takamura Kōun", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Koun_Takamura_cropped.jpg"}, {"n": "Kawakami Sadayakko", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Sadayakko_Kawakami.jpg"}, {"n": "Onoe Matsunosuke", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Onoe-Matsunosuke.jpg"}, {"n": "Itō Chūta", "a": "", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:It%C5%8D_Ch%C5%ABta_(%E4%BC%8A%E6%9D%B1%E5%BF%A0%E5%A4%AA).jpg"}, {"n": "Yosano Akiko", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Akiko_Yosano_posing_by_window.jpg"}, {"n": "Takeuchi Seihō", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Takeuchi_Seiho.jpg"}, {"n": "Takamura Kōtarō", "a": "http://kajipon.com/", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:%E9%AB%98%E6%9D%91%E5%85%89%E5%A4%AA%E9%83%8E.jpg"}, {"n": "Hanako", "a": "Unknown authorUnknown author", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Hisa_Ota_(Hanako)_(cropped).jpg"}, {"n": "Vaslav Nijinski", "a": "Unknown photographer of the photography department of the Imperial Mariinsky Theatre. St. ", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Talisman_-Vayou_-Vaslav_Nijinsky_-1909.JPG"}, {"n": "Marc Chagall", "a": "Pierre Choumoff", "l": "Public domain", "u": "https://commons.wikimedia.org/wiki/File:Shagal_Choumoff.jpg"}, {"n": "Aleksandr Archipenko", "a": "Los Angeles Times", "l": "CC BY 4.0", "u": "https://commons.wikimedia.org/wiki/File:Alexander_Archipenko.jpg"}, {"n": "Rabindranath Tagore", "a": "Georges Chevalier", "l": "CC BY 4.0", "u": "https://commons.wikimedia.org/wiki/File:1926_Rabindrath_Tagore.jpg"}];
+
 (function () {
   var ARTS = { arq: "Arquitectura", lit: "Literatura", mus: "Música", pin: "Pintura", esc: "Escultura", dan: "Danza", cin: "Cine", art: "Artesanía", dil: "Diletante" };
   var SEVEN = ["arq", "lit", "mus", "pin", "esc", "dan", "cin"];
@@ -777,6 +916,10 @@ var TEAMS = [
   function esc(s) {
     return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
+  function lookup(map, name) {
+    for (var k in map) if (Object.prototype.hasOwnProperty.call(map, k) && name.indexOf(k) === 0) return map[k];
+    return null;
+  }
   function pips(m) {
     var out = "";
     for (var i = 1; i <= Math.max(5, m); i++) out += '<i class="' + (i <= m ? "on" : "off") + (i === 6 ? " six" : "") + '"></i>';
@@ -788,11 +931,16 @@ var TEAMS = [
     var age = typeof born === "number" ? " · " + (1914 - born) + " años" : "";
     var h = '<article class="pc">';
     h += '<header class="pc-top"><span class="art">' + ARTS[art] + '</span><span class="mast" role="img" aria-label="Maestría ' + m + '"><span class="pips">' + pips(m) + '</span><b>' + m + '</b></span></header>';
-    h += '<h4>' + esc(name) + '</h4>';
+    var slug = lookup(PHOTOS, name), look = lookup(LOOKS, name);
+    h += '<div class="pc-id' + (slug ? "" : " no-ph") + '">';
+    if (slug) h += '<img class="ph" src="personajes_imagenes/1914/' + slug + '.jpg" alt="Retrato de ' + esc(name) + '" width="108" height="135" loading="lazy">';
+    h += '<div class="pc-who"><h4>' + esc(name) + '</h4>';
     h += '<p class="meta">' + esc(origin) + ", " + esc(born) + age + '</p>';
     if (flags.length) {
       h += '<p class="tags">' + flags.map(function (f) { return '<span class="tag t-' + f + '">' + FLAGS[f] + '</span>'; }).join("") + '</p>';
     }
+    h += '</div></div>';
+    if (look) h += '<p class="txt look"><span class="k">Aspecto</span>' + esc(look) + '</p>';
     var a = {};
     ORDER.forEach(function (k, i) { a[k] = +attrs.charAt(i); });
     var bonus = a[aAttr] + aRank + m;
@@ -851,6 +999,12 @@ var TEAMS = [
   document.getElementById("solo-exponen").innerHTML = NATIONS.filter(function (n) { return n.mode === "salon"; }).map(function (n) {
     var parts = [n.q.salon, n.q.conf].filter(Boolean).join(" ");
     return '<tr><td class="lead">' + esc(n.name) + '</td><td>' + esc(parts) + '</td><td class="dim">' + esc(n.q.roja || "") + '</td></tr>';
+  }).join("");
+
+  var cred = document.getElementById("creditos");
+  if (cred) cred.innerHTML = CREDITS.map(function (c) {
+    var who = [c.a, c.l].filter(Boolean).join(", ");
+    return '<li>' + (c.u ? '<a href="' + esc(c.u) + '" rel="noopener">' + esc(c.n) + '</a>' : esc(c.n)) + (who ? ': ' + esc(who) : '') + '</li>';
   }).join("");
 
   function openTarget(id) {
