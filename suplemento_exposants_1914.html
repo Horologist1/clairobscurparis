@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Nouveau - Supplément : les exposants étrangers</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Crimson Text', serif; background: #f4e8d0; color: #1a1a1a; line-height: 1.6; padding: 24px; }
+        .page { max-width: 1180px; margin: 0 auto; background: #faf7f0; border: 3px double #2c2416; box-shadow: 0 0 30px rgba(0,0,0,0.25); padding: 30px; position: relative; }
+        .header { text-align: center; border-bottom: 3px double #2c2416; padding-bottom: 18px; margin-bottom: 24px; }
+        .eyebrow { font-size: 15px; letter-spacing: 3px; text-transform: uppercase; color: #5a4a3a; margin-bottom: 6px; }
+        .eyebrow a { color: #5a4a3a; }
+        .title { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; line-height: 1.05; }
+        .subtitle { margin-top: 8px; font-size: 20px; font-style: italic; color: #5a4a3a; }
+        .translate-wrap { text-align: center; margin-bottom: 24px; }
+        .translate-button { width: 38px; height: 38px; border-radius: 50%; border: 2px solid rgba(139,115,85,0.4); background: rgba(44,36,22,0.08); color: #5a4a3a; cursor: pointer; font-size: 18px; }
+        .editorial { margin: 20px auto 30px; max-width: 980px; background: #f4e8d0; border: 1px solid #8b7355; border-left: 4px solid #8b7355; padding: 18px 20px; text-align: justify; }
+        .editorial .label { text-align: center; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; color: #6b5a47; margin-bottom: 10px; }
+        .editorial p { font-size: 18px; line-height: 1.7; margin-bottom: 12px; }
+        .editorial .sign { font-style: italic; text-align: right; margin-bottom: 0; }
+        .nation { margin-top: 34px; }
+        .nation-title { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 700; text-align: center; border-top: 2px solid #2c2416; border-bottom: 2px solid #2c2416; padding: 10px 0; }
+        .nation-note { font-size: 17px; font-style: italic; color: #5a4a3a; text-align: center; margin: 10px auto 16px; max-width: 900px; }
+        .cards-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+        .noble-card { display: flex; gap: 16px; padding: 14px; background: #f4e8d0; border: 1px solid #8b7355; border-left: 4px solid #8b7355; }
+        .noble-side { flex: 0 0 200px; align-self: flex-start; }
+        .noble-photo { border: 2px solid #2c2416; background: #d4c5b0; overflow: hidden; height: 250px; }
+        .noble-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; filter: sepia(0.18) grayscale(0.08) contrast(1.04); cursor: pointer; display: block; }
+        .credit { font-size: 14px; font-style: italic; color: #5a4a3a; text-align: center; margin-top: 5px; line-height: 1.3; }
+        .noble-name { font-family: 'Playfair Display', serif; font-size: 29px; font-weight: 700; line-height: 1.1; margin-bottom: 8px; }
+        .noble-meta { font-size: 17px; color: #5a4a3a; margin-bottom: 10px; border-bottom: 1px solid #c4b59a; padding-bottom: 6px; }
+        .noble-text { font-size: 18px; line-height: 1.58; text-align: justify; hyphens: auto; }
+        .noble-text em { color: #3d3122; }
+        .noble-text p { margin-bottom: 9px; }
+        .noble-text strong { font-family: 'Playfair Display', serif; font-size: 17px; }
+        .work-link { margin-top: 4px; font-size: 16px; color: #5a4a3a; }
+        .work-link a { color: #2c2416; font-weight: 600; }
+        .closing { text-align: center; font-size: 18px; font-style: italic; color: #5a4a3a; margin-top: 34px; border-top: 3px double #2c2416; padding-top: 18px; }
+        .closing a { color: #2c2416; }
+        .lang-es { display: none; }
+        body.spanish .lang-fr { display: none; }
+        body.spanish .lang-es { display: block; }
+        .image-modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); justify-content: center; align-items: center; }
+        .image-modal.active { display: flex; }
+        .image-modal-content { position: relative; max-width: 90%; max-height: 90%; border: 4px solid #2c2416; padding: 10px; background: #faf7f0; }
+        .image-modal-content img { min-width: 300px; max-width: 100%; max-height: 82vh; display: block; }
+        .image-modal-close { position: absolute; top: -14px; right: -14px; width: 36px; height: 36px; background: #2c2416; color: #faf7f0; border: 2px solid #2c2416; border-radius: 50%; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        @media (max-width: 1060px) { .cards-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 680px) {
+            body { padding: 10px; }
+            .page { padding: 16px; }
+            .noble-card { flex-direction: column; }
+            .noble-side { flex: initial; width: 100%; max-width: 260px; align-self: center; }
+            .noble-photo { height: 320px; }
+            .title { font-size: 36px; letter-spacing: 1px; }
+            .nation-title { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <header class="header">
+            <p class="eyebrow lang-fr">Paris Nouveau · Supplément illustré au <a href="noticias41.html">numéro du 10 janvier 1914</a></p>
+            <p class="eyebrow lang-es">Paris Nouveau · Suplemento ilustrado al <a href="noticias41.html">número del 10 de enero de 1914</a></p>
+            <h1 class="title lang-fr">Ceux qui viennent</h1>
+            <h1 class="title lang-es">Los que vienen</h1>
+            <p class="subtitle lang-fr">Dix-neuf exposants étrangers de la seconde Exposition mondiale des Arts</p>
+            <p class="subtitle lang-es">Diecinueve expositores extranjeros de la segunda Exposición Mundial de las Artes</p>
+        </header>
+
+        <div class="translate-wrap">
+            <button class="translate-button" onclick="toggleLanguage()" title="FR / ES">🔍</button>
+        </div>
+
+        <section class="editorial">
+            <div class="label lang-fr">◆ Note de la Rédaction ◆</div>
+            <div class="label lang-es">◆ Nota de la Redacción ◆</div>
+
+            <p class="lang-fr">Cette rédaction a reçu, sans l'avoir demandé, un volumineux envoi signé <strong>Eulalia</strong> : des entretiens avec des artistes étrangers qui exposeront à Paris au printemps, des notes sur ce que chacun compte y montrer, et plusieurs caisses de plaques photographiques. L'auteur les a tous rencontrés et interrogés elle-même.</p>
+            <p class="lang-fr">L'envoi compte plus de soixante entretiens. Nous en publions dix-neuf. La rédaction a retenu ceux qui l'intéressaient le plus, et ceux qui présentent des artistes que nos lecteurs connaissent peu : on ne présente à Paris ni M. Puccini, ni M. Kipling, ni Mme Pavlova, ni M. Sorolla, ni Mme Lagerlöf.</p>
+            <p class="lang-fr">Les propos sont rapportés tels qu'ils nous ont été transmis. Ce journal ne prend parti dans aucune des querelles que l'Exposition aura à juger. Les entretiens sont d'Eulalia. Les photographies sont d'elle ou de son élève, M. Rémi Romain ; chacune porte le nom de son auteur.</p>
+            <p class="sign lang-fr">— La Rédaction</p>
+            <p class="lang-es">Esta redacción ha recibido, sin haberlo pedido, un voluminoso envío firmado por <strong>Eulalia</strong>: entrevistas con artistas extranjeros que expondrán en París en primavera, notas sobre lo que cada uno piensa mostrar, y varias cajas de placas fotográficas. La autora los ha visto y entrevistado a todos ella misma.</p>
+            <p class="lang-es">El envío reúne más de sesenta entrevistas. Publicamos diecinueve. La redacción ha escogido las que más le interesaban, y las que presentan a artistas que nuestros lectores conocen poco: no hace falta presentar en París al señor Puccini, ni al señor Kipling, ni a la señora Pávlova, ni al señor Sorolla, ni a la señora Lagerlöf.</p>
+            <p class="lang-es">Las palabras se recogen tal como nos han sido transmitidas. Este periódico no toma partido en ninguna de las querellas que la Exposición habrá de juzgar. Las entrevistas son de Eulalia. Las fotografías son suyas o de su discípulo, el señor Rémi Romain; cada una lleva el nombre de su autor.</p>
+            <p class="sign lang-es">— La Redacción</p>
+        </section>
+
+        <section class="nation">
+            <h2 class="nation-title lang-fr">Chine</h2>
+            <h2 class="nation-title lang-es">China</h2>
+            <div style="height:16px"></div>
+            <div class="cards-grid">
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/wu_changshuo.jpg" alt="Wu Changshuo" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Cliché Rémi Romain</p>
+                        <p class="credit lang-es">Fotografía de Rémi Romain</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Wu Changshuo</h3>
+                        <p class="noble-meta lang-fr">69 ans · Shanghaï · Peinture, calligraphie et sceaux</p>
+                        <p class="noble-meta lang-es">69 años · Shanghái · Pintura, caligrafía y sellos</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>Doyen des peintres de Shanghaï. Sourd, il répond au pinceau.</p><p><strong>Ce que l'on verra.</strong> Douze rouleaux de fleurs à l'encre et à la couleur : pruniers, glycines, calebasses, chrysanthèmes, chacun accompagné d'un poème de sa main. Le plus grand, un prunier en fleur, a près de quatre mètres. Dans une vitrine, les sceaux de pierre qu'il grave lui-même ; on les imprimera en rouge devant le public.</p><p><em>« Je n'entends plus les hommes depuis longtemps. Il me reste la pierre : quand je la grave, elle me répond. »</em></p><p class="work-link">◆ <a href="news/expo1914/wu.jpg" data-cap="Wu Changshuo, « Pruniers en fleur », encre sur papier, 1912 (détail)." onclick="openImageModal(this.href, this.dataset.cap); return false;">Voir l'œuvre</a> — Wu Changshuo, « Pruniers en fleur », encre sur papier, 1912 (détail).</p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Decano de los pintores de Shanghái. Sordo, responde con el pincel.</p><p><strong>Lo que se verá.</strong> Doce rollos de flores a tinta y color: ciruelos, glicinias, calabazas, crisantemos, cada uno acompañado de un poema de su mano. El mayor, un ciruelo en flor, mide cerca de cuatro metros. En una vitrina, los sellos de piedra que él mismo talla; se estamparán en rojo ante el público.</p><p><em>«Hace mucho que no oigo a los hombres. Me queda la piedra: cuando la grabo, me responde.»</em></p><p class="work-link">◆ <a href="news/expo1914/wu.jpg" data-cap="Wu Changshuo, «Ciruelos en flor», tinta sobre papel, 1912 (detalle)." onclick="openImageModal(this.href, this.dataset.cap); return false;">Ver la obra</a> — Wu Changshuo, «Ciruelos en flor», tinta sobre papel, 1912 (detalle).</p></div>
+                    </div>
+                </article>
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/qi_baishi.jpg" alt="Qi Baishi" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Cliché Rémi Romain</p>
+                        <p class="credit lang-es">Fotografía de Rémi Romain</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Qi Baishi</h3>
+                        <p class="noble-meta lang-fr">49 ans · Xiangtan, Hou-nan · Peinture</p>
+                        <p class="noble-meta lang-es">49 años · Xiangtan, Hunan · Pintura</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>Menuisier jusqu'à vingt-sept ans ; les lettrés de sa délégation ne lui pardonnent pas l'établi.</p><p><strong>Ce que l'on verra.</strong> Un album de vingt-quatre feuilles où il n'y a que du petit : des crevettes, des crabes, des poussins, des cigales, une souris devant une lampe à huile. Chaque feuille tient en quelques coups de pinceau, sans esquisse ni repentir. À côté, un paravent de bois qu'il a sculpté dans sa jeunesse.</p><p><em>« Le crabe marche de travers et se croit très avancé. Je n'ai rien dit de personne : j'ai parlé du crabe. »</em></p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Carpintero hasta los veintisiete años; los letrados de su delegación no le perdonan el banco de carpintero.</p><p><strong>Lo que se verá.</strong> Un álbum de veinticuatro hojas donde sólo hay cosas pequeñas: gambas, cangrejos, pollitos, cigarras, un ratón ante una lámpara de aceite. Cada hoja se resuelve en unas pocas pinceladas, sin boceto ni arrepentimiento. Al lado, un biombo de madera que talló en su juventud.</p><p><em>«El cangrejo anda de lado y se cree muy adelantado. No he dicho nada de nadie: he hablado del cangrejo.»</em></p></div>
+                    </div>
+                </article>
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/lin_shu.jpg" alt="Lin Shu" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Portrait dessiné</p>
+                        <p class="credit lang-es">Retrato a dibujo</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Lin Shu</h3>
+                        <p class="noble-meta lang-fr">61 ans · Fou-tchéou · Littérature</p>
+                        <p class="noble-meta lang-es">61 años · Fuzhou · Literatura</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>Il a traduit plus de cent romans d'Europe sans savoir aucune langue étrangère : un assistant raconte, il écrit.</p><p><strong>Ce que l'on verra.</strong> Ses livres, reliés à la chinoise et ouverts à côté des originaux : <em>La Dame aux camélias</em>, <em>Oliver Twist</em>, <em>Ivanhoé</em>, <em>Robinson Crusoé</em>. Chaque après-midi, il lira une page de Dumas en chinois classique, et un interprète la remettra en français, afin que le public juge de ce qui a fait le voyage.</p><p><em>« J'ai pleuré en écrivant la mort de Marguerite. Si l'on me dit à Paris qu'il ne fallait pas pleurer, je recommencerai tout. »</em></p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Ha traducido más de cien novelas de Europa sin saber ninguna lengua extranjera: un ayudante cuenta, él escribe.</p><p><strong>Lo que se verá.</strong> Sus libros, encuadernados a la china y abiertos junto a los originales: <em>La dama de las camelias</em>, <em>Oliver Twist</em>, <em>Ivanhoe</em>, <em>Robinson Crusoe</em>. Cada tarde leerá una página de Dumas en chino clásico, y un intérprete la devolverá al francés, para que el público juzgue qué ha sobrevivido al viaje.</p><p><em>«Lloré al escribir la muerte de Margarita. Si en París me dicen que no había que llorar, lo empezaré todo de nuevo.»</em></p></div>
+                    </div>
+                </article>
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/mei_lanfang.jpg" alt="Mei Lanfang" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Cliché Rémi Romain</p>
+                        <p class="credit lang-es">Fotografía de Rémi Romain</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Mei Lanfang</h3>
+                        <p class="noble-meta lang-fr">19 ans · Pékin · Danse et théâtre chanté</p>
+                        <p class="noble-meta lang-es">19 años · Pekín · Danza y teatro cantado</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>Il tient à l'Opéra de Pékin les rôles de dame, comme son grand-père avant lui.</p><p><strong>Ce que l'on verra.</strong> Trois scènes données chaque soir au palais de la Chine, dont <em>L'Ivresse de la favorite</em> : une concubine impériale attend l'empereur, qui ne vient pas, et boit seule. Tout se joue dans les manches, longues d'un mètre, dans les mains et dans le regard. Le jour, les costumes et les coiffes seront exposés sous verre.</p><p><em>« On me demande si je joue les femmes. Non. Je joue ce que l'on regarde quand on regarde une femme, et c'est beaucoup plus difficile. »</em></p><p class="work-link">◆ <a href="news/expo1914/mei.jpg" data-cap="Mei Lanfang dans le rôle de la favorite Yang Guifei." onclick="openImageModal(this.href, this.dataset.cap); return false;">Voir l'œuvre</a> — Mei Lanfang dans le rôle de la favorite Yang Guifei.</p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Hace en la Ópera de Pekín los papeles de dama, como su abuelo antes que él.</p><p><strong>Lo que se verá.</strong> Tres escenas que se darán cada noche en el palacio de China, entre ellas <em>La embriaguez de la favorita</em>: una concubina imperial espera al emperador, que no llega, y bebe sola. Todo sucede en las mangas, de un metro de largo, en las manos y en la mirada. De día, los trajes y los tocados se expondrán bajo cristal.</p><p><em>«Me preguntan si hago de mujer. No. Hago lo que se mira cuando se mira a una mujer, y es mucho más difícil.»</em></p><p class="work-link">◆ <a href="news/expo1914/mei.jpg" data-cap="Mei Lanfang en el papel de la favorita Yang Guifei." onclick="openImageModal(this.href, this.dataset.cap); return false;">Ver la obra</a> — Mei Lanfang en el papel de la favorita Yang Guifei.</p></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="nation">
+            <h2 class="nation-title lang-fr">Japon</h2>
+            <h2 class="nation-title lang-es">Japón</h2>
+            <div style="height:16px"></div>
+            <div class="cards-grid">
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/yosano_akiko.jpg" alt="Yosano Akiko" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Cliché Rémi Romain</p>
+                        <p class="credit lang-es">Fotografía de Rémi Romain</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Yosano Akiko</h3>
+                        <p class="noble-meta lang-fr">35 ans · Sakai · Poésie</p>
+                        <p class="noble-meta lang-es">35 años · Sakai · Poesía</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>Elle connaît Paris, où elle a passé l'été de 1912. Les officiers de sa délégation n'ont pas oublié l'un de ses poèmes.</p><p><strong>Ce que l'on verra.</strong> L'édition originale de <em>Cheveux emmêlés</em> (1901), près de quatre cents tankas d'amour, avec sa couverture au cœur percé d'une flèche. Le poème « Ne donne pas ta vie », écrit en 1904 à son frère soldat devant Port-Arthur, calligraphié par elle sur un rouleau. Et des tankas composés à Paris, qu'elle n'a pas encore publiés.</p><p><em>« Je n'ai pas écrit contre l'empereur. J'ai écrit pour mon frère. Il est revenu : le poème a donc servi. »</em></p><p class="work-link">◆ <a href="news/expo1914/yosano.jpg" data-cap="Couverture de « Cheveux emmêlés », Tokio, 1901." onclick="openImageModal(this.href, this.dataset.cap); return false;">Voir l'œuvre</a> — Couverture de « Cheveux emmêlés », Tokio, 1901.</p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Conoce París, donde pasó el verano de 1912. Los oficiales de su delegación no han olvidado uno de sus poemas.</p><p><strong>Lo que se verá.</strong> La edición original de <em>Cabello revuelto</em> (1901), cerca de cuatrocientos tankas de amor, con su cubierta del corazón atravesado por una flecha. El poema «No entregues tu vida», escrito en 1904 a su hermano soldado ante Port Arthur, caligrafiado por ella en un rollo. Y unos tankas compuestos en París, que aún no ha publicado.</p><p><em>«No escribí contra el emperador. Escribí para mi hermano. Volvió: luego el poema sirvió.»</em></p><p class="work-link">◆ <a href="news/expo1914/yosano.jpg" data-cap="Cubierta de «Cabello revuelto», Tokio, 1901." onclick="openImageModal(this.href, this.dataset.cap); return false;">Ver la obra</a> — Cubierta de «Cabello revuelto», Tokio, 1901.</p></div>
+                    </div>
+                </article>
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/takamura_kotaro.jpg" alt="Takamura Kōtarō" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Cliché Rémi Romain</p>
+                        <p class="credit lang-es">Fotografía de Rémi Romain</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Takamura Kōtarō</h3>
+                        <p class="noble-meta lang-fr">30 ans · Tokio · Sculpture et poésie</p>
+                        <p class="noble-meta lang-es">30 años · Tokio · Escultura y poesía</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>Fils du tailleur de bouddhas Takamura Kōun, qui est aussi de la délégation ; revenu de Paris disciple de Rodin.</p><p><strong>Ce que l'on verra.</strong> Un bronze, <em>La Main</em> : une main gauche dressée, les doigts tendus comme ceux d'un bouddha, mais modelée muscle par muscle à la manière de Meudon. Il y joint son recueil de poèmes, <em>Le Chemin</em>. Dans la même salle, son père montrera <em>Le Vieux Singe</em>, taillé dans un tronc de châtaignier.</p><p><em>« Mon père a sculpté toute sa vie sans avoir vu le Penseur. Moi, je l'ai vu. Nous exposerons dans la même salle et nous nous saluerons très poliment. »</em></p><p class="work-link">◆ <a href="news/expo1914/takamura.jpg" data-cap="Takamura Kōtarō, « La Main », bronze." onclick="openImageModal(this.href, this.dataset.cap); return false;">Voir l'œuvre</a> — Takamura Kōtarō, « La Main », bronze.</p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Hijo del tallista de budas Takamura Kōun, que también va en la delegación; volvió de París discípulo de Rodin.</p><p><strong>Lo que se verá.</strong> Un bronce, <em>La mano</em>: una mano izquierda alzada, con los dedos tendidos como los de un buda, pero modelada músculo a músculo a la manera de Meudon. Lo acompaña su libro de poemas, <em>El camino</em>. En la misma sala, su padre mostrará <em>El mono viejo</em>, tallado en un tronco de castaño.</p><p><em>«Mi padre ha esculpido toda su vida sin haber visto el Pensador. Yo lo he visto. Expondremos en la misma sala y nos saludaremos con mucha cortesía.»</em></p><p class="work-link">◆ <a href="news/expo1914/takamura.jpg" data-cap="Takamura Kōtarō, «La mano», bronce." onclick="openImageModal(this.href, this.dataset.cap); return false;">Ver la obra</a> — Takamura Kōtarō, «La mano», bronce.</p></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="nation">
+            <h2 class="nation-title lang-fr">Empire hellénique</h2>
+            <h2 class="nation-title lang-es">Imperio Heleno</h2>
+            <p class="nation-note lang-fr">Entretiens recueillis à Athènes, à Constantinople et à Paris.</p>
+            <p class="nation-note lang-es">Entrevistas recogidas en Atenas, en Constantinopla y en París.</p>
+            <div class="cards-grid">
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/yannoulis_chalepas.jpg" alt="Yannoulis Chalepás" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Cliché Eulalia</p>
+                        <p class="credit lang-es">Fotografía de Eulalia</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Yannoulis Chalepás</h3>
+                        <p class="noble-meta lang-fr">62 ans · Île de Tinos · Sculpture</p>
+                        <p class="noble-meta lang-es">62 años · Isla de Tinos · Escultura</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>Quatorze ans à l'asile de Corfou, puis berger sur son île, où sa mère brisait ce qu'il modelait. Le Conseil des Arts d'Athènes est allé le chercher ; il a peu parlé.</p><p><strong>Ce que l'on verra.</strong> Un plâtre moulé sur sa <em>Dormeuse</em> de 1878, qui couvre un tombeau du Premier cimetière d'Athènes : une jeune fille étendue, la tête sur l'oreiller, une croix entre les mains. Et quelques terres modelées à Tinos, les seules que sa mère n'ait pas détruites.</p><p><em>« Elle dort depuis trente-six ans. Je viens voir si l'on peut la réveiller sans lui faire de mal. »</em></p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Catorce años en el manicomio de Corfú, luego pastor en su isla, donde su madre rompía cuanto modelaba. El Consejo de las Artes de Atenas ha ido a buscarlo; habló poco.</p><p><strong>Lo que se verá.</strong> Un yeso sacado de su <em>Durmiente</em> de 1878, que cubre una tumba del Primer Cementerio de Atenas: una muchacha tendida, la cabeza sobre la almohada, una cruz entre las manos. Y unos barros modelados en Tinos, los únicos que su madre no destruyó.</p><p><em>«Duerme desde hace treinta y seis años. Vengo a ver si se la puede despertar sin hacerle daño.»</em></p></div>
+                    </div>
+                </article>
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/abdulmecid_efendi.jpg" alt="Abdülmecid Efendi" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Cliché Eulalia</p>
+                        <p class="credit lang-es">Fotografía de Eulalia</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Abdülmecid Efendi</h3>
+                        <p class="noble-meta lang-fr">45 ans · Constantinople · Peinture</p>
+                        <p class="noble-meta lang-es">45 años · Constantinopla · Pintura</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>Prince de la maison d'Osman, peintre et pianiste, président du Conseil des Arts de Constantinople.</p><p><strong>Ce que l'on verra.</strong> Deux grandes toiles d'intérieur. Dans <em>Beethoven au harem</em>, un trio, violon, violoncelle et piano, joue pour les dames du palais, sous un buste du compositeur. Dans <em>Goethe au harem</em>, une dame étendue sur un divan a laissé retomber son livre : c'est <em>Faust</em>.</p><p><em>« On s'étonne à Paris qu'un prince peigne. Chez nous, l'on s'étonnait qu'un peintre fût prince. L'Empire a tranché : il m'a demandé de présider. »</em></p><p class="work-link">◆ <a href="news/expo1914/abdulmecid.jpg" data-cap="Abdülmecid Efendi, « Beethoven au harem »." onclick="openImageModal(this.href, this.dataset.cap); return false;">Voir l'œuvre</a> — Abdülmecid Efendi, « Beethoven au harem ».</p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Príncipe de la casa de Osmán, pintor y pianista, presidente del Consejo de las Artes de Constantinopla.</p><p><strong>Lo que se verá.</strong> Dos grandes lienzos de interior. En <em>Beethoven en el harén</em>, un trío de violín, violonchelo y piano toca para las damas de palacio, bajo un busto del compositor. En <em>Goethe en el harén</em>, una dama tendida en un diván ha dejado caer su libro: es el <em>Fausto</em>.</p><p><em>«En París se extrañan de que un príncipe pinte. Entre nosotros se extrañaban de que un pintor fuese príncipe. El Imperio ha zanjado la cuestión: me ha pedido que presida.»</em></p><p class="work-link">◆ <a href="news/expo1914/abdulmecid.jpg" data-cap="Abdülmecid Efendi, «Beethoven en el harén»." onclick="openImageModal(this.href, this.dataset.cap); return false;">Ver la obra</a> — Abdülmecid Efendi, «Beethoven en el harén».</p></div>
+                    </div>
+                </article>
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/tanburi_cemil_bey.jpg" alt="Tanburi Cemil Bey" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Cliché Eulalia</p>
+                        <p class="credit lang-es">Fotografía de Eulalia</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Tanburi Cemil Bey</h3>
+                        <p class="noble-meta lang-fr">40 ans · Constantinople · Musique</p>
+                        <p class="noble-meta lang-es">40 años · Constantinopla · Música</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>On l'appelle le musicien des derviches : les tourneurs de Galata, dit-on, ne commencent pas sans lui.</p><p><strong>Ce que l'on verra.</strong> Rien qui s'accroche à un mur. Il jouera chaque après-midi, dans la salle de Constantinople du palais hellénique, des <em>taksim</em> : des improvisations dont aucune ne sera répétée. On montrera ses instruments, le tanbur à long manche, le kemençe et le lavta, et l'on pourra entendre ses disques au gramophone. Il a refusé de jouer devant l'appareil.</p><p><em>« Pas pour une photographie. Il faudrait que quelqu'un tourne, et vous n'en avez pas le temps. »</em></p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Lo llaman el músico de los derviches: los giradores de Gálata, dicen, no empiezan sin él.</p><p><strong>Lo que se verá.</strong> Nada que pueda colgarse de una pared. Tocará cada tarde, en la sala de Constantinopla del palacio heleno, <em>taksim</em>: improvisaciones de las que ninguna se repetirá. Se mostrarán sus instrumentos, el tanbur de mástil largo, el kemençe y el lavta, y podrán oírse sus discos en el gramófono. Se negó a tocar ante la cámara.</p><p><em>«Para una fotografía, no. Haría falta que alguien girase, y usted no tiene tiempo.»</em></p></div>
+                    </div>
+                </article>
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/giorgio_de_chirico.jpg" alt="Giorgio de Chirico" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Cliché Eulalia</p>
+                        <p class="credit lang-es">Fotografía de Eulalia</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Giorgio de Chirico</h3>
+                        <p class="noble-meta lang-fr">25 ans · Volos, Thessalie · Peinture</p>
+                        <p class="noble-meta lang-es">25 años · Volos, Tesalia · Pintura</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>Né en Grèce de parents italiens, il vit à Montparnasse, où M. Apollinaire est à peu près seul à le défendre.</p><p><strong>Ce que l'on verra.</strong> Sept toiles de l'an dernier, toutes des places de ville à l'heure où il n'y a personne. Dans <em>La Nostalgie de l'infini</em>, une tour à drapeaux au bout d'une esplanade et deux figures minuscules à son pied. Ailleurs, des arcades, une statue vue de dos, un train qui passe derrière un mur, et partout des ombres plus longues que l'heure ne le permet.</p><p><em>« Grec de naissance, Italien de sang, peintre à Paris. Il a fallu trois Conseils pour faire l'Empire. Moi, je n'ai eu qu'à naître. »</em></p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Nacido en Grecia de padres italianos, vive en Montparnasse, donde el señor Apollinaire es casi el único que lo defiende.</p><p><strong>Lo que se verá.</strong> Siete lienzos del año pasado, todos plazas de ciudad a la hora en que no hay nadie. En <em>La nostalgia del infinito</em>, una torre con banderas al fondo de una explanada y dos figuras diminutas a su pie. En otros, soportales, una estatua vista de espaldas, un tren que pasa detrás de un muro, y en todas partes sombras más largas de lo que la hora permite.</p><p><em>«Griego de nacimiento, italiano de sangre, pintor en París. Hicieron falta tres Consejos para hacer el Imperio. A mí me bastó con nacer.»</em></p></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="nation">
+            <h2 class="nation-title lang-fr">Serbie</h2>
+            <h2 class="nation-title lang-es">Serbia</h2>
+            <p class="nation-note lang-fr">Entretiens recueillis à Belgrade et à Rome.</p>
+            <p class="nation-note lang-es">Entrevistas recogidas en Belgrado y en Roma.</p>
+            <div class="cards-grid">
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/ivan_mestrovic.jpg" alt="Ivan Meštrović" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Cliché Eulalia</p>
+                        <p class="credit lang-es">Fotografía de Eulalia</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Ivan Meštrović</h3>
+                        <p class="noble-meta lang-fr">30 ans · Dalmatie · Sculpture</p>
+                        <p class="noble-meta lang-es">30 años · Dalmacia · Escultura</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>Sujet de l'empereur François-Joseph, il a choisi à Rome, en 1911, le pavillon de la Serbie, et il y a reçu le premier prix. M. Rodin le tient pour le premier sculpteur de sa génération.</p><p><strong>Ce que l'on verra.</strong> Les fragments d'un temple qui n'existe pas encore, dédié aux morts de Kosovo. Une maquette de bois en donne l'ensemble. Autour, en plâtre et en marbre : une rangée de cariatides, les <em>Veuves</em>, des têtes de héros, et un <em>Marko Kraljević</em> à cheval, plus grand que nature, qui occupera à lui seul le fond de la salle.</p><p><em>« On me demande de quel pays je suis. Regardez mes cariatides : elles portent un toit qui n'est pas bâti. Je suis de ce toit-là. »</em></p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Súbdito del emperador Francisco José, eligió en Roma, en 1911, el pabellón de Serbia, y recibió allí el primer premio. El señor Rodin lo tiene por el primer escultor de su generación.</p><p><strong>Lo que se verá.</strong> Los fragmentos de un templo que todavía no existe, dedicado a los muertos de Kosovo. Una maqueta de madera da el conjunto. Alrededor, en yeso y en mármol: una hilera de cariátides, las <em>Viudas</em>, cabezas de héroes, y un <em>Marko Kraljević</em> a caballo, mayor que el natural, que ocupará él solo el fondo de la sala.</p><p><em>«Me preguntan de qué país soy. Miren mis cariátides: sostienen un techo que no está construido. Yo soy de ese techo.»</em></p></div>
+                    </div>
+                </article>
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/nadezda_petrovic.jpg" alt="Nadežda Petrović" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Cliché Eulalia</p>
+                        <p class="credit lang-es">Fotografía de Eulalia</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Nadežda Petrović</h3>
+                        <p class="noble-meta lang-fr">40 ans · Čačak · Peinture</p>
+                        <p class="noble-meta lang-es">40 años · Čačak · Pintura</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>Elle a exposé au Salon d'Automne en 1910. Infirmière volontaire pendant les combats de Macédoine, décorée.</p><p><strong>Ce que l'on verra.</strong> Deux toiles peintes l'an dernier. Dans <em>Pivoines de Kosovo</em>, un champ de fleurs rouges monte jusqu'au monastère de Gračanica, sous des collines vertes et un ciel remué. La seconde montre le monastère seul. Elle y joint des études faites au camp, entre deux services d'ambulance.</p><p><em>« J'ai soigné le typhus et le choléra. Le rouge de mes pivoines, je sais d'où il vient. Je préfère qu'il reste sur la toile. »</em></p><p class="work-link">◆ <a href="news/expo1914/petrovic.jpg" data-cap="Nadežda Petrović, « Pivoines de Kosovo (Gračanica) », 1913." onclick="openImageModal(this.href, this.dataset.cap); return false;">Voir l'œuvre</a> — Nadežda Petrović, « Pivoines de Kosovo (Gračanica) », 1913.</p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Expuso en el Salón de Otoño en 1910. Enfermera voluntaria durante los combates de Macedonia, condecorada.</p><p><strong>Lo que se verá.</strong> Dos lienzos pintados el año pasado. En <em>Peonías de Kosovo</em>, un campo de flores rojas sube hasta el monasterio de Gračanica, bajo unas colinas verdes y un cielo agitado. El segundo muestra el monasterio solo. Añade unos estudios hechos en el campamento, entre dos turnos de ambulancia.</p><p><em>«He cuidado el tifus y el cólera. El rojo de mis peonías, sé de dónde viene. Prefiero que se quede en el lienzo.»</em></p><p class="work-link">◆ <a href="news/expo1914/petrovic.jpg" data-cap="Nadežda Petrović, «Peonías de Kosovo (Gračanica)», 1913." onclick="openImageModal(this.href, this.dataset.cap); return false;">Ver la obra</a> — Nadežda Petrović, «Peonías de Kosovo (Gračanica)», 1913.</p></div>
+                    </div>
+                </article>
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/jelisaveta_nacic.jpg" alt="Jelisaveta Načić" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Cliché Eulalia</p>
+                        <p class="credit lang-es">Fotografía de Eulalia</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Jelisaveta Načić</h3>
+                        <p class="noble-meta lang-fr">35 ans · Belgrade · Architecture</p>
+                        <p class="noble-meta lang-es">35 años · Belgrado · Arquitectura</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>Première femme architecte de Serbie, employée de la ville de Belgrade.</p><p><strong>Ce que l'on verra.</strong> Le palais de la Serbie lui-même, qu'elle élève au bord de la Seine : c'est là que seront montrés le temple de M. Meštrović et les toiles de Mlle Petrović. Le commissariat serbe lui demandait un arc de triomphe, comme celui qu'elle a dressé l'an dernier à Belgrade pour le retour des troupes de Macédoine. Elle a dessiné une cour fermée, de brique et de pierre blanche, sur le plan de son école du Roi-Pierre, avec une salle haute au fond.</p><p><em>« J'ai bâti une école, des logements et un arc de triomphe. On ne m'a écrit de Paris que pour l'arc. J'ai dessiné une cour, avec une porte assez haute pour le cheval de M. Meštrović. »</em></p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Primera arquitecta de Serbia, empleada del ayuntamiento de Belgrado.</p><p><strong>Lo que se verá.</strong> El propio palacio de Serbia, que levanta a orillas del Sena: allí se mostrarán el templo del señor Meštrović y los lienzos de la señorita Petrović. El comisariado serbio le pedía un arco de triunfo, como el que alzó el año pasado en Belgrado para el regreso de las tropas de Macedonia. Ella ha dibujado un patio cerrado, de ladrillo y piedra blanca, sobre la planta de su escuela del Rey Pedro, con una sala alta al fondo.</p><p><em>«He construido una escuela, unas viviendas y un arco de triunfo. De París sólo me escribieron por el arco. He dibujado un patio, con una puerta lo bastante alta para el caballo del señor Meštrović.»</em></p></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="nation">
+            <h2 class="nation-title lang-fr">Suède</h2>
+            <h2 class="nation-title lang-es">Suecia</h2>
+            <p class="nation-note lang-fr">Entretiens recueillis à Stockholm et à Sundborn, en Dalécarlie.</p>
+            <p class="nation-note lang-es">Entrevistas recogidas en Estocolmo y en Sundborn, en Dalecarlia.</p>
+            <div class="cards-grid">
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/victor_sjostrom.jpg" alt="Victor Sjöström" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Cliché Eulalia</p>
+                        <p class="credit lang-es">Fotografía de Eulalia</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Victor Sjöström</h3>
+                        <p class="noble-meta lang-fr">34 ans · Värmland · Cinématographe</p>
+                        <p class="noble-meta lang-es">34 años · Värmland · Cinematógrafo</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>Acteur de théâtre passé derrière l'appareil.</p><p><strong>Ce que l'on verra.</strong> <em>Ingeborg Holm</em> (1913), projeté en entier, deux fois par jour : soixante-dix minutes. Une veuve ruinée entre à l'hospice ; l'assistance publique lui retire ses enfants et les place chez des étrangers ; quand on lui en ramène un, des années plus tard, il ne la reconnaît pas. Le film a obligé le Parlement suédois à rouvrir le débat sur la loi des pauvres.</p><p><em>« Un film a fait discuter une loi chez nous. Je ne sais pas si un film peut faire reculer une flotte. On m'envoie à Paris pour l'apprendre. »</em></p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Actor de teatro que se ha pasado detrás de la cámara.</p><p><strong>Lo que se verá.</strong> <em>Ingeborg Holm</em> (1913), proyectada entera, dos veces al día: setenta minutos. Una viuda arruinada entra en el asilo; la beneficencia le quita a sus hijos y los coloca en casas ajenas; cuando le traen a uno, años después, no la reconoce. La película obligó al Parlamento sueco a reabrir el debate sobre la ley de pobres.</p><p><em>«Una película ha hecho discutir una ley en nuestro país. No sé si una película puede hacer retroceder a una flota. Me envían a París para averiguarlo.»</em></p></div>
+                    </div>
+                </article>
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/carl_larsson.jpg" alt="Carl Larsson" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Portrait dessiné</p>
+                        <p class="credit lang-es">Retrato a dibujo</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Carl Larsson</h3>
+                        <p class="noble-meta lang-fr">60 ans · Sundborn, Dalécarlie · Peinture</p>
+                        <p class="noble-meta lang-es">60 años · Sundborn, Dalecarlia · Pintura</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>La Suède le connaît pour ses aquarelles de famille. Ce n'est pas elles qu'il envoie.</p><p><strong>Ce que l'on verra.</strong> Une seule toile, de quatorze mètres sur six et demi : <em>Le Sacrifice du solstice d'hiver</em>. Devant le temple d'Upsal, le roi Domalde, nu, s'offre au couteau du sacrificateur pour que la famine cesse ; son peuple regarde, les trompes sonnent. Le Musée national de Stockholm, pour lequel elle fut peinte, la refuse. Elle voyagera roulée.</p><p><em>« On me dit que le sujet est barbare et qu'il n'est plus de notre temps. Je voudrais de tout cœur que le Musée eût raison. »</em></p><p class="work-link">◆ <a href="news/expo1914/larsson.jpg" data-cap="Carl Larsson, « Le Sacrifice du solstice d'hiver » (Midvinterblot)." onclick="openImageModal(this.href, this.dataset.cap); return false;">Voir l'œuvre</a> — Carl Larsson, « Le Sacrifice du solstice d'hiver » (Midvinterblot).</p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Suecia lo conoce por sus acuarelas de familia. No son ellas lo que envía.</p><p><strong>Lo que se verá.</strong> Un solo lienzo, de catorce metros por seis y medio: <em>El sacrificio del solsticio de invierno</em>. Ante el templo de Upsala, el rey Domalde, desnudo, se ofrece al cuchillo del sacrificador para que cese el hambre; su pueblo mira, suenan las trompas. El Museo Nacional de Estocolmo, para el que fue pintado, lo rechaza. Viajará enrollado.</p><p><em>«Me dicen que el asunto es bárbaro y que ya no es de nuestro tiempo. Quisiera de todo corazón que el Museo tuviese razón.»</em></p><p class="work-link">◆ <a href="news/expo1914/larsson.jpg" data-cap="Carl Larsson, «El sacrificio del solsticio de invierno» (Midvinterblot)." onclick="openImageModal(this.href, this.dataset.cap); return false;">Ver la obra</a> — Carl Larsson, «El sacrificio del solsticio de invierno» (Midvinterblot).</p></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="nation">
+            <h2 class="nation-title lang-fr">Espagne</h2>
+            <h2 class="nation-title lang-es">España</h2>
+            <p class="nation-note lang-fr">Entretien recueilli à Séville.</p>
+            <p class="nation-note lang-es">Entrevista recogida en Sevilla.</p>
+            <div class="cards-grid">
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/pastora_imperio.jpg" alt="Pastora Imperio" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Cliché Eulalia</p>
+                        <p class="credit lang-es">Fotografía de Eulalia</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Pastora Imperio</h3>
+                        <p class="noble-meta lang-fr">26 ans · Séville, Triana · Danse</p>
+                        <p class="noble-meta lang-es">26 años · Sevilla, Triana · Danza</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>Gitane de Triana, la danseuse la plus célèbre d'Espagne. Paris ne l'a jamais vue.</p><p><strong>Ce que l'on verra.</strong> Chaque soir, au palais de l'Espagne, la danse du feu que M. Manuel de Falla écrit pour elle : une gitane tourne autour d'un brasier, à minuit, pour chasser le spectre d'un amant mort qui ne la laisse pas aimer. Avant et après, des soleares et des alegrías, avec deux guitares et les palmas de sa famille. Le jour, on verra ses robes à traîne et ses châles.</p><p><em>« M. de Falla écrit la musique en me regardant danser. Il dit qu'il compose. Moi, je dis qu'il copie. »</em></p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Gitana de Triana, la bailaora más célebre de España. París no la ha visto nunca.</p><p><strong>Lo que se verá.</strong> Cada noche, en el palacio de España, la danza del fuego que el señor Manuel de Falla escribe para ella: una gitana gira alrededor de una hoguera, a medianoche, para ahuyentar al espectro de un amante muerto que no la deja querer. Antes y después, soleares y alegrías, con dos guitarras y las palmas de su familia. De día se verán sus batas de cola y sus mantones.</p><p><em>«El señor de Falla escribe la música mirándome bailar. Él dice que compone. Yo digo que copia.»</em></p></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="nation">
+            <h2 class="nation-title lang-fr">Sous le pavillon de la Russie</h2>
+            <h2 class="nation-title lang-es">Bajo el pabellón de Rusia</h2>
+            <p class="nation-note lang-fr">M. Saarinen a reçu l'auteur en Finlande, en présence d'un fonctionnaire du gouvernement général, qui a bien voulu relire ses notes.</p>
+            <p class="nation-note lang-es">El señor Saarinen recibió a la autora en Finlandia, en presencia de un funcionario del gobierno general, que tuvo a bien revisar sus notas.</p>
+            <div class="cards-grid">
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/eliel_saarinen.jpg" alt="Eliel Saarinen" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Cliché Eulalia</p>
+                        <p class="credit lang-es">Fotografía de Eulalia</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Eliel Saarinen</h3>
+                        <p class="noble-meta lang-fr">40 ans · Finlande · Architecture</p>
+                        <p class="noble-meta lang-es">40 años · Finlandia · Arquitectura</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>Finlandais, inscrit sur la liste russe ; architecte de la gare centrale d'Helsingfors, qui s'achève cette année.</p><p><strong>Ce que l'on verra.</strong> Un bâtiment, et non des plans : l'aile du palais de la Russie où sera logée la musique. Une halle voûtée de granit rose, flanquée d'une tour d'horloge, sur le modèle de sa gare. De part et d'autre de la porte, deux géants de pierre tiendront chacun une lampe ; ils sont du sculpteur Emil Wikström. À l'intérieur, une salle de concert de six cents places et les vitrines des partitions.</p><p><em>« Mes géants portent des lampes. On me demande souvent pour qui ils éclairent. Pour ceux qui entrent : c'est une porte. »</em></p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Finlandés, inscrito en la lista rusa; arquitecto de la estación central de Helsingfors, que se termina este año.</p><p><strong>Lo que se verá.</strong> Un edificio, y no unos planos: el ala del palacio de Rusia donde se alojará la música. Una nave abovedada de granito rosa, flanqueada por una torre de reloj, según el modelo de su estación. A cada lado de la puerta, dos gigantes de piedra sostendrán cada uno una lámpara; son del escultor Emil Wikström. Dentro, una sala de conciertos de seiscientas plazas y las vitrinas de las partituras.</p><p><em>«Mis gigantes sostienen lámparas. Me preguntan a menudo para quién alumbran. Para los que entran: es una puerta.»</em></p></div>
+                    </div>
+                </article>
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/wladyslaw_starewicz.jpg" alt="Władysław Starewicz" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Cliché Rémi Romain</p>
+                        <p class="credit lang-es">Fotografía de Rémi Romain</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Władysław Starewicz</h3>
+                        <p class="noble-meta lang-fr">31 ans · Moscou · Cinématographe</p>
+                        <p class="noble-meta lang-es">31 años · Moscú · Cinematógrafo</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>Polonais de Lituanie né à Moscou, entomologiste avant d'être cinéaste. Le tsar l'a décoré.</p><p><strong>Ce que l'on verra.</strong> Deux films joués par des insectes naturalisés, qu'il déplace d'un cheveu entre deux images. Dans <em>La Vengeance de l'opérateur</em> (1912), un scarabée trompe sa femme et se voit dénoncé à l'écran par une sauterelle qui l'a filmé par le trou de la serrure. <em>La Cigale et la Fourmi</em> (1913) suit la fable. Les acteurs seront exposés sous verre, avec leurs pattes de fil de fer.</p><p><em>« Vivants, les scarabées ne supportent pas les projecteurs. Morts, ils font tout ce qu'on leur demande. C'est une méthode que je n'applique qu'aux insectes. »</em></p><p class="work-link">◆ <a href="news/expo1914/starewicz.jpg" data-cap="« La Vengeance de l'opérateur », 1912 : le peintre et la libellule." onclick="openImageModal(this.href, this.dataset.cap); return false;">Voir l'œuvre</a> — « La Vengeance de l'opérateur », 1912 : le peintre et la libellule.</p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Polaco de Lituania nacido en Moscú, entomólogo antes que cineasta. El zar lo ha condecorado.</p><p><strong>Lo que se verá.</strong> Dos películas interpretadas por insectos disecados, que mueve un pelo entre dos fotogramas. En <em>La venganza del camarógrafo</em> (1912), un escarabajo engaña a su mujer y se ve denunciado en la pantalla por un saltamontes que lo ha filmado por el ojo de la cerradura. <em>La cigarra y la hormiga</em> (1913) sigue la fábula. Los actores se expondrán bajo cristal, con sus patas de alambre.</p><p><em>«Vivos, los escarabajos no soportan los focos. Muertos, hacen todo lo que se les pide. Es un método que sólo aplico a los insectos.»</em></p><p class="work-link">◆ <a href="news/expo1914/starewicz.jpg" data-cap="«La venganza del camarógrafo», 1912: el pintor y la libélula." onclick="openImageModal(this.href, this.dataset.cap); return false;">Ver la obra</a> — «La venganza del camarógrafo», 1912: el pintor y la libélula.</p></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="nation">
+            <h2 class="nation-title lang-fr">Royaume-Uni</h2>
+            <h2 class="nation-title lang-es">Reino Unido</h2>
+            <p class="nation-note lang-fr">Entretien recueilli à Londres.</p>
+            <p class="nation-note lang-es">Entrevista recogida en Londres.</p>
+            <div class="cards-grid">
+                <article class="noble-card">
+                    <div class="noble-side">
+                        <div class="noble-photo">
+                            <img src="personajes_imagenes/1914/gustav_holst.jpg" alt="Gustav Holst" onclick="openImageModal(this.src, this.alt)">
+                        </div>
+                        <p class="credit lang-fr">Cliché Eulalia</p>
+                        <p class="credit lang-es">Fotografía de Eulalia</p>
+                    </div>
+                    <div>
+                        <h3 class="noble-name">Gustav Holst</h3>
+                        <p class="noble-meta lang-fr">39 ans · Cheltenham · Musique</p>
+                        <p class="noble-meta lang-es">39 años · Cheltenham · Música</p>
+                        <div class="noble-text lang-fr" lang="fr"><p>Professeur de musique dans une école de jeunes filles ; il lit le sanscrit et dresse des horoscopes pour ses amis.</p><p><strong>Ce que l'on verra.</strong> Une seule pièce pour grand orchestre, premier morceau d'une suite qu'il n'a pas écrite : <em>Mars, celui qui apporte la guerre</em>. Sept minutes à cinq temps, sur un rythme que les cordes frappent du bois de l'archet et qui ne s'arrête pas. La partition sera exposée dans l'une des salles du palais britannique et l'œuvre y sera jouée deux fois par semaine.</p><p><em>« Je n'ai pas inventé ce rythme. Il était déjà là ; je l'ai seulement noté. J'aimerais savoir d'où il vient avant qu'on le joue à Paris. »</em></p></div>
+                        <div class="noble-text lang-es" lang="es"><p>Profesor de música en un colegio de señoritas; lee sánscrito y hace horóscopos a sus amigos.</p><p><strong>Lo que se verá.</strong> Una sola pieza para gran orquesta, primer número de una suite que no ha escrito: <em>Marte, el portador de la guerra</em>. Siete minutos en compás de cinco tiempos, sobre un ritmo que las cuerdas golpean con la madera del arco y que no se detiene. La partitura se expondrá en una de las salas del palacio británico y la obra se tocará allí dos veces por semana.</p><p><em>«Yo no he inventado ese ritmo. Ya estaba ahí; sólo lo he anotado. Me gustaría saber de dónde viene antes de que se toque en París.»</em></p></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <p class="closing lang-fr"><a href="noticias41.html">Revenir au journal du 10 janvier</a></p>
+        <p class="closing lang-es"><a href="noticias41.html">Volver al periódico del 10 de enero</a></p>
+    </main>
+
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('spanish');
+            localStorage.setItem('newspaperLanguage', document.body.classList.contains('spanish') ? 'es' : 'fr');
+        }
+        window.addEventListener('DOMContentLoaded', function () {
+            if (localStorage.getItem('newspaperLanguage') === 'es') {
+                document.body.classList.add('spanish');
+            }
+        });
+        function openImageModal(imageSrc, imageAlt) {
+            var modal = document.getElementById('imageModal');
+            var modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeImageModal() {
+            document.getElementById('imageModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') { closeImageModal(); }
+        });
+    </script>
+</body>
+</html>

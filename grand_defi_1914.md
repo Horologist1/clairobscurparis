@@ -14,7 +14,7 @@ En abril de 1914 empiezan los últimos preparativos de una segunda **Exposición
 - **El tono** mezcla un torneo de combate al estilo de las artes marciales del anime, exposiciones más puramente artísticas y juego sucio e intentos de atentado rusos.
 - **La partida arranca** en abril de 1914, con el reto ya lanzado. Los PJ son los mismos, siete años después.
 
-Páginas de trabajo: [versión del máster](https://claude.ai/artifact/8qBuZanxK9HvmKWobpNNEs) · [guía del jugador](https://claude.ai/artifact/EoxADhPXpQXNi3nY1vZJNi).
+Páginas de trabajo: [versión del máster](https://claude.ai/artifact/8qBuZanxK9HvmKWobpNNEs) · [guía del jugador](https://claude.ai/artifact/EoxADhPXpQXNi3nY1vZJNi) · [Los Catorce: tarjetas de campeones y expositores, reglamento de la Liza y de los Salones, y qué quiere cada nación](https://claude.ai/artifact/5sGDK5xy4w38Y6YT7mDuNg) (propuesta sin validar, 6 nov 2026) · [Los Doce: equipos de seis titulares y seis reemplazantes por nación, con sus demandas](https://claude.ai/artifact/U4rN9qqCWSqYSTZ7BL6wKj) (propuesta sin validar, 6 nov 2026).
 
 ## Cronología 1907–1914
 
@@ -76,6 +76,7 @@ Compiten tres bloques: los que quieren la paz, los que quieren cambiar el mapa y
 
 No es cosa de seis naciones: se apunta **una veintena**. La mayoría solo **expone** en los Salones; unas pocas **compiten** en la Liza.
 
+- **Quién fija las reglas** (confirmado, 12 nov 2026). Los países se reunieron e hicieron un acuerdo de mínimos; el Consejo de las Bellas Artes lo «aterriza» en el reglamento concreto. Por eso noticias41 (10 ene 1914) puede corregir lo anunciado en noticias40. Las acreditaciones del recinto las visa el Concilio de las Luces (asumido durante el salto de tiempo) u organismos oficiales designados.
 - **Origen jurídico.** Los jefes de Estado **se apropian** de la idea de Cléa (que hablaba de arte y honor) y acuerdan por su cuenta gestionar la política internacional por esa vía; en el periódico se insinúa, no se dice. El reto de Cléa se formaliza en una **asamblea de jefes de Estado europeos** que acuerdan resolver sus desacuerdos mediante la competición, encajándola en el **derecho internacional**. Propuesta (noticias40): asamblea en París en otoño de 1913; los resultados valen como sentencia arbitral según las convenciones de La Haya de 1899 y 1907, y el acta se deposita en el Palacio de la Paz (inaugurado en agosto de 1913).
 - **Compiten en la Liza (9):** Francia, España, Reino Unido, Suecia, Imperio Heleno, Rusia, Serbia, **China** y **Japón** (aliado del Reino Unido; venció a Rusia en 1905; Foujita aspira a una plaza).
 - **China viene con todo**: catorce campeones y la mayor delegación tras la francesa. En teoría es aliada de Rusia, pero no quiere enfrentarse a Francia. Ha tenido una revolución **no comunista sino tradicionalista**: su gobierno está anclado en la tradición, más aún que el anterior.
@@ -85,16 +86,18 @@ No es cosa de seis naciones: se apunta **una veintena**. La mayoría solo **expo
 
 ## Cómo se compite
 
-Cada nación inscribe catorce campeones, dos por cada una de siete artes. Combaten en la Liza y exponen en los Salones.
+Cada nación inscribe **doce campeones**, sin cuota por arte: da igual de qué arte sea cada uno. Seis son titulares y seis reemplazantes; a medida que un titular cae derrotado, sale un reemplazante. Cada encuentro es un seis contra seis. Vale cualquier maestro: cuenta toda maestría de quien haya hecho de su práctica un arte. (Confirmado, 11–12 nov 2026.)
+
+**Dos contiendas distintas** (confirmado, 12 nov 2026). La **Exposición** (los Salones) va primero; la **Liza** («las olimpiadas») viene después. Lo de exponer va por países, no por personas: los países que compiten en la Liza también exponen, pero hay países que exponen y no compiten. No existe ninguna regla que obligue a cada campeón a exponer; qué expone cada cual es contenido que creamos nosotros.
 
 > «Si es cierto que el arte decide las batallas, que luchen los campeones y no los ejércitos.» De la carta de Cléa Dessendre.
 
 - **El precedente.** Roma y Alba resolvieron su guerra con tres campeones por bando, los Horacios, y todo París conoce el cuadro de David en el Louvre. Desde el principio, la Exposición es una guerra por campeones vestida de exposición.
-- **La Conferencia del Reglamento.** Se celebra en abril, con Coubertin como árbitro neutral. Decide qué es una nación, qué pasa si alguien muere y qué artes se admiten.
-- **Los Catorce.** Hay cinco artes olímpicas de 1912: arquitectura, literatura, música, pintura y escultura. Se añaden la danza, que impone Rusia para lucir a los Ballets Russes, y el cine, que defiende Francia con Canudo y Méliès.
+- **La Conferencia del Reglamento.** Se celebra en abril, con Coubertin como árbitro neutral. Decide, entre otras cosas, qué pasa si alguien muere. No define qué es una nación ni qué es arte: ninguna de las dos cosas se discute (confirmado, 12 nov 2026).
+- **Sin límites al arte** (confirmado, 12 nov 2026). Danza y cine son artes, y se admite cualquier cosa que el artista considere arte. Si los árbitros se ven incapaces de juzgar un arte, piden ayuda a otras disciplinas. (Sustituye a la antigua lista de «siete artes».)
 - **La Liza.** Es una rotonda con un panorama de 360° pintado por Maestros neutrales. Dentro, el mundo pintado es real y las heridas son «de pintura»: duelen y dejan fuera de combate, pero no matan mientras el lienzo aguante. Si alguien daña el lienzo, las heridas se vuelven reales.
 - **Cada arte, un arma.** El pintor añade o borra cosas del paisaje. El músico impone un ritmo al que todo obedece. El bailarín se mueve donde nadie más puede. El poeta nombra cosas y existen.
-- **Los Salones.** Hay un pabellón nacional por cada arte. No hay combate, pero se juegan la Restitución y la comisión garante, y ahí nacen las ofensas.
+- **Los Salones.** Un palacio por nación, levantado por sus propios arquitectos (así exponen ellos). No se compite por artes, sino **por salas: seis salas por nación**; si una sala alberga varias exposiciones, los árbitros «hacen media» (confirmado, 12 nov 2026). Sede: la llanura sur del Bois de Boulogne. No hay combate, pero se juegan la Restitución y la comisión garante, y ahí nacen las ofensas.
 - **El Jurado.** Lo forman artistas de países neutrales. Comprarlo, amenazarlo o desacreditarlo es media partida.
 - **La regla de oro.** «Nadie muere en la arena.» Alguien encontrará cómo saltársela.
 
@@ -133,7 +136,7 @@ La Liza decide si hay paz. Los Salones deciden quién la redacta y de quién es 
 
 Francia lo arriesga casi todo, porque el Louvre está lleno de obras ajenas: los PJ pueden ganar la Liza y perder la Gioconda. También puede ofrecer la Victoria de Samotracia al Imperio Heleno a cambio de que apoye la paz.
 
-**Premios individuales:** medallas de oro, plata y bronce por disciplina, la obra del vencedor en el Louvre y un ascenso de Maestría para los PJ.
+**Premios individuales:** medallas de oro, plata y bronce (en los Salones, por sala), la obra del vencedor en el Louvre y un ascenso de Maestría para los PJ.
 
 ## Calendario en cuatro actos
 
@@ -142,11 +145,11 @@ La partida va de abril a finales de julio de 1914. Cada acto se apoya en un hito
 | Acto | Cuándo | Qué pasa | Historia real |
 | --- | --- | --- | --- |
 | I. Últimos preparativos | abril de 1914 (empieza la partida) | Delegaciones en la Gare du Nord y Le Havre; un eslavo pide asilo en el andén; Conferencia del Reglamento con Coubertin; pruebas de selección del equipo francés; todos quieren fichar a Nijinski; saboteadores entre los albañiles del panorama; ¿es auténtica la Gioconda? | 16 mar: Mme Caillaux mata a Calmette |
-| II. Inauguración y eliminatorias | mayo – junio | Atentado en la ceremonia inaugural; la primera ofensa en los Salones lleva a la Liza; los Ballets Russes como primera prueba; la Restitución se cobra su primera obra; pigmentos envenenados, jurado comprado; Imperio Heleno contra Serbia: Macedonia en la arena | |
-| III. Sarajevo y Rasputín | finales de junio – julio | El mundo exterior irrumpe; Rasputín herido: el campeón ruso, sin correa; alguien desgarra el panorama | 28 jun: Sarajevo · 29 jun: apuñalan a Rasputín |
-| IV. La final | finales de julio | Francia contra Rusia; el *Mysterium* de Scriabin, terminado; proteger a Jaurès; Paz de los Campeones o movilización | 31 jul: asesinato de Jaurès · 1 ago: movilización |
+| II. La Exposición: los Salones | mayo – junio | Atentado en la ceremonia inaugural; se juzgan las salas; la primera ofensa en los Salones exige reparación, que se cobrará en la Liza; la Restitución se cobra su primera obra; pigmentos envenenados, jurado comprado | |
+| III. La Liza: Sarajevo y Rasputín | finales de junio – julio | Empieza la Liza, terminada la Exposición: eliminatorias seis contra seis; Imperio Heleno contra Serbia, Macedonia en la arena; el mundo exterior irrumpe; Rasputín herido: el campeón ruso, sin correa; alguien desgarra el panorama | 28 jun: Sarajevo · 29 jun: apuñalan a Rasputín |
+| IV. La final de la Liza | finales de julio | Francia contra Rusia; el *Mysterium* de Scriabin, terminado; proteger a Jaurès; Paz de los Campeones o movilización | 31 jul: asesinato de Jaurès · 1 ago: movilización |
 
-Las fechas de la inauguración (mayo) y de la final (finales de julio) son propuestas.
+Las fechas de la inauguración (mayo) y de la final (finales de julio) son propuestas. El reparto por actos sigue el orden confirmado: primero la Exposición, después la Liza.
 
 ## Facciones y sombras
 

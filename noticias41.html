@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Nouveau - Belle Époque</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #f4e8d0;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        /* CONTENEDOR DE NAVEGACIÓN DE FECHAS */
+        .date-navigation {
+            width: 200px;
+            background: #faf7f0;
+            border: 3px double #2c2416;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .date-navigation h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c2416;
+            padding-bottom: 10px;
+        }
+
+        .date-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .date-item {
+            margin-bottom: 15px;
+        }
+
+        .date-link {
+            display: block;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #2c2416;
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #f4e8d0;
+        }
+
+        .date-link:hover {
+            background: #e8d5b7;
+            border-color: #8b7355;
+            transform: translateX(5px);
+        }
+
+        .date-link.active {
+            background: #8b7355;
+            color: #faf7f0;
+            border-color: #2c2416;
+            font-weight: 600;
+        }
+
+        .date-link.active:hover {
+            background: #6b5a47;
+            transform: none;
+        }
+
+        .newspaper-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #faf7f0;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            padding: 40px;
+            border: 3px double #2c2416;
+            flex: 1;
+        }
+
+        /* CABECERA DEL PERIÓDICO */
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 4px double #2c2416;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .ornamental-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .ornamental-line::before,
+        .ornamental-line::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #2c2416, transparent);
+        }
+
+        .ornamental-symbol {
+            margin: 0 15px;
+            font-size: 20px;
+            color: #8b7355;
+        }
+
+        .newspaper-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            color: #2c2416;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin: 15px 0;
+            text-shadow: 2px 2px 0px rgba(139, 115, 85, 0.3);
+        }
+
+        .newspaper-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #5a4a3a;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .newspaper-date {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            color: #5a4a3a;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* ESTRUCTURA DEL CONTENIDO */
+        .newspaper-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* COLUMNA IZQUIERDA */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* ARTÍCULO PRINCIPAL */
+        .main-article {
+            border-bottom: 3px double #2c2416;
+            padding-bottom: 25px;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #2c2416;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .article-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .article-image {
+            width: 100%;
+            height: auto;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .main-article .article-image {
+            aspect-ratio: 16 / 9;
+            width: 100%;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            flex: 1 1 auto;
+            min-width: 0;
+            min-height: 0;
+        }
+
+        .main-article .article-image img {
+            object-position: center 28%;
+        }
+
+        .secondary-articles .secondary-article .article-image {
+            aspect-ratio: 5 / 4;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .secondary-articles .secondary-article .article-image img {
+            object-position: center 38%;
+        }
+
+        .article-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.8;
+            column-count: 2;
+            column-gap: 30px;
+            hyphens: auto;
+        }
+
+        .article-text::first-letter {
+            font-size: 72px;
+            font-weight: bold;
+            float: left;
+            line-height: 0.8;
+            margin: 5px 8px 0 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ARTÍCULOS SECUNDARIOS */
+        .secondary-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .secondary-article {
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 20px;
+        }
+
+        .secondary-article:last-child {
+            border-bottom: none;
+        }
+
+        .secondary-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2c2416;
+            padding-bottom: 5px;
+        }
+
+        .secondary-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+
+        /* IMAGEN CUADRADA ENTRE ARTÍCULOS */
+        .square-image-container {
+            margin: 20px 0;
+        }
+
+        .square-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border: 3px solid #2c2416;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .square-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* COLUMNA DERECHA */
+        .right-column {
+            border-left: 3px double #2c2416;
+            padding-left: 25px;
+        }
+
+        .sidebar-article {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 10px 0;
+        }
+
+        .vertical-image {
+            width: 100%;
+            aspect-ratio: 9/16;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .vertical-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .vertical-image.sidebar-portrait {
+            aspect-ratio: 3 / 4;
+            max-width: 100%;
+        }
+
+        .vertical-image.sidebar-portrait img.placeholder {
+            object-position: center 30%;
+        }
+
+        .sidebar-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+
+        /* DECORACIONES TIPOGRÁFICAS */
+        .typographic-ornament {
+            text-align: center;
+            font-size: 24px;
+            color: #8b7355;
+            margin: 20px 0;
+            letter-spacing: 10px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+
+            .date-navigation {
+                width: 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+
+            .newspaper-content {
+                grid-template-columns: 1fr;
+            }
+
+            .right-column {
+                border-left: none;
+                border-top: 3px double #2c2416;
+                padding-left: 0;
+                padding-top: 25px;
+            }
+
+            .article-text {
+                column-count: 1;
+            }
+
+            .newspaper-title {
+                font-size: 48px;
+            }
+        }
+
+        /* EFECTOS DE PAPEL ENVEJECIDO */
+        .newspaper-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 115, 85, 0.03) 2px,
+                    rgba(139, 115, 85, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+
+        .newspaper-container {
+            position: relative;
+        }
+
+        /* Placeholder de imagen */
+        img.placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Archives photographiques : ton sépia / noir-et-blanc doux */
+        .article-image img.placeholder,
+        .vertical-image img.placeholder,
+        .secondary-articles .article-image img.placeholder {
+            filter: sepia(0.35) grayscale(0.15) contrast(1.06) brightness(0.98);
+        }
+
+        /* BOTÓN DE TRADUCCIÓN */
+        .translate-button {
+            width: 35px;
+            height: 35px;
+            background: rgba(44, 36, 22, 0.1);
+            border: 2px solid rgba(139, 115, 85, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            color: #5a4a3a;
+            margin: 10px auto;
+        }
+
+        .translate-button:hover {
+            background: rgba(139, 115, 85, 0.2);
+            border-color: #8b7355;
+            transform: scale(1.1);
+        }
+
+        .translate-button:active {
+            transform: scale(0.95);
+        }
+
+        .translate-button-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        /* Ocultar contenido de idioma alternativo */
+        .lang-es {
+            display: none;
+        }
+
+        body.spanish .lang-fr {
+            display: none;
+        }
+
+        body.spanish .lang-es {
+            display: block;
+        }
+
+        body.spanish .lang-es.inline {
+            display: inline;
+        }
+
+        /* ESTILOS PARA CRÓNICAS DE SOCIEDAD */
+        .society-chronicle {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .society-chronicle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .society-note {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* ESTILOS PARA CARTAS AL DIRECTOR */
+        .letters-section {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .letters-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .letter-box {
+            background-color: #f5e6d3;
+            border: 2px solid #d4c4a8;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .letter-content {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #2c2416;
+            text-align: justify;
+        }
+
+        .letter-signature {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2416;
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* ESTILOS PARA COTILLEOS DE SOLTEROS */
+        .gossip-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .gossip-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #f4e8d0;
+            border: 1px solid #8b7355;
+            border-left: 3px solid #8b7355;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .gossip-item:hover {
+            background: #e8d5b7;
+        }
+
+        .gossip-photo {
+            width: fit-content;
+            height: fit-content;
+            border: 2px solid #2c2416;
+            padding: 1px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #d4c5b0;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+
+        .gossip-photo img {
+            width: 70px;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            filter: sepia(0.25) grayscale(0.12) contrast(1.05);
+        }
+
+        .gossip-photo img:hover {
+            opacity: 0.8;
+        }
+
+        /* MODAL PARA IMÁGENES */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #2c2416;
+            padding: 10px;
+            background: #faf7f0;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            height: auto;
+            display: block;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: #2c2416;
+            color: #faf7f0;
+            border: 2px solid #2c2416;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .image-modal-close:hover {
+            background: #8b7355;
+        }
+
+        .gossip-info {
+            flex: 1;
+        }
+
+        .gossip-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 5px;
+        }
+
+        .gossip-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            color: #2c2416;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .gossip-text em {
+            font-style: normal;
+            font-weight: 600;
+            color: #5a4a3a;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN DE FECHAS -->
+    <nav class="date-navigation">
+        <p style="margin: 0 0 12px 0; text-align: center; border: 1px solid #8b7355; padding: 6px 4px;">
+            <a href="neuesberlin1.html" class="date-link" style="font-weight: bold;">
+                <span class="lang-fr">✠ Presse de Berlin</span>
+                <span class="lang-es">✠ Prensa de Berlín</span>
+            </a>
+        </p>
+        <h3 class="lang-fr">Éditions</h3>
+        <h3 class="lang-es">Ediciones</h3>
+        <ul class="date-list">
+            <li class="date-item">
+                <a href="noticias41.html" class="date-link active">
+                    <span class="lang-fr">10 Janvier 1914</span>
+                    <span class="lang-es">10 de Enero de 1914</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias40.html" class="date-link">
+                    <span class="lang-fr">1<sup>er</sup> Janvier 1914</span>
+                    <span class="lang-es">1 de Enero de 1914</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias39.html" class="date-link">
+                    <span class="lang-fr">26 Novembre 1907</span>
+                    <span class="lang-es">26 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias38.html" class="date-link">
+                    <span class="lang-fr">24 Novembre 1907</span>
+                    <span class="lang-es">24 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias37.html" class="date-link">
+                    <span class="lang-fr">22 Novembre 1907</span>
+                    <span class="lang-es">22 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias36.html" class="date-link">
+                    <span class="lang-fr">20 Novembre 1907</span>
+                    <span class="lang-es">20 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias35.html" class="date-link">
+                    <span class="lang-fr">18 Novembre 1907</span>
+                    <span class="lang-es">18 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias34.html" class="date-link">
+                    <span class="lang-fr">17 Novembre 1907</span>
+                    <span class="lang-es">17 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias33.html" class="date-link">
+                    <span class="lang-fr">16 Novembre 1907</span>
+                    <span class="lang-es">16 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias32.html" class="date-link">
+                    <span class="lang-fr">16 Novembre 1905</span>
+                    <span class="lang-es">16 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias31.html" class="date-link">
+                    <span class="lang-fr">13 Novembre 1905</span>
+                    <span class="lang-es">13 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias30.html" class="date-link">
+                    <span class="lang-fr">12 Novembre 1905</span>
+                    <span class="lang-es">12 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias29.html" class="date-link">
+                    <span class="lang-fr">11 Novembre 1905</span>
+                    <span class="lang-es">11 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias28.html" class="date-link">
+                    <span class="lang-fr">10 Novembre 1905</span>
+                    <span class="lang-es">10 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias27.html" class="date-link">
+                    <span class="lang-fr">6 Novembre 1905</span>
+                    <span class="lang-es">6 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias26.html" class="date-link">
+                    <span class="lang-fr">5 Novembre 1905</span>
+                    <span class="lang-es">5 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias25.html" class="date-link">
+                    <span class="lang-fr">2 Novembre 1905</span>
+                    <span class="lang-es">2 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias22.html" class="date-link">
+                    <span class="lang-fr">1er Août 1905</span>
+                    <span class="lang-es">1 de Agosto</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias21.html" class="date-link">
+                    <span class="lang-fr">30 Juillet 1905</span>
+                    <span class="lang-es">30 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias20.html" class="date-link">
+                    <span class="lang-fr">29 Juillet 1905</span>
+                    <span class="lang-es">29 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias19.html" class="date-link">
+                    <span class="lang-fr">28 Juillet 1905</span>
+                    <span class="lang-es">28 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias18.html" class="date-link">
+                    <span class="lang-fr">27 Juillet 1905</span>
+                    <span class="lang-es">27 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias17.html" class="date-link">
+                    <span class="lang-fr">26 Juillet 1905</span>
+                    <span class="lang-es">26 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias16.html" class="date-link">
+                    <span class="lang-fr">25 Juillet 1905</span>
+                    <span class="lang-es">25 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias15.html" class="date-link">
+                    <span class="lang-fr">24 Juillet 1905</span>
+                    <span class="lang-es">24 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias14.html" class="date-link">
+                    <span class="lang-fr">22 Mai 1905</span>
+                    <span class="lang-es">22 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias13.html" class="date-link">
+                    <span class="lang-fr">21 Mai 1905</span>
+                    <span class="lang-es">21 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias12.html" class="date-link">
+                    <span class="lang-fr">20 Mai 1905</span>
+                    <span class="lang-es">20 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias11.html" class="date-link">
+                    <span class="lang-fr">19 Mai 1905</span>
+                    <span class="lang-es">19 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias10.html" class="date-link">
+                    <span class="lang-fr">18 Mai 1905</span>
+                    <span class="lang-es">18 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias9.html" class="date-link">
+                    <span class="lang-fr">17 Mai 1905</span>
+                    <span class="lang-es">17 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias8.html" class="date-link">
+                    <span class="lang-fr">16 Mai 1905</span>
+                    <span class="lang-es">16 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias7.html" class="date-link">
+                    <span class="lang-fr">15 Mai 1905</span>
+                    <span class="lang-es">15 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias6.html" class="date-link">
+                    <span class="lang-fr">1 Avril 1905</span>
+                    <span class="lang-es">1 de Abril</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias5.html" class="date-link">
+                    <span class="lang-fr">29 Mars 1905</span>
+                    <span class="lang-es">29 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias4.html" class="date-link">
+                    <span class="lang-fr">28 Mars 1905</span>
+                    <span class="lang-es">28 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias3.html" class="date-link">
+                    <span class="lang-fr">27 Mars 1905</span>
+                    <span class="lang-es">27 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias2.html" class="date-link">
+                    <span class="lang-fr">26 Mars 1905</span>
+                    <span class="lang-es">26 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias1.html" class="date-link">
+                    <span class="lang-fr">25 Mars 1905</span>
+                    <span class="lang-es">25 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias.html" class="date-link">
+                    <span class="lang-fr">18 Mars 1905</span>
+                    <span class="lang-es">18 de Marzo</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="newspaper-container">
+        <!-- CABECERA DEL PERIÓDICO -->
+        <header class="newspaper-header">
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">❦</span>
+            </div>
+            <h1 class="newspaper-title">Paris Nouveau</h1>
+            <p class="newspaper-subtitle">Nouvelles du Monde des Arts et de la Belle Société</p>
+            <div class="translate-button-container">
+                <button class="translate-button" onclick="toggleLanguage()" title="Traducir / Translate">🔍</button>
+            </div>
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+            </div>
+            <p class="newspaper-date lang-fr">Samedi, 10 Janvier 1914 — Prix: 5 Centimes — Avec un supplément illustré</p>
+            <p class="newspaper-date lang-es">Sábado, 10 de Enero de 1914 — Precio: 5 Centimes — Con un suplemento ilustrado</p>
+        </header>
+
+        <!-- ANUNCIO DEL SUPLEMENTO -->
+        <a href="suplemento_exposants_1914.html" style="display: block; text-decoration: none; color: #2c2416; border: 3px double #2c2416; background: #f4e8d0; padding: 18px 20px; text-align: center;">
+            <div class="lang-fr" style="font-size: 15px; letter-spacing: 3px; text-transform: uppercase; color: #5a4a3a;">◆ Avec ce numéro · Supplément illustré ◆</div>
+            <div class="lang-es" style="font-size: 15px; letter-spacing: 3px; text-transform: uppercase; color: #5a4a3a;">◆ Con este número · Suplemento ilustrado ◆</div>
+            <div class="lang-fr" style="font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 700; line-height: 1.2; margin: 6px 0;">Ceux qui viennent : les exposants étrangers</div>
+            <div class="lang-es" style="font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 700; line-height: 1.2; margin: 6px 0;">Los que vienen: los expositores extranjeros</div>
+            <div class="lang-fr" style="font-size: 18px; font-style: italic;">Dix-neuf artistes que Paris ne connaît pas encore. Entretiens d'Eulalia ; clichés d'Eulalia et de Rémi Romain. <u>Ouvrir le supplément</u></div>
+            <div class="lang-es" style="font-size: 18px; font-style: italic;">Diecinueve artistas que París aún no conoce. Entrevistas de Eulalia; fotografías de Eulalia y de Rémi Romain. <u>Abrir el suplemento</u></div>
+        </a>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="newspaper-content">
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="left-column">
+                <!-- ARTÍCULO PRINCIPAL -->
+                <article class="main-article">
+                    <h2 class="article-title lang-fr">Le Bois de Boulogne ouvert aux nations</h2>
+                    <h2 class="article-title lang-es">El Bosque de Bolonia se abre a las naciones</h2>
+                    <p class="article-subtitle lang-fr">L'Exposition quitte le Champ-de-Mars pour la plaine qui termine le Bois au sud. Le Président Jaurès y a remis hier aux commissaires étrangers les clefs de leurs concessions : chaque nation y bâtira son palais, de six salles, et l'on y concourra salle contre salle. La rotonde de la Lice ne figure sur aucun plan</p>
+                    <p class="article-subtitle lang-es">La Exposición deja el Campo de Marte por la llanura en que termina el Bosque por el sur. El Presidente Jaurès entregó allí ayer a los comisarios extranjeros las llaves de sus concesiones: cada nación construirá allí su palacio, de seis salas, y se competirá sala contra sala. La rotonda de la Liza no figura en ningún plano</p>
+
+                    <div class="article-image">
+                        <img src="news/rue_des_nations_1900.jpg" alt="La rue des Nations sur le quai d'Orsay pendant l'Exposition de 1900 ; les palais de 1914 s'aligneront de même au bord de la Seine, mais au Bois de Boulogne — photographie d'époque (domaine public, Paris Musées) — La calle de las Naciones en el quai d'Orsay durante la Exposición de 1900; los palacios de 1914 se alinearán del mismo modo a orillas del Sena, pero en el Bosque de Bolonia; fotografía de época (dominio público, Paris Musées)." class="placeholder" style="object-position: center 45%;">
+                    </div>
+
+                    <div class="article-text lang-fr">
+                        <p>Paris, 9 janvier — La seconde Exposition mondiale des Arts ne se tiendra pas au Champ-de-Mars, comme les Expositions universelles de 1889 et de 1900, mais à la lisière de la ville. Hier, à dix heures du matin, par un froid vif, le Président de la République a ouvert aux commissaires d'une vingtaine de nations la plaine qui termine au sud le Bois de Boulogne, entre l'hippodrome de Longchamp, la Seine et les premières maisons de Boulogne. Accompagné de M. Joseph Caillaux, chef du gouvernement, et de Mme Chloé Müller, présidente du Conseil des Beaux-Arts, il a remis à chacun la clef de sa concession. Les nations ont seize semaines pour bâtir : l'inauguration reste fixée aux premiers jours de mai.</p>
+                        <p>Le choix de l'emplacement a surpris. Le commissariat l'explique par la place. Le Champ-de-Mars, amputé de sa Galerie des Machines et loti sur ses bords, n'est plus qu'un jardin, et le quai d'Orsay n'aurait pu loger la moitié des délégations. La plaine du Bois offre quatre fois la surface de 1900, d'un seul tenant et sans une maison à abattre. On relève aussi, sans que personne l'ait dit à la tribune, qu'elle est hors des fortifications, et qu'il est plus aisé de garder un champ qu'un quartier.</p>
+                        <p>Le plan, dressé par les services de M. Louis Bonnier, architecte en chef, ne trace que des lots. Il n'y aura pas, comme en 1900, de palais par genre : chaque nation bâtira le sien, de la main de ses propres architectes. Le règlement des Salons ne connaît d'ailleurs aucun genre : tout ce qu'un artiste tient pour son art y sera admis. On n'y concourra pas art contre art, mais salle contre salle. Chaque palais comptera six salles, que la nation remplira à sa guise ; lorsqu'une salle réunira plusieurs expositions, les arbitres en feront la moyenne. S'ils s'estiment incapables de juger un art, ils appelleront à l'aide des gens d'autres disciplines.</p>
+                        <p>Les palais s'aligneront le long de la Seine, sur l'allée du Bord-de-l'Eau, en souvenir de la rue des Nations qui bordait le quai d'Orsay en 1900 ; celui de la France occupera le centre de la plaine. Les emplacements ont été tirés au sort jeudi au ministère des Affaires étrangères. Le hasard a placé le palais de la Serbie entre celui de l'Empire hellénique et celui de la Suède. Le commissaire hellénique a demandé un second tirage, qui lui a été refusé. La Chine, qui amène la plus nombreuse des délégations étrangères, a reçu la plus vaste des concessions, à la pointe sud de la plaine ; on y attend, en caisses, un jardin de Sou-tchéou tout entier, avec ses rochers et ses ponts. L'Allemagne, l'Autriche et la Bohême ont reçu leurs clefs comme les autres : elles bâtiront et exposeront, et s'en tiendront là. L'Égypte n'en a pas reçu : son unique exposant, M. Mahmoud Mokhtar, qui occupera un angle du palais français, assistait à la cérémonie parmi les élèves de l'École des Beaux-Arts.</p>
+                        <p>Les clefs ont été remises dans l'ordre des inscriptions. Le commissaire impérial de Russie, que M. Isvolski, ambassadeur, avait tenu à accompagner, a donc reçu la sienne le premier. « La Russie s'est inscrite la première, a dit l'ambassadeur à ceux qui l'entouraient. Elle entend aussi quitter la Lice la dernière. » Le Président de la République s'en est tenu à quelques mots : « Vous recevez aujourd'hui un pré. La France ne vous demande qu'une chose : qu'on se souvienne de ce que vous y aurez bâti plus longtemps que d'aucun champ de bataille. »</p>
+                        <p>On aura cherché en vain, sur le plan distribué aux commissaires, la rotonde où se tiendront les rencontres de la Lice. Elle n'y figure pas. Interrogé, M. Bonnier a répondu que la Lice « n'est pas un bâtiment de l'Exposition, mais une affaire entre les nations », et qu'il ne lui appartenait pas d'en dire davantage. On sait seulement que la toile du panorama, longue de cent vingt mètres et haute de quinze, a été commandée d'une seule pièce à des filatures du Nord, et que les peintres qui la couvriront, tous de pays neutres, ne sont pas encore désignés.</p>
+                        <p>Les chantiers seront gardés. Tout ouvrier admis dans l'enceinte, français ou étranger, devra porter une carte visée par le Concile des Lumières, et les délégations qui amènent leurs propres charpentiers, comme la Russie et la Chine, ont dû en remettre la liste. La Bourse du Travail a protesté contre l'emploi de cette main-d'œuvre ; le commissariat répond que chaque nation bâtit chez elle.</p>
+                        <p>Le Bois a ses défenseurs. Une pétition de riverains d'Auteuil et de Boulogne réclame que pas un arbre ne soit abattu, et le conseil municipal a obtenu l'engagement écrit que les pelouses seraient rendues à la promenade avant l'hiver. La Société d'Encouragement conserve son hippodrome : le Grand Prix de Paris se courra en juin, à trois cents mètres des palais. Les visiteurs viendront par le Métropolitain, prolongé depuis l'automne jusqu'à la porte d'Auteuil, par les tramways de la porte Maillot et par les bateaux de Suresnes. Le premier chariot à entrer dans la plaine, peu après midi, portait du bois de Dalécarlie et les couleurs de la Suède. À la légation de Stockholm, on explique que la Suède n'a pas de temps à perdre.</p>
+                    </div>
+
+                    <div class="article-text lang-es">
+                        <p>París, 9 de enero — La segunda Exposición Mundial de las Artes no se celebrará en el Campo de Marte, como las Exposiciones Universales de 1889 y de 1900, sino en el borde de la ciudad. Ayer, a las diez de la mañana, con un frío intenso, el Presidente de la República abrió a los comisarios de una veintena de naciones la llanura en que termina por el sur el Bosque de Bolonia, entre el hipódromo de Longchamp, el Sena y las primeras casas de Boulogne. Acompañado del señor Joseph Caillaux, jefe del Gobierno, y de la señora Chloé Müller, presidenta del Consejo de las Bellas Artes, entregó a cada uno la llave de su concesión. Las naciones tienen dieciséis semanas para construir: la inauguración sigue fijada para los primeros días de mayo.</p>
+                        <p>La elección del lugar ha sorprendido. El comisariado la explica por el espacio. El Campo de Marte, amputado de su Galería de las Máquinas y parcelado en sus bordes, no es ya más que un jardín, y el quai d'Orsay no habría podido alojar ni a la mitad de las delegaciones. La llanura del Bosque ofrece cuatro veces la superficie de 1900, de una sola pieza y sin una casa que derribar. Se señala también, sin que nadie lo haya dicho en la tribuna, que queda fuera de las fortificaciones, y que es más fácil guardar un campo que un barrio.</p>
+                        <p>El plano, trazado por los servicios del señor Louis Bonnier, arquitecto jefe, sólo marca parcelas. No habrá, como en 1900, palacios por género: cada nación construirá el suyo, de la mano de sus propios arquitectos. El reglamento de los Salones no conoce, por lo demás, género alguno: se admitirá todo lo que un artista tenga por su arte. No se competirá arte contra arte, sino sala contra sala. Cada palacio tendrá seis salas, que la nación llenará a su gusto; cuando una sala reúna varias exposiciones, los árbitros harán la media. Si se consideran incapaces de juzgar un arte, pedirán ayuda a gentes de otras disciplinas.</p>
+                        <p>Los palacios se alinearán a lo largo del Sena, en la avenida de la orilla, en recuerdo de la calle de las Naciones que bordeaba el quai d'Orsay en 1900; el de Francia ocupará el centro de la llanura. Los emplazamientos se sortearon el jueves en el Ministerio de Asuntos Exteriores. El azar ha colocado el palacio de Serbia entre el del Imperio Heleno y el de Suecia. El comisario heleno pidió un segundo sorteo, que le fue denegado. China, que trae la más numerosa de las delegaciones extranjeras, ha recibido la mayor de las concesiones, en la punta sur de la llanura; se espera allí, en cajas, un jardín de Suzhou entero, con sus rocas y sus puentes. Alemania, Austria y Bohemia recibieron sus llaves como las demás: construirán y expondrán, y nada más. Egipto no recibió ninguna: su único expositor, el señor Mahmud Mojtar, que ocupará un rincón del palacio francés, asistía a la ceremonia entre los alumnos de la Escuela de Bellas Artes.</p>
+                        <p>Las llaves se entregaron por orden de inscripción. El comisario imperial de Rusia, al que el señor Izvolski, embajador, había querido acompañar, recibió por tanto la suya el primero. «Rusia se inscribió la primera, dijo el embajador a quienes lo rodeaban. También piensa ser la última en abandonar la Liza.» El Presidente de la República se limitó a unas palabras: «Reciben ustedes hoy un prado. Francia sólo les pide una cosa: que lo que construyan en él se recuerde más tiempo que ningún campo de batalla.»</p>
+                        <p>En vano se habrá buscado, en el plano repartido a los comisarios, la rotonda donde se celebrarán los encuentros de la Liza. No figura en él. Preguntado, el señor Bonnier respondió que la Liza «no es un edificio de la Exposición, sino un asunto entre las naciones», y que no le correspondía decir más. Sólo se sabe que el lienzo del panorama, de ciento veinte metros de largo y quince de alto, se ha encargado de una sola pieza a unas hilaturas del Norte, y que los pintores que lo cubrirán, todos de países neutrales, no están aún designados.</p>
+                        <p>Las obras estarán vigiladas. Todo obrero admitido en el recinto, francés o extranjero, deberá llevar una tarjeta visada por el Concilio de las Luces, y las delegaciones que traen a sus propios carpinteros, como Rusia y China, han tenido que entregar la lista. La Bolsa del Trabajo ha protestado contra el empleo de esa mano de obra; el comisariado responde que cada nación construye en su casa.</p>
+                        <p>El Bosque tiene sus defensores. Una petición de vecinos de Auteuil y de Boulogne reclama que no se tale un solo árbol, y el concejo municipal ha obtenido el compromiso escrito de que las praderas se devolverán al paseo antes del invierno. La Sociedad de Fomento conserva su hipódromo: el Gran Premio de París se correrá en junio, a trescientos metros de los palacios. Los visitantes llegarán en el Metropolitano, prolongado desde el otoño hasta la puerta de Auteuil, en los tranvías de la puerta Maillot y en los vapores de Suresnes. El primer carro que entró en la llanura, poco después del mediodía, llevaba madera de Dalecarlia y los colores de Suecia. En la legación de Estocolmo explican que Suecia no tiene tiempo que perder.</p>
+                    </div>
+                </article>
+
+                <!-- ARTÍCULOS SECUNDARIOS -->
+                <div class="secondary-articles">
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">Douze champions, et non quatorze</h3>
+                        <h3 class="secondary-title lang-es">Doce campeones, y no catorce</h3>
+                        <div class="article-image">
+                            <img src="news/duel_epee_parc_des_princes_1912.jpg" alt="Un duel à l'épée au Parc des Princes, en 1912, devant témoins : c'est cet usage que la Lice entend régler entre les nations — photographie de presse (domaine public, Gallica) — Un duelo a espada en el Parc des Princes, en 1912, ante testigos: es esa costumbre la que la Liza pretende regular entre las naciones; fotografía de prensa (dominio público, Gallica)." class="placeholder" style="object-position: center 55%;">
+                        </div>
+                        <div class="secondary-text lang-fr">
+                            <p>L'accord conclu cet automne par les chefs d'État n'était qu'un accord de principe : il laissait au Conseil des Beaux-Arts le soin d'en arrêter le détail. Le règlement que le Conseil a fait publier hier au <em>Journal officiel</em> corrige sur un point ce qui avait été annoncé, et ce que nous écrivions nous-mêmes le 1<sup>er</sup> janvier. Chaque nation de la Lice n'inscrira pas quatorze champions, mais douze, et la règle des deux champions par art disparaît.</p>
+                            <p>Les règles arrêtées tiennent en peu de lignes. Chaque rencontre oppose deux nations, six contre six. Chacune inscrit douze champions : six entrent dans la Lice, six attendent. Dès qu'un combattant est vaincu, un remplaçant de sa nation prend sa place, et la rencontre se poursuit ainsi jusqu'à ce que l'un des deux camps n'ait plus personne à faire entrer. Rien de cela ne commencera avant que l'Exposition ait eu lieu : les Salons d'abord, la Lice ensuite.</p>
+                            <p>Quant aux champions eux-mêmes, le règlement n'exige d'eux qu'une chose : qu'ils soient des maîtres. Il ne dit pas de quel art. La formule retenue par les juristes admet « quiconque a fait de sa pratique un art », et aucune liste n'y est jointe. Une nation pourra donc composer ses douze comme elle l'entend, et l'on verra peut-être dans la Lice, à côté des peintres et des musiciens, un orfèvre, une comédienne, un photographe ou un maître d'armes. Les petites nations le demandaient : elles ne pouvaient aligner deux maîtres dans chaque art.</p>
+                            <p>Pour la France, le Conseil des Beaux-Arts nommera jeudi prochain, sous la présidence de Mme Chloé Müller, la commission des épreuves de sélection : douze places, ouvertes à tous les maîtres français, de quelque art qu'ils se réclament.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p>El acuerdo alcanzado este otoño por los jefes de Estado no era más que un acuerdo de mínimos: dejaba al Consejo de las Bellas Artes el cuidado de fijar el detalle. El reglamento que el Consejo hizo publicar ayer en el <em>Journal officiel</em> corrige en un punto lo que se había anunciado, y lo que nosotros mismos escribíamos el 1 de enero. Cada nación de la Liza no inscribirá catorce campeones, sino doce, y la regla de los dos campeones por arte desaparece.</p>
+                            <p>Las normas acordadas caben en pocas líneas. Cada encuentro enfrenta a dos naciones, seis contra seis. Cada una inscribe doce campeones: seis entran en la Liza, seis esperan. En cuanto un contendiente es derrotado, un reemplazante de su nación ocupa su puesto, y el encuentro prosigue así hasta que uno de los dos bandos no tenga ya a nadie a quien hacer entrar. Nada de ello empezará antes de que se haya celebrado la Exposición: primero los Salones, después la Liza.</p>
+                            <p>En cuanto a los campeones mismos, el reglamento sólo les exige una cosa: que sean maestros. No dice de qué arte. La fórmula adoptada por los juristas admite a «todo aquel que haya hecho de su práctica un arte», y no la acompaña lista alguna. Cada nación podrá, pues, componer sus doce como quiera, y quizá se vea en la Liza, junto a los pintores y los músicos, a un orfebre, a una actriz, a un fotógrafo o a un maestro de armas. Las naciones pequeñas lo pedían: no podían alinear dos maestros en cada arte.</p>
+                            <p>En cuanto a Francia, el Consejo de las Bellas Artes nombrará el próximo jueves, bajo la presidencia de la señora Chloé Müller, la comisión de las pruebas de selección: doce plazas, abiertas a todos los maestros franceses, sea cual sea el arte que profesen.</p>
+                        </div>
+                    </article>
+
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">« Parsifal » hors de Bayreuth</h3>
+                        <h3 class="secondary-title lang-es">«Parsifal» sale de Bayreuth</h3>
+                        <div class="article-image">
+                            <img src="news/bayreuth_festspielhaus_1900.jpg" alt="Le théâtre des Festivals de Bayreuth, seul autorisé pendant trente ans à représenter « Parsifal » — photographie, vers 1900 (domaine public) — El teatro de los Festivales de Bayreuth, el único autorizado durante treinta años a representar «Parsifal»; fotografía, hacia 1900 (dominio público)." class="placeholder" style="object-position: 62% 40%;">
+                        </div>
+                        <div class="secondary-text lang-fr">
+                            <p>Pendant trente ans, <em>Parsifal</em> n'a pu être représenté que dans un seul théâtre. Wagner l'avait voulu ainsi : son « festival scénique sacré » ne devait pas quitter Bayreuth. La loi allemande ne protège une œuvre que trente ans après la mort de son auteur ; Mme Cosima Wagner a demandé au Reichstag une exception, qu'elle n'a pas obtenue. Le privilège s'est éteint le 31 décembre à minuit.</p>
+                            <p>Barcelone n'a pas attendu une minute. Au Liceu, le rideau s'est levé le 31 décembre à dix heures et demie du soir, quand il était minuit en Bavière, et la représentation s'est achevée vers cinq heures du matin. Le lendemain, on jouait <em>Parsifal</em> à Berlin, à Rome, à Bologne et à Madrid. À Paris, l'Opéra l'a donné dimanche sous la direction de M. André Messager, avec M. Franz dans le rôle de Parsifal, Mlle Lucienne Bréval dans celui de Kundry et M. Delmas en Gurnemanz. On compte que plus de quarante scènes d'Europe l'auront monté avant la fin du mois.</p>
+                            <p>À l'Opéra, selon l'usage de Bayreuth, la salle n'a pas applaudi après le premier acte. Ce silence était attendu. Ce qui l'était moins, c'est que les médecins de service ont eu à s'occuper, à l'entracte, de onze personnes qui ne souffraient de rien et qui ne voulaient pas quitter leur fauteuil. Des faits semblables sont rapportés de Barcelone et de Bologne. Les directeurs s'accordent à parler de fatigue : l'œuvre dure cinq heures.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p>Durante treinta años, <em>Parsifal</em> sólo pudo representarse en un teatro. Wagner lo había querido así: su «festival escénico sacro» no debía salir de Bayreuth. La ley alemana sólo protege una obra treinta años después de la muerte de su autor; la señora Cosima Wagner pidió al Reichstag una excepción, que no obtuvo. El privilegio se extinguió el 31 de diciembre a medianoche.</p>
+                            <p>Barcelona no esperó ni un minuto. En el Liceo, el telón se alzó el 31 de diciembre a las diez y media de la noche, cuando en Baviera eran las doce, y la representación terminó hacia las cinco de la mañana. Al día siguiente se daba <em>Parsifal</em> en Berlín, en Roma, en Bolonia y en Madrid. En París, la Ópera lo ofreció el domingo bajo la dirección del señor André Messager, con el señor Franz en el papel de Parsifal, la señorita Lucienne Bréval en el de Kundry y el señor Delmas como Gurnemanz. Se calcula que más de cuarenta escenarios de Europa lo habrán montado antes de fin de mes.</p>
+                            <p>En la Ópera, según la costumbre de Bayreuth, la sala no aplaudió tras el primer acto. Ese silencio se esperaba. Lo que se esperaba menos es que los médicos de servicio tuvieran que ocuparse, en el entreacto, de once personas que no padecían nada y que no querían levantarse de su butaca. De Barcelona y de Bolonia se refieren hechos parecidos. Los directores coinciden en hablar de cansancio: la obra dura cinco horas.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="typographic-ornament">❦ ◆ ❦</div>
+
+                <!-- CHRONIQUES DE LA SOCIÉTÉ -->
+                <article class="society-chronicle">
+                    <h2 class="society-chronicle-title lang-fr">Chroniques de la Société</h2>
+                    <h2 class="society-chronicle-title lang-es">Crónicas de Sociedad</h2>
+                    <p class="society-note lang-fr">Où votre Fleuriste apprend que l'on peut pécher en mesure, et que l'on s'arrache des invités qui n'ont pas encore pris le train</p>
+                    <p class="society-note lang-es">Donde vuestra Florista se entera de que se puede pecar a compás, y de que todas se disputan a unos invitados que aún no han tomado el tren</p>
+
+                    <div class="secondary-article">
+                        <h3 class="secondary-title lang-fr">Le tango à l'index et la chasse aux pinceaux</h3>
+                        <h3 class="secondary-title lang-es">El tango en el índice y la caza de pinceles</h3>
+                        <div class="secondary-text lang-fr">
+                            <p><em>Mes chères lectrices</em>, c'est fait : Son Éminence le cardinal Amette, archevêque de Paris, a condamné le tango. L'ordonnance est datée d'aujourd'hui et sera lue demain en chaire. Cette danse « d'importation étrangère » y est déclarée lascive de sa nature et offensante pour la morale, et les confesseurs sont priés d'en tenir compte. Votre Fleuriste s'incline. Elle observe seulement que jamais un professeur de danse n'avait reçu pareille réclame, et que les thés-tango de la semaine prochaine sont tous complets depuis ce matin.</p>
+                            <p>Mais ce n'est pas le tango qui occupe nos maîtresses de maison. C'est la chasse. Depuis que l'on a remis les clefs au Bois de Boulogne, on s'arrache les étrangers qui ne sont pas encore arrivés. Je n'avais rien vu de pareil depuis le bal du prince Louis de Monaco, il y a plus de huit ans, quand toutes les têtes couronnées d'Europe tenaient dans un seul carnet. Seulement, mes chéries, la mode a changé : on ne veut plus des couronnes à sa table, on veut des pinceaux.</p>
+                            <p>On assure qu'une dame de l'avenue Henri-Martin a télégraphié à Pékin pour retenir, dès son débarquement, un jeune acteur qui joue les rôles de femme et dont elle ne sait pas prononcer le nom. Qu'une autre a fait porter sa carte chez M. Rodin, dans l'espoir d'avoir à dîner la petite danseuse japonaise qu'il modèle depuis des années. Et que la princesse de Polignac, qui a toujours un trimestre d'avance sur nous toutes, a déjà M. de Falla pour février et négocie avec Constantinople un musicien qui ne joue, dit-on, que si quelqu'un tourne.</p>
+                            <p>Quant au dieu sans maître dont je vous parlais l'autre jour, il est toujours à Budapest, chez sa belle-mère. L'artiste de renom que l'on avait dépêché pour le chercher est rentré mercredi par l'Orient-Express. Il rapporte un gros rhume, et pas de danseur.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p><em>Mis queridas lectoras</em>, ya está hecho: Su Eminencia el cardenal Amette, arzobispo de París, ha condenado el tango. La ordenanza lleva fecha de hoy y se leerá mañana desde el púlpito. Esa danza «de importación extranjera» queda declarada lasciva por naturaleza y ofensiva para la moral, y se ruega a los confesores que lo tengan en cuenta. Vuestra Florista se inclina. Observa tan sólo que jamás un profesor de baile había recibido semejante propaganda, y que los tés-tango de la semana que viene están todos completos desde esta mañana.</p>
+                            <p>Pero no es el tango lo que ocupa a nuestras anfitrionas. Es la caza. Desde que se entregaron las llaves en el Bosque de Bolonia, todas se disputan a los extranjeros que aún no han llegado. No había visto nada igual desde el baile del príncipe Luis de Mónaco, hace más de ocho años, cuando todas las testas coronadas de Europa cabían en un solo carné. Sólo que la moda ha cambiado, queridas mías: ya no se quieren coronas a la mesa, se quieren pinceles.</p>
+                            <p>Se asegura que una señora de la avenida Henri-Martin ha telegrafiado a Pekín para reservar, en cuanto desembarque, a un joven actor que hace papeles de mujer y cuyo nombre no sabe pronunciar. Que otra ha hecho llevar su tarjeta a casa del señor Rodin, con la esperanza de sentar a cenar a la pequeña bailarina japonesa a la que modela desde hace años. Y que la princesa de Polignac, que siempre nos lleva a todas un trimestre de ventaja, tiene ya al señor de Falla para febrero y negocia con Constantinopla a un músico que sólo toca, dicen, si alguien gira.</p>
+                            <p>En cuanto al dios sin amo del que os hablaba el otro día, sigue en Budapest, en casa de su suegra. El renombrado artista al que se había enviado a buscarlo volvió el miércoles en el Orient-Express. Trae un buen resfriado, y ningún bailarín.</p>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- COLUMNA DERECHA -->
+            <aside class="right-column">
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">M. Caillaux, le Sénat et « Le Figaro »</h3>
+                    <h3 class="sidebar-title lang-es">El señor Caillaux, el Senado y «Le Figaro»</h3>
+                    <div class="vertical-image sidebar-portrait" style="margin-bottom: 1em;">
+                        <img src="news/caillaux_1911.jpg" alt="M. Joseph Caillaux, chef du gouvernement — photographie Agence Rol (domaine public, Gallica) — El señor Joseph Caillaux, jefe del Gobierno; fotografía Agencia Rol (dominio público, Gallica)." class="placeholder" style="object-position: center 20%;">
+                    </div>
+                    <div class="sidebar-text lang-fr">
+                        <p>M. Joseph Caillaux est le chef du gouvernement : il préside le Conseil des ministres depuis 1911, quand M. Jaurès entra à l'Élysée. Il a attaché son nom à l'impôt sur le revenu, que la droite et une partie du Sénat combattent depuis sept ans. C'est cet homme que <em>Le Figaro</em> attaque depuis le début de l'année, presque chaque matin, sous la signature de son directeur, M. Gaston Calmette. On y a lu successivement que M. Caillaux serait intervenu, il y a trois ans, pour faire retarder le procès du financier Rochette, et qu'il aurait eu part au règlement de la succession Prieu. M. Calmette annonce des documents. Il n'en a encore produit aucun.</p>
+                        <p>M. Caillaux n'a pas répondu au journal. « Je répondrai au Sénat », a-t-il dit jeudi dans les couloirs de la Chambre. C'est en effet devant le Sénat que revient ce mois-ci le projet d'impôt sur le revenu, voté par les députés et que la haute assemblée retient depuis des années. Les amis du chef du gouvernement ne séparent pas les deux affaires : la campagne, disent-ils, est payée par ceux que l'impôt menace. Au <em>Figaro</em>, on répond que la vie publique d'un chef de gouvernement appartient au public.</p>
+                        <p>On assure, dans les rédactions, que M. Calmette détiendrait aussi des lettres privées. <em>Le Figaro</em> ne le dément pas. Le Président de la République, qui a besoin de son gouvernement jusqu'à l'Exposition, n'a fait aucune déclaration.</p>
+                        <p>Mme Caillaux, que l'on disait souffrante, n'a pas paru hier au Bois de Boulogne.</p>
+                    </div>
+                    <div class="sidebar-text lang-es">
+                        <p>El señor Joseph Caillaux es el jefe del Gobierno: preside el Consejo de Ministros desde 1911, cuando el señor Jaurès entró en el Elíseo. Ha unido su nombre al impuesto sobre la renta, que la derecha y una parte del Senado combaten desde hace siete años. A ese hombre ataca <em>Le Figaro</em> desde principios de año, casi cada mañana, con la firma de su director, el señor Gaston Calmette. Se ha leído en él, sucesivamente, que el señor Caillaux habría intervenido, hace tres años, para retrasar el proceso del financiero Rochette, y que habría tenido parte en el arreglo de la herencia Prieu. El señor Calmette anuncia documentos. Todavía no ha presentado ninguno.</p>
+                        <p>El señor Caillaux no ha respondido al periódico. «Responderé ante el Senado», dijo el jueves en los pasillos de la Cámara. Ante el Senado vuelve, en efecto, este mes el proyecto de impuesto sobre la renta, votado por los diputados y que la cámara alta retiene desde hace años. Los amigos del jefe del Gobierno no separan los dos asuntos: la campaña, dicen, la pagan aquellos a quienes amenaza el impuesto. En <em>Le Figaro</em> responden que la vida pública de un jefe de gobierno pertenece al público.</p>
+                        <p>Se asegura, en las redacciones, que el señor Calmette tendría también en su poder cartas privadas. <em>Le Figaro</em> no lo desmiente. El Presidente de la República, que necesita a su gobierno hasta la Exposición, no ha hecho declaración alguna.</p>
+                        <p>La señora Caillaux, de quien se decía que estaba indispuesta, no apareció ayer en el Bosque de Bolonia.</p>
+                    </div>
+                </article>
+
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 16px;">
+                        <p><strong>• De Nancy au Caire :</strong> L'aviateur Jules Védrines, parti de Nancy le 20 novembre, s'est posé à Héliopolis le 29 décembre, après des escales à Prague, Vienne, Belgrade, Sofia, Constantinople, Beyrouth et Jaffa. C'est la première fois qu'un aéroplane relie la France à l'Égypte.</p>
+                        <p><strong>• Cinq dollars par jour :</strong> À Détroit, M. Henry Ford a annoncé lundi qu'il paierait désormais ses ouvriers cinq dollars pour une journée de huit heures, soit plus du double du salaire courant. Le lendemain, dix mille hommes attendaient devant les grilles de l'usine. Les autres constructeurs parlent de folie.</p>
+                        <p><strong>• Les mots en croix :</strong> Un journal de New-York, le <em>World</em>, publie depuis Noël dans son supplément du dimanche un jeu d'un genre nouveau : une grille en losange, dont il faut remplir les cases de mots qui se croisent, d'après de courtes définitions. Les lecteurs en réclament un par semaine.</p>
+                        <p><strong>• Le général et l'opérateur :</strong> On mande d'El Paso que le général Villa, chef des insurgés du nord du Mexique, a signé avec une compagnie américaine de cinématographe un traité qui lui assure vingt-cinq mille dollars et une part des recettes. Il s'engagerait, en échange, à livrer ses batailles de jour. À Paris, où l'on sait ce que peut une pellicule, on se demande ce que vaudra une victoire qui aura été filmée.</p>
+                        <p><strong>• La Joconde :</strong> Raccrochée dimanche au Salon Carré, la Joconde a reçu en deux jours plus de cent mille visiteurs. L'examen des conservateurs n'a donné lieu à aucun communiqué. Le gardien qui veillait sur elle depuis quinze ans a demandé à être affecté à une autre salle.</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 16px;">
+                        <p><strong>• De Nancy a El Cairo:</strong> El aviador Jules Védrines, que salió de Nancy el 20 de noviembre, aterrizó en Heliópolis el 29 de diciembre, tras hacer escala en Praga, Viena, Belgrado, Sofía, Constantinopla, Beirut y Jaffa. Es la primera vez que un aeroplano une Francia con Egipto.</p>
+                        <p><strong>• Cinco dólares al día:</strong> En Detroit, el señor Henry Ford anunció el lunes que en adelante pagará a sus obreros cinco dólares por una jornada de ocho horas, más del doble del salario corriente. Al día siguiente, diez mil hombres esperaban ante las verjas de la fábrica. Los demás fabricantes hablan de locura.</p>
+                        <p><strong>• Las palabras en cruz:</strong> Un periódico de Nueva York, el <em>World</em>, publica desde Navidad en su suplemento dominical un juego de un género nuevo: una cuadrícula en forma de rombo cuyas casillas hay que llenar con palabras que se cruzan, a partir de breves definiciones. Los lectores piden uno por semana.</p>
+                        <p><strong>• El general y el operador:</strong> Comunican de El Paso que el general Villa, jefe de los insurrectos del norte de México, ha firmado con una compañía americana de cinematógrafo un contrato que le asegura veinticinco mil dólares y una parte de la recaudación. Se comprometería, a cambio, a librar sus batallas de día. En París, donde se sabe lo que puede una película, se preguntan qué valdrá una victoria que haya sido filmada.</p>
+                        <p><strong>• La Gioconda:</strong> Colgada de nuevo el domingo en el Salon Carré, la Gioconda ha recibido en dos días a más de cien mil visitantes. El examen de los conservadores no ha dado lugar a comunicado alguno. El vigilante que velaba por ella desde hacía quince años ha pedido que lo destinen a otra sala.</p>
+                    </div>
+                </article>
+
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 15px; line-height: 1.6;">
+                        <p><strong>Le Bois de Boulogne ouvert aux nations :</strong><br>É. Garnier</p>
+                        <p><strong>Douze champions, et non quatorze :</strong><br>C. Mercier</p>
+                        <p><strong>« Parsifal » hors de Bayreuth :</strong><br>M. Lefort</p>
+                        <p><strong>M. Caillaux, le Sénat et « Le Figaro » :</strong><br>L. Moreau</p>
+                        <p><strong>Le tango à l'index et la chasse aux pinceaux :</strong><br>La Fleuriste</p>
+                        <p><strong>Supplément — <a href="suplemento_exposants_1914.html" style="color: #2c2416;">Ceux qui viennent : les exposants étrangers</a> :</strong><br>Eulalia (entretiens et photographies) et R. Romain (photographies)</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 15px; line-height: 1.6;">
+                        <p><strong>El Bosque de Bolonia se abre a las naciones :</strong><br>É. Garnier</p>
+                        <p><strong>Doce campeones, y no catorce :</strong><br>C. Mercier</p>
+                        <p><strong>«Parsifal» sale de Bayreuth :</strong><br>M. Lefort</p>
+                        <p><strong>El señor Caillaux, el Senado y «Le Figaro» :</strong><br>L. Moreau</p>
+                        <p><strong>El tango en el índice y la caza de pinceles :</strong><br>La Florista</p>
+                        <p><strong>Suplemento — <a href="suplemento_exposants_1914.html" style="color: #2c2416;">Los que vienen: los expositores extranjeros</a> :</strong><br>Eulalia (entrevistas y fotografías) y R. Romain (fotografías)</p>
+                    </div>
+                </article>
+
+            </aside>
+        </div>
+
+    <!-- MODAL PARA IMÁGENES -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('spanish');
+
+            if (document.body.classList.contains('spanish')) {
+                localStorage.setItem('newspaperLanguage', 'es');
+            } else {
+                localStorage.setItem('newspaperLanguage', 'fr');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('newspaperLanguage');
+            if (savedLanguage === 'es') {
+                document.body.classList.add('spanish');
+            }
+        });
+
+        function openImageModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageModal(event) {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    </script>
+</body>
+</html>
