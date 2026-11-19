@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Nouveau - Belle Époque</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: #f4e8d0;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        /* CONTENEDOR DE NAVEGACIÓN DE FECHAS */
+        .date-navigation {
+            width: 200px;
+            background: #faf7f0;
+            border: 3px double #2c2416;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .date-navigation h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c2416;
+            padding-bottom: 10px;
+        }
+
+        .date-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .date-item {
+            margin-bottom: 15px;
+        }
+
+        .date-link {
+            display: block;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #2c2416;
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #f4e8d0;
+        }
+
+        .date-link:hover {
+            background: #e8d5b7;
+            border-color: #8b7355;
+            transform: translateX(5px);
+        }
+
+        .date-link.active {
+            background: #8b7355;
+            color: #faf7f0;
+            border-color: #2c2416;
+            font-weight: 600;
+        }
+
+        .date-link.active:hover {
+            background: #6b5a47;
+            transform: none;
+        }
+
+        .newspaper-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #faf7f0;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            padding: 40px;
+            border: 3px double #2c2416;
+            flex: 1;
+        }
+
+        /* CABECERA DEL PERIÓDICO */
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 4px double #2c2416;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .ornamental-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .ornamental-line::before,
+        .ornamental-line::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #2c2416, transparent);
+        }
+
+        .ornamental-symbol {
+            margin: 0 15px;
+            font-size: 20px;
+            color: #8b7355;
+        }
+
+        .newspaper-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            color: #2c2416;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin: 15px 0;
+            text-shadow: 2px 2px 0px rgba(139, 115, 85, 0.3);
+        }
+
+        .newspaper-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #5a4a3a;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .newspaper-date {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            color: #5a4a3a;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* ESTRUCTURA DEL CONTENIDO */
+        .newspaper-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* COLUMNA IZQUIERDA */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* ARTÍCULO PRINCIPAL */
+        .main-article {
+            border-bottom: 3px double #2c2416;
+            padding-bottom: 25px;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #2c2416;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .article-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .article-image {
+            width: 100%;
+            height: auto;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .main-article .article-image {
+            aspect-ratio: 16 / 9;
+            width: 100%;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            flex: 1 1 auto;
+            min-width: 0;
+            min-height: 0;
+        }
+
+        .main-article .article-image img {
+            object-position: center 28%;
+        }
+
+        .secondary-articles .secondary-article .article-image {
+            aspect-ratio: 5 / 4;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .secondary-articles .secondary-article .article-image img {
+            object-position: center 38%;
+        }
+
+        .article-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.8;
+            column-count: 2;
+            column-gap: 30px;
+            hyphens: auto;
+        }
+
+        .article-text::first-letter {
+            font-size: 72px;
+            font-weight: bold;
+            float: left;
+            line-height: 0.8;
+            margin: 5px 8px 0 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ARTÍCULOS SECUNDARIOS */
+        .secondary-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .secondary-article {
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 20px;
+        }
+
+        .secondary-article:last-child {
+            border-bottom: none;
+        }
+
+        .secondary-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2c2416;
+            padding-bottom: 5px;
+        }
+
+        .secondary-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+
+        /* IMAGEN CUADRADA ENTRE ARTÍCULOS */
+        .square-image-container {
+            margin: 20px 0;
+        }
+
+        .square-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border: 3px solid #2c2416;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .square-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* COLUMNA DERECHA */
+        .right-column {
+            border-left: 3px double #2c2416;
+            padding-left: 25px;
+        }
+
+        .sidebar-article {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: center;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 10px 0;
+        }
+
+        .vertical-image {
+            width: 100%;
+            aspect-ratio: 9/16;
+            border: 3px solid #2c2416;
+            margin: 20px 0;
+            background: #d4c5b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #5a4a3a;
+            overflow: hidden;
+        }
+
+        .vertical-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .vertical-image.sidebar-portrait {
+            aspect-ratio: 3 / 4;
+            max-width: 100%;
+        }
+
+        .vertical-image.sidebar-portrait img.placeholder {
+            object-position: center 30%;
+        }
+
+        .sidebar-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            text-align: justify;
+            color: #2c2416;
+            line-height: 1.7;
+        }
+
+        /* DECORACIONES TIPOGRÁFICAS */
+        .typographic-ornament {
+            text-align: center;
+            font-size: 24px;
+            color: #8b7355;
+            margin: 20px 0;
+            letter-spacing: 10px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+
+            .date-navigation {
+                width: 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+
+            .newspaper-content {
+                grid-template-columns: 1fr;
+            }
+
+            .right-column {
+                border-left: none;
+                border-top: 3px double #2c2416;
+                padding-left: 0;
+                padding-top: 25px;
+            }
+
+            .article-text {
+                column-count: 1;
+            }
+
+            .newspaper-title {
+                font-size: 48px;
+            }
+        }
+
+        /* EFECTOS DE PAPEL ENVEJECIDO */
+        .newspaper-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 115, 85, 0.03) 2px,
+                    rgba(139, 115, 85, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+
+        .newspaper-container {
+            position: relative;
+        }
+
+        /* Placeholder de imagen */
+        img.placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Archives photographiques : ton sépia / noir-et-blanc doux */
+        .article-image img.placeholder,
+        .vertical-image img.placeholder,
+        .secondary-articles .article-image img.placeholder {
+            filter: sepia(0.35) grayscale(0.15) contrast(1.06) brightness(0.98);
+        }
+
+        /* BOTÓN DE TRADUCCIÓN */
+        .translate-button {
+            width: 35px;
+            height: 35px;
+            background: rgba(44, 36, 22, 0.1);
+            border: 2px solid rgba(139, 115, 85, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            color: #5a4a3a;
+            margin: 10px auto;
+        }
+
+        .translate-button:hover {
+            background: rgba(139, 115, 85, 0.2);
+            border-color: #8b7355;
+            transform: scale(1.1);
+        }
+
+        .translate-button:active {
+            transform: scale(0.95);
+        }
+
+        .translate-button-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        /* Ocultar contenido de idioma alternativo */
+        .lang-es {
+            display: none;
+        }
+
+        body.spanish .lang-fr {
+            display: none;
+        }
+
+        body.spanish .lang-es {
+            display: block;
+        }
+
+        body.spanish .lang-es.inline {
+            display: inline;
+        }
+
+        /* ESTILOS PARA CRÓNICAS DE SOCIEDAD */
+        .society-chronicle {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .society-chronicle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .society-note {
+            font-family: 'Crimson Text', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #5a4a3a;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* ESTILOS PARA CARTAS AL DIRECTOR */
+        .letters-section {
+            border-top: 3px double #2c2416;
+            padding-top: 30px;
+            margin-top: 30px;
+        }
+
+        .letters-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c2416;
+            text-align: center;
+            margin-bottom: 15px;
+            border-top: 2px solid #2c2416;
+            border-bottom: 2px solid #2c2416;
+            padding: 15px 0;
+        }
+
+        .letter-box {
+            background-color: #f5e6d3;
+            border: 2px solid #d4c4a8;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c2416;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .letter-content {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #2c2416;
+            text-align: justify;
+        }
+
+        .letter-signature {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2416;
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* ESTILOS PARA COTILLEOS DE SOLTEROS */
+        .gossip-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .gossip-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #f4e8d0;
+            border: 1px solid #8b7355;
+            border-left: 3px solid #8b7355;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .gossip-item:hover {
+            background: #e8d5b7;
+        }
+
+        .gossip-photo {
+            width: fit-content;
+            height: fit-content;
+            border: 2px solid #2c2416;
+            padding: 1px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #d4c5b0;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+
+        .gossip-photo img {
+            width: 70px;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            filter: sepia(0.25) grayscale(0.12) contrast(1.05);
+        }
+
+        .gossip-photo img:hover {
+            opacity: 0.8;
+        }
+
+        /* MODAL PARA IMÁGENES */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #2c2416;
+            padding: 10px;
+            background: #faf7f0;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            height: auto;
+            display: block;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: #2c2416;
+            color: #faf7f0;
+            border: 2px solid #2c2416;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .image-modal-close:hover {
+            background: #8b7355;
+        }
+
+        .gossip-info {
+            flex: 1;
+        }
+
+        .gossip-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2416;
+            margin-bottom: 5px;
+        }
+
+        .gossip-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            color: #2c2416;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .gossip-text em {
+            font-style: normal;
+            font-weight: 600;
+            color: #5a4a3a;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN DE FECHAS -->
+    <nav class="date-navigation">
+        <p style="margin: 0 0 12px 0; text-align: center; border: 1px solid #8b7355; padding: 6px 4px;">
+            <a href="neuesberlin1.html" class="date-link" style="font-weight: bold;">
+                <span class="lang-fr">✠ Presse de Berlin</span>
+                <span class="lang-es">✠ Prensa de Berlín</span>
+            </a>
+        </p>
+        <h3 class="lang-fr">Éditions</h3>
+        <h3 class="lang-es">Ediciones</h3>
+        <ul class="date-list">
+            <li class="date-item">
+                <a href="noticias42.html" class="date-link active">
+                    <span class="lang-fr">6 Mai 1914</span>
+                    <span class="lang-es">6 de Mayo de 1914</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias41.html" class="date-link">
+                    <span class="lang-fr">10 Janvier 1914</span>
+                    <span class="lang-es">10 de Enero de 1914</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias40.html" class="date-link">
+                    <span class="lang-fr">1<sup>er</sup> Janvier 1914</span>
+                    <span class="lang-es">1 de Enero de 1914</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias39.html" class="date-link">
+                    <span class="lang-fr">26 Novembre 1907</span>
+                    <span class="lang-es">26 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias38.html" class="date-link">
+                    <span class="lang-fr">24 Novembre 1907</span>
+                    <span class="lang-es">24 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias37.html" class="date-link">
+                    <span class="lang-fr">22 Novembre 1907</span>
+                    <span class="lang-es">22 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias36.html" class="date-link">
+                    <span class="lang-fr">20 Novembre 1907</span>
+                    <span class="lang-es">20 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias35.html" class="date-link">
+                    <span class="lang-fr">18 Novembre 1907</span>
+                    <span class="lang-es">18 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias34.html" class="date-link">
+                    <span class="lang-fr">17 Novembre 1907</span>
+                    <span class="lang-es">17 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias33.html" class="date-link">
+                    <span class="lang-fr">16 Novembre 1907</span>
+                    <span class="lang-es">16 de Noviembre de 1907</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias32.html" class="date-link">
+                    <span class="lang-fr">16 Novembre 1905</span>
+                    <span class="lang-es">16 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias31.html" class="date-link">
+                    <span class="lang-fr">13 Novembre 1905</span>
+                    <span class="lang-es">13 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias30.html" class="date-link">
+                    <span class="lang-fr">12 Novembre 1905</span>
+                    <span class="lang-es">12 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias29.html" class="date-link">
+                    <span class="lang-fr">11 Novembre 1905</span>
+                    <span class="lang-es">11 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias28.html" class="date-link">
+                    <span class="lang-fr">10 Novembre 1905</span>
+                    <span class="lang-es">10 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias27.html" class="date-link">
+                    <span class="lang-fr">6 Novembre 1905</span>
+                    <span class="lang-es">6 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias26.html" class="date-link">
+                    <span class="lang-fr">5 Novembre 1905</span>
+                    <span class="lang-es">5 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias25.html" class="date-link">
+                    <span class="lang-fr">2 Novembre 1905</span>
+                    <span class="lang-es">2 de Noviembre</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias22.html" class="date-link">
+                    <span class="lang-fr">1er Août 1905</span>
+                    <span class="lang-es">1 de Agosto</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias21.html" class="date-link">
+                    <span class="lang-fr">30 Juillet 1905</span>
+                    <span class="lang-es">30 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias20.html" class="date-link">
+                    <span class="lang-fr">29 Juillet 1905</span>
+                    <span class="lang-es">29 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias19.html" class="date-link">
+                    <span class="lang-fr">28 Juillet 1905</span>
+                    <span class="lang-es">28 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias18.html" class="date-link">
+                    <span class="lang-fr">27 Juillet 1905</span>
+                    <span class="lang-es">27 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias17.html" class="date-link">
+                    <span class="lang-fr">26 Juillet 1905</span>
+                    <span class="lang-es">26 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias16.html" class="date-link">
+                    <span class="lang-fr">25 Juillet 1905</span>
+                    <span class="lang-es">25 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias15.html" class="date-link">
+                    <span class="lang-fr">24 Juillet 1905</span>
+                    <span class="lang-es">24 de Julio</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias14.html" class="date-link">
+                    <span class="lang-fr">22 Mai 1905</span>
+                    <span class="lang-es">22 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias13.html" class="date-link">
+                    <span class="lang-fr">21 Mai 1905</span>
+                    <span class="lang-es">21 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias12.html" class="date-link">
+                    <span class="lang-fr">20 Mai 1905</span>
+                    <span class="lang-es">20 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias11.html" class="date-link">
+                    <span class="lang-fr">19 Mai 1905</span>
+                    <span class="lang-es">19 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias10.html" class="date-link">
+                    <span class="lang-fr">18 Mai 1905</span>
+                    <span class="lang-es">18 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias9.html" class="date-link">
+                    <span class="lang-fr">17 Mai 1905</span>
+                    <span class="lang-es">17 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias8.html" class="date-link">
+                    <span class="lang-fr">16 Mai 1905</span>
+                    <span class="lang-es">16 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias7.html" class="date-link">
+                    <span class="lang-fr">15 Mai 1905</span>
+                    <span class="lang-es">15 de Mayo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias6.html" class="date-link">
+                    <span class="lang-fr">1 Avril 1905</span>
+                    <span class="lang-es">1 de Abril</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias5.html" class="date-link">
+                    <span class="lang-fr">29 Mars 1905</span>
+                    <span class="lang-es">29 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias4.html" class="date-link">
+                    <span class="lang-fr">28 Mars 1905</span>
+                    <span class="lang-es">28 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias3.html" class="date-link">
+                    <span class="lang-fr">27 Mars 1905</span>
+                    <span class="lang-es">27 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias2.html" class="date-link">
+                    <span class="lang-fr">26 Mars 1905</span>
+                    <span class="lang-es">26 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias1.html" class="date-link">
+                    <span class="lang-fr">25 Mars 1905</span>
+                    <span class="lang-es">25 de Marzo</span>
+                </a>
+            </li>
+            <li class="date-item">
+                <a href="noticias.html" class="date-link">
+                    <span class="lang-fr">18 Mars 1905</span>
+                    <span class="lang-es">18 de Marzo</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="newspaper-container">
+        <!-- CABECERA DEL PERIÓDICO -->
+        <header class="newspaper-header">
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">❦</span>
+            </div>
+            <h1 class="newspaper-title">Paris Nouveau</h1>
+            <p class="newspaper-subtitle">Nouvelles du Monde des Arts et de la Belle Société</p>
+            <div class="translate-button-container">
+                <button class="translate-button" onclick="toggleLanguage()" title="Traducir / Translate">🔍</button>
+            </div>
+            <div class="ornamental-line">
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+                <span class="ornamental-symbol">◆</span>
+            </div>
+            <p class="newspaper-date lang-fr">Mercredi, 6 Mai 1914 — Prix: 5 Centimes</p>
+            <p class="newspaper-date lang-es">Miércoles, 6 de Mayo de 1914 — Precio: 5 Centimes</p>
+        </header>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="newspaper-content">
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="left-column">
+                <!-- ARTÍCULO PRINCIPAL -->
+                <article class="main-article">
+                    <h2 class="article-title lang-fr">L'Espagne bâtit un temple avec des hommes</h2>
+                    <h2 class="article-title lang-es">España levanta un templo con hombres</h2>
+                    <p class="article-subtitle lang-fr">L'Exposition mondiale des Arts est ouverte depuis samedi au Bois de Boulogne. Le premier concours, celui d'architecture, revient à M. Gaudí : devant les arbitres, les « castellers » de Valls ont élevé, de cordes, de bois et de leurs propres épaules, une réplique de la Sagrada Familia. La France est deuxième avec sa galerie triomphale, la Russie troisième. L'Orbe de cristal de l'Allemagne, le plus regardé des palais, reste sans médaille</p>
+                    <p class="article-subtitle lang-es">La Exposición Mundial de las Artes está abierta desde el sábado en el Bosque de Bolonia. El primer concurso, el de arquitectura, es para el señor Gaudí: ante los árbitros, los «castellers» de Valls levantaron, con cuerdas, madera y sus propios hombros, una réplica de la Sagrada Familia. Francia queda segunda con su galería triunfal, y Rusia tercera. El Orbe de Cristal de Alemania, el más mirado de los palacios, se queda sin medalla</p>
+
+                    <div class="article-image">
+                        <img src="news/castellers_sagrada_familia_bois_1914.jpg" alt="Les castellers de Valls devant la réplique de cordes de la Sagrada Familia, dans l'enceinte espagnole du Bois de Boulogne — composition de notre illustrateur d'après la journée de samedi (image composée, et non photographie d'époque) — Los castellers de Valls ante la réplica de cuerdas de la Sagrada Familia, en el recinto español del Bosque de Bolonia; composición de nuestro ilustrador a partir de la jornada del sábado (imagen compuesta, no fotografía de época)." class="placeholder" style="object-position: center 40%;">
+                    </div>
+
+                    <div class="article-text lang-fr">
+                        <p>Paris, 5 mai — La seconde Exposition mondiale des Arts a son premier vainqueur. Samedi soir, à la nuit tombée, les arbitres ont proclamé dans la plaine du Bois de Boulogne le résultat du concours d'architecture des nations : il revient à l'Espagne, pour l'ouvrage de M. Antoni Gaudí. Le Président de la République avait déclaré l'Exposition ouverte le matin même, devant les commissaires d'une vingtaine de nations et une foule que la préfecture a renoncé à compter. Depuis, la plaine n'a pas désempli.</p>
+                        <p>Le règlement distingue deux concours pour chaque art. Dans le premier, les nations concourent en équipe, et les arbitres jugent enceinte par enceinte : ils se transportent d'une concession à l'autre et se prononcent sur ce que chaque nation y a mis. Dans le second, les artistes concourent en leur propre nom, devant des arbitres qui sont du métier. L'architecture ouvrait la série pour une raison simple : il fallait que les palais fussent debout avant qu'on y montrât autre chose.</p>
+                        <p>Le Président a inauguré une plaine nue : à l'heure des discours, pas une enceinte ne portait un mur, et tous les palais que l'on y voit aujourd'hui ont été élevés dans la journée, sous les yeux des arbitres. Celle de l'Espagne était vide comme les autres. À l'heure fixée, trois cents hommes de Valls et du Camp de Tarragone y sont entrés en chemise blanche, la taille serrée dans une ceinture noire, au son d'une sorte de hautbois que les Catalans nomment « gralla », portant des mâts de bois hauts comme des maisons de six étages et des rouleaux de corde. Ce sont les « castellers », qui ont pour usage, les jours de fête, de monter sur les épaules les uns des autres jusqu'à six et sept étages d'hommes. Ils ont dressé les mâts, ont tourné autour, se sont élevés en tours, et chaque tour, à mesure qu'elle montait, tendait une corde, nouait un arc, portait une pièce. On a vu ainsi se bâtir, l'un après l'autre, chaque pilier, chaque mur, chaque fenêtre avec sa verrière, passée de main en main jusqu'aux enfants qui la fixaient au sommet. Le concours n'était pas achevé que la silhouette du temple que M. Gaudí élève depuis trente ans à Barcelone se dressait au bord de la Seine, faite de cordes, de bois et d'hommes. Ceux qui tenaient une montre l'ont regardée deux fois. Les ingénieurs présents l'expliquent par la préparation : chaque pièce était taillée et numérotée d'avance, chaque nœud répété, et les cordes, disent-ils, étaient disposées de telle sorte qu'un seul homme en montant en tendait dix. Aucun n'a su dire comment on règle cela pour trois cents hommes sans qu'un seul se trompe.</p>
+                        <p>Les arbitres sont restés une heure dans l'enceinte sans rien écrire. Plusieurs personnes ont assuré, en sortant, y avoir entendu des cloches ; il n'y en a pas. M. Gaudí, qui a soixante et un ans et ne quitte guère son chantier, n'a fait aucune déclaration. Il a seulement fait dire par M. Jujol, son collaborateur, qu'un temple n'est pas l'œuvre d'un architecte mais celle d'un peuple, et que celui-ci avait voyagé plus aisément que les pierres. Au palais espagnol, on ne parlait samedi soir ni de la Dame d'Elche ni du Louvre : on parlait de Valls.</p>
+                        <p>L'Allemagne, qui ne paraîtra pas dans la Lice, a tenu à ce qu'on ne l'oubliât pas dans les Salons. M. Bruno Taut a élevé pour elle ce que la foule appelle déjà l'Orbe de cristal : une coupole de verres de couleur posée sur un tambour de béton, où l'on chercherait en vain un mur. L'édifice entier paraît fait de vitraux ; on y monte par des escaliers en dalles de verre, et l'eau y descend en cascade sur des perles éclairées par-dessous. Le poète Paul Scheerbart a fourni les devises gravées au bandeau. L'une d'elles a été beaucoup recopiée sur les carnets : « Le verre de couleur détruit la haine. » Les arbitres ne lui ont pas donné de médaille ; la foule, elle, n'en sort pas.</p>
+                        <p>La France présentait la galerie triomphale que MM. Tony Garnier et Lucien Nœud-Papillon ont dessinée ensemble pour le palais du centre de la plaine. On s'attendait à y voir deux moitiés de palais, celle de l'architecte lyonnais que l'on dit l'homme du gouvernement et celle du constructeur de l'hôpital du Grand Papillon ; on n'a vu qu'une seule galerie. Les arbitres lui ont donné la deuxième place. La troisième est allée à la Russie, pour un palais que gardent deux colosses.</p>
+                        <p>Deux autres nations ont été remarquées. La Bohême, sous le toit de céramique de M. Lechner, a fait de son enceinte une ruche : des alvéoles de brique et de fer dont chacune porte la marque de l'atelier qui l'a bâtie, et qui ne tiennent que les unes par les autres. Les délégués de la Bourse du Travail y sont venus dimanche en cortège. La Belgique avait demandé des quais à M. Victor Horta : une suite de débarcadères de fer et de pierre bleue, avec leurs grues et leurs passerelles, à l'image de ceux d'Anvers. Les arbitres ont fait savoir que l'ouvrage aurait été primé sans sa tour, qu'ils ont jugée trop étroite pour ce qu'elle couronne. M. Horta n'a pas contesté le jugement.</p>
+                        <p>Les palais restent ouverts chaque jour, de neuf heures à la tombée de la nuit. Le commissariat d'Espagne n'a pas dit combien de fois ses hommes recommenceront.</p>
+                    </div>
+
+                    <div class="article-text lang-es">
+                        <p>París, 5 de mayo — La segunda Exposición Mundial de las Artes tiene su primer vencedor. El sábado por la noche, ya oscurecido, los árbitros proclamaron en la llanura del Bosque de Bolonia el resultado del concurso de arquitectura de las naciones: corresponde a España, por la obra del señor Antoni Gaudí. El Presidente de la República había declarado abierta la Exposición esa misma mañana, ante los comisarios de una veintena de naciones y una multitud que la prefectura ha renunciado a contar. Desde entonces, la llanura no se ha vaciado.</p>
+                        <p>El reglamento distingue dos concursos para cada arte. En el primero, las naciones compiten en equipo, y los árbitros juzgan recinto por recinto: se trasladan de una concesión a otra y se pronuncian sobre lo que cada nación ha puesto en ella. En el segundo, los artistas compiten en su propio nombre, ante árbitros que son del oficio. La arquitectura abría la serie por una razón sencilla: era preciso que los palacios estuviesen en pie antes de mostrar en ellos otra cosa.</p>
+                        <p>El Presidente inauguró una llanura desnuda: a la hora de los discursos, ni un solo recinto tenía un muro, y todos los palacios que hoy se ven en ella se levantaron durante la jornada, a la vista de los árbitros. El de España estaba vacío como los demás. A la hora señalada, trescientos hombres de Valls y del Campo de Tarragona entraron en él con camisa blanca, la cintura ceñida por una faja negra, al son de una especie de oboe que los catalanes llaman «gralla», cargados con mástiles de madera altos como casas de seis pisos y con rollos de cuerda. Son los «castellers», que tienen por costumbre, los días de fiesta, subirse a hombros unos de otros hasta seis y siete pisos de hombres. Plantaron los mástiles, giraron en torno a ellos, se alzaron en torres, y cada torre, a medida que subía, tendía una cuerda, anudaba un arco, llevaba una pieza. Así se vio construir, uno tras otro, cada pilar, cada muro, cada ventanal con su vidriera, pasada de mano en mano hasta los niños que la fijaban en lo alto. Antes de que el concurso terminase, la silueta del templo que el señor Gaudí levanta desde hace treinta años en Barcelona se alzaba a orillas del Sena, hecha de cuerdas, de madera y de hombres. Quienes llevaban reloj lo miraron dos veces. Los ingenieros presentes lo explican por la preparación: cada pieza estaba cortada y numerada de antemano, cada nudo ensayado, y las cuerdas, dicen, dispuestas de tal modo que un solo hombre, al subir, tensaba diez. Ninguno supo decir cómo se ajusta eso para trescientos hombres sin que uno solo se equivoque.</p>
+                        <p>Los árbitros permanecieron una hora en el recinto sin escribir nada. Varias personas aseguraron, al salir, haber oído campanas en él; no las hay. El señor Gaudí, que tiene sesenta y un años y apenas se aparta de su obra, no hizo declaración alguna. Sólo mandó decir por el señor Jujol, su colaborador, que un templo no es obra de un arquitecto sino de un pueblo, y que éste había viajado con más facilidad que las piedras. En el palacio español no se hablaba el sábado por la noche ni de la Dama de Elche ni del Louvre: se hablaba de Valls.</p>
+                        <p>Alemania, que no aparecerá en la Liza, ha querido que no se la olvide en los Salones. El señor Bruno Taut ha levantado para ella lo que la multitud llama ya el Orbe de Cristal: una cúpula de vidrios de colores posada sobre un tambor de hormigón, en la que en vano se buscaría un muro. El edificio entero parece hecho de vidrieras; se sube a él por escaleras de losas de vidrio, y el agua baja en cascada sobre perlas iluminadas desde abajo. El poeta Paul Scheerbart ha proporcionado los lemas grabados en la cornisa. Uno de ellos se ha copiado mucho en los cuadernos: «El vidrio de color destruye el odio.» Los árbitros no le han dado medalla; la multitud, en cambio, no sale de él.</p>
+                        <p>Francia presentaba la galería triunfal que los señores Tony Garnier y Lucien Nœud-Papillon han trazado juntos para el palacio del centro de la llanura. Se esperaba ver en ella dos mitades de palacio, la del arquitecto lionés de quien se dice que es el hombre del Gobierno y la del constructor del hospital del Grand Papillon; sólo se ha visto una galería. Los árbitros le dieron el segundo puesto. El tercero fue para Rusia, por un palacio que guardan dos colosos.</p>
+                        <p>Otras dos naciones han llamado la atención. Bohemia, bajo el tejado de cerámica del señor Lechner, ha hecho de su recinto una colmena: unas celdas de ladrillo y de hierro, cada una con la marca del taller que la construyó, que sólo se sostienen las unas por las otras. Los delegados de la Bolsa del Trabajo acudieron a ella el domingo en comitiva. Bélgica había pedido unos muelles al señor Victor Horta: una sucesión de embarcaderos de hierro y de piedra azul, con sus grúas y sus pasarelas, a imagen de los de Amberes. Los árbitros han hecho saber que la obra habría sido premiada de no ser por su torre, que juzgaron demasiado estrecha para lo que corona. El señor Horta no ha discutido el fallo.</p>
+                        <p>Los palacios siguen abiertos todos los días, desde las nueve hasta la caída de la noche. El comisariado de España no ha dicho cuántas veces volverán a empezar sus hombres.</p>
+                    </div>
+                </article>
+
+                <!-- EL ORBE DE CRISTAL -->
+                <div class="square-image-container" style="max-width: 480px; margin: 0 auto; width: 100%;">
+                    <div class="square-image">
+                        <img src="news/taut_glashaus_1914.jpg" alt="La coupole de verre de M. Bruno Taut, avec la devise de Paul Scheerbart au bandeau — photographie, 1914 (domaine public) — La cúpula de vidrio del señor Bruno Taut, con el lema de Paul Scheerbart en la cornisa; fotografía, 1914 (dominio público)." style="filter: sepia(0.35) grayscale(0.15) contrast(1.06) brightness(0.98);">
+                    </div>
+                    <p class="lang-fr" style="font-size: 16px; font-style: italic; color: #5a4a3a; text-align: center; margin-top: 8px;">L'Orbe de cristal de M. Bruno Taut, au palais de l'Allemagne.</p>
+                    <p class="lang-es" style="font-size: 16px; font-style: italic; color: #5a4a3a; text-align: center; margin-top: 8px;">El Orbe de Cristal del señor Bruno Taut, en el palacio de Alemania.</p>
+                </div>
+
+                <!-- ARTÍCULOS SECUNDARIOS -->
+                <div class="secondary-articles">
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">M. Nœud-Papillon et le premier foyer</h3>
+                        <h3 class="secondary-title lang-es">El señor Nœud-Papillon y el primer hogar</h3>
+                        <div class="article-image">
+                            <img src="news/mas_dazil_grotte_entree.jpg" alt="L'entrée de la grotte du Mas-d'Azil (Ariège), où les fouilles ont mis au jour des foyers plus anciens que toute architecture — carte postale, vers 1905 (domaine public) — La entrada de la gruta del Mas-d'Azil (Ariège), donde las excavaciones han sacado a la luz hogares más antiguos que toda arquitectura; tarjeta postal, hacia 1905 (dominio público)." class="placeholder" style="object-position: center 60%;">
+                        </div>
+                        <div class="secondary-text lang-fr">
+                            <p>Le second concours d'architecture, celui où les artistes concourent en leur propre nom devant des arbitres du métier, a été jugé ce même samedi. La médaille d'or va à un Français, M. Lucien Nœud-Papillon, pour un ouvrage que personne n'attendait d'un architecte : une grotte.</p>
+                            <p>L'ouvrage se tient à l'écart des palais et ne montre du dehors qu'une ouverture basse. Au-dedans, la roche s'arrondit autour d'un foyer. M. Nœud-Papillon ne lui a donné aucun titre ; il a quitté l'enceinte sitôt l'ouvrage achevé, et n'a rien expliqué aux arbitres. Ce sont les visiteurs qui l'ont nommée. Ceux qui en sortent disent presque tous la même chose : qu'avant le temple et avant le palais il y eut un abri où l'on entretenait un feu, et que c'est là qu'ils viennent d'entrer. On l'appelle donc « le premier foyer », et le nom lui est resté. La grotte ne restera pas vide. Le commissariat a décidé qu'elle abriterait les prochains concours de maquettes.</p>
+                            <p>Deux autres ouvrages ont été distingués. Kémaleddine bey, de Constantinople, architecte turc venu avec la délégation de l'Empire hellénique, a donné un amphithéâtre qui marie la Grèce et l'empire romain d'Orient : des gradins à l'antique, sous une couronne d'arcades et de coupoles venue de Byzance. Plusieurs y ont vu le programme de l'Empire hellénique, mis en pierre. M. Hans Poelzig, de Breslau, a donné une salle de concert. Une chevauchée de Walkyries et de bêtes fabuleuses y sort des murs, sculptée en plein relief. L'architecte assure que ces figures ne sont pas un ornement, et que le son, en passant sur elles, arrive à l'auditeur « poli ». Les musiciens qui ont essayé la salle ne le contredisent pas.</p>
+                            <p>M. Nœud-Papillon, qui signe déjà avec M. Tony Garnier la galerie triomphale du palais français, se trouve ainsi distingué dans les deux concours.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p>El segundo concurso de arquitectura, aquel en que los artistas compiten en su propio nombre ante árbitros del oficio, se juzgó ese mismo sábado. La medalla de oro es para un francés, el señor Lucien Nœud-Papillon, por una obra que nadie esperaba de un arquitecto: una cueva.</p>
+                            <p>La obra queda apartada de los palacios y sólo muestra desde fuera una abertura baja. Dentro, la roca se curva en torno a un hogar. El señor Nœud-Papillon no le ha puesto título; abandonó el recinto en cuanto la obra estuvo terminada, y nada explicó a los árbitros. Son los visitantes quienes la han nombrado. Casi todos los que salen de ella dicen lo mismo: que antes que el templo y antes que el palacio hubo un abrigo donde se mantenía un fuego, y que es allí donde acaban de entrar. Se la llama, pues, «el primer hogar», y con ese nombre se ha quedado. La cueva no quedará vacía. El comisariado ha decidido que albergue los próximos concursos de maquetas.</p>
+                            <p>Otras dos obras han sido distinguidas. Kemaleddin bey, de Constantinopla, arquitecto turco llegado con la delegación del Imperio Heleno, ha presentado un anfiteatro que une a Grecia con el imperio romano de Oriente: unas gradas a la antigua, bajo una corona de arcadas y de cúpulas llegada de Bizancio. Más de uno ha visto en él el programa del Imperio Heleno, puesto en piedra. El señor Hans Poelzig, de Breslau, ha presentado una sala de conciertos. Una cabalgata de valquirias y de bestias fabulosas emerge en ella de las paredes, esculpida en pleno relieve. El arquitecto asegura que esas figuras no son un adorno, y que el sonido, al pasar sobre ellas, llega al oyente «pulido». Los músicos que han probado la sala no lo contradicen.</p>
+                            <p>El señor Nœud-Papillon, que firma ya con el señor Tony Garnier la galería triunfal del palacio francés, queda así distinguido en los dos concursos.</p>
+                        </div>
+                    </article>
+
+                    <article class="secondary-article">
+                        <h3 class="secondary-title lang-fr">Après les architectes, le théâtre</h3>
+                        <h3 class="secondary-title lang-es">Después de los arquitectos, el teatro</h3>
+                        <div class="article-image">
+                            <img src="news/sarah_bernhardt_jeanne_dore_1913.jpg" alt="Mme Sarah Bernhardt et M. Raymond Bernard dans « Jeanne Doré », de M. Tristan Bernard, créée en décembre au Théâtre Sarah-Bernhardt — photographie de scène (domaine public, BnF) — La señora Sarah Bernhardt y el señor Raymond Bernard en «Jeanne Doré», del señor Tristan Bernard, estrenada en diciembre en el Théâtre Sarah-Bernhardt; fotografía de escena (dominio público, BnF)." class="placeholder" style="object-position: center 30%;">
+                        </div>
+                        <div class="secondary-text lang-fr">
+                            <p>Le prochain concours sera celui du théâtre. Le commissariat l'a placé en tête du calendrier, avant la peinture et la musique, et s'en est expliqué : une pièce ne s'accroche pas à un mur. Jugées dès maintenant, les œuvres resteront à l'affiche jusqu'à la clôture, et le public pourra voir tout l'été ce que les arbitres n'auront vu qu'un soir.</p>
+                            <p>Les règles seront celles de l'architecture. Les troupes des nations seront jugées enceinte par enceinte, chacune sur sa propre scène ; les auteurs et les comédiens qui concourent en leur nom le seront par des arbitres de théâtre. Aucun programme n'est encore officiel. On sait pourtant, par les affiches et par les délégations, ce qui se prépare.</p>
+                            <p>La Chine a annoncé M. Mei Lanfang, qui donnera trois scènes chaque soir, et le Japon Mme Sadayakko, que Paris applaudit en 1900. L'Allemagne amène M. Max Reinhardt, l'Autriche une moralité nouvelle de M. de Hofmannsthal, dans la manière de son « Jedermann », la Belgique une féerie de M. Maeterlinck, que l'on dit sœur de « L'Oiseau bleu », la Serbie une comédie de M. Nouchitch. De Londres, on attend une version de « Pygmalion » que M. Bernard Shaw a écrite pour Mrs Patrick Campbell, et dont un seul mot, dit au troisième acte, occupe déjà la presse anglaise sans que personne l'ait entendu. L'Espagne n'a rien annoncé ; on lui prête une nouvelle « comédie barbare » de M. del Valle-Inclán. Le règlement n'admet que des créations : aucune de ces pièces n'a encore été jouée.</p>
+                            <p>La France n'a pas fait connaître son choix. Mme Sarah Bernhardt, qui a créé cet hiver dans son théâtre la « Jeanne Doré » de M. Tristan Bernard, n'a pas dit ce qu'elle porterait au Bois.</p>
+                            <p>Une difficulté reste entière : les pièces seront données en une quinzaine de langues. Les arbitres, interrogés, ont répondu qu'il ne leur avait pas fallu d'interprète pour comprendre les castellers.</p>
+                        </div>
+                        <div class="secondary-text lang-es">
+                            <p>El próximo concurso será el de teatro. El comisariado lo ha puesto a la cabeza del calendario, antes que la pintura y la música, y ha explicado por qué: una pieza no se cuelga de una pared. Juzgadas desde ahora, las obras seguirán en cartel hasta la clausura, y el público podrá ver durante todo el verano lo que los árbitros sólo habrán visto una noche.</p>
+                            <p>Las reglas serán las de la arquitectura. Las compañías de las naciones serán juzgadas recinto por recinto, cada una en su propio escenario; los autores y los actores que compiten en su nombre lo serán por árbitros de teatro. Ningún programa es todavía oficial. Se sabe, sin embargo, por los carteles y por las delegaciones, lo que se prepara.</p>
+                            <p>China ha anunciado al señor Mei Lanfang, que dará tres escenas cada noche, y Japón a la señora Sadayakko, a quien París aplaudió en 1900. Alemania trae al señor Max Reinhardt, Austria una moralidad nueva del señor von Hofmannsthal, a la manera de su «Jedermann», Bélgica una comedia de magia del señor Maeterlinck, que se dice hermana de «El pájaro azul», Serbia una comedia del señor Nušić. De Londres se espera una versión de «Pigmalión» que el señor Bernard Shaw ha escrito para Mrs Patrick Campbell, y de la que una sola palabra, dicha en el tercer acto, ocupa ya a la prensa inglesa sin que nadie la haya oído. España no ha anunciado nada; se le atribuye una nueva «comedia bárbara» del señor del Valle-Inclán. El reglamento sólo admite estrenos: ninguna de estas piezas se ha representado todavía.</p>
+                            <p>Francia no ha dado a conocer su elección. La señora Sarah Bernhardt, que estrenó este invierno en su teatro la «Jeanne Doré» del señor Tristan Bernard, no ha dicho qué llevará al Bosque.</p>
+                            <p>Queda una dificultad sin resolver: las obras se darán en una quincena de lenguas. Los árbitros, preguntados, respondieron que no habían necesitado intérprete para entender a los castellers.</p>
+                        </div>
+                    </article>
+                </div>
+
+            </div>
+
+            <!-- COLUMNA DERECHA -->
+            <aside class="right-column">
+                <article class="sidebar-article">
+                    <h3 class="sidebar-title lang-fr">L'arbitre a débarqué à Veracruz</h3>
+                    <h3 class="sidebar-title lang-es">El árbitro ha desembarcado en Veracruz</h3>
+                    <div class="vertical-image sidebar-portrait" style="margin-bottom: 1em;">
+                        <img src="news/veracruz_drapeau_1914.jpg" alt="Le drapeau des États-Unis hissé à Veracruz, fin avril — photographie Bain News Service (domaine public, Library of Congress) — La bandera de los Estados Unidos izada en Veracruz, a finales de abril; fotografía Bain News Service (dominio público, Library of Congress)." class="placeholder" style="object-position: center 35%;">
+                    </div>
+                    <div class="sidebar-text lang-fr">
+                        <p>Les États-Unis exposent comme les autres nations au Bois de Boulogne, où ils ont leur palais ; ils ne paraîtront pas dans la Lice, et ils y fournissent des arbitres. Leurs jurés y siègent depuis samedi. Depuis le 21 avril, leurs marins occupent Veracruz.</p>
+                        <p>Le général Victoriano Huerta gouverne le Mexique depuis février 1913. Il commandait alors les troupes du président Madero ; il les retourna contre lui, et M. Madero fut tué quelques jours plus tard, pendant qu'on le conduisait en prison. Le président Wilson n'a jamais voulu reconnaître ce gouvernement. Dans le nord, les « constitutionnalistes » de M. Carranza et du général Villa lui font la guerre depuis un an.</p>
+                        <p>L'affaire est partie de peu. Le 9 avril, à Tampico, des soldats du général Huerta arrêtèrent quelques matelots américains venus chercher de l'essence, et les relâchèrent avec des excuses. L'amiral Mayo exigea en outre un salut de vingt et un coups de canon au drapeau ; le général Huerta le refusa. Le 21, apprenant qu'un vapeur allemand, l'<em>Ypiranga</em>, apportait des armes au général, le président Wilson fit saisir la douane de Veracruz. La ville fut prise en deux jours. Les Américains y ont perdu dix-neuf hommes ; les Mexicains, près de deux cents, parmi lesquels des cadets de l'École navale.</p>
+                        <p>Le 25 avril, l'Argentine, le Brésil et le Chili ont offert leur médiation, que les deux parties ont acceptée. Une conférence doit se réunir ce mois-ci à Niagara Falls, en territoire canadien. Les troupes du général Funston, qui ont relevé les marins le 30 avril, restent dans la ville.</p>
+                        <p>À Paris, la délégation américaine n'a fait aucun commentaire, et aucun commissaire n'a demandé la récusation d'un arbitre. On relève seulement que l'une des trois puissances médiatrices, l'Argentine, ne tient au Bois de Boulogne qu'un plancher de danse.</p>
+                    </div>
+                    <div class="sidebar-text lang-es">
+                        <p>Los Estados Unidos exponen como las demás naciones en el Bosque de Bolonia, donde tienen su palacio; no aparecerán en la Liza, y aportan árbitros. Sus jurados actúan allí desde el sábado. Desde el 21 de abril, sus marinos ocupan Veracruz.</p>
+                        <p>El general Victoriano Huerta gobierna México desde febrero de 1913. Mandaba entonces las tropas del presidente Madero; las volvió contra él, y el señor Madero fue muerto pocos días después, mientras lo conducían a prisión. El presidente Wilson nunca ha querido reconocer a ese gobierno. En el norte, los «constitucionalistas» del señor Carranza y del general Villa le hacen la guerra desde hace un año.</p>
+                        <p>El asunto nació de poca cosa. El 9 de abril, en Tampico, unos soldados del general Huerta detuvieron a algunos marineros americanos que habían ido a buscar gasolina, y los soltaron con disculpas. El almirante Mayo exigió además un saludo de veintiún cañonazos a la bandera; el general Huerta lo rechazó. El 21, al saber que un vapor alemán, el <em>Ypiranga</em>, llevaba armas al general, el presidente Wilson mandó tomar la aduana de Veracruz. La ciudad cayó en dos días. Los americanos perdieron en ella diecinueve hombres; los mexicanos, cerca de doscientos, entre ellos cadetes de la Escuela Naval.</p>
+                        <p>El 25 de abril, Argentina, Brasil y Chile ofrecieron su mediación, que las dos partes han aceptado. Una conferencia debe reunirse este mes en Niagara Falls, en territorio canadiense. Las tropas del general Funston, que relevaron a los marinos el 30 de abril, siguen en la ciudad.</p>
+                        <p>En París, la delegación americana no ha hecho comentario alguno, y ningún comisario ha pedido la recusación de un árbitro. Sólo se señala que una de las tres potencias mediadoras, Argentina, no tiene en el Bosque de Bolonia más que una pista de baile.</p>
+                    </div>
+                </article>
+
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0;">Brèves de la Semaine</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0;">Breves de la Semana</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 16px;">
+                        <p><strong>• La coupe Schneider à un Anglais :</strong> À Monaco, le 20 avril, l'Anglais Howard Pixton a enlevé sur un hydravion Sopwith la coupe d'aviation maritime fondée par M. Jacques Schneider, à près de cent quarante kilomètres à l'heure de moyenne. Les appareils français, qui la détenaient depuis l'an dernier, ont abandonné.</p>
+                        <p><strong>• Lyon ouvre la sienne :</strong> L'Exposition internationale urbaine de Lyon a ouvert ses portes le 1<sup>er</sup> mai, sous la grande halle de fer que M. Tony Garnier a dessinée pour les abattoirs de la Mouche. M. Herriot, maire, y a reçu les délégations. L'architecte, retenu au Bois de Boulogne, n'y assistait pas.</p>
+                        <p><strong>• Un couperet à la Royal Academy :</strong> À Londres, lundi, jour de l'ouverture de l'exposition d'été de la Royal Academy, une suffragette a lacéré de trois coups de couperet le portrait de M. Henry James par M. Sargent. Au palais des États-Unis, où M. Sargent expose « El Jaleo », on ne fait aucun commentaire.</p>
+                        <p><strong>• L'éclipse et le professeur :</strong> Une éclipse totale de Soleil sera visible le 21 août dans le sud de la Russie. L'observatoire de Berlin envoie en Crimée M. Freundlich, qui veut photographier les étoiles voisines du disque : un professeur appelé ce printemps à Berlin, M. Einstein, soutient que la lumière dévie en passant près du Soleil.</p>
+                        <p><strong>• Les abeilles de Bohême :</strong> Depuis samedi, les essaims des ruchers d'Auteuil et du Jardin d'Acclimatation quittent leurs ruches pour le toit du palais de Bohême, où M. Lechner a posé des abeilles de céramique. Les apiculteurs les reprennent chaque soir. Elles y retournent le matin.</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 16px;">
+                        <p><strong>• La copa Schneider, para un inglés:</strong> En Mónaco, el 20 de abril, el inglés Howard Pixton ganó en un hidroavión Sopwith la copa de aviación marítima fundada por el señor Jacques Schneider, a cerca de ciento cuarenta kilómetros por hora de media. Los aparatos franceses, que la tenían desde el año pasado, abandonaron.</p>
+                        <p><strong>• Lyon abre la suya:</strong> La Exposición Internacional Urbana de Lyon abrió sus puertas el 1 de mayo, bajo la gran nave de hierro que el señor Tony Garnier trazó para los mataderos de la Mouche. El señor Herriot, alcalde, recibió allí a las delegaciones. El arquitecto, retenido en el Bosque de Bolonia, no asistió.</p>
+                        <p><strong>• Un cuchillo de carnicero en la Royal Academy:</strong> En Londres, el lunes, día de la apertura de la exposición de verano de la Royal Academy, una sufragista rasgó de tres tajos el retrato del señor Henry James pintado por el señor Sargent. En el palacio de los Estados Unidos, donde el señor Sargent expone «El Jaleo», no se hace comentario alguno.</p>
+                        <p><strong>• El eclipse y el profesor:</strong> Un eclipse total de Sol será visible el 21 de agosto en el sur de Rusia. El observatorio de Berlín envía a Crimea al señor Freundlich, que quiere fotografiar las estrellas vecinas al disco: un profesor llamado esta primavera a Berlín, el señor Einstein, sostiene que la luz se desvía al pasar junto al Sol.</p>
+                        <p><strong>• Las abejas de Bohemia:</strong> Desde el sábado, los enjambres de los colmenares de Auteuil y del Jardín de Aclimatación dejan sus colmenas por el tejado del palacio de Bohemia, donde el señor Lechner ha puesto abejas de cerámica. Los apicultores las recogen cada tarde. Vuelven por la mañana.</p>
+                    </div>
+                </article>
+
+                <div class="typographic-ornament">◆ ◆ ◆</div>
+
+                <article class="sidebar-article">
+                    <h3 class="secondary-title lang-fr" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sommaire</h3>
+                    <h3 class="secondary-title lang-es" style="font-size: 24px; text-align: left; border: none; padding: 0; margin-bottom: 15px;">Sumario</h3>
+                    <div class="sidebar-text lang-fr" style="font-size: 15px; line-height: 1.6;">
+                        <p><strong>L'Espagne bâtit un temple avec des hommes :</strong><br>A. Durand</p>
+                        <p><strong>M. Nœud-Papillon et le premier foyer :</strong><br>M. Dubois</p>
+                        <p><strong>Après les architectes, le théâtre :</strong><br>M. Lefort</p>
+                        <p><strong>L'arbitre a débarqué à Veracruz :</strong><br>P. Bernard</p>
+                    </div>
+                    <div class="sidebar-text lang-es" style="font-size: 15px; line-height: 1.6;">
+                        <p><strong>España levanta un templo con hombres :</strong><br>A. Durand</p>
+                        <p><strong>El señor Nœud-Papillon y el primer hogar :</strong><br>M. Dubois</p>
+                        <p><strong>Después de los arquitectos, el teatro :</strong><br>M. Lefort</p>
+                        <p><strong>El árbitro ha desembarcado en Veracruz :</strong><br>P. Bernard</p>
+                    </div>
+                </article>
+
+            </aside>
+        </div>
+
+    <!-- MODAL PARA IMÁGENES -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <div class="image-modal-content" onclick="event.stopPropagation()">
+            <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+            <img id="modalImage" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('spanish');
+
+            if (document.body.classList.contains('spanish')) {
+                localStorage.setItem('newspaperLanguage', 'es');
+            } else {
+                localStorage.setItem('newspaperLanguage', 'fr');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('newspaperLanguage');
+            if (savedLanguage === 'es') {
+                document.body.classList.add('spanish');
+            }
+        });
+
+        function openImageModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = imageSrc;
+            modalImg.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageModal(event) {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    </script>
+</body>
+</html>
